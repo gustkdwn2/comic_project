@@ -36,4 +36,14 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String mainView(Model model) {
+		return "sangju/main";
+	}
+	
+	@RequestMapping(value = "/order", method = RequestMethod.GET)
+	public String mainOrder(Model model) {
+		return "sangju/order";
+	}
+	
 }
