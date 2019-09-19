@@ -6,4 +6,6 @@ import com.comic.model.ProductVO;
 
 public interface SettlementMapper {
 	public List<ProductVO> settlementList();
+	
+	
 }

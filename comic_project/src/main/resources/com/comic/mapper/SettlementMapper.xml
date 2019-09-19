@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.comic.mapper.SettlementMapper">
-	<select id="" resultMap="com.comic.model.ProductVO">
+	<select id="settlementList" resultType="com.comic.model.ProductVO">
 		SELECT PRODUCT_NUM, PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_QTY FROM COMIC_PRODUCTSTOCK ORDER BY PRODUCT_NUM ASC
 	</select>
 </mapper>

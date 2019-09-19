@@ -22,4 +22,6 @@ public class SettlementServiceImpl implements SettlementService {
 	public List<ProductVO> settlementList() {
 		return settleMapper.settlementList();
 	}
+	
+	
 }
