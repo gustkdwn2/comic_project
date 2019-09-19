@@ -6,4 +6,6 @@ import com.comic.model.ProductVO;
 
 public interface SettlementService {
 	public List<ProductVO> settlementList();
+
+	public boolean modify(String num, String currentNum);
 }

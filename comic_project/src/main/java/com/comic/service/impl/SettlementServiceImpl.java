@@ -22,6 +22,13 @@ public class SettlementServiceImpl implements SettlementService {
 	public List<ProductVO> settlementList() {
 		return settleMapper.settlementList();
 	}
+
+	@Override
+	public boolean modify(String num, String currentNum) {
+		int number = Integer.parseInt(num);
+		int curNum = Integer.parseInt(currentNum);
+		return settleMapper.settlementUpdate(number , curNum) == 1;
+	}
 	
 	
 }
