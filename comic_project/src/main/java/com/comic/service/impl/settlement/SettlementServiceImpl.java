@@ -41,7 +41,7 @@ public class SettlementServiceImpl implements SettlementService {
 		for (int i = 0; i < list.length; i++) { // object type을 int형으로 저장
 			list[i] = Integer.parseInt(jsonArray.fromObject(map.get("list")).get(i).toString());
 		}
-
+		
 		for (int i = 0; i < current.size(); i++) {
 			if (current.get(i).getProduct_qty() > list[i]) { // 현재 재고 수량 > 입력한 실제수량 -> 오차수량은 -
 				map.put(Integer.toString(i), ((-1) * (current.get(i).getProduct_qty() - list[i])));
