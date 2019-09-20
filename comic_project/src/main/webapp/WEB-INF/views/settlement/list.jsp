@@ -18,7 +18,7 @@
 				<div class="col-md-12 stretch-card">
 					<div class="card">
 						<div class="card-body">
-							<p class="card-title">Recent Purchases</p>
+							<p class="card-title">재고 확인</p>
 							<div class="table-responsive">
 								<table id="recent-purchases-listing"
 									class="table  table-striped">
@@ -125,6 +125,8 @@
 							$('#' + 'a' + i.toString()).css("color", "blue");
 						} else if (data[i] < 0) {
 							$('#' + 'a' + i.toString()).css("color", "red");
+						} else {
+							$('#' + 'a' + i.toString()).css("color", "black");
 						}
 					}
 				},

@@ -41,24 +41,9 @@ public class SettlementController {
 	public Map<String, Object> settlementCheck(@RequestBody HashMap<String, Object> map)
 			throws JsonParseException, JsonMappingException, IOException {
 		List<ProductVO> current = settleService.settlementList(); // int 타입
-		JSONArray jsonArray = new JSONArray(); // object 타입
-		int[] list = new int[current.size()];
-		for (int i = 0; i < list.length; i++) { // object type을 int형으로 저장
-			list[i] = Integer.parseInt(jsonArray.fromObject(map.get("list")).get(i).toString());
-		}
+		Map<String, Object> errorMap = settleService.settlementError(map, current);
 
-		for (int i = 0; i < current.size(); i++) {
-			if (current.get(i).getProduct_qty() > list[i]) { // 현재 재고 수량 > 입력한 실제수량 -> 오차수량은 -
-				map.put(Integer.toString(i), ((-1) * (current.get(i).getProduct_qty() - list[i])));
-			} else if (current.get(i).getProduct_qty() < list[i]) { // 현재 재고 수량 > 입력한 실제수량 -> 오차수량은 +
-				map.put(Integer.toString(i), ((-1) * (current.get(i).getProduct_qty() - list[i])));
-			} else {
-				map.put(Integer.toString(i), 0);
-			}
-		}
-		map.remove("list"); // 실제 수량 입력은 제거
-
-		return map;
+		return errorMap;
 	}
 
 	@PostMapping("modify.co")
@@ -69,8 +54,10 @@ public class SettlementController {
 			settleService.modify(numList[i],productList[i]);
 		}
 		
-		//rttr 할차례
+		//settleService.insertLoss(); // 손실테이블에 추가 필요
 		
+		
+		//rttr 사용으로 모달로 재고 변경알림 할 예정
 		
 		return "redirect:/settlement/list.co";
 	}
