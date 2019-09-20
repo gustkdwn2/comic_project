@@ -31,10 +31,12 @@
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 
-						href="/resources/pages/tables/basic-table.html"> <i
+						href="/managerpos.co"> <i
 
 							class="mdi mdi-grid-large menu-icon"></i> <span
-							class="menu-title">Tables</span>
+							class="menu-title"
+							
+							>Tables</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/resources/pages/icons/mdi.html"> <i

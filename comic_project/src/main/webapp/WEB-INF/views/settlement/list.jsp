@@ -106,13 +106,14 @@
 		$('#btn1').click(function() { // .blur() : focusout
 			var list = new Array();
 			$("input[name=curqty]").each(function(index, item) {
-				list.push($(item).val());
+				list.push($(item).val());//push 데이터 넣기
 			});
+			console.log(list);
 			var sendData = {
 				'list' : list
 			};
 			$.ajax({
-				url : 'http://localhost:8090/settlement/list.co',
+				url : 'http://localhost:8080/settlement/list.co',
 				dataType : 'json',
 				data : JSON.stringify(sendData),
 				contentType : "application/json; charset=utf-8;",
