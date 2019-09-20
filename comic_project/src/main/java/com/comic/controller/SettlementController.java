@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.comic.model.LossVO;
 import com.comic.model.ProductVO;
 import com.comic.service.SettlementService;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -36,11 +37,11 @@ public class SettlementController {
 		model.addAttribute("settleList", settleService.settlementList());
 	}
 
-	@ResponseBody
+	@ResponseBody  // map으로 리턴하기 위해
 	@PostMapping("/list.co")
 	public Map<String, Object> settlementCheck(@RequestBody HashMap<String, Object> map)
 			throws JsonParseException, JsonMappingException, IOException {
-		List<ProductVO> current = settleService.settlementList(); // int 타입
+		List<ProductVO> current = settleService.settlementList(); // 현재 재고
 		Map<String, Object> errorMap = settleService.settlementError(map, current);
 
 		return errorMap;
@@ -50,12 +51,16 @@ public class SettlementController {
 	public String modify(RedirectAttributes rttr, @RequestParam("numList") String[] numList,
 			@RequestParam("productList") String[] productList) {
 		
+		List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져오기위해
+		
 		for (int i = 0; i < numList.length; i++) {
+			
+			System.out.println("현재재고 :" + current.get(i).getProduct_qty());
+			System.out.println("입력재고 :" + productList[i]);
+			
 			settleService.modify(numList[i],productList[i]);
+			settleService.insertLoss(current.get(i),productList[i]  ); // 손실테이블에 추가 필요
 		}
-		
-		//settleService.insertLoss(); // 손실테이블에 추가 필요
-		
 		
 		//rttr 사용으로 모달로 재고 변경알림 할 예정
 		

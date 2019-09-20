@@ -47,8 +47,8 @@
 									</tbody>
 								</table>
 								<div>
-									<button id="btn1">수량확인</button>
-									<button id="btn2">정산</button>
+									<button id="btn1">오차확인</button>
+									<button id="btn2">재고정산</button>
 								</div>
 							</div>
 						</div>

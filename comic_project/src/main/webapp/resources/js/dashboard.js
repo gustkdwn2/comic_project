@@ -231,7 +231,7 @@
       document.getElementById('total-sales-chart-legend').innerHTML = totalSalesChart.generateLegend();
     }
 
-    $('#recent-purchases-listing').DataTable({
+    $('#recent-purchases-listing').DataTable({   // 오름차순, 내림차순 정렬
       "aLengthMenu": [
         [5, 10, 15, -1],
         [5, 10, 15, "All"]
