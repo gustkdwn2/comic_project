@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.comic.mapper.OrderMapper">
+
+	<insert id="OrderInsert">
+		insert into
+		comic_orderview(orderview_category, orderview_product_num)
+		values (#{orderview_category}, #{orderview_product_num})
+	</insert>
+	
+</mapper>
