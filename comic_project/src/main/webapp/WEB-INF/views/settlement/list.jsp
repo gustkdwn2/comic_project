@@ -39,9 +39,9 @@
 												<td>${settle.product_category }</td>
 												<td>${settle.product_name }</td>
 												<td>${settle.product_qty }</td>
-												<td><input type="text" class="currentqty" name="curqty"
+												<td><input type="text" class="currentqty" name="curqty" id="ainput${settle.product_num-1}"
 													size="10"></td>
-												<td><div id="a${settle.product_num-1}" name="a"></div></td>
+												<td id="a${settle.product_num-1}"></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -73,15 +73,14 @@
 			<table>
 				<c:forEach items="${settleList}" var="settle">
 					<tr>
-						<td>	
-							<input type="hidden" value="${settle.product_num }" name="productNum">
-							${settle.product_name }</td>
+						<td><input type="hidden" value="${settle.product_num }"
+							name="productNum"> ${settle.product_name }</td>
 						<td>${settle.product_qty }-></td>
-						<td><div id="b${settle.product_num-1}"></div></td>
+						<td id="b${settle.product_num-1}"></td>
 					</tr>
 				</c:forEach>
 			</table>
-			
+
 			<p style="text-align: center; line-height: 1.5;">
 				<br />
 			</p>
@@ -90,6 +89,9 @@
 				onclick="modify_product();">
 				<span class="pop_bt" style="font-size: 13pt;"> 변경하기 </span>
 			</div>
+			<p style="text-align: center; line-height: 0.0;">
+				<br />
+			</p>
 			<div
 				style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px;"
 				onClick="close_pop();">
@@ -100,17 +102,16 @@
 	</div>
 	<!--End Modal-->
 
-
-
 	<script>
 		$('#btn1').click(function() { // .blur() : focusout
-			var list = new Array();
-			$("input[name=curqty]").each(function(index, item) {
-				list.push($(item).val());
+			var list = new Array();		
+			$("input[name=curqty]").each(function(index, item) {  // 반복문
+				list.push($('#'+'ainput'+index).val());
 			});
 			var sendData = {
 				'list' : list
 			};
+			console.log(list);
 			$.ajax({
 				url : 'http://localhost:8090/settlement/list.co',
 				dataType : 'json',
@@ -119,7 +120,7 @@
 				type : 'POST',
 				success : function(data) {
 					console.log("성공");
-					for (var i = 0; i < Object.keys(data).length; i++) {
+					for (var i = 0; i < list.length; i++) {
 						$('#' + 'a' + i.toString()).html(data[i]);
 						if (data[i] > 0) {
 							$('#' + 'a' + i.toString()).css("color", "blue");
@@ -139,7 +140,7 @@
 		$('#btn2').click(function() {
 			var list = new Array();
 			$("input[name=curqty]").each(function(index, item) {
-				list.push($(item).val());
+				list.push($('#'+'ainput'+index).val());
 			});
 			for (var i = 0; i < list.length; i++) {
 				$('#' + 'b' + i.toString()).html(list[i]);
@@ -158,38 +159,37 @@
 			$("input[name=productNum]").each(function(index, item) {
 				numList.push($(item).val());
 			});
-			
+
 			$("input[name=curqty]").each(function(index, item) {
 				productList.push($(item).val());
 			});
-			
+
 			console.log(numList);
 			console.log(productList);
-			
+
 			var form = document.createElement("form"); // form을 만듬
-			form.setAttribute("charset","UTF-8");
-			form.setAttribute("method","Post");
-			form.setAttribute("action","modify.co");
+			form.setAttribute("charset", "UTF-8");
+			form.setAttribute("method", "Post");
+			form.setAttribute("action", "modify.co");
 			document.body.appendChild(form);
-			
-			
+
 			var hiddenInput = document.createElement("input");
-			hiddenInput.setAttribute("type","hidden");
-			hiddenInput.setAttribute("name","numList");
-			hiddenInput.setAttribute("value",numList);
-			
+			hiddenInput.setAttribute("type", "hidden");
+			hiddenInput.setAttribute("name", "numList");
+			hiddenInput.setAttribute("value", numList);
+
 			var hiddenInput2 = document.createElement("input");
-			hiddenInput2.setAttribute("type","hidden");
-			hiddenInput2.setAttribute("name","productList");
-			hiddenInput2.setAttribute("value",productList);
+			hiddenInput2.setAttribute("type", "hidden");
+			hiddenInput2.setAttribute("name", "productList");
+			hiddenInput2.setAttribute("value", productList);
 			form.appendChild(hiddenInput);
 			form.appendChild(hiddenInput2);
-			
+
 			form.submit();
-			
-			
+
 			$('#myModal').hide();
 		}
+
 	</script>
 </body>
 </html>
