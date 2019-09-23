@@ -38,7 +38,7 @@
 											<td><c:out value="${product.product_name}" /></td>
 											<td><c:out value="${product.product_price}" /></td>
 											<td><c:out value="${product.product_qty}" /></td>
-											<td><c:out value="${product.product_qty}" /></td>
+											<td><c:out value="${product.product_category}" /></td>
 										</tr>
 									</c:forEach>
 									
