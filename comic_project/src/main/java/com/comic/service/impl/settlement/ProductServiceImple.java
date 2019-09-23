@@ -21,4 +21,24 @@ public class ProductServiceImple implements ProductService {
 		return mapper.productGetList();
 	}
 
+	@Override
+	public ProductVO productGet(int num) {
+		return mapper.productRead(num);
+	}
+
+	@Override
+	public void productRegister(ProductVO vo) {
+		mapper.productInsert(vo);
+	}
+
+	@Override
+	public boolean modify(ProductVO vo) {
+		return mapper.productUpdate(vo) == 1;
+	}
+
+	@Override
+	public boolean productRemove(int num) {
+		return mapper.productDelete(num) == 1;
+	}
+
 }

@@ -20,6 +20,7 @@
 						<div class="card-body">
 							<p class="card-title">상품 재고</p>
 							<div class="table-responsive">
+							<button id="RegisterBtn" type="button" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상품 등록</font></font></button>
 								<table id="recent-purchases-listing"
 									class="table  table-striped">
 									<thead>
@@ -51,6 +52,16 @@
 			</div>
 		</div>
 	</div>
-
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		$("#RegisterBtn").on("click", function() {
+
+			self.location = "/stock/productRegister.co";
+
+		});
+		
+	});
+</script>
 </html>

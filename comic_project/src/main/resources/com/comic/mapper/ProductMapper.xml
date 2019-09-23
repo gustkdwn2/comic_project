@@ -8,4 +8,26 @@
 		SELECT * FROM COMIC_PRODUCTSTOCK
 	</select>
 	
+	<select id="productRead" resultType="com.comic.model.ProductVO">
+		SELECT * FROM COMIC_PRODUCTSTOCK WHERE PRODUCT_NUM=#{product_num}
+	</select>
+	
+	<insert id="productInsert">
+		INSERT INTO COMIC_PRODUCTSTOCK VALUES((SELECT NVL(MAX(PRODUCT_NUM),0)+1 FROM COMIC_PRODUCTSTOCK),#{product_name},#{product_price},#{product_qty},#{product_category})
+	</insert>
+	
+	<update id="produtUpdate">
+		UPDATE COMIC_PRODUCTSTOCK SET 
+		PRODUCT_NAME=#{product_name},
+		PRODUCT_PRICE=#{product_price},
+		PRODUCT_QTY=#{product_qty},
+		PRODUCT_CATEGORY=#{product_category}
+		WHERE PRODUCT_NUM=#{product_num}
+		
+	</update>
+	
+	<delete id="productDelete">
+		DELETE COMIC_PRODUCTSTOCK WHERE PRODUCT_NUM=#{product_num}
+	</delete>
+	
 </mapper>
