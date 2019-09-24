@@ -76,6 +76,7 @@
     </div>
 </div>
 </body>
+<script src="/resources/js/order.js"></script>
 <script>
     $(document).ready(function () {
         var operForm = $("#operForm"); 

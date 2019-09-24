@@ -22,4 +22,31 @@
 	<delete id="orderDelete">
 		delete comic_orderview where orderview_num = #{number}
 	</delete>
+	
+	<!-- 밑으로는 ajax 상품 등록 -->
+	<resultMap type="com.comic.model.ProductVO" id="productVO">
+		<result column="PRODUCT_NUM" property="product_num"/>
+		<result column="PRODUCT_NAME" property="product_name"/>
+		<result column="PRODUCT_PRICE" property="product_price"/>
+		<result column="PRODUCT_QTY" property="product_qty"/>
+		<result column="PRODUCT_CATEGORY" property="product_category"/>
+	</resultMap>
+	
+	<resultMap type="com.comic.model.OrderProductViewVO" id="orderProductViewVO">
+		<result column="ORDERVIEW_NUM" property="orderview_num"/>
+		<result column="ORDERVIEW_CATEGORY_NUM" property="orderview_num"/>
+		<result column="ORDERVIEW_NUM" property="orderview_num"/>
+	</resultMap>
+	
+	<select id="orderProductSelect" resultType="com.comic.model.OrderProductViewVO">
+		select
+		    fk.PRODUCT_NAME,
+		    fk.PRODUCT_PRICE
+		from
+		    COMIC_PRODUCTSTOCK fk, COMIC_ORDERVIEW_PRODUCT pk
+		where
+		    fk.PRODUCT_NUM = pk.orderview_product_num
+		AND
+		    pk.ORDERVIEW_CATEGORY = '음료류'
+	</select>
 </mapper>

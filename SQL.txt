@@ -15,6 +15,7 @@ drop table COMIC_PAY;
 drop table COMIC_BOARD;
 drop table COMIC_MEMBER CASCADE CONSTRAINTS;
 drop table COMIC_ORDERVIEW CASCADE CONSTRAINTS;
+drop table COMIC_ORDERVIEW_PRODUCT CASCADE CONSTRAINTS;
 
 CREATE TABLE COMIC_MEMBER (
 	MEMBER_ID VARCHAR2(20) PRIMARY KEY, --아이디
@@ -57,14 +58,7 @@ CREATE TABLE COMIC_WORKINGHOUR(
 );
 
 
--- 상품재고테이블
-CREATE TABLE COMIC_PRODUCTSTOCK (
-	PRODUCT_NUM NUMBER PRIMARY KEY,  -- 상품 번호
-	PRODUCT_NAME VARCHAR2(20) NOT NULL, -- 상품이름
-	PRODUCT_PRICE NUMBER NOT NULL, -- 상품 판매가
-	PRODUCT_QTY NUMBER NOT NULL, -- 상품 수량
-	PRODUCT_CATEGORY VARCHAR2(20) NOT NULL -- 상품 종류
-);
+
 
 -- 상품발주테이블
 CREATE TABLE COMIC_PRODUCTORDER (
@@ -151,12 +145,14 @@ CREATE TABLE COMIC_CHAT (
 
 -- 손실테이블
 CREATE TABLE COMIC_LOSS (
+    	LOSS_NUM NUMBER  DEFAULT 1, -- 로스 번호
 	LOSS_CATEGORY VARCHAR(20), --로스 종류 수입/지출
 	LOSS_QTY NUMBER, -- 로스 수량
 	LOSS_PAY NUMBER, --로스 가격,
 	LOSS_PRODUCT VARCHAR(20), --로스 상품
 	LOSS_DATE DATE --로스 날짜
 );
+
 
 -- 댓글 테이블
 CREATE TABLE COMIC_COMMENTS(
@@ -180,10 +176,29 @@ CREATE TABLE COMIC_BOARD(
     REFERENCES COMIC_MEMBER(MEMBER_ID) ON DELETE CASCADE	
 );
 
---상품주문 뷰 테이블
+--상품주문 카테고리 뷰 테이블
 CREATE TABLE COMIC_ORDERVIEW(
-	ORDERVIEW_CATEGORY VARCHAR2(30) NOT NULL,
-    ORDERVIEW_PRODUCT_NUM NUMBER NOT NULL
+	ORDERVIEW_NUM NUMBER PRIMARY KEY,
+ORDERVIEW_CATEGORY VARCHAR2(30) NOT NULL,
+ORDERVIEW_PRODUCT_NUM NUMBER NOT NULL
+);
+
+--상품주문 뷰 삼품 뷰 ajax 테이블
+CREATE TABLE COMIC_ORDERVIEW_PRODUCT(
+    ORDERVIEW_NUM NUMBER PRIMARY KEY,
+    ORDERVIEW_CATEGORY VARCHAR2(20),
+	ORDERVIEW_PRODUCT_NUM NUMBER,
+    CONSTRAINT COMIC_PRODUCTSTOCK_NUM_FK2 FOREIGN KEY (ORDERVIEW_PRODUCT_NUM)  
+    REFERENCES  COMIC_PRODUCTSTOCK (PRODUCT_NUM) ON DELETE CASCADE
+);
+
+-- 상품재고테이블
+CREATE TABLE COMIC_PRODUCTSTOCK (
+	PRODUCT_NUM NUMBER PRIMARY KEY,  -- 상품 번호
+	PRODUCT_NAME VARCHAR2(20) NOT NULL, -- 상품이름
+	PRODUCT_PRICE NUMBER NOT NULL, -- 상품 판매가
+	PRODUCT_QTY NUMBER NOT NULL, -- 상품 수량
+	PRODUCT_CATEGORY VARCHAR2(20) NOT NULL -- 상품 종류
 );
 
 
@@ -192,11 +207,35 @@ insert into comic_productstock (product_num, product_name, product_price, produc
 values (1, '카페모카', 2200, 9999, '커피');
 
 insert into comic_productstock (product_num, product_name, product_price, product_qty, product_category)
-values ((select max(product_num) from comic_productstock)+1, '신라면', 2200, 9999, '라면');
+values ((select max(product_num) from comic_productstock)+1, '카페모카', 2200, 9999, '커피');
 
 insert into comic_productstock (product_num, product_name, product_price, product_qty, product_category)
-values ((select max(product_num) from comic_productstock)+1, '웰치스', 2200, 9999, '음료');
+values ((select max(product_num) from comic_productstock)+1, '신라면', 1200, 9999, '라면');
 
 select * from comic_productstock;
-select * from comic_orderview;
+
+insert into COMIC_ORDERVIEW (ORDERVIEW_NUM, ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM)
+values (1, '라면류', 0);
+
+insert into COMIC_ORDERVIEW_PRODUCT (ORDERVIEW_NUM, ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM)
+values ((select max(ORDERVIEW_NUM) from COMIC_ORDERVIEW_PRODUCT)+1, '음료류', 3);
+
+insert into COMIC_ORDERVIEW_PRODUCT (ORDERVIEW_NUM, ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM)
+values (1, '라면류', 2);
+
+select * from COMIC_ORDERVIEW;
+
+select * from COMIC_ORDERVIEW_PRODUCT;
+select * from comic_productstock;
+DELETE from comic_productstock where product_num = 2;
 commit;
+
+select
+    fk.PRODUCT_NAME,
+    fk.PRODUCT_PRICE
+from
+    COMIC_PRODUCTSTOCK fk, COMIC_ORDERVIEW_PRODUCT pk
+where
+    fk.PRODUCT_NUM = pk.orderview_product_num
+AND
+    pk.ORDERVIEW_CATEGORY = '음료류';
