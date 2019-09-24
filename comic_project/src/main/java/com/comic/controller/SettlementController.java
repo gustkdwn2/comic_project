@@ -27,7 +27,7 @@ import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/settlement/")
-@AllArgsConstructor
+@AllArgsConstructor//생성자함수
 public class SettlementController {
 
 	private SettlementService settleService;

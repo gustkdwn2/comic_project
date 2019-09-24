@@ -6,6 +6,7 @@
 
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
+<%-- <%@ include file="./younghak_header.jsp"%> --%>
 
 
 <!DOCTYPE html>
@@ -26,9 +27,9 @@ body {
 .column {
   float: left;
   width: 30.0%;
-  padding: 50px;
-  text-align: center;
-  font-size: 25px;
+  padding: 10px;
+  /* text-align: center; */
+  font-size: 16px;
   cursor: pointer;
   color: gray;
   margin-left: 10px;
@@ -54,47 +55,65 @@ body {
   font-size: 35px;
   cursor: pointer;
 }
+.div_root{
+  float: left;
+  width: 30.0%;
+  padding: 50px;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+  color: gray;
+  margin-left: 10px;
+  height: 230px;
+}
+
+
+.div_menu{
+width:30%;
+/* height:100px; */
+ padding: 13% 0px;
+height:90%;
+float:left;
+font-size: 30px;
+background-color:#ffac6a;
+text-align:center;
+}
+
+.div_con{
+width:70%;
+ /* height:100px ; */
+ height:90% ;
+ 
+ margin-right: auto;
+/* margin:10px; */
+ padding-left:3%;
+ padding-top:5%;
+float:left;
+font-size: 20px;
+background-color:#19f011;
+/* //background-size:50%50%; */
+  text-align:center-vertical;  
+}
+
+.div_bottom1{
+width:100%;
+/* height:100px; */
+height:10%;
+clear:both;
+background-color:#C8FE2E;
+text-align:center;
+}
+
 </style>
 
 </head>
 <body style="overflow: scroll">
 
   <div class="main-panel">
-        <div class="content-wrapper">
+     <div class="content-wrapper">        
           <div class="row">
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="card-body">
-                      <%-- <h4 class="card-title">Single color buttons</h4>
-                      <p class="card-description">Add class <code>.btn-{color}</code> for buttons in theme colors</p> --%>
-                      <div class="template-demo">
-                      
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card-body">
-                      
-                       <div class="template-demo">
-                        <button type="button" 
-                        	onclick="javascript:window.location.href='importdetail.co'"
-                         class="btn btn-primary btn-rounded btn-fw">수입 상세 검색</button>
-                          <button type="button"
-                         onclick="javascript:window.location.href='Managerpos.co'"
-                          class="btn btn-danger btn-rounded btn-fw">포스기 화면</button>
-                        <button type="button"
-                        onclick="javascript:window.location.href='login.co'"
-                         class="btn btn-secondary btn-rounded btn-fw">출퇴근하기</button>
-                        <button type="button" class="btn btn-success btn-rounded btn-fw">직원관리</button>
-                      
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <%@ include file="./younghak_header.jsp"%>  
+            
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="row">
@@ -105,17 +124,47 @@ body {
                       <div class="template-demo">
 
 <div class="row">
-  <div class="column" onclick="pos_start('1');" style="background:#F6CEF5;">
-    1번방
-    <input type="button" value="wow">
-    <input type="button" value="wow2">
-    <br>
-    <input type="button" value="wow3">
+  <div class="column" onclick="method_startnstop(1);" style="background:#F6CEF5;">
+  
+	<div class="div_menu">  1번방</div>
+
+<div class="div_con">  
+사 용 자 : <font id="user1" >없음</font><br>
+사용시간 : <font id="user_time1" >없음</font><br>
+사용상태 : <font id="user_status1" >없음</font><br>
+주문상태 : <font id="order_status1">없음</font><br>
+</div>
+
+<div class="div_bottom1">  
+<input type="button" value="주문내역보기">
+<input type="button" value="결제하기">
+<input type="button" value="채팅하기">
+</div>
+
+<!-- </div> -->
     
   </div>
 
-  <div class="column" onclick="pos_start('2');" style="background:#E6E6E6;">
-    2번방
+  <div class="column" onclick="method_startnstop(2);" style="background:#E6E6E6;">
+    
+   
+	<!-- <div class="div_root"> -->
+
+	<div class="div_menu">  2번방</div>
+
+<div class="div_con">  
+사 용 자 : <font id="user2" >없음</font><br>
+사용시간 : <font id="user_time2" >없음</font><br>
+사용상태 : <font id="user_status2" >없음</font><br>
+주문상태 : <font id="order_status2">없음</font><br>
+</div>
+
+<div class="div_bottom1">  
+<input type="button" value="주문내역보기">
+<input type="button" value="결제하기">
+<input type="button" value="채팅하기">
+</div>
+
   </div>
   <div class="column" onclick="openTab('b3');" style="background:#EFF8FB;">
     Box 3
@@ -169,7 +218,7 @@ body {
                     <button type="button" class="btn btn-social-icon-text btn-google"><i class="mdi mdi-google-plus"></i>Google</button>
                   </div>
                 </div>
-              </div> --%>
+              </div> 
             </div>
           </div>
         </div>
@@ -190,9 +239,85 @@ function openTab(tabName) {
   document.getElementById(tabName).style.display = "block";
 }
 
+
 function pos_start(roomnum){
 	alert(roomnum+"번 방 시작");
 	
+}
+
+
+var hour=0;
+var minute=0;
+
+
+var check = new Array(7); //방의 개수보다 1크게
+
+array_init(check);
+
+function array_init(check){
+	for(var i=0;i<check.length;i++){
+		check[i]=false;
+	}
+}
+
+function method_startnstop(num){
+	
+		
+		if(!check[num]){
+		check[num]=true;
+		time_start(0,num);	
+		
+		document.getElementById('user'+num).innerHTML="tmehfld";
+		document.getElementById('user_status'+num).innerHTML="사용불가";
+		document.getElementById('order_status'+num).innerHTML="주문대기";
+	}else{
+		
+		check[num]=false;
+		document.getElementById('user'+num).innerHTML="대기중";
+		document.getElementById('user_time'+num).innerHTML="00:00:00";
+		document.getElementById('user_status'+num).innerHTML="사용가능";
+		document.getElementById('order_status'+num).innerHTML="대기중";
+	}
+}
+
+
+function time_start(time,num){
+//	alert("0");
+	if(!check[num]){
+		
+	}else{
+
+	time+=1;
+	hour= Math.floor(time/3600);
+	hour= time_modify(hour);
+	
+	minute = Math.floor(time/60);
+	minute= time_modify(minute);
+	
+	var second = time%60;
+	second= time_modify(second);
+	
+	document.getElementById('user_time'+num).innerHTML=hour+":"+minute+":"+second;
+	
+	//document.getElementById('test1_2').innerHTML="와쓰"+time;
+	 var t = setTimeout(function(){time_start(time,num)},1000)
+	}
+	 
+}
+
+
+function time_modify(time){
+	
+	if(time.toString().length==1){
+		time="0"+time;
+	}
+	return time;
+}
+
+function num_length(){
+	var num = 123;
+	var str = "123";
+	alert("num.toString().length = "+num.toString().length+"\n"+"str.length = "+str.length)
 }
 
 </script>
