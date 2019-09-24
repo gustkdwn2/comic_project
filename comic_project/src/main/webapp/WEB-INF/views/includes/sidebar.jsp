@@ -36,9 +36,10 @@
 							class="menu-title">Tables</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/resources/pages/icons/mdi.html"> <i
 
-							class="mdi mdi-emoticon menu-icon"></i> <span class="menu-title">Icons</span>
+					href="/resources/pages/icons/mdi.html"> <i
+					class="mdi mdi-emoticon menu-icon"></i> <span class="menu-title">Icons</span>
+
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						data-toggle="collapse" href="#auth" aria-expanded="false"
@@ -57,15 +58,24 @@
 								<li class="nav-item"><a class="nav-link"
 									href="/resources/pages/samples/register-2.html"> Register 2 </a></li>
 
-								<li class="nav-item"><a class="nav-link"
+							<li class="nav-item"><a class="nav-link"
+
 									href="pages/samples/lock-screen.html"> Lockscreen </a></li>
 							</ul>
 						</div></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/resources/documentation/documentation.html"> <i
 
-							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+
+						href="/resources/documentation/documentation.html"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+
 							class="menu-title">Documentation</span>
+					</a></li>
+					
+					<li class="nav-item"><a class="nav-link"
+						href="/CustomerCenter/boardList.co"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">고객센터</span>
 					</a></li>
 				</ul>
 			</nav>
