@@ -114,7 +114,7 @@
 			};
 			console.log(list);
 			$.ajax({
-				url : 'http://localhost:8080/settlement/list.co',
+				url : 'http://localhost:8090/settlement/list.co',
 				dataType : 'json',
 				data : JSON.stringify(sendData),
 				contentType : "application/json; charset=utf-8;",

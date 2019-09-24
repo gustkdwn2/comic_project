@@ -69,12 +69,12 @@ public class SettlementServiceImpl implements SettlementService {
 		// 현재재고 - 입력재고 = 오차수량 ==> 입력재고가 작으면 + 값이 나옴
 		// - 수익, + 지출
 		int errorNum = product.getProduct_qty() - Integer.parseInt(input_qty); 
-		int pay = 1;
+		
 		if(errorNum < 0) { //  수익
 			category = "수익";
-			lossMapper.lossInsert(category, Math.abs(errorNum), product.getProduct_num(), pay);
+			lossMapper.lossInsert(category, Math.abs(errorNum), product.getProduct_num(), Math.abs(errorNum)); // 마지막은 가격을 나타내기 위해..
 		} else if (errorNum > 0) { //현재재고 > 입력재고 => 지출
-			pay = errorNum * -1;
+			int pay = errorNum * -1; // 지출은 가격을 -로 표시하기위해
 			lossMapper.lossInsert(category, errorNum, product.getProduct_num(), pay);
 		}
 		
