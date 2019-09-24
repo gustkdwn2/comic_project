@@ -19,7 +19,7 @@
 						<div class="card-body">
 							<p class="card-title">재고 손실</p>
 							<div class="table-responsive">
-								<table id="recent-purchases-listing" class="table table-striped">
+								<table id="lossTable" class="table table-striped">
 									<thead>
 										<tr>
 											<th>번호</th>	
@@ -51,5 +51,23 @@
 			</div>
 		</div>
 	</div>
+	
+<script> 
+    $('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
+    	pageLength: 10,
+        bPaginate: true,
+        bLengthChange: true,
+        lengthMenu : [ [ 10, 20, 30, -1 ], [ 10, 20, 30, "All" ] ],
+        bAutoWidth: false,
+        processing: true,
+        ordering: true,
+        serverSide: false,
+        searching: true,
+        "iDisplayLength": 10,
+        "language": {
+          search: "Search :"
+        },
+    });
+</script>
 </body>
 </html>
