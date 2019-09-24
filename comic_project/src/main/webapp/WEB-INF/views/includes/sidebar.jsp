@@ -64,5 +64,11 @@
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">Documentation</span>
 					</a></li>
+					
+					<li class="nav-item"><a class="nav-link"
+						href="/CustomerCenter/boardList.co"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">고객센터</span>
+					</a></li>
 				</ul>
 			</nav>
