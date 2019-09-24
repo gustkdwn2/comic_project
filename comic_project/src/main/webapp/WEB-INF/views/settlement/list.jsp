@@ -104,6 +104,7 @@
 
 	<script>
 		$('#btn1').click(function() { // .blur() : focusout
+
 			var list = new Array();		
 			$("input[name=curqty]").each(function(index, item) {  // 반복문
 				list.push($('#'+'ainput'+index).val());
@@ -113,7 +114,7 @@
 			};
 			console.log(list);
 			$.ajax({
-				url : 'http://localhost:8090/settlement/list.co',
+				url : 'http://localhost:8080/settlement/list.co',
 				dataType : 'json',
 				data : JSON.stringify(sendData),
 				contentType : "application/json; charset=utf-8;",
