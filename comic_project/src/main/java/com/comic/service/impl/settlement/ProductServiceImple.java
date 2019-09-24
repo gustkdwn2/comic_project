@@ -22,8 +22,8 @@ public class ProductServiceImple implements ProductService {
 	}
 
 	@Override
-	public ProductVO productGet(int num) {
-		return mapper.productRead(num);
+	public ProductVO productGet(int product_num) {
+		return mapper.productRead(product_num);
 	}
 
 	@Override
@@ -32,13 +32,13 @@ public class ProductServiceImple implements ProductService {
 	}
 
 	@Override
-	public boolean modify(ProductVO vo) {
+	public boolean productModify(ProductVO vo) {
 		return mapper.productUpdate(vo) == 1;
 	}
 
 	@Override
-	public boolean productRemove(int num) {
-		return mapper.productDelete(num) == 1;
+	public boolean productRemove(int product_num) {
+		return mapper.productDelete(product_num) == 1;
 	}
 
 }

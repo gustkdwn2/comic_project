@@ -76,7 +76,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-		$("#listBtn").on("click", function() {
+		$("#listBtn").click(function() {
 
 			self.location = "/stock/productList.co";
 

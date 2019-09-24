@@ -26,9 +26,9 @@ public class ProductController {
 		model.addAttribute("productList", service.productGetList());
 	}
 	
-	@GetMapping({"/productGet.co", "/productModify.co"})
-	public void productGet(@RequestParam("num") int num, Model model) {
-		model.addAttribute("product", service.productGet(num));
+	@GetMapping("/productGet.co")
+	public void productGet(@RequestParam("product_num") int product_num, Model model) {
+		model.addAttribute("product", service.productGet(product_num));
 	}
 	
 	@GetMapping("/productRegister.co")
@@ -39,6 +39,22 @@ public class ProductController {
 	@PostMapping("/productRegister.co")
 	public String productRegister(ProductVO vo) {
 		service.productRegister(vo);;
+		return "redirect:/stock/productList.co";
+	}
+	
+	@PostMapping("/productModify.co")
+	public String productModify(ProductVO vo, RedirectAttributes rttr) {
+		if(service.productModify(vo)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/stock/productList.co";
+	}
+	
+	@PostMapping("/productRemove.co")
+	public String productRemove(@RequestParam("product_num") int product_num, RedirectAttributes rttr) {
+		if(service.productRemove(product_num)) {
+			rttr.addFlashAttribute("result", "success");
+		}
 		return "redirect:/stock/productList.co";
 	}
 	

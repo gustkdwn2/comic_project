@@ -20,9 +20,10 @@
 						<div class="card-body">
 							<p class="card-title">상품 재고</p>
 							<div class="table-responsive">
-							<button id="RegisterBtn" type="button" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상품 등록</font></font></button>
+							<button id="registerBtn" type="button" class="btn btn-secondary">상품 등록</button>
 								<table id="recent-purchases-listing"
 									class="table  table-striped">
+									
 									<thead>
 										<tr>
 											<th>상품 번호</th>
@@ -36,7 +37,7 @@
 									<c:forEach items="${productList}" var="product">
 										<tr>
 											<td><c:out value="${product.product_num}" /></td>
-											<td><c:out value="${product.product_name}" /></td>
+											<td><a href='/stock/productGet.co?product_num=<c:out value="${product.product_num}" />'><c:out value="${product.product_name}" /></a></td>
 											<td><c:out value="${product.product_price}" /></td>
 											<td><c:out value="${product.product_qty}" /></td>
 											<td><c:out value="${product.product_category}" /></td>
@@ -56,7 +57,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-		$("#RegisterBtn").on("click", function() {
+		$("#registerBtn").click(function() {
 
 			self.location = "/stock/productRegister.co";
 

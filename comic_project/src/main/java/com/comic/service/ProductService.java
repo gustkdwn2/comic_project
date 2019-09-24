@@ -8,12 +8,12 @@ public interface ProductService {
 	
 	public List<ProductVO> productGetList();
 	
-	public ProductVO productGet(int num);
+	public ProductVO productGet(int product_num);
 	
 	public void productRegister(ProductVO vo);
 	
-	public boolean modify(ProductVO vo);
+	public boolean productModify(ProductVO vo);
 	
-	public boolean productRemove(int num);
+	public boolean productRemove(int product_num);
 	
 }

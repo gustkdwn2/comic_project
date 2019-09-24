@@ -8,12 +8,12 @@ public interface ProductMapper {
 	
 	public List<ProductVO> productGetList();
 	
-	public ProductVO productRead(int num);
+	public ProductVO productRead(int product_num);
 	
 	public void productInsert(ProductVO vo);
 	
 	public int productUpdate(ProductVO vo);
 	
-	public int productDelete(int num);
+	public int productDelete(int product_num);
 	
 }
