@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.comic.mapper.OrderMapper">
+
+	<insert id="orderInsert">
+		insert into
+		comic_orderview(orderview_num, orderview_category, orderview_product_num)
+		values ((select max(orderview_num) from comic_orderview)+1, #{orderview_category}, #{orderview_product_num})
+	</insert>
+	
+	<select id="orderSelect" resultType="com.comic.model.OrderViewVO">
+		select * from COMIC_ORDERVIEW order by orderview_num 
+	</select>
+	
+	<update id="orderUpdate">
+		update comic_orderview set ORDERVIEW_CATEGORY = #{orderview_category} where ORDERVIEW_NUM = #{orderview_num}
+	</update>
+
+	<delete id="orderDelete">
+		delete comic_orderview where orderview_num = #{number}
+	</delete>
+</mapper>
