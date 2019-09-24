@@ -22,7 +22,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import lombok.AllArgsConstructor;
-import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/settlement/")
@@ -31,33 +30,31 @@ public class SettlementController {
 
 	private SettlementService settleService;
 
-	@GetMapping("/list.co")
+	@GetMapping("list.co")
 	public void settlementList(Model model) {
-		model.addAttribute("settleList", settleService.settlementList());
+		model.addAttribute("settleList", settleService.settlementList()); // 재고테이블
 	}
 
-	@ResponseBody
-	@PostMapping("/list.co")
+	@ResponseBody  // map으로 리턴하기 위해
+	@PostMapping("list.co")
 	public Map<String, Object> settlementCheck(@RequestBody HashMap<String, Object> map)
 			throws JsonParseException, JsonMappingException, IOException {
-		List<ProductVO> current = settleService.settlementList(); // int 타입
-		Map<String, Object> errorMap = settleService.settlementError(map, current);
+		List<ProductVO> current = settleService.settlementList(); // 현재 재고
+		Map<String, Object> errorMap = settleService.settlementError(map, current); // 오차 재고
 
 		return errorMap;
 	}
 
 	@PostMapping("modify.co")
-	public String modify(RedirectAttributes rttr, @RequestParam("numList") String[] numList,
+	public String modify(@RequestParam("numList") String[] numList,
 			@RequestParam("productList") String[] productList) {
 		
+		List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
+		
 		for (int i = 0; i < numList.length; i++) {
-			settleService.modify(numList[i],productList[i]);
+			settleService.modify(numList[i],productList[i]); // 재고 테이블 수정
+			settleService.insertLoss(current.get(i),productList[i]); // 손실테이블에 추가 (현재재고와 입력 재고값 보냄)
 		}
-		
-		//settleService.insertLoss(); // 손실테이블에 추가 필요
-		
-		
-		//rttr 사용으로 모달로 재고 변경알림 할 예정
 		
 		return "redirect:/settlement/list.co";
 	}
