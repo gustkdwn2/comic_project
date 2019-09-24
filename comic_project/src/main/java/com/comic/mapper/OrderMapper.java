@@ -1,9 +1,16 @@
 package com.comic.mapper;
 
+import java.util.List;
+
 import com.comic.model.OrderViewVO;
 
 public interface OrderMapper {
 	
-	public int OrderInsert(OrderViewVO vo);
+	public void orderInsert(OrderViewVO vo);
 
+	public List<OrderViewVO> orderSelect();
+	
+	public void orderUpdate(OrderViewVO vo);
+	
+	public void orderDelete(int number);
 }

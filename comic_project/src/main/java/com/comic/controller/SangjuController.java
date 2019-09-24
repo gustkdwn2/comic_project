@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SangjuController {
 
-	OrderService oderService;
+	private OrderService orderService;
 	
 	@GetMapping("/main")
 	public void mainView(Model model, @RequestParam("roomNum") int roomNum) {
@@ -25,18 +25,42 @@ public class SangjuController {
 	}
 
 	@GetMapping("/admin")
-	public void adminView() {
-		
+	public void adminView(Model model) {
+		model.addAttribute("OrderViewVO_List", orderService.readCategory());
 	}
 	
 	@PostMapping("/admin/categoryAdd")
 	public String categoryAdd(@RequestParam("category") String category) {
-		System.out.println("categoryAdd...." + category);
+		System.out.println("categoryAdd....category " + category);
 
 		OrderViewVO vo = new OrderViewVO();
 		vo.setOrderview_category(category);
 		vo.setOrderview_product_num(0);
-		oderService.registerCategory(vo);
+		orderService.registerCategory(vo);
+		
+		return "redirect:/sangju/admin";
+	}
+	
+	@PostMapping("/admin/categoryUpdate")
+	public String categoryUpdate(@RequestParam("category") String category, @RequestParam("number") int number) {
+		System.out.println("categoryUpdate....category " + category);
+		System.out.println("categoryUpdate....number " + number);
+		
+		OrderViewVO vo = new OrderViewVO();
+		vo.setOrderview_num(number);
+		vo.setOrderview_category(category);
+		vo.setOrderview_product_num(0);
+		
+		orderService.updateCategory(vo);
+		
+		return "redirect:/sangju/admin";
+	}
+	
+	@PostMapping("/admin/categoryDelete")
+	public String categoryDelete(@RequestParam("number") int number) {
+		System.out.println("categoryDelete....number " + number);
+		
+		orderService.deleteCategory(number);
 		
 		return "redirect:/sangju/admin";
 	}

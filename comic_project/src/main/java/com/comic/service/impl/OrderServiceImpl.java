@@ -1,5 +1,7 @@
 package com.comic.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,22 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Override
 	public void registerCategory(OrderViewVO vo) {
-		ordermapper.OrderInsert(vo);
+		ordermapper.orderInsert(vo);
+	}
+
+	@Override
+	public List<OrderViewVO> readCategory() {
+		return ordermapper.orderSelect();
+	}
+
+	@Override
+	public void updateCategory(OrderViewVO vo) {
+		ordermapper.orderUpdate(vo);
+	}
+
+	@Override
+	public void deleteCategory(int number) {
+		ordermapper.orderDelete(number);
 	}
 
 }
