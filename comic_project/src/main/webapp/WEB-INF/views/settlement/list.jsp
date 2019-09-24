@@ -21,7 +21,7 @@
 							<p class="card-title">재고 확인</p>
 							<div class="table-responsive">
 								<table id="recent-purchases-listing"
-									class="table  table-striped">
+									class="table table-striped">
 									<thead>
 										<tr>
 											<th>상품번호</th>
@@ -29,7 +29,7 @@
 											<th>상품명</th>
 											<th>재고수량</th>
 											<th>실제수량</th>
-											<th>오차수량</th>
+											<th class="sorting">오차수량</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -39,8 +39,8 @@
 												<td>${settle.product_category }</td>
 												<td>${settle.product_name }</td>
 												<td>${settle.product_qty }</td>
-												<td><input type="text" class="currentqty" name="curqty" id="ainput${settle.product_num-1}"
-													size="10"></td>
+												<td><input type="text" class="currentqty" name="curqty"
+													id="ainput${settle.product_num-1}" size="10"></td>
 												<td id="a${settle.product_num-1}"></td>
 											</tr>
 										</c:forEach>
@@ -189,6 +189,61 @@
 
 			$('#myModal').hide();
 		}
+		
+		//오차수량 sorting
+		$(document).ready(function() {
+			 var reSortColors = function($table) {
+			     $('tbody tr:odd', $table)
+			       .removeClass('even').addClass('odd');
+			     $('tbody tr:even', $table)
+			       .removeClass('odd').addClass('even');
+			   };
+			  $('table').each(function() {
+			    var $table = $(this);
+			    reSortColors($table);
+			    $('th', $table).each(function(column) {
+			      var $header = $(this);
+			      if ($header.is('.sorting')) {
+			          //header에서 sorting이란 클래스가있다면
+			    	  $header.addClass('clickable').hover(function() {
+			              $header.addClass('hover');
+			            }, function() {
+			              $header.removeClass('hover');
+			            }).click(function() {
+			   			
+			   			var sortDirection = 1;
+			              if ($header.is('.sorted-asc')) {
+			                sortDirection = -1;
+			              }
+			   			//변수 삽입 
+			              var rows = $table.find('tbody > tr').get();
+			              rows.sort(function(a, b) {
+			                var keyA = $(a).children('td').eq(column).text()
+			                  .toUpperCase();
+			                var keyB = $(b).children('td').eq(column).text()
+			                  .toUpperCase();
+			                if (keyA < keyB) return -sortDirection;
+			                if (keyA > keyB) return sortDirection;
+			                return 0;
+			              });
+			              $.each(rows, function(index, row) {
+			                $table.children('tbody').append(row);
+			              });
+			   		
+			   		$table.find('th').removeClass('sorted-asc')
+			                .removeClass('sorted-desc');
+			              if (sortDirection == 1) {
+			                $header.addClass('sorted-asc');
+			              }
+			              else {
+			                $header.addClass('sorted-desc');
+			              }
+			              reSortColors($table);
+			            });
+			          }
+			        });
+			      });
+			    });
 
 	</script>
 </body>

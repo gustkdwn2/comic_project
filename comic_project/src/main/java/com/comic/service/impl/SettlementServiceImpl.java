@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.comic.mapper.LossMapper;
 import com.comic.mapper.SettlementMapper;
 import com.comic.model.LossVO;
 import com.comic.model.ProductVO;
@@ -22,6 +23,9 @@ public class SettlementServiceImpl implements SettlementService {
 	@Setter(onMethod_ = @Autowired)
 	private SettlementMapper settleMapper;
 
+	@Setter(onMethod_ = @Autowired)
+	private LossMapper lossMapper;
+	
 	@Override
 	public List<ProductVO> settlementList() {
 		return settleMapper.settlementList();
@@ -56,10 +60,10 @@ public class SettlementServiceImpl implements SettlementService {
 	}
 
 	@Override
-	public void insertLoss(ProductVO product, String input_qty) {
+	public void insertLoss(ProductVO product, String input_qty) { // 재고 정산에 따른 손실테이블 등록
 		//product_qty 현재재고
 		//input_qty 입력재고
-		String category = "지출";
+		String category = "손실";
 		// 현재재고보다 입력재고가 많으면 -> 수익, 적으면 -> 지출
 		// 현재재고 - 입력재고 = 오차수량 ==> 입력재고가 더 크면 - 값이 나옴
 		// 현재재고 - 입력재고 = 오차수량 ==> 입력재고가 작으면 + 값이 나옴
@@ -68,10 +72,10 @@ public class SettlementServiceImpl implements SettlementService {
 		int pay = 1;
 		if(errorNum < 0) { //  수익
 			category = "수익";
-			settleMapper.settlementLossInsert(category, Math.abs(errorNum), product.getProduct_num(), pay);
+			lossMapper.lossInsert(category, Math.abs(errorNum), product.getProduct_num(), pay);
 		} else if (errorNum > 0) { //현재재고 > 입력재고 => 지출
 			pay = errorNum * -1;
-			settleMapper.settlementLossInsert(category, errorNum, product.getProduct_num(), pay);
+			lossMapper.lossInsert(category, errorNum, product.getProduct_num(), pay);
 		}
 		
 	}
