@@ -1,5 +1,7 @@
 package com.comic.controller;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -15,10 +17,10 @@ import lombok.AllArgsConstructor;
 /**
  * Handles requests for the application home page.
  */
-@Controller
-@RequestMapping("/managerpos/")
-@AllArgsConstructor
-public class ManagerController {
+
+  @Controller
+  @RequestMapping("/managerpos/")
+  public class ManagerController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ManagerController.class);
 	
@@ -38,8 +40,8 @@ public class ManagerController {
 //		
 //		return "index";
 //	}
-	/* @GetMapping({"managerpos.co","Managerpos.co"}) */
-	@RequestMapping(value = {"managerpos.co","Managerpos.co"}, method = RequestMethod.GET)
+	/* @GetMapping("/managerpos.co") */
+	@RequestMapping(value = {"/managerpos.co","/Managerpos.co"}, method = RequestMethod.GET)
 	public String younghakpos(Locale locale, Model model) {
 		//logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -68,19 +70,19 @@ public class ManagerController {
 		return "/younghak/importdetail";
 	}
 	
-//	@RequestMapping(value = "login.co", method = RequestMethod.GET)
-//	public String younghakworklogin( Model model) {
-//		//logger.info("Welcome home! The client locale is {}.", locale);
-//		
-//		//Date date = new Date();
-//		//DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		
-//		//String formattedDate = dateFormat.format(date);
-//		
-//		//model.addAttribute("serverTime", formattedDate );
-//		
-//		return "younghak/login";
-//	}
+	@RequestMapping(value = "login.co", method = RequestMethod.GET)
+	public String younghakworklogin( Model model) {
+		//logger.info("Welcome home! The client locale is {}.", locale);
+		
+		//Date date = new Date();
+		//DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		//String formattedDate = dateFormat.format(date);
+		
+		//model.addAttribute("serverTime", formattedDate );
+		
+		return "younghak/login";
+	}
 //	
 //	@RequestMapping(value = "/main", method = RequestMethod.GET)
 //	public String mainView(Model model) {
