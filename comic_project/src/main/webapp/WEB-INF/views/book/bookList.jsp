@@ -9,7 +9,7 @@
 <head>
 <link rel="stylesheet" href="/resources/css/inhostyle.css">
 <meta charset="UTF-8">
-<title>상품 재고</title>
+<title>책 재고</title>
 </head>
 <body>
 	<div class="main-panel">
@@ -18,32 +18,38 @@
 				<div class="col-md-12 stretch-card">
 					<div class="card">
 						<div class="card-body">
-							<p class="card-title">상품 재고</p>
+							<p class="card-title">책 재고</p>
 							<div class="table-responsive">
-								<button id="registerBtn" type="button" class="btn btn-secondary">상품
+								<button id="registerBtn" type="button" class="btn btn-secondary">책
 									등록</button>
 								<table id="lossTable"
 									class="table  table-striped">
 
 									<thead>
 										<tr>
-											<th>상품 번호</th>
-											<th>상품 이름</th>
-											<th>상품 판매가</th>
-											<th>상품 수량</th>
-											<th>상품 종류</th>
+											<th>책이름</th>
+											<th>책위치</th>
+											<th>책출판사</th>
+											<th>책 저자</th>
+											<th>책 소개</th>
+											<th>책 분류</th>
+											<th>마지막권</th>
+											<th>연재상태</th>
 										</tr>
 									</thead>
 
-									<c:forEach items="${productList}" var="product">
+									<c:forEach items="${bookList}" var="book">
 										<tr>
-											<td><c:out value="${product.product_num}" /></td>
 											<td><a
-												href='/stock/productGet.co?product_num=<c:out value="${product.product_num}" />'><c:out
-														value="${product.product_name}" /></a></td>
-											<td><c:out value="${product.product_price}" /></td>
-											<td><c:out value="${product.product_qty}" /></td>
-											<td><c:out value="${product.product_category}" /></td>
+												href='/book/bookGet.co?book_name=<c:out value="${book.book_name}" />'><c:out
+														value="${book.book_name}" /></a></td>
+											<td><c:out value="${book.book_loc}" /></td>
+											<td><c:out value="${book.book_publisher}" /></td>
+											<td><c:out value="${book.book_writer}" /></td>
+											<td><c:out value="${book.book_content}" /></td>
+											<td><c:out value="${book.book_category}" /></td>
+											<td><c:out value="${book.book_lastbook}" /></td>
+											<td><c:out value="${book.book_status}" /></td>
 										</tr>
 									</c:forEach>
 
@@ -78,7 +84,7 @@
 
 		$("#registerBtn").click(function() {
 
-			self.location = "/stock/productRegister.co";
+			self.location = "/book/bookRegister.co";
 
 		});
 

@@ -15,7 +15,7 @@ import com.comic.service.ProductService;
 import lombok.AllArgsConstructor;
 
 @Controller
-@RequestMapping("/stock/")
+@RequestMapping("/product/")
 @AllArgsConstructor
 public class ProductController {
 	
@@ -39,7 +39,7 @@ public class ProductController {
 	@PostMapping("/productRegister.co")
 	public String productRegister(ProductVO vo) {
 		service.productRegister(vo);;
-		return "redirect:/stock/productList.co";
+		return "redirect:/product/productList.co";
 	}
 	
 	@PostMapping("/productModify.co")
@@ -47,7 +47,7 @@ public class ProductController {
 		if(service.productModify(vo)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/stock/productList.co";
+		return "redirect:/product/productList.co";
 	}
 	
 	@PostMapping("/productRemove.co")
@@ -55,7 +55,7 @@ public class ProductController {
 		if(service.productRemove(product_num)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/stock/productList.co";
+		return "redirect:/product/productList.co";
 	}
 	
 }

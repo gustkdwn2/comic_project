@@ -19,7 +19,7 @@
 					<font style="vertical-align: inherit;"><font
 						style="vertical-align: inherit;">상품 수정</font></font>
 				</h4>
-				<form class="forms-sample" action="/stock/productModify.co" method="post">
+				<form class="forms-sample" action="/product/productModify.co" method="post">
 					<div class="form-group">
 						<label for="exampleInputUsername1"><font
 							style="vertical-align: inherit;"><font
@@ -77,9 +77,9 @@
 			var operation = $(this).data("oper");
 			
 			if(operation == 'remove') {
-				formObj.attr("action", "/stock/productRemove.co");
+				formObj.attr("action", "/product/productRemove.co");
 			} else if(operation == 'list') {
-				self.location = "/stock/productList.co";
+				self.location = "/product/productList.co";
 				return;
 			}
 			
