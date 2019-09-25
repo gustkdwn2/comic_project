@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comic.mapper.OrderMapper;
+import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderViewVO;
 import com.comic.service.OrderService;
 
@@ -35,6 +36,11 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public void deleteCategory(int number) {
 		ordermapper.orderDelete(number);
+	}
+
+	@Override
+	public OrderProductViewVO readProduct(int categoryNum) {
+		return ordermapper.orderProductSelect(categoryNum);
 	}
 
 }
