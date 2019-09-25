@@ -2,8 +2,10 @@ package com.comic.mapper;
 
 import java.util.List;
 
-import com.comic.model.OrderProductViewVO;
+import org.apache.ibatis.annotations.Param;
+
 import com.comic.model.OrderViewVO;
+import com.comic.model.ProductVO;
 
 public interface OrderMapper {
 	
@@ -15,5 +17,10 @@ public interface OrderMapper {
 	
 	public void orderDelete(int number);
 	
-	public OrderProductViewVO orderProductSelect(int categoryNum);
+	public List<ProductVO> orderProductSelect(String category);
+	
+	public int productCheck(String productName);
+
+	public void productInsert(@Param("productName") String productName,@Param("productCategory") String productCategory);
+
 }

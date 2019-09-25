@@ -1,9 +1,9 @@
-var replyService = (function() {
-	
-	function get(rno, callback, error) {
-		$.get("/replies/" + rno + ".json", function(result) {
+var orderProductService = (function() {
+
+	function getList(category, callback, error) {
+		$.getJSON("/sangju/productRead/" + category + ".json", function(data) {
 			if (callback) {
-				callback(result);
+				callback(data);
 			}
 		}).fail(function(xhr, status, err) {
 			if (error) {
@@ -11,14 +11,12 @@ var replyService = (function() {
 			}
 		});
 	}
-
-	function add(reply, callback, err) {
-		console.log("add reply......");
-
+	
+	function productCheck(productNameJSON, callback, err) {
 		$.ajax({
 			type : 'post',
-			url : '/replies/new',
-			data : JSON.stringify(reply),
+			url : '/sangju/productCheck',
+			data : JSON.stringify(productNameJSON),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
 				if (callback) {
@@ -32,49 +30,14 @@ var replyService = (function() {
 			}
 		})
 	}
-
-	function getList(param, callback, error) {
-		var bno = param.bno;
-		var page = param.page || 1;
-		$.getJSON("/replies/pages/" + bno + "/" + page + ".json",
-				function(data) {
-					if (callback) {
-						//callback(data);
-						callback(data.replyCnt, data.list);
-					}
-				}).fail(function(xhr, status, err) {
-			if (error) {
-				error();
-			}
-		});
-	}
-
-	function remove(rno, callback, error) {
+	
+	function productAdd(productNameJSON, callback, err) {
 		$.ajax({
-			type : "delete",
-			url : '/replies/' + rno,
-			success : function(deleteResult, status, xhr) {
-				if (callback) {
-					callback(deleteResult);
-				}
-			},
-			error : function(xhr, status, er) {
-				if (error) {
-					error(er);
-				}
-			}
-		});
-	}
-
-	function update(reply, callback, error) {
-		console.log("RNO: " + reply.rno);
-
-		$.ajax({
-			type : 'put',
-			url : '/replies/' + reply.rno,
-			data : JSON.stringify(reply),
+			type : 'post',
+			url : '/sangju/productAdd',
+			data : JSON.stringify(productNameJSON),
 			contentType : "application/json; charset=utf-8",
-			success : function(result, states, xhr) {
+			success : function(result, status, xhr) {
 				if (callback) {
 					callback(result);
 				}
@@ -84,31 +47,14 @@ var replyService = (function() {
 					error(er);
 				}
 			}
-		});
+		})
 	}
-
-	function displayTime(timeValue) {
-		var today = new Date();
-		var gap = today.getTime() - timeValue;
-		var dateObj = new Date(timeValue);
-		var str = "";
-
-		if (gap < (1000 * 60 * 60 * 24)) {
-			var hh = dateObj.getHours();
-			var mi = dateObj.getMinutes();
-			var ss = dateObj.getSeconds();
-
-			return [ (hh > 9 ? '' : '0') + hh, ":", (mi > 9 ? '' : '0') + mi,
-					":", (ss > 9 ? '' : '0') + ss ].join('');
-		}
-	}
+	
+	
 
 	return {
-		add : add,
 		getList : getList,
-		remove : remove,
-		update : update,
-		get : get,
-		displayTime : displayTime
+		productCheck : productCheck,
+		productAdd : productAdd
 	};
 })();

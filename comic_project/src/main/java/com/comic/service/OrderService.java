@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderViewVO;
+import com.comic.model.ProductVO;
 
 public interface OrderService {
 	
@@ -15,5 +16,10 @@ public interface OrderService {
 	
 	public void deleteCategory(int number);
 	
-	public OrderProductViewVO readProduct(int categoryNum);
+	public List<ProductVO> readProduct(String category);
+	
+	public int productCheck(String productName);
+	
+	public void productInsert(String productName, String productCategory);
+
 }

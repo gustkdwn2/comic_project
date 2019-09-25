@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comic.mapper.OrderMapper;
-import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderViewVO;
+import com.comic.model.ProductVO;
 import com.comic.service.OrderService;
 
 import lombok.Setter;
@@ -39,8 +39,20 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public OrderProductViewVO readProduct(int categoryNum) {
-		return ordermapper.orderProductSelect(categoryNum);
+	public List<ProductVO> readProduct(String category) {
+		return ordermapper.orderProductSelect(category);
 	}
+
+	@Override
+	public int productCheck(String productName) {
+		return ordermapper.productCheck(productName);
+	}
+
+	@Override
+	public void productInsert(String productName, String productCategory) {
+		ordermapper.productInsert(productName, productCategory);
+	}
+
+
 
 }

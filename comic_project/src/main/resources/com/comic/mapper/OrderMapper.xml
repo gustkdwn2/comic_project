@@ -8,7 +8,7 @@
 	<insert id="orderInsert">
 		insert into
 		comic_orderview(orderview_num, orderview_category, orderview_product_num)
-		values ((select max(orderview_num) from comic_orderview)+1, #{orderview_category}, #{orderview_product_num})
+			values ((select max(orderview_num) from comic_orderview)+1, #{orderview_category}, #{orderview_product_num})
 	</insert>
 	
 	<select id="orderSelect" resultType="com.comic.model.OrderViewVO">
@@ -24,21 +24,7 @@
 	</delete>
 	
 	<!-- 밑으로는 ajax 상품 등록 -->
-	<resultMap type="com.comic.model.ProductVO" id="productVO">
-		<result column="PRODUCT_NUM" property="product_num"/>
-		<result column="PRODUCT_NAME" property="product_name"/>
-		<result column="PRODUCT_PRICE" property="product_price"/>
-		<result column="PRODUCT_QTY" property="product_qty"/>
-		<result column="PRODUCT_CATEGORY" property="product_category"/>
-	</resultMap>
-	
-	<resultMap type="com.comic.model.OrderProductViewVO" id="orderProductViewVO">
-		<result column="ORDERVIEW_NUM" property="orderview_num"/>
-		<result column="ORDERVIEW_CATEGORY_NUM" property="orderview_num"/>
-		<result column="ORDERVIEW_NUM" property="orderview_num"/>
-	</resultMap>
-	
-	<select id="orderProductSelect" resultType="com.comic.model.OrderProductViewVO">
+	<select id="orderProductSelect" resultType="com.comic.model.ProductVO">
 		select
 		    fk.PRODUCT_NAME,
 		    fk.PRODUCT_PRICE
@@ -47,6 +33,16 @@
 		where
 		    fk.PRODUCT_NUM = pk.orderview_product_num
 		AND
-		    pk.ORDERVIEW_CATEGORY = '음료류'
+		    pk.ORDERVIEW_CATEGORY = #{category}
 	</select>
+	
+	<select id="productCheck" resultType="Integer">
+		select count(*) from comic_productstock where product_name = #{productName}
+	</select>
+	
+	<insert id="productInsert">
+		insert into COMIC_ORDERVIEW_PRODUCT(ORDERVIEW_NUM, ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM)
+		values ((select max(ORDERVIEW_NUM) from COMIC_ORDERVIEW_PRODUCT)+1,#{productCategory}, (select product_num from comic_productstock where product_name = #{productName}))
+	</insert>
+	
 </mapper>

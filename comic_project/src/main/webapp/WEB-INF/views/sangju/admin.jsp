@@ -16,7 +16,7 @@
 			<div class="col-md-6 grid-margin">
 				<ul>
 					<c:forEach items="${ OrderViewVO_List }" var="list">
-						<li><button value="${ list.orderview_category }">${ list.orderview_category }</button>
+						<li><button class="categoryButton" value="${ list.orderview_category }">${ list.orderview_category }</button>
 							<a href="#" class="categoryUpdate"
 							value="${ list.orderview_num }">[수정]</a> <a href="#"
 							class="categoryDelete" value="${ list.orderview_num }">[삭제]</a></li>
@@ -25,7 +25,8 @@
 				<button id="categoryAdd">categoryAdd</button>
 			</div>
 			<div class="col-md-6 grid-margin">
-				<button id="productAdd">productAdd</button>
+				<ul class="orderProduct"></ul>
+				<button name="productAdd">productAdd</button>
 			</div>
 		</div>
 	</div>
@@ -75,6 +76,27 @@
         </div>
     </div>
 </div>
+
+<!-- modal product add-->
+<div class="modal" id="modalProductAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">product Add</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div> 
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>product</label>
+                    <input class="form-control" name="product">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="productModalRegisterBtn" type="button" class="btn btn-primary">Resgister</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <script src="/resources/js/order.js"></script>
 <script>
@@ -86,6 +108,8 @@
         var modalInputCategory = modalCateAdd.find("input[name='category']");
         var modalInputCategoryUpdate = modalCateUpdate.find("input[name='category']");
 
+		
+        
 		var indexNum = 0;
 		
         $("#categoryAdd").on("click", function (e) {
@@ -122,7 +146,64 @@
             operForm.attr("action", "/sangju/admin/categoryDelete");
             operForm.submit();
 		});
+
+		// 여기부터 상품 등록 ajax
+		$("button[name=productAdd]").hide();
+
+		var orderProduct = $(".orderProduct");
+		var categoryValue;
+		var modalProductAdd = $("#modalProductAdd");
 		
+		$(".categoryButton").on("click", function (e) {
+			categoryValue = $(this).attr('value');
+			orderProductShow(categoryValue);
+		});
+
+		function orderProductShow(category) {
+			$("button[name=productAdd]").show();
+			orderProductService.getList(category, function(data) {
+				var str = "";
+				
+				if(data.length == 0 ) {
+					str += " ";
+					orderProduct.html(str);
+					return;
+				}
+
+				for(var i = 0, len = data.length || 0; i < len; i++) {
+					str += "<li>";
+					str += "이름: " + data[i].product_name + " / 가격: " +data[i].product_price;
+					str += "</li>";
+				}
+
+				orderProduct.html(str);
+			});
+		}
+
+		$("button[name = productAdd]").on("click", function(e){
+			modalProductAdd.modal("show");
+		});
+
+		$("#productModalRegisterBtn").on("click", function (e) {
+			var productNameJSON = {
+				productName: $("input[name='product']").val(),
+				productCategory: categoryValue
+			};
+			orderProductService.productCheck(productNameJSON, function(result) {
+				if(result == "NULL") {
+					alert("재고에 해당 상품이 없습니다.");
+					$("input[name='product']").val('');
+					return;
+				}
+
+				orderProductService.productAdd(productNameJSON, function(result){
+					$("input[name='product']").val('');
+					modalProductAdd.modal("hide");
+					orderProductShow(categoryValue);
+				});
+			});
+			
+        });
     });	
 </script>
 
