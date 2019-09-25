@@ -15,47 +15,47 @@ import com.comic.service.ProductService;
 import lombok.AllArgsConstructor;
 
 @Controller
-@RequestMapping("/product/")
+@RequestMapping("/product")
 @AllArgsConstructor
 public class ProductController {
 	
 	private ProductService service;
 	
-	@GetMapping("/productList.co")
+	@GetMapping("/productList")
 	public void productGetList(Model model) {
 		model.addAttribute("productList", service.productGetList());
 	}
 	
-	@GetMapping("/productGet.co")
+	@GetMapping("/productGet")
 	public void productGet(@RequestParam("product_num") int product_num, Model model) {
 		model.addAttribute("product", service.productGet(product_num));
 	}
 	
-	@GetMapping("/productRegister.co")
+	@GetMapping("/productRegister")
 	public void productRegister() {
 		
 	}
 	
-	@PostMapping("/productRegister.co")
+	@PostMapping("/productRegister")
 	public String productRegister(ProductVO vo) {
 		service.productRegister(vo);;
-		return "redirect:/product/productList.co";
+		return "redirect:/product/productList";
 	}
 	
-	@PostMapping("/productModify.co")
+	@PostMapping("/productModify")
 	public String productModify(ProductVO vo, RedirectAttributes rttr) {
 		if(service.productModify(vo)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/product/productList.co";
+		return "redirect:/product/productList";
 	}
 	
-	@PostMapping("/productRemove.co")
+	@PostMapping("/productRemove")
 	public String productRemove(@RequestParam("product_num") int product_num, RedirectAttributes rttr) {
 		if(service.productRemove(product_num)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/product/productList.co";
+		return "redirect:/product/productList";
 	}
 	
 }

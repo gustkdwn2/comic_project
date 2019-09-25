@@ -22,12 +22,12 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @AllArgsConstructor
-@RequestMapping("/CustomerCenter/*")
+@RequestMapping("/CustomerCenter")
 public class CustomerCenterController {
 	
 	private CustomerCenterService service;
 	
-	@GetMapping("/boardList.co")
+	@GetMapping("/boardList")
 	public void CustomerCenterList(CustomerCenterCriteriaVO cri, Model model) {
 		
 		log.info("\r\n####list : "+cri);
@@ -40,12 +40,12 @@ public class CustomerCenterController {
 		
 	}
 	
-	@GetMapping("/boardRegister.co")
+	@GetMapping("/boardRegister")
 	public void register(){
 		
 	}
 	
-	@PostMapping("/boardRegister.co")
+	@PostMapping("/boardRegister")
 	public String register(CustomerBoardVO board, RedirectAttributes rttr) {
 		
 		log.info("\r\n####register : "+board);
@@ -54,7 +54,7 @@ public class CustomerCenterController {
 		
 		rttr.addFlashAttribute("result", board.getBOARD_NUM());
 		
-		return "redirect:/CustomerCenter/boardList.co";
+		return "redirect:/CustomerCenter/boardList";
 		
 	}
 	
@@ -74,7 +74,7 @@ public class CustomerCenterController {
 		if(service.modify(board)) {
 			rttr.addFlashAttribute("result", "성공");
 		}
-		return "redirect:/CustomerCenter/boardList.co"+cri.getListLink(); 
+		return "redirect:/CustomerCenter/boardList"+cri.getListLink(); 
 		
 	}
 	
@@ -86,7 +86,7 @@ public class CustomerCenterController {
 			if(service.remove(BOARD_NUM)) {
 				rttr.addFlashAttribute("result", "성공");
 			}
-		return "redirect:/CustomerCenter/boardList.co"+cri.getListLink(); 
+		return "redirect:/CustomerCenter/boardList"+cri.getListLink(); 
 		
 	}
 	

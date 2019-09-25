@@ -23,7 +23,7 @@
 					<font style="vertical-align: inherit;"><font
 						style="vertical-align: inherit;"></font></font>
 				</p>
-				<form class="forms-sample" action="/book/bookRegister.co"
+				<form class="forms-sample" action="/book/bookRegister"
 					method="post">
 					<div class="form-group row">
 						<label for="exampleInputUsername2" class="col-sm-3 col-form-label"><font
@@ -110,7 +110,7 @@
 		
 		$("#listBtn").click(function() {
 
-			self.location = "/book/bookList.co";
+			self.location = "/book/bookList";
 
 		});
 		

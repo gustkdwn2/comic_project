@@ -41,7 +41,7 @@
 									<c:forEach items="${bookList}" var="book">
 										<tr>
 											<td><a
-												href='/book/bookGet.co?book_name=<c:out value="${book.book_name}" />'><c:out
+												href='/book/bookGet?book_name=<c:out value="${book.book_name}" />'><c:out
 														value="${book.book_name}" /></a></td>
 											<td><c:out value="${book.book_loc}" /></td>
 											<td><c:out value="${book.book_publisher}" /></td>
@@ -84,7 +84,7 @@
 
 		$("#registerBtn").click(function() {
 
-			self.location = "/book/bookRegister.co";
+			self.location = "/book/bookRegister";
 
 		});
 

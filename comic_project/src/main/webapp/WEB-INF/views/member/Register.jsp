@@ -64,7 +64,7 @@
                   <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="/resources/index.html">SIGN UP</a>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Already have an account? <a href="/member/AdminLogin.co" class="text-primary">Login</a>
+                  Already have an account? <a href="/member/AdminLogin" class="text-primary">Login</a>
                 </div>
               </form>
             </div>

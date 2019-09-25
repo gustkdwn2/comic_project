@@ -14,47 +14,47 @@ import com.comic.service.BookService;
 import lombok.AllArgsConstructor;
 
 @Controller
-@RequestMapping("/book/")
+@RequestMapping("/book")
 @AllArgsConstructor
 public class BookController {
 	
 	private BookService service;
 	
-	@GetMapping("/bookList.co")
+	@GetMapping("/bookList")
 	public void bookGetList(Model model) {
 		model.addAttribute("bookList", service.bookGetList());
 	}
 	
-	@GetMapping("/bookGet.co")
+	@GetMapping("/bookGet")
 	public void bookGet(@RequestParam("book_name") String book_name, Model model) {
 		model.addAttribute("book", service.bookGet(book_name));
 	}
 	
-	@GetMapping("/bookRegister.co")
+	@GetMapping("/bookRegister")
 	public void bookRegister() {
 		
 	}
 	
-	@PostMapping("/bookRegister.co")
+	@PostMapping("/bookRegister")
 	public String bookRegister(BookVO vo) {
 		service.bookRegister(vo);;
-		return "redirect:/book/bookList.co";
+		return "redirect:/book/bookList";
 	}
 	
-	@PostMapping("/bookModify.co")
+	@PostMapping("/bookModify")
 	public String bookModify(BookVO vo, RedirectAttributes rttr) {
 		if(service.bookModify(vo)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/book/bookList.co";
+		return "redirect:/book/bookList";
 	}
 	
-	@PostMapping("/bookRemove.co")
+	@PostMapping("/bookRemove")
 	public String bookRemove(@RequestParam("book_name") String book_name, RedirectAttributes rttr) {
 		if(service.bookRemove(book_name)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/book/bookList.co";
+		return "redirect:/book/bookList";
 	}
 	
 }
