@@ -30,13 +30,13 @@ public class SettlementController {
 
 	private SettlementService settleService;
 
-	@GetMapping("/list")
+	@GetMapping("list")
 	public void settlementList(Model model) {
 		model.addAttribute("settleList", settleService.settlementList()); // 재고테이블
 	}
 
 	@ResponseBody  // map으로 리턴하기 위해
-	@PostMapping("/list")
+	@PostMapping("list")
 	public Map<String, Object> settlementCheck(@RequestBody HashMap<String, Object> map)
 			throws JsonParseException, JsonMappingException, IOException {
 		List<ProductVO> current = settleService.settlementList(); // 현재 재고
@@ -45,7 +45,7 @@ public class SettlementController {
 		return errorMap;
 	}
 
-	@PostMapping("/modify")
+	@PostMapping("modify")
 	public String modify(@RequestParam("numList") String[] numList,
 			@RequestParam("productList") String[] productList) {
 		
