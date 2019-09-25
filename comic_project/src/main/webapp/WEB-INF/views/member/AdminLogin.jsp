@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,18 +32,22 @@
               <div class="brand-logo">
                 <img src="/resources/images/logo.svg" alt="logo">
               </div>
-              <h4>Hello! let's get started</h4>
-              <h6 class="font-weight-light">Sign in to continue.</h6>
-              <form class="pt-3">
+              <form class="pt-3" role="form" method="post" action="/login">
+              	<fieldset>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="username" placeholder="userid" autofocus>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
                 </div>
+                
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="/resources/index.html">SIGN IN</a>
+                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="login" href="./index.jsp">로그인</a>
                 </div>
+                </fieldset>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                
+                
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
                     <label class="form-check-label text-muted">
@@ -51,13 +57,8 @@
                   </div>
                   <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
-                <div class="mb-2">
-                  <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                    <i class="mdi mdi-facebook mr-2"></i>Connect using facebook
-                  </button>
-                </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="/member/Register" class="text-primary">Create</a>
+					<a href="/member/Register" class="text-primary">회원가입</a>
                 </div>
               </form>
             </div>
@@ -77,6 +78,13 @@
   <script src="/resources/js/hoverable-collapse.js"></script>
   <script src="/resources/js/template.js"></script>
   <!-- endinject -->
+  
+  <script type="text/javascript">
+  	$("#login").on("click", function(e) {
+		e.preventDefault();
+		$("form").submit();
+	});
+  </script>
 </body>
 
 </html>

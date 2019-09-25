@@ -37,7 +37,7 @@ public class BookController {
 	
 	@PostMapping("/bookRegister")
 	public String bookRegister(BookVO vo) {
-		service.bookRegister(vo);;
+		service.bookRegister(vo);
 		return "redirect:/book/bookList";
 	}
 	

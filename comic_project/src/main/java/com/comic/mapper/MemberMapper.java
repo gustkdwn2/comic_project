@@ -4,5 +4,6 @@ import com.comic.model.MemberVO;
 
 public interface MemberMapper {
 
-	public MemberVO read(String userid);
+	public void memberInsert (MemberVO vo);
+	
 }

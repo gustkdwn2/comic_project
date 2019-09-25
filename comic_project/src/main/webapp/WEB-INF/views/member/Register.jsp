@@ -30,41 +30,28 @@
               <div class="brand-logo">
                 <img src="/resources/images/logo.svg" alt="logo">
               </div>
-              <h4>New here?</h4>
-              <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-              <form class="pt-3">
+              <form class="pt-3" id="register" action="/member/register" method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username">
+                  <input type="text" class="form-control form-control-lg" name="MEMBER_ID" placeholder="ID">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+                  <input type="text" class="form-control form-control-lg" name="MEMBER_PWD" placeholder="Password">
                 </div>
                 <div class="form-group">
-                  <select class="form-control form-control-lg" id="exampleFormControlSelect2">
-                    <option>Country</option>
-                    <option>United States of America</option>
-                    <option>United Kingdom</option>
-                    <option>India</option>
-                    <option>Germany</option>
-                    <option>Argentina</option>
-                  </select>
+                  <input type="text" class="form-control form-control-lg" name="MEMBER_NAME" placeholder="Name">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="email" class="form-control form-control-lg" name="MEMBER_EMAIL" placeholder="Email">
                 </div>
-                <div class="mb-4">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      I agree to all Terms & Conditions
-                    </label>
-                  </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-lg" name="MEMBER_PHONE_NUMBER" placeholder="Phone">
                 </div>
+                
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="/resources/index.html">SIGN UP</a>
+                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onclick="document.getElementById('register').submit()">회원가입</a>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Already have an account? <a href="/member/AdminLogin" class="text-primary">Login</a>
+                   <a href="/member/AdminLogin" class="text-primary">로그인하러가기</a>
                 </div>
               </form>
             </div>
