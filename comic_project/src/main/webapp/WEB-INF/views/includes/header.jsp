@@ -11,10 +11,9 @@
 <title>Majestic Admin</title>
 
 <link rel="stylesheet"
-href="/resources/vendors/mdi/css/materialdesignicons.min.css">
-
+ 	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 <link rel="stylesheet"
-	href="/resources/vendors/base/vendor.bundle.base.css">
+	href="./resources/vendors/base/vendor.bundle.base.css">
 <link rel="stylesheet"
 	href="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
 <link rel="stylesheet" href="/resources/css/style.css">
@@ -45,10 +44,12 @@ href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 			<div class="navbar-brand-wrapper d-flex justify-content-center">
 				<div
 					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+
 					<a class="navbar-brand brand-logo" href="index.html"><img
 						src="/resources/images/logo.svg" alt="logo" /></a> <a
 						class="navbar-brand brand-logo-mini" href="index.html"><img
 						src="/resources/images/logo-mini.svg" alt="logo" /></a>
+
 					<button class="navbar-toggler navbar-toggler align-self-center"
 
 						type="button" data-toggle="minimize">
@@ -83,10 +84,7 @@ href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 							<a class="dropdown-item">
 								<div class="item-thumbnail">
 									<img src="/resources/images/faces/face4.jpg" alt="image"
-
-
 										class="profile-pic">
-
 								</div>
 								<div class="item-content flex-grow">
 									<h6 class="ellipsis font-weight-normal">David Grey</h6>
@@ -96,9 +94,7 @@ href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 							</a> <a class="dropdown-item">
 								<div class="item-thumbnail">
 									<img src="/resources/images/faces/face2.jpg" alt="image"
-
-									class="profile-pic">
-
+										class="profile-pic">
 								</div>
 								<div class="item-content flex-grow">
 									<h6 class="ellipsis font-weight-normal">Tim Cook</h6>
@@ -107,10 +103,8 @@ href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 								</div>
 							</a> <a class="dropdown-item">
 								<div class="item-thumbnail">
-
-								<img src="/resources/images/faces/face3.jpg" alt="image"
+									<img src="/resources/images/faces/face3.jpg" alt="image"
 										class="profile-pic">
-
 								</div>
 								<div class="item-content flex-grow">
 									<h6 class="ellipsis font-weight-normal">Johnson</h6>
@@ -162,7 +156,20 @@ href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 								</div>
 							</a>
 						</div></li>
-					<button type="button" class="btn btn-light" onclick="location.href='/member/Login.jsp'">Login</button>
+					<li class="nav-item nav-profile dropdown"><a
+						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+						id="profileDropdown"> <img
+							src="/resources/images/faces/face5.jpg" alt="profile" /> <span
+						class="nav-profile-name">Louis Barnett</span>
+					</a>
+						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+							aria-labelledby="profileDropdown">
+							<a class="dropdown-item"> <i
+								class="mdi mdi-settings text-primary"></i> Settings
+							</a> <a class="dropdown-item"> <i
+								class="mdi mdi-logout text-primary"></i> Logout
+							</a>
+						</div></li>
 				</ul>
 				<button
 					class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
@@ -172,5 +179,4 @@ href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 			</div>
 		</nav>
 		<!-- partial -->
-		<div class="container-fluid page-body-wrapper">
-			
+		<div class="container-fluid page-body-wrapper">			

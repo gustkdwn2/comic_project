@@ -3,7 +3,7 @@
 <!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="index.html">
+					<li class="nav-item"><a class="nav-link" href="index.co">
 							<i class="mdi mdi-home menu-icon"></i> <span class="menu-title">Dashboard</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -31,15 +31,14 @@
 							class="mdi mdi-chart-pie menu-icon"></i> <span class="menu-title">Charts</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/resources/pages/tables/basic-table.html"> <i
+						href="/managerpos.co"> <i
 							class="mdi mdi-grid-large menu-icon"></i> <span
-							class="menu-title">Tables</span>
+							class="menu-title"		
+							>Tables</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-
-					href="/resources/pages/icons/mdi.html"> <i
-					class="mdi mdi-emoticon menu-icon"></i> <span class="menu-title">Icons</span>
-
+						href="/resources/pages/icons/mdi.html"> <i
+							class="mdi mdi-emoticon menu-icon"></i> <span class="menu-title">Icons</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						data-toggle="collapse" href="#auth" aria-expanded="false"
@@ -49,7 +48,6 @@
 						<div class="collapse" id="auth">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item"><a class="nav-link"
-
 									href="/resources/pages/samples/login.html"> Login </a></li>
 								<li class="nav-item"><a class="nav-link"
 									href="/resources/pages/samples/login-2.html"> Login 2 </a></li>
@@ -57,18 +55,13 @@
 									href="/resources/pages/samples/register.html"> Register </a></li>
 								<li class="nav-item"><a class="nav-link"
 									href="/resources/pages/samples/register-2.html"> Register 2 </a></li>
-
-							<li class="nav-item"><a class="nav-link"
-
+								<li class="nav-item"><a class="nav-link"
 									href="pages/samples/lock-screen.html"> Lockscreen </a></li>
 							</ul>
 						</div></li>
 					<li class="nav-item"><a class="nav-link"
-
-
 						href="/resources/documentation/documentation.html"> <i
-						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-
+							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">Documentation</span>
 					</a></li>
 					

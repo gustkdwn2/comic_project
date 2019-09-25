@@ -22,7 +22,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "index.co", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -35,5 +35,45 @@ public class HomeController {
 		
 		return "index";
 	}
+	@RequestMapping(value = {"managerpos.co","Managerpos.co"}, method = RequestMethod.GET)	
+	public String younghakpos(Locale locale, Model model) {
+		//logger.info("Welcome home! The client locale is {}.", locale);
+		
+		//Date date = new Date();
+		//DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		//String formattedDate = dateFormat.format(date);
+		
+		//model.addAttribute("serverTime", formattedDate );
+		
+		return "younghak/Managerpos";
+	}
 	
+	@RequestMapping(value = "importdetail.co", method = RequestMethod.GET)
+	public String younghakimportdetail( Model model) {
+		//logger.info("Welcome home! The client locale is {}.", locale);
+		
+		//Date date = new Date();
+		//DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		//String formattedDate = dateFormat.format(date);
+		
+		//model.addAttribute("serverTime", formattedDate );
+		
+		return "younghak/importdetail";
+	}
+	
+	@RequestMapping(value = "login.co", method = RequestMethod.GET)
+	public String younghakworklogin( Model model) {
+		//logger.info("Welcome home! The client locale is {}.", locale);
+		
+		//Date date = new Date();
+		//DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		//String formattedDate = dateFormat.format(date);
+		
+		//model.addAttribute("serverTime", formattedDate );
+		
+		return "younghak/login";
+	}
 }
