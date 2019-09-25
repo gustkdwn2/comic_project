@@ -162,7 +162,7 @@ href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 								</div>
 							</a>
 						</div></li>
-					<button type="button" class="btn btn-light" onclick="location.href='/WEB-INF/views/member/Login.jsp'">Login</button>
+					<button type="button" class="btn btn-light" onclick="location.href='/member/Login.jsp'">Login</button>
 				</ul>
 				<button
 					class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
