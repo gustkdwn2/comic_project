@@ -76,6 +76,7 @@
 	        ordering: true,
 	        serverSide: false,
 	        searching: true,
+	        bStateSave: true,
 	        "iDisplayLength": 10,
 	        "language": {
 	          search: "Search :"
