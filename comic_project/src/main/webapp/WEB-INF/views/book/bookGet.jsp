@@ -19,7 +19,7 @@
 					<font style="vertical-align: inherit;"><font
 						style="vertical-align: inherit;">책 수정</font></font>
 				</h4>
-				<form class="forms-sample" action="/book/bookModify.co" method="post">
+				<form class="forms-sample" action="/book/bookModify" method="post">
 					<div class="form-group">
 						<label for="exampleInputUsername1"><font
 							style="vertical-align: inherit;"><font
@@ -98,9 +98,9 @@
 			var operation = $(this).data("oper");
 			
 			if(operation == 'remove') {
-				formObj.attr("action", "/book/bookRemove.co");
+				formObj.attr("action", "/book/bookRemove");
 			} else if(operation == 'list') {
-				self.location = "/book/bookList.co";
+				self.location = "/book/bookList";
 				return;
 			}
 			

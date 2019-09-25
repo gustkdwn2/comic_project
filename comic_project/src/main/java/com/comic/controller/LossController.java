@@ -16,7 +16,7 @@ public class LossController {
 	
 	private LossService lossService;
 	
-	@GetMapping("list.co")
+	@GetMapping("list")
 	public  void lossList(Model model) {
 		model.addAttribute("lossList", lossService.lossList()); // 손실테이블
 	}

@@ -30,13 +30,13 @@ public class SettlementController {
 
 	private SettlementService settleService;
 
-	@GetMapping("list.co")
+	@GetMapping("list")
 	public void settlementList(Model model) {
 		model.addAttribute("settleList", settleService.settlementList()); // 재고테이블
 	}
 
 	@ResponseBody  // map으로 리턴하기 위해
-	@PostMapping("list.co")
+	@PostMapping("list")
 	public Map<String, Object> settlementCheck(@RequestBody HashMap<String, Object> map)
 			throws JsonParseException, JsonMappingException, IOException {
 		List<ProductVO> current = settleService.settlementList(); // 현재 재고
@@ -45,7 +45,7 @@ public class SettlementController {
 		return errorMap;
 	}
 
-	@PostMapping("modify.co")
+	@PostMapping("modify")
 	public String modify(@RequestParam("numList") String[] numList,
 			@RequestParam("productList") String[] productList) {
 		
@@ -56,6 +56,6 @@ public class SettlementController {
 			settleService.insertLoss(current.get(i),productList[i]); // 손실테이블에 추가 (현재재고와 입력 재고값 보냄)
 		}
 		
-		return "redirect:/settlement/list.co";
+		return "redirect:/settlement/list";
 	}
 }

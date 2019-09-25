@@ -114,7 +114,7 @@
 			};
 			console.log(list);
 			$.ajax({
-				url : 'http://localhost:8090/settlement/list.co',
+				url : 'http://localhost:8090/settlement/list',
 				dataType : 'json',
 				data : JSON.stringify(sendData),
 				contentType : "application/json; charset=utf-8;",
@@ -171,7 +171,7 @@
 			var form = document.createElement("form"); // form을 만듬
 			form.setAttribute("charset", "UTF-8");
 			form.setAttribute("method", "Post");
-			form.setAttribute("action", "modify.co");
+			form.setAttribute("action", "modify");
 			document.body.appendChild(form);
 
 			var hiddenInput = document.createElement("input");
