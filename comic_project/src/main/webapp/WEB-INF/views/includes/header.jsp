@@ -9,8 +9,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Majestic Admin</title>
-<link rel="stylesheet"
 
+<link rel="stylesheet"
 href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 
 <link rel="stylesheet"
@@ -162,22 +162,7 @@ href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 								</div>
 							</a>
 						</div></li>
-					<li class="nav-item nav-profile dropdown"><a
-						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-						id="profileDropdown"> <img
-							src="/resources/images/faces/face5.jpg" alt="profile" /> <span
-
-						class="nav-profile-name">Louis Barnett</span>
-
-					</a>
-						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-							aria-labelledby="profileDropdown">
-							<a class="dropdown-item"> <i
-								class="mdi mdi-settings text-primary"></i> Settings
-							</a> <a class="dropdown-item"> <i
-								class="mdi mdi-logout text-primary"></i> Logout
-							</a>
-						</div></li>
+					<button type="button" class="btn btn-light" onclick="location.href='./member/Login.jsp'">Login</button>
 				</ul>
 				<button
 					class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"

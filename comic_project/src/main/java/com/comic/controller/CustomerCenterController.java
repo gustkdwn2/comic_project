@@ -63,6 +63,7 @@ public class CustomerCenterController {
 			@ModelAttribute("cri") CustomerCenterCriteriaVO cri, Model model) {
 		
 		log.info("\r\n####get or modify : "+model);
+		model.addAttribute("board", service.get(BOARD_NUM));
 	}
 	
 	@PostMapping("/boardModify")
