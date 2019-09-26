@@ -54,15 +54,16 @@
 	
 <script> 
     $('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
-    	pageLength: 10,
-        bPaginate: true,
+    	pageLength: 10, //처음 페이지에 처리 개수
+        bPaginate: true, // 페이징 기능
         bLengthChange: true,
-        lengthMenu : [ [ 10, 20, 30, -1 ], [ 10, 20, 30, "All" ] ],
+        lengthMenu : [ [ 10, 20, 30, -1 ], [ 10, 20, 30, "All" ] ], //show entries
         bAutoWidth: false,
         processing: true,
         ordering: true,
         serverSide: false,
-        searching: true,
+        searching: true, // 검색 기능
+        bStateSave: true, // 이전페이지 저장
         "iDisplayLength": 10,
         "language": {
           search: "Search :"
