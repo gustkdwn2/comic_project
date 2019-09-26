@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.comic.mapper.LossMapper">
+	<select id="lossList"
+		resultType="com.comic.model.LossVO">
+		SELECT * FROM COMIC_LOSS ORDER BY LOSS_DATE ASC
+	</select>
+	
+	<insert id="lossInsert">
+		insert into
+		comic_loss(loss_num,loss_category,loss_qty,loss_pay,loss_product,loss_date)
+		values ((select count(*) from comic_loss)+1,#{category}, #{errorNum}, 
+		#{pay}*(select product_price from comic_productstock where product_num = #{num}) ,
+		(select product_name from comic_productstock where product_num = #{num}),
+		sysdate)
+	</insert>
+</mapper>

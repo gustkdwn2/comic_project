@@ -10,21 +10,23 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Majestic Admin</title>
+
 <link rel="stylesheet"
-	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
+ 	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
+
 <link rel="stylesheet"
-	href="/resources/vendors/base/vendor.bundle.base.css">
+	href="./resources/vendors/base/vendor.bundle.base.css">
 <link rel="stylesheet"
+
 	href="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="shortcut icon" href="/resources/images/favicon.png" />
 
-
+<!-- <script src="//code.jquery.com/jquery-3.2.1.min.js"></script> -->
 <script src="/resources/vendors/base/vendor.bundle.base.js"></script>
 <script src="/resources/vendors/chart.js/Chart.min.js"></script>
 <script src="/resources/vendors/datatables.net/jquery.dataTables.js"></script>
-<script
-	src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 <script src="/resources/js/off-canvas.js"></script>
 <script src="/resources/js/hoverable-collapse.js"></script>
 <script src="/resources/js/template.js"></script>
@@ -32,6 +34,7 @@
 <script src="/resources/js/data-table.js"></script>
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
+
 </body>
 
 </html>
@@ -44,10 +47,12 @@
 			<div class="navbar-brand-wrapper d-flex justify-content-center">
 				<div
 					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-					<a class="navbar-brand brand-logo" href="/index"><img
+
+					<a class="navbar-brand brand-logo" href="index.html"><img
 						src="/resources/images/logo.svg" alt="logo" /></a> <a
-						class="navbar-brand brand-logo-mini" href="/index"><img
+						class="navbar-brand brand-logo-mini" href="index.html"><img
 						src="/resources/images/logo-mini.svg" alt="logo" /></a>
+
 					<button class="navbar-toggler navbar-toggler align-self-center"
 						type="button" data-toggle="minimize">
 						<span class="mdi mdi-sort-variant"></span>
@@ -80,7 +85,11 @@
 							<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
 							<a class="dropdown-item">
 								<div class="item-thumbnail">
+
+
 									<img src="/resources/images/faces/face4.jpg" alt="image"
+
+
 										class="profile-pic">
 								</div>
 								<div class="item-content flex-grow">
@@ -90,7 +99,11 @@
 								</div>
 							</a> <a class="dropdown-item">
 								<div class="item-thumbnail">
+
+
 									<img src="/resources/images/faces/face2.jpg" alt="image"
+
+
 										class="profile-pic">
 								</div>
 								<div class="item-content flex-grow">
@@ -100,7 +113,10 @@
 								</div>
 							</a> <a class="dropdown-item">
 								<div class="item-thumbnail">
+
+
 									<img src="/resources/images/faces/face3.jpg" alt="image"
+
 										class="profile-pic">
 								</div>
 								<div class="item-content flex-grow">
@@ -156,7 +172,11 @@
 					<li class="nav-item nav-profile dropdown"><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
 						id="profileDropdown"> <img
+
+
 							src="/resources/images/faces/face5.jpg" alt="profile" /> <span
+
+
 							class="nav-profile-name">Louis Barnett</span>
 					</a>
 						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -176,6 +196,4 @@
 			</div>
 		</nav>
 		<!-- partial -->
-		<div class="container-fluid page-body-wrapper">
-
-			
+		<div class="container-fluid page-body-wrapper">		
