@@ -1,7 +1,5 @@
 package com.comic.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,12 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comic.model.ProductVO;
 import com.comic.service.SettlementService;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 
 import lombok.AllArgsConstructor;
 
@@ -30,22 +25,21 @@ public class SettlementController {
 
 	private SettlementService settleService;
 
-	@GetMapping("list.co")
-	public void settlementList(Model model) {
+	@GetMapping("list")
+	public String settlementList(Model model) {
 		model.addAttribute("settleList", settleService.settlementList()); // 재고테이블
+		return "settlement/settlementlist";
 	}
 
-	@ResponseBody  // map으로 리턴하기 위해
-	@PostMapping("list.co")
-	public Map<String, Object> settlementCheck(@RequestBody HashMap<String, Object> map)
-			throws JsonParseException, JsonMappingException, IOException {
+	@PostMapping("list")
+	public @ResponseBody Map<String, Object> settlementCheck(@RequestBody HashMap<String, Object> map) {
 		List<ProductVO> current = settleService.settlementList(); // 현재 재고
 		Map<String, Object> errorMap = settleService.settlementError(map, current); // 오차 재고
 
 		return errorMap;
 	}
 
-	@PostMapping("modify.co")
+	@PostMapping("modify")
 	public String modify(@RequestParam("numList") String[] numList,
 			@RequestParam("productList") String[] productList) {
 		
@@ -56,6 +50,6 @@ public class SettlementController {
 			settleService.insertLoss(current.get(i),productList[i]); // 손실테이블에 추가 (현재재고와 입력 재고값 보냄)
 		}
 		
-		return "redirect:/settlement/list.co";
+		return "redirect:/settlement/list";
 	}
 }

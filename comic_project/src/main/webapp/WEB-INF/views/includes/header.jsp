@@ -13,7 +13,7 @@
  	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 
 <link rel="stylesheet"
-	href="./resources/vendors/base/vendor.bundle.base.css">
+	href="/resources/vendors/base/vendor.bundle.base.css">
 <link rel="stylesheet"
 
 	href="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
@@ -21,7 +21,7 @@
 <link rel="shortcut icon" href="/resources/images/favicon.png" />
 
 <!-- <script src="//code.jquery.com/jquery-3.2.1.min.js"></script> -->
-<script src="/resources/vendors/base/vendor.bundle.base.js"></script>
+<script src="/resources/vendors/base/vendor.bundle.base.js?after"></script>
 <script src="/resources/vendors/chart.js/Chart.min.js"></script>
 <script src="/resources/vendors/datatables.net/jquery.dataTables.js"></script>
 <script src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>

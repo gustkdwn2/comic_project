@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.comic.mapper.LossMapper;
 import com.comic.mapper.SettlementMapper;
-import com.comic.model.LossVO;
 import com.comic.model.ProductVO;
 import com.comic.service.SettlementService;
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.comic.mapper.SalesStatisticsMapper">
+	<select id="productsalesData"
+		resultType="com.comic.model.SalesStatisticsVO">
+		SELECT * FROM COMIC_PRODUCTSALES
+	</select>
+
+	<select id="roomsalesData"
+		resultType="com.comic.model.SalesStatisticsVO">
+		SELECT * FROM COMIC_ROOMSALES
+	</select>
+</mapper>
