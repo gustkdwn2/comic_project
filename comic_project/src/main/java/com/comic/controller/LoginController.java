@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.comic.model.AuthVO;
 import com.comic.model.MemberVO;
 import com.comic.service.MemberService;
 

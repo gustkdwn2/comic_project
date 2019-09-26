@@ -42,7 +42,7 @@
                 </div>
                 
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="login" href="./index.jsp">로그인</a>
+                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="login" href="./product/productList">로그인</a>
                 </div>
                 </fieldset>
                 <input type="hidden" name="${_csrf.parameterName}"
@@ -59,7 +59,7 @@
                   <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-					<a href="/member/Register" class="text-primary">회원가입</a>
+					<a href="/member/AdminRegister" class="text-primary">회원가입</a>
                 </div>
               </form>
             </div>
