@@ -3,9 +3,9 @@
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
 	z-index: 1; /* Sit on top */
-	margin-top: 10%;
+	margin-top: 2.5%;
 	margin-left: 25%;
-	width: 50%;
+	width: 60%;
 	height: 100%; /* Full height */
 	overflow: auto; /* Enable scroll if needed */
 }

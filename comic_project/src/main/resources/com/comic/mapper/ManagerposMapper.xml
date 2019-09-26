@@ -15,7 +15,11 @@
 		PRODUCT_QTY=#{currentNum}
 		WHERE PRODUCT_NUM = #{num}
 	</update>
-
+	
+	<!-- <insert id ="room_start_insert" >
+		
+	</>
+ -->
 	<insert id="settlementLossInsert">
 		insert into
 		comic_loss(loss_category,loss_qty,loss_pay,loss_product,loss_date)
