@@ -30,6 +30,7 @@
 			var getRoomNumber = $(this).val();
 			console.log(getRoomNumber);
 			operForm.append("<input type='hidden' name='roomNum' value='" + getRoomNumber + "'>");
+			operForm.attr("method", 'post');
 			operForm.attr("action", "/sangju/main");
 			operForm.submit();
 		});

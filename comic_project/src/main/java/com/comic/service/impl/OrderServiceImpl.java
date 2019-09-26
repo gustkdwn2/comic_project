@@ -1,13 +1,14 @@
 package com.comic.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comic.mapper.OrderMapper;
-import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderViewVO;
+import com.comic.model.ProductVO;
 import com.comic.service.OrderService;
 
 import lombok.Setter;
@@ -39,8 +40,38 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public OrderProductViewVO readProduct(int categoryNum) {
-		return ordermapper.orderProductSelect(categoryNum);
+	public List<Map<String, Object>> readProduct(String category) {
+		return ordermapper.orderProductSelect(category);
+	}
+
+	@Override
+	public int productCheck(String productName) {
+		return ordermapper.productCheck(productName);
+	}
+
+	@Override
+	public void productInsert(String productName, String productCategory) {
+		ordermapper.productInsert(productName, productCategory);
+	}
+
+	@Override
+	public void productCategoryUpdate(OrderViewVO vo) {
+		ordermapper.productCategoryUpdate(vo);
+	}
+
+	@Override
+	public void porductCateoryAllDelete(int number) {
+		ordermapper.porductCateoryAllDelete(number);
+	}
+
+	@Override
+	public void porductCateoryDelete(int number) {
+		ordermapper.porductCateoryDelete(number);
+	}
+
+	@Override
+	public String getCategoryValue(int number) {
+		return ordermapper.getCategoryValue(number);
 	}
 
 }

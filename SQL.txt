@@ -180,7 +180,7 @@ CREATE TABLE COMIC_BOARD(
 CREATE TABLE COMIC_ORDERVIEW(
 	ORDERVIEW_NUM NUMBER PRIMARY KEY,
 ORDERVIEW_CATEGORY VARCHAR2(30) NOT NULL,
-ORDERVIEW_PRODUCT_NUM NUMBER NOT NULL
+ORDERVIEW_PRODUCT_NUM NUMBER NOT NULL -- 삭제 예정
 );
 
 --상품주문 뷰 삼품 뷰 ajax 테이블
@@ -206,31 +206,39 @@ CREATE TABLE COMIC_PRODUCTSTOCK (
 insert into comic_productstock (product_num, product_name, product_price, product_qty, product_category)
 values (1, '카페모카', 2200, 9999, '커피');
 
+insert into COMIC_ORDERVIEW_PRODUCT(ORDERVIEW_NUM, ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM)
+values (1, '라면류', 2);
+commit;
 insert into comic_productstock (product_num, product_name, product_price, product_qty, product_category)
-values ((select max(product_num) from comic_productstock)+1, '카페모카', 2200, 9999, '커피');
+values ((select max(product_num) from comic_productstock)+1, '웰치스', 2200, 9999, '음료');
 
 insert into comic_productstock (product_num, product_name, product_price, product_qty, product_category)
 values ((select max(product_num) from comic_productstock)+1, '신라면', 1200, 9999, '라면');
+
+delete comic_productstock;
 
 select * from comic_productstock;
 
 insert into COMIC_ORDERVIEW (ORDERVIEW_NUM, ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM)
 values (1, '라면류', 0);
 
-insert into COMIC_ORDERVIEW_PRODUCT (ORDERVIEW_NUM, ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM)
-values ((select max(ORDERVIEW_NUM) from COMIC_ORDERVIEW_PRODUCT)+1, '음료류', 3);
 
 insert into COMIC_ORDERVIEW_PRODUCT (ORDERVIEW_NUM, ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM)
-values (1, '라면류', 2);
+values (1, '라면류', 3);
+
+insert into COMIC_ORDERVIEW_PRODUCT (ORDERVIEW_NUM, ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM)
+values ((select max(ORDERVIEW_NUM) from COMIC_ORDERVIEW_PRODUCT)+1, '라면류', 4);
+
 
 select * from COMIC_ORDERVIEW;
 
 select * from COMIC_ORDERVIEW_PRODUCT;
 select * from comic_productstock;
-DELETE from comic_productstock where product_num = 2;
+
 commit;
 
 select
+    pk.orderview_num,
     fk.PRODUCT_NAME,
     fk.PRODUCT_PRICE
 from
@@ -238,4 +246,11 @@ from
 where
     fk.PRODUCT_NUM = pk.orderview_product_num
 AND
-    pk.ORDERVIEW_CATEGORY = '음료류';
+    pk.ORDERVIEW_CATEGORY = '라면류2';
+
+commit;
+update comic_orderview_product set ORDERVIEW_CATEGORY
+		= '라면류' where ORDERVIEW_CATEGORY = '라면류1'
+        
+
+        
