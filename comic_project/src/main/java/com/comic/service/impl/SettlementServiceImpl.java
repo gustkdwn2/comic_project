@@ -1,4 +1,4 @@
-package com.comic.service.impl;
+﻿package com.comic.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.comic.mapper.LossMapper;
 import com.comic.mapper.SettlementMapper;
-import com.comic.model.LossVO;
 import com.comic.model.ProductVO;
 import com.comic.service.SettlementService;
 
@@ -66,7 +65,7 @@ public class SettlementServiceImpl implements SettlementService {
 		String category = "손실";
 		// 현재재고보다 입력재고가 많으면 -> 수익, 적으면 -> 지출
 		// 현재재고 - 입력재고 = 오차수량 ==> 입력재고가 더 크면 - 값이 나옴
-		// 현재재고 - 입력재고 = 오차수량 ==> 입력재고가 작으면 + 값이 나옴
+		// 현재재고 - 입력재고 = 오차수량 ==> 입력재고가 작으면  + 값이 나옴
 		// - 수익, + 지출
 		int errorNum = product.getProduct_qty() - Integer.parseInt(input_qty); 
 		

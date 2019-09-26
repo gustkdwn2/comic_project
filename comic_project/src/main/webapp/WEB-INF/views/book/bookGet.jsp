@@ -7,7 +7,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/resources/css/inhostyle.css">
 <meta charset="UTF-8">
 <title>책 재고 수정</title>
 </head>

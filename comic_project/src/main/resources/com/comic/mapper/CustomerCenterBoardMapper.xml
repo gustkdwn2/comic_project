@@ -23,7 +23,7 @@
 		  <![CDATA[	
 		  	rownum <=#{pageNum} * #{amount}
 		  	)
-		 where rn > (#{pageNum}-1) * #{amount}
+		 where rn > (#{pageNum}-1) * #{amount} order by BOARD_NUM desc
 		 ]]>
 	</select>
 
@@ -50,7 +50,7 @@
 	</delete>
 	
 	<update id="update">
-		update COMIC_BOARD
+		update COMIC_BOARD set
 		BOARD_TITLE = #{BOARD_TITLE},
 		BOARD_CONTENT=#{BOARD_CONTENT},
 		BOARD_ID = #{BOARD_ID},
@@ -64,13 +64,13 @@
 				<trim prefix="OR">
 					<choose>
 						<when test="type == 'T'.toString()">
-							title like '%'||#{keyword}||'%'
+							BOARD_TITLE like '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'C'.toString()">
-							content like '%'||#{keyword}||'%'
+							BOARD_CONTENT like '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'W'.toString()">
-							writer like '%'||#{keyword}||'%'
+							BOARD_ID like '%'||#{keyword}||'%'
 						</when>
 					</choose>
 				</trim>

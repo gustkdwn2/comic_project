@@ -36,6 +36,11 @@ public class ProductController {
 		
 	}
 	
+	@GetMapping("/productOrder")
+	public void productOrder(Model model) {
+		model.addAttribute("productList", service.productGetList());
+	}
+	
 	@PostMapping("/productRegister")
 	public String productRegister(ProductVO vo) {
 		service.productRegister(vo);;

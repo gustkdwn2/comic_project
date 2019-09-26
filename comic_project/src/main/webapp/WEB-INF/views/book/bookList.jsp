@@ -7,7 +7,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/resources/css/inhostyle.css">
 <meta charset="UTF-8">
 <title>책 재고</title>
 </head>
@@ -76,6 +75,7 @@
 	        ordering: true,
 	        serverSide: false,
 	        searching: true,
+	        bStateSave: true,
 	        "iDisplayLength": 10,
 	        "language": {
 	          search: "Search :"

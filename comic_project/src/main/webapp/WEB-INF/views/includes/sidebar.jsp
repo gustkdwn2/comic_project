@@ -31,9 +31,14 @@
 							class="mdi mdi-chart-pie menu-icon"></i> <span class="menu-title">Charts</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
+
+
 						href="/managerpos.co"> <i
+
+
 							class="mdi mdi-grid-large menu-icon"></i> <span
-							class="menu-title"		
+							class="menu-title"
+							
 							>Tables</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -48,6 +53,7 @@
 						<div class="collapse" id="auth">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item"><a class="nav-link"
+
 									href="/resources/pages/samples/login.html"> Login </a></li>
 								<li class="nav-item"><a class="nav-link"
 									href="/resources/pages/samples/login-2.html"> Login 2 </a></li>
@@ -64,13 +70,13 @@
 							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">Documentation</span>
 					</a></li>
-					
+
 					<li class="nav-item"><a class="nav-link"
 						href="/CustomerCenter/boardList"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">고객센터</span>
 					</a></li>
-					
+
 					<li class="nav-item"><a class="nav-link"
 						href="/member/MemberLogin"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
@@ -82,6 +88,5 @@
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">직원 로그인</span>
 					</a></li>
-					
 				</ul>
-			</nav>
+		</nav>

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.comic.model.LossVO;
 import com.comic.model.ProductVO;
 
 public interface SettlementMapper {

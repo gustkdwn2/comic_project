@@ -22,8 +22,8 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @AllArgsConstructor
-@RequestMapping("/CustomerCenter")
-public class CustomerCenterController {
+@RequestMapping("/CustomerCenter/*")
+public class CustomerCenterBoardController {
 	
 	private CustomerCenterService service;
 	
@@ -35,6 +35,7 @@ public class CustomerCenterController {
 		
 		int total = service.getTotal(cri);
 		log.info("\r\n####total : "+total);
+		model.addAttribute("count", service.getTotal(cri));
 		model.addAttribute("pageMaker", new CustomerCenterPageVO(cri, total));
 		
 		
@@ -63,6 +64,7 @@ public class CustomerCenterController {
 			@ModelAttribute("cri") CustomerCenterCriteriaVO cri, Model model) {
 		
 		log.info("\r\n####get or modify : "+model);
+		
 		model.addAttribute("board", service.get(BOARD_NUM));
 	}
 	
@@ -72,7 +74,7 @@ public class CustomerCenterController {
 		log.info("\r\n####modify : "+board);
 		
 		if(service.modify(board)) {
-			rttr.addFlashAttribute("result", "성공");
+			rttr.addFlashAttribute("result", "sucess");
 		}
 		return "redirect:/CustomerCenter/boardList"+cri.getListLink(); 
 		
@@ -81,7 +83,7 @@ public class CustomerCenterController {
 	@PostMapping("/boardRemove")
 	public String remove(@RequestParam("BOARD_NUM") Long BOARD_NUM, CustomerCenterCriteriaVO cri, RedirectAttributes rttr) {
 		
-		log.info("\r\n####remove..."+BOARD_NUM);
+		log.info("\r\n####remove board_num : "+BOARD_NUM);
 		
 			if(service.remove(BOARD_NUM)) {
 				rttr.addFlashAttribute("result", "성공");
@@ -89,13 +91,4 @@ public class CustomerCenterController {
 		return "redirect:/CustomerCenter/boardList"+cri.getListLink(); 
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

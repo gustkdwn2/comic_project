@@ -46,9 +46,9 @@
 										</c:forEach>
 									</tbody>
 								</table>
-								<div>
-									<button id="btn1">오차확인</button>
-									<button id="btn2">재고정산</button>
+								<div align="right">
+									<button id="btn1" class="btn btn-danger btn-rounded ">오차확인</button>
+									<button id="btn2" class="btn btn-primary btn-rounded ">재고정산</button>
 								</div>
 							</div>
 						</div>
@@ -112,9 +112,8 @@
 			var sendData = {
 				'list' : list
 			};
-			console.log(list);
 			$.ajax({
-				url : 'http://localhost:8090/settlement/list',
+				url : 'settlement/list',
 				dataType : 'json',
 				data : JSON.stringify(sendData),
 				contentType : "application/json; charset=utf-8;",

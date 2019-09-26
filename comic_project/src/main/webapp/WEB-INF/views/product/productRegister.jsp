@@ -7,7 +7,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/resources/css/inhostyle.css">
 <meta charset="UTF-8">
 <title>상품 재고 등록</title>
 </head>
@@ -56,12 +55,6 @@
 						<div class="col-sm-9">
 							<input type="text" class="form-control" name="product_category">
 						</div>
-					</div>
-					<div class="form-check form-check-flat form-check-primary">
-						<label class="form-check-label"> <input type="checkbox"
-							class="form-check-input"><font
-							style="vertical-align: inherit;"><font
-								style="vertical-align: inherit;"></font></font><i class="input-helper"></i></label>
 					</div>
 					<button type="submit" class="btn btn-primary mr-2">
 						<font style="vertical-align: inherit;"><font
