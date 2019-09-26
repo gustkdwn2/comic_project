@@ -262,14 +262,20 @@ function array_init(check){
 
 function method_startnstop(num){
 	
-		
 		if(!check[num]){
 		check[num]=true;
 		time_start(0,num);	
+		var user="tmehfld";
+		var user_status = "unavail";
+		var order_status="unavail";
+	
 		
-		document.getElementById('user'+num).innerHTML="tmehfld";
-		document.getElementById('user_status'+num).innerHTML="사용불가";
-		document.getElementById('order_status'+num).innerHTML="주문대기";
+		document.getElementById('user'+num).innerHTML=user;
+		document.getElementById('user_status'+num).innerHTML=user_status;
+		document.getElementById('order_status'+num).innerHTML=order_status;
+
+		ajaxtosenddb_COMIC_ROOM_USE(user,"THISTIME",user_status,order_status,num);
+		
 	}else{
 		
 		check[num]=false;
@@ -277,7 +283,77 @@ function method_startnstop(num){
 		document.getElementById('user_time'+num).innerHTML="00:00:00";
 		document.getElementById('user_status'+num).innerHTML="사용가능";
 		document.getElementById('order_status'+num).innerHTML="대기중";
+
+		ajaxtosenddb_COMIC_ROOM_USE("대기중","사용가능","사용가능","대기중",num);
 	}
+}
+
+function ajaxtosenddb_COMIC_ROOM_USE(user,starttime,user_status,order_status,room_number){
+	var list=[user,starttime,user_status,order_status,room_number];
+			//사용자,시작시간,사용자 상태,주문 상태,방번호
+			
+			alert("보내기전의 list" + list);
+			
+			
+			var sendData = {
+				'list' : list
+			};
+			
+	$.ajax({
+				url : '/managerpos/room_start',
+				dataType : 'json',
+				data : JSON.stringify(sendData),
+				contentType : "application/json; charset=utf-8;",
+				type : 'POST',
+				success : function(data) {
+					console.log("성공");
+					alert("success!");
+					/* for (var i = 0; i < Object.keys(data).length; i++) {
+						$('#' + 'a' + i.toString()).html(data[i]);
+						if (data[i] > 0) {
+							$('#' + 'a' + i.toString()).css("color", "blue");
+						} else if (data[i] < 0) {
+							$('#' + 'a' + i.toString()).css("color", "red");
+						} else {
+							$('#' + 'a' + i.toString()).css("color", "black");
+						}
+					} */
+				},
+				error : function(data) {
+					console.log("실패");
+				}
+			});
+	
+	
+	/* 		$.ajax({
+         type : "get",
+         url : "/managerpos/room_start",
+         data : {sample : "하이!"}
+      }) *///세종
+      
+		/* 	
+	$.ajax(
+			{
+				url : "/managerpos/room_start",
+				 dataType : 'json', 
+				// traditional:true, 
+				data:JSON.stringify(arr),
+				//data:{"arr":arr}, //여기서 데이터를 바로보내준다ㅋㅋㅋ
+				contentType : "application/json; charset=utf-8;",
+				type: "get", 
+				//사용자 ,시작시간,사용상태,주문상태,방번호
+				success:function(data){
+					//var as = eval(data);//객체 변환
+					
+							alert("데이터등록성공");
+							//getreplyajax(addrtodb);
+				},
+				error:function(msg,error){
+					//alert(error+"addrtodb = "+addrtodb+"\nreplycont = "+replycont);
+					alert("error = "+error);
+				}
+			}
+		  ); */
 }
 
 

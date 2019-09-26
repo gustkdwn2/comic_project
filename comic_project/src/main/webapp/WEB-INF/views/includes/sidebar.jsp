@@ -4,7 +4,7 @@
 <!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="/index.co">
+					<li class="nav-item"><a class="nav-link" href="/index">
 							<i class="mdi mdi-home menu-icon"></i> <span class="menu-title">Dashboard</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -27,13 +27,13 @@
 							class="menu-title">Form elements</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/settlement/list.co"> <i
-							class="mdi mdi-chart-pie menu-icon"></i> <span class="menu-title">Charts</span>
+						href="/settlement/list"> <i
+							class="mdi mdi-chart-pie menu-icon"></i> <span class="menu-title">정산 화면(인호)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/managerpos/managerpos.co"> <i
+						href="/managerpos/managerpos"> <i
 							class="mdi mdi-grid-large menu-icon"></i> <span
-							class="menu-title">Tables</span>
+							class="menu-title">매니저 포스기(영학)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="pages/icons/mdi.html"> <i

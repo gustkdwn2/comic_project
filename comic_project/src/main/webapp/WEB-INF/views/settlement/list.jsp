@@ -171,14 +171,14 @@
 			form.setAttribute("charset","UTF-8");
 			form.setAttribute("method","Post");
 			form.setAttribute("action","modify.co");
-			document.body.appendChild(form);
+			document.body.appendChild(form);//body에 form을 넣음
 			
 			
 			var hiddenInput = document.createElement("input");
 			hiddenInput.setAttribute("type","hidden");
 			hiddenInput.setAttribute("name","numList");
 			hiddenInput.setAttribute("value",numList);
-			
+			/* <input type hidden name numList value ${numList}> */
 			var hiddenInput2 = document.createElement("input");
 			hiddenInput2.setAttribute("type","hidden");
 			hiddenInput2.setAttribute("name","productList");
