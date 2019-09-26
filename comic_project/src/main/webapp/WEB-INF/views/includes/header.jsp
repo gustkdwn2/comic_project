@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,11 +19,12 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="shortcut icon" href="/resources/images/favicon.png" />
 
-<!-- <script src="//code.jquery.com/jquery-3.2.1.min.js"></script> -->
+
 <script src="/resources/vendors/base/vendor.bundle.base.js"></script>
 <script src="/resources/vendors/chart.js/Chart.min.js"></script>
 <script src="/resources/vendors/datatables.net/jquery.dataTables.js"></script>
-<script src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script
+	src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 <script src="/resources/js/off-canvas.js"></script>
 <script src="/resources/js/hoverable-collapse.js"></script>
 <script src="/resources/js/template.js"></script>
@@ -42,9 +44,9 @@
 			<div class="navbar-brand-wrapper d-flex justify-content-center">
 				<div
 					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-					<a class="navbar-brand brand-logo" href="index.html"><img
+					<a class="navbar-brand brand-logo" href="/index"><img
 						src="/resources/images/logo.svg" alt="logo" /></a> <a
-						class="navbar-brand brand-logo-mini" href="index.html"><img
+						class="navbar-brand brand-logo-mini" href="/index"><img
 						src="/resources/images/logo-mini.svg" alt="logo" /></a>
 					<button class="navbar-toggler navbar-toggler align-self-center"
 						type="button" data-toggle="minimize">
@@ -175,4 +177,5 @@
 		</nav>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
+
 			

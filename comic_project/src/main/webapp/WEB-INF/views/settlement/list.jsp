@@ -106,13 +106,14 @@
 		$('#btn1').click(function() { // .blur() : focusout
 			var list = new Array();
 			$("input[name=curqty]").each(function(index, item) {
-				list.push($(item).val());
+				list.push($(item).val());//push 데이터 넣기
 			});
+			console.log(list);
 			var sendData = {
 				'list' : list
 			};
 			$.ajax({
-				url : 'http://localhost:8090/settlement/list.co',
+				url : 'http://localhost:8080/settlement/list.co',
 				dataType : 'json',
 				data : JSON.stringify(sendData),
 				contentType : "application/json; charset=utf-8;",
@@ -170,14 +171,14 @@
 			form.setAttribute("charset","UTF-8");
 			form.setAttribute("method","Post");
 			form.setAttribute("action","modify.co");
-			document.body.appendChild(form);
+			document.body.appendChild(form);//body에 form을 넣음
 			
 			
 			var hiddenInput = document.createElement("input");
 			hiddenInput.setAttribute("type","hidden");
 			hiddenInput.setAttribute("name","numList");
 			hiddenInput.setAttribute("value",numList);
-			
+			/* <input type hidden name numList value ${numList}> */
 			var hiddenInput2 = document.createElement("input");
 			hiddenInput2.setAttribute("type","hidden");
 			hiddenInput2.setAttribute("name","productList");
