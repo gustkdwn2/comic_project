@@ -23,6 +23,11 @@ public class CustomerCenterCommentsController {
 	
 	@PostMapping(value="/new", consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> create(@RequestBody CustomerCommentsVO vo){
+		
+		log.info("CommentsVO : "+vo);
+		
+		int insertCount
+		
 		return null;
 		
 	}
