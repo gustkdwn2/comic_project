@@ -26,7 +26,7 @@ public class CustomerCenterCommentsController {
 		
 		log.info("CommentsVO : "+vo);
 		
-		int insertCount
+		//int insertCount
 		
 		return null;
 		
