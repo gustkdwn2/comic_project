@@ -1,4 +1,4 @@
-﻿package com.comic.controller;
+package com.comic.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -78,3 +78,5 @@ public class HomeController {
 	}
 	
 }
+
+

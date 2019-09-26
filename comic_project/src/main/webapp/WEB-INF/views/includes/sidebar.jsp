@@ -70,6 +70,11 @@
 							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">Documentation</span>
 					</a></li>
-				</ul>
 
-			</nav>
+					<li class="nav-item"><a class="nav-link"
+						href="/CustomerCenter/boardList"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">고객센터</span>
+					</a></li>
+				</ul>
+		</nav>

@@ -4,11 +4,15 @@ import lombok.Data;
 
 @Data
 public class ProductVO {
-	
-	private int product_num; 		 // 상품 번호
-	private String product_name; 	 // 상품 이름
-	private int product_price; 		 // 상품 판매가
-	private int product_qty; 		 // 상품 수량
-	private String product_category; // 상품 종류
-	
+//	PRODUCT_NUM NUMBER PRIMARY KEY,  -- 상품 번호
+//	PRODUCT_NAME VARCHAR2(20) NOT NULL, -- 상품이름
+//	PRODUCT_PRICE NUMBER NOT NULL, -- 상품 판매가
+//	PRODUCT_QTY NUMBER NOT NULL, -- 상품 수량
+//	PRODUCT_CATEGORY VARCHAR2(20) NOT NULL -- 상품 종류
+
+	private int product_num;
+	private String product_name;
+	private int product_price;
+	private int product_qty;
+	private String product_category;
 }
