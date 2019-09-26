@@ -47,8 +47,6 @@
 									</c:forEach>
 
 								</table>
-								
-								
 
 							</div>
 						</div>
@@ -70,17 +68,67 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body">
-	        Modal body..
+	        <div class="card-body" align="center">
+				<h4 class="card-title">
+					<font style="vertical-align: inherit;"><font
+						style="vertical-align: inherit;">상품 발주</font></font>
+				</h4>
+				<p class="card-description">
+					<font style="vertical-align: inherit;"><font
+						style="vertical-align: inherit;"></font></font>
+				</p>
+				<form class="forms-sample" action="/product/productOrder"
+					method="post">
+					<div class="form-group row">
+						<label for="exampleInputEmail2" class="col-sm-3 col-form-label"><font
+							style="vertical-align: inherit;"><font
+								style="vertical-align: inherit;">상품 번호</font></font></label>
+						<div class="col-sm-9">
+							<input type="number" class="form-control" name="productOrder_product_num">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="exampleInputMobile" class="col-sm-3 col-form-label"><font
+							style="vertical-align: inherit;"><font
+								style="vertical-align: inherit;">발주 구매가</font></font></label>
+						<div class="col-sm-9">
+							<input type="number" class="form-control" name="productOrder_cost">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="exampleInputPassword2" class="col-sm-3 col-form-label"><font
+							style="vertical-align: inherit;"><font
+								style="vertical-align: inherit;">발주 수량</font></font></label>
+						<div class="col-sm-9">
+							<input type="number" class="form-control" name="productOrder_qty">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="exampleInputPassword2" class="col-sm-3 col-form-label"><font
+							style="vertical-align: inherit;"><font
+								style="vertical-align: inherit;">발주 날짜</font></font></label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="productOrder_date">
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary mr-2">
+						<font style="vertical-align: inherit;"><font
+							style="vertical-align: inherit;">발주</font></font>
+					</button>
+					<button id="listBtn" type="button" class="btn btn-success">목록</button>
+				</form>
+			</div>
 	      </div>
 	
 	      <!-- Modal footer -->
 	      <div class="modal-footer">
+	      	<button type="button" class="btn btn-warning">상품 발주</button>
 	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 	      </div>
-	
 	    </div>
 	  </div>
 	</div>
+	<!-- End Modal -->
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -106,12 +154,6 @@
 
 			self.location = "/product/productRegister";
 
-		});
-		
-		$("#orderBtn").click(function() {
-			
-			self.location = "/product/productOrder";
-			
 		});
 		
 	});
