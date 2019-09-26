@@ -113,7 +113,7 @@
 				'list' : list
 			};
 			$.ajax({
-				url : 'http://localhost:8090/settlement/list',
+				url : '/settlement/list',
 				dataType : 'json',
 				data : JSON.stringify(sendData),
 				contentType : "application/json; charset=utf-8;",
