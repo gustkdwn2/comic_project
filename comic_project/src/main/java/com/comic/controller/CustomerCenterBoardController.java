@@ -23,11 +23,11 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 @RequestMapping("/CustomerCenter/*")
-public class CustomerCenterController {
+public class CustomerCenterBoardController {
 	
 	private CustomerCenterService service;
 	
-	@GetMapping("/boardList.co")
+	@GetMapping("/boardList")
 	public void CustomerCenterList(CustomerCenterCriteriaVO cri, Model model) {
 		
 		log.info("\r\n####list : "+cri);
@@ -35,17 +35,18 @@ public class CustomerCenterController {
 		
 		int total = service.getTotal(cri);
 		log.info("\r\n####total : "+total);
+		model.addAttribute("count", service.getTotal(cri));
 		model.addAttribute("pageMaker", new CustomerCenterPageVO(cri, total));
 		
 		
 	}
 	
-	@GetMapping("/boardRegister.co")
+	@GetMapping("/boardRegister")
 	public void register(){
 		
 	}
 	
-	@PostMapping("/boardRegister.co")
+	@PostMapping("/boardRegister")
 	public String register(CustomerBoardVO board, RedirectAttributes rttr) {
 		
 		log.info("\r\n####register : "+board);
@@ -54,7 +55,7 @@ public class CustomerCenterController {
 		
 		rttr.addFlashAttribute("result", board.getBOARD_NUM());
 		
-		return "redirect:/CustomerCenter/boardList.co";
+		return "redirect:/CustomerCenter/boardList";
 		
 	}
 	
@@ -63,6 +64,8 @@ public class CustomerCenterController {
 			@ModelAttribute("cri") CustomerCenterCriteriaVO cri, Model model) {
 		
 		log.info("\r\n####get or modify : "+model);
+		
+		model.addAttribute("board", service.get(BOARD_NUM));
 	}
 	
 	@PostMapping("/boardModify")
@@ -71,23 +74,25 @@ public class CustomerCenterController {
 		log.info("\r\n####modify : "+board);
 		
 		if(service.modify(board)) {
-			rttr.addFlashAttribute("result", "성공");
+			rttr.addFlashAttribute("result", "sucess");
 		}
-		return "redirect:/CustomerCenter/boardList.co"+cri.getListLink(); 
+		return "redirect:/CustomerCenter/boardList"+cri.getListLink(); 
 		
 	}
 	
 	@PostMapping("/boardRemove")
 	public String remove(@RequestParam("BOARD_NUM") Long BOARD_NUM, CustomerCenterCriteriaVO cri, RedirectAttributes rttr) {
 		
-		log.info("\r\n####remove..."+BOARD_NUM);
+		log.info("\r\n####remove board_num : "+BOARD_NUM);
 		
 			if(service.remove(BOARD_NUM)) {
 				rttr.addFlashAttribute("result", "성공");
 			}
-		return "redirect:/CustomerCenter/boardList.co"+cri.getListLink(); 
+		return "redirect:/CustomerCenter/boardList"+cri.getListLink(); 
 		
 	}
+	
+	
 	
 	
 	

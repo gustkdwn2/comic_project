@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class CustomerCommentVO {
+public class CustomerCommentsVO {
 	
 	private int CMNT_NUM;
 	private Long CMNT_BOARDNUM;

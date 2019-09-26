@@ -38,7 +38,7 @@ public class CustomerCenterCriteriaVO {
 				  .queryParam("pageNum", this.pageNum)
 				  .queryParam("amount", this.getAmount())
 				  .queryParam("type", this.getType())
-				  .queryParam("pageNum", this.getKeyword());
+				  .queryParam("keyword", this.getKeyword());
 		
 		  return builder.toUriString();
 		  
