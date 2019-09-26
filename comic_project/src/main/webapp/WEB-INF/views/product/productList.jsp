@@ -56,27 +56,18 @@
 		</div>
 	</div>
 	<!-- The Modal -->
-	<div class="modal" id="myModal">
+	<div class="modal" id="myModal" align="center">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	
 	      <!-- Modal Header -->
 	      <div class="modal-header">
-	        <h4 class="modal-title">Modal Heading</h4>
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h3 class="modal-title">상품 발주</h3>
 	      </div>
 	
 	      <!-- Modal body -->
 	      <div class="modal-body">
 	        <div class="card-body" align="center">
-				<h4 class="card-title">
-					<font style="vertical-align: inherit;"><font
-						style="vertical-align: inherit;">상품 발주</font></font>
-				</h4>
-				<p class="card-description">
-					<font style="vertical-align: inherit;"><font
-						style="vertical-align: inherit;"></font></font>
-				</p>
 				<form class="forms-sample" action="/product/productOrder"
 					method="post">
 					<div class="form-group row">
@@ -115,15 +106,9 @@
 						<font style="vertical-align: inherit;"><font
 							style="vertical-align: inherit;">발주</font></font>
 					</button>
-					<button id="listBtn" type="button" class="btn btn-success">목록</button>
+					<button type="button" data-dismiss="modal" class="btn btn-success">닫기</button>
 				</form>
 			</div>
-	      </div>
-	
-	      <!-- Modal footer -->
-	      <div class="modal-footer">
-	      	<button type="button" class="btn btn-warning">상품 발주</button>
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>
 	  </div>
