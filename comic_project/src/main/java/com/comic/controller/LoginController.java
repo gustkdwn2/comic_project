@@ -1,11 +1,12 @@
 package com.comic.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.comic.model.AuthVO;
 import com.comic.model.MemberVO;
 import com.comic.service.MemberService;
 
@@ -18,22 +19,22 @@ public class LoginController {
 	
 	private MemberService service;
 
-	@GetMapping("/AdminLogin")
-	@PreAuthorize("permitAll()")
+	@PostAuthorize("permitAll()")
+	@GetMapping("/MemberLogin")
 	public void AdminLogin() {
 		
 	}
 	
-	@GetMapping("/Register")
-	@PreAuthorize("permitAll()")
+	@PostAuthorize("permitAll()")
+	@GetMapping("/MemberRegister")
 	public void Register() {
 		
 	}
 	
-	@PostMapping("/Register")
-	@PreAuthorize("permitAll()")
+	@PostAuthorize("permitAll()")
+	@PostMapping("/MemberRegister")
 	public String Register(MemberVO vo) {
 		service.memberRegister(vo);
-		return "redirect:/member/AdminLogin";
+		return "redirect:/member/MemberLogin";
 	}
 }

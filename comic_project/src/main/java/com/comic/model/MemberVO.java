@@ -1,6 +1,5 @@
 package com.comic.model;
 
-import java.util.Date;
 import java.util.List;
 
 import lombok.Data;

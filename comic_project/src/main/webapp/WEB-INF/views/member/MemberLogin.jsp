@@ -59,7 +59,7 @@
                   <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-					<a href="/member/Register" class="text-primary">회원가입</a>
+					<a href="/member/MemberRegister" class="text-primary">회원가입</a>
                 </div>
               </form>
             </div>

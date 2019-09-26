@@ -3,6 +3,7 @@ package com.comic.service.impl;
 import org.springframework.stereotype.Service;
 
 import com.comic.mapper.MemberMapper;
+import com.comic.model.AuthVO;
 import com.comic.model.MemberVO;
 import com.comic.service.MemberService;
 

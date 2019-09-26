@@ -72,9 +72,15 @@
 					</a></li>
 					
 					<li class="nav-item"><a class="nav-link"
-						href="/member/AdminLogin"> <i
+						href="/member/MemberLogin"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">관리자 로그인</span>
+							class="menu-title">회원 로그인</span>
+					</a></li>
+					
+					<li class="nav-item"><a class="nav-link"
+						href="/member/MemberLogin"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">직원 로그인</span>
 					</a></li>
 					
 				</ul>

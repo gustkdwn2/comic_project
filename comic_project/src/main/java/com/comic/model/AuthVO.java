@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class AuthVO {
 
-  private String MEMBER_ID;
-  private String auth;
+	private String MEMBER_ID;
+	private String AUTHORITY;
   
 }
