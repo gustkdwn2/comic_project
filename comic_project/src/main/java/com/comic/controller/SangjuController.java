@@ -3,6 +3,8 @@ package com.comic.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,11 +30,6 @@ import lombok.AllArgsConstructor;
 public class SangjuController {
 
 	private OrderService orderService;
-
-	@GetMapping("/main")
-	public void mainView(Model model, @RequestParam("roomNum") int roomNum) {
-		model.addAttribute("roomNum", roomNum);
-	}
 
 	@GetMapping("/admin")
 	public void adminView(Model model) {
@@ -61,6 +58,7 @@ public class SangjuController {
 		vo.setOrderview_category(category);
 		vo.setOrderview_product_num(0);
 
+		orderService.productCategoryUpdate(vo);
 		orderService.updateCategory(vo);
 
 		return "redirect:/sangju/admin";
@@ -69,34 +67,35 @@ public class SangjuController {
 	@PostMapping("/admin/categoryDelete")
 	public String categoryDelete(@RequestParam("number") int number) {
 		System.out.println("categoryDelete....number " + number);
-
+		
+		orderService.porductCateoryAllDelete(number);
 		orderService.deleteCategory(number);
 
 		return "redirect:/sangju/admin";
 	}
 
-	@GetMapping("/order")
-	public void orderView(Model model, @RequestParam("roomNum") int roomNum) {
+	@PostMapping(value = "/productDelete", consumes = "application/json", produces = {
+			MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<String> productDelete(@RequestBody Map<String, String> number) {
+		System.out.println("productDelete....number " + number);
+		System.out.println(number.get("number"));
+		
+		String categoryValue = orderService.getCategoryValue(Integer.parseInt(number.get("number")));
+		orderService.porductCateoryDelete(Integer.parseInt(number.get("number")));
+		
+		return new ResponseEntity<String>(categoryValue, HttpStatus.OK);
 
 	}
-
-	@GetMapping("/start")
-	public void startView() {
-
-	}
-
 	// ajax
 	@GetMapping(value = "/productRead/{category}", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<List<ProductVO>> getAjaxList(@PathVariable("category") String category) {
-		System.out.println("getAjaxList....");
-		return new ResponseEntity<List<ProductVO>>(orderService.readProduct(category), HttpStatus.OK);
+	public ResponseEntity<List<Map<String, Object>>> getAjaxList(@PathVariable("category") String category) {
+		return new ResponseEntity<List<Map<String, Object>>>(orderService.readProduct(category), HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/productCheck", consumes = "application/json", produces = {
 			MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> productCheck(@RequestBody Map<String, String> productName) {
-		System.out.println("productCheck...." + productName);
 		int result = orderService.productCheck(productName.get("productName"));
 		return result >= 1 ? new ResponseEntity<String>("OK", HttpStatus.OK)
 				: new ResponseEntity<String>("NULL", HttpStatus.OK);
@@ -105,11 +104,24 @@ public class SangjuController {
 	@PostMapping(value = "/productAdd", consumes = "application/json", produces = {
 			MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> productAdd(@RequestBody Map<String, String> productName) {
-		System.out.println("productAdd...." + productName);
-		System.out.println("productAdd...." + productName.get("productName"));
-		System.out.println("productAdd...." + productName.get("productCategory"));
 		orderService.productInsert(productName.get("productName"), productName.get("productCategory"));
 		return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
 
+	// 여기부터 사용자뷰
+	
+	@GetMapping("/start")
+	public void startView() {
+
+	}
+	@PostMapping("/main")
+	public void mainView(@RequestParam("roomNum") int roomNum, final HttpSession session) {
+		session.setAttribute("roomNum", roomNum);
+	}
+
+	@GetMapping("/order")
+	public void orderView(Model model, final HttpSession session) {
+		System.out.println(session.getAttribute("roomNum"));
+		model.addAttribute("OrderViewVO_List", orderService.readCategory());
+	}
 }

@@ -98,7 +98,7 @@
     </div>
 </div>
 </body>
-<script src="/resources/js/order.js"></script>
+<script src="/resources/js/order.js?after"></script>
 <script>
     $(document).ready(function () {
         var operForm = $("#operForm"); 
@@ -107,8 +107,6 @@
         var modalCateUpdate = $("#ModalcategoryUpdate");
         var modalInputCategory = modalCateAdd.find("input[name='category']");
         var modalInputCategoryUpdate = modalCateUpdate.find("input[name='category']");
-
-		
         
 		var indexNum = 0;
 		
@@ -172,7 +170,8 @@
 
 				for(var i = 0, len = data.length || 0; i < len; i++) {
 					str += "<li>";
-					str += "이름: " + data[i].product_name + " / 가격: " +data[i].product_price;
+					str += "이름: " + data[i].PRODUCT_NAME + " / 가격: " +data[i].PRODUCT_PRICE;
+					str += "<a href='#' onclick=\'productDelete(" + data[i].ORDERVIEW_NUM + ")\'>[delete]</a>";
 					str += "</li>";
 				}
 
@@ -197,13 +196,40 @@
 				}
 
 				orderProductService.productAdd(productNameJSON, function(result){
-					$("input[name='product']").val('');
+					$("input[name=product]").val('');
 					modalProductAdd.modal("hide");
 					orderProductShow(categoryValue);
 				});
 			});
 			
         });
+
+		var indexProductNum = 0;
+		
+		$(".productDelete").on("click", function (e) {
+			if(confirm("정말 삭제하시겠습니까?") == false) return;
+
+			indexProductNum = $(this).attr('value');
+        	operForm.append("<input type='hidden' name='number' value='" + indexProductNum + "'>");
+            operForm.attr("method", 'post');
+            operForm.attr("action", "/sangju/admin/productDelete");
+            operForm.submit();
+
+            orderProductShow(categoryValue);
+		});
+
+		window.productDelete = function (number) {
+			if(confirm("정말 삭제하시겠습니까?") == false) return;
+			var numberJSON = {
+				number : number
+			};
+			orderProductService.productDelete(numberJSON, function(data) {
+				console.log(data);
+				console.log(categoryValue);
+				
+				orderProductShow(categoryValue);
+			});
+		}
     });	
 </script>
 

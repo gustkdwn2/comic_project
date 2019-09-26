@@ -1,6 +1,7 @@
 package com.comic.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<ProductVO> readProduct(String category) {
+	public List<Map<String, Object>> readProduct(String category) {
 		return ordermapper.orderProductSelect(category);
 	}
 
@@ -53,6 +54,24 @@ public class OrderServiceImpl implements OrderService{
 		ordermapper.productInsert(productName, productCategory);
 	}
 
+	@Override
+	public void productCategoryUpdate(OrderViewVO vo) {
+		ordermapper.productCategoryUpdate(vo);
+	}
 
+	@Override
+	public void porductCateoryAllDelete(int number) {
+		ordermapper.porductCateoryAllDelete(number);
+	}
+
+	@Override
+	public void porductCateoryDelete(int number) {
+		ordermapper.porductCateoryDelete(number);
+	}
+
+	@Override
+	public String getCategoryValue(int number) {
+		return ordermapper.getCategoryValue(number);
+	}
 
 }

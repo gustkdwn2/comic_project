@@ -50,11 +50,29 @@ var orderProductService = (function() {
 		})
 	}
 	
-	
+	function productDelete(number, callback, err) {
+		$.ajax({
+			type : 'post',
+			url : '/sangju/productDelete',
+			data : JSON.stringify(number),
+			contentType : "application/json; charset=utf-8",
+			success : function(data) {
+				if (callback) {
+					callback(data);
+				}
+			},
+			error : function(xhr, status, er) {
+				if (error) {
+					error(er);
+				}
+			}
+		})
+	}
 
 	return {
 		getList : getList,
 		productCheck : productCheck,
-		productAdd : productAdd
+		productAdd : productAdd,
+		productDelete : productDelete
 	};
 })();
