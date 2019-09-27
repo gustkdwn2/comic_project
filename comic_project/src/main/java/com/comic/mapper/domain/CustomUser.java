@@ -17,13 +17,13 @@ public class CustomUser extends User {
 	
 	private MemberVO member;
 	
-	public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-		super(username, password, authorities);
+	public CustomUser(String MEMBER_ID, String MEMBER_PWD, Collection<? extends GrantedAuthority> authorities) {
+		super(MEMBER_ID, MEMBER_PWD, authorities);
 	}
 	
 	public CustomUser(MemberVO vo) {
 		
-		super(vo.getMEMBER_ID(), vo.getMEMBER_PWD(), vo.getAuthList().stream().map(auth -> new SimpleGrantedAuthority(auth.getAUTHORITY())).collect(Collectors.toList()));
+		super(vo.getMEMBER_ID(), vo.getMEMBER_PWD(), vo.getAuthList().stream().map(auth -> new SimpleGrantedAuthority(auth.getAuth())).collect(Collectors.toList()));
 		
 		this.member = vo;
 	}

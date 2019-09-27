@@ -5,21 +5,43 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 	
+	<!-- 더블슬래시(//) 로 인한 500에러 방지 -->
 	<bean id="allowUrlEncodedSlashHttpFirewall"
       class="org.springframework.security.web.firewall.DefaultHttpFirewall">
     <property name="allowUrlEncodedSlash" value="true"/>
 	</bean>
+	<security:http-firewall ref="allowUrlEncodedSlashHttpFirewall"/>
 	
-<security:http-firewall ref="allowUrlEncodedSlashHttpFirewall"/>
+	<bean id="customAccessDenied" class="com.comic.security.CustomAccessDeniedHandler" />
+	<!-- <bean id="customLoginSuccess" class="com.comic.security.CustomLoginSuccessHandler" /> -->
+	<!-- <bean id="customPasswordEncoder" class="com.comic.security.CustomNoOpPasswordEncoder" /> -->
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="customUserDetailsService" class="com.comic.security.CustomUserDetailsService"></bean>
 	
-	<security:http>
+	<security:http auto-config="true" use-expressions="true">
 	
-		<security:form-login/>
+		<security:access-denied-handler ref="customAccessDenied"/>
+		
+		<security:form-login login-page="/member/AdminLogin"/>
+		
+		<security:logout logout-url="/member/AdminLogin" invalidate-session="true"/>
 		
 	</security:http>
 	
 	<security:authentication-manager>
 	
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+		
+			<!-- <security:jdbc-user-service data-source-ref="dataSource"
+			users-by-username-query="select MEMBER_ID, MEMBER_PWD from COMIC_MEMBER where MEMBER_ID = ? "
+			authorities-by-username-query="select MEMBER_ID, AUTHORITY from COMIC_MEMBER where MEMBER_ID = ? " /> -->
+			
+			<!-- <security:password-encoder ref="customPasswordEncoder"/> -->
+			
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
+		
+		</security:authentication-provider>
+		
 	</security:authentication-manager>
 
 </beans>

@@ -7,6 +7,6 @@ import lombok.Data;
 public class AuthVO {
 
 	private String MEMBER_ID;
-	private String AUTHORITY;
+	private String auth;
   
 }

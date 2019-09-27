@@ -3,11 +3,38 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.comic.mapper.MemberMapper">
-	
+
 	<insert id="memberInsert">
-		INSERT ALL INTO COMIC_MEMBER VALUES (#{MEMBER_ID}, #{MEMBER_PWD}, #{MEMBER_NAME}, #{MEMBER_EMAIL}, #{MEMBER_PHONE_NUMBER})
-					INTO COMIC_AUTHORITIES(MEMBER_ID,AUTHORITY) VALUES (#{MEMBER_ID},'ROLE_USER')
-					SELECT * FROM DUAL
+		INSERT ALL INTO COMIC_MEMBER VALUES (#{MEMBER_ID},
+		#{MEMBER_PWD}, #{MEMBER_NAME}, #{MEMBER_EMAIL},
+		#{MEMBER_PHONE_NUMBER})
+		INTO COMIC_AUTHORITIES(MEMBER_ID,AUTHORITY) VALUES
+		(#{MEMBER_ID},'ROLE_ADMIN')
+		SELECT * FROM DUAL
 	</insert>
-	
+
+	<resultMap type="com.comic.model.MemberVO" id="memberMap">
+		<id property="MEMBER_ID" column="MEMBER_ID" />
+		<result property="MEMBER_ID" column="MEMBER_ID" />
+		<result property="MEMBER_PWD" column="MEMBER_PWD" />
+		<result property="MEMBER_NAME" column="MEMBER_NAME" />
+		<result property="MEMBER_EMAIL" column="MEMBER_EMAIL" />
+		<result property="MEMBER_PHONE_NUMBER" column="MEMBER_PHONE_NUMBER" />
+		<collection property="authList" resultMap="authMap">
+		</collection>
+	</resultMap>
+
+	<resultMap type="com.comic.model.AuthVO" id="authMap">
+		<result property="MEMBER_ID" column="MEMBER_ID" />
+		<result property="auth" column="auth" />
+	</resultMap>
+
+	<select id="read" resultMap="memberMap">
+		SELECT
+		mem.MEMBER_ID, MEMBER_PWD, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE_NUMBER, auth
+		FROM
+		COMIC_MEMBER mem LEFT OUTER JOIN COMIC_AUTHORITIES auth on mem.MEMBER_ID = auth.MEMBER_ID
+		WHERE mem.MEMBER_ID = #{MEMBER_ID}
+	</select>
+
 </mapper>
