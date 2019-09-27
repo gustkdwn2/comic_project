@@ -17,7 +17,7 @@
 				<div class="col-lg-6 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">월 매출</h4>
+							<h4 class="card-title">2019년도 월 매출</h4>
 							<canvas id="line"></canvas>
 						</div>
 					</div>
@@ -25,7 +25,7 @@
 				<div class="col-lg-6 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Bar chart</h4>
+							<h4 class="card-title">x월 일 매출</h4>
 							<canvas id="bar"></canvas>
 						</div>
 					</div>
@@ -65,7 +65,7 @@ $(document).ready(function() {
 	});
 	
 	var bardata = {
-		    labels: chartdata.month,
+		    labels: chartdata.day,
 		    datasets: [{
 		      label: '# of Votes',
 		      data: [10, 19, 3, 5, 2, 3],

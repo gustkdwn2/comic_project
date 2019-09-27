@@ -36,14 +36,31 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 		List<String> dayList = dayLabel();
 		List<String> monthprice = 
 				monthtotal(monthList,simpleDataFormat,productsalesData,roomsalesData); // 1월부터 순차적으로 값 저장.. 리스트로
+		List<String> dayprice = daytotal(dayList,monthprice);// 해당 월의 일별 매출액
 		
 		map.put("month", monthList); // 월 차트 라벨(1~12)
 		map.put("day", dayList); // 일 차트 라벨(1~31)
 		map.put("monthprice", monthprice); // 월별 매출액
+		
 			
 		return map;
 	}
 	
+	private List<String> daytotal(List<String> dayList, List<String> monthprice) {
+		String result = null;
+		
+		List<String> dayPrice = new ArrayList<String>();
+		
+		System.out.println(monthprice.get(8)); // x월 체크하기위해..
+		// 해당 몇월 몇일에 대한 total 매출액이 필요 --> mapper
+		
+		
+		
+		
+		
+		return dayPrice;
+	}
+
 	private List<String> monthtotal(List<String> monthList,SimpleDateFormat simpleDataFormat,
 			List<SalesStatisticsVO> productsalesData, List<SalesStatisticsVO> roomsalesData) { // x월 전체 매출액
 		String result = null;

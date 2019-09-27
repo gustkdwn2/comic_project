@@ -25,12 +25,12 @@ public class SalesStatisticsController {
 	private SalesStatisticsService statisticsService;
 	
 	@GetMapping("list")
-	public String statisticsView() {
+	public String statisticsView() { // 매출 통계 페이지
 		return "salesstatistics/statisticslist";
 	}
 	
 	@GetMapping("getlist")
-	public ResponseEntity<Map<String, List<String>>> statisticsShow(ModelAndView mav){
+	public ResponseEntity<Map<String, List<String>>> statisticsShow(ModelAndView mav){ //차트 데이터
 		return new ResponseEntity<Map<String, List<String>>>(statisticsService.chartData(), HttpStatus.OK);
 	}
 }
