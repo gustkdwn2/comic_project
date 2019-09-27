@@ -14,7 +14,7 @@
  	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 
 <link rel="stylesheet"
-	href="./resources/vendors/base/vendor.bundle.base.css">
+	href="/resources/vendors/base/vendor.bundle.base.css">
 <link rel="stylesheet"
 
 	href="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">

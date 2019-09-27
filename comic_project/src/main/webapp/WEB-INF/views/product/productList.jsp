@@ -39,9 +39,9 @@
 									<c:forEach items="${productList}" var="product">
 										<tr>
 											<td><c:out value="${product.product_num}" /></td>
-											<td><a
-												href='/product/productGet?product_num=<c:out value="${product.product_num}" />'><c:out
-														value="${product.product_name}" /></a></td>
+											<td>
+												<a href='/product/productGet?product_num=<c:out value="${product.product_num}" />'><c:out
+												value="${product.product_name}" /></a></td>
 											<td><c:out value="${product.product_price}" /></td>
 											<td><c:out value="${product.product_qty}" /></td>
 											<td><c:out value="${product.product_category}" /></td>
@@ -60,6 +60,7 @@
 	
 	<jsp:include page="productRegisterModal.jsp" />
 	<jsp:include page="productOrderModal.jsp" />
+	<jsp:include page="productGetModal.jsp" />
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
