@@ -34,6 +34,7 @@
 		select
 		pk.orderview_num,
 		fk.PRODUCT_NAME,
+		fk.PRODUCT_NUM,
 		fk.PRODUCT_PRICE
 		from
 		COMIC_PRODUCTSTOCK fk, COMIC_ORDERVIEW_PRODUCT pk

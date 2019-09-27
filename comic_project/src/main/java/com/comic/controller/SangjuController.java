@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderViewVO;
-import com.comic.model.ProductVO;
 import com.comic.service.OrderService;
 
 import lombok.AllArgsConstructor;
@@ -123,5 +121,12 @@ public class SangjuController {
 	public void orderView(Model model, final HttpSession session) {
 		System.out.println(session.getAttribute("roomNum"));
 		model.addAttribute("OrderViewVO_List", orderService.readCategory());
+	}
+	
+	@PostMapping(value = "/resultOrder", consumes = "application/json", produces = {
+			MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<String> resultOrder(@RequestBody Map<String, Map<String, String>> orderJsonData) {
+		System.out.println(orderJsonData);
+		return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
 }
