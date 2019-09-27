@@ -1,15 +1,12 @@
 package com.comic.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+
+import com.comic.service.ManagerPosService;
+import com.comic.service.SettlementService;
+import com.comic.service.impl.ManagerPosServiceImpl;
 
 import lombok.AllArgsConstructor;
 import net.sf.json.JSONArray;
@@ -28,10 +28,12 @@ import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/managerpos/")
-public class ManagerController {
-
-	private static final Logger logger = LoggerFactory.getLogger(ManagerController.class);
-
+  @AllArgsConstructor//생성자함수
+ public class ManagerController {
+	//ManagerController managerController;
+	
+	private ManagerPosServiceImpl managerposService;
+	/*=new ManagerPosServiceImpl();*/
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -51,7 +53,6 @@ public class ManagerController {
 		return "/younghak/Managerpos";
 	}
 
-
 	@GetMapping("importdetail")
 	public String younghakimportdetail(Model model) {
 		return "/younghak/importdetail";
@@ -59,29 +60,60 @@ public class ManagerController {
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String younghakworklogin(Model model) {
-		
+
 		return "younghak/login";
 	}
-	
-	
-	
+
 	@ResponseBody
 	@RequestMapping(value = "room_start", method = { RequestMethod.GET, RequestMethod.POST })
-	public void test(@RequestBody HashMap<String, Object> map// 배열 받기 traditional: true
+	public String test(@RequestBody HashMap<String, Object> map// 배열 받기 traditional: true
 	) {
-		
 		JSONArray jsonArray = new JSONArray(); // object 타입
-		for (int i = 0; i < 5; i++) {
-			String tmp = jsonArray.fromObject(map.get("list")).get(i).toString();
-			System.out.println(tmp);
-		}
-		
+		String num = jsonArray.fromObject(map.get("list")).get(4).toString();
+
 		try {
+			for (int i = 0; i < 5; i++) {
+				String tmp = jsonArray.fromObject(map.get("list")).get(i).toString();
+				System.out.println(tmp);
+			}
+			System.out.println("매니저컨트롤러 실행전");
+			
+			managerposService.start_room(map);
 			System.out.println("데이터가 들어옴!");
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
+		return num;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "room_start2", method = { RequestMethod.GET, RequestMethod.POST })
+	public void room_start(@RequestBody HashMap<String, Object> map// 배열 받기 traditional: true
+	) {
+		JSONArray jsonArray = new JSONArray(); // object 타입
+		//roomuse_id, roomuse_num,roomuse_status
+		String roomuse_id= jsonArray.fromObject(map.get("list")).get(0).toString();
+		String roomuse_num = jsonArray.fromObject(map.get("list")).get(1).toString();
+		String roomuse_status = jsonArray.fromObject(map.get("list")).get(2).toString();
+
+		try {
+			/*
+			 * for (int i = 0; i < 5; i++) { String tmp =
+			 * jsonArray.fromObject(map.get("list")).get(i).toString();
+			 * System.out.println(tmp); } System.out.println("매니저컨트롤러 실행전");
+			 */
+			managerposService.startnstop_room(roomuse_id, roomuse_num,roomuse_status);
+			//managerposService.start_room(map);
+			
+			System.out.println("데이터가 들어옴!");
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		//return num;
 	}
 
 }

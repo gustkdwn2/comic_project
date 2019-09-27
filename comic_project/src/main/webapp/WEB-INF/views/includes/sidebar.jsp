@@ -3,7 +3,7 @@
 <!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="index.co">
+					<li class="nav-item"><a class="nav-link" href="/index">
 							<i class="mdi mdi-home menu-icon"></i> <span class="menu-title">Dashboard</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -27,14 +27,13 @@
 							class="menu-title">Form elements</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="pages/charts/chartjs.html"> <i
+						href="/settlement/list"> <i
 							class="mdi mdi-chart-pie menu-icon"></i> <span class="menu-title">Charts</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 
 
-						href="/managerpos.co"> <i
-
+						href="/managerpos/managerpos"> <i
 
 							class="mdi mdi-grid-large menu-icon"></i> <span
 							class="menu-title"
@@ -78,3 +77,4 @@
 					</a></li>
 				</ul>
 		</nav>
+		

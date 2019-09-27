@@ -47,9 +47,9 @@
 				<div
 					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
 
-					<a class="navbar-brand brand-logo" href="index.html"><img
+					<a class="navbar-brand brand-logo" href="/index"><img
 						src="/resources/images/logo.svg" alt="logo" /></a> <a
-						class="navbar-brand brand-logo-mini" href="index.html"><img
+						class="navbar-brand brand-logo-mini" href="/index"><img
 						src="/resources/images/logo-mini.svg" alt="logo" /></a>
 
 					<button class="navbar-toggler navbar-toggler align-self-center"
@@ -196,3 +196,7 @@
 		</nav>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">		
+		
+		
+		
+		
