@@ -18,7 +18,7 @@
 					<font style="vertical-align: inherit;"><font
 						style="vertical-align: inherit;">상품 수정</font></font>
 				</h4>
-				<form class="forms-sample" action="/product/productModify" method="post">
+				<form class="forms-sample" action="/product/productModify" method="post" autocomplete="off">
 					<div class="form-group">
 						<label for="exampleInputUsername1"><font
 							style="vertical-align: inherit;"><font

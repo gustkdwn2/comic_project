@@ -76,5 +76,15 @@
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">고객센터</span>
 					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/product/productList"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">상품 재고</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/book/bookList"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">책 재고</span>
+					</a></li>
 				</ul>
 		</nav>
