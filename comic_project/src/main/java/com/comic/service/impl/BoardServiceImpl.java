@@ -1,14 +1,14 @@
-package com.comic.service.impl.customer;
+package com.comic.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.comic.mapper.CustomerCenterBoardMapper;
-import com.comic.model.CustomerBoardVO;
+import com.comic.mapper.BoardMapper;
+import com.comic.model.BoardVO;
 import com.comic.model.CustomerCenterCriteriaVO;
-import com.comic.service.CustomerCenterService;
+import com.comic.service.BoardService;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -17,13 +17,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Service
 @AllArgsConstructor
-public class CustomerCenterServiceImpl implements CustomerCenterService {
+public class BoardServiceImpl implements BoardService {
 	
 	@Setter(onMethod_=@Autowired)
-	private CustomerCenterBoardMapper mapper;
+	private BoardMapper mapper;
 
 	@Override
-	public void register(CustomerBoardVO board) {
+	public void register(BoardVO board) {
 		//// TODO Auto-generated method stub
 		log.info("\r\n#### register #####"+board);
 		
@@ -34,7 +34,7 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	}
 
 	@Override
-	public CustomerBoardVO get(Long BOARD_NUM) {
+	public BoardVO get(Long BOARD_NUM) {
 		// TODO Auto-generated method stub
 		
 		log.info("\r\n#### get #####"+BOARD_NUM);
@@ -43,7 +43,7 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	}
 
 	@Override
-	public boolean modify(CustomerBoardVO board) {
+	public boolean modify(BoardVO board) {
 		
 		log.info("\r\n#### modify #####"+board);
 		
@@ -60,7 +60,7 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	}
 
 	@Override
-	public List<CustomerBoardVO> getList(CustomerCenterCriteriaVO cri) {
+	public List<BoardVO> getList(CustomerCenterCriteriaVO cri) {
 		// TODO Auto-generated method stub
 		
 		log.info("\r\n#### get list with criteria #####"+cri);

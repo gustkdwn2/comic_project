@@ -58,12 +58,24 @@
                 <!-- 댓글 목록  -->	
                 
                 <%-- <c:if test=""> --%>
-                		<tr>
-                			<td>
-                		
-                			
-                			</td>
-                		</tr>
+		 				<tr>
+							<td colspan="6">
+								
+							   <div id="cmntList">
+							   		<table style='margin-top: 10px'>
+							   			<tr align='center'>
+							   				<td width='100px'> 댓글 번호 </td>
+							   				<td width='200px'> 댓글 아이디</td>
+							   				<td align='left' width='1200px'>댓글 내용</td>
+							   				<td width='200px'>날짜</td>
+							   				<td width='200px'><input type='button' value='수정' class='btn btn-secondary'></br>
+							   				<input type='button' value='삭제' class='btn btn-secondary'></td>
+							    		</tr>
+							    	</table>
+							   </div>
+								
+							</td>
+						</tr>
                 <%-- </c:if> --%>
                 
                 <!-- 끝 댓글 목록 끝 -->	
@@ -113,6 +125,28 @@
      </div>
             
 <script type="text/javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////board/////////////////////////////////////////////
 
 $(document).ready(function() {
 	  

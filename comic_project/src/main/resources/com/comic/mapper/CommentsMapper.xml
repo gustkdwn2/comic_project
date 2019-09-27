@@ -2,18 +2,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.comic.mapper.CustomerCenterCommentsMapper">
+<mapper namespace="com.comic.mapper.CommentsMapper">
 	
 	<insert id="insert">
 	
 		insert into COMIC_COMMENTS 
-		(CMNT_NUM, CMNT_BOARDNUM, CMNT_CONTENT, CMNT_ID, CMNT_DATE)
+		(CMNT_NUM, BOARD_NUM, CMNT_CONTENT, CMNT_ID, CMNT_DATE)
 		values ((SELECT NVL(MAX(CMNT_NUM),0)+1 from COMIC_COMMENTS), 
-		#{CMNT_BOARDNUM}, #{CMNT_CONTENT}, #{CMNT_ID}, sysdate)
+		#{BOARD_NUM}, #{CMNT_CONTENT}, #{CMNT_ID}, sysdate)
 		
 	</insert>
 
-	<select id="read" resultType="com.comic.model.CustomerCommentsVO">
+	<select id="read" resultType="com.comic.model.CommentsVO">
 	
 		select * from COMIC_COMMENTS where CMNT_NUM=#{CMNT_NUM}
 	
@@ -33,9 +33,9 @@
 	
 	</delete>
 	
-	<select id="getCountByCmnt_boardnum" resultType="int">
+	<select id="getCountByBOARD_NUM" resultType="int">
 		
-		select count(CMNT_NUM) from COMIC_COMMENTS where CMNT_BOARDNUM= #{CMNT_BOARDNUM}
+		select count(CMNT_NUM) from COMIC_COMMENTS where BOARD_NUM= #{BOARD_NUM}
 	
 	</select>
 

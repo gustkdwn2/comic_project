@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.comic.model.CustomerBoardVO;
+import com.comic.model.BoardVO;
 import com.comic.model.CustomerCenterCriteriaVO;
 import com.comic.model.CustomerCenterPageVO;
-import com.comic.service.CustomerCenterService;
+import com.comic.service.BoardService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -23,9 +23,9 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 @RequestMapping("/CustomerCenter/*")
-public class CustomerCenterBoardController {
+public class BoardController {
 	
-	private CustomerCenterService service;
+	private BoardService service;
 	
 	@GetMapping("/boardList")
 	public void CustomerCenterList(CustomerCenterCriteriaVO cri, Model model) {
@@ -47,7 +47,7 @@ public class CustomerCenterBoardController {
 	}
 	
 	@PostMapping("/boardRegister")
-	public String register(CustomerBoardVO board, RedirectAttributes rttr) {
+	public String register(BoardVO board, RedirectAttributes rttr) {
 		
 		log.info("\r\n####register : "+board);
 		
@@ -69,7 +69,7 @@ public class CustomerCenterBoardController {
 	}
 	
 	@PostMapping("/boardModify")
-	public String modify(CustomerBoardVO board, CustomerCenterCriteriaVO cri, RedirectAttributes rttr) {
+	public String modify(BoardVO board, CustomerCenterCriteriaVO cri, RedirectAttributes rttr) {
 		
 		log.info("\r\n####modify : "+board);
 		
