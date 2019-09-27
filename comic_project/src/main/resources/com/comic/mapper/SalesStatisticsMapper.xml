@@ -13,4 +13,6 @@
 		resultType="com.comic.model.SalesStatisticsVO">
 		SELECT * FROM COMIC_ROOMSALES
 	</select>
+	
+	<select id=""></select>
 </mapper>
