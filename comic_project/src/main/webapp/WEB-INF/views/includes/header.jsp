@@ -8,13 +8,13 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Majestic Admin</title>
+<title>Comic Clerk</title>
 
 <link rel="stylesheet"
  	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 
 <link rel="stylesheet"
-	href="./resources/vendors/base/vendor.bundle.base.css">
+	href="/resources/vendors/base/vendor.bundle.base.css">
 <link rel="stylesheet"
 
 	href="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
@@ -47,9 +47,9 @@
 				<div
 					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
 
-					<a class="navbar-brand brand-logo" href="index.html"><img
+					<a class="navbar-brand brand-logo" href="/"><img
 						src="/resources/images/logo.svg" alt="logo" /></a> <a
-						class="navbar-brand brand-logo-mini" href="index.html"><img
+						class="navbar-brand brand-logo-mini" href="/"><img
 						src="/resources/images/logo-mini.svg" alt="logo" /></a>
 
 					<button class="navbar-toggler navbar-toggler align-self-center"
@@ -84,11 +84,7 @@
 							<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
 							<a class="dropdown-item">
 								<div class="item-thumbnail">
-
-
 									<img src="/resources/images/faces/face4.jpg" alt="image"
-
-
 										class="profile-pic">
 								</div>
 								<div class="item-content flex-grow">
@@ -101,8 +97,6 @@
 
 
 									<img src="/resources/images/faces/face2.jpg" alt="image"
-
-
 										class="profile-pic">
 								</div>
 								<div class="item-content flex-grow">
