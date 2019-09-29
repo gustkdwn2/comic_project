@@ -1,5 +1,4 @@
 var orderProductService = (function() {
-
 	function getList(category, callback, error) {
 		$.getJSON("/sangju/productRead/" + category + ".json", function(data) {
 			if (callback) {
@@ -68,11 +67,31 @@ var orderProductService = (function() {
 			}
 		})
 	}
+	
+	function resultOrder(orderArray, callback, err) {
+		$.ajax({
+			type : 'post',
+			url : '/sangju/resultOrder',
+			data : JSON.stringify(orderArray),
+			contentType : "application/json; charset=utf-8",
+			success : function(data) {
+				if (callback) {
+					callback(data);
+				}
+			},
+			error : function(xhr, status, er) {
+				if (error) {
+					error(er);
+				}
+			}
+		})
+	}
 
 	return {
 		getList : getList,
 		productCheck : productCheck,
 		productAdd : productAdd,
-		productDelete : productDelete
+		productDelete : productDelete,
+		resultOrder : resultOrder
 	};
 })();

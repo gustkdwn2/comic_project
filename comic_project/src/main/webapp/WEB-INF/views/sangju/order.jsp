@@ -35,6 +35,13 @@
 		<tbody id="tableBody">
 		</tbody>
 	</table>
+	<hr>
+	<label>총금액</label>
+	<input id="finalPrice" readonly>
+	<label>총수량</label>
+	<input id="orderQty" readonly>
+	<button onclick="productAllDelete();">전체취소</button>
+	<button id="resultOrder">상품주문</button>
 </body>
 <script src="/resources/js/order.js?after"></script>
 <script type="text/javascript">
@@ -59,21 +66,91 @@
 				str += "<ul>"; 
 				for(var i = 0, len = data.length || 0; i < len; i++) {
 					str += "<li>";
-					str += "<button onclick='userProductBtn'>";
-					str += "" + data[i].PRODUCT_NAME + " | 가격: " +data[i].PRODUCT_PRICE;
+					str += "<button onclick='userProductBtn(" + data[i].PRODUCT_NUM + ",\"" + data[i].PRODUCT_NAME + "\"," +data[i].PRODUCT_PRICE + ");'>";
+					str += "" + data[i].PRODUCT_NAME + " | 가격: " + data[i].PRODUCT_PRICE;
 					str += "</button>";
 					str += "</li>";
 				}
 				str += "</ul>";
 
-				orderProduct.html(str);
+				orderProduct.html(str); 
 			});
 		}
 
-		window.userProductBtn = function() {
-			console.log("teat");
+		var orderArray = {};
+		var qty = 0;
+		var index = 0;
+		var tableBody = $("#tableBody");
+		var finalPrice = $("#finalPrice");
+		var orderQty = $("#orderQty");
+
+		window.userProductBtn = function(productNum, productName, productPrice) {
+			for(key in orderArray) {
+				if(orderArray[key].productNum == productNum) {
+					orderArray[key].qty = (orderArray[key].qty + 1);
+					orderArray[key].finalPrice = (orderArray[key].qty * orderArray[key].productPrice);
+					console.log(orderArray);
+					showUserProduct();
+					return;
+				}
+			}
+			orderArray[index] = {productNum: productNum, qty : 1, productName : productName, productPrice : productPrice, finalPrice: productPrice};
+			index += 1;
+			console.log(orderArray);
+			showUserProduct();
+			
 		};
-	
+
+		window.productAdd = function(key) {
+			orderArray[key].qty = (orderArray[key].qty + 1);
+			orderArray[key].finalPrice = (orderArray[key].qty * orderArray[key].productPrice);
+			showUserProduct();
+		}
+
+		window.productSub = function(key) {
+			orderArray[key].qty = (orderArray[key].qty - 1);
+			orderArray[key].finalPrice = (orderArray[key].qty * orderArray[key].productPrice);
+			if(orderArray[key].qty <= 0) {
+				delete orderArray[key];
+			}
+			console.log(orderArray);
+			showUserProduct();
+		}
+ 
+		function showUserProduct(){
+			var finalPriceSum = 0;
+			var qtySum = 0;
+			str = "";
+
+			for(key in orderArray) {
+				finalPriceSum += orderArray[key].finalPrice;
+				qtySum += orderArray[key].qty;
+				str += "<tr>"
+				str += "<td>" + orderArray[key].productName + "</td>";
+				str += "<td>" + orderArray[key].finalPrice + "</td>";
+				str += "<td>" + orderArray[key].qty + "</td>";
+				str += "<td>[ <a href='#' onclick='productAdd(" + key + ");'>+</a> , ";
+				str += "<a href='#' onclick='productSub(" + key + ");'>-</a> ] </td>";
+				str += "</tr>";
+			}
+			finalPrice.val(finalPriceSum);
+			orderQty.val(qtySum)
+			tableBody.html(str); 	
+		}
+
+		window.productAllDelete = function(){
+			for(key in orderArray) {
+				delete orderArray[key];
+			}
+			showUserProduct()
+		}
+
+		$("#resultOrder").on("click", function(){
+			console.log(orderArray);
+			orderProductService.resultOrder(orderArray, function(e) {
+				productAllDelete();
+			}); 
+		}); 
 	});
 </script>
 </html>
