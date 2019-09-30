@@ -31,16 +31,6 @@ public class ProductController {
 		model.addAttribute("product", service.productGet(product_num));
 	}
 	
-	@GetMapping("/productRegister")
-	public void productRegister() {
-		
-	}
-	
-	@GetMapping("/productOrder")
-	public void productOrder(Model model) {
-		model.addAttribute("productList", service.productGetList());
-	}
-	
 	@PostMapping("/productRegister")
 	public String productRegister(ProductVO vo) {
 		service.productRegister(vo);;

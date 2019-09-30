@@ -30,11 +30,6 @@ public class BookController {
 		model.addAttribute("book", service.bookGet(book_name));
 	}
 	
-	@GetMapping("/bookRegister")
-	public void bookRegister() {
-		
-	}
-	
 	@PostMapping("/bookRegister")
 	public String bookRegister(BookVO vo) {
 		service.bookRegister(vo);
