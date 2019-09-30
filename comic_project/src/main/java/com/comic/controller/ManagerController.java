@@ -64,29 +64,7 @@ import net.sf.json.JSONArray;
 		return "younghak/login";
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "room_start", method = { RequestMethod.GET, RequestMethod.POST })
-	public String test(@RequestBody HashMap<String, Object> map// 배열 받기 traditional: true
-	) {
-		JSONArray jsonArray = new JSONArray(); // object 타입
-		String num = jsonArray.fromObject(map.get("list")).get(4).toString();
-
-		try {
-			for (int i = 0; i < 5; i++) {
-				String tmp = jsonArray.fromObject(map.get("list")).get(i).toString();
-				System.out.println(tmp);
-			}
-			System.out.println("매니저컨트롤러 실행전");
-			
-			managerposService.start_room(map);
-			System.out.println("데이터가 들어옴!");
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		return num;
-	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "room_start2", method = { RequestMethod.GET, RequestMethod.POST })
@@ -100,12 +78,16 @@ import net.sf.json.JSONArray;
 
 		try {
 			
-			  for (int i = 0; i < 3; i++) { String tmp =
-			  jsonArray.fromObject(map.get("list")).get(i).toString();
-			  System.out.println(tmp); } System.out.println("매니저컨트롤러 실행전");
-			 
-			managerposService.startnstop_room(roomuse_id, roomuse_num,roomuse_status);
-			//managerposService.start_room(map);
+			System.out.println("room_id = "+roomuse_id);
+			System.out.println("room_num = "+roomuse_num);			
+			System.out.println("room_status = "+roomuse_status);
+
+			
+			if(roomuse_status.equals("on")) {
+				managerposService.start_room(roomuse_id, roomuse_num,roomuse_status);	
+			}else if(roomuse_status.equals("off")) {
+				managerposService.stop_room(roomuse_num);
+			}
 			
 			System.out.println("데이터가 들어옴!");
 
@@ -113,7 +95,7 @@ import net.sf.json.JSONArray;
 			ex.printStackTrace();
 		}
 
-		//return num;
+
 	}
 
 }

@@ -198,18 +198,90 @@ body {
 												</div>
 
 											</div>
-											<div class="column" onclick="openTab('b3');"
-												style="background: #EFF8FB;">Box 3</div>
-										</div>
+											<div class="column" onclick="method_startnstop('3');"
+												style="background: #E6E6E6;">
+												<!-- <div class="div_root"> -->
+
+												<div class="div_menu">3번방</div>
+
+												<div class="div_con">
+													사 용 자 : <font id="user3">없음</font><br> 사용시간 : <font
+														id="user_time3">없음</font><br> 사용상태 : <font
+														id="user_status3">없음</font><br> 주문상태 : <font
+														id="order_status3">없음</font><br>
+												</div>
+
+												<div class="div_bottom_3">
+													<input type="button" value="주문내역보기"> <input
+														type="button" value="결제하기"> <input type="button"
+														value="채팅하기">
+												</div>
+
+											</div>
+										
 										<br>
 
 										<div class="row">
-											<div class="column" onclick="openTab('b1');"
-												style="background: #58FAF4;">Box 4</div>
-											<div class="column" onclick="openTab('b2');"
-												style="background: #BEF781;">Box 5</div>
-											<div class="column" onclick="openTab('b3');"
-												style="background: #F3F781;">Box 6</div>
+											<div class="column" onclick="method_startnstop('4');"
+												style="background: #E6E6E6;">
+												<!-- <div class="div_root"> -->
+
+												<div class="div_menu">4번방</div>
+
+												<div class="div_con">
+													사 용 자 : <font id="user4">없음</font><br> 사용시간 : <font
+														id="user_time4">없음</font><br> 사용상태 : <font
+														id="user_status4">없음</font><br> 주문상태 : <font
+														id="order_status4">없음</font><br>
+												</div>
+
+												<div class="div_bottom_4">
+													<input type="button" value="주문내역보기"> <input
+														type="button" value="결제하기"> <input type="button"
+														value="채팅하기">
+												</div>
+
+											</div>
+											<div class="column" onclick="method_startnstop('5');"
+												style="background: #E6E6E6;">
+												<!-- <div class="div_root"> -->
+
+												<div class="div_menu">5번방</div>
+
+												<div class="div_con">
+													사 용 자 : <font id="user5">없음</font><br> 사용시간 : <font
+														id="user_time5">없음</font><br> 사용상태 : <font
+														id="user_status5">없음</font><br> 주문상태 : <font
+														id="order_status5">없음</font><br>
+												</div>
+
+												<div class="div_bottom_5">
+													<input type="button" value="주문내역보기"> <input
+														type="button" value="결제하기"> <input type="button"
+														value="채팅하기">
+												</div>
+
+											</div>
+											<div class="column" onclick="method_startnstop('6');"
+												style="background: #E6E6E6;">
+												<!-- <div class="div_root"> -->
+
+												<div class="div_menu">6번방</div>
+
+												<div class="div_con">
+													사 용 자 : <font id="user6">없음</font><br> 사용시간 : <font
+														id="user_time6">없음</font><br> 사용상태 : <font
+														id="user_status6">없음</font><br> 주문상태 : <font
+														id="order_status6">없음</font><br>
+												</div>
+
+												<div class="div_bottom_6">
+													<input type="button" value="주문내역보기"> <input
+														type="button" value="결제하기"> <input type="button"
+														value="채팅하기">
+												</div>
+
+											</div>
 										</div>
 									</div>
 								</div>
@@ -321,11 +393,19 @@ body {
 			} else {
 
 				check[num] = false;
+
+				var roomuse_id = "없음";
+				var roomuse_num = num;
+				var roomuse_status = "off";
+				
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = "사용가능";
 				document.getElementById('order_status' + num).innerHTML = "대기중";
 
+				ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
+						roomuse_status);
+				
 				//ajaxtosenddb_COMIC_ROOM_USE("대기중","사용가능","사용가능","대기중",num);
 			}
 		}

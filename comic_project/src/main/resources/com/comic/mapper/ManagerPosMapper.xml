@@ -4,13 +4,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.comic.mapper.ManagerPosMapper">	
-	<insert id="roomstartnstop">
+	<insert id="roomstart">
 	insert into comic_roomuse (ROOMUSE_id,ROOMUSE_num,ROOMUSE_status,ROOMUSE_starttime)
 	values (#{roomuse_id},#{roomuse_num},#{roomuse_status},sysdate)
 	</insert>
 	
-	<insert id ="roomstartinsert" >
-		insert into comic_order (order_id,order_roomnum,order_time)values
-		(#{user},#{room_num},sysdate)
-	</insert>
+	<delete id ="roomstop" >
+		delete comic_roomuse where roomuse_num=#{roomuse_num}
+	</delete>
 </mapper>

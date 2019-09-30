@@ -17,25 +17,20 @@ public class ManagerPosServiceImpl implements ManagerPosService {
 	@Setter(onMethod_ = @Autowired)
 	private ManagerPosMapper managerposMapper;
 	
-	@Override
-	public void start_room(Map<String, Object> map) {
+	
 
-		JSONArray jsonArray = new JSONArray(); // object 타입
-		String user = jsonArray.fromObject(map.get("list")).get(0).toString();
-		String time = jsonArray.fromObject(map.get("list")).get(1).toString();
-		String user_status = jsonArray.fromObject(map.get("list")).get(2).toString();
-		String order_status = jsonArray.fromObject(map.get("list")).get(3).toString();
-		String room_num = jsonArray.fromObject(map.get("list")).get(4).toString();
-		
-		System.out.println(user+time+user_status+order_status+room_num);
-		
-		managerposMapper.roomstartinsert(user, user_status, order_status, Integer.valueOf(room_num));
+	public void start_room(String roomuse_id, String roomuse_num, String roomuse_status) {
+		managerposMapper.roomstart(roomuse_id, roomuse_num,roomuse_status);
 	}
 
-	public void startnstop_room(String roomuse_id, String roomuse_num, String roomuse_status) {
-		managerposMapper.roomstartnstop(roomuse_id, roomuse_num,roomuse_status);
+	public void stop_room(String roomuse_num) {
+		managerposMapper.roomstop(roomuse_num);
 		
 	}
+
+
+
+	
 
 	
 
