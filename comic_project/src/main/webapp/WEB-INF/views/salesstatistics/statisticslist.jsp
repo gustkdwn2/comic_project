@@ -25,7 +25,7 @@
 				<div class="col-lg-6 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Bar chart</h4>
+							<h4 class="card-title">일 매출</h4>
 							<canvas id="bar"></canvas>
 						</div>
 					</div>
@@ -65,10 +65,10 @@ $(document).ready(function() {
 	});
 	
 	var bardata = {
-		    labels: chartdata.month,
+		    labels: chartdata.day,
 		    datasets: [{
 		      label: '# of Votes',
-		      data: [10, 19, 3, 5, 2, 3],
+		      data: [10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3],
 		      backgroundColor: [
 		        'rgba(255, 99, 132, 0.2)',
 		        'rgba(54, 162, 235, 0.2)',

@@ -112,8 +112,9 @@
 			var sendData = {
 				'list' : list
 			};
+			console.log(list);
 			$.ajax({
-				url : 'settlement/list',
+				url : '/settlement/list',
 				dataType : 'json',
 				data : JSON.stringify(sendData),
 				contentType : "application/json; charset=utf-8;",

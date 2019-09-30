@@ -48,9 +48,9 @@
 					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
 
 					<a class="navbar-brand brand-logo" href="/"><img
-						src="/resources/images/logo.svg" alt="logo" /></a> <a
+						src="/resources/images/logo2.png" alt="logo" /></a> <a
 						class="navbar-brand brand-logo-mini" href="/"><img
-						src="/resources/images/logo-mini.svg" alt="logo" /></a>
+						src="/resources/images/logo2.png" alt="logo" /></a>
 
 					<button class="navbar-toggler navbar-toggler align-self-center"
 						type="button" data-toggle="minimize">
