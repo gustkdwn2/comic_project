@@ -156,7 +156,7 @@ body {
 									<div class="template-demo">
 
 										<div class="row">
-											<div class="column" onclick="method_startnstop(1);"
+											<div class="column" onclick="method_startnstop('1');"
 												style="background: #F6CEF5;">
 
 												<div class="div_menu">1번방</div>
@@ -178,7 +178,7 @@ body {
 
 											</div>
 
-											<div class="column" onclick="method_startnstop(2);"
+											<div class="column" onclick="method_startnstop('2');"
 												style="background: #E6E6E6;">
 												<!-- <div class="div_root"> -->
 

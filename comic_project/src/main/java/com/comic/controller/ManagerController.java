@@ -99,11 +99,11 @@ import net.sf.json.JSONArray;
 		String roomuse_status = jsonArray.fromObject(map.get("list")).get(2).toString();
 
 		try {
-			/*
-			 * for (int i = 0; i < 5; i++) { String tmp =
-			 * jsonArray.fromObject(map.get("list")).get(i).toString();
-			 * System.out.println(tmp); } System.out.println("매니저컨트롤러 실행전");
-			 */
+			
+			  for (int i = 0; i < 3; i++) { String tmp =
+			  jsonArray.fromObject(map.get("list")).get(i).toString();
+			  System.out.println(tmp); } System.out.println("매니저컨트롤러 실행전");
+			 
 			managerposService.startnstop_room(roomuse_id, roomuse_num,roomuse_status);
 			//managerposService.start_room(map);
 			
