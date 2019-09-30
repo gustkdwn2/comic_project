@@ -11,6 +11,6 @@ public class ProductOrderVO {
 	private int productOrder_product_num; // 상품 번호
 	private int productOrder_cost; 		  // 발주 구매가
 	private int productOrder_qty; 		  // 발주 수량
-	private Date productOrder_date; 	  // 발주 날짜
+	private Date product_date; 	  // 발주 날짜
 	
 }

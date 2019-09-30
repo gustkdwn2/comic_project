@@ -40,7 +40,7 @@
 											</td>
 											<td><c:out value="${productOrder.productOrder_cost}" /></td>
 											<td><c:out value="${productOrder.productOrder_qty}" /></td>
-											<td><fmt:formatDate pattern="yyyy-MM-dd" value="${productOrder.productOrder_date}" /></td>
+											<td><fmt:formatDate pattern="yyyy-MM-dd" value="${productOrder.product_date}" /></td>
 										</tr>
 									</c:forEach>
 
