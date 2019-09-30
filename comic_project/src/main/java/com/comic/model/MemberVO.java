@@ -17,6 +17,4 @@ public class MemberVO {
 	private String MEMBER_PHONE_NUMBER;
 	
 	private List<AuthVO> authList;
-	
-
 }

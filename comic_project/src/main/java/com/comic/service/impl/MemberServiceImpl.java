@@ -8,12 +8,13 @@ import com.comic.mapper.MemberMapper;
 import com.comic.model.MemberVO;
 import com.comic.service.MemberService;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Service
-@Data
 public class MemberServiceImpl implements MemberService {
 
+	@Autowired
 	private MemberMapper mapper;
 	private String password;
 	
@@ -28,9 +29,10 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println(vo.getMEMBER_NAME());
 		System.out.println(vo.getMEMBER_EMAIL());
 		System.out.println(vo.getMEMBER_PHONE_NUMBER());
-		System.out.println(vo.getAuthList());
 		password = vo.getMEMBER_PWD();
 		vo.setMEMBER_PWD(passwordEncoder.encode(password));
+		System.out.println(vo.getMEMBER_PWD());
+		System.out.println("VO값 : " + vo);
 		mapper.memberInsert(vo);
 	}
 }

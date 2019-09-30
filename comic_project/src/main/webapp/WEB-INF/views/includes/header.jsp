@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -168,15 +170,11 @@
 								</div>
 							</a>
 						</div></li>
+					<sec:authorize access="isAuthenticated()"> 
+					<sec:authentication property="principal.member.MEMBER_ID" var="member"/>
 					<li class="nav-item nav-profile dropdown"><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-						id="profileDropdown"> <img
-
-
-							src="/resources/images/faces/face5.jpg" alt="profile" /> <span
-
-
-							class="nav-profile-name">Louis Barnett</span>
+						id="profileDropdown"><span class="nav-profile-name"><p>${member}님</p></span>
 					</a>
 						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 							aria-labelledby="profileDropdown">
@@ -186,6 +184,7 @@
 								class="mdi mdi-logout text-primary"></i> Logout
 							</a>
 						</div></li>
+					</sec:authorize>
 				</ul>
 				<button
 					class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
