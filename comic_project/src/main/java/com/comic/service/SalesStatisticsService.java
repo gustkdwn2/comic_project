@@ -5,8 +5,7 @@ import java.util.Map;
 
 public interface SalesStatisticsService {
 
-	public Map<String, List<String>> chartData();
-
-
+	public Map<String, List<String>> chartMonthData(String year);
 	
+	public Map<String, List<String>> chartDayData(String year,String month);
 }

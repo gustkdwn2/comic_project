@@ -6,13 +6,23 @@
 <mapper namespace="com.comic.mapper.SalesStatisticsMapper">
 	<select id="productsalesData"
 		resultType="com.comic.model.SalesStatisticsVO">
-		SELECT * FROM COMIC_PRODUCTSALES
+		SELECT * FROM COMIC_PRODUCTSALES WHERE TO_CHAR(PRODUCTSALES_TIME,'YY') = #{year}
 	</select>
 
 	<select id="roomsalesData"
 		resultType="com.comic.model.SalesStatisticsVO">
-		SELECT * FROM COMIC_ROOMSALES
+		SELECT * FROM COMIC_ROOMSALES WHERE 
+		TO_CHAR(ROOMSALES_TIME,'YY') = #{year}
 	</select>
 	
-	<select id=""></select>
+	<select id="productsalesDayData"
+		resultType="com.comic.model.SalesStatisticsVO">
+		SELECT * FROM COMIC_PRODUCTSALES WHERE TO_CHAR(PRODUCTSALES_TIME,'YYMM') = #{yearmonth}
+	</select>
+
+	<select id="roomsalesDayData"
+		resultType="com.comic.model.SalesStatisticsVO">
+		SELECT * FROM COMIC_ROOMSALES WHERE 
+		TO_CHAR(ROOMSALES_TIME,'YYMM') = #{yearmonth}
+	</select>
 </mapper>

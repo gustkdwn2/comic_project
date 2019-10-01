@@ -33,8 +33,7 @@ public class SettlementController {
 
 	@PostMapping("list")
 	public @ResponseBody Map<String, Object> settlementCheck(@RequestBody HashMap<String, Object> map) {
-		List<ProductVO> current = settleService.settlementList(); // 현재 재고
-		Map<String, Object> errorMap = settleService.settlementError(map, current); // 오차 재고
+		Map<String, Object> errorMap = settleService.settlementError(map); // 오차 재고
 
 		return errorMap;
 	}

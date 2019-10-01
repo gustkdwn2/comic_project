@@ -38,10 +38,11 @@ public class SettlementServiceImpl implements SettlementService {
 	}
 
 	@Override
-	public Map<String, Object> settlementError(HashMap<String, Object> map, List<ProductVO> current) {
+	public Map<String, Object> settlementError(HashMap<String, Object> map) {
 		JSONArray jsonArray = new JSONArray(); // object 타입
+		List<ProductVO> current= settleMapper.settlementList();
 		int[] list = new int[current.size()];
-	
+		
 		for (int i = 0; i < list.length; i++) { // object type을 int형으로 저장
 			if(!(jsonArray.fromObject(map.get("list")).get(i).toString().isEmpty())) { // 입력 값이존재한다면 수행
 				list[i] = Integer.parseInt(jsonArray.fromObject(map.get("list")).get(i).toString());

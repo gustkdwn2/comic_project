@@ -21,43 +21,56 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 	@Setter(onMethod_ = @Autowired)
 	private SalesStatisticsMapper statisticsMapper;
 	
+	private List<String> monthList = monthLabel();
+	private List<String> dayList = dayLabel();
+	private String pattern = "yyyy-M-dd";
+	private SimpleDateFormat simpleDataFormat = new SimpleDateFormat(pattern);
+	
 	@Override
-	public Map<String, List<String>> chartData() {
-		Map<String, List<String>> map = statistics(statisticsMapper.productsalesData(),statisticsMapper.roomsalesData());
+	public Map<String, List<String>> chartMonthData(String year) {
+		Map<String, List<String>> map = statistics(statisticsMapper.productsalesData(year),statisticsMapper.roomsalesData(year));
+		return map;
+	}
+	
+	@Override
+	public Map<String, List<String>> chartDayData(String year, String month) {
+		Map<String, List<String>> map = statisticsDay(statisticsMapper.productsalesDayData(year+month), statisticsMapper.roomsalesDayData(year+month)); 
+		return map;
+	}
+
+	private Map<String, List<String>> statisticsDay(List<SalesStatisticsVO> productsalesDayData,
+			List<SalesStatisticsVO> roomsalesDayData) {
+		Map<String, List<String>> map = new HashMap<String, List<String>>();
+		List<String> dayprice = daytotal(dayList,simpleDataFormat,productsalesDayData, roomsalesDayData);
+		
+		map.put("day", dayList);
+		map.put("dayprice", dayprice);
+		
 		return map;
 	}
 
 	private Map<String, List<String>> statistics(List<SalesStatisticsVO> productsalesData,
 			List<SalesStatisticsVO> roomsalesData) { // 상품, 방 매출 데이터
 		Map<String, List<String>> map = new HashMap<String, List<String>>();
-		String pattern = "yyyy-M-dd";
-		SimpleDateFormat simpleDataFormat = new SimpleDateFormat(pattern);
-		List<String> monthList = monthLabel(); 
-		List<String> dayList = dayLabel();
 		List<String> monthprice = 
 				monthtotal(monthList,simpleDataFormat,productsalesData,roomsalesData); // 1월부터 순차적으로 값 저장.. 리스트로
-		List<String> dayprice = daytotal(dayList,monthprice);// 해당 월의 일별 매출액
+		
 		
 		map.put("month", monthList); // 월 차트 라벨(1~12)
-		map.put("day", dayList); // 일 차트 라벨(1~31)
 		map.put("monthprice", monthprice); // 월별 매출액
-		
 			
 		return map;
 	}
-	
-	private List<String> daytotal(List<String> dayList, List<String> monthprice) {
-		String result = null;
-		
-		List<String> dayPrice = new ArrayList<String>();
-		
-		System.out.println(monthprice.get(8)); // x월 체크하기위해..
-		// 해당 몇월 몇일에 대한 total 매출액이 필요 --> mapper
-		
-		
-		
-		
-		
+	private List<String> daytotal(List<String> dayList, SimpleDateFormat simpleDataFormat,
+			List<SalesStatisticsVO> productsalesDayData, List<SalesStatisticsVO> roomsalesDayData) {
+			String result = null;
+			List<String> dayPrice = new ArrayList<String>();
+			for (int i = 0; i < dayList.size(); i++) {
+				int productDayTotal = dayproductTotalPrice(Integer.toString(i+1), simpleDataFormat, productsalesDayData);
+				int roomTotal = dayroomTotalPrice(Integer.toString(i+1), simpleDataFormat, roomsalesDayData);
+				result = Integer.toString(productDayTotal+roomTotal);
+				dayPrice.add(result);
+			}
 		return dayPrice;
 	}
 
@@ -76,6 +89,18 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 		return monthPrice;
 	}
 	
+	private int dayroomTotalPrice(String day, SimpleDateFormat simpleDataFormat,
+			List<SalesStatisticsVO> roomsalesDayData) {
+		int total = 0;
+		
+		for (int i = 0; i < roomsalesDayData.size(); i++) {
+			if(simpleDataFormat.format(roomsalesDayData.get(i).getRoomsales_time()).split("-")[2].equals(day)) {
+				total += roomsalesDayData.get(i).getRoomsales_totalprice();
+			}
+		}
+		return total;
+	}
+	
 	private int monthroomTotalPrice(String month, SimpleDateFormat simpleDataFormat,
 			List<SalesStatisticsVO> roomsalesData) { // 월 룸 매출액
 		
@@ -85,6 +110,17 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 			if(simpleDataFormat.format(roomsalesData.get(i).getRoomsales_time()).split("-")[1].equals(month)) { //.substring(5, 7) 월 ex) 09
 				total += roomsalesData.get(i).getRoomsales_totalprice(); // total에 x월 룸 매출 금액 저장
 			} 
+		}
+		return total;
+	}
+	
+	private int dayproductTotalPrice(String day, SimpleDateFormat simpleDataFormat,
+			List<SalesStatisticsVO> productsalesDayData) {
+		int total = 0;
+		for (int i = 0; i < productsalesDayData.size(); i++) {
+			if(simpleDataFormat.format(productsalesDayData.get(i).getProductsales_time()).split("-")[2].equals(day)) {
+				total += productsalesDayData.get(i).getProductsales_order_price();
+			}
 		}
 		return total;
 	}
@@ -100,14 +136,6 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 		}
 		return total;
 	}
-	
-	private List<String> dayLabel() { // 차트 일 라벨
-		List<String> dayList = new ArrayList<String>();
-		for (int i = 0; i < 31; i++) {
-			dayList.add(Integer.toString(i+1));
-		}
-		return dayList;
-	}
 
 	private List<String> monthLabel() { // 차트 월 라벨
 		List<String> monthList = new ArrayList<String>();
@@ -115,6 +143,14 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 			monthList.add(Integer.toString(i+1));
 		}
 		return monthList;
+	}
+	
+	private List<String> dayLabel() { // 차트 일 라벨
+		List<String> dayList = new ArrayList<String>();
+		for (int i = 0; i < 31; i++) {
+			dayList.add(Integer.toString(i+1));
+		}
+		return dayList;
 	}
 
 }
