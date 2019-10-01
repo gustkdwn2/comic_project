@@ -29,4 +29,8 @@
 		DELETE COMIC_PRODUCTSTOCK WHERE PRODUCT_NUM=#{product_num}
 	</delete>
 	
+	<select id="productNameCheck" resultType="com.comic.model.ProductVO">
+		SELECT * FROM COMIC_PRODUCTSTOCK WHERE PRODUCT_NAME=#{product_name}
+	</select>
+	
 </mapper>

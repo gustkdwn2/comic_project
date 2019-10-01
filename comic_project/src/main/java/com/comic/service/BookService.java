@@ -16,4 +16,6 @@ public interface BookService {
 	
 	public boolean bookRemove(String book_name);
 	
+	public BookVO bookNameCheck(String book_name);
+	
 }

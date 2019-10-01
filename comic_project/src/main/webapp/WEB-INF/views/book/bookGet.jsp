@@ -18,67 +18,57 @@
 					<font style="vertical-align: inherit;"><font
 						style="vertical-align: inherit;">책 수정</font></font>
 				</h4>
-				<form class="forms-sample" action="/book/bookModify" method="post">
+				<form onsubmit="return check();" class="forms-sample" action="/book/bookModify" method="post">
 					<div class="form-group">
-						<label for="exampleInputUsername1"><font
-							style="vertical-align: inherit;"><font
-								style="vertical-align: inherit;">책이름</font></font></label> <input name="book_name" readonly="readonly"
-							class="form-control"
-							value="<c:out value="${book.book_name}" />">
+						<label for="exampleInputUsername1">
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책이름</font></font>
+						</label><input name="book_name" readonly="readonly" class="form-control" value="<c:out value="${book.book_name}" />">
 					</div>
 					<div class="form-group">
-						<label for="exampleInputUsername1"><font
-							style="vertical-align: inherit;"><font
-								style="vertical-align: inherit;">책위치</font></font></label> <input name="book_loc" type="text"
-							class="form-control"
-							value="<c:out value="${book.book_loc}" />">
+						<label for="exampleInputUsername1">
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책위치</font></font>
+						</label>
+						<input id="book_loc" name="book_loc" type="text" class="form-control" value="<c:out value="${book.book_loc}" />" required>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1"><font
-							style="vertical-align: inherit;"><font
-								style="vertical-align: inherit;">책출판사</font></font></label> <input name="book_publisher"
-							type="text" class="form-control"
-							value="<c:out value="${book.book_publisher}" />">
+						<label for="exampleInputEmail1">
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책출판사</font></font>
+						</label>
+						<input id="book_publisher" name="book_publisher" type="text" class="form-control" value="<c:out value="${book.book_publisher}" />" required>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1"><font
-							style="vertical-align: inherit;"><font
-								style="vertical-align: inherit;">책 저자</font></font></label> <input name="book_writer"
-							type="text" class="form-control"
-							value="<c:out value="${book.book_writer}" />">
+						<label for="exampleInputPassword1">
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책 저자</font></font>
+						</label>
+						<input id="book_writer" name="book_writer" type="text" class="form-control" value="<c:out value="${book.book_writer}" />" required>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputConfirmPassword1"><font
-							style="vertical-align: inherit;"><font
-								style="vertical-align: inherit;">책 소개</font></font></label> <textarea name="book_content"
-							class="form-control" rows="20"
-							><c:out value="${book.book_content}" /></textarea>
+						<label for="exampleInputConfirmPassword1">
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책 소개</font></font>
+						</label>
+						<textarea name="book_content" class="form-control" rows="20"><c:out value="${book.book_content}" /></textarea>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1"><font
-							style="vertical-align: inherit;"><font
-								style="vertical-align: inherit;">책 분류</font></font></label> <input name="book_category"
-							type="text" class="form-control"
-							value="<c:out value="${book.book_category}" />">
+						<label for="exampleInputPassword1">
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책 분류</font></font>
+						</label>
+						<input id="book_category" name="book_category" type="text" class="form-control" value="<c:out value="${book.book_category}" />" required>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1"><font
-							style="vertical-align: inherit;"><font
-								style="vertical-align: inherit;">마지막권</font></font></label> <input name="book_lastbook"
-							type="number" class="form-control"
-							value="<c:out value="${book.book_lastbook}" />">
+						<label for="exampleInputPassword1">
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">마지막권</font></font>
+						</label>
+						<input name="book_lastbook" type="number" class="form-control" value="<c:out value="${book.book_lastbook}" />" required>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1"><font
-							style="vertical-align: inherit;"><font
-								style="vertical-align: inherit;">연재상태</font></font></label> <input name="book_status"
-							type="text" class="form-control"
-							value="<c:out value="${book.book_status}" />">
+						<label for="exampleInputPassword1">
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">연재상태</font></font>
+						</label>
+						<input id="book_status" name="book_status" type="text" class="form-control" value="<c:out value="${book.book_status}" />">
 					</div>
 					<div class="form-group" align="center">
-						<button type="submit" data-oper='modify' class="btn btn-info">수정</button>
-						<button type="submit" data-oper='remove' class="btn btn-danger">삭제</button>
-						<button type="submit" data-oper='list' class="btn btn-success">목록</button>
+						<button type="submit" class="btn btn-info">수정</button>
+						<button id="listBtn" type="button" class="btn btn-success">목록</button>
 					</div>
 				</form>
 			</div>
@@ -88,25 +78,46 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-		var formObj = $("form");
-		
-		$('button').click(function(e) {
-			
-			e.preventDefault();
-			
-			var operation = $(this).data("oper");
-			
-			if(operation == 'remove') {
-				formObj.attr("action", "/book/bookRemove");
-			} else if(operation == 'list') {
-				self.location = "/book/bookList";
-				return;
-			}
-			
-			formObj.submit();
-			
+		$('#listBtn').click(function() {
+			self.location = "/book/bookList";
 		});
 		
 	});
+
+	function check() {
+		
+		if($.trim($("#book_loc").val()) != $("#book_loc").val()) {
+		      alert("앞,뒤 공백을 지워주세요.");
+		      $("#book_loc").val("");
+		      $("#book_loc").focus();
+		      return false;
+		}
+		if($.trim($("#book_publisher").val()) != $("#book_publisher").val()) {
+		      alert("앞,뒤 공백을 지워주세요.");
+		      $("#book_publisher").val("");
+		      $("#book_publisher").focus();
+		      return false;
+		}
+		if($.trim($("#book_writer").val()) != $("#book_writer").val()) {
+		      alert("앞,뒤 공백을 지워주세요.");
+		      $("#book_writer").val("");
+		      $("#book_writer").focus();
+		      return false;
+		}
+		if($.trim($("#book_category").val()) != $("#book_category").val()) {
+		      alert("앞,뒤 공백을 지워주세요.");
+		      $("#book_category").val("");
+		      $("#book_category").focus();
+		      return false;
+		}
+		if($.trim($("#book_status").val()) != $("#book_status").val()) {
+		      alert("앞,뒤 공백을 지워주세요.");
+		      $("#book_status").val("");
+		      $("#book_status").focus();
+		      return false;
+		}
+		return true;
+	}
+		
 </script>
 </html>

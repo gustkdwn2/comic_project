@@ -40,5 +40,10 @@ public class BookServiceImpl implements BookService {
 	public boolean bookRemove(String book_name) {
 		return mapper.bookDelete(book_name) == 1;
 	}
+
+	@Override
+	public BookVO bookNameCheck(String book_name) {
+		return mapper.bookNameCheck(book_name);
+	}
 	
 }

@@ -24,32 +24,35 @@
 									class="btn btn-secondary">상품 등록</button>
 								<button id="orderBtn" style="margin-bottom: 10px;" type="button"
 									class="btn btn-warning">상품 발주</button>
-								<table id="lossTable" class="table  table-striped">
-									<thead>
-										<tr>
-											<th>상품 번호</th>
-											<th>상품 이름</th>
-											<th>상품 판매가</th>
-											<th>상품 수량</th>
-											<th>상품 종류</th>
-										</tr>
-									</thead>
-
-									<c:forEach items="${productList}" var="product">
-										<tr>
-											<td><c:out value="${product.product_num}" /></td>
-											<td>
-												<a href='/product/productGet?product_num=<c:out value="${product.product_num}" />'><c:out
-												value="${product.product_name}" /></a>
-											</td>
-											<td><c:out value="${product.product_price}" /></td>
-											<td><c:out value="${product.product_qty}" /></td>
-											<td><c:out value="${product.product_category}" /></td>
-										</tr>
-									</c:forEach>
-
-								</table>
-
+								<form action="/product/productRemove" method="post">
+									<table id="lossTable" class="table  table-striped">
+										<thead>
+											<tr>
+												<th>상품 번호</th>
+												<th>상품 이름</th>
+												<th>상품 판매가</th>
+												<th>상품 수량</th>
+												<th>상품 종류</th>
+												<td></td>
+											</tr>
+										</thead>
+	
+										<c:forEach items="${productList}" var="product">
+											<tr>
+												<td><c:out value="${product.product_num}" /></td>
+												<td>
+													<a href='/product/productGet?product_num=<c:out value="${product.product_num}" />'><c:out
+													value="${product.product_name}" /></a>
+												</td>
+												<td><c:out value="${product.product_price}" /></td>
+												<td><c:out value="${product.product_qty}" /></td>
+												<td><c:out value="${product.product_category}" /></td>
+												<td><button name="removeBtn" value="${product.product_num}" type="submit" class="btn btn-danger">삭제</button></td>
+											</tr>
+										</c:forEach>
+	
+									</table>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -59,7 +62,6 @@
 	</div>
 	
 	<jsp:include page="productRegisterModal.jsp" />
-	<jsp:include page="productGetModal.jsp" />
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {

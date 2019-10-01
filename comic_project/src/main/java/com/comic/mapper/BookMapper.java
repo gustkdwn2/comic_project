@@ -16,4 +16,6 @@ public interface BookMapper {
 	
 	public int bookDelete(String book_name);
 	
+	public BookVO bookNameCheck(String book_name);
+	
 }
