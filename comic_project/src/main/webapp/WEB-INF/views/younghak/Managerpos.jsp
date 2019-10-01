@@ -6,6 +6,7 @@
 
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
+
 <%-- <%@ include file="./younghak_header.jsp"%> --%>
 
 
@@ -218,7 +219,7 @@ body {
 												</div>
 
 											</div>
-										
+										</div>
 										<br>
 
 										<div class="row">
@@ -339,8 +340,15 @@ body {
 	</div>
 	<!-- main-panel ends -->
 
-
 	<script>
+	//초기화작업
+	var check = new Array(7); //방의 개수보다 1크게
+	
+	array_init(check);
+
+	ajaxtogetdb_comic_room_uselist();
+	//초기화작업
+	
 		function openTab(tabName) {
 			var i, x;
 			x = document.getElementsByClassName("containerTab");
@@ -358,9 +366,7 @@ body {
 		var hour = 0;
 		var minute = 0;
 
-		var check = new Array(7); //방의 개수보다 1크게
-
-		array_init(check);
+		
 
 		function array_init(check) {
 			for (var i = 0; i < check.length; i++) {
@@ -383,10 +389,9 @@ body {
 				var roomuse_status = "on";
 
 				document.getElementById('user' + num).innerHTML = user;
-				document.getElementById('user_status' + num).innerHTML = user_status;
+				document.getElementById('user_status' + num).innerHTML = roomuse_status;
 				document.getElementById('order_status' + num).innerHTML = order_status;
-
-				//ajaxtosenddb_COMIC_ROOM_USE(user,"THISTIME",user_status,order_status,num);
+				
 				ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 						roomuse_status);
 
@@ -400,35 +405,60 @@ body {
 				
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
-				document.getElementById('user_status' + num).innerHTML = "사용가능";
+				document.getElementById('user_status' + num).innerHTML = roomuse_status;
 				document.getElementById('order_status' + num).innerHTML = "대기중";
 
 				ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 						roomuse_status);
-				
-				//ajaxtosenddb_COMIC_ROOM_USE("대기중","사용가능","사용가능","대기중",num);
 			}
 		}
 
-		function ajaxtosenddb_COMIC_ROOM_USE(user, starttime, user_status,
-				order_status, room_number) {
-			var list = [ user, starttime, user_status, order_status,
-					room_number ];
-			//사용자,시작시간,사용자 상태,주문 상태,방번호
-			//alert("보내기전의 list" + list);
-			var sendData = {
-				'list' : list
-			};
 
+		function method_startnstop2(id,num,starttime,status) {
+
+			if (!check[num]) {
+				check[num] = true;
+				time_start(starttime, num);
+				/* 테스트용 */
+				var order_status = "unavail";
+
+				document.getElementById('user' + num).innerHTML = id;
+				document.getElementById('user_status' + num).innerHTML = status;
+				document.getElementById('order_status' + num).innerHTML = order_status;
+				
+			} else {
+
+				check[num] = false;
+
+				var roomuse_id = "없음";
+				var roomuse_num = num;
+				var roomuse_status = "off";
+				
+				document.getElementById('user' + num).innerHTML = "대기중";
+				document.getElementById('user_time' + num).innerHTML = "00:00:00";
+				document.getElementById('user_status' + num).innerHTML = roomuse_status;
+				document.getElementById('order_status' + num).innerHTML = "대기중";
+
+			}
+		}
+
+		function ajaxtogetdb_comic_room_uselist() {			
+			
 			$.ajax({
-				url : '/managerpos/room_start',
+				url : '/managerpos/get_room_uselist',
 				dataType : 'json',
-				data : JSON.stringify(sendData),
 				contentType : "application/json; charset=utf-8;",
 				type : 'POST',
 				success : function(data) {
-					console.log("성공");
-					alert("success!");
+					
+					var text="";
+					console.log(data[0]);
+					$.each(data, function(index,list){
+						var number=1;
+						number = list.roomuse_num
+						
+						method_startnstop2(list.roomuse_id,number,list.starttime,list.roomuse_status);
+					});
 					
 				},
 				error : function(data) {
@@ -436,6 +466,7 @@ body {
 				}
 			});
 		}
+
 
 		function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 				roomuse_status) {
@@ -469,12 +500,13 @@ body {
 			if (!check[num]) {
 
 			} else {
-
+				//console.log(time);
+				time =parseInt(time)//가끔 여기서 사용된 파라미터가 string형태로 읽어와져서 형변환을 한번해준다.
 				time += 1;
 				hour = Math.floor(time / 3600);
 				hour = time_modify(hour);
 
-				minute = Math.floor(time / 60);
+				minute = Math.floor(time%3600 / 60);
 				minute = time_modify(minute);
 
 				var second = time % 60;

@@ -12,4 +12,12 @@
 	<delete id ="roomstop" >
 		delete comic_roomuse where roomuse_num=#{roomuse_num}
 	</delete>
+	
+	<select id="roomuselist"
+		resultType="com.comic.model.RoomuseVO">
+		select roomuse_id,roomuse_num,roomuse_status,to_char(roomuse_starttime,'hh24:mi:ss')
+		"starttime" from comic_roomuse
+	</select>
+	
+	
 </mapper>
