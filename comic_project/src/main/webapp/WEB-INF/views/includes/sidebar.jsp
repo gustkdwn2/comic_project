@@ -28,21 +28,19 @@
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/settlement/list"> <i
-							class="mdi mdi-chart-pie menu-icon"></i> <span class="menu-title">Charts</span>
+							class="mdi mdi-chart-pie menu-icon"></i> <span class="menu-title">정산화면</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 
 
 						href="/managerpos/managerpos"> <i
 
-							class="mdi mdi-grid-large menu-icon"></i> <span
-							class="menu-title"
-							
-							>Tables</span>
+							class="mdi mdi-grid-large menu-icon"></i> 
+							<span class="menu-title">매니저 포스</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/resources/pages/icons/mdi.html"> <i
-							class="mdi mdi-emoticon menu-icon"></i> <span class="menu-title">Icons</span>
+						href="/EmployeeRegister"> <i
+							class="mdi mdi-emoticon menu-icon"></i> <span class="menu-title">직원추가(원래아이콘)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						data-toggle="collapse" href="#auth" aria-expanded="false"

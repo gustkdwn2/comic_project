@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comic.mapper.MemberMapper">
+   
+   <insert id="employeeInsert">
+      INSERT INTO COMIC_EMPLOYEE VALUES ((SELECT NVL(MAX(EMPLOYEE_NUM),0)+1 FROM COMIC_EMPLOYEE),
+      #{EMPLOYEE_PWD}, #{EMPLOYEE_NAME}, #{EMPLOYEE_PHONE}, #{EMPLOYEE_ACCOUNT}, SYSDATE, #{EMPLOYEE_POSITION}, #{EMPLOYEE_PAY})
+   </insert>
+   
+</mapper>
