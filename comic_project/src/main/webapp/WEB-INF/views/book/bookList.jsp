@@ -22,7 +22,7 @@
 								<button data-toggle="modal"
 									data-target="#bookRegister" type="button" class="btn btn-secondary" style="margin-bottom: 10px;">책
 									등록</button>
-								<form action="/book/bookRemove" method="post">
+								<form onsubmit="return remove();" action="/book/bookRemove" method="post">
 									<table id="lossTable" class="table  table-striped">
 										<thead>
 											<tr>
@@ -67,6 +67,7 @@
 	<jsp:include page="bookRegisterModal.jsp" />
 </body>
 <script type="text/javascript">
+
 	$(document).ready(function() {
 		
 		$('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
@@ -87,5 +88,14 @@
 	    });
 
 	});
+
+	function remove() {
+
+		if(!confirm("삭제 하시겠습니까?")){
+			return false;
+		}
+		return true;
+	}
+	
 </script>
 </html>

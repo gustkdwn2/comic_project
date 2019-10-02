@@ -24,7 +24,7 @@
 									class="btn btn-secondary">상품 등록</button>
 								<button id="orderBtn" style="margin-bottom: 10px;" type="button"
 									class="btn btn-warning">상품 발주</button>
-								<form action="/product/productRemove" method="post">
+								<form onsubmit="return remove();" action="/product/productRemove" method="post">
 									<table id="lossTable" class="table  table-striped">
 										<thead>
 											<tr>
@@ -64,6 +64,7 @@
 	<jsp:include page="productRegisterModal.jsp" />
 </body>
 <script type="text/javascript">
+
 	$(document).ready(function() {
 
 		$('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
@@ -88,5 +89,14 @@
 		});
 		
 	});
+
+	function remove() {
+
+		if(!confirm("삭제 하시겠습니까?")){
+			return false;
+		}
+		return true;
+	}
+	
 </script>
 </html>
