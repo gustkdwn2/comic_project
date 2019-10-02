@@ -159,9 +159,13 @@ $('#selectYear2').change(function(){
 function selector(target,value){
 	var obj=document.getElementById(target);
 	
-		for(i=0;i<obj.length;i++){
-	
-
+		for(i=0; i<obj.length; i++){
+			
+			if(obj.options[i].value == value) {
+				obj.options[i].selected = true;
+			}
+		}
+}
 </script>
 <script>
 	var today = new Date();
