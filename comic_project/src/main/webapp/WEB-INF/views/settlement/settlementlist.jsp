@@ -120,6 +120,7 @@
 				contentType : "application/json; charset=utf-8;",
 				type : 'POST',
 				success : function(data) {
+					console.log(data);
 					console.log("성공");
 					for (var i = 0; i < list.length; i++) {
 						$('#' + 'a' + i.toString()).html(data[i]);
