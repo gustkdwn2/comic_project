@@ -38,4 +38,14 @@ public class SalesStatisticsController {
 	public ResponseEntity<Map<String, List<String>>> statisticsMonthShow(@RequestParam("year") String year, @RequestParam("month") String month){ //일 차트 데이터
 		return new ResponseEntity<Map<String, List<String>>>(statisticsService.chartDayData(year, month), HttpStatus.OK);
 	}
+	
+	@GetMapping("getProductlist")
+	public ResponseEntity<Map<String,String>> statisticsProductShow() {
+		return new ResponseEntity<Map<String, String>>(statisticsService.chartProduct(), HttpStatus.OK);
+	}
+	
+	@GetMapping("getRoomlist")
+	public ResponseEntity<Map<String,String>> statisticsRoomShow() {
+		return new ResponseEntity<Map<String, String>>(statisticsService.chartRoom(), HttpStatus.OK);
+	}
 }

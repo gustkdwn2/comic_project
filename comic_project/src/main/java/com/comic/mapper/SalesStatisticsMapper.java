@@ -15,4 +15,8 @@ public interface SalesStatisticsMapper {
 	public List<SalesStatisticsVO> productsalesDayData(@Param("yearmonth") String yearmonth);
 	
 	public List<SalesStatisticsVO> roomsalesDayData(@Param("yearmonth") String yearmonth);
+
+	public List<SalesStatisticsVO> productsales();
+	
+	public List<SalesStatisticsVO> roomsales();
 }

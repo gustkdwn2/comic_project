@@ -27,17 +27,38 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 	private SimpleDateFormat simpleDataFormat = new SimpleDateFormat(pattern);
 	
 	@Override
-	public Map<String, List<String>> chartMonthData(String year) {
+	public Map<String, List<String>> chartMonthData(String year) { // 년도별 월 매출
 		Map<String, List<String>> map = statistics(statisticsMapper.productsalesData(year),statisticsMapper.roomsalesData(year));
 		return map;
 	}
 	
 	@Override
-	public Map<String, List<String>> chartDayData(String year, String month) {
+	public Map<String, List<String>> chartDayData(String year, String month) { // 년도,월에 대한 일매출
 		Map<String, List<String>> map = statisticsDay(statisticsMapper.productsalesDayData(year+month), statisticsMapper.roomsalesDayData(year+month)); 
 		return map;
 	}
-
+	
+	@Override
+	public Map<String, String> chartProduct() {  // 상품 매출 TOP 5
+		List<SalesStatisticsVO> list = statisticsMapper.productsales();
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i = 0; i < list.size(); i++) {
+			map.put(list.get(i).getProductsales_product(), Integer.toString(list.get(i).getProductsales_order_price()));
+		}
+		
+		return map;
+	}
+	
+	@Override
+	public Map<String, String> chartRoom() {  // 방 매출
+		List<SalesStatisticsVO> list = statisticsMapper.roomsales();
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i = 0; i < list.size(); i++) {
+			map.put(Integer.toString(list.get(i).getRoomsales_num()),Integer.toString(list.get(i).getRoomsales_totalprice()));
+		}
+		return map;
+	}
+	
 	private Map<String, List<String>> statisticsDay(List<SalesStatisticsVO> productsalesDayData,
 			List<SalesStatisticsVO> roomsalesDayData) {
 		Map<String, List<String>> map = new HashMap<String, List<String>>();
@@ -50,7 +71,7 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 	}
 
 	private Map<String, List<String>> statistics(List<SalesStatisticsVO> productsalesData,
-			List<SalesStatisticsVO> roomsalesData) { // 상품, 방 매출 데이터
+			List<SalesStatisticsVO> roomsalesData) { // 년도별 월 상품, 방매출 합계 데이터
 		Map<String, List<String>> map = new HashMap<String, List<String>>();
 		List<String> monthprice = 
 				monthtotal(monthList,simpleDataFormat,productsalesData,roomsalesData); // 1월부터 순차적으로 값 저장.. 리스트로
@@ -62,7 +83,7 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 		return map;
 	}
 	private List<String> daytotal(List<String> dayList, SimpleDateFormat simpleDataFormat,
-			List<SalesStatisticsVO> productsalesDayData, List<SalesStatisticsVO> roomsalesDayData) {
+			List<SalesStatisticsVO> productsalesDayData, List<SalesStatisticsVO> roomsalesDayData) { // 년도 월별 일 상품, 방매출 합계 데이터
 			String result = null;
 			List<String> dayPrice = new ArrayList<String>();
 			for (int i = 0; i < dayList.size(); i++) {
@@ -152,5 +173,4 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 		}
 		return dayList;
 	}
-
 }
