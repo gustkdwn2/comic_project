@@ -5,19 +5,19 @@ import org.springframework.web.util.UriComponentsBuilder;
 import lombok.Data;
 
 @Data
-public class CustomerCenterCriteriaVO {
+public class CriteriaVO {
 	  private int pageNum;
 	  private int amount;
 	  
 	  private String type;
 	  private String keyword;
 
-	public CustomerCenterCriteriaVO(int pageNum, int amount) {
+	public CriteriaVO(int pageNum, int amount) {
 	    this.pageNum = pageNum;
 	    this.amount = amount;
 	  }
 
-	  public CustomerCenterCriteriaVO() {
+	  public CriteriaVO() {
 	    this(1, 10);
 	  }
 	  

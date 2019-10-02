@@ -10,7 +10,7 @@
 			BOARD_NUM, BOARD_ID, BOARD_CONTENT, BOARD_DATE, BOARD_TITLE
 		from
 			( 
-			select /*+INDEX_DESC(COMIC_BOARD pk_board) */
+			select /*+INDEX_DESC(COMIC_BOARD pk_COMIC_BOARD) */
 				rownum rn, BOARD_NUM, BOARD_ID, BOARD_CONTENT, BOARD_DATE, BOARD_TITLE
 			from 
 				COMIC_BOARD
@@ -23,7 +23,7 @@
 		  <![CDATA[	
 		  	rownum <=#{pageNum} * #{amount}
 		  	)
-		 where rn > (#{pageNum}-1) * #{amount} order by BOARD_NUM desc
+		 where rn > (#{pageNum}-1) * #{amount} 
 		 ]]>
 	</select>
 

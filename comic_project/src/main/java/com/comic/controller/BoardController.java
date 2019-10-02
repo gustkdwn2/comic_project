@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comic.model.BoardVO;
-import com.comic.model.CustomerCenterCriteriaVO;
-import com.comic.model.CustomerCenterPageVO;
+import com.comic.model.CriteriaVO;
+import com.comic.model.PageVO;
 import com.comic.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/boardList")
-	public void CustomerCenterList(CustomerCenterCriteriaVO cri, Model model) {
+	public void CustomerCenterList(CriteriaVO cri, Model model) {
 		
 		log.info("\r\n####list : "+cri);
 		model.addAttribute("list", service.getList(cri));
@@ -34,7 +34,7 @@ public class BoardController {
 		int total = service.getTotal(cri);
 		log.info("\r\n####total : "+total);
 		model.addAttribute("count", service.getTotal(cri));
-		model.addAttribute("pageMaker", new CustomerCenterPageVO(cri, total));
+		model.addAttribute("pageMaker", new PageVO(cri, total));
 		
 		
 	}
@@ -59,7 +59,7 @@ public class BoardController {
 	
 	@GetMapping({"/boardGet","/boardModify"})
 	public void get(@RequestParam("board_num") Long board_num,
-			@ModelAttribute("cri") CustomerCenterCriteriaVO cri, Model model) {
+			@ModelAttribute("cri") CriteriaVO cri, Model model) {
 		
 		log.info("\r\n####get or modify : "+model);
 		
@@ -67,7 +67,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/boardModify")
-	public String modify(BoardVO board, CustomerCenterCriteriaVO cri, RedirectAttributes rttr) {
+	public String modify(BoardVO board, CriteriaVO cri, RedirectAttributes rttr) {
 		
 		log.info("\r\n####modify : "+board);
 		
@@ -79,7 +79,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/boardRemove")
-	public String remove(@RequestParam("board_num") Long board_num, CustomerCenterCriteriaVO cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("board_num") Long board_num, CriteriaVO cri, RedirectAttributes rttr) {
 		
 		log.info("\r\n####remove board_num : "+board_num);
 		

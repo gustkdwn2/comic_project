@@ -5,16 +5,16 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class CustomerCenterPageVO {
+public class PageVO {
 	
 	private int startPage; //페이지 시작번호 1,11, 21
 	private int endPage; // 페이지 끝번호 10, 20, 30
 	private boolean prev, next; // 이전 페이지, 다음 페이지
 	
 	private int total;
-	private CustomerCenterCriteriaVO cri;
+	private CriteriaVO cri;
 	
-	public CustomerCenterPageVO(CustomerCenterCriteriaVO cri, int total) {
+	public PageVO(CriteriaVO cri, int total) {
 		
 	this.cri = cri;
 	this.total = total;

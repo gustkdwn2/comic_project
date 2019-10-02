@@ -140,11 +140,12 @@
 
 		cmntajax.getList(boardValue, function(data){	
 		for (var i = 0, len = data.length || 0; i < len; i++) {
-			 str += '<div style="margin-bottom: 10px; height:170px; background-color:#ececec; border-radius: 20px;"><br/>';
-			 str += '<div style="height:20px; font-size:18px; margin-left:40px;">'+'댓글번호 : '+data[i].cmnt_num+' / 작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date);
+			 str += '<div style="margin-bottom: 10px; height:190px; background-color:#DAE8E8; border-radius: 20px; width:1500px;"><br/>';
+			 str += '<div style="margin-left:40px; float:left; width:40px; height:40px; background-color:white; border-radius: 50%; font-weight:bold;"></br>&emsp;'+data[i].cmnt_num+'</div>';
+			 str += '<div style="height:20px; font-size:20px; margin-left:100px;">'+'작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date);
 	   		 str +=	'&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="updateCmntForm('+data[i].cmnt_num+',\''+data[i].cmnt_content+'\');">수정</button>'; 
-  			 str += '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="commentDelete('+data[i].cmnt_num+')">삭제</button></div>';
-  			 str +=	'<br/><div style="background-color:white; border-radius: 20px; height:110px; width:1400px; margin-left:40px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>&emsp;&emsp;'+data[i].cmnt_content+'</div>';
+  			 str += '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="commentDelete('+data[i].cmnt_num+')">삭제</button></div><br/><br/>';
+  			 str +=	'<div style="background-color:white; border-radius: 20px; height:110px; width:1400px; margin-left:40px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>&emsp;&emsp;'+data[i].cmnt_content+'</div>';
 	   		 str +=	'</div>';			
 
 		}
@@ -168,9 +169,9 @@
 	     console.log(cmnt_content);
          var str='';
     	 str += '<div id="updateDiv">';
-    	 str += '<textarea style="float:left; margin-left:20px; width:1200px;" class="form-control" name="content_'+cmnt_num+'"rows="5">'+cmnt_content+'</textarea>';
-    	 str += '<div>&emsp;'
-    	 str += '<button class="btn btn-md btn-outline-secondary" onclick="updateBtn(' + cmnt_num + ');">수정 완료</button><br/><br/>&emsp;';
+    	 str += '<textarea style="float:left; margin-left:10px; margin-top:5px; width:1200px;" class="form-control" name="content_'+cmnt_num+'"rows="5">'+cmnt_content+'</textarea>';
+    	 str += '<div>&emsp;&emsp;'
+    	 str += '<button style="margin-top:8px;" class="btn btn-md btn-outline-secondary" onclick="updateBtn(' + cmnt_num + ');">수정 완료</button><br/><br/>&emsp;&emsp;';
     	 str += '<button class="btn btn-md btn-outline-secondary" onclick="test(' + cmnt_num + ', \''+cmnt_content+'\');">수정 취소</button>';
     	 str += '</div></div>';
 

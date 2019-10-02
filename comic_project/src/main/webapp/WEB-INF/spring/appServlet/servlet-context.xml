@@ -27,11 +27,6 @@
 	<context:annotation-config />
 	<context:component-scan base-package="com.comic.*" />
 	<context:component-scan base-package="com.comic.controller" />
-	   		
 
-
-	
-	
-	
 
 </beans:beans>

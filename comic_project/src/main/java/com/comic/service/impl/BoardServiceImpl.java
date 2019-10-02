@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.comic.mapper.BoardMapper;
 import com.comic.model.BoardVO;
-import com.comic.model.CustomerCenterCriteriaVO;
+import com.comic.model.CriteriaVO;
 import com.comic.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -60,7 +60,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getList(CustomerCenterCriteriaVO cri) {
+	public List<BoardVO> getList(CriteriaVO cri) {
 		// TODO Auto-generated method stub
 		
 		log.info("\r\n#### get list with criteria #####"+cri);
@@ -69,7 +69,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getTotal(CustomerCenterCriteriaVO cri) {
+	public int getTotal(CriteriaVO cri) {
 		
 		log.info("\r\n#### get total count #####"+cri);
 		

@@ -3,7 +3,7 @@ package com.comic.service;
 import java.util.List;
 
 import com.comic.model.BoardVO;
-import com.comic.model.CustomerCenterCriteriaVO;
+import com.comic.model.CriteriaVO;
 
 public interface BoardService {
 	
@@ -15,8 +15,8 @@ public interface BoardService {
 	
 	public boolean remove(Long board_num); // 삭제하기
 	
-	public List<BoardVO> getList(CustomerCenterCriteriaVO cri); //페이징 처리된 목록보기
+	public List<BoardVO> getList(CriteriaVO cri); //페이징 처리된 목록보기
 	
-	public int getTotal(CustomerCenterCriteriaVO cri); // 페이징을 위한 총 합
+	public int getTotal(CriteriaVO cri); // 페이징을 위한 총 합
 
 }
