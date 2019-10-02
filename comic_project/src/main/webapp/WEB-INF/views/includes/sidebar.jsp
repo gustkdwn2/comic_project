@@ -3,8 +3,8 @@
 <!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="index.co">
-							<i class="mdi mdi-home menu-icon"></i> <span class="menu-title">Dashboard</span>
+					<li class="nav-item"><a class="nav-link" href="/">
+							<i class="mdi mdi-home menu-icon"></i> <span class="menu-title">Home</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						data-toggle="collapse" href="#ui-basic" aria-expanded="false"
@@ -21,27 +21,34 @@
 							</ul>
 						</div></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/resources/pages/forms/basic_elements.html"> <i
+						href="/product/productList"> <i
+
 							class="mdi mdi-view-headline menu-icon"></i> <span
-							class="menu-title">Form elements</span>
+							class="menu-title">상품재고</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="pages/charts/chartjs.html"> <i
-							class="mdi mdi-chart-pie menu-icon"></i> <span class="menu-title">Charts</span>
+						href="/book/bookList"> <i
+
+							class="mdi mdi-view-headline menu-icon"></i> <span
+							class="menu-title">책재고</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
+						href="/settlement/list"> <i
 
-						href="/managerpos.co"> <i
-
+							class="mdi mdi-view-headline menu-icon"></i> <span
+							class="menu-title">정산</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/salesstatistics/list"> <i
+							class="mdi mdi-chart-pie menu-icon"></i> <span class="menu-title">매출통계</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/managerpos/managerpos"> <i
 							class="mdi mdi-grid-large menu-icon"></i> <span
 							class="menu-title"
-							
-							>Tables</span>
+							>포스 화면</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/resources/pages/icons/mdi.html"> <i
-							class="mdi mdi-emoticon menu-icon"></i> <span class="menu-title">Icons</span>
-					</a></li>
+					
 					<li class="nav-item"><a class="nav-link"
 						data-toggle="collapse" href="#auth" aria-expanded="false"
 						aria-controls="auth"> <i class="mdi mdi-account menu-icon"></i>
@@ -50,6 +57,7 @@
 						<div class="collapse" id="auth">
 							<ul class="nav flex-column sub-menu">
 								<li class="nav-item"><a class="nav-link"
+
 									href="/resources/pages/samples/login.html"> Login </a></li>
 								<li class="nav-item"><a class="nav-link"
 									href="/resources/pages/samples/login-2.html"> Login 2 </a></li>
@@ -66,5 +74,11 @@
 							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">Documentation</span>
 					</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						href="/CustomerCenter/boardList"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">고객센터</span>
+					</a></li>
 				</ul>
-			</nav>
+		</nav>

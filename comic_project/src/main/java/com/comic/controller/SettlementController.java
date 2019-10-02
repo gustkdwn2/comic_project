@@ -1,4 +1,4 @@
-package com.comic.controller;
+﻿package com.comic.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 
 @Controller
 @RequestMapping("/settlement/")
-@AllArgsConstructor
+@AllArgsConstructor//생성자함수
 public class SettlementController {
 
 	private SettlementService settleService;
