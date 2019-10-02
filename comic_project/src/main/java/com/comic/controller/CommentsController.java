@@ -37,7 +37,7 @@ public class CommentsController {
 	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> create(@RequestBody CommentsVO vo) {
 
-		log.info("\r\n#### register : " + vo.toString());
+		log.info("\r\n####Comments register Controller : " + vo.toString());
 
 		int insertCount = service.register(vo);
 
@@ -52,7 +52,7 @@ public class CommentsController {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<List<CommentsVO>> getList(@PathVariable("board_num") Long board_num) {
 		System.out.println(board_num);
-		log.info("\r\n####겟리트스 컨트롤러....");
+		log.info("\r\n####Comments getList Controller");
 
 		return new ResponseEntity<List<CommentsVO>>(service.getList(board_num), HttpStatus.OK);
 
@@ -61,7 +61,7 @@ public class CommentsController {
 	@DeleteMapping(value = "/{cmnt_num}", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> remove(@PathVariable("cmnt_num") int cmnt_num) {
 
-		log.info("\r\n####remove: " + cmnt_num);
+		log.info("\r\n####Comments remove Controller: " + cmnt_num);
 
 		return service.remove(cmnt_num) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -75,8 +75,7 @@ public class CommentsController {
 
 		vo.setCmnt_num(cmnt_num);
 
-		log.info("cmnt_num: " + cmnt_num);
-		log.info("modify: " + vo);
+		log.info("\r\n####Comments modify Controller-- cmnt_num: "+ cmnt_num+" modify: " + vo);
 
 		return service.modify(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

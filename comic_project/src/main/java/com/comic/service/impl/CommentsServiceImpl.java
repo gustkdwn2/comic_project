@@ -43,14 +43,14 @@ public class CommentsServiceImpl implements CommentsService{
 	@Override
 	public int remove(int cmnt_num) {
 		// TODO Auto-generated method stub
-		System.out.println(cmnt_num + "리무브comments서비스임플 ");
+		System.out.println("\r\n##remove : "+cmnt_num);
 		return cmapper.delete(cmnt_num);
 	}
 
 	@Override
 	public List<CommentsVO> getList(Long board_num) {
 		// TODO Auto-generated method stub
-		System.out.println(board_num + "리스트comments서비스임플 ");
+		System.out.println("\r\n##get List : "+board_num);
 		return cmapper.getList(board_num);
 	}
 
