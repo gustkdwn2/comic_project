@@ -21,4 +21,16 @@ public class ProductOrderServiceImple implements ProductOrderService {
 		return mapper.productOrderList();
 	}
 
+	@Override
+	public void productOrderRemove(int productOrder_num) {
+		mapper.productOrderDelete(productOrder_num);
+		int result = mapper.productOrderNumSelect(productOrder_num);
+		if(result > 0) {
+			for (int i = 0; i < result; i++) {
+				mapper.productOrderNumUpdate(productOrder_num+1);
+				productOrder_num++;
+			}
+		}
+	}
+
 }

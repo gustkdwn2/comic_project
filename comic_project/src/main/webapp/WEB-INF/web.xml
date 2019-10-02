@@ -29,6 +29,13 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 		<async-supported>true</async-supported>
+		
+		<multipart-config>
+			<location>c:\\upload\\temp</location>
+			<max-file-size>20971520</max-file-size>  <!-- 1MB * 20 -->
+			<max-reqest-size>41943040</max-reqest-size>  <!-- 40MB -->
+			<file-size-threshold>20971520</file-size-threshold>  <!-- 2MB -->
+		</multipart-config>
 	</servlet>
 		
 	<servlet-mapping>

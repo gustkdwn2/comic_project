@@ -23,10 +23,9 @@
 					</p>
 					<form onsubmit="return check();" class="forms-sample" action="/book/bookRegister" method="post" autocomplete="off">
 						<div class="form-group row">
-							<label for="exampleInputUsername2"
-								class="col-sm-3 col-form-label"><font
-								style="vertical-align: inherit;"><font
-									style="vertical-align: inherit;">책 이름</font></font></label>
+							<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
+								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책 이름</font></font>
+							</label>
 							<div class="col-sm-9">
 								<input id="book_name" type="text" class="form-control" name="book_name" required>
 							</div>
@@ -84,7 +83,10 @@
 								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">연재상태</font></font>
 							</label>
 							<div class="col-sm-9">
-								<input id="book_status" type="text" class="form-control" name="book_status" required>
+								<select id="book_status" class="form-control" name="book_status">
+		                            <option value="연재중"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">연재중</font></font></option>
+		                            <option value="완결"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">완결</font></font></option>
+	                            </select>
 							</div>
 						</div>
 						<button type="submit" class="btn btn-primary mr-2">
@@ -122,46 +124,40 @@
 		});
 		
 		if($.trim($("#book_name").val()) != $("#book_name").val()) {
-		      alert("앞,뒤 공백을 지워주세요.");
-		      $("#book_name").val("");
-		      $("#book_name").focus();
-		      return false;
+		    alert("앞,뒤 공백을 지워주세요.");
+		    $("#book_name").val("");
+		    $("#book_name").focus();
+			return false;
 		}
 		if(nameCheck > 0) {
 			alert("이미 있는 책입니다.");
-			 $("#book_name").val("");
-		     $("#book_name").focus();
-		     return false;
+			$("#book_name").val("");
+		    $("#book_name").focus();
+		    return false;
 		}
 		if($.trim($("#book_loc").val()) != $("#book_loc").val()) {
-		      alert("앞,뒤 공백을 지워주세요.");
-		      $("#book_loc").val("");
-		      $("#book_loc").focus();
-		      return false;
+		    alert("앞,뒤 공백을 지워주세요.");
+		    $("#book_loc").val("");
+		    $("#book_loc").focus();
+		    return false;
 		}
 		if($.trim($("#book_publisher").val()) != $("#book_publisher").val()) {
-		      alert("앞,뒤 공백을 지워주세요.");
-		      $("#book_publisher").val("");
-		      $("#book_publisher").focus();
-		      return false;
+		    alert("앞,뒤 공백을 지워주세요.");
+		    $("#book_publisher").val("");
+		    $("#book_publisher").focus();
+		    return false;
 		}
 		if($.trim($("#book_writer").val()) != $("#book_writer").val()) {
-		      alert("앞,뒤 공백을 지워주세요.");
-		      $("#book_writer").val("");
-		      $("#book_writer").focus();
-		      return false;
+		    alert("앞,뒤 공백을 지워주세요.");
+		    $("#book_writer").val("");
+		    $("#book_writer").focus();
+		    return false;
 		}
 		if($.trim($("#book_category").val()) != $("#book_category").val()) {
-		      alert("앞,뒤 공백을 지워주세요.");
-		      $("#book_category").val("");
-		      $("#book_category").focus();
-		      return false;
-		}
-		if($.trim($("#book_status").val()) != $("#book_status").val()) {
-		      alert("앞,뒤 공백을 지워주세요.");
-		      $("#book_status").val("");
-		      $("#book_status").focus();
-		      return false;
+		    alert("앞,뒤 공백을 지워주세요.");
+		    $("#book_category").val("");
+		    $("#book_category").focus();
+		    return false;
 		}
 		return true;
 		

@@ -11,7 +11,7 @@
 <title>책 재고 수정</title>
 </head>
 <body>
-	<div class="col-md-6 grid-margin stretch-card">
+	<div class="col-md-6 grid-margin stretch-card" style="margin-left: 300px; margin-top: 30px;">
 		<div class="card">
 			<div class="card-body">
 				<h4 class="card-title">
@@ -64,7 +64,13 @@
 						<label for="exampleInputPassword1">
 							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">연재상태</font></font>
 						</label>
-						<input id="book_status" name="book_status" type="text" class="form-control" value="<c:out value="${book.book_status}" />">
+						<select id="book_status" class="form-control" name="book_status" >
+							<option value="${book.book_status}" hidden>
+								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${book.book_status}</font></font>
+							</option>
+		                	<option value="연재중"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">연재중</font></font></option>
+		                	<option value="완결"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">완결</font></font></option>
+	                	</select>
 					</div>
 					<div class="form-group" align="center">
 						<button type="submit" class="btn btn-info">수정</button>
@@ -108,12 +114,6 @@
 		      alert("앞,뒤 공백을 지워주세요.");
 		      $("#book_category").val("");
 		      $("#book_category").focus();
-		      return false;
-		}
-		if($.trim($("#book_status").val()) != $("#book_status").val()) {
-		      alert("앞,뒤 공백을 지워주세요.");
-		      $("#book_status").val("");
-		      $("#book_status").focus();
 		      return false;
 		}
 		return true;

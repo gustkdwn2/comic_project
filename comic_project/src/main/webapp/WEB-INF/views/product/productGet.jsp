@@ -11,7 +11,7 @@
 <title>상품 재고 수정</title>
 </head>
 <body>
-	<div class="col-md-6 grid-margin stretch-card">
+	<div class="col-md-6 grid-margin stretch-card" style="margin-left: 300px; margin-top: 30px;">
 		<div class="card">
 			<div class="card-body">
 				<h4 class="card-title">

@@ -18,7 +18,7 @@
 					<div class="card">
 						<div class="card-body">
 							<p class="card-title">책 재고</p>
-							<div class="table-responsive">
+							<div class="table-responsive" style="overflow: hidden;">
 								<button data-toggle="modal"
 									data-target="#bookRegister" type="button" class="btn btn-secondary" style="margin-bottom: 10px;">책
 									등록</button>

@@ -19,7 +19,7 @@
 					<div class="card">
 						<div class="card-body">
 							<p class="card-title">상품 재고</p>
-							<div class="table-responsive">
+							<div class="table-responsive" style="overflow: hidden;">
 								<button style="margin-bottom: 10px;" data-toggle="modal" data-target="#productRegister" type="button"
 									class="btn btn-secondary">상품 등록</button>
 								<button id="orderBtn" style="margin-bottom: 10px;" type="button"
@@ -68,21 +68,21 @@
 	$(document).ready(function() {
 
 		$('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
-			pageLength : 10,
-			bPaginate : true,
-			bLengthChange : true,
-			lengthMenu : [ [ 10, 20, 30, -1 ], [ 10, 20, 30, "All" ] ],
-			bAutoWidth : false,
-			processing : true,
-			ordering : true,
-			serverSide : false,
-			searching : true,
-			bStateSave : true,
-			"iDisplayLength" : 10,
-			"language" : {
-				search : "Search : "
-			},
-		});
+	    	pageLength: 10, //처음 페이지에 처리 개수
+	        bPaginate: true, // 페이징 기능
+	        bLengthChange: true,
+	        lengthMenu : [ [ 10, 20, 30, -1 ], [ 10, 20, 30, "All" ] ], //show entries
+	        bAutoWidth: false,
+	        processing: true,
+	        ordering: true,
+	        serverSide: false,
+	        searching: true, // 검색 기능
+	        bStateSave: true, // 이전페이지 저장
+	        "iDisplayLength": 10,
+	        "language": {
+	          search: "Search :"
+	        },
+	    });
 
 		$('#orderBtn').click(function() {
 			self.location = "/productOrder/productOrderList";

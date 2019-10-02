@@ -47,9 +47,8 @@ public class ProductController {
 	
 	@PostMapping("/productRemove")
 	public String productRemove(@RequestParam("removeBtn") int product_num, RedirectAttributes rttr) {
-		if(service.productRemove(product_num)) { 
-			rttr.addFlashAttribute("result", "success"); 
-		}
+		service.productRemove(product_num);
+		rttr.addFlashAttribute("result", "success"); 
 		return "redirect:/product/productList";
 	}
 	

@@ -8,4 +8,6 @@ public interface ProductOrderService {
 	
 	public List<ProductOrderVO> productOrderList();
 	
+	public void productOrderRemove(int productOrder_num);
+	
 }

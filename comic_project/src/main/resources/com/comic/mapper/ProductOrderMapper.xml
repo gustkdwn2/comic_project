@@ -8,4 +8,16 @@
 		SELECT * FROM COMIC_PRODUCTORDER
 	</select>
 	
+	<delete id="productOrderDelete">
+		DELETE COMIC_PRODUCTORDER WHERE PRODUCTORDER_NUM=#{productOrder_num}
+	</delete>
+	
+	<select id="productOrderNumSelect" resultType="Integer">
+		SELECT COUNT(*) FROM COMIC_PRODUCTORDER WHERE PRODUCTORDER_NUM > #{productOrder_num}
+	</select>
+	
+	<update id="productOrderNumUpdate">
+		UPDATE COMIC_PRODUCTORDER SET PRODUCTORDER_NUM=#{productOrder_num}-1 WHERE PRODUCTORDER_NUM=#{productOrder_num}
+	</update>
+	
 </mapper>
