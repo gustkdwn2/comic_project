@@ -16,7 +16,7 @@
  	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 
 <link rel="stylesheet"
-	href="./resources/vendors/base/vendor.bundle.base.css">
+	href="/resources/vendors/base/vendor.bundle.base.css">
 <link rel="stylesheet"
 
 	href="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
@@ -170,21 +170,25 @@
 								</div>
 							</a>
 						</div></li>
-					<sec:authorize access="isAuthenticated()"> 
-					<sec:authentication property="principal.member.MEMBER_ID" var="member"/>
+					<c:if test="${not empty login}">
 					<li class="nav-item nav-profile dropdown"><a
 						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-						id="profileDropdown"><span class="nav-profile-name"><p>${member}님</p></span>
+						id="profileDropdown"><span class="hidden-xs">${login.MEMBER_ID}</span>
 					</a>
 						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 							aria-labelledby="profileDropdown">
-							<a class="dropdown-item"> <i
-								class="mdi mdi-settings text-primary"></i> Settings
-							</a> <a class="dropdown-item"> <i
-								class="mdi mdi-logout text-primary"></i> Logout
-							</a>
+							<a class="dropdown-item" href="${path}/member/MemberInfo">
+							<i class="mdi mdi-settings text-primary"></i> 내 프로필
+							</a> 
+							<a class="dropdown-item" href="${path}/member/MemberLogout">
+							<i class="mdi mdi-logout text-primary"></i> 로그아웃 </a>
 						</div></li>
-					</sec:authorize>
+					</c:if>
+					
+					<c:if test="${empty login}">
+						<a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onclick="location.href='${path}/member/MemberLogin'">로그인</a>
+						<a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onclick="location.href='${path}/member/MemberRegister'">회원가입</a>
+					</c:if>
 				</ul>
 				<button
 					class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"

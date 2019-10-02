@@ -32,8 +32,7 @@
               <div class="brand-logo">
                 <img src="/resources/images/logo.svg" alt="logo">
               </div>
-              <form class="pt-3" role="form" method="post" action="/login">
-              	<fieldset>
+              <form class="pt-3" role="form" method="post" action="/member/MemberLoginPost">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="username" placeholder="userid" autofocus>
                 </div>
@@ -42,13 +41,8 @@
                 </div>
                 
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="login" href="./index.jsp">로그인</a>
-                </div>
-                </fieldset>
-                <input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
-                
-                
+                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="login">로그인</a>
+                </div>           
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
                     <label class="form-check-label text-muted">
@@ -81,10 +75,18 @@
   <!-- endinject -->
   
   <script type="text/javascript">
-  	$("#login").on("click", function(e) {
+  
+	  var msg = "${msg}";
+	  if (msg === "REGISTERED") {
+	      alert("회원가입이 완료되었습니다. 로그인해주세요~");
+	  } else if (msg == "FAILURE") {
+	      alert("아이디와 비밀번호를 확인해주세요.");
+	  }
+  
+	  $("#login").on("click", function(e) {
 		e.preventDefault();
 		$("form").submit();
-	});
+	  });
   </script>
 </body>
 

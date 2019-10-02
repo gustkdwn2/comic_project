@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,31 +32,30 @@
               <div class="brand-logo">
                 <img src="/resources/images/logo.svg" alt="logo">
               </div>
-              <form class="pt-3" id="register" action="/member/AdminRegister" method="post">
-              <fieldset>
+              <form class="pt-3" role="form" method="post" action="/product/productList">
+              	<h2><c:out value="${error}"/></h2>
+				<h2><c:out value="${logout}"/></h2>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="MEMBER_ID" placeholder="ID">
+                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="username" placeholder="userid" autofocus>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="MEMBER_PWD" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
                 </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="MEMBER_NAME" placeholder="Name">
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" name="MEMBER_EMAIL" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="MEMBER_PHONE_NUMBER" placeholder="Phone">
-                </div>
-               </fieldset>
-                <input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+                
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onclick="document.getElementById('register').submit()">회원가입</a>
+                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="login">로그인</a>
+                </div>
+                <div class="my-2 d-flex justify-content-between align-items-center">
+                  <div class="form-check">
+                    <label class="form-check-label text-muted">
+                      <input type="checkbox" class="form-check-input">
+                      Keep me signed in
+                    </label>
+                  </div>
+                  <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                   <a href="/member/AdminLogin" class="text-primary">로그인하러가기</a>
+					<a href="/member/EmployeeRegister" class="text-primary">회원가입</a>
                 </div>
               </form>
             </div>
@@ -74,6 +75,13 @@
   <script src="/resources/js/hoverable-collapse.js"></script>
   <script src="/resources/js/template.js"></script>
   <!-- endinject -->
+  
+  <script type="text/javascript">
+  	$("#login").on("click", function(e) {
+		e.preventDefault();
+		$("form").submit();
+	});
+  </script>
 </body>
 
 </html>

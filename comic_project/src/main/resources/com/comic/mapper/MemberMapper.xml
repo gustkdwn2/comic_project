@@ -3,38 +3,37 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.comic.mapper.MemberMapper">
-
+	
+	<resultMap id="MemverVOResultMap" type="com.comic.model.MemberVO">
+        <id property="MEMBER_ID" column="MEMBER_ID"/>
+        <result property="MEMBER_PWD" column="MEMBER_PWD"/>
+        <result property="MEMBER_NAME" column="MEMBER_NAME"/>
+        <result property="MEMBER_EMAIL" column="MEMBER_EMAIL"/>
+        <result property="MEMBER_PHONE_NUMBER" column="MEMBER_PHONE_NUMBER"/>
+    </resultMap>
+	
 	<insert id="memberInsert">
-		INSERT ALL INTO COMIC_MEMBER VALUES (#{MEMBER_ID},
+		INSERT INTO COMIC_MEMBER VALUES (#{MEMBER_ID},
 		#{MEMBER_PWD}, #{MEMBER_NAME}, #{MEMBER_EMAIL},
 		#{MEMBER_PHONE_NUMBER})
-		INTO COMIC_AUTHORITIES(MEMBER_ID,AUTH) VALUES
-		(#{MEMBER_ID},'ROLE_ADMIN')
-		SELECT * FROM DUAL
+	</insert>
+	
+	<insert id="employeeInsert">
+		INSERT INTO COMIC_EMPLOYEE VALUES ((SELECT NVL(MAX(EMPLOYEE_NUM),0)+1 FROM COMIC_EMPLOYEE),
+		#{EMPLOYEE_PWD}, #{EMPLOYEE_NAME}, #{EMPLOYEE_PHONE}, #{EMPLOYEE_ACCOUNT}, SYSDATE, #{EMPLOYEE_POSITION}, #{EMPLOYEE_PAY})
 	</insert>
 
-	<resultMap type="com.comic.model.MemberVO" id="memberMap">
-		<id property="MEMBER_ID" column="MEMBER_ID" />
-		<result property="MEMBER_ID" column="MEMBER_ID" />
-		<result property="MEMBER_PWD" column="MEMBER_PWD" />
-		<result property="MEMBER_NAME" column="MEMBER_NAME" />
-		<result property="MEMBER_EMAIL" column="MEMBER_EMAIL" />
-		<result property="MEMBER_PHONE_NUMBER" column="MEMBER_PHONE_NUMBER" />
-		<collection property="authList" resultMap="authMap">
-		</collection>
-	</resultMap>
-
-	<resultMap type="com.comic.model.AuthVO" id="authMap">
-		<result property="MEMBER_ID" column="MEMBER_ID" />
-		<result property="auth" column="auth" />
-	</resultMap>
-
-	<select id="read" resultMap="memberMap">
-		SELECT
-		mem.MEMBER_ID, MEMBER_PWD, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE_NUMBER, auth
-		FROM
-		COMIC_MEMBER mem LEFT OUTER JOIN COMIC_AUTHORITIES auth on mem.MEMBER_ID = auth.MEMBER_ID
-		WHERE mem.MEMBER_ID = #{MEMBER_ID}
+	<select id="login" resultMap="MemverVOResultMap">
+		SELECT * FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
 	</select>
-
+	
+	<update id="keepLogin">
+		UPDATE COMIC_MEMBER SET SESSION_KEY = #{sessionId},
+		SESSION_LIMIT = #{sessionLimit} WHERE MEMBER_ID = #{MEMBER_ID}
+	</update>
+	
+	<select id="checkUserWithSessionKey" resultMap="MemberVOResultMap">
+		SELECT * FROM COMIC_MEMBER WHERE SESSION_KEY = #{value}
+	</select>
+	
 </mapper>

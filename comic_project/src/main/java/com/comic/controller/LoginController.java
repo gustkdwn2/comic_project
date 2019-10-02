@@ -1,13 +1,25 @@
 package com.comic.controller;
 
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.core.Authentication;
+import java.util.Date;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.WebUtils;
 
+import com.comic.model.EmployeeVO;
+import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
 import com.comic.service.MemberService;
 
@@ -21,58 +33,78 @@ import lombok.extern.log4j.Log4j;
 public class LoginController {
 	
 	private MemberService service;
-
-	@PostAuthorize("permitAll()")
-	@GetMapping("/MemberLogin")
-	public void AdminLogin() {
+	private BCryptPasswordEncoder passEncoder;
+	
+	//멤버  회원가입
+	
+	@GetMapping("/MemberRegister")
+	public void MemberRegister() {
 		
 	}
 	
-	@PostAuthorize("permitAll()")
-	@GetMapping("/AdminRegister")
-	public void Register() {
-		
-	}
-	
-	@PostAuthorize("permitAll()")
-	@PostMapping("/AdminRegister")
-	public String Register(MemberVO vo) {
+	@PostMapping("/MemberRegister")
+	public String MemberRegister(MemberVO vo, RedirectAttributes redirectAttributes) throws Exception {
 		service.memberRegister(vo);
-		return "redirect:/member/AdminLogin";
+		redirectAttributes.addFlashAttribute("msg", "REGISTERED");
+		return "redirect:/member/MemberLogin";
 	}
 	
-	@GetMapping("/accessError")
-	public void accessDenied(Authentication auth, Model model) {
+	//직원 추가
+	@GetMapping("/EmployeeRegister")
+	public void EmployeeRegister() {
 		
-		log.info("access Denied : " + auth);
-		
-		model.addAttribute("msg", "Access Denied");
 	}
 	
+	@PostMapping("/EmployeeRegister")
+	public String EmployeeRegister(EmployeeVO vo) {
+		service.employeeRegister(vo);
+		return "redirect:/member/EmployeeLogin";
+	}
 	
-	@GetMapping("/AdminLogin")
-	public void loginInput(String error, String logout, Model model) {
+	// 로그인 페이지
+	@GetMapping("/MemberLogin")
+	public String loginGET(@ModelAttribute("loginVO") LoginVO loginVO) {
+		return "/member/MemberLogin";
+	}
+	
+	// 로그인 
+	@PostMapping("/MemberLoginPost")
+	public void LoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
 		
-		log.info("error: " + error);
-		log.info("logout: " + logout);
+		MemberVO memberVO = service.memberLogin(loginVO);
 		
-		if (error != null) {
-			model.addAttribute("error", "아이디 또는 비밀번호가 틀렸습니다.");
+		if(memberVO == null || passEncoder.matches(loginVO.getMEMBER_PWD(), memberVO.getMEMBER_PWD())) {
+			return;
 		}
 		
-		if (logout != null) {
-			model.addAttribute("logout", "Logout!!");
+		model.addAttribute("member", memberVO);
+		
+		if(loginVO.isUseCookie()) {
+			int amount = 60 * 60 * 24 * 7;
+			Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
+			service.keepLogin(memberVO.getMEMBER_ID(), httpSession.getId(), sessionLimit);
 		}
 	}
 	
-	@GetMapping("/customLogout")
-	public void logoutGet() {
+	// 로그아웃 처리
+	@GetMapping("/MemberLogout")
+	public String logout(HttpServletRequest request,
+						 HttpServletResponse response,
+						 HttpSession httpSession) throws Exception {
 		
-		log.info("custom logout");
-	}
-	
-	@PostMapping("/customLogout")
-	public void logoutPost() {
-		log.info("post custom logout");
+		Object object = httpSession.getAttribute("login");
+		if (object != null) {
+			MemberVO membervo = (MemberVO) object;
+			httpSession.removeAttribute("login");
+			httpSession.invalidate();
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+			if (loginCookie != null) {
+				loginCookie.setPath("/");
+                loginCookie.setMaxAge(0);
+                response.addCookie(loginCookie);
+                service.keepLogin(membervo.getMEMBER_ID(), "none", new Date());
+			}
+		}
+		return "/member/MemberLogout";
 	}
 }

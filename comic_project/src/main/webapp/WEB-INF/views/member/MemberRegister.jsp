@@ -31,7 +31,6 @@
                 <img src="/resources/images/logo.svg" alt="logo">
               </div>
               <form class="pt-3" id="register" action="/member/MemberRegister" method="post">
-              <fieldset>
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg" name="MEMBER_ID" placeholder="ID">
                 </div>
@@ -47,9 +46,6 @@
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg" name="MEMBER_PHONE_NUMBER" placeholder="Phone">
                 </div>
-               </fieldset>
-                <input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
                 <div class="mt-3">
                   <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onclick="document.getElementById('register').submit()">회원가입</a>
                 </div>
