@@ -413,7 +413,6 @@ body {
 			}
 		}
 
-
 		function method_startnstop2(id,num,starttime,status) {
 
 			if (!check[num]) {
@@ -422,7 +421,7 @@ body {
 				/* 테스트용 */
 				var order_status = "unavail";
 
-				document.getElementById('user' + num).innerHTML = id;
+				document.getElementById('user'+ num).innerHTML = id;
 				document.getElementById('user_status' + num).innerHTML = status;
 				document.getElementById('order_status' + num).innerHTML = order_status;
 				

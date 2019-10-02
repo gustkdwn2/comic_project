@@ -64,8 +64,8 @@
 		<!-- Modal content -->
 		<div class="modal-content">
 			<p style="text-align: center; line-height: 3.5;">
-				<span style="font-size: 14pt;"><b><span
-						style="font-size: 24pt;">재고 변경</span></b></span>
+				<span style="font-size: 14pt;">
+				<b><span style="font-size: 24pt;">재고 변경</span></b></span>
 			</p>
 			<p style="text-align: center; line-height: 1.5;">
 				<br />
