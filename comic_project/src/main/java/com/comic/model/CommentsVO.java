@@ -3,14 +3,16 @@ package com.comic.model;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 public class CommentsVO {
 	
-	private int CMNT_NUM;
-	private Long CMNT_BOARDNUM;
-    private String CMNT_ID;
-    private String CMNT_CONTENT;
-    private Date CMNT_DATE;
-
+	private int cmnt_num;
+	private long board_num;
+    private String cmnt_id;
+    private String cmnt_content;
+    private Date cmnt_date;
+   
 }

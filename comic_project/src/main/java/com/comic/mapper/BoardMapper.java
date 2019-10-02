@@ -13,11 +13,13 @@ public interface BoardMapper {
 	
 //	public void insertSelectKey(CustomerBoardVO board);
 	
-	public int delete(Long BOARD_NUM);
+	public int delete(Long board_num);
+	
+	public int AlsoDelete(Long board_num);
 	
 	public int update(BoardVO board);
 	
-	public BoardVO read(Long BOARD_NUM);
+	public BoardVO read(Long board_num);
 	
 	public List<BoardVO> getListWithPaging(CustomerCenterCriteriaVO cri);
 	

@@ -2,78 +2,42 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="com.comic.mapper.CommentsMapper">
 	
 	<insert id="insert">
 	
-		insert into COMIC_COMMENTS 
-		(CMNT_NUM, BOARD_NUM, CMNT_CONTENT, CMNT_ID, CMNT_DATE)
-		values ((SELECT NVL(MAX(CMNT_NUM),0)+1 from COMIC_COMMENTS), 
-		#{BOARD_NUM}, #{CMNT_CONTENT}, #{CMNT_ID}, sysdate)
+		insert into COMIC_COMMENTS (CMNT_NUM, BOARD_NUM, CMNT_CONTENT, CMNT_ID, CMNT_DATE)
+		values ((SELECT NVL(MAX(cmnt_num),0)+1 from COMIC_COMMENTS where BOARD_NUM= #{board_num}), 
+		#{board_num}, #{cmnt_content}, #{cmnt_id}, sysdate)
 		
 	</insert>
 
-	<select id="read" resultType="com.comic.model.CommentsVO">
+	<select id="getList" resultType="com.comic.model.CommentsVO">
 	
-		select * from COMIC_COMMENTS where CMNT_NUM=#{CMNT_NUM}
+		select * from COMIC_COMMENTS where BOARD_NUM=#{board_num} order by CMNT_NUM desc
 	
 	</select>
 	
 	<update id="update">
 	
-		update COMIC_COMMENTS set CMNT_CONTENT = #{CMNT_CONTENT},
-		CMNT_DATE = sysdate where CMNT_NUM=#{CMNT_NUM}
+		update COMIC_COMMENTS set CMNT_CONTENT = #{cmnt_content},
+		CMNT_DATE = sysdate where CMNT_NUM=#{cmnt_num}
 	
 	</update>
 	
+	
+	
 	<delete id="delete">
 	
-		delete from COMIC_COMMENTS where CMNT_NUM=#{CMNT_NUM}
-	
-	
+		delete from COMIC_COMMENTS where CMNT_NUM=#{cmnt_num}
 	</delete>
 	
-	<select id="getCountByBOARD_NUM" resultType="int">
+	<select id="getCountByBoard_num" resultType="int">
 		
-		select count(CMNT_NUM) from COMIC_COMMENTS where BOARD_NUM= #{BOARD_NUM}
+		select count(CMNT_NUM) from COMIC_COMMENTS where BOARD_NUM= #{board_num}
 	
 	</select>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

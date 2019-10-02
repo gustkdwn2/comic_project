@@ -6,12 +6,6 @@ import lombok.Data;
 
 @Data
 public class CustomerCenterCriteriaVO {
-	/*
-	 * public String getXxx() { return xxx; }
-	 * 
-	 * public void setXxx(String xxx) { this.xxx = xxx; }
-	 */
-	
 	  private int pageNum;
 	  private int amount;
 	  

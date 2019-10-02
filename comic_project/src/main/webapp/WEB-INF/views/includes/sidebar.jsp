@@ -74,7 +74,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/CustomerCenter/boardList"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">고객센터</span>
+							class="menu-title">건의 게시판</span>
 					</a></li>
 				</ul>
 		</nav>

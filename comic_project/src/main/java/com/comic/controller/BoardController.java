@@ -53,19 +53,19 @@ public class BoardController {
 		
 		service.register(board);
 		
-		rttr.addFlashAttribute("result", board.getBOARD_NUM());
+		rttr.addFlashAttribute("result", board.getBoard_num());
 		
 		return "redirect:/CustomerCenter/boardList";
 		
 	}
 	
 	@GetMapping({"/boardGet","/boardModify"})
-	public void get(@RequestParam("BOARD_NUM") Long BOARD_NUM,
+	public void get(@RequestParam("board_num") Long board_num,
 			@ModelAttribute("cri") CustomerCenterCriteriaVO cri, Model model) {
 		
 		log.info("\r\n####get or modify : "+model);
 		
-		model.addAttribute("board", service.get(BOARD_NUM));
+		model.addAttribute("board", service.get(board_num));
 	}
 	
 	@PostMapping("/boardModify")
@@ -81,11 +81,11 @@ public class BoardController {
 	}
 	
 	@PostMapping("/boardRemove")
-	public String remove(@RequestParam("BOARD_NUM") Long BOARD_NUM, CustomerCenterCriteriaVO cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("board_num") Long board_num, CustomerCenterCriteriaVO cri, RedirectAttributes rttr) {
 		
-		log.info("\r\n####remove board_num : "+BOARD_NUM);
+		log.info("\r\n####remove board_num : "+board_num);
 		
-			if(service.remove(BOARD_NUM)) {
+			if(service.remove(board_num)) {
 				rttr.addFlashAttribute("result", "성공");
 			}
 		return "redirect:/CustomerCenter/boardList"+cri.getListLink(); 

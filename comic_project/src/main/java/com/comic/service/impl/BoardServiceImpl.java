@@ -34,12 +34,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO get(Long BOARD_NUM) {
+	public BoardVO get(Long board_num) {
 		// TODO Auto-generated method stub
 		
-		log.info("\r\n#### get #####"+BOARD_NUM);
+		log.info("\r\n#### get #####"+board_num);
 		
-		return mapper.read(BOARD_NUM);
+		return mapper.read(board_num);
 	}
 
 	@Override
@@ -51,12 +51,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean remove(Long BOARD_NUM) {
+	public boolean remove(Long board_num) {
 		// TODO Auto-generated method stub
 		
-		log.info("\r\n#### remove #####"+BOARD_NUM);
-		
-		return mapper.delete(BOARD_NUM) == 1;
+		log.info("\r\n#### remove #####"+board_num);
+		mapper.AlsoDelete(board_num);
+		return mapper.delete(board_num) == 1;
 	}
 
 	@Override

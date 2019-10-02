@@ -38,24 +38,29 @@
 	
 	<insert id="insert">
 		insert into COMIC_BOARD (BOARD_NUM, BOARD_TITLE, BOARD_CONTENT, BOARD_ID, BOARD_DATE)
-		values ((SELECT NVL(MAX(BOARD_NUM),0)+1 from COMIC_BOARD), #{BOARD_TITLE}, #{BOARD_CONTENT}, #{BOARD_ID}, SYSDATE)
+		values ((SELECT NVL(MAX(BOARD_NUM),0)+1 from COMIC_BOARD), #{board_title}, #{board_content}, #{board_id}, SYSDATE)
 	</insert>
 	
 	<select id="read" resultType="com.comic.model.BoardVO">
-		select * from COMIC_BOARD where BOARD_NUM = #{BOARD_NUM}
+		select * from COMIC_BOARD where BOARD_NUM = #{board_num}
 	</select>
 	
+	<delete id="AlsoDelete">
+		delete COMIC_COMMENTS where BOARD_NUM = #{board_num}
+	</delete>
+	
 	<delete id="delete">
-		delete COMIC_BOARD where BOARD_NUM = #{BOARD_NUM}
+		delete COMIC_BOARD where BOARD_NUM = #{board_num}
+		
 	</delete>
 	
 	<update id="update">
 		update COMIC_BOARD set
-		BOARD_TITLE = #{BOARD_TITLE},
-		BOARD_CONTENT=#{BOARD_CONTENT},
-		BOARD_ID = #{BOARD_ID},
+		BOARD_TITLE = #{board_title},
+		BOARD_CONTENT=#{board_content},
+		BOARD_ID = #{board_id},
 		BOARD_DATE = SYSDATE	
-		where BOARD_NUM = #{BOARD_NUM}
+		where BOARD_NUM = #{board_num}
 	</update>
 	
 	<sql id="criteria">
