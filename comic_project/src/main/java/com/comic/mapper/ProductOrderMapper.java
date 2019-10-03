@@ -14,4 +14,10 @@ public interface ProductOrderMapper {
 	
 	public void productOrderNumUpdate(int productOder_num);
 	
+	public void productOrderInsert(ProductOrderVO vo);
+	
+	public ProductOrderVO productRead(int productOrder_num);
+	
+	public int productOrderUpdate(ProductOrderVO vo);
+	
 }

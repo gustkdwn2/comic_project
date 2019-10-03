@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.comic.model.ProductOrderVO;
 import com.comic.service.ProductOrderService;
 import com.comic.service.ProductService;
 
@@ -27,10 +28,29 @@ public class ProductOrderController {
 		model.addAttribute("productList", productService.productGetList());
 	}
 	
+	@GetMapping("/productOrderGet")
+	public void productOrderGet(@RequestParam("productOrder_num") int productOrder_num, Model model) {
+		model.addAttribute("productOrder", service.productOrderGet(productOrder_num));
+	}
+	
 	@PostMapping("/productOrderRemove")
 	public String productOrderRemove(@RequestParam("removeBtn") int productOrder_num, RedirectAttributes rttr) {
 		service.productOrderRemove(productOrder_num);
 		rttr.addFlashAttribute("result", "success");
+		return "redirect:/productOrder/productOrderList";
+	}
+	
+	@PostMapping("/productOrderRegister")
+	public String productOrderRegister(ProductOrderVO vo) {
+		service.productOrderRegister(vo);
+		return "redirect:/productOrder/productOrderList";
+	}
+	
+	@PostMapping("/productOrderModify")
+	public String productOrderModify(ProductOrderVO vo, RedirectAttributes rttr) {
+		if(service.productOrderModify(vo)) {
+			rttr.addFlashAttribute("result", "success");
+		}
 		return "redirect:/productOrder/productOrderList";
 	}
 	

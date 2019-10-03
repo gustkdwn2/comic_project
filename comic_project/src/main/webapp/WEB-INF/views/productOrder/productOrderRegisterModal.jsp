@@ -21,7 +21,7 @@
 						<p class="card-description">
 							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font>
 						</p>
-						<form class="forms-sample" action="/product/productOrderRegister" method="post" autocomplete="off">
+						<form class="forms-sample" action="/productOrder/productOrderRegister" method="post" autocomplete="off">
 							<div class="form-group row">
 								<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
 									<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상품 이름</font></font>
@@ -65,27 +65,3 @@
 	</div>
 </div>
 <!-- End ProductRegister Modal -->
-<script type="text/javascript">
-	
-	/* function check() {
-		
-		var product_name = $('#product_name').val();
-		var nameCheck = 0;
-		
-		$.ajax({
-			type : 'POST',
-			data : {product_name : product_name},
-			async: false,
-			url : "/product/productNameCheck",
-			dataType : "json",
-			success : function(result) {
-
-				nameCheck = result;
-
-				return;
-			}
-		});
-		
-	} */
-	
-</script>

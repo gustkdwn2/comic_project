@@ -27,7 +27,7 @@
 										<thead>
 											<tr>
 												<th>발주 번호</th>
-												<th>상품 번호</th>
+												<th>상품 이름</th>
 												<th>발주 구매가</th>
 												<th>발주 수량</th>
 												<th>발주 날짜</th>
@@ -39,7 +39,7 @@
 											<tr>
 												<td><c:out value="${productOrder.productOrder_num}" /></td>
 												<td>
-													<a href='/product/productGet?product_num=<c:out value="${productOrder.productOrder_num}" />'><c:out
+													<a href='/productOrder/productOrderGet?productOrder_num=<c:out value="${productOrder.productOrder_num}" />'><c:out
 													value="${productOrder.productOrder_product_name}" /></a>
 												</td>
 												<td><c:out value="${productOrder.productOrder_cost}" /></td>

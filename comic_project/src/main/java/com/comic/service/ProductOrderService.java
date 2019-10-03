@@ -10,4 +10,10 @@ public interface ProductOrderService {
 	
 	public void productOrderRemove(int productOrder_num);
 	
+	public void productOrderRegister(ProductOrderVO vo);
+	
+	public ProductOrderVO productOrderGet(int productOrder_num);
+	
+	public boolean productOrderModify(ProductOrderVO vo);
+	
 }

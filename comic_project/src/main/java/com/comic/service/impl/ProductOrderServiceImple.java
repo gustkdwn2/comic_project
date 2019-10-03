@@ -33,4 +33,19 @@ public class ProductOrderServiceImple implements ProductOrderService {
 		}
 	}
 
+	@Override
+	public void productOrderRegister(ProductOrderVO vo) {
+		mapper.productOrderInsert(vo);
+	}
+
+	@Override
+	public ProductOrderVO productOrderGet(int productOrder_num) {
+		return mapper.productRead(productOrder_num);
+	}
+
+	@Override
+	public boolean productOrderModify(ProductOrderVO vo) {
+		return mapper.productOrderUpdate(vo) == 1;
+	}
+
 }
