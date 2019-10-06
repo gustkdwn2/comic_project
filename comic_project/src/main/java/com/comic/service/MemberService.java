@@ -13,7 +13,7 @@ public interface MemberService {
 	// 직원 회원가입
 	public void employeeRegister(EmployeeVO vo);
 	// 일반 로그인
-	public MemberVO memberLogin(LoginVO loginVO) throws Exception;
+	MemberVO memberLogin(LoginVO loginVO) throws Exception;
 	// 로그인 유지 처리
 	public void keepLogin(String MEMBER_ID, String id, Date sessionLimit) throws Exception;
 	// 세션키 검증

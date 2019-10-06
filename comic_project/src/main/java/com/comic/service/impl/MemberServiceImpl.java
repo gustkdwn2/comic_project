@@ -44,6 +44,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO memberLogin(LoginVO loginVO) throws Exception{
+		System.out.println("멤버 서비스impl 도착");
 		return mapper.login(loginVO);
 	}
 

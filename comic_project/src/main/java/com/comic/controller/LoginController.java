@@ -72,8 +72,9 @@ public class LoginController {
 	public void LoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
 		
 		MemberVO memberVO = service.memberLogin(loginVO);
+		boolean passMatch = passEncoder.matches(loginVO.getMEMBER_PWD(), memberVO.getMEMBER_PWD());
 		
-		if(memberVO == null || passEncoder.matches(loginVO.getMEMBER_PWD(), memberVO.getMEMBER_PWD())) {
+		if(memberVO == null || !passMatch) {
 			return;
 		}
 		

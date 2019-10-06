@@ -34,10 +34,10 @@
               </div>
               <form class="pt-3" role="form" method="post" action="/member/MemberLoginPost">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="username" placeholder="userid" autofocus>
+                  <input type="text" class="form-control form-control-lg" id="MEMBER_ID" name="MEMBER_ID" placeholder="userid" autofocus>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="MEMBER_PWD" name="MEMBER_PWD" placeholder="Password">
                 </div>
                 
                 <div class="mt-3">
