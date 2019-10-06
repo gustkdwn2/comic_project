@@ -22,7 +22,7 @@
 							<div class="table-responsive" style="overflow: hidden;">
 								<button style="margin-bottom: 10px;" data-toggle="modal" data-target="#productOrderRegister" type="button"
 										class="btn btn-secondary">발주 등록</button>
-								<form onsubmit="return removeBtn()" method="post">
+								<form method="post">
 									<table id="lossTable" class="table  table-striped">
 										<thead>
 											<tr>
@@ -88,17 +88,6 @@
 		});
 		
 	});
-
-	function checkBtn() {
-		return true;
-	}
-
-	function removeBtn() {
-		if(!confirm("삭제 하시겠습니까?")){
-			return false;
-		}
-		return true;
-	}
 	
 </script>
 </html>
