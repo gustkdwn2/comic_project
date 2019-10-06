@@ -45,6 +45,13 @@ public class ManagerController {
 
 		return "/younghak/Managerpos";
 	}
+	
+	@RequestMapping(value = { "/Manager_management" }, method = RequestMethod.GET)
+	/* @ResponseBody */
+	public String manager_managerment(Locale locale, Model model) {
+
+		return "/younghak/Manager_management";
+	}
 
 	@GetMapping("importdetail")
 	public String younghakimportdetail(Model model) {
@@ -112,6 +119,13 @@ public class ManagerController {
 			for (int j = 0; j < curtimearr.length; j++) {
 				usetimearr[j]=(Integer.parseInt(curtimearr[j]))-(Integer.parseInt(starttimearr[j]));
 			}
+			System.out.println("usetimearr[0] = "+usetimearr[0]);
+			System.out.println("roomuse_num = "+list.get(i).getRoomuse_num());
+			if(usetimearr[0]<0) {
+				usetimearr[0]+=24;
+			}
+			
+			
 			time+=usetimearr[0]*3600;//시
 			time+=usetimearr[1]*60;//분
 			time+=usetimearr[2];//초

@@ -9,7 +9,7 @@
 	values (#{roomuse_id},#{roomuse_num},#{roomuse_status},sysdate)
 	</insert>
 	
-	<delete id ="roomstop" >
+	<delete id ="roomstop">
 		delete comic_roomuse where roomuse_num=#{roomuse_num}
 	</delete>
 	

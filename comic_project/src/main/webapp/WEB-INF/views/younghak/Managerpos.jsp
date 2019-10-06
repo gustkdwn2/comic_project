@@ -111,38 +111,7 @@ body {
 	<div class="main-panel">
 		<div class="content-wrapper">
 			<div class="row">
-				<div class="col-12 grid-margin stretch-card">
-					<div class="card">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="card-body">
-									<%-- <h4 class="card-title">Single color buttons</h4>
-                      <p class="card-description">Add class <code>.btn-{color}</code> for buttons in theme colors</p> --%>
-									<div class="template-demo"></div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="card-body">
-
-									<div class="template-demo">
-										<button type="button"
-											onclick="javascript:window.location.href='importdetail'"
-											class="btn btn-primary btn-rounded btn-fw">수입 상세 검색</button>
-										<button type="button"
-											onclick="javascript:window.location.href='Managerpos'"
-											class="btn btn-danger btn-rounded btn-fw">포스기 화면</button>
-										<button type="button"
-											onclick="javascript:window.location.href='login'"
-											class="btn btn-secondary btn-rounded btn-fw">출퇴근하기</button>
-										<button type="button"
-											class="btn btn-success btn-rounded btn-fw">직원관리</button>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<%@ include file="./younghak_header.jsp"%>
 				<div class="col-12 grid-margin stretch-card">
 					<div class="card">
 						<div class="row">
@@ -501,6 +470,12 @@ body {
 			} else {
 				//console.log(time);
 				time =parseInt(time)//가끔 여기서 사용된 파라미터가 string형태로 읽어와져서 형변환을 한번해준다.
+				//if(time%10==0){					
+					
+					//setTimeout(function() {
+						//ajaxtogetdb_comic_room_uselist();
+					//}, 1000)
+					//}
 				time += 1;
 				hour = Math.floor(time / 3600);
 				hour = time_modify(hour);
