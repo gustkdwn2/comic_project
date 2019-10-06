@@ -48,4 +48,10 @@ public class ProductOrderServiceImple implements ProductOrderService {
 		return mapper.productOrderUpdate(vo) == 1;
 	}
 
+	@Override
+	public void productOrderCheck(int productOrder_num) {
+		mapper.productOrderCheck(productOrder_num);
+		mapper.productOrderDelete(productOrder_num);
+	}
+
 }

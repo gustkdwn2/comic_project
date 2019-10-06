@@ -34,9 +34,8 @@ public class ProductOrderController {
 	}
 	
 	@PostMapping("/productOrderRemove")
-	public String productOrderRemove(@RequestParam("removeBtn") int productOrder_num, RedirectAttributes rttr) {
+	public String productOrderRemove(@RequestParam("removeBtn") int productOrder_num) {
 		service.productOrderRemove(productOrder_num);
-		rttr.addFlashAttribute("result", "success");
 		return "redirect:/productOrder/productOrderList";
 	}
 	
@@ -47,10 +46,15 @@ public class ProductOrderController {
 	}
 	
 	@PostMapping("/productOrderModify")
-	public String productOrderModify(ProductOrderVO vo, RedirectAttributes rttr) {
-		if(service.productOrderModify(vo)) {
-			rttr.addFlashAttribute("result", "success");
-		}
+	public String productOrderModify(ProductOrderVO vo) {
+		service.productOrderModify(vo);
+		return "redirect:/productOrder/productOrderList";
+	}
+	
+	@PostMapping("/productOrderCheck")
+	public String productOrderCheck(@RequestParam("checkBtn") int productOrder_num) {
+		System.out.println(productOrder_num);
+		service.productOrderCheck(productOrder_num);
 		return "redirect:/productOrder/productOrderList";
 	}
 	

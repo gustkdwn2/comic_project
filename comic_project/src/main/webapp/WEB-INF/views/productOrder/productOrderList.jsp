@@ -22,7 +22,7 @@
 							<div class="table-responsive" style="overflow: hidden;">
 								<button style="margin-bottom: 10px;" data-toggle="modal" data-target="#productOrderRegister" type="button"
 										class="btn btn-secondary">발주 등록</button>
-								<form onsubmit="return remove();" action="/productOrder/productOrderRemove" method="post">
+								<form onsubmit="return removeBtn()" method="post">
 									<table id="lossTable" class="table  table-striped">
 										<thead>
 											<tr>
@@ -45,7 +45,12 @@
 												<td><c:out value="${productOrder.productOrder_cost}" /></td>
 												<td><c:out value="${productOrder.productOrder_qty}" /></td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd" value="${productOrder.product_date}" /></td>
-												<td><button name="removeBtn" value="${productOrder.productOrder_num}" type="submit" class="btn btn-danger">삭제</button></td>
+												<td>
+													<button name="checkBtn" value="${productOrder.productOrder_num}" type="submit" 
+													formaction="/productOrder/productOrderCheck" class="btn btn-success">확인</button>
+													<button name="removeBtn" value="${productOrder.productOrder_num}" type="submit" 
+													formaction="/productOrder/productOrderRemove" class="btn btn-danger">취소</button>
+												</td>
 											</tr>
 										</c:forEach>
 	
@@ -84,8 +89,11 @@
 		
 	});
 
-	function remove() {
+	function checkBtn() {
+		return true;
+	}
 
+	function removeBtn() {
 		if(!confirm("삭제 하시겠습니까?")){
 			return false;
 		}

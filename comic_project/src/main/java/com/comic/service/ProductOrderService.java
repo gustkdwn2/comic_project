@@ -16,4 +16,6 @@ public interface ProductOrderService {
 	
 	public boolean productOrderModify(ProductOrderVO vo);
 	
+	public void productOrderCheck(int productOrder_num);
+	
 }
