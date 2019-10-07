@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comic.model.BookVO;
@@ -30,11 +32,6 @@ public class BookController {
 		model.addAttribute("book", service.bookGet(book_name));
 	}
 	
-	@GetMapping("/bookRegister")
-	public void bookRegister() {
-		
-	}
-	
 	@PostMapping("/bookRegister")
 	public String bookRegister(BookVO vo) {
 		service.bookRegister(vo);
@@ -50,11 +47,22 @@ public class BookController {
 	}
 	
 	@PostMapping("/bookRemove")
-	public String bookRemove(@RequestParam("book_name") String book_name, RedirectAttributes rttr) {
+	public String bookRemove(@RequestParam("removeBtn") String book_name, RedirectAttributes rttr) {
 		if(service.bookRemove(book_name)) {
 			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:/book/bookList";
+	}
+	
+	@PostMapping("/bookNameCheck")
+	 @ResponseBody
+	public int productNameCheck(@RequestParam("book_name") String book_name) {
+		int result = 0;
+		BookVO nameCheck = service.bookNameCheck(book_name);
+		if(nameCheck != null) {
+			result = 1;
+		}
+		return result;
 	}
 	
 }

@@ -14,6 +14,12 @@ public interface ProductMapper {
 	
 	public int productUpdate(ProductVO vo);
 	
-	public int productDelete(int product_num);
+	public void productDelete(int product_num);
+	
+	public ProductVO productNameCheck(String product_name);
+	
+	public void productNumUpdate(int product_num);
+	
+	public int productNumSelect(int product_num);
 	
 }

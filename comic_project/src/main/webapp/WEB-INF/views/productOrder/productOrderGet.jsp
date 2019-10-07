@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 재고 수정</title>
+<title>발주 수정</title>
 </head>
 <body>
 	<div class="col-md-6 grid-margin stretch-card" style="margin-left: 300px; margin-top: 30px;">
@@ -16,38 +16,38 @@
 			<div class="card-body">
 				<h4 class="card-title">
 					<font style="vertical-align: inherit;"><font
-						style="vertical-align: inherit;">상품 수정</font></font>
+						style="vertical-align: inherit;">발주 수정</font></font>
 				</h4>
-				<form onsubmit="return check();" class="forms-sample" action="/product/productModify" method="post" autocomplete="off">
+				<form class="forms-sample" action="/productOrder/productOrderModify" method="post" autocomplete="off">
 					<div class="form-group">
 						<label for="exampleInputUsername1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상품 번호</font></font>
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">발주 번호</font></font>
 						</label>
-						<input name="product_num" readonly="readonly" class="form-control" value="<c:out value="${product.product_num}" />">
+						<input name="productOrder_num" readonly="readonly" class="form-control" value="<c:out value="${productOrder.productOrder_num}" />">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputUsername1">
 							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상품 이름</font></font>
 						</label>
-						<input name="product_name" readonly="readonly" type="text" class="form-control" value="<c:out value="${product.product_name}" />" required>
+						<input name="productOrder_product_name" readonly="readonly" class="form-control" value="${productOrder.productOrder_product_name}" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1"><font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;">상품 판매가</font></font>
+							<font style="vertical-align: inherit;">발주 구매가</font></font>
 						</label>
-						<input name="product_price" type="number" class="form-control" value="<c:out value="${product.product_price}" />" required>
+						<input name="productOrder_cost" type="number" class="form-control" value="<c:out value="${productOrder.productOrder_cost}" />" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1"><font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;">상품 수량</font></font>
+							<font style="vertical-align: inherit;">발주 수량</font></font>
 						</label>
-						<input name="product_qty" type="number" class="form-control" value="<c:out value="${product.product_qty}" />" required>
+						<input name="productOrder_qty" type="number" class="form-control" value="<c:out value="${productOrder.productOrder_qty}" />" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputConfirmPassword1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상품 종류</font></font>
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">발주 날짜</font></font>
 						</label>
-						<input id="product_category" name="product_category" class="form-control" value="<c:out value="${product.product_category}" />" required>
+						<input readonly="readonly" class="form-control" value='<fmt:formatDate pattern="yyyy-MM-dd" value="${productOrder.product_date}" />' required>
 					</div>
 					<div class="form-group" align="center">
 						<button type="submit" class="btn btn-info">수정</button>
@@ -64,22 +64,10 @@
 	$(document).ready(function() {
 
 		$('#listBtn').click(function() {
-			self.location = "/product/productList";
+			self.location = "/productOrder/productOrderList";
 		});
 		
 	});
-		
-	function check() {
-			
-		if($.trim($("#product_category").val()) != $("#product_category").val()) {
-			alert("앞,뒤 공백을 지워주세요.");
-			$("#product_category").val("");
-			$("#product_category").focus();
-			return false;
-		}
-		return true;
-			
-	}
 
 </script>
 </html>

@@ -14,6 +14,8 @@ public interface ProductService {
 	
 	public boolean productModify(ProductVO vo);
 	
-	public boolean productRemove(int product_num);
+	public void productRemove(int product_num);
+	
+	public ProductVO productNameCheck(String product_name);
 	
 }

@@ -33,4 +33,8 @@
 		DELETE COMIC_BOOK WHERE BOOK_NAME=#{book_name}
 	</delete>
 	
+	<select id="bookNameCheck" resultType="com.comic.model.BookVO">
+		SELECT * FROM COMIC_BOOK WHERE BOOK_NAME=#{book_name}
+	</select>
+	
 </mapper>

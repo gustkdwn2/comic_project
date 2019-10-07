@@ -29,4 +29,16 @@
 		DELETE COMIC_PRODUCTSTOCK WHERE PRODUCT_NUM=#{product_num}
 	</delete>
 	
+	<select id="productNameCheck" resultType="com.comic.model.ProductVO">
+		SELECT * FROM COMIC_PRODUCTSTOCK WHERE PRODUCT_NAME=#{product_name}
+	</select>
+	
+	<update id="productNumUpdate">
+		UPDATE COMIC_PRODUCTSTOCK SET PRODUCT_NUM=#{product_num}-1 WHERE PRODUCT_NUM=#{product_num}
+	</update>
+	
+	<select id="productNumSelect" resultType="Integer">
+		select count(*) from COMIC_PRODUCTSTOCK where product_num > #{product_num}
+	</select>
+	
 </mapper>
