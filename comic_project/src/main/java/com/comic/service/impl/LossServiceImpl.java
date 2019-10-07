@@ -23,4 +23,16 @@ public class LossServiceImpl implements LossService {
 		return lossMapper.lossList();
 	}
 
+	@Override
+	public void lossRegister(LossVO vo) {
+		
+		if(vo.getLoss_category().equals("손실")) {
+			vo.setLoss_pay(vo.getLoss_pay()*(-1)*vo.getLoss_qty());
+		} else {
+			vo.setLoss_pay(vo.getLoss_pay()*vo.getLoss_qty());
+		}
+	
+		lossMapper.lossRegister(vo);
+	}
+
 }

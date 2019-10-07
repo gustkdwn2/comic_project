@@ -43,7 +43,7 @@ public class ProductController {
 	
 	@PostMapping("/productRegister")
 	public String productRegister(ProductVO vo) {
-		service.productRegister(vo);;
+		service.productRegister(vo);
 		return "redirect:/product/productList";
 	}
 	

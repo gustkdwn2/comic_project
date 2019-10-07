@@ -24,7 +24,7 @@ public class SalesStatisticsController {
 	
 	private SalesStatisticsService statisticsService;
 	
-	@GetMapping("list")
+	@GetMapping("salesstatisticslist")
 	public String statisticsView() { // 매출 통계 페이지
 		return "salesstatistics/statisticslist";
 	}

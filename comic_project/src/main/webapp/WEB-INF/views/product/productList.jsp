@@ -24,7 +24,7 @@
 									data-toggle="modal" type="button" class="btn btn-secondary">상품
 									등록</button>
 								<button data-toggle="modal" data-target="#myModal" style="margin-bottom: 10px;" type="button" class="btn btn-warning">상품 발주</button>
-								<table id="lossTable" class="table  table-striped">
+								<table id="productTable" class="table  table-striped">
 									<thead>
 										<tr>
 											<th>상품 번호</th>
@@ -112,7 +112,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		$('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
+		$('#productTable').DataTable({ // 페이징 처리, 검색, show entries
 			pageLength : 10,
 			bPaginate : true,
 			bLengthChange : true,
