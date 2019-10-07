@@ -85,7 +85,7 @@
 							class="menu-title">책 재고</span>
 					</a></li>					
 					<li class="nav-item"><a class="nav-link"
-						href="/searchBook/searchList"> <i
+						href="/SearchBook/searchList"> <i
 						class="mdi mdi-account-search menu-icon"></i> <span
 							class="menu-title">책 찾기</span>
 					</a></li>

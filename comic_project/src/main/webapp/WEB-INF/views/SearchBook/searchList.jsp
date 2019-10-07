@@ -10,6 +10,14 @@
 <head>
 <meta charset="UTF-8">
 <title>코믹 서기 건의 게시판</title>
+<style type="text/css">
+	table, tr , td{border:1px solid #d0dfef; font-size:20px; text-align: center;}
+	tr{margin-bottom:5px;}
+    .hide {display:none;}
+    .show {display:table-row; font-size:20px; background-color:RGB(237,237,237) #ededed;}
+    .info td {cursor:pointer; font-size:20px; } 
+</style>
+
 </head>
 <body>
       <!-- partial -->
@@ -21,7 +29,7 @@
                 <div class="card-body">
                   <h2 class=".h2">건의 게시판</h2>
                   
-				    <form class="form-inline" action="/CustomerCenter/boardList" 
+				    <form class="form-inline" action="/SearchBook/searchList" 
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
 				    		<select name="type" class="form-control">
 				     			<option value=""
@@ -29,15 +37,15 @@
 								<option value="T"
 									<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
 								<option value="C"
-									<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
+									<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>카테고리</option>
 								<option value="W"
-									<c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>>작성자</option>
-								<option value="TC"
-									<c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>>제목 or 내용</option>
+									<c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>>저자</option>
+								<option value="N"
+									<c:out value="${pageMaker.cri.type eq 'N'?'selected':''}"/>>내용</option>
+								<option value="TN"
+									<c:out value="${pageMaker.cri.type eq 'TN'?'selected':''}"/>>제목 or 내용</option>
 								<option value="TW"
-									<c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>제목 or 작성자</option>
-								<option value="TWC"
-									<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목 or 내용 or 작성자</option>
+									<c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>제목 or 저자</option>
 							 </select>
 				    		<input type="text" name="keyword" class="form-control" >&nbsp;
 				    		<input type="submit" class="btn btn-primary btn-md" value="검색">
@@ -50,36 +58,49 @@
                   <div class="table-responsive">
                   
                     <c:if test='${count==0}'>
-                      <td colspan="4"><h3 style="text-align: center;">작성된 게시글이 없습니다.</h3></td>                    	
+                      <td colspan="4"><h3 style="text-align: center;">검색 결과 없습니다.</h3></td>                    	
 					</c:if>
 					
 					<c:if test="${count>0 }">
-                                       
-                    <table class="table" style="border:1px solid #f3f3f3;" >
+					
+					<table class="accocss table-striped">
                       <thead>
-                        <tr>
-                          <td style="width:200px;">글번호</td>
-                          <td style="width:1000px;">글제목</td>
-                          <td style="width:400px;">글쓴이</td>
-                          <td style="width:300px;">날짜</td>
+                        <tr style="height: 40px;">
+                          <td style="width:80px;">분류</td>
+                          <td style="width:800px;">이름</td>
+                          <td style="width:300px;">저자</td>
+                          <td style="width:300px;">출판사</td>
+                          <td style="width:100px;">마지막 권</td>
+                          <td style="width:200px;">위치</td>                      
                         </tr>
                       </thead>
  
-                      <c:forEach items="${ list }" var="list">
-                      
-	                      <tbody>
-	                        <tr>
-	                          <td style="width:200px;"><c:out value="${list.board_num }" /></td>
-	                          <td style="width:1000px;"><a class='move' href='<c:out value="${list.board_num}"/>'>
-	                          <c:out value="${list.board_title }" /></a></td>
-	                          <td style="width:400px;"><c:out value="${list.board_id }" /></td>
-	                          <td style="width:300px;"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.board_date }" /></td>
-	                        </tr>         
-                      	  </tbody>
-                      	  
-                      </c:forEach>
-                    </table>
-                    
+					
+					<c:forEach items="${ list }" var="list">
+					
+						<tbody>					
+							<tr class="info" style="height: 40px;">
+	                          <td style="width:80px;"><c:out value="${list.book_category }" /></td>
+	                          <td style="width:800px;"><a href="#"><c:out value="${list.book_name }" /></a></td>
+	                          <td style="width:300px;"><c:out value="${list.book_writer }" /></td>
+	                          <td style="width:300px;"><c:out value="${list.book_publisher }" /></td>
+	                          <td style="width:100px;"><c:out value="${list.book_lastbook }" /></td>
+	                          <td style="width:200px;"><c:out value="${list.book_loc }" /></td>
+	                         
+	                        </tr>
+	                        
+	                        <tr class="hide" style="height: 150px;">
+	                          <td colspan="6">
+	                          <c:out value="${list.book_content }" />
+	                          </td>
+	                        </tr>      
+	                    </tbody>
+                                       
+
+					
+					</c:forEach>
+					</table>
+
                     <br>		
 					 </div>
 					<!-- /.container -->
@@ -112,10 +133,6 @@
 					</div>
 					
 					</c:if>
-					
-					<div class="template-demo" style="float: right; width:100px; margin-left:350px">
-			            <button type="button" id='regBtn' class="btn btn-primary">글쓰기</button>
-			     	</div>
 
 					
 					<form id='actionForm' action="/CustomerCenter/boardList" method='get'>
@@ -131,6 +148,7 @@
     </div>
   </div>
 </div>
+
             
 <script type="text/javascript">
 
@@ -141,7 +159,21 @@
 
 			var actionForm = $("#actionForm");
 
-			
+			$(function(){
+	            var article = (".accocss .show"); 
+	            $(".accocss .info td").click(function() { 
+	                var myArticle =$(this).parents().next("tr"); 
+	                if($(myArticle).hasClass('hide')) { 
+	                    $(article).removeClass('show').addClass('hide'); 
+	                    $(myArticle).removeClass('hide').addClass('show'); 
+	                } 
+	                else { 
+	                    $(myArticle).addClass('hide').removeClass('show'); 
+	                } 
+	            }); 
+	        });
+
+/* 			
  			$(".move").on(
 					"click",
 					function(e){
@@ -151,13 +183,8 @@
 						actionForm.attr("action", "/CustomerCenter/boardGet");
 						actionForm.submit();
 						
-			}); 
+			}); */ 
 
-			$("#regBtn").on("click", function() {
-
-				self.location = "/CustomerCenter/boardRegister";
-
-			});
 
 			$(".page-item a").on( 
 					"click",

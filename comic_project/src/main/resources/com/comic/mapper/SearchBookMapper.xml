@@ -5,14 +5,22 @@
 
 <mapper namespace="com.comic.mapper.SearchBookMapper">
 
-	<select id="getListWithPaging">
+	<select id="getTotalCount" resultType="int">
+		select count(*) from COMIC_BOOK where
+		<include refid="criteria"></include>
+		
+		BOOK_NAME is NOT NULL
+
+	</select>
+
+	<select id="getListWithPaging" resultType="com.comic.model.BookVO">
 		<![CDATA[
 		select 
-			BOOK_NAME, BOOK_LOC, BOOK_PUBLISHER, BOOK_WRITER, BOOK_LASTBOOK
+			BOOK_NAME, BOOK_LOC, BOOK_PUBLISHER, BOOK_WRITER, BOOK_CONTENT, BOOK_CATEGORY, BOOK_LASTBOOK, BOOK_STATUS
 		from
 			( 
 			select /*+INDEX_DESC(COMIC_BOOK pk_COMIC_BOOK) */
-				rownum rn, BOOK_NAME, BOOK_LOC, BOOK_PUBLISHER, BOOK_WRITER, BOOK_LASTBOOK
+				rownum rn, BOOK_NAME, BOOK_LOC, BOOK_PUBLISHER, BOOK_WRITER, BOOK_CONTENT, BOOK_CATEGORY, BOOK_LASTBOOK, BOOK_STATUS
 			from 
 				COMIC_BOOK
 			where
@@ -28,16 +36,13 @@
 		 ]]>	
 	</select>
 	
-	<select id="read" resultType="com.comic.model.BookVO">
-		select * from COMIC_BOARD where BOARD_NUM = #{board_num}
-	</select>
 	
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item='type' collection="typeArr">
 				<trim prefix="OR">
 					<choose>
-						<when test="type == 'N'.toString()">
+						<when test="type == 'T'.toString()">
 							BOOK_NAME like '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'C'.toString()">
@@ -45,6 +50,9 @@
 						</when>
 						<when test="type == 'W'.toString()">
 							BOOK_WRITER like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'N'.toString()">
+							BOOK_CONTENT like '%'||#{keyword}||'%'
 						</when>
 					</choose>
 				</trim>
