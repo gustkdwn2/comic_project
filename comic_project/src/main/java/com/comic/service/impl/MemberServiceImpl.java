@@ -44,17 +44,27 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO memberLogin(LoginVO loginVO) throws Exception{
-		System.out.println("멤버 서비스impl 도착");
-		return mapper.login(loginVO);
+		return mapper.memberLogin(loginVO);
 	}
 
 	@Override
-	public void keepLogin(String MEMBER_ID, String sessionId, Date sessionLimit) throws Exception {
-		mapper.keepLogin(MEMBER_ID, sessionId, sessionLimit);
+	public void MemberkeepLogin(String MEMBER_ID, String sessionId, Date sessionLimit) throws Exception {
+		mapper.MemberkeepLogin(MEMBER_ID, sessionId, sessionLimit);
 	}
-
+	
+	@Override
+	public void EmployeekeepLogin(int EMPLOYEE_NUM, String sessionId, Date sessionLimit) throws Exception {
+		mapper.EmployeekeepLogin(EMPLOYEE_NUM, sessionId, sessionLimit);
+	}
+	
 	@Override
 	public MemberVO checkLoginBefore(String value) throws Exception {
 		return mapper.checkUserWithSessionKey(value);
 	}
+
+	@Override
+	public EmployeeVO employeeLogin(LoginVO loginVO) throws Exception {
+		return mapper.employeeLogin(loginVO);
+	}
+
 }

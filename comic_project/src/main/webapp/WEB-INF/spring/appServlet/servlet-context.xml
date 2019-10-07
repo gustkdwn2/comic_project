@@ -29,12 +29,20 @@
 	   		
 	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/>
 	
-	<beans:bean id="loginInterceptor" class="com.comic.common.interceptor.LoginInterceptor" />
+	<beans:bean id="MemberloginInterceptor" class="com.comic.common.interceptor.MemberLoginInterceptor" />
+	<beans:bean id="EmployeeloginInterceptor" class="com.comic.common.interceptor.EmployeeLoginInterceptor" />
 	
 	<interceptors>
 		<interceptor>
 			<mapping path="/member/MemberLoginPost"/>
-			<beans:ref bean="loginInterceptor"/>
+			<beans:ref bean="MemberloginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/EmployeeLoginPost"/>
+			<beans:ref bean="EmployeeloginInterceptor"/>
 		</interceptor>
 	</interceptors>
 	

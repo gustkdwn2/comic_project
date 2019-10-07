@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,12 +14,11 @@
 <title>Majestic Admin</title>
 
 <link rel="stylesheet"
- 	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
+	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
 
 <link rel="stylesheet"
 	href="/resources/vendors/base/vendor.bundle.base.css">
 <link rel="stylesheet"
-
 	href="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="shortcut icon" href="/resources/images/favicon.png" />
@@ -27,7 +27,8 @@
 <script src="/resources/vendors/base/vendor.bundle.base.js"></script>
 <script src="/resources/vendors/chart.js/Chart.min.js"></script>
 <script src="/resources/vendors/datatables.net/jquery.dataTables.js"></script>
-<script src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script
+	src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 <script src="/resources/js/off-canvas.js"></script>
 <script src="/resources/js/hoverable-collapse.js"></script>
 <script src="/resources/js/template.js"></script>
@@ -41,6 +42,7 @@
 </html>
 
 </head>
+
 <body>
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
@@ -49,9 +51,9 @@
 				<div
 					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
 
-					<a class="navbar-brand brand-logo" href="index.html"><img
+					<a class="navbar-brand brand-logo" href=""><img
 						src="/resources/images/logo.svg" alt="logo" /></a> <a
-						class="navbar-brand brand-logo-mini" href="index.html"><img
+						class="navbar-brand brand-logo-mini" href=""><img
 						src="/resources/images/logo-mini.svg" alt="logo" /></a>
 
 					<button class="navbar-toggler navbar-toggler align-self-center"
@@ -87,10 +89,7 @@
 							<a class="dropdown-item">
 								<div class="item-thumbnail">
 
-
 									<img src="/resources/images/faces/face4.jpg" alt="image"
-
-
 										class="profile-pic">
 								</div>
 								<div class="item-content flex-grow">
@@ -103,8 +102,6 @@
 
 
 									<img src="/resources/images/faces/face2.jpg" alt="image"
-
-
 										class="profile-pic">
 								</div>
 								<div class="item-content flex-grow">
@@ -117,7 +114,6 @@
 
 
 									<img src="/resources/images/faces/face3.jpg" alt="image"
-
 										class="profile-pic">
 								</div>
 								<div class="item-content flex-grow">
@@ -170,25 +166,36 @@
 								</div>
 							</a>
 						</div></li>
-					<c:if test="${not empty login}">
-					<li class="nav-item nav-profile dropdown"><a
-						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-						id="profileDropdown"><span class="hidden-xs">${login.MEMBER_ID}</span>
-					</a>
-						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-							aria-labelledby="profileDropdown">
-							<a class="dropdown-item" href="${path}/member/MemberInfo">
-							<i class="mdi mdi-settings text-primary"></i> 내 프로필
-							</a> 
-							<a class="dropdown-item" href="${path}/member/MemberLogout">
-							<i class="mdi mdi-logout text-primary"></i> 로그아웃 </a>
-						</div></li>
+					<c:if test="${not empty Memberlogin}">
+						<li class="nav-item nav-profile dropdown"><a
+							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+							id="profileDropdown"><span class="hidden-xs">${Memberlogin.MEMBER_ID}</span>
+						</a>
+							<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+								aria-labelledby="profileDropdown">
+								<a class="dropdown-item" href="${path}/member/MemberInfo"> <i
+									class="mdi mdi-settings text-primary"></i> 내 프로필
+								</a> <a class="dropdown-item" href="${path}/member/MemberLogout">
+									<i class="mdi mdi-logout text-primary"></i> 로그아웃
+								</a>
+							</div></li>
 					</c:if>
 					
-					<c:if test="${empty login}">
-						<a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onclick="location.href='${path}/member/MemberLogin'">로그인</a>
-						<a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onclick="location.href='${path}/member/MemberRegister'">회원가입</a>
+					<c:if test="${not empty Employeelogin}">
+						<li class="nav-item nav-profile dropdown"><a
+							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+							id="profileDropdown"><span class="hidden-xs">${Employeelogin.EMPLOYEE_NAME}</span>
+						</a>
+							<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+								aria-labelledby="profileDropdown">
+								<a class="dropdown-item" href="${path}/member/MemberInfo"> <i
+									class="mdi mdi-settings text-primary"></i> 내 프로필
+								</a> <a class="dropdown-item" href="${path}/member/EmployeeLogout">
+									<i class="mdi mdi-logout text-primary"></i> 로그아웃
+								</a>
+							</div></li>
 					</c:if>
+					
 				</ul>
 				<button
 					class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
@@ -198,4 +205,4 @@
 			</div>
 		</nav>
 		<!-- partial -->
-		<div class="container-fluid page-body-wrapper">		
+		<div class="container-fluid page-body-wrapper">

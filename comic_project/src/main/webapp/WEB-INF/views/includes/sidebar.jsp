@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
@@ -76,17 +77,21 @@
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">고객센터</span>
 					</a></li>
-
+					
+					<c:if test="${empty Memberlogin}">
 					<li class="nav-item"><a class="nav-link"
 						href="/member/MemberLogin"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">회원 로그인</span>
 					</a></li>
-					
+					</c:if>
+					<c:if test="${empty Employeelogin}">
 					<li class="nav-item"><a class="nav-link"
 						href="/member/EmployeeLogin"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">직원 로그인</span>
 					</a></li>
+					</c:if>
+					
 				</ul>
 		</nav>

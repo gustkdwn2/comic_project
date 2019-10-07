@@ -14,9 +14,13 @@ public interface MemberService {
 	public void employeeRegister(EmployeeVO vo);
 	// 일반 로그인
 	MemberVO memberLogin(LoginVO loginVO) throws Exception;
-	// 로그인 유지 처리
-	public void keepLogin(String MEMBER_ID, String id, Date sessionLimit) throws Exception;
+	// 직원 로그인
+	EmployeeVO employeeLogin(LoginVO loginVO) throws Exception;
+	// 일반 로그인 유지 처리
+	public void MemberkeepLogin(String MEMBER_ID, String sessionId, Date sessionLimit) throws Exception;
+	// 직원 로그인 유지 처리
+	public void EmployeekeepLogin(int EMPLOYEE_NUM, String sessionId, Date sessionLimit) throws Exception;
 	// 세션키 검증
 	MemberVO checkLoginBefore(String value) throws Exception;
-
+	
 }

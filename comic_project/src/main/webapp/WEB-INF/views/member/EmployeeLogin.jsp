@@ -32,14 +32,14 @@
               <div class="brand-logo">
                 <img src="/resources/images/logo.svg" alt="logo">
               </div>
-              <form class="pt-3" role="form" method="post" action="/product/productList">
+              <form class="pt-3" role="form" method="post" action="/member/EmployeeLoginPost">
               	<h2><c:out value="${error}"/></h2>
 				<h2><c:out value="${logout}"/></h2>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="username" placeholder="userid" autofocus>
+                  <input type="text" class="form-control form-control-lg" id="EMPLOYEE_NUM" name="EMPLOYEE_NUM" placeholder="ID" autofocus>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="EMPLOYEE_PWD" name="EMPLOYEE_PWD" placeholder="Password">
                 </div>
                 
                 <div class="mt-3">

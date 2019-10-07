@@ -11,17 +11,26 @@
 	</insert>
 	
 	<insert id="employeeInsert">
-		INSERT INTO COMIC_EMPLOYEE VALUES ((SELECT NVL(MAX(EMPLOYEE_NUM),0)+1 FROM COMIC_EMPLOYEE),
+		INSERT INTO COMIC_EMPLOYEE(EMPLOYEE_NUM, EMPLOYEE_PWD, EMPLOYEE_NAME, EMPLOYEE_PHONE, EMPLOYEE_ACCOUNT, EMPLOYEE_STARTDAY, EMPLOYEE_POSITION, EMPLOYEE_PAY) VALUES ((SELECT NVL(MAX(EMPLOYEE_NUM),0)+1 FROM COMIC_EMPLOYEE),
 		#{EMPLOYEE_PWD}, #{EMPLOYEE_NAME}, #{EMPLOYEE_PHONE}, #{EMPLOYEE_ACCOUNT}, SYSDATE, #{EMPLOYEE_POSITION}, #{EMPLOYEE_PAY})
 	</insert>
 
-	<select id="login" resultType="com.comic.model.MemberVO">
-		SELECT * FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID, jdbcType=VARCHAR}
+	<select id="memberLogin" resultType="com.comic.model.MemberVO">
+		SELECT * FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
 	</select>
 	
-	<update id="keepLogin">
+	<select id="employeeLogin" resultType="com.comic.model.EmployeeVO">
+		SELECT * FROM COMIC_EMPLOYEE WHERE EMPLOYEE_NUM = #{EMPLOYEE_NUM}
+	</select>
+	
+	<update id="MemberkeepLogin">
 		UPDATE COMIC_MEMBER SET SESSION_KEY = #{sessionId},
 		SESSION_LIMIT = #{sessionLimit} WHERE MEMBER_ID = #{MEMBER_ID}
+	</update>
+	
+	<update id="EmployeekeepLogin">
+		UPDATE COMIC_EMPLOYEE SET SESSION_KEY = #{sessionId},
+		SESSION_LIMIT = #{sessionLimit} WHERE EMPLOYEE_NUM = #{EMPLOYEE_NUM}
 	</update>
 	
 	<select id="checkUserWithSessionKey" resultType="com.comic.model.MemberVO">

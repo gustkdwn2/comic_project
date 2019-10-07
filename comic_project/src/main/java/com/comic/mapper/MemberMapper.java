@@ -14,9 +14,13 @@ public interface MemberMapper {
 	// 직원 회원가입
 	public void employeeInsert(EmployeeVO vo);
 	// 일반 로그인
-	public MemberVO login(LoginVO loginVO);
-	// 로그인 유지 처리
-	public void keepLogin(String MEMBER_ID, String sessionId, Date sessionLimit);
+	public MemberVO memberLogin(LoginVO loginVO);
+	// 직원 로그인
+	public EmployeeVO employeeLogin(LoginVO loginVO);
+	// 일반 로그인 유지 처리
+	public void MemberkeepLogin(String mEMBER_ID, String sessionId, Date sessionLimit);
+	// 직원 로그인 유지 처리
+	public void EmployeekeepLogin(int eMPLOYEE_NUM, String sessionId, Date sessionLimit);	
 	// 세션키 검증
 	public MemberVO checkUserWithSessionKey(String value);
 	

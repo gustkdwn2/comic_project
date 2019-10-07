@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
@@ -63,13 +62,13 @@ public class LoginController {
 	
 	// 로그인 페이지
 	@GetMapping("/MemberLogin")
-	public String loginGET(@ModelAttribute("loginVO") LoginVO loginVO) {
+	public String MemberloginGET(@ModelAttribute("loginVO") LoginVO loginVO) {
 		return "/member/MemberLogin";
 	}
 	
 	// 로그인 
 	@PostMapping("/MemberLoginPost")
-	public void LoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
+	public void MemberLoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
 		
 		MemberVO memberVO = service.memberLogin(loginVO);
 		boolean passMatch = passEncoder.matches(loginVO.getMEMBER_PWD(), memberVO.getMEMBER_PWD());
@@ -83,29 +82,77 @@ public class LoginController {
 		if(loginVO.isUseCookie()) {
 			int amount = 60 * 60 * 24 * 7;
 			Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
-			service.keepLogin(memberVO.getMEMBER_ID(), httpSession.getId(), sessionLimit);
+			service.MemberkeepLogin(memberVO.getMEMBER_ID(), httpSession.getId(), sessionLimit);
 		}
 	}
 	
 	// 로그아웃 처리
 	@GetMapping("/MemberLogout")
-	public String logout(HttpServletRequest request,
+	public String Memberlogout(HttpServletRequest request,
 						 HttpServletResponse response,
 						 HttpSession httpSession) throws Exception {
 		
-		Object object = httpSession.getAttribute("login");
+		Object object = httpSession.getAttribute("Memberlogin");
 		if (object != null) {
 			MemberVO membervo = (MemberVO) object;
-			httpSession.removeAttribute("login");
+			httpSession.removeAttribute("Memberlogin");
 			httpSession.invalidate();
 			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 			if (loginCookie != null) {
 				loginCookie.setPath("/");
                 loginCookie.setMaxAge(0);
                 response.addCookie(loginCookie);
-                service.keepLogin(membervo.getMEMBER_ID(), "none", new Date());
+                service.MemberkeepLogin(membervo.getMEMBER_ID(), "none", new Date());
 			}
 		}
-		return "/member/MemberLogout";
+		return "/member/Logout";
+	}
+	
+	// 로그인 페이지
+	@GetMapping("/EmployeeLogin")
+	public String EmployeeloginGET(@ModelAttribute("loginVO") LoginVO loginVO) {
+		return "/member/EmployeeLogin";
+	}
+		
+	// 로그인 
+	@PostMapping("/EmployeeLoginPost")
+	public void EmployeeLoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
+			
+		EmployeeVO employeeVO = service.employeeLogin(loginVO);
+		boolean passMatch = passEncoder.matches(loginVO.getEMPLOYEE_PWD(), employeeVO.getEMPLOYEE_PWD());
+			
+		if(employeeVO == null || !passMatch) {
+			return;
+		}
+			
+		model.addAttribute("employee", employeeVO);
+			
+		if(loginVO.isUseCookie()) {
+			int amount = 60 * 60 * 24 * 7;
+			Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
+			service.EmployeekeepLogin(employeeVO.getEMPLOYEE_NUM(), httpSession.getId(), sessionLimit);
+		}
+	}
+		
+	// 로그아웃 처리
+	@GetMapping("/EmployeeLogout")
+	public String Employeelogout(HttpServletRequest request,
+						 HttpServletResponse response,
+						 HttpSession httpSession) throws Exception {
+			
+		Object object = httpSession.getAttribute("Employeelogin");
+		if (object != null) {
+			EmployeeVO employeeVO = (EmployeeVO) object;
+			httpSession.removeAttribute("Employeelogin");
+			httpSession.invalidate();
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+			if (loginCookie != null) {
+				loginCookie.setPath("/");
+	            loginCookie.setMaxAge(0);
+	            response.addCookie(loginCookie);
+	            service.EmployeekeepLogin(employeeVO.getEMPLOYEE_NUM(), "none", new Date());
+			}
+		}
+		return "/member/Logout";
 	}
 }
