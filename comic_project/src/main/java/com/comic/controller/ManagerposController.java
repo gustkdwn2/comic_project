@@ -97,7 +97,8 @@ public class ManagerposController {
 	@ResponseBody
 	@RequestMapping(value = "get_room_uselist", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<Object> get_room_uselist() {
-		List<RoomuseVO> list = managerposService.roomuselist();
+		//List<RoomuseVO> list = managerposService.roomuselist();
+		List<RoomuseVO> list = managerposService.roomuselist2();
 
 		JSONArray replydataArray = new JSONArray();// json으로 보내기 위한 작업
 

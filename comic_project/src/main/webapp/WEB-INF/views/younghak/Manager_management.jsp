@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ page session="false"%>
 
 <%@ include file="../includes/header.jsp"%>
@@ -87,13 +89,23 @@
 <!-- <div class="row"> -->
 <div class="mngmentcard" onclick="#">
 
-
   <!-- <img src="/WEB-INF/views/younghak/icando.jpg" alt="John" style="width:80%; height:80%; border-radius: 50%;" > -->
-<img src="/resources/images/faces/jang.jpg" alt="John" style="width:80%; height:80%; border-radius: 50%;" >
+<img src="/resources/images/faces/jang.jpg" alt="${managerList.get(i-1).getEMPLOYEE_NAME()}" style="width:50%; height:50%; border-radius: 50%;" >
 
 <h1>${managerList.get(i-1).getEMPLOYEE_NAME()} </h1>
 <p class="mngmenttitle">${managerList.get(i-1).getEMPLOYEE_POSITION()}</p>
-<p>Harvard University</p>
+<p>사번 : ${managerList.get(i-1).getEMPLOYEE_NUM()}</p>
+
+<%-- <p>입사일 : ${SimpleDateFormat ( "yy년 MM월 dd일").format(managerList.get(i-1).getEMPLOYEE_STARTDAY())}</p> --%>
+
+<%-- <p>입사일 : ${managerList.get(i-1).getEMPLOYEE_STARTDAY()}</p> --%>
+<p>입사일 :
+<fmt:formatDate value="${managerList.get(i-1).getEMPLOYEE_STARTDAY()}" pattern="yy.MM.dd"/>
+</p>
+<p>연락처 : ${managerList.get(i-1).getEMPLOYEE_PHONE()}</p>
+<p>시급/월급 : ${managerList.get(i-1).getEMPLOYEE_PAY()}</p>
+<p>계좌번호 : ${managerList.get(i-1).getEMPLOYEE_ACCOUNT()}</p>
+
 <div style="margin: 24px 0;">
 <a href="#" class="mngmenta"><i class="fa fa-dribbble"></i></a> 
 <a href="#" class="mngmenta"><i class="fa fa-twitter"></i></a>  
@@ -189,7 +201,7 @@
                         placeholder="Phone">
                   </div>
                   <div class="form-group">
-                     <label>주소</label> <input type="text"
+                     <label>계좌 번호</label> <input type="text"
                         class="form-control form-control-lg" name="EMPLOYEE_ACCOUNT"
                         placeholder="Account">
                   </div>
