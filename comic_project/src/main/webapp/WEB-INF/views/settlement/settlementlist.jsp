@@ -112,13 +112,15 @@
 			var sendData = {
 				'list' : list
 			};
+			console.log(list);
 			$.ajax({
-				url : 'settlement/list',
+				url : '/settlement/list',
 				dataType : 'json',
 				data : JSON.stringify(sendData),
 				contentType : "application/json; charset=utf-8;",
 				type : 'POST',
 				success : function(data) {
+					console.log(data);
 					console.log("성공");
 					for (var i = 0; i < list.length; i++) {
 						$('#' + 'a' + i.toString()).html(data[i]);

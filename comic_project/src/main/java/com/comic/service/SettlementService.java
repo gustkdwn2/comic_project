@@ -11,7 +11,7 @@ public interface SettlementService {
 
 	public boolean modify(String num, String currentNum);
 
-	public Map<String, Object> settlementError(HashMap<String, Object> map, List<ProductVO> current);
+	public Map<String, Object> settlementError(HashMap<String, Object> map);
 
 	public void insertLoss(ProductVO product, String string);
 
