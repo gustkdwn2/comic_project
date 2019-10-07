@@ -19,7 +19,6 @@ public class LoginContoroller {
 	   @GetMapping("/EmployeeRegister")
 	   public String EmployeeRegister() {
 	      return "/younghak/EmployeeRegister";
-		   
 	   }
 	   
 	   @PostMapping("/EmployeeRegister")

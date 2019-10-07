@@ -16,5 +16,6 @@ public class EmployeeVO {
    private Date EMPLOYEE_STARTDAY; //입사일
    private String EMPLOYEE_POSITION; //직책
    private int EMPLOYEE_PAY; //시급/월급
-
+   
+   
 }
