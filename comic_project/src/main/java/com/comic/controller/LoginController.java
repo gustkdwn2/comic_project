@@ -34,13 +34,13 @@ public class LoginController {
 	private MemberService service;
 	private BCryptPasswordEncoder passEncoder;
 	
-	//멤버  회원가입
-	
+	//멤버 회원가입 페이지 이동
 	@GetMapping("/MemberRegister")
 	public void MemberRegister() {
 		
 	}
 	
+	//멤버 회원가입
 	@PostMapping("/MemberRegister")
 	public String MemberRegister(MemberVO vo, RedirectAttributes redirectAttributes) throws Exception {
 		service.memberRegister(vo);
@@ -48,25 +48,13 @@ public class LoginController {
 		return "redirect:/member/MemberLogin";
 	}
 	
-	//직원 추가
-	@GetMapping("/EmployeeRegister")
-	public void EmployeeRegister() {
-		
-	}
-	
-	@PostMapping("/EmployeeRegister")
-	public String EmployeeRegister(EmployeeVO vo) {
-		service.employeeRegister(vo);
-		return "redirect:/member/EmployeeLogin";
-	}
-	
-	// 로그인 페이지
+	// 멤버 로그인 페이지
 	@GetMapping("/MemberLogin")
 	public String MemberloginGET(@ModelAttribute("loginVO") LoginVO loginVO) {
 		return "/member/MemberLogin";
 	}
 	
-	// 로그인 
+	// 멤버 로그인 
 	@PostMapping("/MemberLoginPost")
 	public void MemberLoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
 		
@@ -86,11 +74,11 @@ public class LoginController {
 		}
 	}
 	
-	// 로그아웃 처리
+	// 멤버 로그아웃 처리
 	@GetMapping("/MemberLogout")
 	public String Memberlogout(HttpServletRequest request,
-						 HttpServletResponse response,
-						 HttpSession httpSession) throws Exception {
+			HttpServletResponse response,
+			HttpSession httpSession) throws Exception {
 		
 		Object object = httpSession.getAttribute("Memberlogin");
 		if (object != null) {
@@ -100,21 +88,42 @@ public class LoginController {
 			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 			if (loginCookie != null) {
 				loginCookie.setPath("/");
-                loginCookie.setMaxAge(0);
-                response.addCookie(loginCookie);
-                service.MemberkeepLogin(membervo.getMEMBER_ID(), "none", new Date());
+				loginCookie.setMaxAge(0);
+				response.addCookie(loginCookie);
+				service.MemberkeepLogin(membervo.getMEMBER_ID(), "none", new Date());
 			}
 		}
 		return "/member/Logout";
 	}
 	
-	// 로그인 페이지
+	// 멤버 관리 페이지
+	@GetMapping("/MemberList")
+	public void productGetList(Model model) {
+		model.addAttribute("MembertList", service.MemberGetList());
+		System.out.println(service.MemberGetList());
+	}
+	
+	//직원 추가 페이지 이동
+	@GetMapping("/EmployeeRegister")
+	public void EmployeeRegister() {
+		
+	}
+	
+	//직원 추가
+	@PostMapping("/EmployeeRegister")
+	public String EmployeeRegister(EmployeeVO vo) {
+		service.employeeRegister(vo);
+		return "redirect:/member/EmployeeLogin";
+	}
+	
+	
+	// 직원 로그인 페이지
 	@GetMapping("/EmployeeLogin")
 	public String EmployeeloginGET(@ModelAttribute("loginVO") LoginVO loginVO) {
 		return "/member/EmployeeLogin";
 	}
 		
-	// 로그인 
+	// 직원 로그인 
 	@PostMapping("/EmployeeLoginPost")
 	public void EmployeeLoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
 			
@@ -134,7 +143,7 @@ public class LoginController {
 		}
 	}
 		
-	// 로그아웃 처리
+	// 직원 로그아웃 처리
 	@GetMapping("/EmployeeLogout")
 	public String Employeelogout(HttpServletRequest request,
 						 HttpServletResponse response,

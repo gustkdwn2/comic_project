@@ -21,12 +21,7 @@ public class ProductController {
 	
 	private ProductService service;
 	
-//	@GetMapping("/productList")
-//	public void productGetList(Model model) {
-//		model.addAttribute("productList", service.productGetList());
-//	}
-	
-	@PostMapping("/productList")
+	@GetMapping("/productList")
 	public void productGetList(Model model) {
 		model.addAttribute("productList", service.productGetList());
 	}
