@@ -34,7 +34,7 @@
 												<th>책 분류</th>
 												<th>마지막권</th>
 												<th>연재상태</th>
-												<th></th>
+												<th class="no-sort"></th>
 											</tr>
 										</thead>
 	
@@ -85,6 +85,10 @@
 	        "language": {
 	          search: "Search :"
 	        },
+	        "columnDefs" : [{
+				targets : 'no-sort',
+				orderable : false
+			}]
 	    });
 
 	});

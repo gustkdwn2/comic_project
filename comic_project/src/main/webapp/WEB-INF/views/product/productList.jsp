@@ -33,7 +33,7 @@
 												<th>상품 판매가</th>
 												<th>상품 수량</th>
 												<th>상품 종류</th>
-												<td></td>
+												<td class="no-sort"></td>
 											</tr>
 										</thead>
 	
@@ -82,6 +82,10 @@
 	        "language": {
 	          search: "Search :"
 	        },
+	        "columnDefs" : [{
+				targets : 'no-sort',
+				orderable : false
+			}]
 	    });
 
 		$('#orderBtn').click(function() {
