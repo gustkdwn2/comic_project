@@ -54,7 +54,7 @@ public class ProductController {
 	}
 	
 	@PostMapping("/productNameCheck")
-	 @ResponseBody
+	@ResponseBody
 	public int productNameCheck(@RequestParam("product_name") String product_name) {
 		int result = 0;
 		ProductVO nameCheck = service.productNameCheck(product_name);

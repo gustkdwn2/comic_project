@@ -49,6 +49,6 @@ public class SettlementController {
 			settleService.insertLoss(current.get(i),productList[i]); // 손실테이블에 추가 (현재재고와 입력 재고값 보냄)
 		}
 		
-		return "redirect:/settlement/list";
+		return "redirect:/settlement/settlementlist";
 	}
 }
