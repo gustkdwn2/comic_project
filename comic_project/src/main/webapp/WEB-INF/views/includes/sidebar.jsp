@@ -83,6 +83,11 @@
 						href="/book/bookList"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">책 재고</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/userOrderManager/orderManager"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">상품 사용자뷰 관리</span> 
 					</a></li>					
 					<li class="nav-item"><a class="nav-link"
 						href="/SearchBook/searchList"> <i

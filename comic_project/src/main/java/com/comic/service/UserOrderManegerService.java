@@ -8,7 +8,7 @@ import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
 import com.comic.model.ProductVO;
 
-public interface OrderService {
+public interface UserOrderManegerService {
 	
 	public void registerCategory(OrderViewVO vo);
 	
