@@ -1,6 +1,8 @@
 package com.comic.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -14,11 +16,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
+import com.comic.model.LossVO;
 import com.comic.model.MemberVO;
 import com.comic.service.MemberService;
 
@@ -28,7 +33,6 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("/member")
 @AllArgsConstructor
-@Log4j
 public class LoginController {
 	
 	private MemberService service;
@@ -100,7 +104,28 @@ public class LoginController {
 	@GetMapping("/MemberList")
 	public void productGetList(Model model) {
 		model.addAttribute("MembertList", service.MemberGetList());
-		System.out.println(service.MemberGetList());
+	}
+	
+	// 멤버 모달창 띄우기
+	@GetMapping("/MemberModify")
+	public @ResponseBody Map<String, MemberVO> MemberGetModify(@RequestParam("MEMBER_ID") String MEMBER_ID) {
+		Map<String, MemberVO> map = new HashMap<String, MemberVO>();
+		map.put("getModify", service.MemberModifyGet(MEMBER_ID));
+		return map;
+	}
+	
+	//멤버 정보 수정
+	@PostMapping("/MemberModify")
+	public String lossModify(MemberVO vo) {
+		service.MemberModify(vo);
+		return "redirect:/member/MemberList";
+	}
+	
+	//멤버 정보 삭제
+	@PostMapping("/MemberRemove")
+	public String productRemove(@RequestParam("MEMBER_ID") String MEMBER_ID) {
+		service.MemberRemove(MEMBER_ID);
+		return "redirect:/member/MemberList";
 	}
 	
 	//직원 추가 페이지 이동

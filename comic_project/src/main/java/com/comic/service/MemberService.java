@@ -10,14 +10,20 @@ import com.comic.model.ProductVO;
 
 public interface MemberService {
 	
-	// 일반 회원가입
+	// 멤버 회원가입
 	public void memberRegister(MemberVO vo);
-	// 일반 로그인
+	// 멤버 로그인
 	MemberVO memberLogin(LoginVO loginVO) throws Exception;
-	// 일반 로그인 유지 처리
+	// 멤버 로그인 유지 처리
 	public void MemberkeepLogin(String MEMBER_ID, String sessionId, Date sessionLimit) throws Exception;
-	// 일반 관리 페이지
+	// 멤버 관리 페이지
 	public List<MemberVO> MemberGetList();
+	// 멤버 모달창 값 전달
+	public MemberVO MemberModifyGet(String MEMBER_ID);
+	// 멤버 정보 수정
+	public void MemberModify(MemberVO vo);
+	// 멤버 정보 삭제
+	public void MemberRemove(String mEMBER_ID);
 	// 직원 회원가입
 	public void employeeRegister(EmployeeVO vo);
 	// 직원 로그인

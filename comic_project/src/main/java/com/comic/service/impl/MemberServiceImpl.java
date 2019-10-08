@@ -46,6 +46,21 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public MemberVO MemberModifyGet(String MEMBER_ID) {
+		return mapper.MemberRead(MEMBER_ID);
+	}
+	
+	@Override
+	public void MemberModify(MemberVO vo) {
+		mapper.MemberUpdate(vo);
+	}
+	
+	@Override
+	public void MemberRemove(String MEMBER_ID) {
+		mapper.MemberDelete(MEMBER_ID);
+	}
+	
+	@Override
 	public void employeeRegister(EmployeeVO vo) {
 		password = vo.getEMPLOYEE_PWD();
 		vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));

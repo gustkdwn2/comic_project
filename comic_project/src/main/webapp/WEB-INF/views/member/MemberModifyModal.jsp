@@ -9,16 +9,16 @@
 
 			<!-- Modal Header -->
 			<div class="modal-header">
-				<h3 class="modal-title">상품 발주</h3>
+				<h3 class="modal-title">회원 관리</h3>
 			</div>
 
 			<!-- Modal body -->
 			<div class="card">
 				<div class="card-body">
 					<h4 class="card-title">
-						<font style="vertical-align: inherit;">상품 수정</font>
+						<font style="vertical-align: inherit;">회원 관리</font>
 					</h4>
-					<form class="forms-sample" action="/product/productModify" method="post" autocomplete="off">
+					<form class="forms-sample" action="/member/MemberModify" method="post" autocomplete="off">
 						<div class="form-group">
 							<label>
 								<font style="vertical-align: inherit;">아이디</font>
@@ -29,24 +29,23 @@
 							<label for="exampleInputUsername1">
 								<font style="vertical-align: inherit;">이름</font>
 							</label>
-							<input name="MEMBER_NAME" id="MEMBER_NAME" readonly="readonly" class="form-control" value="<c:out value='${member.MEMBER_NAME}'/>">
+							<input name="MEMBER_NAME" id="MEMBER_NAME" readonly="readonly" class="form-control">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">
 								<font style="vertical-align: inherit;">이메일</font>
 							</label>
-							<input name="MEMBER_EMAIL" id="MEMBER_EMAIL" type="email" class="form-control" value="<c:out value="${member.MEMBER_EMAIL}" />">
+							<input name="MEMBER_EMAIL" id="MEMBER_EMAIL" type="email" class="form-control">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">
 								<font style="vertical-align: inherit;">핸드폰 번호</font>
 							</label>
-							<input name="MEMBER_PHONE_NUMBER" id="MEMBER_PHONE_NUMBER" type="tel" class="form-control" value="<c:out value="${member.MEMBER_PHONE_NUMBER}"/>">
+							<input name="MEMBER_PHONE_NUMBER" id="MEMBER_PHONE_NUMBER" type="tel" class="form-control">
 						</div>
 						<div class="form-group" align="center">
-							<button type="submit" data-oper='modify' class="btn btn-info">수정</button>
-							<button type="submit" data-oper='remove' class="btn btn-danger">삭제</button>
-							<button type="submit" data-oper='list' class="btn btn-success">목록</button>
+							<button type="submit" class="btn btn-info">수정</button>
+							<button type="button" id="modifyclose" class="btn btn-success">닫기</button>
 						</div>
 					</form>
 				</div>
