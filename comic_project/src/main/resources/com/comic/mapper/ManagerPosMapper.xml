@@ -18,4 +18,10 @@
 		select roomuse_id,roomuse_num,roomuse_status,to_char(roomuse_starttime,'hh24:mi:ss')
 		"starttime" from comic_roomuse
 	</select>
+	
+	<select id="roomuselist2"
+		resultType="com.comic.model.RoomuseVO">
+		select roomuse_id,roomuse_num,roomuse_status,to_char(roomuse_starttime,'hh24:mi:ss')
+		"starttime" from comic_roomuse
+	</select>
 </mapper>

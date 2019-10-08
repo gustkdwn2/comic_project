@@ -31,6 +31,9 @@ public class ManagerPosServiceImpl implements ManagerPosService {
 		return managerposMapper.roomuselist();
 	}
 
+	public List<RoomuseVO> roomuselist2() {		
+		return managerposMapper.roomuselist2();
+	}
 
 
 	

@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ page session="false"%>
 
 <%@ include file="../includes/header.jsp"%>
@@ -87,20 +89,32 @@
 <!-- <div class="row"> -->
 <div class="mngmentcard" onclick="#">
 
-
   <!-- <img src="/WEB-INF/views/younghak/icando.jpg" alt="John" style="width:80%; height:80%; border-radius: 50%;" > -->
-<img src="/resources/images/faces/jang.jpg" alt="John" style="width:80%; height:80%; border-radius: 50%;" >
+<img src="/resources/images/faces/jang.jpg" alt="${managerList.get(i-1).getEMPLOYEE_NAME()}" style="width:50%; height:50%; border-radius: 50%;" >
 
-<h1>${managerList.get(i-1).getEMPLOYEE_NAME()} </h1>
+<h1>${managerList.get(i-1).getEMPLOYEE_NAME()} </h1> <!-- 이름 -->
 <p class="mngmenttitle">${managerList.get(i-1).getEMPLOYEE_POSITION()}</p>
-<p>Harvard University</p>
+<p>사번 : ${managerList.get(i-1).getEMPLOYEE_NUM()}</p>
+
+
+<p>입사일 :
+<fmt:formatDate value="${managerList.get(i-1).getEMPLOYEE_STARTDAY()}" pattern="yy.MM.dd"/>
+</p>
+<p>연락처 : ${managerList.get(i-1).getEMPLOYEE_PHONE()}</p>
+<p>시급/월급 : ${managerList.get(i-1).getEMPLOYEE_PAY()}</p>
+<p>계좌번호 : ${managerList.get(i-1).getEMPLOYEE_ACCOUNT()}</p>
+
 <div style="margin: 24px 0;">
-<a href="#" class="mngmenta"><i class="fa fa-dribbble"></i></a> 
+
+<!-- </div> -->
+  <p><button class="mngmentbutton">수정하기</button></p>
+  <p><button class="mngmentbutton" 
+  onclick="employeedelete(${managerList.get(i-1).getEMPLOYEE_NUM()})">탈퇴하기</button></p>
+  
+  <a href="#" class="mngmenta"><i class="fa fa-dribbble"></i></a> 
 <a href="#" class="mngmenta"><i class="fa fa-twitter"></i></a>  
 <a href="#" class="mngmenta"><i class="fa fa-linkedin"></i></a>  
 <a href="#" class="mngmenta"><i class="fa fa-facebook"></i></a> 
-<!-- </div> -->
-  <p><button class="mngmentbutton">Contact</button></p>
 </div>
 </div>
 
@@ -163,7 +177,7 @@
 </div>
 <!-- main-panel ends -->
 
-<!-- Modal 추가 -->
+<!-- 인서트Modal 추가 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog">
       <div class="modal-content">
@@ -189,7 +203,7 @@
                         placeholder="Phone">
                   </div>
                   <div class="form-group">
-                     <label>주소</label> <input type="text"
+                     <label>계좌 번호</label> <input type="text"
                         class="form-control form-control-lg" name="EMPLOYEE_ACCOUNT"
                         placeholder="Account">
                   </div>
@@ -216,10 +230,57 @@
 </div>
 <!-- /.modal -->
 
+
+
+<!-- 삭제Modal 추가 -->
+<div class="modal fade" id="mngdeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
+aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="ModalLabel">탈퇴 하기</h4>
+         </div>
+         <div class="modal-body">
+            <form class="pt-3" id="EmployeeDelete" action="/managerpos/EmployeeDelete" method="post">
+                  <div class="form-group">
+                  <h3>사번 : <font id="deletemodalmngnum"/> </h3>
+                     <label>비밀번호</label> 
+                     <input type="text"
+                        class="form-control form-control-lg" name="EMPLOYEE_PWD"
+                        placeholder="Password">
+                     <input type="hidden"
+                     id="EMPLOYEE_mngnum"
+                        class="form-control form-control-lg" name="EMPLOYEE_mngnum">
+                  </div>
+                  
+            </form>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="document.getElementById('EmployeeDelete').submit()">탈퇴</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+   </div>
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <script type="text/javascript">
 $("#AdminModal").on("click", function() {
    $("#myModal").modal("show");   
 });
+
+
+function employeedelete(employee_num){
+	//alert(employee_num);
+	$("#mngdeleteModal").modal("show");
+	document.getElementById("deletemodalmngnum").innerHTML=employee_num;
+	document.getElementById("EMPLOYEE_mngnum").value=employee_num;
+	
+}
+
 
 </script>
 
