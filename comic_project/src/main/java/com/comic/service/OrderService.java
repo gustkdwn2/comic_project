@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.comic.model.OrderProductViewVO;
+import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
 import com.comic.model.ProductVO;
 
@@ -21,7 +22,7 @@ public interface OrderService {
 	
 	public int productCheck(String productName);
 	
-	public void productInsert(String productName, String productCategory);
+	public void productInsert(String productName, OrderProductViewVO vo);
 
 	public void productCategoryUpdate(OrderViewVO vo);
 
@@ -30,5 +31,7 @@ public interface OrderService {
 	public void porductCateoryDelete(int number);
 
 	public String getCategoryValue(int number);
+
+	public void realTimeOrderAdd(List<OrderVO> orderList);
 
 }
