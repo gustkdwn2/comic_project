@@ -96,7 +96,6 @@
 <p class="mngmenttitle">${managerList.get(i-1).getEMPLOYEE_POSITION()}</p>
 <p>사번 : ${managerList.get(i-1).getEMPLOYEE_NUM()}</p>
 
-
 <p>입사일 :
 <fmt:formatDate value="${managerList.get(i-1).getEMPLOYEE_STARTDAY()}" pattern="yy.MM.dd"/>
 </p>
