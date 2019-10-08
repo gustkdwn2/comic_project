@@ -177,9 +177,14 @@ public class ManagerposController {
 		
 		int recordcount =managementService.managerloginrecord(empnum,emppwd,format_time);
 		if(recordcount==0) {
-			managementService.managerattendance(empnum);
+			managementService.managerattendance(empnum); //출근
 			System.out.println("출근 완료");
 			model.addAttribute("succecssmsg", "출근완료"); // 재고테이블
+			return "/younghak/login";
+		}else if(recordcount==1){
+			managementService.managerleavework(empnum); //퇴근
+			System.out.println("퇴근 완료");
+			model.addAttribute("succecssmsg", "퇴근완료"); // 재고테이블
 			return "/younghak/login";
 		}
 		

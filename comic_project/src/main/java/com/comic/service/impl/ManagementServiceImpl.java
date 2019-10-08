@@ -47,6 +47,12 @@ public class ManagementServiceImpl implements ManagementService {
 		managementMapper.managerattendance(empnum);
 	}
 	
+	@Override
+	public void managerleavework(String empnum) {
+		// TODO Auto-generated method stub
+		managementMapper.managerleavework(empnum);
+	}
+	
 	
 
 }

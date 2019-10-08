@@ -78,6 +78,21 @@ select*from comic_workinghour where workinghour_starttime=sysdate;
 SELECT * FROM comic_workinghour 
 WHERE TO_CHAR(workinghour_workday, 'YYMMDD') = '191008' and workingHour_emp_num=1001;
 
+SELECT TO_CHAR(workinghour_starttime, 'hh:mi:ss'),TO_CHAR(workinghour_ENDtime, 'hh:mi:ss')
+FROM comic_workinghour 
+WHERE TO_CHAR(workinghour_workday, 'YYMMDD') = '191008' and workingHour_emp_num=1001;
+
+select*from comic_employee;
+
+
+
+update comic_workinghour set workinghour_endtime=sysdate where workingHour_emp_num=1001;
+
+select*from comic_workinghour ;
+
+DELETE FROM comic_workinghour WHERE workingHour_emp_num=1001;
+
+commit;
 
 
 desc COMIC_WORKINGHOUR;

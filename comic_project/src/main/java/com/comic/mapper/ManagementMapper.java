@@ -16,4 +16,6 @@ public interface ManagementMapper {
 	(@Param("empnum") String empnum,@Param("emppwd") String  emppwd,@Param("todaydate") String  todaydate);
 	
 	public void managerattendance(@Param("empnum") String empnum);
+	
+	public void managerleavework(@Param("empnum") String empnum);
 }

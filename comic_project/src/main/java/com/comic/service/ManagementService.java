@@ -10,4 +10,5 @@ public interface ManagementService {
 	public int managerlogin(String empnum, String emppwd);
 	public int managerloginrecord(String empnum, String emppwd,String todaydate);
 	public void managerattendance(String empnum);
+	public void managerleavework(String empnum); //퇴근
 }

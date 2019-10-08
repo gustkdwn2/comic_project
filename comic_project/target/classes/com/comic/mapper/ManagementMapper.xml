@@ -32,6 +32,10 @@
 		values(#{empnum},sysdate,sysdate)
 	</insert>
 	
+	<update id="managerleavework">
+	update comic_workinghour set workinghour_endtime=sysdate where workingHour_emp_num=#{empnum}
+	</update>
+	
 	
 	
 </mapper>
