@@ -15,37 +15,36 @@
 		<div class="card">
 			<div class="card-body">
 				<h4 class="card-title">
-					<font style="vertical-align: inherit;"><font
-						style="vertical-align: inherit;">상품 수정</font></font>
+					<font style="vertical-align: inherit;">상품 수정</font>
 				</h4>
 				<form onsubmit="return check();" class="forms-sample" action="/product/productModify" method="post" autocomplete="off">
 					<div class="form-group">
 						<label for="exampleInputUsername1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상품 번호</font></font>
+							<font style="vertical-align: inherit;">상품 번호</font>
 						</label>
 						<input name="product_num" readonly="readonly" class="form-control" value="<c:out value="${product.product_num}" />">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputUsername1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상품 이름</font></font>
+							<font style="vertical-align: inherit;">상품 이름</font>
 						</label>
 						<input name="product_name" readonly="readonly" type="text" class="form-control" value="<c:out value="${product.product_name}" />" required>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1"><font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;">상품 판매가</font></font>
+						<label for="exampleInputEmail1">
+							<font style="vertical-align: inherit;">상품 판매가</font>
 						</label>
 						<input name="product_price" type="number" class="form-control" value="<c:out value="${product.product_price}" />" required>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1"><font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;">상품 수량</font></font>
+						<label for="exampleInputPassword1">
+							<font style="vertical-align: inherit;">상품 수량</font>
 						</label>
 						<input name="product_qty" type="number" class="form-control" value="<c:out value="${product.product_qty}" />" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputConfirmPassword1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상품 종류</font></font>
+							<font style="vertical-align: inherit;">상품 종류</font>
 						</label>
 						<input id="product_category" name="product_category" class="form-control" value="<c:out value="${product.product_category}" />" required>
 					</div>

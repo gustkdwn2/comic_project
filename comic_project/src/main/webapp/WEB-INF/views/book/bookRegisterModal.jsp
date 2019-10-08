@@ -14,17 +14,12 @@
 			<div class="card">
 				<div class="card-body" align="center">
 					<h4 class="card-title">
-						<font style="vertical-align: inherit;"><font
-							style="vertical-align: inherit;">책 재고 등록</font></font>
+						<font style="vertical-align: inherit;">책 재고 등록</font>
 					</h4>
-					<p class="card-description">
-						<font style="vertical-align: inherit;"><font
-							style="vertical-align: inherit;"></font></font>
-					</p>
 					<form onsubmit="return check();" class="forms-sample" action="/book/bookRegister" method="post" autocomplete="off">
 						<div class="form-group row">
 							<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
-								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책 이름</font></font>
+								<font style="vertical-align: inherit;">책 이름</font>
 							</label>
 							<div class="col-sm-9">
 								<input id="book_name" type="text" class="form-control" name="book_name" required>
@@ -32,7 +27,7 @@
 						</div>
 						<div class="form-group row">
 							<label for="exampleInputEmail2" class="col-sm-3 col-form-label">
-								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책위치</font></font>
+								<font style="vertical-align: inherit;">책위치</font>
 							</label>
 							<div class="col-sm-9">
 								<input id="book_loc" type="text" class="form-control" name="book_loc" required>
@@ -40,7 +35,7 @@
 						</div>
 						<div class="form-group row">
 							<label for="exampleInputMobile" class="col-sm-3 col-form-label">
-								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책출판사</font></font>
+								<font style="vertical-align: inherit;">책출판사</font>
 							</label>
 							<div class="col-sm-9">
 								<input id="book_publisher" type="text" class="form-control" name="book_publisher" required>
@@ -48,7 +43,7 @@
 						</div>
 						<div class="form-group row">
 							<label for="exampleInputPassword2" class="col-sm-3 col-form-label">
-								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책 저자</font></font>
+								<font style="vertical-align: inherit;">책 저자</font>
 							</label>
 							<div class="col-sm-9">
 								<input id="book_writer" type="text" class="form-control" name="book_writer" required>
@@ -56,7 +51,7 @@
 						</div>
 						<div class="form-group row">
 							<label for="exampleInputPassword2" class="col-sm-3 col-form-label">
-								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책 소개</font></font>
+								<font style="vertical-align: inherit;">책 소개</font>
 							</label>
 							<div class="col-sm-9">
 								<textarea class="form-control" rows="6" name="book_content"></textarea>
@@ -64,7 +59,7 @@
 						</div>
 						<div class="form-group row">
 							<label for="exampleInputPassword2" class="col-sm-3 col-form-label">
-								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책 분류</font></font>
+								<font style="vertical-align: inherit;">책 분류</font>
 							</label>
 							<div class="col-sm-9">
 								<input id="book_category" type="text" class="form-control" name="book_category" required>
@@ -72,7 +67,7 @@
 						</div>
 						<div class="form-group row">
 							<label for="exampleInputPassword2" class="col-sm-3 col-form-label">
-								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">마지막권</font></font>
+								<font style="vertical-align: inherit;">마지막권</font>
 							</label>
 							<div class="col-sm-9">
 								<input type="number" class="form-control" name="book_lastbook" required>
@@ -80,18 +75,17 @@
 						</div>
 						<div class="form-group row">
 							<label for="exampleInputPassword2" class="col-sm-3 col-form-label">
-								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">연재상태</font></font>
+								<font style="vertical-align: inherit;">연재상태</font>
 							</label>
 							<div class="col-sm-9">
 								<select id="book_status" class="form-control" name="book_status">
-		                            <option value="연재중"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">연재중</font></font></option>
-		                            <option value="완결"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">완결</font></font></option>
+		                            <option value="연재중"><font style="vertical-align: inherit;">연재중</font></option>
+		                            <option value="완결"><font style="vertical-align: inherit;">완결</font></option>
 	                            </select>
 							</div>
 						</div>
 						<button type="submit" class="btn btn-primary mr-2">
-							<font style="vertical-align: inherit;"><font
-								style="vertical-align: inherit;">등록</font></font>
+							<font style="vertical-align: inherit;">등록</font>
 						</button>
 						<button data-dismiss="modal" type="button" class="btn btn-success">닫기</button>
 					</form>
