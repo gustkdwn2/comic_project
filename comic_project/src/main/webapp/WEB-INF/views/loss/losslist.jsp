@@ -19,7 +19,7 @@
 						<div class="card-body">
 							<p class="card-title">재고 손실</p>
 							<div class="table-responsive">
-								<button data-toggle="modal" data-target="#myModal" style="margin-bottom: 10px;" type="button" class="btn btn-warning">손실 추가</button>
+								<button name="createBtn" style="margin-bottom: 10px;" type="button" class="btn btn-warning">손실 추가</button>
 								<table id="lossTable" class="table table-striped">
 									<thead>
 										<tr>
@@ -65,6 +65,8 @@
 	/* 모달창 손실 추가, 삭제 현재날짜 */
 	document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);	
 	
+	var createSelectValue = new Array();
+	
     $('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
     	pageLength: 10, //처음 페이지에 처리 개수
         bPaginate: true, // 페이징 기능
@@ -75,7 +77,7 @@
         ordering: true,
         serverSide: false,
         searching: true, // 검색 기능
-        bStateSave: true, // 이전페이지 저장
+        bStateSave: true,
         "iDisplayLength": 10,
         "language": {
           search: "Search :"
@@ -83,7 +85,30 @@
         "columnDefs": [{
             targets: 'no-sort',
             orderable: false
-         }]
+        }]
+    });
+    
+    $('button[name=createBtn]').click(function(){
+    	$.ajax({
+    	    type: 'post',
+    	    url: "/loss/lossCreate",
+    	    success: function(data) {
+    	    	$("#loss_createproduct").find("option").remove().end();
+    	    	
+    	    	for (var i = 0; i < data.product.length; i++) {
+    	    		createSelectValue[i] = data.product[i].product_price;
+    	    		$('#loss_createproduct').append("<option value='"+ data.product[i].product_name +"'>" + data.product[i].product_name + "</option>");
+				}
+    	    	$('#loss_createpay').attr('value', createSelectValue[0]);
+    	    	$('#myModal').show();
+    	    }
+    	});
+    });
+    
+    $('#loss_createproduct').change(function(){
+    	var index = $('#loss_createproduct option').index($('#loss_createproduct option:selected'));
+    	$('#loss_createpay').attr('value', createSelectValue[index]);
+    	
     });
     
     $('button[name=removeBtn]').click(function(){
@@ -106,6 +131,22 @@
     
     $('button[name=modifyBtn]').click(function(){
     	var loss_num = $(this).attr('value');
+    	$.ajax({
+    	    type: 'post',
+    	    url: "/loss/lossCreate",
+    	    success: function(data) {
+    	    	console.log(data);
+    	    	$("#loss_product").find("option").remove().end();
+    	    	
+    	    	for (var i = 0; i < data.product.length; i++) {
+    	    		createSelectValue[i] = data.product[i].product_price;
+    	    		$('#loss_product').append("<option value='"+ data.product[i].product_name +"'>" + data.product[i].product_name + "</option>");
+				}
+    	    	
+    	    	$('#loss_pay').attr('value', createSelectValue[0]);
+    	    }
+    	});
+    	
     	
     	$.ajax({
     	    type: 'get',
@@ -113,19 +154,29 @@
     	    success: function(data) {
     	    	var loss_date = data.getModify['loss_date'];
     	    	var date = new Date(parseInt(("/Date("+loss_date+")/").match(/\d+/)[0]));
+    	    	
     	    	$('#loss_num').attr('value',data.getModify['loss_num']);
     	    	$('#loss_category').attr('value',data.getModify['loss_category']);
     	    	$('#loss_qty').attr('value',data.getModify['loss_qty']);
-    	    	$('#loss_pay').attr('value',data.getModify['loss_pay']);
-    	    	$('#loss_product').attr('value',data.getModify['loss_product']);
     	    	$('#loss_date').attr('value',dateFormat(date));
     	    	$('#myModifyModal').show();
     	    }
     	});
     });
     
+    $('#loss_product').change(function(){
+    	var index = $('#loss_product option').index($('#loss_product option:selected'));
+    	$('#loss_pay').attr('value', createSelectValue[index]);
+    	
+    });
+    
+    
     $('#modifyclose').click(function(){
     	$('#myModifyModal').hide();
+    });
+    
+    $('#createclose').click(function(){
+    	$('#myModal').hide();
     });
     
     
@@ -133,6 +184,7 @@
     	   return d.getFullYear() + "-" + ((d.getMonth() + 1) + "").padStart(2, "0") 
     	      + "-" + (d.getDate() + "").padStart(2, "0");
     }
+    
 </script>
 </body>
 </html>
