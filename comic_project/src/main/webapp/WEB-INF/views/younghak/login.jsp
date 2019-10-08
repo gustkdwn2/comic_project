@@ -97,7 +97,20 @@
 			alert("ㅋㅋ답이없네");
 		}
 
-		 var tmp = '${managerList}';
+		var tmp = '${errormsg}';
+		console.log(tmp);
+		if(tmp!=""){
+			alert(tmp);
+			}
+		
+		var succecssmsg = '${succecssmsg}';
+		console.log(succecssmsg);
+		if(succecssmsg!=""){
+			alert(succecssmsg);
+			}
+
+		
+		
 		function Request() {
 			var requestParam = "";
 
@@ -125,10 +138,7 @@
 		/*  var request = new Request();
 		 // test 라는 파라메터 값을 얻기
 		var tmp =  request.getParameter("managerList"); */
-		if(tmp!=null||tmp!=""){
-			alert(tmp);
-			}
-		console.log(tmp);
+		
 		
 
 		

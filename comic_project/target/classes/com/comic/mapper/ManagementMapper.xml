@@ -19,6 +19,19 @@
 		select count(*) from comic_employee where employee_num=#{empnum} and employee_pwd=#{emppwd}
 	</select>
 	
+	<select id="managerloginrecord"
+		resultType="Integer">
+		SELECT count(*) FROM comic_workinghour 
+		WHERE TO_CHAR(workinghour_workday, 'YYMMDD')
+		 = #{todaydate} and workingHour_emp_num=#{empnum}
+	</select>
+	
+	<insert id="managerattendance">
+		insert into comic_workinghour 
+		(workinghour_emp_num,workinghour_starttime,workinghour_workday) 
+		values(#{empnum},sysdate,sysdate)
+	</insert>
+	
 	
 	
 </mapper>

@@ -46,7 +46,6 @@ public class ManagerposController {
 
 	@RequestMapping(value = { "/managerpos", "/Managerpos" }, method = RequestMethod.GET)
 	public String younghakpos(Locale locale, Model model) {
-
 		return "/younghak/Managerpos";
 	}
 
@@ -100,8 +99,8 @@ public class ManagerposController {
 	@ResponseBody
 	@RequestMapping(value = "get_room_uselist", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<Object> get_room_uselist() {
-		//List<RoomuseVO> list = managerposService.roomuselist();
-		List<RoomuseVO> list = managerposService.roomuselist2();
+		List<RoomuseVO> list = managerposService.roomuselist();
+		//List<RoomuseVO> list = managerposService.roomuselist2();
 
 		JSONArray replydataArray = new JSONArray();// json으로 보내기 위한 작업
 
@@ -164,20 +163,31 @@ public class ManagerposController {
 		System.out.println("empnum = "+empnum);
 		
 		//List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
-		//int tmp = managementService.managerlogin(empnum,emppwd);
-		int tmp=0;
-		if(tmp!=1) {//1이 아니면 에러
-			model.addAttribute("managerList", 1); // 재고테이블
-			System.out.println("tmp로 보내기전");
+		int logincount = managementService.managerlogin(empnum,emppwd);
+
+		if(logincount==0) {//1이 아니면 에러
+			model.addAttribute("errormsg", "아이디와 비밀번호가 일치하지 않습니다."); // 재고테이블
+			//System.out.println("tmp로 보내기전");
 			return "/younghak/login";
-		}else {
-			
 		}
+		
+		SimpleDateFormat format = new SimpleDateFormat ("yyMMdd");
+		String format_time = format.format (System.currentTimeMillis()); 
+		//만약 19년4월 11일이면 190411로 출력이된다.
+		
+		int recordcount =managementService.managerloginrecord(empnum,emppwd,format_time);
+		if(recordcount==0) {
+			managementService.managerattendance(empnum);
+			System.out.println("출근 완료");
+			model.addAttribute("succecssmsg", "출근완료"); // 재고테이블
+			return "/younghak/login";
+		}
+		
 			
 		//System.out.println("emppwd = "+emppwd+"\nmngnum = "+mngnum);
 		//managementService.deletemng(emppwd,mngnum);
 				
-		model.addAttribute("managerList", "이거 아님"); // 재고테이블
+		//model.addAttribute("managerList", "이거 아님"); // 재고테이블
 		
 		return "/younghak/login";
 	}
