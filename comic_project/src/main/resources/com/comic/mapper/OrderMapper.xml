@@ -9,8 +9,10 @@
 		insert into
 		comic_orderview(orderview_num,
 		orderview_category, orderview_product_num)
-		values ((select max(orderview_num) from comic_orderview)+1,
-		#{orderview_category}, #{orderview_product_num})
+		values ((select
+		max(orderview_num) from comic_orderview)+1,
+		#{orderview_category},
+		#{orderview_product_num})
 	</insert>
 
 	<select id="orderSelect"
@@ -29,17 +31,20 @@
 	</delete>
 
 	<!-- 밑으로는 ajax 상품 등록 -->
-	<select id="orderProductSelect"
-		resultType="Hashmap" >
+	<select id="orderProductSelect" resultType="Hashmap">
 		select
 		pk.orderview_num,
+		pk.orderview_uploadpath,
+		pk.orderview_filename,
+		pk.orderview_uuid,
 		fk.PRODUCT_NAME,
 		fk.PRODUCT_NUM,
 		fk.PRODUCT_PRICE
 		from
 		COMIC_PRODUCTSTOCK fk, COMIC_ORDERVIEW_PRODUCT pk
 		where
-		fk.PRODUCT_NUM = pk.orderview_product_num
+		fk.PRODUCT_NUM =
+		pk.orderview_product_num
 		AND
 		pk.ORDERVIEW_CATEGORY = #{category}
 	</select>
@@ -51,30 +56,43 @@
 
 	<insert id="productInsert">
 		insert into COMIC_ORDERVIEW_PRODUCT(ORDERVIEW_NUM,
-		ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM)
+		ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM, ORDERVIEW_FILENAME, ORDERVIEW_UPLOADPATH, ORDERVIEW_UUID)
 		values ((select
-		max(ORDERVIEW_NUM) from COMIC_ORDERVIEW_PRODUCT)+1,#{productCategory},
+		max(ORDERVIEW_NUM) from COMIC_ORDERVIEW_PRODUCT)+1,#{vo.orderview_category},
 		(select product_num from comic_productstock where product_name =
-		#{productName}))
+		#{productName}), #{vo.orderview_filename}, #{vo.orderview_uploadpath}, #{vo.orderview_uuid})
 	</insert>
 
 	<update id="productCategoryUpdate">
 		update comic_orderview_product set ORDERVIEW_CATEGORY
 		= #{orderview_category} where ORDERVIEW_CATEGORY = (select
-		ORDERVIEW_CATEGORY from comic_orderview where ORDERVIEW_NUM = #{orderview_num})
+		ORDERVIEW_CATEGORY from comic_orderview where ORDERVIEW_NUM =
+		#{orderview_num})
 	</update>
-	
+
 	<delete id="porductCateoryAllDelete">
-		delete comic_orderview_product where ORDERVIEW_CATEGORY = (select
-		ORDERVIEW_CATEGORY from comic_orderview where ORDERVIEW_NUM = #{number})
+		delete comic_orderview_product where
+		ORDERVIEW_CATEGORY = (select
+		ORDERVIEW_CATEGORY from comic_orderview
+		where ORDERVIEW_NUM = #{number})
 	</delete>
-	
+
 	<delete id="porductCateoryDelete">
-		delete comic_orderview_product where ORDERVIEW_NUM = #{number}
+		delete comic_orderview_product where ORDERVIEW_NUM =
+		#{number}
 	</delete>
 
 	<select id="getCategoryValue" resultType="String">
-		select orderview_category from comic_orderview_product where orderview_num = #{number}
+		select
+		orderview_category from comic_orderview_product where orderview_num =
+		#{number}
 	</select>
-	
+
+	<insert id="realTimeOrderAdd">
+		insert into comic_order(ORDER_NUM, ORDER_ID,
+		ORDER_ROOMNUM, ORDER_TIME, ORDER_PRODUCT_NUM, ORDER_QTY)
+		values
+		((select max(ORDER_NUM) from comic_order)+1, #{order_id},
+		#{order_roomnum}, #{order_time}, #{order_product_num}, #{order_qty})
+	</insert>
 </mapper>

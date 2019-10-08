@@ -8,10 +8,10 @@ import lombok.Data;
 public class OrderVO {
 	
 	private int order_num;
-	private String order__id;
+	private String order_id;
 	private int order_roomnum;
 	private Date order_time;
 	private int order_product_num;
-	private int drder_qty;
+	private int order_qty;
 	
 }

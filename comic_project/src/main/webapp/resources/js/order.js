@@ -11,11 +11,11 @@ var orderProductService = (function() {
 		});
 	}
 	
-	function productCheck(productNameJSON, callback, err) {
+	function productCheck(productJSON, callback, err) {
 		$.ajax({
 			type : 'post',
 			url : '/sangju/productCheck',
-			data : JSON.stringify(productNameJSON),
+			data : JSON.stringify(productJSON),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
 				if (callback) {
@@ -27,26 +27,7 @@ var orderProductService = (function() {
 					error(er);
 				}
 			}
-		})
-	}
-	
-	function productAdd(productNameJSON, callback, err) {
-		$.ajax({
-			type : 'post',
-			url : '/sangju/productAdd',
-			data : JSON.stringify(productNameJSON),
-			contentType : "application/json; charset=utf-8",
-			success : function(result, status, xhr) {
-				if (callback) {
-					callback(result);
-				}
-			},
-			error : function(xhr, status, er) {
-				if (error) {
-					error(er);
-				}
-			}
-		})
+		});
 	}
 	
 	function productDelete(number, callback, err) {
@@ -65,7 +46,7 @@ var orderProductService = (function() {
 					error(er);
 				}
 			}
-		})
+		});
 	}
 	
 	function resultOrder(orderArray, callback, err) {
@@ -84,9 +65,29 @@ var orderProductService = (function() {
 					error(er);
 				}
 			}
-		})
+		});
 	}
+	
+	function productAdd(formData, callback, err) {
+		$.ajax({
+			url: "/sangju/productAdd",
+			processData : false,
+			contentType : false,
+			data : formData,
+			type : 'POST',
+			dataType : 'json',
+			success : function(data) {
+				if (callback) { 
+					callback(data);
+				}
+			}, 
+			error:function(request,status,error){
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
 
+		});
+	}
+	
 	return {
 		getList : getList,
 		productCheck : productCheck,
