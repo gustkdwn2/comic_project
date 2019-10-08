@@ -24,8 +24,8 @@
 	                  
 	                  <form role="form" class="forms-sample" action="/CustomerCenter/boardModify" method="post">
 	                  	
-	                  	<input type="hidden" name="BOARD_ID" value="zizi" >
-	                  	<input type="hidden" name="BOARD_NUM" value="${board.BOARD_NUM}" >
+	                  	<input type="hidden" name="board_id" value="zizi" >
+	                  	<input type="hidden" name="board_num" value="${board.board_num}" >
 	                  	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
 				        <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
 					    <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
@@ -35,14 +35,14 @@
 	                  	
 	                    <div class="form-group">
 	                      <label for="board_title">제목</label>
-	                      <input type="text" class="form-control" name="BOARD_TITLE" 
-	                      	size= "60" maxlength="50" value='<c:out value="${board.BOARD_TITLE }"/>' >
+	                      <input type="text" class="form-control" name="board_title" 
+	                      	size= "60" maxlength="50" value='<c:out value="${board.board_title }"/>' >
 	                    </div>
 	                    
 	                    <div class="form-group">
 	                      <label for="board_content">내용</label>
-	                      <textarea class="form-control" name="BOARD_CONTENT" rows="15" cols="80"
-	                      placeholder="내용을 입력해주세요" ><c:out value="${board.BOARD_CONTENT}"/></textarea>
+	                      <textarea class="form-control" name="board_content" rows="15" cols="80"
+	                      placeholder="내용을 입력해주세요" ><c:out value="${board.board_content}"/></textarea>
 	                    </div>
 	                    
 	                    

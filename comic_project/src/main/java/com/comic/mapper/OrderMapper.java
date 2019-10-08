@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.comic.model.OrderProductViewVO;
+import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
 
 public interface OrderMapper {
@@ -21,7 +23,7 @@ public interface OrderMapper {
 	
 	public int productCheck(String productName);
 
-	public void productInsert(@Param("productName") String productName,@Param("productCategory") String productCategory);
+	public void productInsert(@Param("productName") String productName, @Param("vo") OrderProductViewVO vo);
 
 	public void productCategoryUpdate(OrderViewVO vo);
 
@@ -30,5 +32,7 @@ public interface OrderMapper {
 	public void porductCateoryDelete(int number);
 
 	public String getCategoryValue(int number);
+
+	public void realTimeOrderAdd(OrderVO orderVO);
 
 }

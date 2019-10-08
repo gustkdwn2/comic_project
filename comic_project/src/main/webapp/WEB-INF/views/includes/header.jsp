@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Majestic Admin</title>
+<title>Comic Clerk</title>
 
 <link rel="stylesheet"
 	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
@@ -88,7 +88,6 @@
 							<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
 							<a class="dropdown-item">
 								<div class="item-thumbnail">
-
 									<img src="/resources/images/faces/face4.jpg" alt="image"
 										class="profile-pic">
 								</div>

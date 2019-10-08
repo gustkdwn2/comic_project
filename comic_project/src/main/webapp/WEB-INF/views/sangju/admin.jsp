@@ -29,8 +29,16 @@
 				<button name="productAdd">productAdd</button>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-12">
+				실시간 주문 들어오는 곳
+				<hr>
+				
+			</div>
+		</div>
 	</div>
 </div>
+
 
 <!-- hidden form -->
 <form id="operForm"></form>
@@ -89,6 +97,34 @@
                 <div class="form-group">
                     <label>product</label>
                     <input class="form-control" name="product">
+                    <label>image file</label>
+                    <form id="uploadForm" method="post" enctype="multipart/form-data">
+	                    <input class="form-control" type="file" name="uploadFile">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="productModalRegisterBtn" type="button" class="btn btn-primary">Resgister</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal product update-->
+<div class="modal" id="modalProductUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">product Update</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div> 
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>product</label>
+                    <input class="form-control" name="product">
+                    <label>image file</label>
+                    <form id="uploadForm" method="post" enctype="multipart/form-data">
+	                    <input class="form-control" type="file" name="uploadFile">
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">
@@ -172,6 +208,8 @@
 					str += "<li>";
 					str += "이름: " + data[i].PRODUCT_NAME + " / 가격: " +data[i].PRODUCT_PRICE;
 					str += "<a href='#' onclick=\'productDelete(" + data[i].ORDERVIEW_NUM + ")\'>[delete]</a>";
+					str += "<a href='#' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>[update]</a>";
+					str += "<img src='" + data[i].ORDERVIEW_UPLOADPATH + "\\" + data[i].ORDERVIEW_UUID + "_" + data[i].ORDERVIEW_FILENAME +"'/>";
 					str += "</li>";
 				}
 
@@ -184,24 +222,40 @@
 		});
 
 		$("#productModalRegisterBtn").on("click", function (e) {
-			var productNameJSON = {
+			var formData = new FormData();
+			var inputFile = $("input[name='uploadFile']");
+			var files = inputFile[0].files;
+
+			//add filedate to formdata
+			for(var i = 0; i < files.length; i++) {
+				if(!checkExtension(files[i].name, files[i].size)) {
+					return false;
+				}
+				formData.append("uploadFile", files[i]);
+				formData.append("productName", $("input[name='product']").val());
+				formData.append("productCategory", categoryValue);
+			}
+
+			var productJSON = {
 				productName: $("input[name='product']").val(),
 				productCategory: categoryValue
 			};
-			orderProductService.productCheck(productNameJSON, function(result) {
+
+
+			orderProductService.productCheck(productJSON, function(result) {
 				if(result == "NULL") {
 					alert("재고에 해당 상품이 없습니다.");
 					$("input[name='product']").val('');
 					return;
 				}
-
-				orderProductService.productAdd(productNameJSON, function(result){
+				
+				orderProductService.productAdd(formData, function(result){
 					$("input[name=product]").val('');
 					modalProductAdd.modal("hide");
 					orderProductShow(categoryValue);
+					 
 				});
 			});
-			
         });
 
 		var indexProductNum = 0;
@@ -229,6 +283,26 @@
 				
 				orderProductShow(categoryValue);
 			});
+		}
+
+		window.productUpdate = function (number) {
+			modalProductAdd.modal("show");
+			
+		}
+		
+		var maxSize = 5242880; // 5MB
+		
+		function checkExtension(fileName, fileSize) {
+			if(fileSize >= maxSize) {
+				alert("파일 사이즈 초과입니다.");
+				return false;
+			}
+			var ext = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
+			if(!(ext == "git" || ext == "jpg" || ext == "png")){
+				alert("이미지 파일만 업로드 가능합니다.");
+				return false;
+			}
+			return true;
 		}
     });	
 </script>

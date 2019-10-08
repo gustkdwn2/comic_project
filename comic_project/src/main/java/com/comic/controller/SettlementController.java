@@ -25,16 +25,15 @@ public class SettlementController {
 
 	private SettlementService settleService;
 
-	@GetMapping("list")
+	@GetMapping("settlementlist")
 	public String settlementList(Model model) {
 		model.addAttribute("settleList", settleService.settlementList()); // 재고테이블
 		return "settlement/settlementlist";
 	}
 
-	@PostMapping("list")
+	@PostMapping("settlementlist")
 	public @ResponseBody Map<String, Object> settlementCheck(@RequestBody HashMap<String, Object> map) {
-		List<ProductVO> current = settleService.settlementList(); // 현재 재고
-		Map<String, Object> errorMap = settleService.settlementError(map, current); // 오차 재고
+		Map<String, Object> errorMap = settleService.settlementError(map); // 오차 재고
 
 		return errorMap;
 	}

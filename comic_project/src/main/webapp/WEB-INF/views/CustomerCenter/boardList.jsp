@@ -7,9 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/resources/css/zizi.css">
 <meta charset="UTF-8">
-<title>코믹 서기 고객센터</title>
+<title>코믹 서기 건의 게시판</title>
 </head>
 <body>
       <!-- partial -->
@@ -19,7 +18,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h2 class=".h2">고객센터 게시판</h2>
+                  <h2 class=".h2">건의 게시판</h2>
                   
 				    <form class="form-inline" action="/CustomerCenter/boardList" 
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
@@ -69,13 +68,11 @@
                       
 	                      <tbody>
 	                        <tr>
-	                          <td style="width:200px;"><c:out value="${list.BOARD_NUM }" /></td>
-	                          <td style="width:1000px;"><a class='move' href='<c:out value="${list.BOARD_NUM}"/>'>
-	                          <c:out value="${list.BOARD_TITLE }" /></a>
-	                         <%--  <a href='/CustomerCenter/boardGet?BOARD_NUM=<c:out value="${list.BOARD_NUM}"/>'> 
-	                           <c:out value="${list.BOARD_TITLE }" /></a>--%></td>
-	                          <td style="width:400px;"><c:out value="${list.BOARD_ID }" /></td>
-	                          <td style="width:300px;"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.BOARD_DATE }" /></td>
+	                          <td style="width:200px;"><c:out value="${list.board_num }" /></td>
+	                          <td style="width:1000px;"><a class='move' href='<c:out value="${list.board_num}"/>'>
+	                          <c:out value="${list.board_title }" /></a></td>
+	                          <td style="width:400px;"><c:out value="${list.board_id }" /></td>
+	                          <td style="width:300px;"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.board_date }" /></td>
 	                        </tr>         
                       	  </tbody>
                       	  
@@ -148,7 +145,7 @@
 					"click",
 					function(e){
 						e.preventDefault();
-						actionForm.append("<input type='hidden' name='BOARD_NUM' value='"
+						actionForm.append("<input type='hidden' name='board_num' value='"
 								+$(this).attr("href")+ "'>");
 						actionForm.attr("action", "/CustomerCenter/boardGet");
 						actionForm.submit();
