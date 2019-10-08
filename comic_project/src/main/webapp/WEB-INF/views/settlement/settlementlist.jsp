@@ -33,15 +33,15 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${settleList}" var="settle">
+										<c:forEach items="${settleList}" var="settle" varStatus="status" >
 											<tr>
 												<td>${settle.product_num }</td>
 												<td>${settle.product_category }</td>
 												<td>${settle.product_name }</td>
 												<td>${settle.product_qty }</td>
-												<td><input type="text" class="currentqty" name="curqty"
-													id="ainput${settle.product_num-1}" size="10"></td>
-												<td id="a${settle.product_num-1}"></td>
+												<td><input type="number" class="currentqty" name="curqty"
+													id="ainput${status.count-1}" size="10"></td>
+												<td id="a${status.count-1}"></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -71,12 +71,13 @@
 				<br />
 			</p>
 			<table>
-				<c:forEach items="${settleList}" var="settle">
+				<c:forEach items="${settleList}" var="settle" varStatus="status">
 					<tr>
 						<td><input type="hidden" value="${settle.product_num }"
 							name="productNum"> ${settle.product_name }</td>
-						<td>${settle.product_qty }-></td>
-						<td id="b${settle.product_num-1}"></td>
+						<td>${settle.product_qty }</td>
+						<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> </td>
+						<td id="b${status.count-1}"></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -107,14 +108,16 @@
 
 			var list = new Array();		
 			$("input[name=curqty]").each(function(index, item) {  // 반복문
-				list.push($('#'+'ainput'+index).val());
+				//list.push($('#'+'ainput'+index).val());
+				list.push(item.value);
 			});
+			console.log(list);
 			var sendData = {
 				'list' : list
 			};
 			console.log(list);
 			$.ajax({
-				url : '/settlement/list',
+				url : '/settlement/settlementlist',
 				dataType : 'json',
 				data : JSON.stringify(sendData),
 				contentType : "application/json; charset=utf-8;",

@@ -6,4 +6,6 @@ import com.comic.model.LossVO;
 
 public interface LossService {
 	public List<LossVO> lossList();
+
+	public void lossRegister(LossVO vo);
 }

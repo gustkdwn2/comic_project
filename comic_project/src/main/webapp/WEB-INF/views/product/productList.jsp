@@ -53,6 +53,7 @@
 	
 									</table>
 								</form>
+
 							</div>
 						</div>
 					</div>
@@ -67,7 +68,7 @@
 
 	$(document).ready(function() {
 
-		$('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
+		$('#productTable').DataTable({ // 페이징 처리, 검색, show entries
 			pageLength : 10,
 			bPaginate : true,
 			bLengthChange : true,
