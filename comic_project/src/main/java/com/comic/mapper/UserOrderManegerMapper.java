@@ -9,7 +9,7 @@ import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
 
-public interface OrderMapper {
+public interface UserOrderManegerMapper {
 	
 	public void orderInsert(OrderViewVO vo);
 

@@ -6,20 +6,20 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.comic.mapper.OrderMapper;
+import com.comic.mapper.UserOrderManegerMapper;
 import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
 import com.comic.model.ProductVO;
-import com.comic.service.OrderService;
+import com.comic.service.UserOrderManegerService;
 
 import lombok.Setter;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class UserOrderManegerServiceImpl implements UserOrderManegerService{
 
 	@Setter(onMethod_ = @Autowired)
-	private OrderMapper ordermapper;
+	private UserOrderManegerMapper ordermapper;
 	
 	@Override
 	public void registerCategory(OrderViewVO vo) {
