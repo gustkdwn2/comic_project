@@ -35,4 +35,19 @@ public class LossServiceImpl implements LossService {
 		lossMapper.lossRegister(vo);
 	}
 
+	@Override
+	public void lossRemove(int loss_num) {
+		lossMapper.lossDelete(loss_num);
+	}
+
+	@Override
+	public LossVO lossGet(int loss_num) {
+		return lossMapper.lossRead(loss_num);
+	}
+
+	@Override
+	public void lossModify(LossVO vo) {
+		lossMapper.lossUpdate(vo);
+	}
+
 }
