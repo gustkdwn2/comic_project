@@ -25,7 +25,7 @@
 								<button id="orderBtn" style="margin-bottom: 10px;" type="button"
 									class="btn btn-warning">상품 발주</button>
 								<form onsubmit="return remove();" action="/product/productRemove" method="post">
-									<table id="lossTable" class="table  table-striped">
+									<table id="productTable" class="table  table-striped">
 										<thead>
 											<tr>
 												<th>상품 번호</th>
