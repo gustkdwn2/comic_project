@@ -3,7 +3,9 @@ package com.comic.service.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.comic.mapper.BookAttachMapper;
 import com.comic.mapper.BookMapper;
 import com.comic.model.BookVO;
 import com.comic.service.BookService;
@@ -16,6 +18,8 @@ public class BookServiceImpl implements BookService {
 	
 	private BookMapper mapper;
 	
+	private BookAttachMapper attachMapper;
+	
 	@Override
 	public List<BookVO> bookGetList() {
 		return mapper.bookGetList();
@@ -25,10 +29,19 @@ public class BookServiceImpl implements BookService {
 	public BookVO bookGet(String book_name) {
 		return mapper.bookRead(book_name);
 	}
-
+	
+	@Transactional
 	@Override
 	public void bookRegister(BookVO vo) {
 		mapper.bookInsert(vo);
+		
+		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
+			return;
+		}
+		vo.getAttachList().forEach(attach -> {
+			attach.setBook_name(vo.getBook_name());
+			attachMapper.insert(attach);
+		});
 	}
 
 	@Override
