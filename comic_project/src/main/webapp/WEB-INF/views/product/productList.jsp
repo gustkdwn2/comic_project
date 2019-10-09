@@ -47,7 +47,10 @@
 												<td><c:out value="${product.product_price}" /></td>
 												<td><c:out value="${product.product_qty}" /></td>
 												<td><c:out value="${product.product_category}" /></td>
-												<td><button name="removeBtn" value="${product.product_num}" type="submit" class="btn btn-danger">삭제</button></td>
+												<td>
+													<button name="getBtn" value="${product.product_num}" type="button" class="btn btn-info">수정</button>
+													<button name="removeBtn" value="${product.product_num}" type="submit" class="btn btn-danger">삭제</button>
+												</td>
 											</tr>
 										</c:forEach>
 	
@@ -62,6 +65,7 @@
 	</div>
 	
 	<jsp:include page="productRegisterModal.jsp" />
+	<jsp:include page="productGetModal.jsp" />
 </body>
 <script type="text/javascript">
 
@@ -88,19 +92,40 @@
 			}]
 	    });
 
+		$('button[name=getBtn]').click(function(){
+	    	var product_num = $(this).attr('value');   	
+	    	
+	    	$.ajax({
+	    	    type: 'get',
+	    	    url: "/product/productGet?product_num="+product_num,
+	    	    dataType : "json",
+	    	    success: function(data) {
+	    	    	console.log(data);
+	    	    	console.log(data.product_name);
+	    	    	$('#product_num').attr('value',data.product_num);
+	    	    	$('#product_name').attr('value',data.product_name);
+	    	    	$('#product_price').attr('value',data.product_price);
+	    	    	$('#product_qty').attr('value',data.product_qty);
+	    	    	$('#product_category').attr('value',data.product_category);
+	    	    	$('#productGet').show();
+	    	    	
+	    	    }
+	    	});
+	    });
+
 		$('#orderBtn').click(function() {
 			self.location = "/productOrder/productOrderList";
 		});
 		
 	});
 
-	function remove() {
+	/* function remove() {
 
 		if(!confirm("삭제 하시겠습니까?")){
 			return false;
 		}
 		return true;
-	}
+	} */
 	
 </script>
 </html>

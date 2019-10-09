@@ -23,7 +23,7 @@
 									<font style="vertical-align: inherit;">상품 이름</font>
 								</label>
 								<div class="col-sm-9">
-									<input id="product_name" type="text" class="form-control" name="product_name" required>
+									<input type="text" class="form-control" name="product_name" required>
 								</div>
 							</div>
 							<div class="form-group row">
@@ -47,7 +47,7 @@
 									<font style="vertical-align: inherit;">상품 종류</font>
 								</label>
 								<div class="col-sm-9">
-									<input id="product_category" type="text" class="form-control" name="product_category" required>
+									<input type="text" class="form-control" name="product_category" required>
 								</div>
 							</div>
 							<button type="submit" class="btn btn-primary mr-2">
