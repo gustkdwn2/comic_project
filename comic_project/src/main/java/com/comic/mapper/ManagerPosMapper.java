@@ -12,6 +12,6 @@ public interface ManagerPosMapper {
 	public void roomstop(@Param("roomuse_num")String roomuse_num);
 	
 	public List<RoomuseVO> roomuselist();
-	
 	public List<RoomuseVO> roomuselist2();
+	
 }

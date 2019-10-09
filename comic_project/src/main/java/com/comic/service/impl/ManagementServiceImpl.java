@@ -23,4 +23,36 @@ public class ManagementServiceImpl implements ManagementService {
 		return managementMapper.employeelist();
 	}
 
+	@Override
+	public void deletemng(String emppwd, String mngnum) {
+		managementMapper.deletemng(emppwd, mngnum);
+		
+	}
+
+	@Override
+	public int managerlogin(String empnum, String emppwd) {
+		// TODO Auto-generated method stub
+		return managementMapper.managerlogin(empnum, emppwd);
+	}
+
+	@Override
+	public int managerloginrecord(String empnum, String emppwd,String todaydate) {
+		// TODO Auto-generated method stub
+		return managementMapper.managerloginrecord(empnum, emppwd,todaydate);
+	}
+
+	@Override
+	public void managerattendance(String empnum) {
+		// TODO Auto-generated method stub
+		managementMapper.managerattendance(empnum);
+	}
+	
+	@Override
+	public void managerleavework(String empnum) {
+		// TODO Auto-generated method stub
+		managementMapper.managerleavework(empnum);
+	}
+	
+	
+
 }
