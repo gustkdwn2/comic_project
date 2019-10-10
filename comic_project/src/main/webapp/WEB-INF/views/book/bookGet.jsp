@@ -15,61 +15,76 @@
 		<div class="card">
 			<div class="card-body">
 				<h4 class="card-title">
-					<font style="vertical-align: inherit;"><font
-						style="vertical-align: inherit;">책 수정</font></font>
+					<font style="vertical-align: inherit;">책 수정</font>
 				</h4>
 				<form onsubmit="return check();" class="forms-sample" action="/book/bookModify" method="post">
+					<div class="form-group row">
+						<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
+							<font style="vertical-align: inherit;">책 이미지</font>
+						</label>
+						<div class="form-group row">
+					        <div class="form-group uploadDiv">
+					            <input type="file" name='uploadFile'>
+					        </div>
+				        
+					        <div class='uploadResult'> 
+					        	<ul>
+					          
+					        	</ul>
+					        </div>
+				    	</div>
+					</div>
 					<div class="form-group">
 						<label for="exampleInputUsername1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책이름</font></font>
+							<font style="vertical-align: inherit;">책이름</font>
 						</label><input name="book_name" readonly="readonly" class="form-control" value="<c:out value="${book.book_name}" />">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputUsername1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책위치</font></font>
+							<font style="vertical-align: inherit;">책위치</font>
 						</label>
 						<input id="book_loc" name="book_loc" type="text" class="form-control" value="<c:out value="${book.book_loc}" />" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책출판사</font></font>
+							<font style="vertical-align: inherit;">책출판사</font>
 						</label>
 						<input id="book_publisher" name="book_publisher" type="text" class="form-control" value="<c:out value="${book.book_publisher}" />" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책 저자</font></font>
+							<font style="vertical-align: inherit;">책 저자</font>
 						</label>
 						<input id="book_writer" name="book_writer" type="text" class="form-control" value="<c:out value="${book.book_writer}" />" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputConfirmPassword1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책 소개</font></font>
+							<font style="vertical-align: inherit;">책 소개</font>
 						</label>
 						<textarea name="book_content" class="form-control" rows="20"><c:out value="${book.book_content}" /></textarea>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">책 분류</font></font>
+							<font style="vertical-align: inherit;">책 분류</font>
 						</label>
 						<input id="book_category" name="book_category" type="text" class="form-control" value="<c:out value="${book.book_category}" />" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">마지막권</font></font>
+							<font style="vertical-align: inherit;">마지막권</font>
 						</label>
 						<input name="book_lastbook" type="number" class="form-control" value="<c:out value="${book.book_lastbook}" />" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">연재상태</font></font>
+							<font style="vertical-align: inherit;">연재상태</font>
 						</label>
 						<select id="book_status" class="form-control" name="book_status" >
 							<option value="${book.book_status}" hidden>
-								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${book.book_status}</font></font>
+								<font style="vertical-align: inherit;">${book.book_status}</font>
 							</option>
-		                	<option value="연재중"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">연재중</font></font></option>
-		                	<option value="완결"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">완결</font></font></option>
+		                	<option value="연재중"><font style="vertical-align: inherit;">연재중</font></option>
+		                	<option value="완결"><font style="vertical-align: inherit;">완결</font></option>
 	                	</select>
 					</div>
 					<div class="form-group" align="center">
@@ -83,6 +98,36 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
+
+		(function(){
+			  
+			var book_name = '<c:out value="${book.book_name}"/>';
+		    
+			$.getJSON("/book/getAttachList", {book_name: book_name}, function(arr){
+		    
+				console.log(arr);
+
+				var str="";
+
+				$(arr).each(function(i, attach) {
+					//image type
+					if(attach.fileType) {
+						var fileCallPath = encodeURIComponent(attach.uploadPath+"/s_"+attach.uuid+"_"+attach.fileName);
+						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'><div>";
+						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "</div>";
+						str += "<li>";
+					} else {
+						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+'" data-type="'+attach.fileType+"'><div>";
+						str += "<img src='/resources/img/attach.png'>";
+						str += "</div>";
+						str += "</li>";
+					}
+				});
+				$(".uploadResult ul").html(str);
+			});
+		    
+		})();
 		
 		$('#listBtn').click(function() {
 			self.location = "/book/bookList";
@@ -90,7 +135,7 @@
 		
 	});
 
-	function check() {
+	/* function check() {
 		
 		if($.trim($("#book_loc").val()) != $("#book_loc").val()) {
 		      alert("앞,뒤 공백을 지워주세요.");
@@ -117,7 +162,51 @@
 		      return false;
 		}
 		return true;
-	}
+	} */
 		
 </script>
+
+<style>
+.uploadResult {
+	width: 100%;
+	background-color: gray;
+}
+
+.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResult ul li {
+	list-style: none;
+	padding: 10px;
+}
+
+.uploadResult ul li img {
+	width: 100px;
+}
+</style>
+
+<style>
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray; 
+  z-index: 100;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
 </html>

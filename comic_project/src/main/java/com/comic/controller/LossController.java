@@ -1,6 +1,7 @@
 package com.comic.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.comic.model.LossVO;
+import com.comic.model.ProductVO;
 import com.comic.service.LossService;
+import com.comic.service.ProductService;
 
 import lombok.AllArgsConstructor;
 
@@ -23,6 +26,7 @@ import lombok.AllArgsConstructor;
 public class LossController {
 	
 	private LossService lossService;
+	private ProductService productService;
 	
 	@GetMapping("losslist")
 	public void lossList(Model model) {
@@ -33,6 +37,13 @@ public class LossController {
 	public String lossRegister(LossVO vo) {
 		lossService.lossRegister(vo);
 		return "redirect:/loss/losslist";
+	}
+	
+	@PostMapping("lossCreate")
+	public @ResponseBody Map<String, List<ProductVO>> lossCreate() {
+		Map<String, List<ProductVO>> map = new HashMap<String, List<ProductVO>>();
+		map.put("product", productService.productGetList());
+		return map;
 	}
 	
 	@PostMapping("lossRemove")

@@ -24,7 +24,7 @@
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
 				    		<select name="type" class="form-control">
 				     			<option value=""
-									 <c:out value="${pageMaker.cri.type == null?'selected':''}"/> >--</option>
+									 <c:out value="${pageMaker.cri.type == null?'selected':''}"/> >선택해주세요</option>
 								<option value="T"
 									<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
 								<option value="C"
@@ -173,9 +173,10 @@
 
 			var searchForm = $("#searchForm");
 
-			 $("#searchForm button").on(
+			 $("#searchForm").on(
 					"click",
 					function(e){
+						console.log('검색 방지 필터');
 
 						if(!searchForm.find("option:selected").val()){
 							alret("검색 종류를 선택해주세요");

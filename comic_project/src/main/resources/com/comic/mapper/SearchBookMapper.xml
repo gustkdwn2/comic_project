@@ -5,14 +5,29 @@
 
 <mapper namespace="com.comic.mapper.SearchBookMapper">
 
-	<select id="getTotalCount" resultType="int">
-		select count(*) from COMIC_BOOK where
-		<include refid="criteria"></include>
+<!-- 	<select id="getListWithPaging" resultType="com.comic.model.BookVO">
+		<![CDATA[
+		select 
+			BOOK_NAME, BOOK_LOC, BOOK_PUBLISHER, BOOK_WRITER, BOOK_CONTENT, BOOK_CATEGORY, BOOK_LASTBOOK, BOOK_STATUS
+		from
+			( 
+			select /*+INDEX_DESC(COMIC_BOOK pk_COMIC_BOOK) */
+				rownum rn, BOOK_NAME, BOOK_LOC, BOOK_PUBLISHER, BOOK_WRITER, BOOK_CONTENT, BOOK_CATEGORY, BOOK_LASTBOOK, BOOK_STATUS
+			from 
+				COMIC_BOOK
+			where
 		
-		BOOK_NAME is NOT NULL
-
-	</select>
-
+			]]>
+			
+			<include refid="criteria"></include> 
+		
+		  <![CDATA[	
+		  	rownum <=#{pageNum} * #{amount}
+		  	)
+		 where rn > (#{pageNum}-1) * #{amount} 
+		 ]]>	
+	</select> -->
+	
 	<select id="getListWithPaging" resultType="com.comic.model.BookVO">
 		<![CDATA[
 		select 
@@ -35,6 +50,15 @@
 		 where rn > (#{pageNum}-1) * #{amount} 
 		 ]]>	
 	</select>
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from COMIC_BOOK where
+		<include refid="criteria"></include>
+		
+		BOOK_NAME is NOT NULL
+
+	</select>
+
 	
 	
 	<sql id="criteria">

@@ -38,7 +38,7 @@
 							style="vertical-align: inherit;"><font
 								style="vertical-align: inherit;">요금</font></font></label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" name="loss_pay" id="loss_pay">
+							<input type="number" class="form-control" name="loss_pay" id="loss_pay" readonly="readonly">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -46,7 +46,7 @@
 							style="vertical-align: inherit;"><font
 								style="vertical-align: inherit;">상품</font></font></label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" name="loss_product" id="loss_product">
+							<select class="form-control" name="loss_product" id="loss_product"></select>
 						</div>
 					</div>
 					<div class="form-group row">

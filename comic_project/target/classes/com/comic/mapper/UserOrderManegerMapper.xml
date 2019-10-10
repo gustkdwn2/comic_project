@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.comic.mapper.OrderMapper">
+<mapper namespace="com.comic.mapper.UserOrderManegerMapper">
 
 	<insert id="orderInsert">
 		insert into
@@ -47,6 +47,7 @@
 		pk.orderview_product_num
 		AND
 		pk.ORDERVIEW_CATEGORY = #{category}
+		order by pk.orderview_num
 	</select>
 
 	<select id="productCheck" resultType="Integer">

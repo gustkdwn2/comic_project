@@ -16,15 +16,12 @@
 				<div class="card">
 					<div class="card-body">
 						<h4 class="card-title">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">발주 등록</font></font>
+							<font style="vertical-align: inherit;">발주 등록</font>
 						</h4>
-						<p class="card-description">
-							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font>
-						</p>
 						<form class="forms-sample" action="/productOrder/productOrderRegister" method="post" autocomplete="off">
 							<div class="form-group row">
 								<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
-									<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상품 이름</font></font>
+									<font style="vertical-align: inherit;">상품 이름</font>
 								</label>
 								<div class="col-sm-9">
 									<select id="productOrder_product_name" class="form-control" name="productOrder_product_name">
@@ -38,7 +35,7 @@
 							</div>
 							<div class="form-group row">
 								<label for="exampleInputEmail2" class="col-sm-3 col-form-label">
-									<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">발주 구매가</font></font>
+									<font style="vertical-align: inherit;">발주 구매가</font>
 								</label>
 								<div class="col-sm-9">
 									<input type="number" class="form-control" name="productOrder_cost" required>
@@ -46,14 +43,14 @@
 							</div>
 								<div class="form-group row">
 								<label for="exampleInputEmail2" class="col-sm-3 col-form-label">
-									<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">발주 수량</font></font>
+									<font style="vertical-align: inherit;">발주 수량</font>
 								</label>
 								<div class="col-sm-9">
 									<input type="number" class="form-control" name="productOrder_qty" required>
 								</div>
 							</div>
 							<button type="submit" class="btn btn-primary mr-2">
-								<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">등록</font></font>
+								<font style="vertical-align: inherit;">등록</font>
 							</button>
 							<button data-dismiss="modal" type="button" class="btn btn-success">닫기</button>
 						</form>

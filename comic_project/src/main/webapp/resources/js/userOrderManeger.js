@@ -1,6 +1,6 @@
-var orderProductService = (function() {
+ var orderProductService = (function() {
 	function getList(category, callback, error) {
-		$.getJSON("/sangju/productRead/" + category + ".json", function(data) {
+		$.getJSON("/userOrderManager/productRead/" + category + ".json", function(data) {
 			if (callback) {
 				callback(data);
 			}
@@ -14,7 +14,7 @@ var orderProductService = (function() {
 	function productCheck(productJSON, callback, err) {
 		$.ajax({
 			type : 'post',
-			url : '/sangju/productCheck',
+			url : '/userOrderManager/productCheck',
 			data : JSON.stringify(productJSON),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
@@ -33,7 +33,7 @@ var orderProductService = (function() {
 	function productDelete(number, callback, err) {
 		$.ajax({
 			type : 'post',
-			url : '/sangju/productDelete',
+			url : '/userOrderManager/productDelete',
 			data : JSON.stringify(number),
 			contentType : "application/json; charset=utf-8",
 			success : function(data) {
@@ -52,7 +52,7 @@ var orderProductService = (function() {
 	function resultOrder(orderArray, callback, err) {
 		$.ajax({
 			type : 'post',
-			url : '/sangju/resultOrder',
+			url : '/userOrderManager/resultOrder',
 			data : JSON.stringify(orderArray),
 			contentType : "application/json; charset=utf-8",
 			success : function(data) {
@@ -70,7 +70,7 @@ var orderProductService = (function() {
 	
 	function productAdd(formData, callback, err) {
 		$.ajax({
-			url: "/sangju/productAdd",
+			url: "/userOrderManager/productAdd",
 			processData : false,
 			contentType : false,
 			data : formData,

@@ -14,8 +14,47 @@
 	table, tr , td{border:1px solid #d0dfef; font-size:20px; text-align: center;}
 	tr{margin-bottom:5px;}
     .hide {display:none;}
-    .show {display:table-row; font-size:20px; background-color:RGB(237,237,237) #ededed;}
-    .info td {cursor:pointer; font-size:20px; } 
+    .show {display:table-row; font-size:20px; }
+    .info td {cursor:pointer; font-size:20px; }
+    .uploadResult {
+	width: 100%;
+	background-color: gray;
+}
+
+.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResult ul li {
+	list-style: none;
+	padding: 10px;
+}
+
+.uploadResult ul li img {
+	width: 100px;
+}
+
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray; 
+  z-index: 100;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 
 </head>
@@ -27,13 +66,13 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h2 class=".h2">건의 게시판</h2>
+                  <h2>책 검색</h2><h4> 제목을 누르면 상세보기를 볼 수 있습니다</h4>
                   
 				    <form class="form-inline" action="/SearchBook/searchList" 
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
 				    		<select name="type" class="form-control">
 				     			<option value=""
-									 <c:out value="${pageMaker.cri.type == null?'selected':''}"/> >--</option>
+									 <c:out value="${pageMaker.cri.type == null?'selected':''}"/> >선택해주세요</option>
 								<option value="T"
 									<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
 								<option value="C"
@@ -91,12 +130,25 @@
 	                        
 	                        <tr class="hide" style="height: 150px;">
 	                          <td colspan="6">
+	                          
+	                          <div class="form-group row">
+								<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
+									<font style="vertical-align: inherit;">책 이미지</font>
+								</label>
+									<div class="form-group row">
+							        
+								        <div class='uploadResult'> 
+								        	<ul>
+								          
+								        	</ul>
+								        </div>
+							    	</div>
+							  </div>
+							  
 	                          <c:out value="${list.book_content }" />
 	                          </td>
 	                        </tr>      
 	                    </tbody>
-                                       
-
 					
 					</c:forEach>
 					</table>
@@ -155,16 +207,45 @@
 	$(document)
 		.ready(
 				function(){
+					console.log("일단 여기 들어옴1");
+			(function(){
+				console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+				var book_name = '<c:out value="${list.book_name}"/>';
 
+				console.log(book_name);
+			    
+				$.getJSON("/book/getAttachList", {book_name: book_name}, function(arr){
+			    
+					console.log(arr);
 
-			var actionForm = $("#actionForm");
+					var str="";
+
+					$(arr).each(function(i, attach) {
+						//image type
+						if(attach.fileType) {
+							var fileCallPath = encodeURIComponent(attach.uploadPath+"/s_"+attach.uuid+"_"+attach.fileName);
+							str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'><div>";
+							str += "<img src='/display?fileName="+fileCallPath+"'>";
+							str += "</div>";
+							str += "<li>";
+						} else {
+							str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+'" data-type="'+attach.fileType+"'><div>";
+							str += "<img src='/resources/img/attach.png'>";
+							str += "</div>";
+							str += "</li>";
+						}
+					});
+					$(".uploadResult ul").html(str);
+				});
+			    
+			})();
 
 			$(function(){
 	            var article = (".accocss .show"); 
 	            $(".accocss .info td").click(function() { 
 	                var myArticle =$(this).parents().next("tr"); 
 	                if($(myArticle).hasClass('hide')) { 
-	                    $(article).removeClass('show').addClass('hide'); 
+	                	$(article).removeClass('show').addClass('hide'); 
 	                    $(myArticle).removeClass('hide').addClass('show'); 
 	                } 
 	                else { 
@@ -173,18 +254,31 @@
 	            }); 
 	        });
 
-/* 			
- 			$(".move").on(
-					"click",
-					function(e){
-						e.preventDefault();
-						actionForm.append("<input type='hidden' name='board_num' value='"
-								+$(this).attr("href")+ "'>");
-						actionForm.attr("action", "/CustomerCenter/boardGet");
-						actionForm.submit();
-						
-			}); */ 
+			/*
+			아코디언 구조
+	        
+			순정 나가다 만화 ~~~
+	        액션 가나다 만화 ~~~
 
+	        this.parents().next("tr"); ---> 
+	        ".accocss .info td"의 부모의 오른쪽 혹은 밑 요소 = ".accocss .info td"의 부모 tr의 오른쪽 혹은 옆의 요소(상세보기가 적힌 tr)
+	        
+	        **나가다라는 제목이 적힌 tr을 누르면 display:none 되어있던 나가다 밑에 tr의 td(상세정보)가 보여진다.
+	        이때 가나다라는 제목이 적힌 다른 tr을 누르면 이전에 나타난 나가다 밑에 tr 의 td(상세정보)가 숨겨지고 
+	        현재 누른 가나다 밑에 tr 의 td(상세정보)가 보여진다.**
+
+	        if($(myArticle).hasClass('hide')) :
+		       원래 class name이 hide니까 만약 hide라면 보여진건 숨겨지고 클릭한 제목의 상세보기는 보여지게 하는것(**로 둘러싸인 내용을 구현)
+
+	        else { $(myArticle).addClass('hide').removeClass('show');}
+	        	= if($(myArticle).hasClass('hide'))가 아니라면 $(myArticle).hasClass('show')라면 &&로 둘러싸인 내용을 구현하라
+
+	 	    &&& 나가다라는 제목이 적힌 tr을 누르면 display:none 되어있던 나가다 밑에 tr의 td(상세정보)가 보여진다. 
+	 	    다시 나가다라는 제목이 적힌 tr을 누르면 나가다 밑에 tr의 td(상세정보)가 숨겨진다.&&
+
+	         */
+
+			var actionForm = $("#actionForm");
 
 			$(".page-item a").on( 
 					"click",
@@ -199,24 +293,8 @@
 						actionForm.submit();
 			 });
 
-			var searchForm = $("#searchForm");
+			 
 
-			 $("#searchForm button").on(
-					"click",
-					function(e){
-
-						if(!searchForm.find("option:selected").val()){
-							alret("검색 종류를 선택해주세요");
-						}
-						if(!searchForm.find("input[name='keyword']").val()){
-							alret("키워드를 입력해주세요");
-						}
-						searchForm.find("input[name='pageNum']").val(1);
-						e.preventDefault();
-						console.log('검색');
-
-						searchForm.submit();
-						});
 		
 		});
 

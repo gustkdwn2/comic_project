@@ -20,8 +20,8 @@
 								style="vertical-align: inherit;">손실/수익</font></font></label>
 						<div class="col-sm-9">
 							<select class="form-control" name="loss_category">
-							  <option value="손실">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>손실</strong></option>
-							  <option value="수익">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>수익</strong></option>
+							  <option value="손실">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;손실</option>
+							  <option value="수익">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수익</option>
 							</select>
 						</div>
 					</div>
@@ -38,7 +38,7 @@
 							style="vertical-align: inherit;"><font
 								style="vertical-align: inherit;">요금</font></font></label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" name="loss_pay">
+							<input type="number" class="form-control" name="loss_pay" id="loss_createpay" readonly="readonly">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -46,7 +46,7 @@
 							style="vertical-align: inherit;"><font
 								style="vertical-align: inherit;">상품</font></font></label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" name="loss_product">
+							<select class="form-control" name="loss_product" id="loss_createproduct"></select>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -61,7 +61,7 @@
 						<font style="vertical-align: inherit;"><font
 							style="vertical-align: inherit;">등록</font></font>
 					</button>
-					<button type="button" data-dismiss="modal" class="btn btn-success">닫기</button>
+					<button type="button" data-dismiss="modal" id="createclose" class="btn btn-success">닫기</button>
 				</form>
 			</div>
 	      </div>

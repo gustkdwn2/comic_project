@@ -111,7 +111,6 @@
 			//list.push($('#'+'ainput'+index).val());
 			list.push(item.value);
 		});
-		console.log(list);
 		var sendData = {
 			'list' : list
 		};
