@@ -25,7 +25,7 @@
 								<button id="orderBtn" style="margin-bottom: 10px;" type="button"
 									class="btn btn-warning">상품 발주</button>
 								<form onsubmit="return remove();" action="/product/productRemove" method="post">
-									<table id="lossTable" class="table  table-striped">
+									<table id="productTable" class="table  table-striped">
 										<thead>
 											<tr>
 												<th>상품 번호</th>
@@ -53,6 +53,7 @@
 	
 									</table>
 								</form>
+
 							</div>
 						</div>
 					</div>
@@ -67,7 +68,7 @@
 
 	$(document).ready(function() {
 
-		$('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
+		$('#productTable').DataTable({ // 페이징 처리, 검색, show entries
 			pageLength : 10,
 			bPaginate : true,
 			bLengthChange : true,
