@@ -15,7 +15,46 @@
 	tr{margin-bottom:5px;}
     .hide {display:none;}
     .show {display:table-row; font-size:20px; }
-    .info td {cursor:pointer; font-size:20px; } 
+    .info td {cursor:pointer; font-size:20px; }
+    .uploadResult {
+	width: 100%;
+	background-color: gray;
+}
+
+.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResult ul li {
+	list-style: none;
+	padding: 10px;
+}
+
+.uploadResult ul li img {
+	width: 100px;
+}
+
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray; 
+  z-index: 100;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 
 </head>
@@ -91,6 +130,21 @@
 	                        
 	                        <tr class="hide" style="height: 150px;">
 	                          <td colspan="6">
+	                          
+	                          <div class="form-group row">
+								<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
+									<font style="vertical-align: inherit;">책 이미지</font>
+								</label>
+									<div class="form-group row">
+							        
+								        <div class='uploadResult'> 
+								        	<ul>
+								          
+								        	</ul>
+								        </div>
+							    	</div>
+							  </div>
+							  
 	                          <c:out value="${list.book_content }" />
 	                          </td>
 	                        </tr>      
@@ -153,6 +207,38 @@
 	$(document)
 		.ready(
 				function(){
+					console.log("일단 여기 들어옴1");
+			(function(){
+				console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+				var book_name = '<c:out value="${list.book_name}"/>';
+
+				console.log(book_name);
+			    
+				$.getJSON("/book/getAttachList", {book_name: book_name}, function(arr){
+			    
+					console.log(arr);
+
+					var str="";
+
+					$(arr).each(function(i, attach) {
+						//image type
+						if(attach.fileType) {
+							var fileCallPath = encodeURIComponent(attach.uploadPath+"/s_"+attach.uuid+"_"+attach.fileName);
+							str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'><div>";
+							str += "<img src='/display?fileName="+fileCallPath+"'>";
+							str += "</div>";
+							str += "<li>";
+						} else {
+							str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+'" data-type="'+attach.fileType+"'><div>";
+							str += "<img src='/resources/img/attach.png'>";
+							str += "</div>";
+							str += "</li>";
+						}
+					});
+					$(".uploadResult ul").html(str);
+				});
+			    
+			})();
 
 			$(function(){
 	            var article = (".accocss .show"); 
@@ -206,6 +292,8 @@
 								.val($(this).attr("href"));
 						actionForm.submit();
 			 });
+
+			 
 
 		
 		});
