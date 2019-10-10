@@ -30,7 +30,6 @@ public class SearchBookController {
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		
 	}
- 
-	
+
 }
 

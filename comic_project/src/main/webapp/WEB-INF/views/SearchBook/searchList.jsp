@@ -14,7 +14,7 @@
 	table, tr , td{border:1px solid #d0dfef; font-size:20px; text-align: center;}
 	tr{margin-bottom:5px;}
     .hide {display:none;}
-    .show {display:table-row; font-size:20px; background-color:RGB(237,237,237) #ededed;}
+    .show {display:table-row; font-size:20px; }
     .info td {cursor:pointer; font-size:20px; } 
 </style>
 
@@ -27,13 +27,13 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h2 class=".h2">건의 게시판</h2>
+                  <h2>책 검색</h2><h4> 제목을 누르면 상세보기를 볼 수 있습니다</h4>
                   
 				    <form class="form-inline" action="/SearchBook/searchList" 
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
 				    		<select name="type" class="form-control">
 				     			<option value=""
-									 <c:out value="${pageMaker.cri.type == null?'selected':''}"/> >--</option>
+									 <c:out value="${pageMaker.cri.type == null?'selected':''}"/> >선택해주세요</option>
 								<option value="T"
 									<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
 								<option value="C"
@@ -95,8 +95,6 @@
 	                          </td>
 	                        </tr>      
 	                    </tbody>
-                                       
-
 					
 					</c:forEach>
 					</table>
@@ -156,14 +154,12 @@
 		.ready(
 				function(){
 
-			var actionForm = $("#actionForm");
-
 			$(function(){
 	            var article = (".accocss .show"); 
 	            $(".accocss .info td").click(function() { 
 	                var myArticle =$(this).parents().next("tr"); 
 	                if($(myArticle).hasClass('hide')) { 
-	                    $(article).removeClass('show').addClass('hide'); 
+	                	$(article).removeClass('show').addClass('hide'); 
 	                    $(myArticle).removeClass('hide').addClass('show'); 
 	                } 
 	                else { 
@@ -172,6 +168,31 @@
 	            }); 
 	        });
 
+			/*
+			아코디언 구조
+	        
+			순정 나가다 만화 ~~~
+	        액션 가나다 만화 ~~~
+
+	        this.parents().next("tr"); ---> 
+	        ".accocss .info td"의 부모의 오른쪽 혹은 밑 요소 = ".accocss .info td"의 부모 tr의 오른쪽 혹은 옆의 요소(상세보기가 적힌 tr)
+	        
+	        **나가다라는 제목이 적힌 tr을 누르면 display:none 되어있던 나가다 밑에 tr의 td(상세정보)가 보여진다.
+	        이때 가나다라는 제목이 적힌 다른 tr을 누르면 이전에 나타난 나가다 밑에 tr 의 td(상세정보)가 숨겨지고 
+	        현재 누른 가나다 밑에 tr 의 td(상세정보)가 보여진다.**
+
+	        if($(myArticle).hasClass('hide')) :
+		       원래 class name이 hide니까 만약 hide라면 보여진건 숨겨지고 클릭한 제목의 상세보기는 보여지게 하는것(**로 둘러싸인 내용을 구현)
+
+	        else { $(myArticle).addClass('hide').removeClass('show');}
+	        	= if($(myArticle).hasClass('hide'))가 아니라면 $(myArticle).hasClass('show')라면 &&로 둘러싸인 내용을 구현하라
+
+	 	    &&& 나가다라는 제목이 적힌 tr을 누르면 display:none 되어있던 나가다 밑에 tr의 td(상세정보)가 보여진다. 
+	 	    다시 나가다라는 제목이 적힌 tr을 누르면 나가다 밑에 tr의 td(상세정보)가 숨겨진다.&&
+
+	         */
+
+			var actionForm = $("#actionForm");
 
 			$(".page-item a").on( 
 					"click",
