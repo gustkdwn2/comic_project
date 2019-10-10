@@ -90,9 +90,11 @@
 <div class="mngmentcard" onclick="#">
 
   <!-- <img src="/WEB-INF/views/younghak/icando.jpg" alt="John" style="width:80%; height:80%; border-radius: 50%;" > -->
+  <a href="#">
 <img src="/resources/images/faces/jang.jpg" alt="${managerList.get(i-1).getEMPLOYEE_NAME()}"
  style="width:50%; height:50%; border-radius: 50%;" 
  onclick="workhourcal('${managerList.get(i-1).getEMPLOYEE_NAME()}')">
+</a>
 
 <h1>${managerList.get(i-1).getEMPLOYEE_NAME()} </h1> <!-- 이름 -->
 <p class="mngmenttitle">${managerList.get(i-1).getEMPLOYEE_POSITION()}</p>
