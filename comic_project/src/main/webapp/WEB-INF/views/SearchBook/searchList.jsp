@@ -11,14 +11,16 @@
 <meta charset="UTF-8">
 <title>코믹 서기 건의 게시판</title>
 <style type="text/css">
-	table, tr , td{border:1px solid #d0dfef; font-size:20px; text-align: center;}
-	tr{margin-bottom:5px;}
-    .hide {display:none;}
-    .show {display:table-row; font-size:20px; }
-    .info td {cursor:pointer; font-size:20px; }
-    .uploadResult {
-	width: 100%;
-	background-color: gray;
+
+table, tr , td{border:1px solid #d0dfef; font-size:20px; text-align: center;}
+
+tr{margin-bottom:5px;}
+   .hide {display:none;}
+   .show {display:table-row; font-size:20px; }
+   .info td {cursor:pointer; font-size:20px; }
+   .uploadResult {
+width: 100%;
+background-color: gray;
 }
 
 .uploadResult ul {
@@ -115,42 +117,34 @@
                       </thead>
  
 					
-					<c:forEach items="${ list }" var="list">
+						<c:forEach items="${ list }" var="list">
+						
+							<tbody>					
+								<tr class="info" style="height: 40px;">
+		                          <td style="width:80px;"><c:out value="${list.book_category }" /></td>
+		                          <td style="width:800px; color: #007bff;"><a class="book_name" value="${list.book_name }" >
+		                          <c:out value="${list.book_name }" /></a></td>
+		                          <td style="width:300px;"><c:out value="${list.book_writer }" /></td>
+		                          <td style="width:300px;"><c:out value="${list.book_publisher }" /></td>
+		                          <td style="width:100px;"><c:out value="${list.book_lastbook }" /></td>
+		                          <td style="width:200px;"><c:out value="${list.book_loc }" /></td>	                         
+		                        </tr>
+		                        
+		                        <tr class="hide" style="height: 150px;">
+		                          <td colspan="6">			                          
+							      	<div class='uploadResult' style="width: 120px; float: left; margin-left:10px;"> 
+							        	<ul>
+							          		
+							        	</ul>
+							        </div>
+		                          <c:out value="${list.book_content }" />
+		                          </td>
+		                        </tr>
+		                              
+		                    </tbody>
+						
+						</c:forEach>
 					
-						<tbody>					
-							<tr class="info" style="height: 40px;">
-	                          <td style="width:80px;"><c:out value="${list.book_category }" /></td>
-	                          <td style="width:800px;"><a href="#"><c:out value="${list.book_name }" /></a></td>
-	                          <td style="width:300px;"><c:out value="${list.book_writer }" /></td>
-	                          <td style="width:300px;"><c:out value="${list.book_publisher }" /></td>
-	                          <td style="width:100px;"><c:out value="${list.book_lastbook }" /></td>
-	                          <td style="width:200px;"><c:out value="${list.book_loc }" /></td>
-	                         
-	                        </tr>
-	                        
-	                        <tr class="hide" style="height: 150px;">
-	                          <td colspan="6">
-	                          
-	                          <div class="form-group row">
-								<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
-									<font style="vertical-align: inherit;">책 이미지</font>
-								</label>
-									<div class="form-group row">
-							        
-								        <div class='uploadResult'> 
-								        	<ul>
-								          
-								        	</ul>
-								        </div>
-							    	</div>
-							  </div>
-							  
-	                          <c:out value="${list.book_content }" />
-	                          </td>
-	                        </tr>      
-	                    </tbody>
-					
-					</c:forEach>
 					</table>
 
                     <br>		
@@ -204,42 +198,8 @@
             
 <script type="text/javascript">
 
-	$(document)
-		.ready(
-				function(){
-					console.log("일단 여기 들어옴1");
-			(function(){
-				console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-				var book_name = '<c:out value="${list.book_name}"/>';
-
-				console.log(book_name);
-			    
-				$.getJSON("/book/getAttachList", {book_name: book_name}, function(arr){
-			    
-					console.log(arr);
-
-					var str="";
-
-					$(arr).each(function(i, attach) {
-						//image type
-						if(attach.fileType) {
-							var fileCallPath = encodeURIComponent(attach.uploadPath+"/s_"+attach.uuid+"_"+attach.fileName);
-							str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'><div>";
-							str += "<img src='/display?fileName="+fileCallPath+"'>";
-							str += "</div>";
-							str += "<li>";
-						} else {
-							str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+'" data-type="'+attach.fileType+"'><div>";
-							str += "<img src='/resources/img/attach.png'>";
-							str += "</div>";
-							str += "</li>";
-						}
-					});
-					$(".uploadResult ul").html(str);
-				});
-			    
-			})();
-
+	$(document).ready(function(){
+		
 			$(function(){
 	            var article = (".accocss .show"); 
 	            $(".accocss .info td").click(function() { 
@@ -296,6 +256,24 @@
 			 
 
 		
+		});
+
+		$('.book_name').click(function(){
+			var bookname = $(this).attr('value');
+			var str="";
+			$.ajax({
+				async : false, // 비동기
+				type: 'get',
+				url: '/book/getAttachList?book_name='+bookname,				
+				success: function(attach) {
+					var fileCallPath = encodeURIComponent(attach[0].uploadPath+"/s_"+attach[0].uuid+"_"+attach[0].fileName);
+					str += "<li data-path='"+attach[0].uploadPath+"' data-uuid='"+attach[0].uuid+"' data-filename='"+attach[0].fileName+"' data-type='"+attach[0].fileType+"'><div>";
+					str += "<img src='/display?fileName="+fileCallPath+"'>";
+					str += "</div>";
+					str += "<li>";
+				}
+			});
+			$(".uploadResult ul").html(str);
 		});
 
 </script>

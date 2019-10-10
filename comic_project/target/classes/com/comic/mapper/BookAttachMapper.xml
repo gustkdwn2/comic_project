@@ -12,7 +12,7 @@
 		DELETE FROM COMIC_BOOKATTACH WHERE UUID=#{uuid}
 	</delete>
 	
-	<select id="findByBookName" resultType="com.comic.model.BookAttachVO">
+	<select id="findByBookName" resultType="com.comic.model.BookAttachVO" >
 		SELECT * FROM COMIC_BOOKATTACH WHERE BOOK_NAME=#{book_name}
 	</select>
 	

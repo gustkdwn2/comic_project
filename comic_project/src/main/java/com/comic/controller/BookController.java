@@ -41,8 +41,8 @@ public class BookController {
 	
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ResponseEntity<List<BookAttachVO>> getAttachList(String book_name) {
-		return new ResponseEntity<>(service.getAttachList(book_name), HttpStatus.OK);
+	public ResponseEntity<List<BookAttachVO>> getAttachList(@RequestParam("book_name") String book_name) {
+		return new ResponseEntity<List<BookAttachVO>>(service.getAttachList(book_name), HttpStatus.OK);
 	}
 	
 	@PostMapping("/bookRegister")
