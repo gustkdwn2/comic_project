@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.comic.mapper.BookAttachMapper;
 import com.comic.mapper.BookMapper;
+import com.comic.model.BookAttachVO;
 import com.comic.model.BookVO;
 import com.comic.service.BookService;
 
@@ -57,6 +58,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public BookVO bookNameCheck(String book_name) {
 		return mapper.bookNameCheck(book_name);
+	}
+
+	@Override
+	public List<BookAttachVO> getAttachList(String book_name) {
+		return attachMapper.findByBookName(book_name);
 	}
 	
 }

@@ -18,6 +18,22 @@
 					<font style="vertical-align: inherit;">책 수정</font>
 				</h4>
 				<form onsubmit="return check();" class="forms-sample" action="/book/bookModify" method="post">
+					<div class="form-group row">
+						<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
+							<font style="vertical-align: inherit;">책 이미지</font>
+						</label>
+						<div class="form-group row">
+					        <div class="form-group uploadDiv">
+					            <input type="file" name='uploadFile'>
+					        </div>
+				        
+					        <div class='uploadResult'> 
+					        	<ul>
+					          
+					        	</ul>
+					        </div>
+				    	</div>
+					</div>
 					<div class="form-group">
 						<label for="exampleInputUsername1">
 							<font style="vertical-align: inherit;">책이름</font>
@@ -82,6 +98,36 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
+
+		(function(){
+			  
+			var book_name = '<c:out value="${book.book_name}"/>';
+		    
+			$.getJSON("/book/getAttachList", {book_name: book_name}, function(arr){
+		    
+				console.log(arr);
+
+				var str="";
+
+				$(arr).each(function(i, attach) {
+					//image type
+					if(attach.fileType) {
+						var fileCallPath = encodeURIComponent(attach.uploadPath+"/s_"+attach.uuid+"_"+attach.fileName);
+						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'><div>";
+						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "</div>";
+						str += "<li>";
+					} else {
+						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+'" data-type="'+attach.fileType+"'><div>";
+						str += "<img src='/resources/img/attach.png'>";
+						str += "</div>";
+						str += "</li>";
+					}
+				});
+				$(".uploadResult ul").html(str);
+			});
+		    
+		})();
 		
 		$('#listBtn').click(function() {
 			self.location = "/book/bookList";
@@ -89,7 +135,7 @@
 		
 	});
 
-	function check() {
+	/* function check() {
 		
 		if($.trim($("#book_loc").val()) != $("#book_loc").val()) {
 		      alert("앞,뒤 공백을 지워주세요.");
@@ -116,7 +162,51 @@
 		      return false;
 		}
 		return true;
-	}
+	} */
 		
 </script>
+
+<style>
+.uploadResult {
+	width: 100%;
+	background-color: gray;
+}
+
+.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResult ul li {
+	list-style: none;
+	padding: 10px;
+}
+
+.uploadResult ul li img {
+	width: 100px;
+}
+</style>
+
+<style>
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray; 
+  z-index: 100;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
 </html>
