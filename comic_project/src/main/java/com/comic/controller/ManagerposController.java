@@ -196,4 +196,13 @@ public class ManagerposController {
 		
 		return "/younghak/login";
 	}
+	
+	@RequestMapping(value = "workhourcalendar", method = { RequestMethod.GET, RequestMethod.POST })
+	public String workhourcalendar(@RequestParam("empname") String empname) {
+		
+		System.out.println("empname = "+empname);
+		
+		return "/younghak/WorkhourCalendar";
+
+	}
 }

@@ -87,12 +87,15 @@
 
 
 <!-- <div class="row"> -->
-<div class="mngmentcard" onclick="#">
+<div class="mngmentcard" >
 
   <!-- <img src="/WEB-INF/views/younghak/icando.jpg" alt="John" style="width:80%; height:80%; border-radius: 50%;" > -->
+  <a href="#">
 <img src="/resources/images/faces/jang.jpg" alt="${managerList.get(i-1).getEMPLOYEE_NAME()}"
  style="width:50%; height:50%; border-radius: 50%;" 
- onclick="workhourcal('${managerList.get(i-1).getEMPLOYEE_NAME()}')">
+ onclick="javascript:alert1('fuck!')"
+ >
+ </a>
 
 <h1>${managerList.get(i-1).getEMPLOYEE_NAME()} </h1> <!-- 이름 -->
 <p class="mngmenttitle">${managerList.get(i-1).getEMPLOYEE_POSITION()}</p>
@@ -108,7 +111,8 @@
 <div style="margin: 24px 0;">
 
 <!-- </div> -->
-  <p><button class="mngmentbutton">수정하기</button></p>
+  <p><button class="mngmentbutton"
+  onclick="workhourcal(${managerList.get(i-1).getEMPLOYEE_NAME()})">수정하기</button></p>
   <p><button class="mngmentbutton" 
   onclick="employeedelete(${managerList.get(i-1).getEMPLOYEE_NUM()})">탈퇴하기</button></p>
   
@@ -279,19 +283,20 @@ function employeedelete(employee_num){
 	$("#mngdeleteModal").modal("show");
 	document.getElementById("deletemodalmngnum").innerHTML=employee_num;
 	document.getElementById("EMPLOYEE_mngnum").value=employee_num;
-	
 }
 
 function workhourcal(empname){	
 	alert(empname);
-	var url = "/managerpos/workhourcalendar";
-	posttourl(url,{'empname':empname});
+	var url = "managerpos/workhourcalendar";
+	post_to_url(url,{'empname',empname},post);
 	//alert(empname);	
 }
 
+function alert1(test){
+	alert(test);
+}
 
-
-function posttourl(path, params, method) {
+function post_to_url(path, params, method) {
     method = method || "post"; // Set method to post by default, if not specified.
     // The rest of this code assumes you are not using a library.
     // It can be made less wordy if you use one.
@@ -308,6 +313,8 @@ function posttourl(path, params, method) {
     document.body.appendChild(form);
     form.submit();
 }
+
+
 
 
 </script>
