@@ -156,7 +156,6 @@
 		.ready(
 				function(){
 
-
 			var actionForm = $("#actionForm");
 
 			$(function(){
@@ -173,18 +172,6 @@
 	            }); 
 	        });
 
-/* 			
- 			$(".move").on(
-					"click",
-					function(e){
-						e.preventDefault();
-						actionForm.append("<input type='hidden' name='board_num' value='"
-								+$(this).attr("href")+ "'>");
-						actionForm.attr("action", "/CustomerCenter/boardGet");
-						actionForm.submit();
-						
-			}); */ 
-
 
 			$(".page-item a").on( 
 					"click",
@@ -199,24 +186,6 @@
 						actionForm.submit();
 			 });
 
-			var searchForm = $("#searchForm");
-
-			 $("#searchForm button").on(
-					"click",
-					function(e){
-
-						if(!searchForm.find("option:selected").val()){
-							alret("검색 종류를 선택해주세요");
-						}
-						if(!searchForm.find("input[name='keyword']").val()){
-							alret("키워드를 입력해주세요");
-						}
-						searchForm.find("input[name='pageNum']").val(1);
-						e.preventDefault();
-						console.log('검색');
-
-						searchForm.submit();
-						});
 		
 		});
 
