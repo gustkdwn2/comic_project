@@ -53,7 +53,6 @@
 												<td><button name="removeBtn" value="${book.book_name}" type="submit" class="btn btn-danger">삭제</button></td>
 											</tr>
 										</c:forEach>
-	
 									</table>
 								</form>
 							</div>

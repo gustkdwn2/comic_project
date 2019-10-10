@@ -204,16 +204,14 @@
             
 <script type="text/javascript">
 
-	$(document)
-		.ready(
-				function(){
-					console.log("일단 여기 들어옴1");
+	$(document).ready(function(){
+		
 			(function(){
-				console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-				var book_name = '<c:out value="${list.book_name}"/>';
+				
+				var bookList = ${list}
+				
+				var book_name = bookList.book_name;
 
-				console.log(book_name);
-			    
 				$.getJSON("/book/getAttachList", {book_name: book_name}, function(arr){
 			    
 					console.log(arr);
@@ -237,7 +235,6 @@
 					});
 					$(".uploadResult ul").html(str);
 				});
-			    
 			})();
 
 			$(function(){
