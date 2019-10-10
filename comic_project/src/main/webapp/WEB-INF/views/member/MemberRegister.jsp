@@ -30,24 +30,25 @@
               <div class="brand-logo">
                 <img src="/resources/images/logo.svg" alt="logo">
               </div>
-              <form class="pt-3" id="register" action="/member/MemberRegister" method="post">
+              <form class="pt-3" id="register" onsubmit="return validate();" action="/member/MemberRegister" method="post" autocomplete="off">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="MEMBER_ID" placeholder="ID">
+                  <input type="text" class="form-control form-control-lg" id="MEMBER_ID" name="MEMBER_ID" placeholder="ID" >
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="MEMBER_PWD" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="MEMBER_PWD" name="MEMBER_PWD" placeholder="Password">
+                  <a style="color: gray; font-size: 10px;" >* 비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.</a>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="MEMBER_NAME" placeholder="Name">
+                  <input type="text" class="form-control form-control-lg" id="MEMBER_NAME" name="MEMBER_NAME" placeholder="Name">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" name="MEMBER_EMAIL" placeholder="Email">
+                  <input type="email" class="form-control form-control-lg" id="MEMBER_EMAIL" name="MEMBER_EMAIL" placeholder="Email">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="MEMBER_PHONE_NUMBER" placeholder="Phone">
+                  <input type="tel" class="form-control form-control-lg" id="MEMBER_PHONE_NUMBER" name="MEMBER_PHONE_NUMBER" placeholder="Phone">
                 </div>
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onclick="document.getElementById('register').submit()">회원가입</a>
+                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">회원가입</button>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
                    <a href="/member/MemberLogin" class="text-primary">로그인하러가기</a>
@@ -70,6 +71,68 @@
   <script src="/resources/js/hoverable-collapse.js"></script>
   <script src="/resources/js/template.js"></script>
   <!-- endinject -->
+  
+  <script type="text/javascript">
+  function validate() {
+      var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드가 적합한지 검사할 정규식
+      var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;  // 이메일이 적합한지 검사할 정규식
+      var regExp = /^\d{3}-\d{3,4}-\d{4}$/; // 핸드폰번호 정규식
+     
+
+      var id = document.getElementById("MEMBER_ID");
+      var pw = document.getElementById("MEMBER_PWD");
+      var name = document.getElementById("MEMBER_NAME")
+      var email = document.getElementById("MEMBER_EMAIL");
+	  var phone = document.getElementById("MEMBER_PHONE_NUMBER");
+      // ------------ 이메일 까지 -----------
+      
+      if(id.value=="") {
+    	  alert("아이디를 입력해 주세요");
+          id.focus();
+          return false;
+      }
+      
+      if(!check(re,pw,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
+          return false;
+      }
+      
+      if(pw.value=="") {
+    	  alert("비밀번호를 입력해 주세요");
+          pw.focus();
+          return false;
+      }
+      
+      if(name.value=="") {
+          alert("이름을 입력해 주세요");
+          name.focus();
+          return false;
+      }
+
+      if(email.value=="") {
+          alert("이메일을 입력해 주세요");
+          email.focus();
+          return false;
+      }
+
+      if(!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
+          return false;
+      }
+      
+      if(!check(regExp, phone, "적합하지 않은 번호 형식입니다.")) {
+    	  return false;
+      }
+  }
+
+  function check(re, what, message) {
+      if(re.test(what.value)) {
+          return true;
+      }
+      alert(message);
+      what.value = "";
+      what.focus();
+      //return false;
+  }
+  </script>
 </body>
 
 </html>

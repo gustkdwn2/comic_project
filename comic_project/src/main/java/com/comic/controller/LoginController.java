@@ -58,23 +58,29 @@ public class LoginController {
 		return "/member/MemberLogin";
 	}
 	
-	// 멤버 로그인 
+	// 멤버 로그인
 	@PostMapping("/MemberLoginPost")
 	public void MemberLoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
-		
+
 		MemberVO memberVO = service.memberLogin(loginVO);
-		boolean passMatch = passEncoder.matches(loginVO.getMEMBER_PWD(), memberVO.getMEMBER_PWD());
 		
-		if(memberVO == null || !passMatch) {
+		if (memberVO == null) {
 			return;
-		}
-		
-		model.addAttribute("member", memberVO);
-		
-		if(loginVO.isUseCookie()) {
-			int amount = 60 * 60 * 24 * 7;
-			Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
-			service.MemberkeepLogin(memberVO.getMEMBER_ID(), httpSession.getId(), sessionLimit);
+		} else {
+			boolean passMatch = passEncoder.matches(loginVO.getMEMBER_PWD(), memberVO.getMEMBER_PWD());
+			
+			if (!passMatch) {
+				return;
+			} else {
+
+				model.addAttribute("member", memberVO);
+
+				if (loginVO.isUseCookie()) {
+					int amount = 60 * 60 * 24 * 7;
+					Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
+					service.MemberkeepLogin(memberVO.getMEMBER_ID(), httpSession.getId(), sessionLimit);
+				}
+			}
 		}
 	}
 	
@@ -126,6 +132,12 @@ public class LoginController {
 	public String productRemove(@RequestParam("MEMBER_ID") String MEMBER_ID) {
 		service.MemberRemove(MEMBER_ID);
 		return "redirect:/member/MemberList";
+	}
+	
+	// 멤버 비밀번호 수정
+	@PostMapping("/MemberPasswordModify")
+	public void MemberPasswordModify(MemberVO vo, HttpServletResponse response) throws Exception {
+		service.MemberPasswordModify(response, vo);
 	}
 	
 	//직원 추가 페이지 이동

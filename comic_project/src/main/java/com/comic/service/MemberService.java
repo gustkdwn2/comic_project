@@ -3,6 +3,8 @@ package com.comic.service;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
@@ -24,6 +26,8 @@ public interface MemberService {
 	public void MemberModify(MemberVO vo);
 	// 멤버 정보 삭제
 	public void MemberRemove(String mEMBER_ID);
+	// 멤버 비밀번호 수정
+	public void MemberPasswordModify(HttpServletResponse response, MemberVO vo) throws Exception;
 	// 직원 회원가입
 	public void employeeRegister(EmployeeVO vo);
 	// 직원 로그인

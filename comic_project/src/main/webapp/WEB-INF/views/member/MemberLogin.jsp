@@ -32,29 +32,26 @@
               <div class="brand-logo">
                 <img src="/resources/images/logo.svg" alt="logo">
               </div>
-              <form class="pt-3" role="form" method="post" action="/member/MemberLoginPost">
+              <form class="pt-3" role="form" name="memberlogin" id="memberlogin" method="post" action="/member/MemberLoginPost" autocomplete="off">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="MEMBER_ID" name="MEMBER_ID" placeholder="userid" autofocus>
+                  <input type="text" class="form-control form-control-lg" id="MEMBER_ID" name="MEMBER_ID" placeholder="userid" autofocus required="required">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="MEMBER_PWD" name="MEMBER_PWD" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="MEMBER_PWD" name="MEMBER_PWD" placeholder="Password" required="required">
+                </div>
+                
+                <div class="my-2 d-flex justify-content-between align-items-center">
+                  <a data-toggle="modal" href="#PasswordModifyModal" data-backdrop="static" data-keyboard="false" class="auth-link text-black">비밀번호 찾기</a>
                 </div>
                 
                 <div class="mt-3">
                   <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="login">로그인</a>
-                </div>           
-                <div class="my-2 d-flex justify-content-between align-items-center">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      Keep me signed in
-                    </label>
-                  </div>
-                  <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
-                <div class="text-center mt-4 font-weight-light">
-					<a href="/member/MemberRegister" class="text-primary">회원가입</a>
+             
+                <div class="mt-3">
+					<a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="/member/MemberRegister" >회원가입</a>
                 </div>
+                
               </form>
             </div>
           </div>
@@ -64,6 +61,7 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+  <jsp:include page="PasswordModifyModal.jsp" />
   <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="/resources/vendors/base/vendor.bundle.base.js"></script>
@@ -73,20 +71,34 @@
   <script src="/resources/js/hoverable-collapse.js"></script>
   <script src="/resources/js/template.js"></script>
   <!-- endinject -->
-  
   <script type="text/javascript">
   
 	  var msg = "${msg}";
 	  if (msg === "REGISTERED") {
 	      alert("회원가입이 완료되었습니다. 로그인해주세요~");
 	  } else if (msg == "FAILURE") {
-	      alert("아이디와 비밀번호를 확인해주세요.");
+	      alert("아이디 또는 비밀번호를 확인해주세요.");
+	  } else if (msg === "NOMEMBER") {
+		  alert("입력한 정보로 등록된 회원이 없습니다.")
 	  }
   
 	  $("#login").on("click", function(e) {
 		e.preventDefault();
-		$("form").submit();
+		$("#memberlogin").submit();
 	  });
+	  
+	 function pwdmodify() {
+		  var passwordmodify = $("form[name=passwordmodify]").serialize();
+			  $.ajax({
+				  type : 'post',
+				  url : '/member/MemberPasswordModify',
+				  data : passwordmodify,
+				  success : function(result) {
+					  console.log(result);
+				  /* alert(result); */
+			   }
+		   });
+	   }
   </script>
 </body>
 

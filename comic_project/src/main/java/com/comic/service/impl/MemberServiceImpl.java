@@ -1,7 +1,11 @@
 package com.comic.service.impl;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -60,6 +64,25 @@ public class MemberServiceImpl implements MemberService {
 		mapper.MemberDelete(MEMBER_ID);
 	}
 	
+	@Override
+	public void MemberPasswordModify(HttpServletResponse response, MemberVO vo) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		if(mapper.MemberCheck(vo) == null) {
+			out.print("등록된 회원이 없습니다.");
+			out.close();
+		} else {
+			String pw = "";
+			for (int i = 0; i < 4; i++) {
+				pw += (char) ((Math.random() * 26) + 97);
+			}
+			vo.setMEMBER_PWD(passwordEncoder.encode(pw));
+			mapper.MemberPasswordModify(vo);
+			out.print("임시 비밀번호는 " + pw + "입니다.");
+			out.close();
+		}
+	}
+
 	@Override
 	public void employeeRegister(EmployeeVO vo) {
 		password = vo.getEMPLOYEE_PWD();
