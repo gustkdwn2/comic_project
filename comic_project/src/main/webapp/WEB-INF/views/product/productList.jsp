@@ -93,15 +93,14 @@
 	    });
 
 		$('button[name=getBtn]').click(function(){
-	    	var product_num = $(this).attr('value');   	
+	    	var product_num = $(this).attr('value');	
 	    	
 	    	$.ajax({
 	    	    type: 'get',
 	    	    url: "/product/productGet?product_num="+product_num,
 	    	    dataType : "json",
 	    	    success: function(data) {
-	    	    	console.log(data);
-	    	    	console.log(data.product_name);
+		    	    
 	    	    	$('#product_num').attr('value',data.product_num);
 	    	    	$('#product_name').attr('value',data.product_name);
 	    	    	$('#product_price').attr('value',data.product_price);
@@ -119,13 +118,13 @@
 		
 	});
 
-	/* function remove() {
+	function remove() {
 
 		if(!confirm("삭제 하시겠습니까?")){
 			return false;
 		}
 		return true;
-	} */
+	}
 	
 </script>
 </html>
