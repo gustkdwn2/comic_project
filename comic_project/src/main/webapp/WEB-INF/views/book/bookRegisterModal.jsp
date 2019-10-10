@@ -145,7 +145,7 @@
 	                            </select>
 							</div>
 						</div>
-						<button type="submit" class="btn btn-primary mr-2">
+						<button name="registerBtn" type="submit" class="btn btn-primary mr-2">
 							<font style="vertical-align: inherit;">등록</font>
 						</button>
 						<button data-dismiss="modal" type="button" class="btn btn-success">닫기</button>
@@ -163,7 +163,7 @@
 	  
 	  var formObj = $("form[role='form']");
 	  
-	  $("button[type='submit']").on("click", function(e){
+	  $("button[name=registerBtn]").on("click", function(e){
 
 	    
 	    e.preventDefault();
@@ -359,64 +359,5 @@
 	   });
 	
 	});
-	
-	/* function check() {
-		
-		var book_name = $('#book_name').val();
-		var nameCheck = 0;
-		
-		$.ajax({
-			type : 'POST',
-			data : {book_name : book_name},
-			async: false,
-			url : "/book/bookNameCheck",
-			dataType : "json",
-			success : function(result) {
-
-				nameCheck = result;
-
-				return;
-			}
-		});
-		
-		if($.trim($("#book_name").val()) != $("#book_name").val()) {
-		    alert("앞,뒤 공백을 지워주세요.");
-		    $("#book_name").val("");
-		    $("#book_name").focus();
-			return false;
-		}
-		if(nameCheck > 0) {
-			alert("이미 있는 책입니다.");
-			$("#book_name").val("");
-		    $("#book_name").focus();
-		    return false;
-		}
-		if($.trim($("#book_loc").val()) != $("#book_loc").val()) {
-		    alert("앞,뒤 공백을 지워주세요.");
-		    $("#book_loc").val("");
-		    $("#book_loc").focus();
-		    return false;
-		}
-		if($.trim($("#book_publisher").val()) != $("#book_publisher").val()) {
-		    alert("앞,뒤 공백을 지워주세요.");
-		    $("#book_publisher").val("");
-		    $("#book_publisher").focus();
-		    return false;
-		}
-		if($.trim($("#book_writer").val()) != $("#book_writer").val()) {
-		    alert("앞,뒤 공백을 지워주세요.");
-		    $("#book_writer").val("");
-		    $("#book_writer").focus();
-		    return false;
-		}
-		if($.trim($("#book_category").val()) != $("#book_category").val()) {
-		    alert("앞,뒤 공백을 지워주세요.");
-		    $("#book_category").val("");
-		    $("#book_category").focus();
-		    return false;
-		}
-		return true;
-		
-	} */
 	
 </script>
