@@ -29,7 +29,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
-import com.comic.service.OrderService;
+import com.comic.service.UserOrderManegerService;
 
 import lombok.AllArgsConstructor;
 import net.coobird.thumbnailator.Thumbnails;
@@ -39,11 +39,11 @@ import net.coobird.thumbnailator.Thumbnails;
 @AllArgsConstructor
 public class SangjuController {
 
-	private OrderService orderService;
+	private UserOrderManegerService userOrderManegerService;
 
 	@GetMapping("/admin")
 	public void adminView(Model model) {
-		model.addAttribute("OrderViewVO_List", orderService.readCategory());
+		model.addAttribute("OrderViewVO_List", userOrderManegerService.readCategory());
 	}
 
 	@PostMapping("/admin/categoryAdd")
@@ -52,8 +52,7 @@ public class SangjuController {
 
 		OrderViewVO vo = new OrderViewVO();
 		vo.setOrderview_category(category);
-		vo.setOrderview_product_num(0);
-		orderService.registerCategory(vo);
+		userOrderManegerService.registerCategory(vo);
 
 		return "redirect:/sangju/admin";
 	}
@@ -66,10 +65,9 @@ public class SangjuController {
 		OrderViewVO vo = new OrderViewVO();
 		vo.setOrderview_num(number);
 		vo.setOrderview_category(category);
-		vo.setOrderview_product_num(0);
 
-		orderService.productCategoryUpdate(vo);
-		orderService.updateCategory(vo);
+		userOrderManegerService.productCategoryUpdate(vo);
+		userOrderManegerService.updateCategory(vo);
 
 		return "redirect:/sangju/admin";
 	}
@@ -78,8 +76,8 @@ public class SangjuController {
 	public String categoryDelete(@RequestParam("number") int number) {
 		System.out.println("categoryDelete....number " + number);
 
-		orderService.porductCateoryAllDelete(number);
-		orderService.deleteCategory(number);
+		userOrderManegerService.porductCateoryAllDelete(number);
+		userOrderManegerService.deleteCategory(number);
 
 		return "redirect:/sangju/admin";
 	}
@@ -89,8 +87,8 @@ public class SangjuController {
 		System.out.println("productDelete....number " + number);
 		System.out.println(number.get("number"));
 
-		String categoryValue = orderService.getCategoryValue(Integer.parseInt(number.get("number")));
-		orderService.porductCateoryDelete(Integer.parseInt(number.get("number")));
+		String categoryValue = userOrderManegerService.getCategoryValue(Integer.parseInt(number.get("number")));
+		userOrderManegerService.porductCateoryDelete(Integer.parseInt(number.get("number")));
 
 		return new ResponseEntity<String>(categoryValue, HttpStatus.OK);
 
@@ -99,13 +97,13 @@ public class SangjuController {
 	// ajax
 	@GetMapping(value = "/productRead/{category}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<List<Map<String, Object>>> getAjaxList(@PathVariable("category") String category) {
-		return new ResponseEntity<List<Map<String, Object>>>(orderService.readProduct(category), HttpStatus.OK);
+		return new ResponseEntity<List<Map<String, Object>>>(userOrderManegerService.readProduct(category), HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/productCheck", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> productCheck(@RequestBody Map<String, String> productName) {
 		System.out.println(productName.get("productName").toString());
-		int result = orderService.productCheck(productName.get("productName").toString());
+		int result = userOrderManegerService.productCheck(productName.get("productName").toString());
 		return result >= 1 ? new ResponseEntity<String>("OK", HttpStatus.OK) : new ResponseEntity<String>("NULL", HttpStatus.OK);
 	}
 
@@ -141,7 +139,7 @@ public class SangjuController {
 		vo.setOrderview_category(request.getParameter("productCategory"));
 		vo.setOrderview_uploadpath(uploadPath.toString());
 		vo.setOrderview_uuid(uuid.toString());
-		orderService.productInsert(request.getParameter("productName"), vo);
+		userOrderManegerService.productInsert(request.getParameter("productName"), vo);
 		return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
 
@@ -160,7 +158,7 @@ public class SangjuController {
 	@GetMapping("/order")
 	public void orderView(Model model, final HttpSession session) {
 		System.out.println(session.getAttribute("roomNum"));
-		model.addAttribute("OrderViewVO_List", orderService.readCategory());
+		model.addAttribute("OrderViewVO_List", userOrderManegerService.readCategory());
 	}
 
 	@PostMapping(value = "/resultOrder", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
@@ -178,7 +176,7 @@ public class SangjuController {
 			orderList.add(ordervo);
 		});
 
-		orderService.realTimeOrderAdd(orderList);
+		userOrderManegerService.realTimeOrderAdd(orderList);
 
 		return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}

@@ -1,5 +1,8 @@
 package com.comic.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +18,7 @@ import com.comic.service.ProductService;
 import lombok.AllArgsConstructor;
 
 @Controller
-@RequestMapping("/product/")
+@RequestMapping("/product")
 @AllArgsConstructor
 public class ProductController {
 	
@@ -27,8 +30,11 @@ public class ProductController {
 	}
 	
 	@GetMapping("/productGet")
-	public void productGet(@RequestParam("product_num") int product_num, Model model) {
-		model.addAttribute("product", service.productGet(product_num));
+	public @ResponseBody ProductVO productGet(@RequestParam("product_num") int product_num) {
+//		Map<String, ProductVO> map = new HashMap<String, ProductVO>();
+		ProductVO vo = service.productGet(product_num);
+//		map.put("productGet", service.productGet(product_num));
+		return vo;
 	}
 	
 	@PostMapping("/productRegister")
@@ -47,9 +53,8 @@ public class ProductController {
 	
 	@PostMapping("/productRemove")
 	public String productRemove(@RequestParam("removeBtn") int product_num, RedirectAttributes rttr) {
-		if(service.productRemove(product_num)) { 
-			rttr.addFlashAttribute("result", "success"); 
-		}
+		service.productRemove(product_num);
+		rttr.addFlashAttribute("result", "success"); 
 		return "redirect:/product/productList";
 	}
 	

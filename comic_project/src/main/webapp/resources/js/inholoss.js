@@ -45,6 +45,8 @@ $(document).ready(function(){
 	        targets: 'no-sort',
 	        orderable: false
 	    }],
+	    
+	    order: [[0, 'desc']]
 	});
 	
 });
@@ -139,6 +141,7 @@ $('#modifyclose').click(function(){
 	$('#myModifyModal').hide();
 });
 
+	
 $('#createclose').click(function(){
 	$('#myModal').hide();
 });

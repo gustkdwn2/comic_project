@@ -2,6 +2,7 @@ package com.comic.service;
 
 import java.util.List;
 
+import com.comic.model.BookAttachVO;
 import com.comic.model.BookVO;
 
 public interface BookService {
@@ -17,5 +18,7 @@ public interface BookService {
 	public boolean bookRemove(String book_name);
 	
 	public BookVO bookNameCheck(String book_name);
+	
+	public List<BookAttachVO> getAttachList(String book_name);
 	
 }

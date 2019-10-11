@@ -18,7 +18,7 @@
 					<div class="card">
 						<div class="card-body">
 							<p class="card-title">책 재고</p>
-							<div class="table-responsive">
+							<div class="table-responsive" style="overflow: hidden;">
 								<button data-toggle="modal"
 									data-target="#bookRegister" type="button" class="btn btn-secondary" style="margin-bottom: 10px;">책
 									등록</button>
@@ -34,7 +34,7 @@
 												<th>책 분류</th>
 												<th>마지막권</th>
 												<th>연재상태</th>
-												<th></th>
+												<th class="no-sort"></th>
 											</tr>
 										</thead>
 	
@@ -53,7 +53,6 @@
 												<td><button name="removeBtn" value="${book.book_name}" type="submit" class="btn btn-danger">삭제</button></td>
 											</tr>
 										</c:forEach>
-	
 									</table>
 								</form>
 							</div>
@@ -85,6 +84,10 @@
 	        "language": {
 	          search: "Search :"
 	        },
+	        "columnDefs" : [{
+				targets : 'no-sort',
+				orderable : false
+			}]
 	    });
 
 	});
