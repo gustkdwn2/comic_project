@@ -141,6 +141,7 @@ $('#modifyclose').click(function(){
 	$('#myModifyModal').hide();
 });
 
+	
 $('#createclose').click(function(){
 	$('#myModal').hide();
 });

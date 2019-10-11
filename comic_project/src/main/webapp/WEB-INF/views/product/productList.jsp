@@ -69,7 +69,7 @@
 
 	$(document).ready(function() {
 
-		$('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
+		$('#productTable').DataTable({ // 페이징 처리, 검색, show entries
 	    	pageLength: 10, //처음 페이지에 처리 개수
 	        bPaginate: true, // 페이징 기능
 	        bLengthChange: true,
