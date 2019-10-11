@@ -52,7 +52,6 @@ public class SangjuController {
 
 		OrderViewVO vo = new OrderViewVO();
 		vo.setOrderview_category(category);
-		vo.setOrderview_product_num(0);
 		userOrderManegerService.registerCategory(vo);
 
 		return "redirect:/sangju/admin";
@@ -66,7 +65,6 @@ public class SangjuController {
 		OrderViewVO vo = new OrderViewVO();
 		vo.setOrderview_num(number);
 		vo.setOrderview_category(category);
-		vo.setOrderview_product_num(0);
 
 		userOrderManegerService.productCategoryUpdate(vo);
 		userOrderManegerService.updateCategory(vo);
