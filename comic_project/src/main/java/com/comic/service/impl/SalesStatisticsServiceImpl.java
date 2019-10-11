@@ -34,7 +34,6 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 	
 	@Override
 	public Map<String, List<String>> chartDayData(String year, String month) { // 년도,월에 대한 일매출
-		System.out.println(year+month);
 		Map<String, List<String>> map = statisticsDay(statisticsMapper.productsalesDayData(year+month), statisticsMapper.roomsalesDayData(year+month));
 		return map;
 	}
