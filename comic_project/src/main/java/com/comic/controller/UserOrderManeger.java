@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -28,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.comic.model.OrderProductViewVO;
+import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
 import com.comic.service.UserOrderManegerService;
 
@@ -71,7 +75,6 @@ public class UserOrderManeger {
 
 		OrderViewVO vo = new OrderViewVO();
 		vo.setOrderview_category(category);
-		vo.setOrderview_product_num(0);
 		userOrderManegerService.registerCategory(vo);
 
 		return "redirect:/userOrderManager/orderManager";
@@ -85,7 +88,6 @@ public class UserOrderManeger {
 		OrderViewVO vo = new OrderViewVO();
 		vo.setOrderview_num(number);
 		vo.setOrderview_category(category);
-		vo.setOrderview_product_num(0);
 
 		userOrderManegerService.productCategoryUpdate(vo);
 		userOrderManegerService.updateCategory(vo);
@@ -173,5 +175,26 @@ public class UserOrderManeger {
 		Date date = new Date();
 		String str = sdf.format(date);
 		return str.replace("-", File.separator);
+	}
+	
+	//사용자가 실시간 주문했을 경우
+	@PostMapping(value = "/resultOrder", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<String> resultOrder(@RequestBody Map<Integer, Map<String, String>> orderJsonData, HttpSession session) {
+		System.out.println(orderJsonData);
+		List<OrderVO> orderList = new ArrayList<OrderVO>();
+
+		orderJsonData.forEach((k, v) -> {
+			OrderVO ordervo = new OrderVO();
+			ordervo.setOrder_id("user123");
+			ordervo.setOrder_product_num(Integer.parseInt(orderJsonData.get(k).get("productNum")));
+			ordervo.setOrder_roomnum(Integer.parseInt(session.getAttribute("roomNum").toString()));
+			ordervo.setOrder_qty(Integer.parseInt(orderJsonData.get(k).get("qty")));
+			ordervo.setOrder_time(new Date());
+			orderList.add(ordervo);
+		});
+
+		userOrderManegerService.realTimeOrderAdd(orderList);
+
+		return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
 }

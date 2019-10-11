@@ -239,7 +239,7 @@
 
 			if(files.length == 0) {
 				
-			} 
+			}
 			
 			//add filedate to formdata
 			for(var i = 0; i < files.length; i++) {
