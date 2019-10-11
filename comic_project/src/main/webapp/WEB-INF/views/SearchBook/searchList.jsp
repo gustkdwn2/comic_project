@@ -11,11 +11,53 @@
 <meta charset="UTF-8">
 <title>코믹 서기 책 위치 검색</title>
 <style type="text/css">
-	table, tr , td{border:1px solid #d0dfef; font-size:20px; text-align: center;}
-	tr{margin-bottom:5px;}
-    .hide {display:none;}
-    .show {display:table-row; font-size:20px; background-color:RGB(237,237,237) #ededed;}
-    .info td {cursor:pointer; font-size:20px; } 
+
+table, tr , td{border:1px solid #d0dfef; font-size:20px; text-align: center;}
+
+tr{margin-bottom:5px;}
+.hide {display:none;}
+.show {display:table-row; font-size:20px; }
+.info td {cursor:pointer; font-size:20px; }
+
+.uploadResult {
+width: 100%;
+background-color: white;
+}
+
+.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResult ul li {
+	list-style: none;
+	padding: 10px;
+}
+
+.uploadResult ul li img {
+	width: 100px;
+}
+
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray; 
+  z-index: 100;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 
 </head>
@@ -27,13 +69,16 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h2 class=".h2">책 위치 검색</h2>
-                  
+
+                  <div style="text-align:center; width:1560px;">
+                  <h2>원하시는 도서를 검색하세요</h2></br><h4> 제목을 누르면 상세정보를 볼 수 있습니다.</h4><br/>
+                  </div><br/>
+                  	<div style="width:800px; margin:0 auto;">
 				    <form class="form-inline" action="/SearchBook/searchList" 
-				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
+				          id='searchForm' method="get" style="margin-bottom: 20px; margin:0 auto;">
 				    		<select name="type" class="form-control">
 				     			<option value=""
-									 <c:out value="${pageMaker.cri.type == null?'selected':''}"/> >--</option>
+									 <c:out value="${pageMaker.cri.type == null?'selected':''}"/> >선택해주세요</option>
 								<option value="T"
 									<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
 								<option value="C"
@@ -47,13 +92,13 @@
 								<option value="TW"
 									<c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>제목 or 저자</option>
 							 </select>
-				    		<input type="text" name="keyword" class="form-control" >&nbsp;
+				    		<input type="text" name="keyword" class="form-control" size="70" maxlength="40" >
 				    		<input type="submit" class="btn btn-primary btn-md" value="검색">
 				    		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'/>
 							<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
 				    		
 				    </form>
-				    	
+				    </div>
 		            <br/><br/>
                   <div class="table-responsive">
                   
@@ -63,11 +108,11 @@
 					
 					<c:if test="${count>0 }">
 					
-					<table class="accocss table-striped">
+					<table class="accocss table-stripe">
                       <thead>
                         <tr style="height: 40px;">
                           <td style="width:80px;">분류</td>
-                          <td style="width:800px;">이름</td>
+                          <td style="width:800px;">제목</td>
                           <td style="width:300px;">저자</td>
                           <td style="width:300px;">출판사</td>
                           <td style="width:100px;">마지막 권</td>
@@ -76,29 +121,60 @@
                       </thead>
  
 					
-					<c:forEach items="${ list }" var="list">
+						<c:forEach items="${ list }" var="list">
+						
+							<tbody>					
+								<tr class="info" style="height: 40px; background-color: #F3F2EC;">
+		                          <td style="width:80px;"><c:out value="${list.book_category }" /></td>
+		                          <td style="width:800px; color: #007bff;"><a class="book_name" value="${list.book_name }" >
+		                          <c:out value="${list.book_name }" /></a></td>
+		                          <td style="width:300px;"><c:out value="${list.book_writer }" /></td>
+		                          <td style="width:300px;"><c:out value="${list.book_publisher }" /></td>
+		                          <td style="width:100px;"><c:out value="${list.book_lastbook }" /></td>
+		                          <td style="width:200px;"><c:out value="${list.book_loc }" /></td>	                         
+		                        </tr>
+		                        
+		                        <tr class="hide" style="height: 200px;">
+		                          <td colspan="6">			                          
+							      	<div class='uploadResult' style="width: 120px; float: left; margin-left:10px;"> 
+							        	<ul>
+							          		
+							        	</ul>
+							        </div>
+							        <div style="width: 1350px; height: 190px; float: right; text-align: justify; border:1px solid black;">
+							       <%--  분류 : <c:out value="${list.book_category }" />&emsp; 제목 : <c:out value="${list.book_name }" /><br/>
+							        저자 : <c:out value="${list.book_writer }" />&emsp; 출판사 : <c:out value="${list.book_publisher }" /><br/>
+							        마지막 권 : <c:out value="${list.book_lastbook }" />&emsp; 위치 : <c:out value="${list.book_loc }" /><br/>
+			                          	줄거리 : <c:out value="${list.book_content }" /> --%>
+			                          	<table style="border:1px solid black; width: 1350px;">
+				                          	<tr>
+					                          	<td style="width: 100px;"> 제목 </td>
+					                          	<td style="width: 800px;"><c:out value="${list.book_name }" /></td>
+					                          	<td style="width: 100px;"> 저자 </td>
+					                          	<td style="width: 300px;"><c:out value="${list.book_writer }" /></td>
+					                          	<
+				                          	</tr>
+				           
+				                          	<tr>
+					                          	<td style="width: 100px;"> 마지막 권 </td>
+					                          	<td style="width: 100px;"><c:out value="${list.book_lastbook }" /></td>
+					                          	<td style="width: 100px;"> 위치 </td>
+					                          	<td style="width: 100px;"><c:out value="${list.book_loc }" /></td>
+					                          	<td style="width: 100px;"> 연재 상태 </td>
+					                          	<td style="width: 100px;"><c:out value="${list.book_status }" /></td>
+				                          	</tr>
+				                          	<tr>
+				                          		<td colspan="6">줄거리 : <c:out value="${list.book_content }" /></td>
+				                          	</tr>
+			                          	</table>
+		                          	</div>
+		                          </td>
+		                        </tr>
+		                              
+		                    </tbody>
+						
+						</c:forEach>
 					
-						<tbody>					
-							<tr class="info" style="height: 40px;">
-	                          <td style="width:80px;"><c:out value="${list.book_category }" /></td>
-	                          <td style="width:800px;"><a href="#"><c:out value="${list.book_name }" /></a></td>
-	                          <td style="width:300px;"><c:out value="${list.book_writer }" /></td>
-	                          <td style="width:300px;"><c:out value="${list.book_publisher }" /></td>
-	                          <td style="width:100px;"><c:out value="${list.book_lastbook }" /></td>
-	                          <td style="width:200px;"><c:out value="${list.book_loc }" /></td>
-	                         
-	                        </tr>
-	                        
-	                        <tr class="hide" style="height: 150px;">
-	                          <td colspan="6">
-	                          <c:out value="${list.book_content }" />
-	                          </td>
-	                        </tr>      
-	                    </tbody>
-                                       
-
-					
-					</c:forEach>
 					</table>
 
                     <br>		
@@ -148,18 +224,14 @@
             
 <script type="text/javascript">
 
-	$(document)
-		.ready(
-				function(){
-
-			var actionForm = $("#actionForm");
-
+	$(document).ready(function(){
+		
 			$(function(){
 	            var article = (".accocss .show"); 
 	            $(".accocss .info td").click(function() { 
 	                var myArticle =$(this).parents().next("tr"); 
 	                if($(myArticle).hasClass('hide')) { 
-	                    $(article).removeClass('show').addClass('hide'); 
+	                	$(article).removeClass('show').addClass('hide'); 
 	                    $(myArticle).removeClass('hide').addClass('show'); 
 	                } 
 	                else { 
@@ -168,6 +240,31 @@
 	            }); 
 	        });
 
+			/*
+			아코디언 구조
+	        
+			순정 나가다 만화 ~~~
+	        액션 가나다 만화 ~~~
+
+	        this.parents().next("tr"); ---> 
+	        ".accocss .info td"의 부모의 오른쪽 혹은 밑 요소 = ".accocss .info td"의 부모 tr의 오른쪽 혹은 옆의 요소(상세보기가 적힌 tr)
+	        
+	        **나가다라는 제목이 적힌 tr을 누르면 display:none 되어있던 나가다 밑에 tr의 td(상세정보)가 보여진다.
+	        이때 가나다라는 제목이 적힌 다른 tr을 누르면 이전에 나타난 나가다 밑에 tr 의 td(상세정보)가 숨겨지고 
+	        현재 누른 가나다 밑에 tr 의 td(상세정보)가 보여진다.**
+
+	        if($(myArticle).hasClass('hide')) :
+		       원래 class name이 hide니까 만약 hide라면 보여진건 숨겨지고 클릭한 제목의 상세보기는 보여지게 하는것(**로 둘러싸인 내용을 구현)
+
+	        else { $(myArticle).addClass('hide').removeClass('show');}
+	        	= if($(myArticle).hasClass('hide'))가 아니라면 $(myArticle).hasClass('show')라면 &&로 둘러싸인 내용을 구현하라
+
+	 	    &&& 나가다라는 제목이 적힌 tr을 누르면 display:none 되어있던 나가다 밑에 tr의 td(상세정보)가 보여진다. 
+	 	    다시 나가다라는 제목이 적힌 tr을 누르면 나가다 밑에 tr의 td(상세정보)가 숨겨진다.&&
+
+	         */
+
+			var actionForm = $("#actionForm");
 
 			$(".page-item a").on( 
 					"click",
@@ -182,7 +279,27 @@
 						actionForm.submit();
 			 });
 
+			 
+
 		
+		});
+
+		$('.book_name').click(function(){
+			var bookname = $(this).attr('value');
+			var str="";
+			$.ajax({
+				async : false, // 비동기
+				type: 'get',
+				url: '/book/getAttachList?book_name='+bookname,				
+				success: function(attach) {
+					var fileCallPath = encodeURIComponent(attach[0].uploadPath+"/s_"+attach[0].uuid+"_"+attach[0].fileName);
+					str += "<li data-path='"+attach[0].uploadPath+"' data-uuid='"+attach[0].uuid+"' data-filename='"+attach[0].fileName+"' data-type='"+attach[0].fileType+"'><div>";
+					str += "<img src='/display?fileName="+fileCallPath+"'>";
+					str += "</div>";
+					str += "<li>";
+				}
+			});
+			$(".uploadResult ul").html(str);
 		});
 
 </script>
