@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./includes/userHeader.jsp"%>
 <style type="text/css">
-body {
-	background-image: url("/resources/images/bg-masthead.jpg");
-	background-size: cover;
-}
-
 .content-wrapper {
-	padding-top: 100px;
+	padding-top: 150px;
 }
 </style>
 <body>
@@ -18,6 +13,8 @@ body {
 			<div class="row">
 				<div class="col-md-2 text-center">
 				</div>
+				<img src="/resources/images/comic_image.png" alt="" style="border:1px solid black; width: 100px; height: 50px;"/>
+				
 			</div>
 			<div class="container">
 				<div class="content-section-heading text-center">

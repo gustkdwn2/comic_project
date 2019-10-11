@@ -3,7 +3,7 @@
 
 <style type="text/css">
 body {
-	background-image: url("/resources/images/bg-masthead.jpg");
+	background-image: url("/resources/images/comic_image.jpg");
 	background-size: cover;
 }
 
