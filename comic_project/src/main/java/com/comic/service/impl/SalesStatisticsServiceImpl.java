@@ -34,7 +34,8 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 	
 	@Override
 	public Map<String, List<String>> chartDayData(String year, String month) { // 년도,월에 대한 일매출
-		Map<String, List<String>> map = statisticsDay(statisticsMapper.productsalesDayData(year+month), statisticsMapper.roomsalesDayData(year+month)); 
+		System.out.println(year+month);
+		Map<String, List<String>> map = statisticsDay(statisticsMapper.productsalesDayData(year+month), statisticsMapper.roomsalesDayData(year+month));
 		return map;
 	}
 	
@@ -113,9 +114,9 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 	private int dayroomTotalPrice(String day, SimpleDateFormat simpleDataFormat,
 			List<SalesStatisticsVO> roomsalesDayData) {
 		int total = 0;
-		
 		for (int i = 0; i < roomsalesDayData.size(); i++) {
-			if(simpleDataFormat.format(roomsalesDayData.get(i).getRoomsales_time()).split("-")[2].equals(day)) {
+			if(simpleDataFormat.format(roomsalesDayData.get(i).getRoomsales_time()).split("-")[2].equals("0"+day) || 
+					simpleDataFormat.format(roomsalesDayData.get(i).getRoomsales_time()).split("-")[2].equals(day)) {
 				total += roomsalesDayData.get(i).getRoomsales_totalprice();
 			}
 		}
@@ -139,7 +140,8 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 			List<SalesStatisticsVO> productsalesDayData) {
 		int total = 0;
 		for (int i = 0; i < productsalesDayData.size(); i++) {
-			if(simpleDataFormat.format(productsalesDayData.get(i).getProductsales_time()).split("-")[2].equals(day)) {
+			if(simpleDataFormat.format(productsalesDayData.get(i).getProductsales_time()).split("-")[2].equals("0"+day) ||
+					simpleDataFormat.format(productsalesDayData.get(i).getProductsales_time()).split("-")[2].equals(day)) {
 				total += productsalesDayData.get(i).getProductsales_order_price();
 			}
 		}
