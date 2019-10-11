@@ -61,6 +61,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void MemberRemove(String MEMBER_ID) {
+		System.out.println(MEMBER_ID);
 		mapper.MemberDelete(MEMBER_ID);
 	}
 	
@@ -114,6 +115,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO checkLoginBefore(String value) throws Exception {
 		return mapper.checkUserWithSessionKey(value);
+	}
+
+	@Override
+	public MemberVO getMember(MemberVO vo) {
+		return mapper.getMember(vo);
 	}
 
 }

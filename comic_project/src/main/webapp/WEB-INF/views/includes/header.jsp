@@ -36,42 +36,7 @@
 <script src="/resources/js/data-table.js"></script>
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
-
-<script type="text/javascript">
-	$('button[name=modifyBtn]').click(
-			function() {
-				var MEMBER_ID = $(this).attr('value');
-
-				$.ajax({
-					type : 'get',
-					url : "/member/MemberModify?MEMBER_ID=" + MEMBER_ID,
-					success : function(data) {
-						$('#MEMBER_ID2').attr('value',
-								data.getModify['member_ID']);
-						$('#MEMBER_NAME2').attr('value',
-								data.getModify['member_NAME']);
-						$('#MEMBER_EMAIL2').attr('value',
-								data.getModify['member_EMAIL']);
-						$('#MEMBER_PHONE_NUMBER2').attr('value',
-								data.getModify['member_PHONE_NUMBER']);
-						$('#MemberModifyModal').show();
-					}
-				});
-			});
-
-	function memmodify() {
-		console.log("여기 들어옴?")
-		var membermodify = $("form[name=membermodify]").serialize();
-		$.ajax({
-			type : 'post',
-			url : '/member/MemberModify2',
-			data : membermodify,
-			success : function(result) {
-				alert(result);
-			}
-		});
-	}
-</script>
+<script src="/resources/js/header.js"></script>
 
 </body>
 
@@ -242,33 +207,33 @@
 							<form class="forms-sample" name="membermodify" method="post" autocomplete="off">
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">아이디</font>
-									</label> <input name="MEMBER_ID2" id="MEMBER_ID2" readonly="readonly"
+									</label> <input name="MEMBER_ID" id="MEMBER_ID" readonly="readonly"
 										class="form-control" value="${Memberlogin.MEMBER_ID}"/>
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">이름</font>
-									</label> <input name="MEMBER_NAME2" id="MEMBER_NAME2" readonly="readonly"
+									</label> <input name="MEMBER_NAME" id="MEMBER_NAME" readonly="readonly"
 										class="form-control" value="${Memberlogin.MEMBER_NAME}">
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">비밀번호</font>
-									</label> <input name="MEMBER_PWD2" id="MEMBER_PWD2" type="password"
+									</label> <input name="MEMBER_PWD" id="MEMBER_PWD" type="password"
 										class="form-control">
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">이메일</font>
-									</label> <input name="MEMBER_EMAIL2" id="MEMBER_EMAIL2" type="email"
+									</label> <input name="MEMBER_EMAIL" id="MEMBER_EMAIL" type="email"
 										class="form-control" value="${Memberlogin.MEMBER_EMAIL}">
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">핸드폰
 											번호</font>
-									</label> <input name="MEMBER_PHONE_NUMBER2" id="MEMBER_PHONE_NUMBER2"
+									</label> <input name="MEMBER_PHONE_NUMBER" id="MEMBER_PHONE_NUMBER"
 										type="tel" class="form-control" value="${Memberlogin.MEMBER_PHONE_NUMBER}">
 								</div>
 								<div class="form-group" align="center">
 									<button type="button" id="membermodifyBtn" name="membermodifyBtn" class="btn btn-info" onclick="memmodify();">수정</button>
-									<button type="button" id="membermodifyclose" class="btn btn-success" data-dismiss="modal">닫기</button>
+									<button type="button" id="modifyclose" class="btn btn-success" data-dismiss="modal">닫기</button>
 								</div>
 							</form>
 						</div>

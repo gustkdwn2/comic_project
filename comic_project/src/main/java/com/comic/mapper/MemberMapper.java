@@ -30,6 +30,8 @@ public interface MemberMapper {
 	public void MemberPasswordModify(MemberVO vo);
 	// 멤버 정보 수정
 	public void MemberUpdate2(MemberVO vo);
+	// 멤버 회원가입 아이디 중복 체크
+	public MemberVO getMember(MemberVO vo);
 	// 직원 회원가입
 	public void employeeInsert(EmployeeVO vo);
 	// 직원 로그인
@@ -38,7 +40,5 @@ public interface MemberMapper {
 	public void EmployeekeepLogin(int eMPLOYEE_NUM, String sessionId, Date sessionLimit);	
 	// 세션키 검증
 	public MemberVO checkUserWithSessionKey(String value);
-	
-	
 	
 }

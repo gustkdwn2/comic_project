@@ -38,7 +38,8 @@
 									<font style="vertical-align: inherit;">발주 구매가</font>
 								</label>
 								<div class="col-sm-9">
-									<input type="number" class="form-control" name="productOrder_cost" required>
+									<input type="number" class="form-control" n
+									.0ame="productOrder_cost" required>
 								</div>
 							</div>
 								<div class="form-group row">

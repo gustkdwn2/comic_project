@@ -18,17 +18,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
-import com.comic.model.LossVO;
 import com.comic.model.MemberVO;
 import com.comic.service.MemberService;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/member")
@@ -135,7 +134,8 @@ public class LoginController {
 	
 	//멤버 정보 삭제
 	@PostMapping("/MemberRemove")
-	public String MemberRemove(@RequestParam("MEMBER_ID") String MEMBER_ID) {
+	public String MemberRemove(@RequestParam("removeBtn") String MEMBER_ID) {
+		System.out.println("컨트롤러옴?");
 		service.MemberRemove(MEMBER_ID);
 		return "redirect:/member/MemberList";
 	}
@@ -145,9 +145,18 @@ public class LoginController {
 	public void MemberPasswordModify(MemberVO vo, HttpServletResponse response) throws Exception {
 		service.MemberPasswordModify(response, vo);
 	}
-	
-	//
-	
+	// 멤버 회원가입 아이디 중복 체크
+	@GetMapping("/MemberCheck")
+	@ResponseBody
+    public int idCheck(MemberVO vo,ModelAndView mav) {
+        System.out.println("Controller.idCheck() 호출");
+        int result=0;
+        MemberVO member=service.getMember(vo);
+        System.out.println(member);
+        if(member!=null) result=1;
+        else System.out.println("아이디사용가능");
+        return result;
+    }	
 	//직원 추가 페이지 이동
 	@GetMapping("/EmployeeRegister")
 	public void EmployeeRegister() {
