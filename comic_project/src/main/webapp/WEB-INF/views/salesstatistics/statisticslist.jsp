@@ -7,7 +7,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/resources/js/inhochart.js"></script>
 <meta charset="UTF-8">
 <title>매출 통계</title>
 </head>
@@ -99,6 +98,8 @@
 </body>
 
 <script>
+
+
 var barChartCanvas = $("#bar").get(0).getContext("2d");
 var lineChartCanvas = $("#line").get(0).getContext("2d");
 var horizontalbarChartCanvas = $("#horizontalbar").get(0).getContext("2d");
@@ -153,9 +154,7 @@ $('#selectYear2').change(function(){
 	getMonthList(sendData,barChartCanvas);
 });
 
-</script>
 
-<script type="text/javascript">
 function selector(target,value){
 	var obj=document.getElementById(target);
 	
@@ -166,13 +165,13 @@ function selector(target,value){
 			}
 		}
 }
+
+var today = new Date();
+var mm = today.getMonth()+1;
+var yy = today.getFullYear().toString().substr(2,2);
+selector("selectMonth",mm);
+selector("selectYear",yy);
+selector("selectYear2",yy);
 </script>
-<script>
-	var today = new Date();
-	var mm = today.getMonth()+1;
-	var yy = today.getFullYear().toString().substr(2,2);
-	selector("selectMonth",mm);
-	selector("selectYear",yy);
-	selector("selectYear2",yy);
-</script>
+<script src="/resources/js/inhochart.js"></script>
 </html>

@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/resources/css/inhostyle.css">
+<link rel="stylesheet" href="/resources/css/inhostyle.css?after">
 <meta charset="UTF-8">
 <title>재고 정산</title>
 </head>
@@ -57,143 +57,11 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="settlementModal.jsp" />	
+</body>
 
-	<!-- The Modal -->
-	<div id="myModal" class="modal">
-
-		<!-- Modal content -->
-		<div class="modal-content">
-			<p style="text-align: center; line-height: 3.5;">
-				<span style="font-size: 14pt;"><b><span
-						style="font-size: 24pt;">재고 변경</span></b></span>
-			</p>
-			<p style="text-align: center; line-height: 1.5;">
-				<br />
-			</p>
-			<table>
-				<c:forEach items="${settleList}" var="settle" varStatus="status">
-					<tr>
-						<td><input type="hidden" value="${settle.product_num }"
-							name="productNum"> ${settle.product_name }</td>
-						<td>${settle.product_qty }</td>
-						<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> </td>
-						<td id="b${status.count-1}"></td>
-					</tr>
-				</c:forEach>
-			</table>
-
-			<p style="text-align: center; line-height: 1.5;">
-				<br />
-			</p>
-			<div
-				style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px;"
-				onclick="modify_product();">
-				<span class="pop_bt" style="font-size: 13pt;"> 변경하기 </span>
-			</div>
-			<p style="text-align: center; line-height: 0.0;">
-				<br />
-			</p>
-			<div
-				style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px;"
-				onClick="close_pop();">
-				<span class="pop_bt" style="font-size: 13pt;"> 닫기 </span>
-			</div>
-		</div>
-
-	</div>
-	<!--End Modal-->
-
+<script src="/resources/js/inhosettlement.js"></script>
 <script>
-	$('#btn1').click(function() { // .blur() : focusout
-
-		var list = new Array();		
-		$("input[name=curqty]").each(function(index, item) {  // 반복문
-			//list.push($('#'+'ainput'+index).val());
-			list.push(item.value);
-		});
-		var sendData = {
-			'list' : list
-		};
-		console.log(list);
-		$.ajax({
-			url : '/settlement/settlementlist',
-			dataType : 'json',
-			data : JSON.stringify(sendData),
-			contentType : "application/json; charset=utf-8;",
-			type : 'POST',
-			success : function(data) {
-				console.log(data);
-				console.log("성공");
-				for (var i = 0; i < list.length; i++) {
-					$('#' + 'a' + i.toString()).html(data[i]);
-					if (data[i] > 0) {
-						$('#' + 'a' + i.toString()).css("color", "blue");
-					} else if (data[i] < 0) {
-						$('#' + 'a' + i.toString()).css("color", "red");
-					} else {
-						$('#' + 'a' + i.toString()).css("color", "black");
-					}
-				}
-			},
-			error : function(data) {
-				console.log("실패");
-			}
-		});
-	});
-
-	$('#btn2').click(function() {
-		var list = new Array();
-		$("input[name=curqty]").each(function(index, item) {
-			list.push($('#'+'ainput'+index).val());
-		});
-		for (var i = 0; i < list.length; i++) {
-			$('#' + 'b' + i.toString()).html(list[i]);
-		}
-		$('#myModal').show();
-	});
-
-	function close_pop() {
-		$('#myModal').hide();
-
-	};
-
-	function modify_product() {
-		var numList = new Array();
-		var productList = new Array();
-		$("input[name=productNum]").each(function(index, item) {
-			numList.push($(item).val());
-		});
-
-		$("input[name=curqty]").each(function(index, item) {
-			productList.push($(item).val());
-		});
-
-		console.log(numList);
-		console.log(productList);
-
-		var form = document.createElement("form"); // form을 만듬
-		form.setAttribute("charset", "UTF-8");
-		form.setAttribute("method", "Post");
-		form.setAttribute("action", "modify");
-		document.body.appendChild(form);
-
-		var hiddenInput = document.createElement("input");
-		hiddenInput.setAttribute("type", "hidden");
-		hiddenInput.setAttribute("name", "numList");
-		hiddenInput.setAttribute("value", numList);
-
-		var hiddenInput2 = document.createElement("input");
-		hiddenInput2.setAttribute("type", "hidden");
-		hiddenInput2.setAttribute("name", "productList");
-		hiddenInput2.setAttribute("value", productList);
-		form.appendChild(hiddenInput);
-		form.appendChild(hiddenInput2);
-
-		form.submit();
-
-		$('#myModal').hide();
-	}
-	
 	//오차수량 sorting
 	$(document).ready(function() {
 		 var reSortColors = function($table) {
@@ -249,5 +117,4 @@
 		      });
 		    });
 </script>
-</body>
 </html>

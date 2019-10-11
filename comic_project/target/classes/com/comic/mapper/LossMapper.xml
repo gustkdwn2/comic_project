@@ -6,7 +6,7 @@
 <mapper namespace="com.comic.mapper.LossMapper">
 	<select id="lossList"
 		resultType="com.comic.model.LossVO">
-		SELECT * FROM COMIC_LOSS ORDER BY LOSS_DATE ASC
+		SELECT * FROM COMIC_LOSS ORDER BY LOSS_DATE DESC
 	</select>
 	
 	<insert id="lossInsert">  <!-- 정산 시 손실테이블 자동 추가 -->

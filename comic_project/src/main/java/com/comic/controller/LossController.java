@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +31,12 @@ public class LossController {
 	private ProductService productService;
 	
 	@GetMapping("losslist")
-	public void lossList(Model model) {
-		model.addAttribute("lossList", lossService.lossList()); // 손실테이블
+	public void lossList() {
+	}
+	
+	@GetMapping("lossdata")
+	public ResponseEntity<List<LossVO>> lossData(){ //월 차트 데이터
+		return new ResponseEntity<List<LossVO>>(lossService.lossList(), HttpStatus.OK);
 	}
 	
 	@PostMapping("lossRegister")
@@ -51,6 +57,15 @@ public class LossController {
 		lossService.lossRemove(loss_num);
 		return "redirect:/loss/losslist";
 	}
+	
+	@GetMapping("lossUpdate")
+	public @ResponseBody Map<String, Object> lossGetUpdate(@RequestParam("loss_num") int loss_num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("product", productService.productGetList());
+		map.put("getModify", lossService.lossGet(loss_num));
+		return map;
+	}
+	
 	
 	@GetMapping("lossModify")
 	public @ResponseBody Map<String, LossVO> lossGetModify(@RequestParam("loss_num") int loss_num) {
