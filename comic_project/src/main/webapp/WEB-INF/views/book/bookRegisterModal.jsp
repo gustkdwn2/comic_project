@@ -64,7 +64,7 @@
 						</label>
 						<div class="form-group row">
 					        <div class="form-group uploadDiv">
-					            <input type="file" name='uploadFile'>
+					            <input type="file" name='uploadFile' id="uploadFile">
 					        </div>
 				        
 					        <div class='uploadResult'> 
@@ -353,6 +353,7 @@
 	           targetLi.remove();
 	         }
 	    }); //$.ajax
+	    $("#uploadFile").val("");
 	   });
 	
 	});
