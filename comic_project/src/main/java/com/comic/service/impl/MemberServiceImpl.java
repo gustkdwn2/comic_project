@@ -98,12 +98,7 @@ public class MemberServiceImpl implements MemberService {
 		out.close();
 	}
 
-	@Override
-	public void employeeRegister(EmployeeVO vo) {
-		password = vo.getEMPLOYEE_PWD();
-		vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));
-		mapper.employeeInsert(vo);
-	}
+
 
 	@Override
 	public void EmployeekeepLogin(int EMPLOYEE_NUM, String sessionId, Date sessionLimit) throws Exception {

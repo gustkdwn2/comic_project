@@ -40,6 +40,5 @@ public interface MemberService {
 	// 세션키 검증
 	MemberVO checkLoginBefore(String value) throws Exception;
 	
-	// 직원 회원가입
-    public void employeeRegister(EmployeeVO vo);
+
 }
