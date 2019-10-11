@@ -116,4 +116,12 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.checkUserWithSessionKey(value);
 	}
 
+	@Override
+   public void employeeRegister(EmployeeVO vo) {
+		
+//	password = vo.getEMPLOYEE_PWD();
+//	vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));	 
+    mapper.employeeInsert(vo);
+   }//영학
+
 }

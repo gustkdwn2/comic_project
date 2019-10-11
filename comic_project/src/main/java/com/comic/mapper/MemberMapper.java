@@ -38,6 +38,9 @@ public interface MemberMapper {
 	public void EmployeekeepLogin(int eMPLOYEE_NUM, String sessionId, Date sessionLimit);	
 	// 세션키 검증
 	public MemberVO checkUserWithSessionKey(String value);
+
+	public void employeeInsert(EmployeeVO vo);
+	//직원회원가입(영학)
 	
 	
 	
