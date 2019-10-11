@@ -19,11 +19,6 @@ tr{margin-bottom:5px;}
 .show {display:table-row; font-size:20px; }
 .info td {cursor:pointer; font-size:20px; }
 
-.uploadResult {
-width: 100%;
-background-color: white;
-}
-
 .uploadResult ul {
 	display: flex;
 	flex-flow: row;
@@ -37,7 +32,9 @@ background-color: white;
 }
 
 .uploadResult ul li img {
-	width: 100px;
+	width: 150px;
+	height: 200px;
+	margin-left: 30px;
 }
 
 .bigPictureWrapper {
@@ -141,30 +138,17 @@ background-color: white;
 							          		
 							        	</ul>
 							        </div>
-							        <div style="width: 1350px; height: 190px; float: right; text-align: justify; border:1px solid black;">
-							       <%--  분류 : <c:out value="${list.book_category }" />&emsp; 제목 : <c:out value="${list.book_name }" /><br/>
-							        저자 : <c:out value="${list.book_writer }" />&emsp; 출판사 : <c:out value="${list.book_publisher }" /><br/>
-							        마지막 권 : <c:out value="${list.book_lastbook }" />&emsp; 위치 : <c:out value="${list.book_loc }" /><br/>
-			                          	줄거리 : <c:out value="${list.book_content }" /> --%>
-			                          	<table style="border:1px solid black; width: 1350px;">
+							        <div style="margin-top:10px; width: 1390px; height: 200px; float: right; text-align: justify;">
+			                          	<table style="border:1px solid black; width: 1350px; height: 200px;">
 				                          	<tr>
 					                          	<td style="width: 100px;"> 제목 </td>
-					                          	<td style="width: 800px;"><c:out value="${list.book_name }" /></td>
+					                          	<td style="width: 700px;"><c:out value="${list.book_name }" /></td>
 					                          	<td style="width: 100px;"> 저자 </td>
 					                          	<td style="width: 300px;"><c:out value="${list.book_writer }" /></td>
-					                          	<
-				                          	</tr>
-				           
+					                          	<td style="width: 150px;"> 연재 상태 </td>
+					                          	<td style="width: 100px;"><c:out value="${list.book_status }" /></td>					                          					                      
 				                          	<tr>
-					                          	<td style="width: 100px;"> 마지막 권 </td>
-					                          	<td style="width: 100px;"><c:out value="${list.book_lastbook }" /></td>
-					                          	<td style="width: 100px;"> 위치 </td>
-					                          	<td style="width: 100px;"><c:out value="${list.book_loc }" /></td>
-					                          	<td style="width: 100px;"> 연재 상태 </td>
-					                          	<td style="width: 100px;"><c:out value="${list.book_status }" /></td>
-				                          	</tr>
-				                          	<tr>
-				                          		<td colspan="6">줄거리 : <c:out value="${list.book_content }" /></td>
+				                          		<td style="height: 160px;" colspan="6">줄거리 : <c:out value="${list.book_content }" /></td>
 				                          	</tr>
 			                          	</table>
 		                          	</div>
