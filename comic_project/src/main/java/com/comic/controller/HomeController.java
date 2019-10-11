@@ -26,8 +26,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/erp", method = RequestMethod.GET)
 	public String erpHome(){
-		
-		
 		return "erpIndex";
 	}
 	
