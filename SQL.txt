@@ -238,6 +238,7 @@ select * from comic_productstock;
 commit;
 
 select
+    pk.orderview_num,
     fk.PRODUCT_NAME,
     fk.PRODUCT_PRICE
 from
@@ -245,10 +246,11 @@ from
 where
     fk.PRODUCT_NUM = pk.orderview_product_num
 AND
-    pk.ORDERVIEW_CATEGORY = '라면류';
+    pk.ORDERVIEW_CATEGORY = '라면류2';
 
 commit;
+update comic_orderview_product set ORDERVIEW_CATEGORY
+		= '라면류' where ORDERVIEW_CATEGORY = '라면류1'
+        
 
-select count(*) from comic_productstock where product_name = '123';
-		insert into COMIC_ORDERVIEW_PRODUCT(ORDERVIEW_NUM, ORDERVIEW_CATEGORY, ORDERVIEW_PRODUCT_NUM)
-		values ((select max(ORDERVIEW_NUM) from COMIC_ORDERVIEW_PRODUCT)+1,'라면류', (select product_num from comic_productstock where product_name = '신라면'));
+        

@@ -41,4 +41,9 @@ public class ProductServiceImple implements ProductService {
 		return mapper.productDelete(product_num) == 1;
 	}
 
+	@Override
+	public ProductVO productNameCheck(String product_name) {
+		return mapper.productNameCheck(product_name);
+	}
+
 }

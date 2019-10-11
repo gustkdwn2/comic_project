@@ -16,4 +16,6 @@ public interface ProductMapper {
 	
 	public int productDelete(int product_num);
 	
+	public ProductVO productNameCheck(String product_name);
+	
 }

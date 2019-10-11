@@ -244,7 +244,6 @@ window.getRoomList = function() {
 	    url: "/salesstatistics/getRoomlist.json",
 	    success: function(data) {
 	    	 label = Object.getOwnPropertyNames(data);
-	    	 console.log(label);
 	    	 datas = [
 	    		 data[label[0]],
 	    		 data[label[1]],
@@ -253,7 +252,6 @@ window.getRoomList = function() {
 	    		 data[label[4]],
 	    		 data[label[5]],
 	    	 ]
-	    	 console.log(datas);
 	    }
 	});
 	

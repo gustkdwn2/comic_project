@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -7,14 +7,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/resources/js/inhochart.js"></script>
 <meta charset="UTF-8">
 <title>매출 통계</title>
 </head>
 <body>
 	<div class="main-panel">
 		<div class="content-wrapper">
-
 			<div class="row">
 				<div class="col-lg-6 grid-margin stretch-card">
 					<div class="card">
@@ -100,6 +98,8 @@
 </body>
 
 <script>
+
+
 var barChartCanvas = $("#bar").get(0).getContext("2d");
 var lineChartCanvas = $("#line").get(0).getContext("2d");
 var horizontalbarChartCanvas = $("#horizontalbar").get(0).getContext("2d");
@@ -117,7 +117,9 @@ $('#selectYear').change(function(){
 	sendData = {
 			"year" : changeYear
 	}
-	
+	sendData = {
+			"year" : changeYear
+	}
 	$('#line').remove();
 	$('#linecanvas').append('<canvas id="line"></canvas>');
 	lineChartCanvas = $("#line").get(0).getContext("2d");
@@ -152,28 +154,24 @@ $('#selectYear2').change(function(){
 	getMonthList(sendData,barChartCanvas);
 });
 
-</script>
 
-<script type="text/javascript">
 function selector(target,value){
 	var obj=document.getElementById(target);
 	
 		for(i=0; i<obj.length; i++){
-	
-			if(obj.options[i].value == value){
+			
+			if(obj.options[i].value == value) {
 				obj.options[i].selected = true;
 			}
 		}
 }
 
+var today = new Date();
+var mm = today.getMonth()+1;
+var yy = today.getFullYear().toString().substr(2,2);
+selector("selectMonth",mm);
+selector("selectYear",yy);
+selector("selectYear2",yy);
 </script>
-
-<script type="text/javascript">
-	var today = new Date();	
-	var mm = today.getMonth()+1;
-	var yy = today.getFullYear().toString().substr(2,2);
-	selector("selectMonth",mm);
-	selector("selectYear", yy);
-	selector("selectYear2", yy);
-</script>
+<script src="/resources/js/inhochart.js"></script>
 </html>

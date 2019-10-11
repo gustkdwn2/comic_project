@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comic.mapper.OrderMapper;
+import com.comic.model.OrderProductViewVO;
+import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
 import com.comic.model.ProductVO;
 import com.comic.service.OrderService;
@@ -50,8 +52,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public void productInsert(String productName, String productCategory) {
-		ordermapper.productInsert(productName, productCategory);
+	public void productInsert(String productName, OrderProductViewVO vo) {
+		ordermapper.productInsert(productName, vo);
 	}
 
 	@Override
@@ -72,6 +74,14 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public String getCategoryValue(int number) {
 		return ordermapper.getCategoryValue(number);
+	}
+
+	@Override
+	public void realTimeOrderAdd(List<OrderVO> orderList) {
+		for (int i = 0; i < orderList.size(); i++) {
+			ordermapper.realTimeOrderAdd(orderList.get(i));
+		}
+		
 	}
 
 }

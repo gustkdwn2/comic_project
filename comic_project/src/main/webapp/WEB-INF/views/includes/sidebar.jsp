@@ -21,14 +21,6 @@
 							</ul>
 						</div></li> -->
 					<li class="nav-item"><a class="nav-link"
-						href="/product/productList"> <i class="mdi mdi-view-headline menu-icon"></i>
-						 <span class="menu-title">상품재고</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/book/bookList"> <i class="mdi mdi-view-headline menu-icon"></i> 
-						<span class="menu-title">책재고</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
 					href="/managerpos/managerpos"> <i
 							class="mdi mdi-grid-large menu-icon"></i> <span
 							class="menu-title">포스 화면</span>
@@ -73,7 +65,23 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/CustomerCenter/boardList"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">건의사항</span>
+							class="menu-title">건의 게시판</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/product/productList"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">상품 재고</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/book/bookList"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">책 재고</span>
+					</a></li>					
+					<li class="nav-item"><a class="nav-link"
+						href="/SearchBook/searchList"> <i
+						class="mdi mdi-account-search menu-icon"></i> <span
+							class="menu-title">책 찾기</span>
+
 					</a></li>
 				</ul>
 		</nav>

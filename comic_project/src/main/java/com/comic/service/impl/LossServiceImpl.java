@@ -35,4 +35,24 @@ public class LossServiceImpl implements LossService {
 		lossMapper.lossRegister(vo);
 	}
 
+	@Override
+	public void lossRemove(int loss_num) {
+		lossMapper.lossDelete(loss_num);
+	}
+
+	@Override
+	public LossVO lossGet(int loss_num) {
+		return lossMapper.lossRead(loss_num);
+	}
+
+	@Override
+	public void lossModify(LossVO vo) {
+		if(vo.getLoss_category().equals("손실")) {
+			vo.setLoss_pay(vo.getLoss_pay()*(-1)*vo.getLoss_qty());
+		} else {
+			vo.setLoss_pay(vo.getLoss_pay()*vo.getLoss_qty());
+		}
+		lossMapper.lossUpdate(vo);
+	}
+
 }
