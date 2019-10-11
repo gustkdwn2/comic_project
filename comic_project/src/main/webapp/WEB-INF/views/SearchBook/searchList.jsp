@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>코믹 서기 건의 게시판</title>
+<title>코믹 서기 책 위치 검색</title>
 <style type="text/css">
 	table, tr , td{border:1px solid #d0dfef; font-size:20px; text-align: center;}
 	tr{margin-bottom:5px;}
@@ -27,7 +27,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h2 class=".h2">건의 게시판</h2>
+                  <h2 class=".h2">책 위치 검색</h2>
                   
 				    <form class="form-inline" action="/SearchBook/searchList" 
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
@@ -126,12 +126,8 @@
 					    <c:if test="${pageMaker.next}">
 					    <li class="page-item"><a class="page-link" href="${pageMaker.endPage +1 }">Next</a></li>
 					    </c:if>
-					    
 					  </ul>
-					  
-
 					</div>
-					
 					</c:if>
 
 					
