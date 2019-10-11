@@ -268,7 +268,7 @@
 								</div>
 								<div class="form-group" align="center">
 									<button type="button" id="membermodifyBtn" name="membermodifyBtn" class="btn btn-info" onclick="memmodify();">수정</button>
-									<button type="button" id="modifyclose2" class="btn btn-success" data-dismiss="modal">닫기</button>
+									<button type="button" id="membermodifyclose" class="btn btn-success" data-dismiss="modal">닫기</button>
 								</div>
 							</form>
 						</div>
