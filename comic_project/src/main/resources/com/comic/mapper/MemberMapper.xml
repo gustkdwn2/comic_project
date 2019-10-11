@@ -60,6 +60,12 @@
 		MEMBER_PHONE_NUMBER=#{MEMBER_PHONE_NUMBER}
 		WHERE MEMBER_ID=#{MEMBER_ID}
 	</update>
+	
+	<insert id="employeeInsert">
+      INSERT INTO COMIC_EMPLOYEE VALUES ((SELECT NVL(MAX(EMPLOYEE_NUM),1000)+1 FROM COMIC_EMPLOYEE),
+      #{EMPLOYEE_PWD}, #{EMPLOYEE_NAME}, #{EMPLOYEE_PHONE}, #{EMPLOYEE_ACCOUNT}, SYSDATE, #{EMPLOYEE_POSITION},
+       #{EMPLOYEE_PAY})
+   </insert>
 
 	<select id="employeeLogin" resultType="com.comic.model.EmployeeVO">
 		SELECT * FROM COMIC_EMPLOYEE WHERE EMPLOYEE_NUM = #{EMPLOYEE_NUM}
@@ -73,11 +79,5 @@
 	<select id="checkUserWithSessionKey" resultType="com.comic.model.MemberVO">
 		SELECT * FROM COMIC_MEMBER WHERE SESSION_KEY = #{value}
 	</select>
-
-	<insert id="employeeInsert">
-      INSERT INTO COMIC_EMPLOYEE VALUES ((SELECT NVL(MAX(EMPLOYEE_NUM),1000)+1 FROM COMIC_EMPLOYEE),
-      #{EMPLOYEE_PWD}, #{EMPLOYEE_NAME}, #{EMPLOYEE_PHONE}, #{EMPLOYEE_ACCOUNT}, SYSDATE, #{EMPLOYEE_POSITION},
-       #{EMPLOYEE_PAY})
-   </insert>
 	
 </mapper>

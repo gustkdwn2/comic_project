@@ -1,5 +1,6 @@
 package com.comic.mapper;
 
+
 import java.io.Console;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +42,4 @@ public interface MemberMapper {
 
 	public void employeeInsert(EmployeeVO vo);
 	//직원회원가입(영학)
-	
-	
-	
 }
