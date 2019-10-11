@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 <!DOCTYPE html>
@@ -198,5 +197,18 @@
 
 
 </body>
+<script type="text/javascript">
+	
+	/* $(document).ready(function(){
+		var actionForm = $("#actionForm");
+			$(".move").on("click", function(e){
+						e.preventDefault();
+						actionForm.append("<input type='hidden' name='BOARD_NUM' value='" +$(this).attr("href")+ "'>");
+						actionForm.attr("action", "/CustomerCenter/boardGet");
+						actionForm.submit();	
+			});
+	}); */
+	
+</script>
 
 </html>

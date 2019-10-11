@@ -23,7 +23,7 @@ import com.comic.service.BookService;
 import lombok.AllArgsConstructor;
 
 @Controller
-@RequestMapping("/book/")
+@RequestMapping("/book")
 @AllArgsConstructor
 public class BookController {
 	

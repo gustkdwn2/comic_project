@@ -18,7 +18,7 @@ import com.comic.service.ProductService;
 import lombok.AllArgsConstructor;
 
 @Controller
-@RequestMapping("/product/")
+@RequestMapping("/product")
 @AllArgsConstructor
 public class ProductController {
 	

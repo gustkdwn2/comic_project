@@ -64,6 +64,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<BookAttachVO> getAttachList(String book_name) {
+		System.out.println(attachMapper.findByBookName(book_name));
 		return attachMapper.findByBookName(book_name);
 	}
 	

@@ -33,7 +33,7 @@
 												<th>상품 판매가</th>
 												<th>상품 수량</th>
 												<th>상품 종류</th>
-												<td class="no-sort"></td>
+												<th class="no-sort"></th>
 											</tr>
 										</thead>
 	

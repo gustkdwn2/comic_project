@@ -73,7 +73,4 @@ public class HomeController {
 		
 		return "younghak/login";
 	}
-	
 }
-
-

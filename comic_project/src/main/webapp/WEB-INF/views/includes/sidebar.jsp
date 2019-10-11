@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
@@ -40,32 +41,31 @@
 							<i class="mdi mdi-chart-pie menu-icon"></i>
 							<span class="menu-title">매출 통계</span>
 						</a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#auth" aria-expanded="false"
-						aria-controls="auth"> <i class="mdi mdi-account menu-icon"></i>
-							<span class="menu-title">User Pages</span> <i class="menu-arrow"></i>
-					</a>
-						<div class="collapse" id="auth">
-							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"><a class="nav-link"
-									href="/resources/pages/samples/login.html"> Login </a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="/resources/pages/samples/login-2.html"> Login 2 </a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="/resources/pages/samples/register.html"> Register </a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="/resources/pages/samples/register-2.html"> Register 2 </a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="pages/samples/lock-screen.html"> Lockscreen </a></li>
-							</ul>
-						</div></li>
-					
-
+					</li>	
 					<li class="nav-item"><a class="nav-link"
 						href="/CustomerCenter/boardList"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">건의 게시판</span>
+					</a></li>
+
+					<c:if test="${empty Memberlogin}">
+					<li class="nav-item"><a class="nav-link"
+						href="/member/MemberLogin"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">회원 로그인</span>
+					</a></li>
+					</c:if>
+					<c:if test="${empty Employeelogin}">
+					<li class="nav-item"><a class="nav-link"
+						href="/member/EmployeeLogin"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">직원 로그인</span>
+					</a></li>
+					</c:if>
+					<li class="nav-item"><a class="nav-link"
+						href="/member/MemberList"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">회원 관리</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/product/productList"> <i
