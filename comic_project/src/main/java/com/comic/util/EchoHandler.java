@@ -10,7 +10,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import lombok.extern.log4j.Log4j;
-
+ 
 @Log4j
 public class EchoHandler extends TextWebSocketHandler{
 	
@@ -20,14 +20,14 @@ public class EchoHandler extends TextWebSocketHandler{
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		sessionList.add(session);
 		log.info(session.getId() + " 연결됨");
-		System.out.println("채팅방 입장자: " + session.getPrincipal().getName());
+		System.out.println("채팅방 입장자: " + session.getId());
 	}
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		log.info(session.getId() + "로 부터 " + message.getPayload() + " 받음");
 		for (WebSocketSession sess : sessionList) {
-			sess.sendMessage(new TextMessage(session.getPrincipal().getName() + "|" + message.getPayload()));
+			sess.sendMessage(new TextMessage(session.getId()+ "|" + message.getPayload()));
 		}
 	}
 	

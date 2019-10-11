@@ -11,7 +11,7 @@
 <div id="chatData"></div>
 
 </body>
-<script src="https://cdn.sockjs.org/sockjs-0.3.4.js"></script>
+<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#sendBtn").click(function(){
@@ -26,10 +26,10 @@ $(document).ready(function() {
 			$("#message").val('');
 		}
 	});
-});
+}); 
 
-let sock = new SockJS("<c:url value="/echo" />");
-sock.onmessage = onMessage;
+let sock = new SockJS("<c:url value='/echo' />");
+sock.onmessage = onMessage; 
 sock.onclose = onClose;
 
 function sendMessage() {

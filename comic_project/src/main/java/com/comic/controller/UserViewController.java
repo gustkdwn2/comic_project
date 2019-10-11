@@ -36,7 +36,8 @@ public class UserViewController {
 	}
 	
 	@GetMapping("/chatting")
-	public ModelAndView chat(ModelAndView mv) {
+	public void chat(final HttpSession session) {
+		System.out.println(session.getAttribute("roomNum"));
 		/*
 		 * mv.setViewName("chat/chattingview");
 		 * 
@@ -46,7 +47,5 @@ public class UserViewController {
 		 * System.out.println("normal chat page"); mv.addObject("userid",
 		 * user.getUsername());
 		 */
-		
-		return mv;
 	} 
 }
