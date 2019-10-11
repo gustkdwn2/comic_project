@@ -21,7 +21,7 @@
 							<p class="card-title">상품 재고</p>
 							<div class="table-responsive" style="overflow: hidden;">
 								<button style="margin-bottom: 10px;" data-toggle="modal" data-target="#productRegister" type="button"
-									class="btn btn-secondary">상품 등록</button>
+									class="btn btn-secondary" data-backdrop="static" data-keyboard="false">상품 등록</button>
 								<button id="orderBtn" style="margin-bottom: 10px;" type="button"
 									class="btn btn-warning">상품 발주</button>
 								<form onsubmit="return remove();" action="/product/productRemove" method="post">
