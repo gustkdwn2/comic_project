@@ -49,9 +49,11 @@ public class BookServiceImpl implements BookService {
 	public boolean bookModify(BookVO vo) {
 		return mapper.bookUpdate(vo) == 1;
 	}
-
+	
+	@Transactional
 	@Override
 	public boolean bookRemove(String book_name) {
+		attachMapper.deleteAll(book_name);
 		return mapper.bookDelete(book_name) == 1;
 	}
 

@@ -12,4 +12,8 @@ public interface BookAttachMapper {
 	
 	public List<BookAttachVO> findByBookName(String book_name);
 	
+	public void deleteAll(String book_name);
+	
+	public List<BookAttachVO> getOldFiles();
+	
 }
