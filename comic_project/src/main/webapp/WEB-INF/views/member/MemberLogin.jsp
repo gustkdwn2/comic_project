@@ -94,8 +94,7 @@
 				  url : '/member/MemberPasswordModify',
 				  data : passwordmodify,
 				  success : function(result) {
-					  console.log(result);
-				  /* alert(result); */
+				  	alert(result);
 			   }
 		   });
 	   }

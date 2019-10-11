@@ -20,7 +20,7 @@ public interface MemberMapper {
 	public List<MemberVO> MemberGetList();
 	// 멤버 모달창 값 전달
 	public MemberVO MemberRead(String MEMBER_ID);
-	// 멤버 정보 수정
+	// 관리자가 멤버 정보 수정
 	public void MemberUpdate(MemberVO vo);
 	// 멤버 정보 삭제
 	public void MemberDelete(String MEMBER_ID);
@@ -28,6 +28,8 @@ public interface MemberMapper {
 	public MemberVO MemberCheck(MemberVO vo);
 	// 멤버 비밀번호 수정
 	public void MemberPasswordModify(MemberVO vo);
+	// 멤버 정보 수정
+	public void MemberUpdate2(MemberVO vo);
 	// 직원 회원가입
 	public void employeeInsert(EmployeeVO vo);
 	// 직원 로그인

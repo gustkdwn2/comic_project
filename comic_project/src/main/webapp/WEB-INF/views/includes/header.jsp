@@ -37,6 +37,42 @@
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
 
+<script type="text/javascript">
+	$('button[name=modifyBtn]').click(
+			function() {
+				var MEMBER_ID = $(this).attr('value');
+
+				$.ajax({
+					type : 'get',
+					url : "/member/MemberModify?MEMBER_ID=" + MEMBER_ID,
+					success : function(data) {
+						$('#MEMBER_ID').attr('value',
+								data.getModify['member_ID']);
+						$('#MEMBER_NAME').attr('value',
+								data.getModify['member_NAME']);
+						$('#MEMBER_EMAIL').attr('value',
+								data.getModify['member_EMAIL']);
+						$('#MEMBER_PHONE_NUMBER').attr('value',
+								data.getModify['member_PHONE_NUMBER']);
+						$('#MemberModifyModal').show();
+					}
+				});
+			});
+
+	function memmodify() {
+		console.log("여기 들어옴?")
+		var membermodify = $("form[name=membermodify]").serialize();
+		$.ajax({
+			type : 'post',
+			url : '/member/MemberModify2',
+			data : membermodify,
+			success : function(result) {
+				alert(result);
+			}
+		});
+	}
+</script>
+
 </body>
 
 </html>
@@ -172,8 +208,8 @@
 						</a>
 							<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 								aria-labelledby="profileDropdown">
-								<a class="dropdown-item" href="${path}/member/MemberInfo"> <i
-									class="mdi mdi-settings text-primary"></i> 내 프로필
+								<a class="dropdown-item" data-toggle="modal" href="#MemberModifyModal2"> <i
+									class="mdi mdi-settings text-primary"></i> 회원정보
 								</a> <a class="dropdown-item" href="${path}/member/MemberLogout">
 									<i class="mdi mdi-logout text-primary"></i> 로그아웃
 								</a>
@@ -187,9 +223,7 @@
 						</a>
 							<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 								aria-labelledby="profileDropdown">
-								<a class="dropdown-item" href="${path}/member/MemberInfo"> <i
-									class="mdi mdi-settings text-primary"></i> 내 프로필
-								</a> <a class="dropdown-item" href="${path}/member/EmployeeLogout">
+								<a class="dropdown-item" href="${path}/member/EmployeeLogout">
 									<i class="mdi mdi-logout text-primary"></i> 로그아웃
 								</a>
 							</div></li>
@@ -203,5 +237,58 @@
 				</button>
 			</div>
 		</nav>
+		<div class="modal" id="MemberModifyModal2">
+			<div class="modal-dialog">
+				<div class="modal-content" align="center">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h3 class="modal-title">회원 정보</h3>
+					</div>
+
+					<!-- Modal body -->
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">
+								<font style="vertical-align: inherit;">회원 정보</font>
+							</h4>
+							<form class="forms-sample" name="membermodify" method="post" autocomplete="off">
+								<div class="form-group">
+									<label> <font style="vertical-align: inherit;">아이디</font>
+									</label> <input name="MEMBER_ID" id="MEMBER_ID" readonly="readonly"
+										class="form-control" value="${Memberlogin.MEMBER_ID}"/>
+								</div>
+								<div class="form-group">
+									<label> <font style="vertical-align: inherit;">이름</font>
+									</label> <input name="MEMBER_NAME" id="MEMBER_NAME" readonly="readonly"
+										class="form-control" value="${Memberlogin.MEMBER_NAME}">
+								</div>
+								<div class="form-group">
+									<label> <font style="vertical-align: inherit;">비밀번호</font>
+									</label> <input name="MEMBER_PWD" id="MEMBER_PWD" type="password"
+										class="form-control">
+								</div>
+								<div class="form-group">
+									<label> <font style="vertical-align: inherit;">이메일</font>
+									</label> <input name="MEMBER_EMAIL" id="MEMBER_EMAIL" type="email"
+										class="form-control" value="${Memberlogin.MEMBER_EMAIL}">
+								</div>
+								<div class="form-group">
+									<label> <font style="vertical-align: inherit;">핸드폰
+											번호</font>
+									</label> <input name="MEMBER_PHONE_NUMBER" id="MEMBER_PHONE_NUMBER"
+										type="tel" class="form-control" value="${Memberlogin.MEMBER_PHONE_NUMBER}">
+								</div>
+								<div class="form-group" align="center">
+									<button type="button" id="membermodifyBtn" name="membermodifyBtn" class="btn btn-info" onclick="memmodify();">수정</button>
+									<button type="button" id="modifyclose" class="btn btn-success" data-dismiss="modal">닫기</button>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">

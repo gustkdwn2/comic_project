@@ -22,12 +22,14 @@ public interface MemberService {
 	public List<MemberVO> MemberGetList();
 	// 멤버 모달창 값 전달
 	public MemberVO MemberModifyGet(String MEMBER_ID);
-	// 멤버 정보 수정
+	// 관리자가 멤버 정보 수정
 	public void MemberModify(MemberVO vo);
 	// 멤버 정보 삭제
 	public void MemberRemove(String mEMBER_ID);
 	// 멤버 비밀번호 수정
 	public void MemberPasswordModify(HttpServletResponse response, MemberVO vo) throws Exception;
+	// 멤버 정보 수정
+	public void MemberModify2(HttpServletResponse response, MemberVO vo) throws Exception;
 	// 직원 회원가입
 	public void employeeRegister(EmployeeVO vo);
 	// 직원 로그인

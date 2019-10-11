@@ -120,16 +120,22 @@ public class LoginController {
 		return map;
 	}
 	
-	//멤버 정보 수정
+	//관리자 멤버 정보 수정
 	@PostMapping("/MemberModify")
-	public String lossModify(MemberVO vo) {
+	public String MemberModify(MemberVO vo) {
 		service.MemberModify(vo);
 		return "redirect:/member/MemberList";
 	}
 	
+	@PostMapping("/MemberModify2")
+	public void MemberModify2(MemberVO vo, HttpServletResponse response) throws Exception {
+		System.out.println("MemberModify2"+vo);
+		service.MemberModify2(response,vo);
+	}
+	
 	//멤버 정보 삭제
 	@PostMapping("/MemberRemove")
-	public String productRemove(@RequestParam("MEMBER_ID") String MEMBER_ID) {
+	public String MemberRemove(@RequestParam("MEMBER_ID") String MEMBER_ID) {
 		service.MemberRemove(MEMBER_ID);
 		return "redirect:/member/MemberList";
 	}
@@ -139,6 +145,8 @@ public class LoginController {
 	public void MemberPasswordModify(MemberVO vo, HttpServletResponse response) throws Exception {
 		service.MemberPasswordModify(response, vo);
 	}
+	
+	//
 	
 	//직원 추가 페이지 이동
 	@GetMapping("/EmployeeRegister")
