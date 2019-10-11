@@ -34,6 +34,7 @@
 	
 	<update id="managerleavework">
 	update comic_workinghour set workinghour_endtime=sysdate where workingHour_emp_num=#{empnum}
+	and TO_CHAR(workinghour_workday,'yymmdd')= #{leaveworkday}
 	</update>
 	
 	

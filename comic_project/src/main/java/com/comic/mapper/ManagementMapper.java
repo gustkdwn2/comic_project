@@ -17,5 +17,5 @@ public interface ManagementMapper {
 	
 	public void managerattendance(@Param("empnum") String empnum);
 	
-	public void managerleavework(@Param("empnum") String empnum);
+	public void managerleavework(@Param("empnum") String empnum,@Param("leaveworkday")String leaveworkday);
 }

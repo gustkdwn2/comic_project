@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.comic.model.ProductVO;
 import com.comic.model.RoomuseVO;
+import com.comic.model.WorkrecordVO;
 import com.comic.service.impl.ManagementServiceImpl;
 import com.comic.service.impl.ManagerPosServiceImpl;
+import com.comic.service.impl.MngCalendarServiceImpl;
 
 import lombok.AllArgsConstructor;
 import net.sf.json.JSONArray;
@@ -38,6 +40,7 @@ public class ManagerposController {
 
 	private ManagerPosServiceImpl managerposService;// 매니저포스화면(포스화면관리)
 	private ManagementServiceImpl managementService;// 매니저(직원관리)
+	private MngCalendarServiceImpl mngCalendarService;// 캘린더(직원관리)
 
 	/* =new ManagerPosServiceImpl(); */
 	/**
@@ -124,7 +127,7 @@ public class ManagerposController {
 			System.out.println("usetimearr[0] = " + usetimearr[0]);
 			System.out.println("roomuse_num = " + list.get(i).getRoomuse_num());
 			if (usetimearr[0] < 0) {
-				usetimearr[0] += 24;
+				usetimearr[0] += 24;//시작시간보다 끝난시간이 적으면 24시간 추가해서  계산
 			}
 
 			time += usetimearr[0] * 3600;// 시
@@ -182,7 +185,7 @@ public class ManagerposController {
 			model.addAttribute("succecssmsg", "출근완료"); // 재고테이블
 			return "/younghak/login";
 		}else if(recordcount==1){
-			managementService.managerleavework(empnum); //퇴근
+			managementService.managerleavework(empnum,format_time); //퇴근
 			System.out.println("퇴근 완료");
 			model.addAttribute("succecssmsg", "퇴근완료"); // 재고테이블
 			return "/younghak/login";
@@ -198,11 +201,42 @@ public class ManagerposController {
 	}
 	
 	@RequestMapping(value = "workhourcalendar", method = { RequestMethod.GET, RequestMethod.POST })
-	public String workhourcalendar(@RequestParam("empname") String empname) {
+	public String workhourcalendar(@RequestParam("empname") String empname,
+			@RequestParam("empnum") String empnum,Model model) {
 		
-		System.out.println("empname = "+empname);
+		System.out.println("empname = "+empname+"\nempnum"+empnum);
+		
+		model.addAttribute("empname",empname);
+		model.addAttribute("empnum",empnum);//empnum으로 계속하려다 그냥 empname
 		
 		return "/younghak/WorkhourCalendar";
 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getempworkrecord", method = { RequestMethod.GET, RequestMethod.POST })
+	public void getempworkrecord(@RequestBody HashMap<String, Object> map,Model model// 배열 받기 traditional: true
+	) {
+		JSONArray jsonArray = new JSONArray(); //object 타입
+		// roomuse_id, roomuse_num,roomuse_status
+		String startday = jsonArray.fromObject(map.get("list")).get(0).toString();
+		String endday= jsonArray.fromObject(map.get("list")).get(1).toString();
+		String empnum= jsonArray.fromObject(map.get("list")).get(2).toString();
+		
+		System.out.println("startday = "+startday+"\nendday = "+endday+"\nempnum = "+empnum);
+		List<WorkrecordVO> list = mngCalendarService.workrecordmonth(startday,endday,empnum);
+		model.addAttribute("list",list);
+		
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).getStarttime();
+			list.get(i).getEndtime();
+			list.get(i).getWorkday();
+			System.out.println(i+"번째 데이터");
+			System.out.println(list.get(i).getStarttime());
+			System.out.println(list.get(i).getEndtime());
+			System.out.println(list.get(i).getWorkday()+"\n");
+		}
+		
+		
 	}
 }

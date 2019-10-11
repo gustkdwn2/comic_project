@@ -57,6 +57,19 @@
             //new를 써주면 정확한 월을 가져옴, getMonth()+1을 해주면 다음달로 넘어가는데
             //day를 1부터 시작하는게 아니라 0부터 시작하기 때문에 
             //대로 된 다음달 시작일(1일)은 못가져오고 1 전인 0, 즉 전달 마지막일 을 가져오게 된다
+            
+          /*   alert("첫째날 = "+doMonth.getFullYear()+num_modify(doMonth.getMonth() + 1)+num_modify(doMonth.getDate())+
+                    "\n마지막날 = "+lastDate.getFullYear()+num_modify(lastDate.getMonth() + 1)+num_modify(lastDate.getDate())
+                    +"\n"+"${empname}"); */
+            var lastDate2 = new Date(today.getFullYear(),today.getMonth()+1,1); //31일에 일했을경우를 생각해서 그다음달의 첫번째 날을 가져옴
+                    
+            var startday =doMonth.getFullYear().toString()+num_modify(doMonth.getMonth() + 1)+num_modify(doMonth.getDate());
+			var endday=lastDate2.getFullYear().toString()+num_modify(lastDate2.getMonth() + 1)+num_modify(lastDate2.getDate());
+
+            alert(startday+"\n"+endday+"\n${empname}");
+            ajaxtogetdb_empworkrecord(startday, endday,
+    				"${empnum}");
+            
             var tbCalendar = document.getElementById("calendar");
             //날짜를 찍을 테이블 변수 만듬, 일 까지 다 찍힘
             var tbCalendarYM = document.getElementById("tbCalendarYM");
@@ -92,7 +105,7 @@
             	 
              //1일부터 마지막 일까지 돌림
                   cell = row.insertCell();//열 한칸한칸 계속 만들어주는 역할
-                  cell.innerHTML = i+"<br>"+year+"/"+month+"/"+i;//셀을 1부터 마지막 day까지 HTML 문법에 넣어줌
+                  cell.innerHTML = i+"<br>"+year+num_modify(month)+num_modify(i);//셀을 1부터 마지막 day까지 HTML 문법에 넣어줌
                   cnt = cnt + 1;//열의 갯수를 계속 다음으로 위치하게 해주는 역할
               if (cnt % 7 == 1) {/*일요일 계산*/
                   //1주일이 7일 이므로 일요일 구하기
@@ -102,7 +115,7 @@
             }    
               if (cnt%7 == 0){/* 1주일이 7일 이므로 토요일 구하기*/
                   //월화수목금토일을 7로 나눴을때 나머지가 0이면 cnt가 7번째에 위치함을 의미한다
-                  cell.innerHTML = "<font color=skyblue>" + i
+                  cell.innerHTML = "<font color=green>" + i
                   //7번째의 cell에만 색칠
                    row = calendar.insertRow();
                    //토요일 다음에 올 셀을 추가
@@ -116,6 +129,49 @@
                }
              }
         }
+
+        function num_modify(num) {
+
+			if (num.toString().length == 1) {
+				num = "0" + num;
+			}
+			return num;
+		}
+
+		function ajaxtogetdb_empworkrecord(startday, endday,
+				empnum) {			
+
+			var list = [ startday, endday,
+				empnum];
+			//사용자,시작시간,사용자 상태,주문 상태,방번호
+			//alert("보내기전의 list" + list);
+			var sendData = {
+				'list' : list
+			};
+			
+			$.ajax({
+				url : '/managerpos/getempworkrecord',
+				dataType : 'json',
+				data : JSON.stringify(sendData),
+				contentType : "application/json; charset=utf-8;",
+				type : 'POST',
+				success : function(data) {
+					/* 
+					var text="";
+					console.log(data[0]);
+					$.each(data, function(index,list){
+						var number=1;
+						number = list.roomuse_num;
+						
+						method_startnstop2(list.roomuse_id,number,list.starttime,list.roomuse_status);
+					});
+					 */
+				},
+				error : function(data) {
+					console.log("실패");
+				}
+			});
+		}
     </script>
  
 
@@ -131,7 +187,7 @@
                 <div class="row">
                   <div class="col-md-12">
                   <p></p>
-    <h3 align="center">★Jerry의 출근표★</h3>
+    <h3 align="center">★${empname}의 출근표★</h3>
 <table id="calendar" border="3" align="center" style="border-color:#3333FF ">
     <tr><!-- label은 마우스로 클릭을 편하게 해줌 -->
         <td><label onclick="prevCalendar()">저번 달</label></td>
@@ -148,13 +204,12 @@
         <td align="center">수</td>
         <td align="center">목</td>
         <td align="center">금</td>
-        <td align="center"><font color ="skyblue">토</td>
+        <td align="center"><font color ="green">토</td>
     </tr> 
 </table>
 <script language="javascript" type="text/javascript">
     buildCalendar();//
 </script>
-
                   	
                     </div>
                   <!-- <div class="col-md-0"> -->

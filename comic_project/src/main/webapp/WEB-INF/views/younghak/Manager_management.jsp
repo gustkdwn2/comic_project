@@ -93,7 +93,7 @@
   <a href="#">
 <img src="/resources/images/faces/jang.jpg" alt="${managerList.get(i-1).getEMPLOYEE_NAME()}"
  style="width:50%; height:50%; border-radius: 50%;" 
- onclick="workhourcal('${managerList.get(i-1).getEMPLOYEE_NAME()}')">
+ onclick="workhourcal('${managerList.get(i-1).getEMPLOYEE_NAME()}','${managerList.get(i-1).getEMPLOYEE_NUM()}')">
 </a>
 
 <h1>${managerList.get(i-1).getEMPLOYEE_NAME()} </h1> <!-- 이름 -->
@@ -284,10 +284,10 @@ function employeedelete(employee_num){
 	
 }
 
-function workhourcal(empname){	
+function workhourcal(empname,empnum){	
 	alert(empname);
 	var url = "/managerpos/workhourcalendar";
-	posttourl(url,{'empname':empname});
+	posttourl(url,{'empname':empname,'empnum':empnum});
 	//alert(empname);	
 }
 

@@ -417,7 +417,7 @@ body {
 					console.log(data[0]);
 					$.each(data, function(index,list){
 						var number=1;
-						number = list.roomuse_num
+						number = list.roomuse_num;
 						
 						method_startnstop2(list.roomuse_id,number,list.starttime,list.roomuse_status);
 					});

@@ -29,7 +29,8 @@
 						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
 							<div class="brand-logo">
 								<img src="/resources/images/comic_icon.png" width="280px"
-									height="100px" alt="logo">
+									height="100px" alt="logo" 
+									onclick="javascript:location.href='/managerpos/managerpos'">
 							</div>
 							<h4>코믹서기 직원 출근 창</h4>
 							<h6 class="font-weight-light">빨리 출근 찍으세요.</h6>

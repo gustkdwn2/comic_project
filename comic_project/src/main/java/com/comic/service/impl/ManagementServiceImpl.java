@@ -48,9 +48,9 @@ public class ManagementServiceImpl implements ManagementService {
 	}
 	
 	@Override
-	public void managerleavework(String empnum) {
+	public void managerleavework(String empnum,String leaveworkday) {
 		// TODO Auto-generated method stub
-		managementMapper.managerleavework(empnum);
+		managementMapper.managerleavework(empnum,leaveworkday);
 	}
 	
 	
