@@ -109,7 +109,7 @@
 
 				var str="";
 
-				$(arr).each(function(i, attach){ 
+				$(arr).each(function(i, attach){
 			    	//image type
 			    	if(attach.fileType){
 			            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
@@ -254,7 +254,7 @@
 		    	var jobj = $(obj);
 		          
 		        console.dir(jobj);
-		          
+		        console.log(i+"=========================");
 		        str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
 		        str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
 		        str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";

@@ -25,11 +25,7 @@
 								</label>
 								<div class="col-sm-9">
 									<select id="productOrder_product_name" class="form-control" name="productOrder_product_name">
-		                            	<c:forEach items="${productList}" var="productList">
-		                            		<option value="${productList.product_name}">
-		                            			<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${productList.product_name}</font></font>
-		                            		</option>
-		                            	</c:forEach>
+		                            		
 	                            	</select>
 								</div>
 							</div>

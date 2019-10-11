@@ -53,6 +53,7 @@ public class BookController {
 	
 	@PostMapping("/bookModify")
 	public String bookModify(BookVO vo) {
+		List<BookAttachVO> attachList = service.getAttachList(vo.getBook_name());
 		service.bookModify(vo);
 		return "redirect:/book/bookList";
 	}

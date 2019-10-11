@@ -47,6 +47,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public boolean bookModify(BookVO vo) {
+		System.out.println(vo);
 		return mapper.bookUpdate(vo) == 1;
 	}
 	
