@@ -16,4 +16,12 @@
 		SELECT * FROM COMIC_BOOKATTACH WHERE BOOK_NAME=#{book_name}
 	</select>
 	
+	<delete id="deleteAll">
+		DELETE COMIC_BOOKATTACH WHERE BOOK_NAME=#{book_name}
+	</delete>
+	
+	<select id="getOldFiles" resultType="com.comic.model.BookAttachVO">
+		SELECT * FROM COMIC_BOOKATTACH WHERE UPLOADPATH = TO_CAHR(SYSDATE -1, 'yyyy\mm\dd')
+	</select>
+	
 </mapper>
