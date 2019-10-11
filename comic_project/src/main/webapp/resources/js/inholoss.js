@@ -45,6 +45,8 @@ $(document).ready(function(){
 	        targets: 'no-sort',
 	        orderable: false
 	    }],
+	    
+	    order: [[0, 'desc']]
 	});
 	
 });

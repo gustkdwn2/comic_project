@@ -250,7 +250,7 @@ window.getRoomList = function() {
 	    		 data[label[2]],
 	    		 data[label[3]],
 	    		 data[label[4]],
-	    		 data[label[5]],
+	    		 data[label[5]]
 	    	 ]
 	    }
 	});
