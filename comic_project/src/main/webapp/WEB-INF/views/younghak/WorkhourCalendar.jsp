@@ -66,7 +66,7 @@
             var startday =doMonth.getFullYear().toString()+num_modify(doMonth.getMonth() + 1)+num_modify(doMonth.getDate());
 			var endday=lastDate2.getFullYear().toString()+num_modify(lastDate2.getMonth() + 1)+num_modify(lastDate2.getDate());
 
-            alert(startday+"\n"+endday+"\n${empname}");
+           
             ajaxtogetdb_empworkrecord(startday, endday,
     				"${empnum}");
             

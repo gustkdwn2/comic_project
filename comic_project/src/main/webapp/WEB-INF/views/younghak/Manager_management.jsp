@@ -277,7 +277,7 @@ $("#AdminModal").on("click", function() {
 
 
 function employeedelete(employee_num){
-	//alert(employee_num);
+	
 	$("#mngdeleteModal").modal("show");
 	document.getElementById("deletemodalmngnum").innerHTML=employee_num;
 	document.getElementById("EMPLOYEE_mngnum").value=employee_num;
@@ -285,7 +285,7 @@ function employeedelete(employee_num){
 }
 
 function workhourcal(empname,empnum){	
-	alert(empname);
+	
 	var url = "/managerpos/workhourcalendar";
 	posttourl(url,{'empname':empname,'empnum':empnum});
 	//alert(empname);	
