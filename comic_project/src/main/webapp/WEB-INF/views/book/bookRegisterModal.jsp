@@ -58,9 +58,6 @@
 			<!-- Modal body -->
 			<div class="card">
 				<div class="card-body" align="center">
-					<h4 class="card-title">
-						<font style="vertical-align: inherit;">책 재고 등록</font>
-					</h4>
 					<div class="form-group row">
 						<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
 							<font style="vertical-align: inherit;">책 이미지</font>
