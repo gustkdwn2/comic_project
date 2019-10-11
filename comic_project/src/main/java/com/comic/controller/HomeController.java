@@ -13,9 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class HomeController {
 	
@@ -33,10 +31,16 @@ public class HomeController {
 		
 		String formattedDate = dateFormat.format(date);
 		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "index";
 	}
+	
+	@RequestMapping(value = "/erp", method = RequestMethod.GET)
+	public String erpHome(){
+		return "erpIndex";
+	}
+	
+	
 	@RequestMapping(value = {"managerpos","Managerpos"}, method = RequestMethod.GET)	
 	public String younghakpos(Locale locale, Model model) {
 		//logger.info("Welcome home! The client locale is {}.", locale);
@@ -78,7 +82,4 @@ public class HomeController {
 		
 		return "younghak/login";
 	}
-	
 }
-
-

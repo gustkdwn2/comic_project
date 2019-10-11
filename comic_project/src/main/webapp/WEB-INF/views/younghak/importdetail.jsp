@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
-    
-    
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>매출</title>
 </head>
 <body>
   <div class="main-panel">
@@ -33,56 +33,38 @@
  
  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 
-          <div class="col-md-1 pt-3">
-            <div class="form-group ">
-               <select id="searchCtgr" name="searchCtgr" class="form-control">
-                  <option selected>전체</option>
-                  <option>ID별 검색</option>
-                  <option>날짜별 검색</option>
-                  <option>방 번호별 검색</option>
-                  <option>물품별 검색</option>
-               </select>
-            </div>
-         </div> 
-				<ul class="navbar-nav mr-lg-4 w-100">
-					<li class="nav-item nav-search d-none d-lg-block w-100">
-					
- <div class="input-group">
-				<div class="input-group-prepend">
-				
-					<span class="input-group-text" id="search"> <i
-						class="mdi mdi-magnify"></i>
-					</span>
-					
-				</div>
-				<input type="text" class="form-control" placeholder="Search now"
-					aria-label="search" aria-describedby="search">
-				<input type="button" class="input-group-text" value="검색" onclick="javascript:alert(0)">
-			</div>
-			</li>
-				</ul>
-				</div>
- </div>
-                    </div>
-                  </div>
-                  <!-- <div class="col-md-0"> -->
-                    <div class="card-body">
-                      <%-- <h4 class="card-title">Inverse buttons</h4>
+															<span class="input-group-text" id="search"> <i
+																class="mdi mdi-magnify"></i>
+															</span>
+
+														</div>
+														<input type="text" class="form-control"
+															placeholder="Search" aria-label="search"
+															aria-describedby="search"> 
+															<input type="button" class="input-group-text" value="검색" onclick="javascript:alert(0)">
+														
+													</div>
+												</li>
+												
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="col-md-0"> -->
+							<div class="card-body">
+								<%-- <h4 class="card-title">Inverse buttons</h4>
                       <p class="card-description">Add class <code>.btn-inverse-{color} for inverse buttons</code></p> --%>
-                      <div class="template-demo">
-                       
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-                  </div> 
-                </div>
-              </div>
-            </div>
-           
-                <div class="card-body">
+								<div class="template-demo"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<%--  <div class="card-body">
                   <h4 class="card-title">Social button with text</h4>
                   <p class="card-description">Add class <code>.btn-social-icon-text</code></p>
                   <div class="template-demo">
@@ -93,14 +75,9 @@
                     <button type="button" class="btn btn-social-icon-text btn-linkedin"><i class="mdi mdi-linkedin"></i>Linkedin</button>
                     <button type="button" class="btn btn-social-icon-text btn-google"><i class="mdi mdi-google-plus"></i>Google</button>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-       
-      </div>
-      <!-- main-panel ends -->
+                </div> --%>
+
+	<!-- main-panel ends -->
 
 
 </body>
