@@ -449,7 +449,6 @@ body {
 				success : function(data) {
 					console.log("성공");
 					alert("success!");
-					
 				},
 				error : function(data) {
 					console.log("실패");

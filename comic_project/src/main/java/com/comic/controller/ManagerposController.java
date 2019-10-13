@@ -215,28 +215,47 @@ public class ManagerposController {
 	
 	@ResponseBody
 	@RequestMapping(value = "getempworkrecord", method = { RequestMethod.GET, RequestMethod.POST })
-	public void getempworkrecord(@RequestBody HashMap<String, Object> map,Model model// 배열 받기 traditional: true
+	public List<Object> getempworkrecord(@RequestBody HashMap<String, Object> map,Model model// 배열 받기 traditional: true
 	) {
+		
+		System.out.println("getempworkrecord오긴옴");
 		JSONArray jsonArray = new JSONArray(); //object 타입
 		// roomuse_id, roomuse_num,roomuse_status
 		String startday = jsonArray.fromObject(map.get("list")).get(0).toString();
+		//jsp ajax에서 통신에서 받아온 값
 		String endday= jsonArray.fromObject(map.get("list")).get(1).toString();
 		String empnum= jsonArray.fromObject(map.get("list")).get(2).toString();
 		
 		System.out.println("startday = "+startday+"\nendday = "+endday+"\nempnum = "+empnum);
-		List<WorkrecordVO> list = mngCalendarService.workrecordmonth(startday,endday,empnum);
-		model.addAttribute("list",list);
+		List<WorkrecordVO> list = mngCalendarService.workrecordmonth(startday,endday,empnum); //해당달의 출근기록을 list로 가져옴
+		//model.addAttribute("list",list);
 		
+		JSONArray replydataArray = new JSONArray();// json으로 보내기 위한 작업
 		for (int i = 0; i < list.size(); i++) {
-			list.get(i).getStarttime();
-			list.get(i).getEndtime();
-			list.get(i).getWorkday();
-			System.out.println(i+"번째 데이터");
-			System.out.println(list.get(i).getStarttime());
-			System.out.println(list.get(i).getEndtime());
-			System.out.println(list.get(i).getWorkday()+"\n");
+			
+			JSONObject workinghour = new JSONObject(); // json으로 보내기위한작업
+			
+			workinghour.put("starttime", list.get(i).getStarttime());
+			workinghour.put("endtime", list.get(i).getEndtime());
+			workinghour.put("workingday", list.get(i).getWorkday());
+			
+			
+//			JSONObject workingdata = new JSONObject(); // json으로 보내기위한작업
+//			
+//			workingdata.put(list.get(i).getWorkday(), workinghour);
+						
+			replydataArray.add(workinghour);
+			
+			/*
+			 * System.out.println(i+"번째 데이터");
+			 * System.out.println(list.get(i).getStarttime());
+			 * System.out.println(list.get(i).getEndtime());
+			 * System.out.println(list.get(i).getWorkday()+"\n");
+			 */
 		}
+		System.out.println(replydataArray);
 		
 		
+	return replydataArray;
 	}
 }

@@ -66,7 +66,7 @@
             var startday =doMonth.getFullYear().toString()+num_modify(doMonth.getMonth() + 1)+num_modify(doMonth.getDate());
 			var endday=lastDate2.getFullYear().toString()+num_modify(lastDate2.getMonth() + 1)+num_modify(lastDate2.getDate());
 
-            alert(startday+"\n"+endday+"\n${empname}");
+            //alert(startday+"\n"+endday+"\n${empname}");
             ajaxtogetdb_empworkrecord(startday, endday,
     				"${empnum}");
             
@@ -137,7 +137,8 @@
 			}
 			return num;
 		}
-
+		
+		var workingempdata;
 		function ajaxtogetdb_empworkrecord(startday, endday,
 				empnum) {			
 
@@ -148,6 +149,9 @@
 			var sendData = {
 				'list' : list
 			};
+
+//			var workingempdata=new Array();
+
 			
 			$.ajax({
 				url : '/managerpos/getempworkrecord',
@@ -156,6 +160,10 @@
 				contentType : "application/json; charset=utf-8;",
 				type : 'POST',
 				success : function(data) {
+
+					workingempdata=data;
+					
+					//console.log(workingempdata);
 					/* 
 					var text="";
 					console.log(data[0]);
@@ -168,9 +176,13 @@
 					 */
 				},
 				error : function(data) {
-					console.log("실패");
+					console.log("ajaxtogetdb_empworkrecord\n실패");
 				}
 			});
+
+			console.log(workingempdata);
+			alert(workingempdata);
+			return workingempdata;
 		}
     </script>
  
