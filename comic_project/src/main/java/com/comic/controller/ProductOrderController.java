@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.comic.model.ProductOrderVO;
+import com.comic.model.ProductVO;
 import com.comic.service.ProductOrderService;
 import com.comic.service.ProductService;
 
@@ -28,8 +29,7 @@ public class ProductOrderController {
 	
 	@GetMapping("/productOrderList")
 	public void productOrderList(Model model) {
-//		model.addAttribute("productOrderList", service.productOrderList());
-//		model.addAttribute("productList", productService.productGetList());
+		model.addAttribute("productList", productService.productGetList());
 	}
 	
 	@GetMapping("/productOrderData")
@@ -61,7 +61,7 @@ public class ProductOrderController {
 	}
 	
 	@PostMapping("/productOrderCheck")
-	public String productOrderCheck(@RequestParam("checkBtn") int productOrder_num) {
+	public String productOrderCheck(@RequestParam("productOrder_num") int productOrder_num) {
 		service.productOrderCheck(productOrder_num);
 		return "redirect:/productOrder/productOrderList";
 	}

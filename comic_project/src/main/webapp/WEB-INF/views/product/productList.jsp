@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 <!DOCTYPE html>
@@ -24,18 +22,18 @@
 								class="btn btn-secondary" data-backdrop="static" data-keyboard="false">상품 등록</button>
 								<button id="orderBtn" style="margin-bottom: 10px;" type="button" class="btn btn-warning">상품 발주</button>
 									
-									<table id="productTable" class="table  table-striped">
-										<thead>
-											<tr>
-												<th>상품 번호</th>
-												<th>상품 이름</th>
-												<th>상품 판매가</th>
-												<th>상품 수량</th>
-												<th>상품 종류</th>
-												<th class="no-sort">수정/삭제</th>
-											</tr>
-										</thead>
-									</table>
+								<table id="productTable" class="table  table-striped">
+									<thead>
+										<tr>
+											<th>상품 번호</th>
+											<th>상품 이름</th>
+											<th>상품 판매가</th>
+											<th>상품 수량</th>
+											<th>상품 종류</th>
+											<th class="no-sort">수정/삭제</th>
+										</tr>
+									</thead>
+								</table>
 									
 							</div>
 						</div>

@@ -28,11 +28,12 @@ $(document).ready(function(){
                 mData: "productOrder_num",
                 mRender: function (data, type, row) {
                     return "<button name ='getBtn' value=" + data +" type='button' class='btn btn-info' onclick='javascript:productOrderModify(value)'>수정</button> " +
-                    	   "<button name ='removeBtn' value=" + data +" type='submit' class='btn btn-danger' onclick='javascript:productOrderRemove(value)'>삭제</button>";
+                    	    "<button name ='removeBtn' value=" + data +" type='submit' class='btn btn-danger' onclick='javascript:productOrderRemove(value)'>삭제</button>" +
+                    	    "<button name ='checkBtn' value=" + data +" type='submit' class='btn btn-success' onclick='javascript:productOrderCheck(value)'>확인</button>";
                 }
             }
         ],
-	    
+        
 	    bStateSave: true,
 	    "iDisplayLength": 10,
 	    "language": {
@@ -70,6 +71,24 @@ function productOrderRemove(productOrder_num){
 	form.submit();
 }
 
+function productOrderCheck(productOrder_num){
+	
+	var form = document.createElement("form"); // form을 만듬
+	form.setAttribute("charset", "UTF-8");
+	form.setAttribute("method", "Post");
+	form.setAttribute("action", "productOrderCheck");
+	document.body.appendChild(form);
+
+	var hiddenInput = document.createElement("input");
+	hiddenInput.setAttribute("type", "hidden");
+	hiddenInput.setAttribute("name", "productOrder_num");
+	hiddenInput.setAttribute("value", productOrder_num);
+
+	form.appendChild(hiddenInput);
+
+	form.submit();
+}
+
 function productOrderModify(productOrder_num) {
     	
     	$.ajax({
@@ -77,12 +96,14 @@ function productOrderModify(productOrder_num) {
     	    url: "/productOrder/productOrderGet?productOrder_num="+productOrder_num,
     	    dataType : "json",
     	    success: function(data) {
-	    	    
+    	    	var date = new Date(data.product_date); var month = date.getMonth() + 1; 
+    	    	date =  date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate();
+    	    	
     	    	$('#productOrder_num').attr('value',data.productOrder_num);
-    	    	$('#productOrder_product_name').attr('value',data.productOrder_product_name);
+    	    	$('#productName').attr('value',data.productOrder_product_name);
     	    	$('#productOrder_cost').attr('value',data.productOrder_cost);
     	    	$('#productOrder_qty').attr('value',data.productOrder_qty);
-    	    	$('#product_date').attr('value',data.product_date);
+    	    	$('#product_date').attr('value',date);
     	    	$('#productOrderGet').show();
     	    	
     	    }

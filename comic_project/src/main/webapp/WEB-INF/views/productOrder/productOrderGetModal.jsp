@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- The ProductGet Modal -->
 <div class="modal" id="productOrderGet">
 	<div class="modal-dialog">
@@ -27,7 +25,7 @@
 								<label for="exampleInputUsername1">
 									<font style="vertical-align: inherit;">상품 이름</font>
 								</label>
-								<input name="productOrder_product_name" id="productOrder_product_name" readonly="readonly" class="form-control">
+								<input name="productOrder_product_name" id="productName" readonly="readonly" class="form-control">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">
@@ -45,7 +43,7 @@
 								<label for="exampleInputConfirmPassword1">
 									<font style="vertical-align: inherit;">발주 날짜</font>
 								</label>
-								<input name="product_date" id="product_date" readonly="readonly" class="form-control">
+								<input id="product_date" readonly="readonly" class="form-control">
 							</div>
 							<button type="submit" class="btn btn-info">수정</button>
 							<button id="productOrderGetBtn" type="button" class="btn btn-success">닫기</button>

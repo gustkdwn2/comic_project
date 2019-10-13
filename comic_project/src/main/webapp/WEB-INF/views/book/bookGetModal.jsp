@@ -1,28 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../includes/header.jsp"%>
-<%@ include file="../includes/sidebar.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>책 재고 수정</title>
-</head>
-<body>
-	<div class="col-md-6 grid-margin stretch-card" style="margin-left: 300px; margin-top: 30px;">
-		<div class="card">
-			<div class="card-body">
-				<h4 class="card-title">
-					<font style="vertical-align: inherit;">책 정보</font>
-				</h4>
-				<form class="forms-sample" action="/book/bookModify" method="post">
+<!-- The BookRegister Modal -->
+<div class="modal" id="bookRegister">
+	<div class="modal-dialog">
+		<div class="modal-content" align="center">
+
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h3 class="modal-title">책 정보</h3>
+			</div>
+
+			<!-- Modal body -->
+			<div class="card">
+				<div class="card-body" align="center">
 					<div class="form-group row">
 						<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
 							<font style="vertical-align: inherit;">책 이미지</font>
 						</label>
 						<div class="form-group row">
 					        <div class="form-group uploadDiv">
-					            <input type="file" name='uploadFile'>
+					            <input type="file" name='uploadFile' id="uploadFile">
 					        </div>
 				        
 					        <div class='uploadResult'> 
@@ -32,74 +29,94 @@
 					        </div>
 				    	</div>
 					</div>
-					<div class="form-group">
-						<label for="exampleInputUsername1">
-							<font style="vertical-align: inherit;">책이름</font>
-						</label><input name="book_name" readonly="readonly" class="form-control" value="<c:out value="${book.book_name}" />">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputUsername1">
-							<font style="vertical-align: inherit;">책위치</font>
-						</label>
-						<input id="book_loc" name="book_loc" type="text" class="form-control" value="<c:out value="${book.book_loc}" />" required>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">
-							<font style="vertical-align: inherit;">책출판사</font>
-						</label>
-						<input id="book_publisher" name="book_publisher" type="text" class="form-control" value="<c:out value="${book.book_publisher}" />" required>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1">
-							<font style="vertical-align: inherit;">책 저자</font>
-						</label>
-						<input id="book_writer" name="book_writer" type="text" class="form-control" value="<c:out value="${book.book_writer}" />" required>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputConfirmPassword1">
-							<font style="vertical-align: inherit;">책 소개</font>
-						</label>
-						<textarea name="book_content" class="form-control" rows="20"><c:out value="${book.book_content}" /></textarea>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1">
-							<font style="vertical-align: inherit;">책 분류</font>
-						</label>
-						<input id="book_category" name="book_category" type="text" class="form-control" value="<c:out value="${book.book_category}" />" required>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1">
-							<font style="vertical-align: inherit;">마지막권</font>
-						</label>
-						<input name="book_lastbook" type="number" class="form-control" value="<c:out value="${book.book_lastbook}" />" required>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1">
-							<font style="vertical-align: inherit;">연재상태</font>
-						</label>
-						<select id="book_status" class="form-control" name="book_status" >
-							<option value="${book.book_status}" hidden>
-								${book.book_status}
-							</option>
-		                	<option value="연재중">연재중</option>
-		                	<option value="완결">완결</option>
-	                	</select>
-					</div>
-					<div class="form-group" align="center">
-						<button name="modifyBtn" type="submit" class="btn btn-info">수정</button>
-						<button id="listBtn" type="button" class="btn btn-success">목록</button>
-					</div>
-				</form>
+					<form class="forms-sample" action="/book/bookRegister" role="form" method="post" autocomplete="off">
+						<div class="form-group row">
+							<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
+								<font style="vertical-align: inherit;">책 이름</font>
+							</label>
+							<div class="col-sm-9">
+								<input id="book_name" type="text" class="form-control" name="book_name" required readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputEmail2" class="col-sm-3 col-form-label">
+								<font style="vertical-align: inherit;">책위치</font>
+							</label>
+							<div class="col-sm-9">
+								<input id="book_loc" type="text" class="form-control" name="book_loc" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputMobile" class="col-sm-3 col-form-label">
+								<font style="vertical-align: inherit;">책출판사</font>
+							</label>
+							<div class="col-sm-9">
+								<input id="book_publisher" type="text" class="form-control" name="book_publisher" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputPassword2" class="col-sm-3 col-form-label">
+								<font style="vertical-align: inherit;">책 저자</font>
+							</label>
+							<div class="col-sm-9">
+								<input id="book_writer" type="text" class="form-control" name="book_writer" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputPassword2" class="col-sm-3 col-form-label">
+								<font style="vertical-align: inherit;">책 소개</font>
+							</label>
+							<div class="col-sm-9">
+								<textarea id="book_content" name="book_content" class="form-control" rows="20"></textarea>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputPassword2" class="col-sm-3 col-form-label">
+								<font style="vertical-align: inherit;">책 분류</font>
+							</label>
+							<div class="col-sm-9">
+								<input id="book_category" type="text" class="form-control" name="book_category" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputPassword2" class="col-sm-3 col-form-label">
+								<font style="vertical-align: inherit;">마지막권</font>
+							</label>
+							<div class="col-sm-9">
+								<input type="number" class="form-control" name="book_lastbook" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="exampleInputPassword2" class="col-sm-3 col-form-label">
+								<font style="vertical-align: inherit;">연재상태</font>
+							</label>
+							<div class="col-sm-9">
+								<select id="book_status" class="form-control" name="book_status">
+									</option>
+		                            <option value="연재중">연재중</option>
+		                            <option value="완결">완결</option>
+	                            </select>
+							</div>
+						</div>
+						<button name="registerBtn" type="submit" class="btn btn-primary mr-2">
+							<font style="vertical-align: inherit;">등록</font>
+						</button>
+						<button id="bookGetBtn" type="button" class="btn btn-success">닫기</button>
+					</form>
+				</div>
 			</div>
+
 		</div>
 	</div>
-</body>
+</div>
+<!-- End BookRegister Modal -->
+
 <script type="text/javascript">
 	$(document).ready(function() {
 
 		(function(){
 			  
-			var book_name = '<c:out value="${book.book_name}"/>';
+			var book_name = $("#book_name").val();
 		    
 			$.getJSON("/book/getAttachList", {book_name: book_name}, function(arr){
 		    
@@ -291,8 +308,8 @@
 		   /*  formObj.submit(); */
 		});
 		
-		$('#listBtn').click(function() {
-			self.location = "/book/bookList";
+		$("#bookGetBtn").click(function() {
+			$("#bookGet").hide();
 		});
 		
 	});

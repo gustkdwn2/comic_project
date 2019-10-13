@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 <!DOCTYPE html>
@@ -23,18 +21,18 @@
 								<button style="margin-bottom: 10px;" data-toggle="modal" data-target="#productOrderRegister" type="button"
 										class="btn btn-secondary" data-backdrop="static" data-keyboard="false">발주 등록</button>
 										
-									<table id="productOrderTable" class="table  table-striped">
-										<thead>
-											<tr>
-												<th>발주 번호</th>
-												<th>상품 이름</th>
-												<th>발주 구매가</th>
-												<th>발주 수량</th>
-												<th>발주 날짜</th>
-												<th class="no-sort">수정/삭제</th>
-											</tr>
-										</thead>
-									</table>
+								<table id="productOrderTable" class="table  table-striped">
+									<thead>
+										<tr>
+											<th>발주 번호</th>
+											<th>상품 이름</th>
+											<th>발주 구매가</th>
+											<th>발주 수량</th>
+											<th>발주 날짜</th>
+											<th class="no-sort">수정/삭제</th>
+										</tr>
+									</thead>
+								</table>
 									
 							</div>
 						</div>
