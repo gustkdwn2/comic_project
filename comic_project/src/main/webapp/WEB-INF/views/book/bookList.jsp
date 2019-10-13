@@ -19,9 +19,8 @@
 						<div class="card-body">
 							<p class="card-title">책 재고</p>
 							<div class="table-responsive" style="overflow: hidden;">
-								<button data-toggle="modal"
-									data-target="#bookRegister" type="button" class="btn btn-secondary" style="margin-bottom: 10px;">책
-									등록</button>
+								<button data-toggle="modal" data-target="#bookRegister" type="button" class="btn btn-secondary" style="margin-bottom: 10px;" data-backdrop="static" data-keyboard="false">
+								책 등록</button>
 								<form onsubmit="return remove();" action="/book/bookRemove" method="post">
 									<table id="lossTable" class="table  table-striped">
 										<thead>
@@ -53,7 +52,6 @@
 												<td><button name="removeBtn" value="${book.book_name}" type="submit" class="btn btn-danger">삭제</button></td>
 											</tr>
 										</c:forEach>
-	
 									</table>
 								</form>
 							</div>

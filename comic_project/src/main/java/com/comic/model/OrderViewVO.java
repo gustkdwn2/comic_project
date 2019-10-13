@@ -7,6 +7,5 @@ public class OrderViewVO {
 	
 	private int orderview_num;
 	private String orderview_category;
-	private int orderview_product_num;
 
 }

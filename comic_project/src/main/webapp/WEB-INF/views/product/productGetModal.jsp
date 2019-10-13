@@ -14,11 +14,7 @@
 			<div class="modal-body">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">
-							<font style="vertical-align: inherit;">상품 수정</font>
-						</h4>
-						<form class="forms-sample" action="/product/productModify"
-							method="post" autocomplete="off">
+						<form onsubmit="return modifyCheck();" class="forms-sample" action="/product/productModify" method="post" autocomplete="off">
 							<div class="form-group">
 								<label for="exampleInputUsername1">
 									<font style="vertical-align: inherit;">상품 번호</font>
@@ -50,7 +46,7 @@
 								<input name="product_category" id="product_category" type="text" class="form-control">
 							</div>
 							<button type="submit" class="btn btn-info">수정</button>
-							<button data-dismiss="modal" type="button" class="btn btn-success">닫기</button>
+							<button id="modifyBtn" type="button" class="btn btn-success">닫기</button>
 						</form>
 					</div>
 				</div>
@@ -60,3 +56,23 @@
 	</div>
 </div>
 <!-- End ProductGet Modal -->
+
+<script type="text/javascript">
+
+	$("#modifyBtn").click(function() {
+		$("#productGet").hide();
+	});
+
+	function modifyCheck() {
+
+		if($.trim($("#product_category").val()) != $("#product_category").val()) {
+		      alert("앞,뒤 공백을 지워주세요.");
+		      $("#product_category").val("");
+		      $("#product_category").focus();
+		      return false;
+		}
+		return true;
+		
+	}
+	
+</script>

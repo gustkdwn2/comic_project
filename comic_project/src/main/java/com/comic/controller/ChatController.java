@@ -24,7 +24,7 @@ public class ChatController {
 	
 	private ChatService chatService;
 	
-	@GetMapping("chatting.co")
+	@GetMapping("chatting")
 	public ModelAndView chat(ModelAndView mv) {
 		mv.setViewName("chat/chattingview");
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

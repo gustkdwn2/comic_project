@@ -2,15 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/resources/css/zizi.css">
 <meta charset="UTF-8">
-<title>코믹 서기 고객센터</title>
+<title>코믹 서기 건의 게시판</title>
 </head>
 <body>
       <!-- partial -->
@@ -20,13 +18,13 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h2 class=".h2">고객센터 게시판</h2>
+                  <h2 class=".h2">건의 게시판</h2>
                   
 				    <form class="form-inline" action="/CustomerCenter/boardList" 
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
 				    		<select name="type" class="form-control">
 				     			<option value=""
-									 <c:out value="${pageMaker.cri.type == null?'selected':''}"/> >--</option>
+									 <c:out value="${pageMaker.cri.type == null?'selected':''}"/> >선택해주세요</option>
 								<option value="T"
 									<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
 								<option value="C"
@@ -70,13 +68,11 @@
                       
 	                      <tbody>
 	                        <tr>
-	                          <td style="width:200px;"><c:out value="${list.BOARD_NUM }" /></td>
-	                          <td style="width:1000px;"><a class='move' href='<c:out value="${list.BOARD_NUM}"/>'>
-	                          <c:out value="${list.BOARD_TITLE }" /></a>
-	                         <%--  <a href='/CustomerCenter/boardGet?BOARD_NUM=<c:out value="${list.BOARD_NUM}"/>'> 
-	                           <c:out value="${list.BOARD_TITLE }" /></a>--%></td>
-	                          <td style="width:400px;"><c:out value="${list.BOARD_ID }" /></td>
-	                          <td style="width:300px;"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.BOARD_DATE }" /></td>
+	                          <td style="width:200px;"><c:out value="${list.board_num }" /></td>
+	                          <td style="width:1000px;"><a class='move' href='<c:out value="${list.board_num}"/>'>
+	                          <c:out value="${list.board_title }" /></a></td>
+	                          <td style="width:400px;"><c:out value="${list.board_id }" /></td>
+	                          <td style="width:300px;"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.board_date }" /></td>
 	                        </tr>         
                       	  </tbody>
                       	  
@@ -149,7 +145,7 @@
 					"click",
 					function(e){
 						e.preventDefault();
-						actionForm.append("<input type='hidden' name='BOARD_NUM' value='"
+						actionForm.append("<input type='hidden' name='board_num' value='"
 								+$(this).attr("href")+ "'>");
 						actionForm.attr("action", "/CustomerCenter/boardGet");
 						actionForm.submit();
@@ -177,9 +173,10 @@
 
 			var searchForm = $("#searchForm");
 
-			 $("#searchForm button").on(
+			 $("#searchForm").on(
 					"click",
 					function(e){
+						console.log('검색 방지 필터');
 
 						if(!searchForm.find("option:selected").val()){
 							alret("검색 종류를 선택해주세요");
@@ -200,5 +197,18 @@
 
 
 </body>
+<script type="text/javascript">
+	
+	/* $(document).ready(function(){
+		var actionForm = $("#actionForm");
+			$(".move").on("click", function(e){
+						e.preventDefault();
+						actionForm.append("<input type='hidden' name='BOARD_NUM' value='" +$(this).attr("href")+ "'>");
+						actionForm.attr("action", "/CustomerCenter/boardGet");
+						actionForm.submit();	
+			});
+	}); */
+	
+</script>
 
 </html>
