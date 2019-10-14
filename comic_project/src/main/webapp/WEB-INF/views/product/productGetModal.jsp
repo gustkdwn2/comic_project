@@ -46,7 +46,7 @@
 								<input name="product_category" id="product_category" type="text" class="form-control">
 							</div>
 							<button type="submit" class="btn btn-info">수정</button>
-							<button id="btn" type="button" class="btn btn-success">닫기</button>
+							<button id="modifyBtn" type="button" class="btn btn-success">닫기</button>
 						</form>
 					</div>
 				</div>
@@ -59,7 +59,7 @@
 
 <script type="text/javascript">
 
-	$("#btn").click(function() {
+	$("#modifyBtn").click(function() {
 		$("#productGet").hide();
 	});
 

@@ -15,21 +15,16 @@
 			<div class="modal-body">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">
-							<font style="vertical-align: inherit;">발주 등록</font>
-						</h4>
 						<form class="forms-sample" action="/productOrder/productOrderRegister" method="post" autocomplete="off">
 							<div class="form-group row">
 								<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
 									<font style="vertical-align: inherit;">상품 이름</font>
 								</label>
 								<div class="col-sm-9">
-									<select id="productOrder_product_name" class="form-control" name="productOrder_product_name">
-		                            	<c:forEach items="${productList}" var="productList">
-		                            		<option value="${productList.product_name}">
-		                            			<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">${productList.product_name}</font></font>
-		                            		</option>
-		                            	</c:forEach>
+									<select class="form-control" name="productOrder_product_name">
+		                            		<c:forEach items="${productList}" var="productList">
+		                            			<option value="${productList.product_name}">${productList.product_name}</option>
+		                            		</c:forEach>
 	                            	</select>
 								</div>
 							</div>
