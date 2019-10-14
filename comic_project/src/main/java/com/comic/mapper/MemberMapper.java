@@ -1,5 +1,6 @@
 package com.comic.mapper;
 
+
 import java.io.Console;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +39,4 @@ public interface MemberMapper {
 	public void EmployeekeepLogin(int eMPLOYEE_NUM, String sessionId, Date sessionLimit);	
 	// 세션키 검증
 	public MemberVO checkUserWithSessionKey(String value);
-	
-	
-	
 }

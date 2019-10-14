@@ -64,7 +64,7 @@
 						</label>
 						<div class="form-group row">
 					        <div class="form-group uploadDiv">
-					            <input type="file" name='uploadFile'>
+					            <input type="file" name='uploadFile' id="uploadFile">
 					        </div>
 				        
 					        <div class='uploadResult'> 
@@ -137,8 +137,8 @@
 							</label>
 							<div class="col-sm-9">
 								<select id="book_status" class="form-control" name="book_status">
-		                            <option value="연재중"><font style="vertical-align: inherit;">연재중</font></option>
-		                            <option value="완결"><font style="vertical-align: inherit;">완결</font></option>
+		                            <option value="연재중">연재중</option>
+		                            <option value="완결">완결</option>
 	                            </select>
 							</div>
 						</div>
@@ -154,7 +154,8 @@
 	</div>
 </div>
 <!-- End BookRegister Modal -->
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 
 	$(document).ready(function(e){
 	  
@@ -253,11 +254,13 @@
 	    
 	    if(fileSize >= maxSize){
 	      alert("파일 사이즈 초과");
+	      $("input[name='uploadFile']").val("");
 	      return false;
 	    }
 	    
 	    if(!regex.test(fileName)){
 	      alert("해당 종류의 파일은 업로드할 수 없습니다.");
+	      $("input[name='uploadFile']").val("");
 	      return false;
 	    }
 	    return true;
@@ -353,8 +356,9 @@
 	           targetLi.remove();
 	         }
 	    }); //$.ajax
+	    $("#uploadFile").val("");
 	   });
 	
 	});
 	
-</script>
+</script> -->

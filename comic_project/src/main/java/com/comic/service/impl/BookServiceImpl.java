@@ -28,6 +28,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public BookVO bookGet(String book_name) {
+		System.out.println("서비스 임플 bookGet 들어옴");
 		return mapper.bookRead(book_name);
 	}
 	
@@ -64,7 +65,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<BookAttachVO> getAttachList(String book_name) {
-		System.out.println(attachMapper.findByBookName(book_name));
+//		System.out.println(attachMapper.findByBookName(book_name));
 		return attachMapper.findByBookName(book_name);
 	}
 	

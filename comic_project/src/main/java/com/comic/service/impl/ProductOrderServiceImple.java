@@ -3,6 +3,7 @@ package com.comic.service.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.comic.mapper.ProductOrderMapper;
 import com.comic.model.ProductOrderVO;
@@ -20,7 +21,8 @@ public class ProductOrderServiceImple implements ProductOrderService {
 	public List<ProductOrderVO> productOrderList() {
 		return mapper.productOrderList();
 	}
-
+	
+	@Transactional
 	@Override
 	public void productOrderRemove(int productOrder_num) {
 		mapper.productOrderDelete(productOrder_num);
@@ -47,7 +49,8 @@ public class ProductOrderServiceImple implements ProductOrderService {
 	public boolean productOrderModify(ProductOrderVO vo) {
 		return mapper.productOrderUpdate(vo) == 1;
 	}
-
+	
+	@Transactional
 	@Override
 	public void productOrderCheck(int productOrder_num) {
 		mapper.productOrderCheck(productOrder_num);

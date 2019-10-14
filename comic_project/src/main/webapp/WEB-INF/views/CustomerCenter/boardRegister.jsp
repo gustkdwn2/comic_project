@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 <!DOCTYPE html>
@@ -37,7 +36,7 @@
 	                      <textarea class="form-control" name="board_content" rows="15" cols="80"
 	                      placeholder="내용을 입력해주세요"></textarea>
 	                    </div>
-	                    <button class="btn btn-outline-secondary">목록 가기</button>
+	                    <button type="button" class="btn btn-outline-secondary" onclick="/CustomerCenter/boardList">목록 가기</button>
 	                    <button type="submit" class="btn btn-primary mr-2" style="margin-left:1360px;">제출</button>
 	                  </form>
 	                </div>

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 <!DOCTYPE html>
@@ -15,7 +13,7 @@
 		<div class="card">
 			<div class="card-body">
 				<h4 class="card-title">
-					<font style="vertical-align: inherit;">책 수정</font>
+					<font style="vertical-align: inherit;">책 정보</font>
 				</h4>
 				<form class="forms-sample" action="/book/bookModify" method="post">
 					<div class="form-group row">
@@ -81,10 +79,10 @@
 						</label>
 						<select id="book_status" class="form-control" name="book_status" >
 							<option value="${book.book_status}" hidden>
-								<font style="vertical-align: inherit;">${book.book_status}</font>
+								${book.book_status}
 							</option>
-		                	<option value="연재중"><font style="vertical-align: inherit;">연재중</font></option>
-		                	<option value="완결"><font style="vertical-align: inherit;">완결</font></option>
+		                	<option value="연재중">연재중</option>
+		                	<option value="완결">완결</option>
 	                	</select>
 					</div>
 					<div class="form-group" align="center">
@@ -109,7 +107,7 @@
 
 				var str="";
 
-				$(arr).each(function(i, attach){ 
+				$(arr).each(function(i, attach){
 			    	//image type
 			    	if(attach.fileType){
 			            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
@@ -254,7 +252,7 @@
 		    	var jobj = $(obj);
 		          
 		        console.dir(jobj);
-		          
+		        console.log(i+"=========================");
 		        str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
 		        str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
 		        str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";

@@ -39,7 +39,7 @@
 									<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목 or 내용 or 작성자</option>
 							 </select>
 				    		<input type="text" name="keyword" class="form-control" >&nbsp;
-				    		<input type="submit" class="btn btn-primary btn-md" value="검색">
+				    		<input id="searchBtn" type="submit" class="btn btn-primary btn-md" value="검색">
 				    		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'/>
 							<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
 				    		
@@ -175,7 +175,7 @@
 
 			var searchForm = $("#searchForm");
 
-			 $("#searchForm").on(
+			 $("#searchBtn").on(
 					"click",
 					function(e){
 						console.log('검색 방지 필터');

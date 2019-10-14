@@ -1,5 +1,6 @@
 package com.comic.service.impl;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -9,12 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import com.comic.mapper.MemberMapper;
 import com.comic.model.EmployeeVO;
+
+
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
+
 import com.comic.service.MemberService;
 
 @Service
@@ -94,12 +99,7 @@ public class MemberServiceImpl implements MemberService {
 		out.close();
 	}
 
-	@Override
-	public void employeeRegister(EmployeeVO vo) {
-		password = vo.getEMPLOYEE_PWD();
-		vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));
-		mapper.employeeInsert(vo);
-	}
+
 
 	@Override
 	public void EmployeekeepLogin(int EMPLOYEE_NUM, String sessionId, Date sessionLimit) throws Exception {
@@ -115,5 +115,14 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO checkLoginBefore(String value) throws Exception {
 		return mapper.checkUserWithSessionKey(value);
 	}
+
+	@Override
+   public void employeeRegister(EmployeeVO vo) {
+		
+//	password = vo.getEMPLOYEE_PWD();
+//	vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));	 
+    mapper.employeeInsert(vo);
+   }
+
 
 }

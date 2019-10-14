@@ -39,4 +39,5 @@ public interface MemberService {
 	// 세션키 검증
 	MemberVO checkLoginBefore(String value) throws Exception;
 	
+
 }
