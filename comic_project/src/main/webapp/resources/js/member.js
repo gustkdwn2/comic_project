@@ -88,3 +88,13 @@ function validate() {
           }
       });
   }
+  
+  function pwdCheck() {
+		var pwd1 = $( '#MEMBER_PWD' ).val();
+		var pwd2 = $( '#MEMBER_PWD_Check' ).val();
+		if(pwd1 == pwd2) {
+			$('#pwdCheckMessage').html('');
+		} else {
+			$('#pwdCheckMessage').html('비밀번호가 서로 일치하지 않습니다.');
+		}
+	}

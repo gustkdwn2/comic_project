@@ -35,9 +35,13 @@
                   <input type="text" class="form-control form-control-lg" id="MEMBER_ID" name="MEMBER_ID" placeholder="ID" oninput="checkId()">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="MEMBER_PWD" name="MEMBER_PWD" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="MEMBER_PWD" name="MEMBER_PWD" placeholder="Password" oninput="pwdCheck()">
                   <a style="color: gray; font-size: 10px;" >* 비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.</a>
                 </div>
+                <div class="form-group">
+                  <input type="password" class="form-control form-control-lg" id="MEMBER_PWD_Check" name="MEMBER_PWD_Check" placeholder="PasswordCheck" oninput="pwdCheck()">
+                </div>
+                <h5 id="pwdCheckMessage" style = "color: red;"></h5>
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg" id="MEMBER_NAME" name="MEMBER_NAME" placeholder="Name">
                 </div>
