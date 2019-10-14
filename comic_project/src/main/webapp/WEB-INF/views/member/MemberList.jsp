@@ -40,7 +40,6 @@
 												<td><c:out value="${member.MEMBER_PHONE_NUMBER}" /></td>
 												<td style="width: 100px">
 													<button name="GmodifyBtn" type="button" class="btn btn-info" value="${member.MEMBER_ID}">수정</button>
-													<button name="removeBtn" value="${member.MEMBER_ID}" type="submit" class="btn btn-danger">삭제</button>
 												</td>
 											</tr>
 										</c:forEach>
