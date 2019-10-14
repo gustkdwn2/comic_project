@@ -55,13 +55,13 @@
 							class="menu-title">회원 로그인</span>
 					</a></li>
 					</c:if>
-					<c:if test="${empty Employeelogin}">
+					<%-- <c:if test="${empty Employeelogin}">
 					<li class="nav-item"><a class="nav-link"
 						href="/member/EmployeeLogin"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">직원 로그인</span>
 					</a></li>
-					</c:if>
+					</c:if> --%>
 					<li class="nav-item"><a class="nav-link"
 						href="/member/MemberList"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
