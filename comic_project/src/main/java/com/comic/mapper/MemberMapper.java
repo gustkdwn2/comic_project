@@ -1,7 +1,6 @@
 package com.comic.mapper;
 
 
-import java.io.Console;
 import java.util.Date;
 import java.util.List;
 

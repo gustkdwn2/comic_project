@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 <!DOCTYPE html>
@@ -24,7 +23,7 @@
 	                  <h1 class="card-title">불만사항이나 건의 사항을 적어주세요</h1>
 	                  <form class="forms-sample" action="/CustomerCenter/boardRegister" method="post">
 	                  
-	                  	<input type="hidden" name="board_id" value="zizi" >
+	                  	<input type="hidden" name="board_id" value="${Memberlogin.MEMBER_ID}" >
 	                  	
 	                    <div class="form-group">
 	                      <label for="board_title">제목</label>
@@ -37,7 +36,7 @@
 	                      <textarea class="form-control" name="board_content" rows="15" cols="80"
 	                      placeholder="내용을 입력해주세요"></textarea>
 	                    </div>
-	                    <button class="btn btn-outline-secondary">목록 가기</button>
+	                    <button type="button" data-oper='listBtn' class="btn btn-outline-secondary" onclick="location.href='/CustomerCenter/boardList'">목록 가기</button>
 	                    <button type="submit" class="btn btn-primary mr-2" style="margin-left:1360px;">제출</button>
 	                  </form>
 	                </div>
@@ -46,8 +45,6 @@
 	     </div>
 	    </div>
 	   </div>
-      
-
 
 </body>
 </html>

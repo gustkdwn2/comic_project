@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
-import com.comic.model.ProductVO;
 
 public interface MemberService {
 	
@@ -41,5 +40,4 @@ public interface MemberService {
 	// 세션키 검증
 	MemberVO checkLoginBefore(String value) throws Exception;
 	
-
 }
