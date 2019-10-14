@@ -9,69 +9,85 @@
 
 	<!-- Header -->
 	<div class="main-penal">
-		<div class="content-wrapper">
-			<div class="row">
-				<div class="col-md-2 text-center">
-				</div>
-				<img src="/resources/images/comic_image.png" alt="" style="border:1px solid black; width: 100px; height: 50px;"/>
-				
+		<div style="background-color: #37363a; height: 150px;">
+			<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:40px; margin-top:20px; "/>
+			<div style="width: 1000px; float:right; height: 100px; color:#f4e362; margin-top:50px; font-size: 50px;">
+			 여기는 편의를 위한 임시 창입니다
 			</div>
-			<div class="container">
-				<div class="content-section-heading text-center">
-					<h2 class="mb-5">모드선택</h2> 
-				</div> 
+			<br/><br/>
+		</div>
+			<br/><br/>
+			
+			<div class="container" >
+				<!-- <div class="content-section-heading text-center">
+					<h2 class="mb-5">코믹서기에 오신걸 환영합니다</h2> 
+				</div>  -->
 				<div class="row no-gutters"> 
-					<div class="col-lg-4">
+					<!-- <div class="col-lg-4">
 						<a class="portfolio-item" name="roomMove" value="1"> <span class="caption"> <span class="caption-content">
 									<h3>1번방</h3>
 									<p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
 							</span>
 						</span> <img class="img-fluid" src="/resources/images/portfolio-1.jpg" alt="">
 						</a>
-					</div>
-					<div class="col-lg-4">
-						<a class="portfolio-item" name="roomMove" value="2"> <span class="caption"> <span class="caption-content">
-									<h3>2번방</h3>
-									<p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
+					</div> -->
+					<div class="col-lg-4">				
+						<a class="portfolio-item" name="roomMove" value="1"> <img class="img-fluid" src="/resources/images/room-icon.png" alt="" style="width:370px; height:250px;">
+							<span class="caption"> 
+							<span class="caption-content">
+									<h3 style="margin-left:75px; margin-top:100px;">1번방</h3>
 							</span>
-						</span> <img class="img-fluid" src="/resources/images/portfolio-1.jpg" alt="">
+							</span> 
 						</a>
 					</div>
-					<div class="col-lg-4">
-						<a class="portfolio-item" name="roomMove" value="3"> <span class="caption"> <span class="caption-content">
-									<h3>3번방</h3>
-									<p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
+					
+					<div class="col-lg-4">				
+						<a class="portfolio-item" name="roomMove" value="2"> <img class="img-fluid" src="/resources/images/room-icon.png" alt="" style="width:370px; height:250px;">
+							<span class="caption"> 
+							<span class="caption-content">
+									<h3 style="margin-left:75px; margin-top:100px;">2번방</h3>
 							</span>
-						</span> <img class="img-fluid" src="/resources/images/portfolio-1.jpg" alt="">
+							</span> 
+						</a>
+					</div>					
+					<div class="col-lg-4">				
+						<a class="portfolio-item" name="roomMove" value="3"> <img class="img-fluid" src="/resources/images/room-icon.png" alt="" style="width:370px; height:250px;">
+							<span class="caption"> 
+							<span class="caption-content">
+									<h3 style="margin-left:75px; margin-top:100px;">3번방</h3>
+							</span>
+							</span> 
+						</a>
+					</div>	
+					<div class="col-lg-4">				
+						<a class="portfolio-item" name="roomMove" value="4"> <img class="img-fluid" src="/resources/images/room-icon.png" alt="" style="width:370px; height:250px;">
+							<span class="caption"> 
+							<span class="caption-content">
+									<h3 style="margin-left:75px; margin-top:100px;">4번방</h3>
+							</span>
+							</span> 
+						</a>
+					</div>	 
+					<div class="col-lg-4">				
+						<a class="portfolio-item" name="roomMove" value="5"> <img class="img-fluid" src="/resources/images/room-icon.png" alt="" style="width:370px; height:250px;">
+							<span class="caption"> 
+							<span class="caption-content">
+									<h3 style="margin-left:75px; margin-top:100px;">5번방</h3>
+							</span>
+							</span> 
 						</a>
 					</div>
-					<div class="col-lg-4">
-						<a class="portfolio-item" name="roomMove" value="4"> <span class="caption"> <span class="caption-content">
-									<h3>4번방</h3>
-									<p class="mb-0">Strawberries are such a tasty snack, especially with a little sugar on top!</p>
-							</span>
-						</span> <img class="img-fluid" src="/resources/images/portfolio-3.jpg" alt="">
-						</a>
-					</div> 
-					<div class="col-lg-4">
-						<a class="portfolio-item" name="roomMove" value="5"> <span class="caption"> <span class="caption-content">
-									<h3>5번방</h3>
-									<p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p>
-							</span>
-						</span> <img class="img-fluid" src="/resources/images/portfolio-4.jpg" alt="">
-						</a>
-					</div>
-					<div class="col-lg-4"> 
-						<a class="portfolio-item" name="erpMain"> <span class="caption"> <span class="caption-content">
-									<h3>ERP 시스템</h3>
-									<p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p>
-							</span>
-						</span> <img class="img-fluid" src="/resources/images/portfolio-4.jpg" alt="">
-						</a>
-					</div>
+					<div class="col-lg-4">						
+							<a class="portfolio-item" name="erpMain"><img class="img-fluid" src="/resources/images/settingIcon.png" alt="" style="width:370px; height:250px;">
+								<span class="caption"> 
+								<span class="caption-content">
+										<h3 style="margin-left:90px; margin-top:50px; height: 40px;">ERP</h3>
+								</span>
+								</span> 
+							</a>						
+					</div>		
 				</div>
 			</div>
-		</div>
 	</div>
 	
 	<!-- hidden form -->

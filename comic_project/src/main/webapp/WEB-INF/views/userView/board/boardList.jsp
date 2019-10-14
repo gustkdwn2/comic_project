@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="../includes/header.jsp"%>
-<%@ include file="../includes/sidebar.jsp"%>
+<%@ include file="../../includes/userHeader.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,13 +11,11 @@
 </head>
 <body>
       <!-- partial -->
-	<div class="main-panel">        
-	  <div class="content-wrapper">
-	    <div class="row">
-	   		<div class="col-12 grid-margin stretch-card">
-	            <div class="card">
-	                <div class="card-body">
-                  	<h2 class=".h2">건의 게시판</h2>
+      <div class="main-panel">
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card-body" style="margin-top:50px; margin-left:150px;">
+                  <h2 class=".h2">건의 게시판</h2>
                   
 				    <form class="form-inline" action="/CustomerCenter/boardList" 
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
@@ -128,8 +125,6 @@
          </div>
       </div>
     </div>
-   </div>
-  </div>
 
 
             

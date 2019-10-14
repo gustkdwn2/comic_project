@@ -2,11 +2,6 @@
 <%@ include file="../includes/userHeader.jsp"%>
 
 <style type="text/css">
-body {
-	background-image: url("/resources/images/comic_image.jpg");
-	background-size: cover;
-}
-
 .content-wrapper {
 	padding-top: 30px;
 }
@@ -16,63 +11,63 @@ body {
 	<!-- Header -->
 	<div class="main-penal">
 		<div class="content-wrapper">
-			<div class="row">
-				<div class="col-md-2 text-center">
-					<h1>${ roomNum } 번방</h1>
-					<p>시간</p>
-				</div>
-			</div>
-			<div class="container">
-				<div class="content-section-heading text-center">
-					<h2 class="mb-5">Comic Clerk♥</h2>
+			<div style="background-color: #37363a; height: 150px;">
+				<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:40px; margin-top:20px; float: left "/>
+				<div class="content-section-heading text-center" style="width: 800px; height: 100px; margin-top:20px; float: left;  margin-left:100px;"><br/>
+					<h1 style="color:white;">${ roomNum } 번방 &emsp;&emsp; ######여기에 시간######</h1>
 				</div> 
-				<div class="row no-gutters"> 
+				<div style="width: 600px; height: 100px; float: right; color:#f4e362; margin-top:60px; font-size: 20px;">
+				 회원 수정 &emsp; 회원탈퇴 &emsp;</div>
+				<br/><br/>
+			</div><br/><br/>
+			<div class="container">
+				<div class="row no-gutters" style="margin-top: 100px;"> 
 					<div class="col-lg-4">
 						<a class="portfolio-item" id="userOrderView"> <span class="caption"> <span class="caption-content">
 									<h3>상품 주문</h3>
-									<p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
+									<p class="mb-0">상품을 주문하실 수 있습니다.</p>
 							</span>
-						</span> <img class="img-fluid" src="/resources/images/portfolio-1.jpg" alt="">
+						</span> <img class="img-fluid" src="/resources/images/orderIcon.png" alt="" style="width:370px; height:250px;">
 						</a>
 					</div>
 					<div class="col-lg-4">
-						<a class="portfolio-item" href="#"> <span class="caption"> <span class="caption-content">
+						<a class="portfolio-item" id="userSearchbook"> <span class="caption"> <span class="caption-content">
 									<h3>도서 검색</h3>
-									<p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
+									<p class="mb-0">코믹 서기의 도서를 검색할 수 있습니다</p>
 							</span>
-						</span> <img class="img-fluid" src="/resources/images/portfolio-1.jpg" alt="">
+						</span> <img class="img-fluid" src="/resources/images/searchIcon.png" alt="" style="width:370px; height:250px;">
 						</a>
 					</div>
 					<div class="col-lg-4">
 						<a class="portfolio-item" href="#"> <span class="caption"> <span class="caption-content">
 									<h3>상세 요금</h3>
-									<p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
+									<p class="mb-0">현재 사용한 요금을 보실 수 있습니다.</p>
 							</span>
-						</span> <img class="img-fluid" src="/resources/images/portfolio-1.jpg" alt="">
+						</span> <img class="img-fluid" src="/resources/images/moneyIcon.png" alt="" style="width:370px; height:250px;">
 						</a>
 					</div>
 					<div class="col-lg-4">
 						<a class="portfolio-item" id="userChat"> <span class="caption"> <span class="caption-content">
-									<h3>문의 하기</h3>
-									<p class="mb-0">Strawberries are such a tasty snack, especially with a little sugar on top!</p>
+									<h3>채팅 하기</h3>
+									<p class="mb-0">실시간 대화를 나눌 수 있습니다</p>
 							</span>
-						</span> <img class="img-fluid" src="/resources/images/portfolio-3.jpg" alt="">
+						</span> <img class="img-fluid" src="/resources/images/chatIcon.png" alt="" style="width:370px; height:250px;">
 						</a>
 					</div> 
 					<div class="col-lg-4">
-						<a class="portfolio-item" href="#"> <span class="caption"> <span class="caption-content">
-									<h3>게시판</h3>
-									<p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p>
+						<a class="portfolio-item" id="userBoard"> <span class="caption"> <span class="caption-content">
+									<h3>건의 게시판</h3>
+									<p class="mb-0">건의 사항을 적는 게시판입니다</p>
 							</span>
-						</span> <img class="img-fluid" src="/resources/images/portfolio-4.jpg" alt="">
+						</span> <img class="img-fluid" src="/resources/images/boardIcon.png" alt="" style="width:370px; height:250px;">
 						</a>
 					</div>
 					<div class="col-lg-4"> 
 						<a class="portfolio-item" href="#"> <span class="caption"> <span class="caption-content">
 									<h3>사용 종료</h3>
-									<p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p>
+									<p class="mb-0">사용 종료를 하면 로그아웃되고 결제 페이지로 넘어갑니다</p>
 							</span>
-						</span> <img class="img-fluid" src="/resources/images/portfolio-4.jpg" alt="">
+						</span> <img class="img-fluid" src="/resources/images/exitIcon.png" alt="" style="width:370px; height:250px;">
 						</a>
 					</div>
 				</div>
@@ -98,6 +93,20 @@ $(document).ready(function(){
 		operForm.attr("action","/userView/chatting");
 		operForm.submit();
 	});
+
+	$("#userSearchbook").on("click", function(e){
+		operForm.attr("method", "get");
+		operForm.attr("action","/SearchBook/searchList");
+		operForm.submit();
+	});
+
+	$("#userBoard").on("click", function(e){
+		operForm.attr("method", "get");
+		operForm.attr("action","/userView/boardList");
+		operForm.submit();
+	});
+
+	
 });
 </script>
 </html>

@@ -3,8 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page session="false"%>
-<%@ include file="../includes/header.jsp"%>
-<%@ include file="../includes/sidebar.jsp"%>
+<%@ include file="../includes/userHeader.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,14 +60,11 @@ tr{margin-bottom:5px;}
 <body>
       <!-- partial -->
       <div class="main-panel">
-        <div class="content-wrapper">
           <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-
+            <div class="col-lg-12 grid-margin stretch-card">  
+                <div class="card-body" style="margin-top:50px; margin-left:150px;">
                   <div style="text-align:center; width:1560px;">
-                  <h2>원하시는 도서를 검색하세요</h2></br><h4> 제목을 누르면 상세정보를 볼 수 있습니다.</h4><br/>
+                  <h1>원하시는 도서를 검색하세요</h1></br><h4> 제목을 누르면 상세정보를 볼 수 있습니다.</h4><br/>
                   </div><br/>
                   	<div style="width:800px; margin:0 auto;">
 				    <form class="form-inline" action="/SearchBook/searchList" 
@@ -89,7 +85,7 @@ tr{margin-bottom:5px;}
 								<option value="TW"
 									<c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>제목 or 저자</option>
 							 </select>
-				    		<input type="text" name="keyword" class="form-control" size="70" maxlength="40" >
+				    		<input type="text" name="keyword" class="form-control" size="70" maxlength="40" >&nbsp;
 				    		<input type="submit" class="btn btn-primary btn-md" value="검색">
 				    		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'/>
 							<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
@@ -202,8 +198,8 @@ tr{margin-bottom:5px;}
          </div>
       </div>
     </div>
-  </div>
-</div>
+
+
 
             
 <script type="text/javascript">
