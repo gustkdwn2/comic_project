@@ -79,11 +79,11 @@ function productModify(product_num) {
     	    dataType : "json",
     	    success: function(data) {
 	    	    
-    	    	$('#product_num').attr('value',data.product_num);
-    	    	$('#product_name').attr('value',data.product_name);
-    	    	$('#product_price').attr('value',data.product_price);
-    	    	$('#product_qty').attr('value',data.product_qty);
-    	    	$('#product_category').attr('value',data.product_category);
+    	    	$('#product_num_modify').attr('value',data.product_num);
+    	    	$('#product_name_modify').attr('value',data.product_name);
+    	    	$('#product_price_modify').attr('value',data.product_price);
+    	    	$('#product_qty_modify').attr('value',data.product_qty);
+    	    	$('#product_category_modify').attr('value',data.product_category);
     	    	$('#productGet').show();
     	    	
     	    }

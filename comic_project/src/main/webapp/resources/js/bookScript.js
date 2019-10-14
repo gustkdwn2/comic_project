@@ -1,203 +1,209 @@
-$(document).ready(function() {
+$(document).ready(function(e){
+	  
+	  var formObj = $("form[role='form']");
+	  
+	  $("button[name=registerBtn]").on("click", function(e){
 
-		(function(){
-			  
-			var book_name = $("#book_name").val();
-		    
-			$.getJSON("/book/getAttachList", {book_name: book_name}, function(arr){
-		    
-				console.log(arr);
+	    
+	    e.preventDefault();
+	    
+	    console.log("submit clicked");
 
-				var str="";
+	    var book_name = $('#book_name_register').val();
+		var nameCheck = 0;
+		
+		$.ajax({
+			type : 'POST',
+			data : {book_name : book_name},
+			async: false,
+			url : "/book/bookNameCheck",
+			dataType : "json",
+			success : function(result) {
 
-				$(arr).each(function(i, attach){
-			    	//image type
-			    	if(attach.fileType){
-			            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
-			            
-			            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
-			            str +=" data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-			            str += "<span> "+ attach.fileName+"</span>";
-			            str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' "
-			            str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-			            str += "<img src='/display?fileName="+fileCallPath+"'>";
-			            str += "</div>";
-			            str +"</li>";
-					}else{
-			            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
-			            str += "data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-			            str += "<span> "+ attach.fileName+"</span><br/>";
-			            str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' "
-			            str += " class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-			            str += "<img src='/resources/img/attach.png'></a>";
-			            str += "</div>";
-			    		str +"</li>";
-			    	}
-			    });
-				$(".uploadResult ul").html(str);
-			});
-		    
-		})();
+				nameCheck = result;
 
-		$(".uploadResult").on("click", "button", function(e){
-		    
-		    console.log("delete file");
-		      
-		    if(confirm("삭제 하시겠습니까?")){
-		    
-		    	var targetLi = $(this).closest("li");
-		    	targetLi.remove();
-		    	$("#uploadFile").val("");
-		    }
+				return;
+			}
 		});
 
-		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-		  var maxSize = 5242880; //5MB
-		  
-		  function checkExtension(fileName, fileSize){
-		    
-		    if(fileSize >= maxSize){
-		      alert("파일 사이즈 초과");
-		      $("input[name='uploadFile']").val("");
-		      return false;
-		    }
-		    
-		    if(regex.test(fileName)){
-		      alert("해당 종류의 파일은 업로드할 수 없습니다.");
-		      $("input[name='uploadFile']").val("");
-		      return false;
-		    }
-		    return true;
-		  }
-		  
-		  $("input[type='file']").change(function(e){
-
-		    var formData = new FormData();
-		    
-		    var inputFile = $("input[name='uploadFile']");
-		    
-		    var files = inputFile[0].files;
-		    
-		    for(var i = 0; i < files.length; i++){
-
-		      if(!checkExtension(files[i].name, files[i].size) ){
-		        return false;
-		      }
-		      formData.append("uploadFile", files[i]);
-		      
-		    }
-		    
-		    $.ajax({
-		      url: '/uploadAjaxAction',
-		      processData: false, 
-		      contentType: false,data: 
-		      formData,type: 'POST',
-		      dataType:'json',
-		        success: function(result){
-		          console.log(result); 
-				  showUploadResult(result); //업로드 결과 처리 함수 
-
-		      }
-		    }); //$.ajax
-		    
-		  });    
-
-		  function showUploadResult(uploadResultArr){
-			    
-		  	if(!uploadResultArr || uploadResultArr.length == 0){ return; }
-		    
-		    var uploadUL = $(".uploadResult ul");
-		    
-		    var str ="";
-		    
-		    $(uploadResultArr).each(function(i, obj){
-				
-				if(obj.image){
-					var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
-					str += "<li data-path='"+obj.uploadPath+"'";
-					str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
-					str +" ><div>";
-					str += "<span> "+ obj.fileName+"</span>";
-					str += "<button type='button' data-file=\'"+fileCallPath+"\' "
-					str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-					str += "<img src='/display?fileName="+fileCallPath+"'>";
-					str += "</div>";
-					str +"</li>";
-				}else{
-					var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
-				    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
-				      
-					str += "<li "
-					str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
-					str += "<span> "+ obj.fileName+"</span>";
-					str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
-					str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-					str += "<img src='/resources/img/attach.png'></a>";
-					str += "</div>";
-					str +"</li>";
-				}
-
-		    });
-		    
-			uploadUL.append(str);
+		if($.trim($("#book_name_register").val()) != $("#book_name_register").val()) {
+		    alert("앞,뒤 공백을 지워주세요.");
+		    $("#book_name_register").val("");
+		    $("#book_name_register").focus();
+			return false;
 		}
-
-		var formObj = $("form");
-
-		$('button[name=modifyBtn]').on("click", function(e){
+		if(nameCheck > 0) {
+			alert("이미 있는 책입니다.");
+			$("#book_name_register").val("");
+		    $("#book_name_register").focus();
+		    return false;
+		}
+		if($.trim($("#book_loc_register").val()) != $("#book_loc_register").val()) {
+		    alert("앞,뒤 공백을 지워주세요.");
+		    $("#book_loc_register").val("");
+		    $("#book_loc_register").focus();
+		    return false;
+		}
+		if($.trim($("#book_publisher_register").val()) != $("#book_publisher_register").val()) {
+		    alert("앞,뒤 공백을 지워주세요.");
+		    $("#book_publisher_register").val("");
+		    $("#book_publisher_register").focus();
+		    return false;
+		}
+		if($.trim($("#book_writer_register").val()) != $("#book_writer_register").val()) {
+		    alert("앞,뒤 공백을 지워주세요.");
+		    $("#book_writer_register").val("");
+		    $("#book_writer_register").focus();
+		    return false;
+		}
+		if($.trim($("#book_category_register").val()) != $("#book_category_register").val()) {
+		    alert("앞,뒤 공백을 지워주세요.");
+		    $("#book_category_register").val("");
+		    $("#book_category_register").focus();
+		    return false;
+		}
+		if($.trim($("#book_lastbook_register").val()) != $("#book_lastbook_register").val()) {
+		    alert("마지막권을 입력해주세요.");
+		    $("#book_lastbook_register").val("");
+		    $("#book_lastbook_register").focus();
+		    return false;
+		}
+	    
+	    var str = "";
+	    
+	    $(".uploadResultRegister ul li").each(function(i, obj){
+	      
+	      var jobj = $(obj);
+	      
+	      console.dir(jobj);
+	      console.log("-------------------------");
+	      console.log(jobj.data("filename"));
+	      
+	      
+	      str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+	      str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+	      str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+	      str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
+	      
+	    });
+	    
+	    console.log(str);
+	    
+	    formObj.append(str).submit();
+	    
+	  });
+	
+	  
+	  var regex = new RegExp("(.*?)\.(jpg|png)$");
+	  var maxSize = 5242880; //5MB
+	  
+	  function checkExtension(fileName, fileSize){
+	    
+	    if(fileSize >= maxSize){
+	      alert("파일 사이즈 초과");
+	      $("input[name='uploadFile']").val("");
+	      return false;
+	    }
+	    
+	    if(!regex.test(fileName)){
+	      alert("해당 종류의 파일은 업로드할 수 없습니다.");
+	      $("input[name='uploadFile']").val("");
+	      return false;
+	    }
+	    return true;
+	  }
+	  
+	  $("input[id='uploadFileRegister']").change(function(e){
+	
+	    var formData = new FormData();
+	    
+	    var inputFile = $("input[id='uploadFileRegister']");
+	    
+	    var files = inputFile[0].files;
+	    
+	    for(var i = 0; i < files.length; i++){
+	
+	      if(!checkExtension(files[i].name, files[i].size) ){
+	        return false;
+	      }
+	      formData.append("uploadFile", files[i]);
+	      
+	    }
+	    
+	    $.ajax({
+	      url: '/uploadAjaxAction',
+	      processData: false, 
+	      contentType: false,data: 
+	      formData,type: 'POST',
+	      dataType:'json',
+	        success: function(result){
+	          console.log(result); 
+			  showUploadResult(result); //업로드 결과 처리 함수 
+	
+	      }
+	    }); //$.ajax
+	    
+	  });  
+	  
+	  function showUploadResult(uploadResultArr){
 		    
-			e.preventDefault(); 
-		        
-		    console.log("submit clicked");
-		        
-		    var str = "";
-		        
-		    $(".uploadResult ul li").each(function(i, obj){
-		          
-		    	var jobj = $(obj);
-		          
-		        console.dir(jobj);
-		        console.log(i+"=========================");
-		        str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
-		        str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
-		        str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
-		        str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
-		          
-			});
-
-		    if($.trim($("#book_loc").val()) != $("#book_loc").val()) {
-			      alert("앞,뒤 공백을 지워주세요.");
-			      $("#book_loc").val("");
-			      $("#book_loc").focus();
-			      return false;
-			}
-			if($.trim($("#book_publisher").val()) != $("#book_publisher").val()) {
-			      alert("앞,뒤 공백을 지워주세요.");
-			      $("#book_publisher").val("");
-			      $("#book_publisher").focus();
-			      return false;
-			}
-			if($.trim($("#book_writer").val()) != $("#book_writer").val()) {
-			      alert("앞,뒤 공백을 지워주세요.");
-			      $("#book_writer").val("");
-			      $("#book_writer").focus();
-			      return false;
-			}
-			if($.trim($("#book_category").val()) != $("#book_category").val()) {
-			      alert("앞,뒤 공백을 지워주세요.");
-			      $("#book_category").val("");
-			      $("#book_category").focus();
-			      return false;
-			}
-		        
-		    formObj.append(str).submit();
-	        
+	    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+	    
+	    var uploadUL = $(".uploadResultRegister ul");
+	    
+	    var str ="";
+	    
+	    $(uploadResultArr).each(function(i, obj){
 			
-		   /*  formObj.submit(); */
-		});
-		
-		$("#bookGetBtn").click(function() {
-			$("#bookGet").hide();
-		});
-		
+			if(obj.image){
+				var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+				str += "<li data-path='"+obj.uploadPath+"'";
+				str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
+				str +" ><div>";
+				str += "<span> "+ obj.fileName+"</span>";
+				str += "<button type='button' data-file=\'"+fileCallPath+"\' "
+				str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "<img src='/display?fileName="+fileCallPath+"'>";
+				str += "</div>";
+				str +"</li>";
+			}else{
+				var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
+			    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+			      
+				str += "<li "
+				str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
+				str += "<span> "+ obj.fileName+"</span>";
+				str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
+				str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "<img src='/resources/img/attach.png'></a>";
+				str += "</div>";
+				str +"</li>";
+			}
+	
+	    });
+	    
+	    uploadUL.append(str);
+	  }
+	
+	  $(".uploadResultRegister").on("click", "button", function(e){
+		    
+	    console.log("delete file");
+	      
+	    var targetFile = $(this).data("file");
+	    var type = $(this).data("type");
+	    
+	    var targetLi = $(this).closest("li");
+	    
+	    $.ajax({
+	      url: '/deleteFile',
+	      data: {fileName: targetFile, type:type},
+	      dataType:'text',
+	      type: 'POST',
+	        success: function(result){
+	           targetLi.remove();
+	         }
+	    }); //$.ajax
+	    $("#uploadFile").val("");
+	   });
+	
 });

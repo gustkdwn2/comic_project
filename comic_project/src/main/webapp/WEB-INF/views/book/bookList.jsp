@@ -45,8 +45,9 @@
 	</div>
 	
 	<jsp:include page="bookRegisterModal.jsp" />
-	<jsp:include page="bookGetModal.jsp" />
-	<script src="/resources/js/bookTable.js"></script>
+	<%-- <jsp:include page="bookGetModal.jsp" /> --%>
+	<script src="/resources/js/bookTable.js" ></script>
+	<script src="/resources/js/bookScript.js" ></script>
 </body>
 <!-- <script type="text/javascript">
 

@@ -14,7 +14,7 @@
 			<div class="modal-body">
 				<div class="card">
 					<div class="card-body">
-						<form class="forms-sample" action="/productOrder/productOrderModify" method="post" autocomplete="off">
+						<form onsubmit="return productOrderModifyCheck();" class="forms-sample" action="/productOrder/productOrderModify" method="post" autocomplete="off">
 							<div class="form-group">
 								<label for="exampleInputUsername1">
 									<font style="vertical-align: inherit;">발주 번호</font>
@@ -62,5 +62,23 @@
 	$("#productOrderGetBtn").click(function() {
 		$("#productOrderGet").hide();
 	});
+
+	function productOrderModifyCheck() {
+		
+		if($("#productOrder_cost").val() <= 0) {
+			alert("판매가를 정해주세요");
+			$("#productOrder_cost").val("");
+		    $("#productOrder_cost").focus();
+		    return false;
+		}
+		if($("#productOrder_qty").val() <= 0) {
+			alert("수량을 정해주세요");
+			$("#productOrder_qty").val("");
+		    $("#productOrder_qty").focus();
+		    return false;
+		}
+		return true;
+		
+	}
 	
 </script>
