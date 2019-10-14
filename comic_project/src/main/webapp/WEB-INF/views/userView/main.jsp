@@ -12,20 +12,24 @@
 	<div class="main-penal">
 		<div class="content-wrapper">
 			<div style="background-color: #37363a; height: 150px;">
-				<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:40px; margin-top:20px; float: left "/>
-				<div class="content-section-heading text-center" style="width: 800px; height: 100px; margin-top:20px; float: left;  margin-left:100px;"><br/>
-					<h1 style="color:white;">${ roomNum } 번방 &emsp;&emsp; ######여기에 시간######</h1>
+				<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:370px; margin-top:20px; float: left "/>
+				<div class="content-section-heading text-center" style="width: 700px; height: 100px; margin-top:30px; float: left;"><br/>
+					<h1 style="color:white;">${ roomNum } 번방 홈 &emsp;&emsp; 02:15:39</h1>
 				</div> 
 				<div style="width: 600px; height: 100px; float: right; color:#f4e362; margin-top:60px; font-size: 20px;">
 				 회원 수정 &emsp; 회원탈퇴 &emsp;</div>
 				<br/><br/>
-			</div><br/><br/>
+			</div>
 			<div class="container">
-				<div class="row no-gutters" style="margin-top: 100px;"> 
+				<div class="row no-gutters" style="margin-top: 50px;"> 				
+					<div style="border: 10px solid #f4e362; width: 1300px; height: 80px; border-radius: 70px / 30px; margin-bottom: 30px;">
+					여기에 알림이 오도록 할건지 아님 어떻게 할건지 ??!!
+					</div>
+					
 					<div class="col-lg-4">
 						<a class="portfolio-item" id="userOrderView"> <span class="caption"> <span class="caption-content">
 									<h3>상품 주문</h3>
-									<p class="mb-0">상품을 주문하실 수 있습니다.</p>
+									<p class="mb-0">상품을 주문하실 수 있습니다</p>
 							</span>
 						</span> <img class="img-fluid" src="/resources/images/orderIcon.png" alt="" style="width:370px; height:250px;">
 						</a>
@@ -41,7 +45,7 @@
 					<div class="col-lg-4">
 						<a class="portfolio-item" href="#"> <span class="caption"> <span class="caption-content">
 									<h3>상세 요금</h3>
-									<p class="mb-0">현재 사용한 요금을 보실 수 있습니다.</p>
+									<p class="mb-0">현재 사용한 요금을 보실 수 있습니다</p>
 							</span>
 						</span> <img class="img-fluid" src="/resources/images/moneyIcon.png" alt="" style="width:370px; height:250px;">
 						</a>
@@ -102,7 +106,7 @@ $(document).ready(function(){
 
 	$("#userBoard").on("click", function(e){
 		operForm.attr("method", "get");
-		operForm.attr("action","/userView/boardList");
+		operForm.attr("action","/userView/board/boardList");
 		operForm.submit();
 	});
 

@@ -16,8 +16,9 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card-body" style="margin-top:50px; margin-left:150px;">
                   <h2 class=".h2">건의 게시판</h2>
+                  <!-- 이렇게 변해야함!!! <h2 class=".h2"><a href="/userView/main">홈</a> > 건의 게시판</h2> -->
                   
-				    <form class="form-inline" action="/CustomerCenter/boardList" 
+				    <form class="form-inline" action="/userView/board/boardList" 
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
 				    		<select name="type" class="form-control">
 				     			<option value=""
@@ -114,7 +115,7 @@
 			     	</div>
 
 					
-					<form id='actionForm' action="/CustomerCenter/boardList" method='get'>
+					<form id='actionForm' action="/userView/board/boardList" method='get'>
 						<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 						<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 						<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'> 
@@ -144,14 +145,14 @@
 						e.preventDefault();
 						actionForm.append("<input type='hidden' name='board_num' value='"
 								+$(this).attr("href")+ "'>");
-						actionForm.attr("action", "/CustomerCenter/boardGet");
+						actionForm.attr("action", "/userView/board/boardGet");
 						actionForm.submit();
 						
 			}); 
 
 			$("#regBtn").on("click", function() {
 
-				self.location = "/CustomerCenter/boardRegister";
+				self.location = "/userView/board/boardRegister";
 
 			});
 
@@ -192,20 +193,6 @@
 
 </script>
 
-
 </body>
-<script type="text/javascript">
-	
-	/* $(document).ready(function(){
-		var actionForm = $("#actionForm");
-			$(".move").on("click", function(e){
-						e.preventDefault();
-						actionForm.append("<input type='hidden' name='BOARD_NUM' value='" +$(this).attr("href")+ "'>");
-						actionForm.attr("action", "/CustomerCenter/boardGet");
-						actionForm.submit();	
-			});
-	}); */
-	
-</script>
 
 </html>

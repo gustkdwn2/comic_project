@@ -11,16 +11,12 @@
 </head>
 <body>
 <!-- partial -->
-	
-	
-	<div class="main-panel">        
-	  <div class="content-wrapper">
-	    <div class="row">
-	   		<div class="col-12 grid-margin stretch-card">
-	              <div class="card">
-	                <div class="card-body">
+      <div class="main-panel">
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card-body" style="margin-top:50px; margin-left:150px;">
 	                  <h1 class="card-title">불만사항이나 건의 사항을 적어주세요</h1>
-	                  <form class="forms-sample" action="/CustomerCenter/boardRegister" method="post">
+	                  <form class="forms-sample" action="/userView/board/boardRegister" method="post">
 	                  
 	                  	<input type="hidden" name="board_id" value="zizi" >
 	                  	
@@ -42,10 +38,6 @@
 	              </div>
 		   </div>
 	     </div>
-	    </div>
-	   </div>
-      
-
 
 </body>
 </html>
