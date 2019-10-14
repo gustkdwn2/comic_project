@@ -77,7 +77,11 @@
             //innerHTML : js 언어를 HTML의 권장 표준 언어로 바꾼다
             //new를 찍지 않아서 month는 +1을 더해줘야 한다. 
              tbCalendarYM.innerHTML = today.getFullYear() + "년 " + (today.getMonth() + 1) + "월"; 
- 
+
+             document.getElementById("tbCalendarpremonth").innerHTML = today.getFullYear() + "년 "+today.getMonth() + "월"; 
+             //저번달 가져오는 메서드
+             document.getElementById("tbCalendarnextmonth").innerHTML = today.getFullYear() + "년 "+(today.getMonth() + 2) + "월";
+             //이번달 가져오는 메서드
              /*while은 이번달이 끝나면 다음달로 넘겨주는 역할*/
             while (tbCalendar.rows.length > 2) {
             //열을 지워줌
@@ -105,17 +109,20 @@
             	 
              //1일부터 마지막 일까지 돌림
                   cell = row.insertCell();//열 한칸한칸 계속 만들어주는 역할
-                  cell.innerHTML = i+"<br>"+year+num_modify(month)+num_modify(i);//셀을 1부터 마지막 day까지 HTML 문법에 넣어줌
+                  cell.innerHTML = i+addfontidbyday(year,month,i);
+
+                  //cell.innerHTML = i+year+num_modify(month)+num_modify(i);//셀을 1부터 마지막 day까지 HTML 문법에 넣어줌
+                  ;
                   cnt = cnt + 1;//열의 갯수를 계속 다음으로 위치하게 해주는 역할
               if (cnt % 7 == 1) {/*일요일 계산*/
                   //1주일이 7일 이므로 일요일 구하기
                   //월화수목금토일을 7로 나눴을때 나머지가 1이면 cnt가 1번째에 위치함을 의미한다
-                cell.innerHTML = "<font color=red>" + i
+                cell.innerHTML = "<font color=red>" + i+"</font>"+addfontidbyday(year,month,i);
                 //1번째의 cell에만 색칠
             }    
               if (cnt%7 == 0){/* 1주일이 7일 이므로 토요일 구하기*/
                   //월화수목금토일을 7로 나눴을때 나머지가 0이면 cnt가 7번째에 위치함을 의미한다
-                  cell.innerHTML = "<font color=green>" + i
+                  cell.innerHTML = "<font color=green>" + i+"</font>"+addfontidbyday(year,month,i);
                   //7번째의 cell에만 색칠
                    row = calendar.insertRow();
                    //토요일 다음에 올 셀을 추가
@@ -163,17 +170,17 @@
 
 					workingempdata=data;
 					
-					//console.log(workingempdata);
-					/* 
+					console.log(workingempdata);
+					 
 					var text="";
-					console.log(data[0]);
-					$.each(data, function(index,list){
+					//console.log(data[0]);
+					 $.each(data, function(index,list){
 						var number=1;
-						number = list.roomuse_num;
+						number = list.workingday;
+						$('#'+number).text(list.starttime+"~\n"+list.endtime+"\r\n: "+list.worksecond);
 						
-						method_startnstop2(list.roomuse_id,number,list.starttime,list.roomuse_status);
-					});
-					 */
+					}); 
+					 
 				},
 				error : function(data) {
 					console.log("ajaxtogetdb_empworkrecord\n실패");
@@ -181,9 +188,16 @@
 			});
 
 			console.log(workingempdata);
-			alert(workingempdata);
+			//alert(workingempdata);
 			return workingempdata;
 		}
+
+		function addfontidbyday(year,month,i){
+
+			//var msg = "<br>"+year+num_modify(month)+num_modify(i);
+			var msg = "<br><font id="+year+num_modify(month)+num_modify(i)+" >  </font>"
+			return msg;
+			}
     </script>
  
 
@@ -202,10 +216,10 @@
     <h3 align="center">★${empname}의 출근표★</h3>
 <table id="calendar" border="3" align="center" style="border-color:#3333FF ">
     <tr><!-- label은 마우스로 클릭을 편하게 해줌 -->
-        <td><label onclick="prevCalendar()">저번 달</label></td>
+        <td><label id="tbCalendarpremonth" onclick="prevCalendar()">저번 달</label></td>
         <td align="center" id="tbCalendarYM" colspan="5">
         yyyy년 m월</td>
-        <a href="#"><td><label onclick="nextCalendar()">다음 달
+        <a href="#"><td><label id="tbCalendarnextmonth" onclick="nextCalendar()">다음 달
             
         </label></td> </a>
     </tr>

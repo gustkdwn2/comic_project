@@ -236,26 +236,55 @@ public class ManagerposController {
 			JSONObject workinghour = new JSONObject(); // json으로 보내기위한작업
 			
 			workinghour.put("starttime", list.get(i).getStarttime());
-			workinghour.put("endtime", list.get(i).getEndtime());
+			
+			if(list.get(i).getEndtime()==null) { 
+				//출근데이터가 찍혀잇을수잇으나 퇴근을 안했을수 있기 때문에 퇴근을 안했을 경우 데이터 처리를 해줘야한다.
+				workinghour.put("endtime", "퇴근정보없음");
+			}else {
+				workinghour.put("endtime", list.get(i).getEndtime());	
+			}
+			
 			workinghour.put("workingday", list.get(i).getWorkday());
 			
+			int worksecond =0;
+			if(null!=list.get(i).getEndtime()) {
+				worksecond = timesecondparsing(list.get(i).getStarttime(),list.get(i).getEndtime());
+				workinghour.put("worksecond", worksecond);
+			}else {
+				workinghour.put("worksecond", 0);
+			}
 			
-//			JSONObject workingdata = new JSONObject(); // json으로 보내기위한작업
-//			
-//			workingdata.put(list.get(i).getWorkday(), workinghour);
-						
+			//출근시간과 퇴근시간의 차를 구해서 초단위로 리턴하는 메서드
+			
+			
+			
+									
 			replydataArray.add(workinghour);
-			
-			/*
-			 * System.out.println(i+"번째 데이터");
-			 * System.out.println(list.get(i).getStarttime());
-			 * System.out.println(list.get(i).getEndtime());
-			 * System.out.println(list.get(i).getWorkday()+"\n");
-			 */
+						
 		}
 		System.out.println(replydataArray);
-		
-		
+				
 	return replydataArray;
+	}
+
+	private int timesecondparsing(String starttime, String endtime) {
+		
+		System.out.println("endtime = "+endtime);
+		System.out.println("starttime = "+starttime);
+		String starttimearr[] = starttime.split(":");
+		String endtimearr[] = endtime.split(":");
+		int usetimearr[] = new int[3];
+
+		int time = 0;
+		for (int j = 0; j < endtimearr.length; j++) {
+			usetimearr[j] = Integer.parseInt(endtimearr[j]) -Integer.parseInt(starttimearr[j]);
+		}
+		
+
+		time += usetimearr[0] * 3600;// 시
+		time += usetimearr[1] * 60;// 분
+		time += usetimearr[2];// 초
+		
+		return time;
 	}
 }

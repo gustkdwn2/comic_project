@@ -285,7 +285,7 @@ function employeedelete(employee_num){
 }
 
 function workhourcal(empname,empnum){	
-	alert(empname);
+	//alert(empname);
 	var url = "/managerpos/workhourcalendar";
 	posttourl(url,{'empname':empname,'empnum':empnum});
 	//alert(empname);	
