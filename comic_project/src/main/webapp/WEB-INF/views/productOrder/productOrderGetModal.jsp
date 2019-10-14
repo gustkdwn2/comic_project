@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- The ProductGet Modal -->
+<!-- The ProductOrderGet Modal -->
 <div class="modal" id="productOrderGet">
 	<div class="modal-dialog">
 		<div class="modal-content" align="center">
@@ -55,7 +55,7 @@
 		</div>
 	</div>
 </div>
-<!-- End ProductGet Modal -->
+<!-- End ProductOrderGet Modal -->
 
 <script type="text/javascript">
 	
