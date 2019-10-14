@@ -61,7 +61,6 @@ function validate() {
   var idCheck = 0;
   function checkId() {
       var inputed = $('#MEMBER_ID').val();
-      console.log(inputed);
       $.ajax({
           data : {
         	  MEMBER_ID : inputed
@@ -69,9 +68,9 @@ function validate() {
           url : "/member/MemberCheck",
           success : function(data) {
               if(inputed=="" && data=='0') {
-                  $(".auth-form-btn").prop("disabled", true);
-                  $(".auth-form-btn").css("background-color", "#aaaaaa");
-                  $("#MEMBER_ID").css("background-color", "#FFCECE");
+                  $(".auth-form-btn").prop("disabled", false);
+                  $(".auth-form-btn").css("background-color", "#4d83ff");
+                  $("#MEMBER_ID").css("background-color", "#FFFFFF");
                   idCheck = 0;
               } else if (data == '0') {
                   $("#MEMBER_ID").css("background-color", "#B0F6AC");

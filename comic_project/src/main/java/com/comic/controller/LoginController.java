@@ -134,6 +134,7 @@ public class LoginController {
 	//관리자 멤버 정보 수정
 	@PostMapping("/MemberModify")
 	public String MemberModify(MemberVO vo) {
+		System.out.println("나오나" + vo);
 		service.MemberModify(vo);
 		return "redirect:/member/MemberList";
 	}

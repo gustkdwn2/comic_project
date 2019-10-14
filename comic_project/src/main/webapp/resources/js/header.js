@@ -21,7 +21,6 @@ $('button[name=modifyBtn]').click(
 		});
 
 function memmodify() {
-	console.log("여기 들어옴?")
 	var membermodify = $("form[name=membermodify]").serialize();
 	$.ajax({
 		type : 'post',

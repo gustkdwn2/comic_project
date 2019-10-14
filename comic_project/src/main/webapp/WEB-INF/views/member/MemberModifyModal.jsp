@@ -23,25 +23,25 @@
 							<label>
 								<font style="vertical-align: inherit;">아이디</font>
 							</label>
-							<input name="MEMBER_ID_modify" id="MEMBER_ID_modify" readonly="readonly" class="form-control"/>
+							<input name="MEMBER_ID" id="MEMBER_ID_modify" readonly="readonly" class="form-control"/>
 						</div>
 						<div class="form-group">
 							<label>
 								<font style="vertical-align: inherit;">이름</font>
 							</label>
-							<input name="MEMBER_NAME_modify" id="MEMBER_NAME_modify" readonly="readonly" class="form-control">
+							<input name="MEMBER_NAME" id="MEMBER_NAME_modify" readonly="readonly" class="form-control">
 						</div>
 						<div class="form-group">
 							<label>
 								<font style="vertical-align: inherit;">이메일</font>
 							</label>
-							<input name="MEMBER_EMAIL_modify" id="MEMBER_EMAIL_modify" type="email" class="form-control">
+							<input name="MEMBER_EMAIL" id="MEMBER_EMAIL_modify" type="email" class="form-control">
 						</div>
 						<div class="form-group">
 							<label>
 								<font style="vertical-align: inherit;">핸드폰 번호</font>
 							</label>
-							<input name="MEMBER_PHONE_NUMBER_modify" id="MEMBER_PHONE_NUMBER_modify" type="tel" class="form-control">
+							<input name="MEMBER_PHONE_NUMBER" id="MEMBER_PHONE_NUMBER_modify" type="tel" class="form-control">
 						</div>
 						<div class="form-group" align="center">
 							<button type="submit" class="btn btn-info">수정</button>

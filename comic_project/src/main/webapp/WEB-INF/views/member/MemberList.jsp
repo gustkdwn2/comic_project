@@ -25,7 +25,7 @@
 											<th>이름</th>
 											<th>이메일</th>
 											<th>핸드폰번호</th>
-											<th class="no-sort">수정/삭제</th>
+											<th class="no-sort">수정</th>
 										</tr>
 									</thead>
 								</table>

@@ -11,17 +11,17 @@ $(document).ready(function(){
 	    serverSide: false,
 	    searching: true, // 검색 기능
 	    ajax : {
-	    	url : "/member/Data.json",
+	    	url : "/member/MemberData.json",
 	    	type : "get",
 	    	dataSrc: '',
 	    },
 	    aoColumns: [
-	    	{data: "MEMBER_ID"},
-	    	{data: "MEMBER_NAME"},
-	    	{data: "MEMBER_EMAIL"},
-	    	{data: "MEMBER_PHONE_NUMBER"},
+	    	{data: "member_ID"},
+	    	{data: "member_NAME"},
+	    	{data: "member_EMAIL"},
+	    	{data: "member_PHONE_NUMBER"},
             {
-                mData: "MEMBER_ID",
+                mData: "member_ID",
                 mRender: function (data, type, row) {
                     return "<button name ='membermodifyBtn' value=" + data +" type='button' class='btn btn-info' onclick='javascript:membermodifyBtn(value)'>수정</button> ";
                 }
@@ -50,10 +50,10 @@ function membermodifyBtn(MEMBER_ID) {
 	    url: "/member/MemberModify?MEMBER_ID="+MEMBER_ID,
 	    dataType : "json",
 	    success: function(data) {
-	    	$('#MEMBER_ID_modify').attr('value',data.MEMBER_ID);
-	    	$('#MEMBER_NAME_modify').attr('value',data.MEMBER_NAME);
-	    	$('#MEMBER_EMAI_modifyL').attr('value',data.MEMBER_EAMIL);
-	    	$('#MEMBER_PHONE_NUMBER_modify').attr('value',data.MEMBER_PHONE_NUMBER);
+	    	$('#MEMBER_ID_modify').attr('value',data.getModify['member_ID']);
+	    	$('#MEMBER_NAME_modify').attr('value',data.getModify['member_NAME']);
+	    	$('#MEMBER_EMAIL_modify').attr('value',data.getModify['member_EMAIL']);
+	    	$('#MEMBER_PHONE_NUMBER_modify').attr('value',data.getModify['member_PHONE_NUMBER']);
 	    	$('#MemberModifyModal').show();
 	    }
 	});

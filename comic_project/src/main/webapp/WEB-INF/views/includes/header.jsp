@@ -207,28 +207,28 @@
 							<form class="forms-sample" name="membermodify" method="post" autocomplete="off">
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">아이디</font>
-									</label> <input name="MEMBER_ID" id="MEMBER_ID" readonly="readonly"
+									</label> <input name="MEMBER_ID" id="HeaderMEMBER_ID" readonly="readonly"
 										class="form-control" value="${Memberlogin.MEMBER_ID}"/>
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">이름</font>
-									</label> <input name="MEMBER_NAME" id="MEMBER_NAME" readonly="readonly"
+									</label> <input name="MEMBER_NAME" id="HeaderMEMBER_NAME" readonly="readonly"
 										class="form-control" value="${Memberlogin.MEMBER_NAME}">
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">비밀번호</font>
-									</label> <input name="MEMBER_PWD" id="MEMBER_PWD" type="password"
+									</label> <input name="MEMBER_PWD" id="HeaderMEMBER_PWD" type="password"
 										class="form-control">
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">이메일</font>
-									</label> <input name="MEMBER_EMAIL" id="MEMBER_EMAIL" type="email"
+									</label> <input name="MEMBER_EMAIL" id="HeaderMEMBER_EMAIL" type="email"
 										class="form-control" value="${Memberlogin.MEMBER_EMAIL}">
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">핸드폰
 											번호</font>
-									</label> <input name="MEMBER_PHONE_NUMBER" id="MEMBER_PHONE_NUMBER"
+									</label> <input name="MEMBER_PHONE_NUMBER" id="HeaderMEMBER_PHONE_NUMBER"
 										type="tel" class="form-control" value="${Memberlogin.MEMBER_PHONE_NUMBER}">
 								</div>
 								<div class="form-group" align="center">
