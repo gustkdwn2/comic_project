@@ -14,9 +14,6 @@
 			<div class="modal-body">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">
-							<font style="vertical-align: inherit;">상품 재고 등록</font>
-						</h4>
 						<form onsubmit="return check();" class="forms-sample" action="/product/productRegister" method="post" autocomplete="off">
 							<div class="form-group row">
 								<label for="exampleInputUsername2" class="col-sm-3 col-form-label">

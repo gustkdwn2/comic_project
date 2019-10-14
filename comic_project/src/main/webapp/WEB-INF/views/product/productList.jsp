@@ -40,10 +40,7 @@
 										<c:forEach items="${productList}" var="product">
 											<tr>
 												<td><c:out value="${product.product_num}" /></td>
-												<td>
-													<a href='/product/productGet?product_num=<c:out value="${product.product_num}" />'><c:out
-													value="${product.product_name}" /></a>
-												</td>
+												<td><c:out value="${product.product_name}" /></td>
 												<td><c:out value="${product.product_price}" /></td>
 												<td><c:out value="${product.product_qty}" /></td>
 												<td><c:out value="${product.product_category}" /></td>
@@ -72,7 +69,7 @@
 
 	$(document).ready(function() {
 
-		$('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
+		$('#productTable').DataTable({ // 페이징 처리, 검색, show entries
 	    	pageLength: 10, //처음 페이지에 처리 개수
 	        bPaginate: true, // 페이징 기능
 	        bLengthChange: true,

@@ -19,9 +19,9 @@ public class SalesStatisticsVO {
 	private int productsales_order_price;
 	
 	
-//	ROOMSALES_NUM NUMBER NOT NULL, -- 방번호
-//	ROOMSALES_TOTALPRICE NUMBER NOT NULL,-- 방요금
-//	ROOMSALES_TIME DATE NOT NULL-- 시간
+//	ROOMSALES_NUM NUMBER NOT NULL, — 방번호
+//	ROOMSALES_TOTALPRICE NUMBER NOT NULL,— 방요금
+//	ROOMSALES_TIME DATE NOT NULL— 시간
 	
 	private int roomsales_num;
 	private int roomsales_totalprice;
