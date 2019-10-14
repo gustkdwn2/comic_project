@@ -3,6 +3,7 @@ package com.comic.service.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.comic.mapper.ProductMapper;
 import com.comic.model.ProductVO;
@@ -35,7 +36,8 @@ public class ProductServiceImple implements ProductService {
 	public boolean productModify(ProductVO vo) {
 		return mapper.productUpdate(vo) == 1;
 	}
-
+	
+	@Transactional
 	@Override
 	public void productRemove(int product_num) {
 		mapper.productDelete(product_num);
