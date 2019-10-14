@@ -64,7 +64,7 @@
 						</label>
 						<div class="form-group row">
 					        <div class="form-group uploadDiv">
-					            <input type="file" name='uploadFile'>
+					            <input type="file" name='uploadFile' id="uploadFile">
 					        </div>
 				        
 					        <div class='uploadResult'> 
@@ -137,8 +137,8 @@
 							</label>
 							<div class="col-sm-9">
 								<select id="book_status" class="form-control" name="book_status">
-		                            <option value="연재중"><font style="vertical-align: inherit;">연재중</font></option>
-		                            <option value="완결"><font style="vertical-align: inherit;">완결</font></option>
+		                            <option value="연재중">연재중</option>
+		                            <option value="완결">완결</option>
 	                            </select>
 							</div>
 						</div>
@@ -154,6 +154,7 @@
 	</div>
 </div>
 <!-- End BookRegister Modal -->
+
 <script type="text/javascript">
 
 	$(document).ready(function(e){
@@ -353,6 +354,7 @@
 	           targetLi.remove();
 	         }
 	    }); //$.ajax
+	    $("#uploadFile").val("");
 	   });
 	
 	});
