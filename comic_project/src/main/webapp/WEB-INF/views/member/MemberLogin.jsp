@@ -24,13 +24,10 @@
 
 <body>
   <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
-        <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+    <div class="col-lg-4 mx-auto">
+      <div class="auth-form-light text-left py-5 px-4 px-sm-5" style="background-color: RGB(215,215,216,.7); margin-top: 50px;">
               <div class="brand-logo">
-                <a href="javascript:home()" ><img src="/resources/images/comic_image.png" alt=""></a>
+                <a href="javascript:home()" ><img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px;"/></a>
               </div>
               <form class="pt-3" role="form" name="memberlogin" id="memberlogin" method="post" action="/member/MemberLoginPost" autocomplete="off">
                 <div class="form-group">
@@ -53,20 +50,15 @@
                   <a class="btn btn-warning btn- btn-lg font-weight-large auth-form-btn" 
                   	 style="width: 250px; margin-left: 20px; color: white;" href="/member/MemberRegister" >회원가입</a>
                 </div>
-             
-                <div class="mt-3">
-				  
-                </div>
-                
+                                
               </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- content-wrapper ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
+              
+     </div>
+    <!-- content-wrapper ends -->
   </div>
+  <!-- page-body-wrapper ends -->
+</div>
+
   <jsp:include page="PasswordModifyModal.jsp" />
   <!-- container-scroller -->
   <!-- plugins:js -->

@@ -22,60 +22,58 @@
 
 <body>
   <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
-        <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-			  <div class="brand-logo">
-                <a href="javascript:home()" ><img src="/resources/images/comic_image.png" alt=""></a>
-              </div>
-              <form class="pt-3" id="register" onsubmit="return validate();" action="/member/MemberRegister" method="post" autocomplete="off">
-                
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" 
-                  		id="MEMBER_ID" name="MEMBER_ID" placeholder="아이디" >
-                </div>
-                
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" 
-                  		id="MEMBER_PWD" name="MEMBER_PWD" placeholder="비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.">
-                </div>
-                
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="MEMBER_NAME" 
-                  		name="MEMBER_NAME" placeholder="이름" >
-                </div>
-                
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="MEMBER_EMAIL" 
-                  		name="MEMBER_EMAIL" placeholder="이메일" >
-                </div>
-                
-                <div class="form-group">
-                  <input type="tel" class="form-control form-control-lg" id="MEMBER_PHONE_NUMBER" 
-                  		name="MEMBER_PHONE_NUMBER" placeholder="핸드폰 번호 ***-****-**** 형식으로 입력해주세요" >
-                </div>
-                
-                <div class="mt-3">
-                  <button class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn" 
-                  		style="color: white;" type="submit">회원가입</button>
-                </div>
-                
-                <div class="text-center mt-4 font-weight-light">
-                   <a href="/member/MemberLogin" class="text-primary">로그인하러가기</a>
-                </div>
-              
-              </form>
+    <div class="col-lg-4 mx-auto">
+      <div class="auth-form-light text-left py-5 px-4 px-sm-5" style="background-color: RGB(215,215,216,.7); margin-top: 50px;">
+	    	
+	    	<div class="brand-logo">
+              <a href="javascript:home()" ><img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px;"/></a>
             </div>
-          </div>
-        </div>
+            
+            <form class="pt-3" id="register" onsubmit="return validate();" action="/member/MemberRegister" method="post" autocomplete="off">
+              
+              
+              <div class="form-group">
+                <input type="text" class="form-control form-control-lg"
+                		id="MEMBER_ID" name="MEMBER_ID" placeholder="아이디" >
+              </div>
+              
+              <div class="form-group">
+                <input type="password" class="form-control form-control-lg" 
+                		id="MEMBER_PWD" name="MEMBER_PWD" placeholder="비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.">
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control form-control-lg" id="MEMBER_NAME" 
+                		name="MEMBER_NAME" placeholder="이름" >
+              </div>
+              
+              <div class="form-group">
+                <input type="email" class="form-control form-control-lg" id="MEMBER_EMAIL" 
+                		name="MEMBER_EMAIL" placeholder="이메일" >
+              </div>
+              
+              <div class="form-group">
+                <input type="tel" class="form-control form-control-lg" id="MEMBER_PHONE_NUMBER" 
+                		name="MEMBER_PHONE_NUMBER" placeholder="핸드폰 번호 ***-****-**** 형식으로 입력해주세요" >
+              </div>
+              
+              <div class="mt-3">
+                <button class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn" 
+                		style="color: white;" type="submit">회원가입</button>
+              </div>
+              
+              <div class="text-center mt-4 font-weight-light">
+                 <a href="/member/MemberLogin" class="text-primary">로그인하러가기</a>
+              </div>
+            
+            </form>
+          
       </div>
-      <!-- content-wrapper ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
+    <!-- content-wrapper ends -->
   </div>
-  <!-- container-scroller -->
+  <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
   <!-- plugins:js -->
   <script src="/resources/vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
