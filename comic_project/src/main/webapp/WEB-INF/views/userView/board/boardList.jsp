@@ -10,7 +10,7 @@
 <title>코믹 서기 건의 게시판</title>
 </head>
 <body>
-      <!-- partial -->S
+      <!-- partial -->
       <div class="main-panel">
           <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
@@ -120,7 +120,7 @@
 						<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'> 
 						<input type='hidden' name='keyword' value='<c:out value="${ pageMaker.cri.keyword }"/>'>
 				   </form>
-				   <!-- hidden form -->
+				   <!--홈관련 hidden form -->
 				   <form id="operForm"></form>
            </div>
          </div>
@@ -131,7 +131,10 @@
             
 <script type="text/javascript">
 
-	var roomNum = "<c:out value='${roomNum}' />";
+	var roomNum = "<c:out value='${roomNum}'/>";
+	console.log("여기에 들어옴?");
+	console.log(roomNum);
+	
 	$(document)
 		.ready(
 				function(){
