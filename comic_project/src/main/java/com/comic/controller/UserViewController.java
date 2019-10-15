@@ -23,8 +23,10 @@ public class UserViewController {
 	
 	private UserOrderManegerService userOrderManegerService;
 	
+	
 	@PostMapping("/main")
-	public void mainView(@RequestParam("roomNum") int roomNum, final HttpSession session, Model model) {
+	public void mainView(@RequestParam(value="roomNum") int roomNum, final HttpSession session, Model model) {
+		System.out.println(roomNum);
 		session.setAttribute("roomNum", roomNum);
 		model.addAttribute("roomNum", session.getAttribute("roomNum"));
 	}

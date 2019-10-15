@@ -56,35 +56,29 @@ public class LoginController {
 	
 	// 멤버 로그인 페이지
 	@GetMapping("/MemberLogin")
-	public String MemberloginGET(@ModelAttribute("loginVO") LoginVO loginVO) {
+	public String MemberloginGET(@RequestParam(value="roomNum") int roomNum,@ModelAttribute("loginVO") LoginVO loginVO) {
 		return "/member/MemberLogin";
 	}
 	
 	// 멤버 로그인
 	@PostMapping("/MemberLoginPost")
 	public void MemberLoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
-
+		System.out.println("MemberLoginPost1");
 		MemberVO memberVO = service.memberLogin(loginVO);
-		System.out.println("멤버 로그인 포스트1");
 		if (memberVO == null) {
-			System.out.println("멤버 로그인 포스트2");
+			System.out.println("MemberLoginPost2");
 			return;
 		} else {
-			System.out.println("멤버 로그인 포스트3");
+			System.out.println("MemberLoginPost3");
 			boolean passMatch = passEncoder.matches(loginVO.getMEMBER_PWD(), memberVO.getMEMBER_PWD());
 			
 			if (!passMatch) {
-				System.out.println("멤버 로그인 포스트4");
+				System.out.println("MemberLoginPost4");
 				return;
 			} else {
-				System.out.println("멤버 로그인 포스트5");
+				System.out.println("MemberLoginPost5");
 				model.addAttribute("member", memberVO);
-
-				if (loginVO.isUseCookie()) {
-					int amount = 60 * 60 * 24 * 7;
-					Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
-					service.MemberkeepLogin(memberVO.getMEMBER_ID(), httpSession.getId(), sessionLimit);
-				}
+				System.out.println("MemberLoginPost6");
 			}
 		}
 	}

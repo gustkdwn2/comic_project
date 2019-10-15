@@ -50,7 +50,7 @@
                   <a class="btn btn-warning btn- btn-lg font-weight-large auth-form-btn" 
                   	 style="width: 47%; margin-left: 5%; color: white;" href="/member/MemberRegister" >회원가입</a>
                 </div>
-                                
+                
               </form>
               
      </div>

@@ -17,33 +17,37 @@ public class MemberAuthInterceptor extends HandlerInterceptorAdapter {
 
     // 페이지 요청 정보 저장
     private void saveDestination(HttpServletRequest request) {
+    	System.out.println("멤버 auth");
+    	System.out.println(request.getRequestURI());
+    	System.out.println(request.getQueryString());
         String uri = request.getRequestURI();
         String query = request.getQueryString();
         if (query == null || query.equals("null")) {
+        	System.out.println("멤버 auth:" + query);
             query = "";
         } else {
+        	System.out.println("멤버 auth222:" + query);
             query = "?" + query;
         }
-        System.out.println(request.getMethod());
         if (request.getMethod().equals("GET")) {
-        	System.out.println("GET으로 옴");
+        	System.out.println("멤버 auth GET");
             logger.info("destination : " + (uri + query));
             request.getSession().setAttribute("destination", uri + query);
         } else if(request.getMethod().equals("POST")){
-        	System.out.println("Post로옴");
-        	System.out.println("destination : " + (uri + query));
-        	logger.info("destination : " + (uri + query));
-            request.getSession().setAttribute("destination", uri + query);
+        	System.out.println("멤버 auth POST: " + uri);
+        	logger.info("destination : " + (uri));
+            request.getSession().setAttribute("destination", uri);
         }
-        
     }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+    	
+    	System.out.println("멤버 auth pre");
         HttpSession httpSession = request.getSession();
-
+        System.out.println("멤버 auth pre@@@@ : " + request.getSession());
         if (httpSession.getAttribute("Memberlogin") == null) {
+        	System.out.println("여기로오나?");
             saveDestination(request);
             response.sendRedirect("/member/MemberLogin");
             return false;
