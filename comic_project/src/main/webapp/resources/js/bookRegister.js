@@ -2,7 +2,7 @@ $(document).ready(function(e){
 	  
 	  var formObj = $("form[role='form']");
 	  
-	  $("button[name=registerBtn]").on("click", function(e){
+	  $("#RegisterSubmitBtn").on("click", function(e){
 
 	    
 	    e.preventDefault();
@@ -101,23 +101,23 @@ $(document).ready(function(e){
 	    
 	    if(fileSize >= maxSize){
 	      alert("파일 사이즈 초과");
-	      $("input[name='uploadFile']").val("");
+	      $("#uploadFileRegister").val("");
 	      return false;
 	    }
 	    
 	    if(!regex.test(fileName)){
 	      alert("해당 종류의 파일은 업로드할 수 없습니다.");
-	      $("input[name='uploadFile']").val("");
+	      $("#uploadFileRegister").val("");
 	      return false;
 	    }
 	    return true;
 	  }
 	  
-	  $("input[id='uploadFileRegister']").change(function(e){
+	  $("#uploadFileRegister").change(function(e){
 	
 	    var formData = new FormData();
 	    
-	    var inputFile = $("input[id='uploadFileRegister']");
+	    var inputFile = $("#uploadFileRegister");
 	    
 	    var files = inputFile[0].files;
 	    
@@ -161,7 +161,7 @@ $(document).ready(function(e){
 				str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 				str +" ><div>";
 				str += "<span> "+ obj.fileName+"</span>";
-				str += "<button type='button' data-file=\'"+fileCallPath+"\' "
+				str += "<button id='imageRemoveBtn' type='button' data-file=\'"+fileCallPath+"\' "
 				str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
 				str += "<img src='/display?fileName="+fileCallPath+"'>";
 				str += "</div>";
@@ -187,23 +187,47 @@ $(document).ready(function(e){
 	
 	  $(".uploadResultRegister").on("click", "button", function(e){
 		    
-	    console.log("delete file");
+		  console.log("delete file");
 	      
-	    var targetFile = $(this).data("file");
-	    var type = $(this).data("type");
-	    
-	    var targetLi = $(this).closest("li");
-	    
-	    $.ajax({
-	      url: '/deleteFile',
-	      data: {fileName: targetFile, type:type},
-	      dataType:'text',
-	      type: 'POST',
-	        success: function(result){
-	           targetLi.remove();
-	         }
-	    }); //$.ajax
-	    $("#uploadFile").val("");
-	   });
+		  var targetFile = $(this).data("file");
+		  var type = $(this).data("type");
+		  var targetLi = $(this).closest("li");
+		  console.log(targetFile);
+		  console.log(type);
+		  console.log(targetLi);
+		  $.ajax({
+			  url: '/deleteFile',
+			  data: {fileName: targetFile, type:type},
+			  dataType:'text',
+			  type: 'POST',
+			  success: function(result){
+				  targetLi.remove();
+			  }
+		  }); //$.ajax
+		  $("#uploadFileRegister").val("");
+	  });
+	  
+	  $("#bookRegisterCloseBtn").click(function() {
+	      if($("#imageRemoveBtn").data("file") != null) {
+			  var targetFile = $("#imageRemoveBtn").data("file");
+			  var type = $("#imageRemoveBtn").data("type");
+			  var targetLi = $("#imageRemoveBtn").closest("li");
+			  console.log(targetFile);
+			  console.log(type);
+			  console.log(targetLi);
+			  $.ajax({
+				  url: '/deleteFile',
+				  data: {fileName: targetFile, type:type},
+				  dataType:'text',
+				  type: 'POST',
+				  success: function(result){
+					  targetLi.remove();
+				  }
+			  }); //$.ajax
+	      }
+		  $("#uploadFileRegister").val("");
+		  $("#bookRegister").find('form')[0].reset();
+		  $('#bookRegister').hide();
+	  });
 	
 });

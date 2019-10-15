@@ -19,7 +19,7 @@
 								<label for="exampleInputUsername1">
 									<font style="vertical-align: inherit;">상품 번호</font>
 								</label>
-								<input name="product_num" id="product_num_modify" readonly="readonly" class="form-control">
+								<input name="product_num" id="product_num_modify" readonly="readonly" class="form-control" value="">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputUsername1">
@@ -60,6 +60,7 @@
 <script type="text/javascript">
 
 	$("#modifyBtn").click(function() {
+		$("#productGet").find('form')[0].reset();
 		$("#productGet").hide();
 	});
 

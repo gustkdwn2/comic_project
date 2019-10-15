@@ -1,50 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<style>
-.uploadResultRegister {
-	width: 100%;
-	background-color: gray;
-}
-
-.uploadResultRegister ul {
-	display: flex;
-	flex-flow: row;
-	justify-content: center;
-	align-items: center;
-}
-
-.uploadResultRegister ul li {
-	list-style: none;
-	padding: 10px;
-}
-
-.uploadResultRegister ul li img {
-	width: 100px;
-}
-</style>
-
-<style>
-.bigPictureWrapper {
-  position: absolute;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  top:0%;
-  width:100%;
-  height:100%;
-  background-color: gray; 
-  z-index: 100;
-}
-
-.bigPicture {
-  position: relative;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>
-
 <!-- The BookRegister Modal -->
 <div class="modal" id="bookRegister">
 	<div class="modal-dialog">
@@ -59,20 +15,20 @@
 			<div class="card">
 				<div class="card-body" align="center">
 					<div class="form-group row">
-						<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
-							<font style="vertical-align: inherit;">책 이미지</font>
-						</label>
-						<div class="form-group row">
-					        <div class="form-group uploadDiv">
-					            <input type="file" name='uploadFile' id="uploadFileRegister">
-					        </div>
-				        
-					        <div class='uploadResultRegister'> 
-					        	<ul>
-					          
-					        	</ul>
-					        </div>
-				    	</div>
+							<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
+								<font style="vertical-align: inherit;">책 이미지</font>
+							</label>
+							<div class="form-group row">
+						        <div class="form-group uploadDiv">
+						            <input type="file" name='uploadFile' id="uploadFileRegister">
+						        </div>
+					        
+						        <div class='uploadResultRegister'> 
+						        	<ul>
+						          
+						        	</ul>
+						        </div>
+					    	</div>
 					</div>
 					<form class="forms-sample" action="/book/bookRegister" role="form" method="post" autocomplete="off">
 						<div class="form-group row">
@@ -112,7 +68,7 @@
 								<font style="vertical-align: inherit;">책 소개</font>
 							</label>
 							<div class="col-sm-9">
-								<textarea class="form-control" rows="6" name="book_content"></textarea>
+								<textarea class="form-control" rows="6" name="book_content" required></textarea>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -136,16 +92,16 @@
 								<font style="vertical-align: inherit;">연재상태</font>
 							</label>
 							<div class="col-sm-9">
-								<select id="book_status" class="form-control" name="book_status">
+								<select id="book_status_register" class="form-control" name="book_status">
 		                            <option value="연재중">연재중</option>
 		                            <option value="완결">완결</option>
 	                            </select>
 							</div>
 						</div>
-						<button name="registerBtn" type="submit" class="btn btn-primary mr-2">
+						<button id="RegisterSubmitBtn" type="submit" class="btn btn-primary mr-2">
 							<font style="vertical-align: inherit;">등록</font>
 						</button>
-						<button data-dismiss="modal" type="button" class="btn btn-success">닫기</button>
+						<button id="bookRegisterCloseBtn" type="button" class="btn btn-success">닫기</button>
 					</form>
 				</div>
 			</div>
@@ -153,6 +109,29 @@
 		</div>
 	</div>
 </div>
+
+<style>
+.uploadResultRegister {
+	width: 100%;
+	background-color: gray;
+}
+
+.uploadResultRegister ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResultRegister ul li {
+	list-style: none;
+	padding: 10px;
+}
+
+.uploadResultRegister ul li img {
+	width: 100px;
+}
+</style>
 <!-- End BookRegister Modal -->
 
 <!-- <script type="text/javascript">

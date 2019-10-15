@@ -1,5 +1,9 @@
 $(document).ready(function(){
 	
+	$("#bookRegisterBtn").click(function() {
+		$("#bookRegister").show();
+	});
+	
 	$('#bookTable').DataTable({ // 페이징 처리, 검색, show entries
 		pageLength: 10, //처음 페이지에 처리 개수
 	    bPaginate: true, // 페이징 기능
@@ -41,7 +45,7 @@ $(document).ready(function(){
 	    "columnDefs": [{
 	        targets: 'no-sort',
 	        orderable: false,
-	        targets: [0,4],
+	        targets: 4,
 	        render: function ( data, type, row ) {
 	            return data.substr( 0, 10 ) + "...";
 	        }
@@ -82,15 +86,48 @@ function bookModify(book_name) {
 	    dataType : "json",
 	    success: function(data) {
     	    
-	    	$('#book_nameGet').attr('value',data.book_name);
-	    	$('#book_locGet').attr('value',data.book_loc);
-	    	$('#book_publisherGet').attr('value',data.book_publisher);
-	    	$('#book_writerGet').attr('value',data.book_writer);
-	    	$('#book_contentGet').attr('value',data.book_content);
-	    	$('#book_categoryGet').attr('value',data.book_category);
-	    	$('#book_lastbookGet').attr('value',data.book_lastbook);
-	    	$('#book_statusGet').attr('value',data.book_status);
-	    	$('#productGet').show();
+	    	$('#book_name_get').attr('value',data.book_name);
+	    	$('#book_loc_get').attr('value',data.book_loc);
+	    	$('#book_publisher_get').attr('value',data.book_publisher);
+	    	$('#book_writer_get').attr('value',data.book_writer);
+	    	$('#book_content_get').val(data.book_content);
+	    	$('#book_category_get').attr('value',data.book_category);
+	    	$('#book_lastbook_get').attr('value',data.book_lastbook);
+	    	
+			$.getJSON("/book/getAttachList", {book_name: book_name}, function(arr){
+		    
+				console.log(arr);
+
+				var str="";
+
+				$(arr).each(function(i, attach){
+			    	//image type
+			    	if(attach.fileType){
+			            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+			            
+			            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
+			            str +=" data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+			            str += "<span> "+ attach.fileName+"</span>";
+			            str += "<button id='imageGetBtn' type='button' data-file=\'"+fileCallPath+"\' data-type='image' "
+			            str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+			            str += "<img src='/display?fileName="+fileCallPath+"'>";
+			            str += "</div>";
+			            str +"</li>";
+					}else{
+			            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
+			            str += "data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+			            str += "<span> "+ attach.fileName+"</span><br/>";
+			            str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' "
+			            str += " class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+			            str += "<img src='/resources/img/attach.png'></a>";
+			            str += "</div>";
+			    		str +"</li>";
+			    	}
+			    });
+				$(".uploadResultGet ul").html(str);
+			});
+	    	
+	    	$('#bookGet').show();
 	    	
 	    }
 	});

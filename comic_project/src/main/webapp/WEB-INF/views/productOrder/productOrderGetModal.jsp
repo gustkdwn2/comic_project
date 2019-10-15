@@ -60,6 +60,7 @@
 <script type="text/javascript">
 	
 	$("#productOrderGetBtn").click(function() {
+		$("#productOrderGet").find('form')[0].reset();
 		$("#productOrderGet").hide();
 	});
 

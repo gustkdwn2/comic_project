@@ -17,8 +17,8 @@
 						<div class="card-body">
 							<p class="card-title">책 재고</p>
 							<div class="table-responsive" style="overflow: hidden;">
-								<button data-toggle="modal" data-target="#bookRegister" type="button" class="btn btn-secondary" 
-								style="margin-bottom: 10px;" data-backdrop="static" data-keyboard="false">책 등록</button>
+								<button id="bookRegisterBtn" type="button" class="btn btn-secondary" 
+								style="margin-bottom: 10px;">책 등록</button>
 								
 								<table id="bookTable" class="table  table-striped">
 									<thead>
@@ -27,7 +27,7 @@
 											<th>책위치</th>
 											<th>책출판사</th>
 											<th>책 저자</th>
-											<th style="width: 10px;">책 소개</th>
+											<th>책 소개</th>
 											<th>책 분류</th>
 											<th>마지막권</th>
 											<th>연재상태</th>
@@ -45,19 +45,8 @@
 	</div>
 	
 	<jsp:include page="bookRegisterModal.jsp" />
-	<%-- <jsp:include page="bookGetModal.jsp" /> --%>
-	<script src="/resources/js/bookTable.js" ></script>
-	<script src="/resources/js/bookScript.js" ></script>
-</body>
-<!-- <script type="text/javascript">
-
-	function remove() {
-
-		if(!confirm("삭제 하시겠습니까?")){
-			return false;
-		}
-		return true;
-	}
-	
-</script> -->
+	<jsp:include page="bookGetModal.jsp" />
+	<script src="/resources/js/bookTable.js?ver=10" ></script>
+	<script src="/resources/js/bookRegister.js?ver=3" ></script>
+	<script src="/resources/js/bookGet.js?ver=3" ></script>
 </html>
