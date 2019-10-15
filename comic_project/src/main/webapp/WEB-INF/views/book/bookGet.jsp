@@ -321,25 +321,4 @@
 	width: 100px;
 }
 </style>
-
-<style>
-.bigPictureWrapper {
-  position: absolute;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  top:0%;
-  width:100%;
-  height:100%;
-  background-color: gray; 
-  z-index: 100;
-}
-
-.bigPicture {
-  position: relative;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>
 </html>
