@@ -2,25 +2,62 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- partial:partials/_sidebar.html -->
+
+<style type="text/css">
+ul{list-style:none;}
+#sidebar ul ul {display :none;}
+
+</style>
+
+<script type="text/javascript">
+
+	$('#sidebar > ul > li > a').on('click', function(){
+		 
+	    var element = $(this).parent('li');
+	
+	    //현재의 하위 메뉴 접음
+	    if(element.hasClass('open')){
+
+	        element.removeClass('open');
+	        element.find('li').removeClass('open');
+	        element.find('ul').slideUp();
+	    }
+	    //하위 메뉴 펼침
+	    else{
+	        element.addClass('open');
+	        element.children('ul').slideDown();
+	        
+	 }	 
+
+</script>
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
+			
 				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="/">
-							<i class="mdi mdi-home menu-icon"></i> <span class="menu-title">Home</span>
-					</a></li>
-					<!-- <li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-						aria-controls="ui-basic"> <i
-							class="mdi mdi-circle-outline menu-icon"></i> <span
-							class="menu-title">UI Elements</span> <i class="menu-arrow"></i>
-					</a>
-						<div class="collapse" id="ui-basic">
-							<ul class="nav flex-column sub-menu">
+
+					<li class="nav-item open"><a class="nav-link" href="#"> 
+					<i class="mdi mdi-file-document-box-outline menu-icon"></i> 
+					<span class="menu-title">재고</span></a>
+							
+							<ul>
 								<li class="nav-item"><a class="nav-link"
-									href="/resources/pages/ui-features/buttons.html">Buttons</a></li>
+									href="/product/productList"> <i
+									class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+										class="menu-title">상품 재고</span>
+								</a></li>
+								
 								<li class="nav-item"><a class="nav-link"
-									href="/resources/pages/ui-features/typography.html">Typography</a></li>
+									href="/book/bookList"> <i
+									class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+										class="menu-title">책 재고</span>
+								
+								</a></li>
 							</ul>
-						</div></li> -->
+					</li>
+								
+					<li class="nav-item"><a class="nav-link" href="/">
+							<i class="mdi mdi-home menu-icon"></i> <span class="menu-title">임의 창</span>
+					</a></li>
+					
 					<li class="nav-item"><a class="nav-link"
 					href="/managerpos/managerpos"> <i
 							class="mdi mdi-grid-large menu-icon"></i> <span
@@ -67,16 +104,8 @@
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">회원 관리</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/product/productList"> <i
-						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">상품 재고</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/book/bookList"> <i
-						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">책 재고</span>
-					</a></li>
+	
+
 					<li class="nav-item"><a class="nav-link"
 						href="/userOrderManager/orderManager"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span

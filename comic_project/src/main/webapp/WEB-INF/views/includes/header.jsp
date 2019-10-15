@@ -70,6 +70,7 @@
 			}
 		});
 	}
+	
 </script>
 
 </body>
@@ -79,6 +80,7 @@
 </head>
 
 <body>
+
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
 		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -86,25 +88,28 @@
 				<div
 					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
 
-					<a class="navbar-brand brand-logo" href=""><img
-						src="/resources/images/logo.svg" alt="logo" /></a> <a
-						class="navbar-brand brand-logo-mini" href=""><img
-						src="/resources/images/logo-mini.svg" alt="logo" /></a>
+					<a class="navbar-brand brand-logo" href="/erp?">
+					<img src="/resources/images/comic_image.png" alt="" style="width: 70px; height: 30px;"/></a>
+					<a class="navbar-brand brand-logo" href="/erp?">
+					<img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 100px; height: 15px;"/></a>
 
 					<button class="navbar-toggler navbar-toggler align-self-center"
 						type="button" data-toggle="minimize">
 						<span class="mdi mdi-sort-variant"></span>
 					</button>
 				</div>
+				<!-- hidden form -->
+				<form id="operForm2"></form>
 			</div>
-			<div
-				class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+			
+			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 				<ul class="navbar-nav navbar-nav-right">
-					<li class="nav-item dropdown mr-1"><a
-						class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-						id="messageDropdown" href="#" data-toggle="dropdown"> <i
-							class="mdi mdi-message-text mx-0"></i> <span class="count"></span>
-					</a>
+<!-- 					<li class="nav-item dropdown mr-1">
+						<a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+							id="messageDropdown" href="#" data-toggle="dropdown"> 
+							<i class="mdi mdi-message-text mx-0"></i> <span class="count"></span>
+						</a>
+						
 						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 							aria-labelledby="messageDropdown">
 							<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
@@ -143,7 +148,10 @@
 										Upcoming board meeting</p>
 								</div>
 							</a>
-						</div></li>
+						</div>
+					</li> -->
+					
+					<!-- 알림 아이콘 -->
 					<li class="nav-item dropdown mr-4"><a
 						class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown"
 						id="notificationDropdown" href="#" data-toggle="dropdown"> <i
@@ -186,7 +194,10 @@
 										days ago</p>
 								</div>
 							</a>
-						</div></li>
+						</div>
+					</li>
+					<!-- 알림 아이콘 끝 -->
+	
 					<c:if test="${not empty Memberlogin}">
 						<li class="nav-item nav-profile dropdown"><a
 							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
@@ -216,6 +227,9 @@
 					</c:if>
 					
 				</ul>
+				
+				
+				
 				<button
 					class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
 					type="button" data-toggle="offcanvas">

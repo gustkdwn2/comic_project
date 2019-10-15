@@ -46,9 +46,9 @@
                 
                 <div class="mt-3">
                   <button class="btn btn-warning btn- btn-lg font-weight-large auth-form-btn" 
-                  		  style="width: 250px; color: white;" id="login">로그인</button>
+                  		  style="width: 47%; color: white;" id="login">로그인</button>
                   <a class="btn btn-warning btn- btn-lg font-weight-large auth-form-btn" 
-                  	 style="width: 250px; margin-left: 20px; color: white;" href="/member/MemberRegister" >회원가입</a>
+                  	 style="width: 47%; margin-left: 5%; color: white;" href="/member/MemberRegister" >회원가입</a>
                 </div>
                                 
               </form>
