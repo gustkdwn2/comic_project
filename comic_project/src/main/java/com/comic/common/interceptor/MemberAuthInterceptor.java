@@ -24,11 +24,18 @@ public class MemberAuthInterceptor extends HandlerInterceptorAdapter {
         } else {
             query = "?" + query;
         }
-
-        if (request.getMethod().equals("Get")) {
+        System.out.println(request.getMethod());
+        if (request.getMethod().equals("GET")) {
+        	System.out.println("GET으로 옴");
             logger.info("destination : " + (uri + query));
             request.getSession().setAttribute("destination", uri + query);
+        } else if(request.getMethod().equals("POST")){
+        	System.out.println("Post로옴");
+        	System.out.println("destination : " + (uri + query));
+        	logger.info("destination : " + (uri + query));
+            request.getSession().setAttribute("destination", uri + query);
         }
+        
     }
 
     @Override

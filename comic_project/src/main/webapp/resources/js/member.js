@@ -8,10 +8,13 @@ var pw = document.getElementById("MEMBER_PWD");
 var pw2 = document.getElementById("MEMBER_PWD_Check");
 var name = document.getElementById("MEMBER_NAME")
 var email = document.getElementById("MEMBER_EMAIL");
-var phone = document.getElementById("MEMBER_PHONE_NUMBER");
+var phone,phone2,phone3,phone4;
 
 function validate() {
-      
+	  phone1 = $('#MEMBER_PHONE_NUMBER1').val();
+	  phone2 = $('#MEMBER_PHONE_NUMBER2').val();
+	  phone3 = $('#MEMBER_PHONE_NUMBER3').val();
+	  phone4 = phone1 + "-" + phone2 + "-" + phone3;
       if(id.value=="") {
     	  alert("아이디를 입력해 주세요");
           id.focus();
@@ -48,7 +51,7 @@ function validate() {
           return false;
       }
       
-      if(!check(regExp, phone, "적합하지 않은 번호 형식입니다.")) {
+      if(!check(regExp, phone4, "적합하지 않은 번호 형식입니다.")) {
     	  return false;
       }
   }
@@ -58,9 +61,16 @@ function validate() {
           return true;
       }
       alert(message);
+      if(what===phone4){
+    	  $('#MEMBER_PHONE_NUMBER1').val('');
+    	  $('#MEMBER_PHONE_NUMBER2').val('');
+    	  $('#MEMBER_PHONE_NUMBER3').val('');
+    	  $('#MEMBER_PHONE_NUMBER1').focus();
+      } else {
       what.value = "";
       what.focus();
-      //return false;
+      }
+      return false;
   }
   
   var idCheck = 0;
@@ -94,4 +104,16 @@ function validate() {
 		} else {
 			$('#pwdCheckMessage').html('비밀번호가 서로 일치하지 않습니다.');
 		}
+	}
+  
+  var roomNum = "<c:out value='${roomNum}'/>";
+  console.log(roomNum);
+
+  function home(){
+		var operForm = $("#operForm");
+
+		operForm.append("<input type='hidden' name='roomNum' value='" + roomNum + "'>");
+		operForm.attr("method", "post");
+		operForm.attr("action","/userView/main");
+		operForm.submit();
 	}

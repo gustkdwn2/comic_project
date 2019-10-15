@@ -65,16 +65,19 @@ public class LoginController {
 	public void MemberLoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
 
 		MemberVO memberVO = service.memberLogin(loginVO);
-		
+		System.out.println("멤버 로그인 포스트1");
 		if (memberVO == null) {
+			System.out.println("멤버 로그인 포스트2");
 			return;
 		} else {
+			System.out.println("멤버 로그인 포스트3");
 			boolean passMatch = passEncoder.matches(loginVO.getMEMBER_PWD(), memberVO.getMEMBER_PWD());
 			
 			if (!passMatch) {
+				System.out.println("멤버 로그인 포스트4");
 				return;
 			} else {
-
+				System.out.println("멤버 로그인 포스트5");
 				model.addAttribute("member", memberVO);
 
 				if (loginVO.isUseCookie()) {
@@ -111,7 +114,6 @@ public class LoginController {
 	// 멤버 관리 페이지 멤버 정보 뿌리기
 	@GetMapping("/MemberData")
 	public ResponseEntity<List<MemberVO>> memberData() {
-		System.out.println(service.MemberGetList());
 		return new ResponseEntity<List<MemberVO>>(service.MemberGetList(), HttpStatus.OK);
 	}
 	
@@ -146,7 +148,6 @@ public class LoginController {
 	//멤버 정보 삭제
 	@PostMapping("/MemberRemove")
 	public String MemberRemove(@RequestParam("removeBtn") String MEMBER_ID) {
-		System.out.println("컨트롤러옴?");
 		service.MemberRemove(MEMBER_ID);
 		return "redirect:/member/MemberList";
 	}
@@ -160,10 +161,8 @@ public class LoginController {
 	@GetMapping("/MemberCheck")
 	@ResponseBody
     public int idCheck(MemberVO vo,ModelAndView mav) {
-        System.out.println("Controller.idCheck() 호출");
         int result=0;
         MemberVO member=service.getMember(vo);
-        System.out.println(member);
         if(member!=null) result=1;
         else System.out.println("아이디사용가능");
         return result;

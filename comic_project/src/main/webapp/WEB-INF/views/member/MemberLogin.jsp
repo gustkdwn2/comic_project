@@ -31,11 +31,11 @@
               </div>
               <form class="pt-3" role="form" name="memberlogin" id="memberlogin" method="post" action="/member/MemberLoginPost" autocomplete="off">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="MEMBER_ID" 
+                  <input type="text" class="form-control form-control-lg" id="login_MEMBER_ID" 
                   		 name="MEMBER_ID" placeholder="아이디를 입력하세요" autofocus required="required">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="MEMBER_PWD" 
+                  <input type="password" class="form-control form-control-lg" id="login_MEMBER_PWD" 
                   		 name="MEMBER_PWD" placeholder="비밀번호를 입력하세요" required="required">
                 </div>
                 
@@ -46,9 +46,9 @@
                 
                 <div class="mt-3">
                   <button class="btn btn-warning btn- btn-lg font-weight-large auth-form-btn" 
-                  		  style="width: 250px; color: white;" id="login">로그인</button>
+                  		  style="width: 47%; color: white;" id="login">로그인</button>
                   <a class="btn btn-warning btn- btn-lg font-weight-large auth-form-btn" 
-                  	 style="width: 250px; margin-left: 20px; color: white;" href="/member/MemberRegister" >회원가입</a>
+                  	 style="width: 47%; margin-left: 5%; color: white;" href="/member/MemberRegister" >회원가입</a>
                 </div>
                                 
               </form>

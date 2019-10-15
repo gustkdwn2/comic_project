@@ -26,12 +26,13 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
         HttpSession httpSession = request.getSession();
         ModelMap modelMap = modelAndView.getModelMap();
         Object memberVO =  modelMap.get("member");      
-
+        System.out.println("인터셉터 vovovovovovovo :" + memberVO);
         if (memberVO != null) {
-        	System.out.println(memberVO);
+        	System.out.println("인터셉터 vo :" + memberVO);
             log.info("new login success");
             httpSession.setAttribute(LOGIN, memberVO);
             Object destination = httpSession.getAttribute("destination");
+            System.out.println("destination: " + destination);
 			response.sendRedirect(destination != null ? (String) destination : "/");
 
 //            if (request.getParameter("useCookie") != null) {
@@ -53,7 +54,8 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
     //Controller 실행전에 실행
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+    	
+    	System.out.println("memberlogininterceptor prehandle 실행");
         HttpSession httpSession = request.getSession();
         // 기존의 로그인 정보 제거
         if (httpSession.getAttribute(LOGIN) != null) {
