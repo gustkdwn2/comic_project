@@ -25,7 +25,7 @@ public class ProductController {
 	private ProductService service;
 	
 	@GetMapping("/productList")
-	public void productGetList(Model model) {
+	public void productGetList() {
 	}
 	
 	@GetMapping("/productData")

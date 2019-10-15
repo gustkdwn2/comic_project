@@ -27,7 +27,7 @@
 											<th>책위치</th>
 											<th>책출판사</th>
 											<th>책 저자</th>
-											<th>책 소개</th>
+											<th style="width: 10px;">책 소개</th>
 											<th>책 분류</th>
 											<th>마지막권</th>
 											<th>연재상태</th>
@@ -45,7 +45,7 @@
 	</div>
 	
 	<jsp:include page="bookRegisterModal.jsp" />
-	<%-- <jsp:include page="bookGetModal.jsp" /> --%>
+	<jsp:include page="bookGetModal.jsp" />
 	<script src="/resources/js/bookTable.js"></script>
 </body>
 <!-- <script type="text/javascript">

@@ -9,7 +9,7 @@ import com.comic.model.EmployeeVO;
 import com.comic.service.MemberService;
 
 @Controller
-public class LoginContoroller {
+public class EmpLoginController {
 	
 	@Autowired
 	MemberService service;

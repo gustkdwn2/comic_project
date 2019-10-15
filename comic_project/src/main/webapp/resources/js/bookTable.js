@@ -40,7 +40,11 @@ $(document).ready(function(){
 	    },
 	    "columnDefs": [{
 	        targets: 'no-sort',
-	        orderable: false
+	        orderable: false,
+	        targets: [0,4],
+	        render: function ( data, type, row ) {
+	            return data.substr( 0, 10 ) + "...";
+	        }
 	    }],
 	    
 	    order: [[0, 'desc']]
@@ -78,14 +82,14 @@ function bookModify(book_name) {
 	    dataType : "json",
 	    success: function(data) {
     	    
-	    	$('#book_name').attr('value',data.book_name);
-	    	$('#book_loc').attr('value',data.book_loc);
-	    	$('#book_publisher').attr('value',data.book_publisher);
-	    	$('#book_writer').attr('value',data.book_writer);
-	    	$('#book_content').attr('value',data.book_content);
-	    	$('#book_category').attr('value',data.book_category);
-	    	$('#book_lastbook').attr('value',data.book_lastbook);
-	    	$('#book_status').attr('value',data.book_status);
+	    	$('#book_nameGet').attr('value',data.book_name);
+	    	$('#book_locGet').attr('value',data.book_loc);
+	    	$('#book_publisherGet').attr('value',data.book_publisher);
+	    	$('#book_writerGet').attr('value',data.book_writer);
+	    	$('#book_contentGet').attr('value',data.book_content);
+	    	$('#book_categoryGet').attr('value',data.book_category);
+	    	$('#book_lastbookGet').attr('value',data.book_lastbook);
+	    	$('#book_statusGet').attr('value',data.book_status);
 	    	$('#productGet').show();
 	    	
 	    }

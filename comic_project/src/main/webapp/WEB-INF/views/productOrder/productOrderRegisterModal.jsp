@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- The ProductRegister Modal -->
+<!-- The ProductOrderRegister Modal -->
 <div class="modal" id="productOrderRegister">
 	<div class="modal-dialog">
 		<div class="modal-content" align="center">
@@ -57,4 +57,4 @@
 		</div>
 	</div>
 </div>
-<!-- End ProductRegister Modal -->
+<!-- End ProductOrderRegister Modal -->

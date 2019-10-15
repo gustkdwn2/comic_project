@@ -30,7 +30,7 @@ public class BookController {
 	private BookService service;
 	
 	@GetMapping("/bookList")
-	public void bookGetList(Model model) {
+	public void bookGetList() {
 		/* model.addAttribute("bookList", service.bookGetList()); */
 	}
 	
@@ -41,6 +41,7 @@ public class BookController {
 	
 	@GetMapping("/bookGet")
 	public @ResponseBody BookVO bookGet(@RequestParam("book_name") String book_name) {
+		System.out.println("컨트롤러 bookGet 들어옴");
 		return service.bookGet(book_name);
 	}
 	

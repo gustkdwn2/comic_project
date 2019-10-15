@@ -14,7 +14,14 @@
 
 
 <!-- Bootstrap Core CSS -->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
+
+<link rel="stylesheet"
+	href="/resources/vendors/base/vendor.bundle.base.css">
+<link rel="stylesheet"
+	href="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="/resources/css/style.css">
 
 <!-- Custom Fonts -->
 <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,12 +36,27 @@
 
 <!-- Plugin JavaScript -->
 <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/resources/vendors/base/vendor.bundle.base.js"></script>
+<script src="/resources/vendors/chart.js/Chart.min.js"></script>
+<script src="/resources/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<link rel="stylesheet" href="/resources/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="/resources/vendors/base/vendor.bundle.base.css">
+<link rel="stylesheet"href="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
 
 <!-- Custom scripts for this template -->
 <script src="/resources/js/stylish-portfolio.min.js"></script>
+<script src="/resources/js/off-canvas.js"></script>
+<script src="/resources/js/hoverable-collapse.js"></script>
+<script src="/resources/js/template.js"></script>
+<script src="/resources/js/dashboard.js"></script>
+<script src="/resources/js/data-table.js"></script>
+<script src="/resources/js/jquery.dataTables.js"></script>
+<script src="/resources/js/dataTables.bootstrap4.js"></script>
 
 <!-- Custom CSS -->
 <link href="/resources/css/stylish-portfolio.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/resources/css/style.css">
 
 
 </head>

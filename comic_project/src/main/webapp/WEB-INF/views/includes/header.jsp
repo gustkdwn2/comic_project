@@ -27,8 +27,7 @@
 <script src="/resources/vendors/base/vendor.bundle.base.js"></script>
 <script src="/resources/vendors/chart.js/Chart.min.js"></script>
 <script src="/resources/vendors/datatables.net/jquery.dataTables.js"></script>
-<script
-	src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 <script src="/resources/js/off-canvas.js"></script>
 <script src="/resources/js/hoverable-collapse.js"></script>
 <script src="/resources/js/template.js"></script>
