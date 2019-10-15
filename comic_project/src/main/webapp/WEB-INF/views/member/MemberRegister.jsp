@@ -27,32 +27,45 @@
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <div class="brand-logo">
-                <img src="/resources/images/logo.svg" alt="logo">
+			  <div class="brand-logo">
+                <a href="javascript:home()" ><img src="/resources/images/comic_image.png" alt=""></a>
               </div>
               <form class="pt-3" id="register" onsubmit="return validate();" action="/member/MemberRegister" method="post" autocomplete="off">
+                
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="MEMBER_ID" name="MEMBER_ID" placeholder="ID" >
+                  <input type="text" class="form-control form-control-lg" 
+                  		id="MEMBER_ID" name="MEMBER_ID" placeholder="아이디" >
                 </div>
+                
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="MEMBER_PWD" name="MEMBER_PWD" placeholder="Password">
-                  <a style="color: gray; font-size: 10px;" >* 비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.</a>
+                  <input type="password" class="form-control form-control-lg" 
+                  		id="MEMBER_PWD" name="MEMBER_PWD" placeholder="비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.">
                 </div>
+                
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="MEMBER_NAME" name="MEMBER_NAME" placeholder="Name">
+                  <input type="text" class="form-control form-control-lg" id="MEMBER_NAME" 
+                  		name="MEMBER_NAME" placeholder="이름" >
                 </div>
+                
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="MEMBER_EMAIL" name="MEMBER_EMAIL" placeholder="Email">
+                  <input type="email" class="form-control form-control-lg" id="MEMBER_EMAIL" 
+                  		name="MEMBER_EMAIL" placeholder="이메일" >
                 </div>
+                
                 <div class="form-group">
-                  <input type="tel" class="form-control form-control-lg" id="MEMBER_PHONE_NUMBER" name="MEMBER_PHONE_NUMBER" placeholder="Phone">
+                  <input type="tel" class="form-control form-control-lg" id="MEMBER_PHONE_NUMBER" 
+                  		name="MEMBER_PHONE_NUMBER" placeholder="핸드폰 번호 ***-****-**** 형식으로 입력해주세요" >
                 </div>
+                
                 <div class="mt-3">
-                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">회원가입</button>
+                  <button class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn" 
+                  		style="color: white;" type="submit">회원가입</button>
                 </div>
+                
                 <div class="text-center mt-4 font-weight-light">
                    <a href="/member/MemberLogin" class="text-primary">로그인하러가기</a>
                 </div>
+              
               </form>
             </div>
           </div>
@@ -73,6 +86,19 @@
   <!-- endinject -->
   
   <script type="text/javascript">
+
+  var roomNum = "<c:out value='${roomNum}'/>";
+  console.log(roomNum);
+
+  function home(){
+		var operForm = $("#operForm");
+
+		operForm.append("<input type='hidden' name='roomNum' value='" + roomNum + "'>");
+		operForm.attr("method", "post");
+		operForm.attr("action","/userView/main");
+		operForm.submit();
+	}
+	
   function validate() {
       var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드가 적합한지 검사할 정규식
       var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;  // 이메일이 적합한지 검사할 정규식
