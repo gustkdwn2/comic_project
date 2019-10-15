@@ -52,6 +52,18 @@ public class ManagementServiceImpl implements ManagementService {
 		// TODO Auto-generated method stub
 		managementMapper.managerleavework(empnum,leaveworkday);
 	}
+
+	@Override
+	public List<EmployeeVO> getempdata(String empnum) {
+		// TODO Auto-generated method stub
+		return managementMapper.getempdata(empnum);
+	}
+
+	@Override
+	public void employeeModify(EmployeeVO vo) {
+		managementMapper.employeeModify(vo);
+		
+	}
 	
 	
 

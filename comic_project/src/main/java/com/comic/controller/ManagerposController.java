@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.comic.model.EmployeeVO;
 import com.comic.model.ProductVO;
 import com.comic.model.RoomuseVO;
 import com.comic.model.WorkrecordVO;
@@ -214,10 +215,39 @@ public class ManagerposController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "getempdata", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<Object> getempdata( @RequestBody HashMap<String, Object> map,Model model// 배열 받기 traditional: true
+	) {
+		//
+		JSONArray jsonArray = new JSONArray(); // object 타입
+
+		String empnum = jsonArray.fromObject(map.get("list")).get(0).toString();
+		System.out.println("empnum = "+empnum);
+		
+		List<EmployeeVO> empdata = managementService.getempdata(empnum); //해당달의 출근기록을 list로 가져옴
+		
+		JSONArray replydataArray = new JSONArray();// json으로 보내기 위한 작업
+		for (int i = 0; i < empdata.size(); i++) {
+			
+			JSONObject emp = new JSONObject(); // json으로 보내기위한작업
+			
+			emp.put("employee_name", empdata.get(i).getEMPLOYEE_NAME());
+			emp.put("employee_phone", empdata.get(i).getEMPLOYEE_PHONE());
+			emp.put("employee_account", empdata.get(i).getEMPLOYEE_ACCOUNT());
+			emp.put("employee_position", empdata.get(i).getEMPLOYEE_POSITION());
+			emp.put("employee_pay", empdata.get(i).getEMPLOYEE_PAY());
+			emp.put("employee_pwd", empdata.get(i).getEMPLOYEE_PWD());
+			
+			replydataArray.add(emp);
+		}
+		System.out.println(replydataArray);
+		return replydataArray;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "getempworkrecord", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<Object> getempworkrecord(@RequestBody HashMap<String, Object> map,Model model// 배열 받기 traditional: true
 	) {
-		
 		System.out.println("getempworkrecord오긴옴");
 		JSONArray jsonArray = new JSONArray(); //object 타입
 		// roomuse_id, roomuse_num,roomuse_status
@@ -256,14 +286,10 @@ public class ManagerposController {
 			
 			//출근시간과 퇴근시간의 차를 구해서 초단위로 리턴하는 메서드
 			
-			
-			
-									
 			replydataArray.add(workinghour);
 						
 		}
 		System.out.println(replydataArray);
-				
 	return replydataArray;
 	}
 
@@ -287,4 +313,12 @@ public class ManagerposController {
 		
 		return time;
 	}
+	
+	 @PostMapping("/EmployeeModify")
+	   public String EmployeeRegister(EmployeeVO vo,Model model) {
+		 managementService.employeeModify(vo);
+		 model.addAttribute("managerList", managementService.managerList()); // 재고테이블
+		return "/younghak/Manager_management";
+	      
+	   }
 }

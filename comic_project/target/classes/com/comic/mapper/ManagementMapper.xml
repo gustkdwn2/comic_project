@@ -10,6 +10,11 @@
 		select * from comic_employee order by employee_num
 	</select>
 	
+	<select id="getempdata"
+		resultType="com.comic.model.EmployeeVO">
+		select * from comic_employee where employee_num=#{empnum}
+	</select>
+	
 	<delete id="deletemng">
 	delete from comic_employee where employee_pwd=#{emppwd} and employee_num=#{mngnum}
 	</delete>
@@ -35,6 +40,13 @@
 	<update id="managerleavework">
 	update comic_workinghour set workinghour_endtime=sysdate where workingHour_emp_num=#{empnum}
 	and TO_CHAR(workinghour_workday,'yymmdd')= #{leaveworkday}
+	</update>
+	
+	<update id="employeeModify">
+	update COMIC_EMPLOYEE set employee_name=#{EMPLOYEE_NAME},employee_pwd=#{EMPLOYEE_PWD}
+	,employee_phone=#{EMPLOYEE_PHONE}
+	,employee_account=#{EMPLOYEE_ACCOUNT},employee_position=#{EMPLOYEE_POSITION},
+	employee_pay=#{EMPLOYEE_PAY} where employee_num=#{EMPLOYEE_NUM}
 	</update>
 	
 	
