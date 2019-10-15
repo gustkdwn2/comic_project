@@ -35,7 +35,7 @@
 <script src="/resources/js/data-table.js"></script>
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
-<script src="/resources/js/header.js"></script>
+<script src="/resources/js/header.js?ver=9"></script>
 
 </body>
 
@@ -159,7 +159,7 @@
 						</a>
 							<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 								aria-labelledby="profileDropdown">
-								<a class="dropdown-item" data-toggle="modal" href="#MemberModifyModal2"> <i
+								<a class="dropdown-item" onclick='javascript:headermembermodifyBtn()'> <i
 									class="mdi mdi-settings text-primary"></i> 회원정보
 								</a> <a class="dropdown-item" href="${path}/member/MemberLogout">
 									<i class="mdi mdi-logout text-primary"></i> 로그아웃
@@ -188,7 +188,7 @@
 				</button>
 			</div>
 		</nav>
-		<div class="modal" id="MemberModifyModal2">
+		<div class="modal" id="headerMemberModifyModal">
 			<div class="modal-dialog">
 				<div class="modal-content" align="center">
 
@@ -203,7 +203,7 @@
 							<h4 class="card-title">
 								<font style="vertical-align: inherit;">회원 정보</font>
 							</h4>
-							<form class="forms-sample" name="membermodify" method="post" autocomplete="off">
+							<form class="forms-sample" name="headermembermodify" method="post" autocomplete="off" action="/member/MemberModify2">
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">아이디</font>
 									</label> <input name="MEMBER_ID" id="HeaderMEMBER_ID" readonly="readonly"
@@ -231,8 +231,8 @@
 										type="tel" class="form-control" value="${Memberlogin.MEMBER_PHONE_NUMBER}">
 								</div>
 								<div class="form-group" align="center">
-									<button type="button" id="membermodifyBtn" name="membermodifyBtn" class="btn btn-info" onclick="memmodify();">수정</button>
-									<button type="button" id="modifyclose" class="btn btn-success" data-dismiss="modal">닫기</button>
+									<button type="submit" id="headermodifyBtn" name="headermodifyBtn" class="btn btn-info"">수정</button>
+									<button type="button" id="headermodifyclose" class="btn btn-success">닫기</button>
 								</div>
 							</form>
 						</div>

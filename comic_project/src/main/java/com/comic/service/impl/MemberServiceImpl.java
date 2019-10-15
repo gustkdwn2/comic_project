@@ -90,17 +90,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void MemberModify2(HttpServletResponse response, MemberVO vo) throws Exception {
+	public void MemberModify2(MemberVO vo) throws Exception {
 		password = vo.getMEMBER_PWD();
 		vo.setMEMBER_PWD(passwordEncoder.encode(password));
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
 		mapper.MemberUpdate2(vo);
-		out.print("회원정보 수정이 완료되었습니다.");
-		out.close();
 	}
-
-
 
 	@Override
 	public void EmployeekeepLogin(int EMPLOYEE_NUM, String sessionId, Date sessionLimit) throws Exception {

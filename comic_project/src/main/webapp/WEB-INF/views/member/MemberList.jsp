@@ -37,6 +37,6 @@
 		</div>
 	</div>
 	<jsp:include page="MemberModifyModal.jsp" />
-	<script src="/resources/js/memberlist.js"></script>
+	<script src="/resources/js/memberlist.js?ver=14"></script>
 </body>
 </html>

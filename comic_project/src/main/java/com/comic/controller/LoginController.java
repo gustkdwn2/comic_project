@@ -134,15 +134,13 @@ public class LoginController {
 	//관리자 멤버 정보 수정
 	@PostMapping("/MemberModify")
 	public String MemberModify(MemberVO vo) {
-		System.out.println("나오나" + vo);
 		service.MemberModify(vo);
 		return "redirect:/member/MemberList";
 	}
 	
 	@PostMapping("/MemberModify2")
-	public void MemberModify2(MemberVO vo, HttpServletResponse response) throws Exception {
-		System.out.println("MemberModify2"+vo);
-		service.MemberModify2(response,vo);
+	public void MemberModify2(MemberVO vo) throws Exception {
+		service.MemberModify2(vo);
 	}
 	
 	//멤버 정보 삭제

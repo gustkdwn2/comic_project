@@ -57,8 +57,10 @@ function membermodifyBtn(MEMBER_ID) {
 	    	$('#MemberModifyModal').show();
 	    }
 	});
-	
-	$('#modifyclose_modify').click(function(){
-    	$('#MemberModifyModal').hide();
-    });
 }
+
+$('#modifyclose_modify').click(function(){
+	$('#MemberModifyModal').hide();
+	$('#MemberModifyModal').find('form')[0].reset();
+});
+

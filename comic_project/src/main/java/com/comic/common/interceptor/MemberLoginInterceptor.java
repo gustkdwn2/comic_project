@@ -31,7 +31,8 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
         	System.out.println(memberVO);
             log.info("new login success");
             httpSession.setAttribute(LOGIN, memberVO);
-            response.sendRedirect("/");
+            Object destination = httpSession.getAttribute("destination");
+			response.sendRedirect(destination != null ? (String) destination : "/");
 
 //            if (request.getParameter("useCookie") != null) {
 //                logger.info("remember me...");
@@ -44,8 +45,6 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
 //            }
 //
 //			
-//			  Object destination = httpSession.getAttribute("destination");
-//			  response.sendRedirect(destination != null ? (String) destination : "/");
 //			 
         }
 
@@ -56,14 +55,11 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         HttpSession httpSession = request.getSession();
-        System.out.println("preHandle 실행");
         // 기존의 로그인 정보 제거
         if (httpSession.getAttribute(LOGIN) != null) {
-        	System.out.println("preHandle 안에 if 실행");
             log.info("clear login data before");
             httpSession.removeAttribute(LOGIN);
         }
-
         return true;
     }
 }
