@@ -199,18 +199,6 @@
 
 
 </body>
-<script type="text/javascript">
-	
-	/* $(document).ready(function(){
-		var actionForm = $("#actionForm");
-			$(".move").on("click", function(e){
-						e.preventDefault();
-						actionForm.append("<input type='hidden' name='BOARD_NUM' value='" +$(this).attr("href")+ "'>");
-						actionForm.attr("action", "/CustomerCenter/boardGet");
-						actionForm.submit();	
-			});
-	}); */
-	
-</script>
+
 
 </html>

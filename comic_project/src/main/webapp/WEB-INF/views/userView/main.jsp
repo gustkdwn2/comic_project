@@ -17,7 +17,8 @@
 					<h1 style="color:white;">${ roomNum } 번방 홈 &emsp;&emsp; 02:15:39</h1>
 				</div> 
 				<div style="width: 600px; height: 100px; float: right; color:#f4e362; margin-top:60px; font-size: 20px;">
-				 회원 수정 &emsp; 회원탈퇴 &emsp;</div>
+				 회원 수정 
+				</div>
 				<br/><br/>
 			</div>
 			<div class="container">
