@@ -10,14 +10,13 @@
 <title>코믹 서기 건의 게시판</title>
 </head>
 <body>
-      <!-- partial -->
+      <!-- partial -->S
       <div class="main-panel">
           <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card-body" style="margin-top:50px; margin-left:150px;">
                  <h2 class=".h2"><a href="javascript:home()">홈</a> > 건의 게시판</h2> 
-                  <h2 class=".h2">건의 게시판</h2>
-                  
+                                
 				    <form class="form-inline" action="/userView/board/boardList" 
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
 				    		<select name="type" class="form-control">
