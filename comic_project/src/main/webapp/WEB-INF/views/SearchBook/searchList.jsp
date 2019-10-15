@@ -202,8 +202,7 @@ tr{margin-bottom:5px;}
 <script type="text/javascript">
 
 	var roomNum = "<c:out value='${roomNum}'/>";
-	console.log("여기에 들어옴?");
-	console.log(roomNum);
+	console.log(roomNum+" roomNum!!!!!");
 	
 	$(document).ready(function(){
 		
