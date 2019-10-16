@@ -2,16 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="../includes/header.jsp"%>
-<%@ include file="../includes/sidebar.jsp"%>
-
+<%@ page session="false"%>
+<%@ include file="../../includes/userHeader.jsp"%>
       <!-- partial -->
       <div class="main-panel">
-        <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
+                <div class="card-body" style="margin-top:50px; margin-left:150px;">
                   <h2 class=".h2">건의 게시판</h2><br/>
                   <div class="table-responsive">
                     <table class="table" style="border:1px solid #f3f3f3;" >
@@ -35,29 +32,6 @@
 				
 			 			<!-- 댓글 입력 -->		
 			 			
-						<tr>
-						
-							<td height="50" width = "1000" colspan="6">
-							<div id='cmntInsert'>
-								
-								<div class="form-group" style="float: left;">
-									<input type="hidden" name="cmnt_id" value="zizi" >
-									<input type="hidden" name="board_num" value="${board.board_num}" >
-				                    <textarea class="form-control" name="cmnt_content" id="cmnt_content "placeholder="댓글을 입력하세요" 
-				                      		  rows="5" style="width:1370px"></textarea>
-			                    </div>
-			                    
-			                    <div class="form-group" style="float: right;">
-				                    <button type="button" class="btn btn-primary mr-2" 
-				                     		id="cIstBtn" style="width:110px">댓글쓰기</button><br/><br/>
-				                    
-				                    <button type="reset" class="btn btn-outline-secondary" style="width:110px">Cancel</button>
-			                    </div>
-			                    
-							</div>
-							
-							</td>
-						</tr>
                     
                 		<!-- 끝 댓글 입력 끝  -->
                 
@@ -98,7 +72,7 @@
 		            </table>     
 		            
 		            
-		            <form id='operForm' action="/CustomerCenter/BoardModify" method="get">
+		            <form id='operForm' action="/userView/board/BoardModify" method="get">
 					  <input type='hidden' id='board_num' name='board_num' value='<c:out value="${board.board_num}"/>'>
 					  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 					  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
@@ -106,7 +80,7 @@
 					  <input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
 					</form>
 					
-					<form id='removeForm' action="/CustomerCenter/BoardRemove" method="post">
+					<form id='removeForm' action="/userView/board/BoardRemove" method="post">
 					  <input type='hidden' id='board_num' name='board_num' value='<c:out value="${board.board_num}"/>'>
 					</form>
 		            
@@ -116,9 +90,7 @@
               </div>
             </div>
          </div>
-       </div>
-     </div>
-     <div style="font: "></div>
+
 
 <script type="text/javascript" src="/resources/js/comments.js"></script>
             
@@ -141,10 +113,8 @@
 		for (var i = 0, len = data.length || 0; i < len; i++) {
 			 str += '<div style="margin-bottom: 10px; height:190px; background-color:#DAE8E8; border-radius: 20px; width:1500px;"><br/>';
 			 str += '<div style="margin-left:40px; float:left; width:40px; height:40px; background-color:white; border-radius: 50%; font-weight:bold;"></br>&emsp;'+data[i].cmnt_num+'</div>';
-			 str += '<div style="height:20px; font-size:20px; margin-left:100px;">'+'작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date);
-	   		 str +=	'&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="updateCmntForm('+data[i].cmnt_num+',\''+data[i].cmnt_content+'\');">수정</button>'; 
-  			 str += '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="commentDelete('+data[i].cmnt_num+')">삭제</button></div><br/><br/>';
-  			 str +=	'<div style="background-color:white; border-radius: 20px; height:110px; width:1400px; margin-left:40px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>&emsp;&emsp;'+data[i].cmnt_content+'</div>';
+			 str += '<div style="height:20px; font-size:20px; margin-left:100px;">'+'작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date)+'</div>';
+  			 str +=	'<br/><br/><div style="background-color:white; border-radius:20px; height:110px; margin-left:40px; width:1400px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>&emsp;&emsp;'+data[i].cmnt_content+'</div>';
 	   		 str +=	'</div>';			
 
 		}
@@ -251,7 +221,7 @@
 	  
 	  $("button[data-oper='modBtn']").on("click", function(e){
 	    
-	    operForm.attr("action","/CustomerCenter/boardModify").submit();
+	    operForm.attr("action","/userView/board/boardModify").submit();
 	    
 	  });
 	  
@@ -259,7 +229,7 @@
 	  $("button[data-oper='listBtn']").on("click", function(e){
 	    
 	    operForm.find("#board_num").remove();
-	    operForm.attr("action","/CustomerCenter/boardList")
+	    operForm.attr("action","/userView/board/boardList")
 	    operForm.submit();
 	    
 	  });
@@ -268,7 +238,7 @@
 
 		if(confirm("게시물을 삭제하시겠습니까?")){
 
-			removeForm.attr("action", "/CustomerCenter/boardRemove").submit();
+			removeForm.attr("action", "/userView/board/boardRemove").submit();
 		
 		}else{
 
