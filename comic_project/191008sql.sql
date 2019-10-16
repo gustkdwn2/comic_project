@@ -41,6 +41,10 @@ CREATE TABLE COMIC_EMPLOYEE (
 
 select*From comic_employee;
 
+update comic_employee set employee_pay=8750;
+
+commit;
+
 select * from comic_employee order by employee_num;
 
 	select roomuse_id,roomuse_num,roomuse_status,to_char(roomuse_starttime,'hh24:mi:ss')
@@ -51,7 +55,7 @@ CREATE TABLE COMIC_PAY (
 --  PAY_NUM NUMBER, --급여번호
     PAY_EMP_NUM NUMBER, --직원번호
     PAY_DATE  DATE, -- 급여지급일
-    PAY_TOTALTIME NUMBER, -- 누적시간
+    PAY_TOTALTIME NUMBER, -- 누적시간(시분초에서 시로)
     CONSTRAINT COMIC_EMPLOYEE_NUM_FK FOREIGN KEY (PAY_EMP_NUM) 
     REFERENCES COMIC_EMPLOYEE (EMPLOYEE_NUM) ON DELETE CASCADE
 );
@@ -83,6 +87,17 @@ FROM comic_workinghour
 WHERE TO_CHAR(workinghour_workday, 'YYMMDD') = '191008' and workingHour_emp_num=1001;
 
 select*from comic_employee;
+
+select*from comic_employee where employee_num='1001';
+
+update COMIC_EMPLOYEE set employee_name='찬미',employee_pwd=4500
+	,employee_phone=1124
+	,employee_account=010554,employee_position='신입',
+	employee_pay=450 where employee_num=1005;
+    
+    commit;
+
+
 
 
 

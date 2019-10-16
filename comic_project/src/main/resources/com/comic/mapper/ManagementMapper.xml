@@ -15,6 +15,18 @@
 		select * from comic_employee where employee_num=#{empnum}
 	</select>
 	
+	<select id="selectworkmonth"
+		resultType="Integer">
+		select count(*) from comic_pay where PAY_EMP_NUM=#{empnum} and pay_workmonth=#{workmonth}
+	</select>
+	
+	<insert id="insertworkmonth">
+		insert into comic_pay 
+		(PAY_EMP_NUM,PAY_WORKMONTH,PAY_DATE) 
+		values(#{empnum},#{workmonth},( TO_DATE(#{payday},'yymmdd')))
+	</insert>
+	
+	
 	<delete id="deletemng">
 	delete from comic_employee where employee_pwd=#{emppwd} and employee_num=#{mngnum}
 	</delete>
@@ -40,6 +52,11 @@
 	<update id="managerleavework">
 	update comic_workinghour set workinghour_endtime=sysdate where workingHour_emp_num=#{empnum}
 	and TO_CHAR(workinghour_workday,'yymmdd')= #{leaveworkday}
+	</update>
+	
+	<update id="setmonthlypay">
+	update comic_pay set PAY_TOTALTIME=#{hour} where PAY_WORKMONTH=#{workmonth} 
+	and PAY_EMP_NUM=#{empnum}
 	</update>
 	
 	<update id="employeeModify">

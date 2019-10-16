@@ -495,6 +495,11 @@ body {
 			if (time.toString().length == 1) {
 				time = "0" + time;
 			}
+
+			if(time==null){
+			time=0;
+				}
+			
 			return time;
 		}
 

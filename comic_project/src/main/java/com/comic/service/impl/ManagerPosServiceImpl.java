@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.comic.mapper.ManagerPosMapper;
 import com.comic.model.RoomuseVO;
+import com.comic.model.TodaycommuteVO;
 import com.comic.service.ManagerPosService;
 
 import lombok.Setter;
@@ -32,6 +33,12 @@ public class ManagerPosServiceImpl implements ManagerPosService {
 	}
 	public List<RoomuseVO> roomuselist2() {		
 		return managerposMapper.roomuselist2();
+	}
+
+	@Override
+	public List<TodaycommuteVO> todaycommutelist(String todayformat) {
+		// TODO Auto-generated method stub
+		return managerposMapper.todaycommutelist(todayformat);
 	}
 
 

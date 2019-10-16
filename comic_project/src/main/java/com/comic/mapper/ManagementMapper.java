@@ -23,4 +23,11 @@ public interface ManagementMapper {
 	
 	
 	public void employeeModify(EmployeeVO vo);
+	
+	public int selectworkmonth(@Param("empnum")String empnum,@Param("workmonth") String workmonth);
+	
+	public void insertworkmonth(@Param("empnum")String empnum,@Param("workmonth")String workmonth,@Param("payday")String payday);
+	
+	public void setmonthlypay(@Param("empnum")String empnum, @Param("workmonth")String workmonth,@Param("hour") int hour);
+
 }

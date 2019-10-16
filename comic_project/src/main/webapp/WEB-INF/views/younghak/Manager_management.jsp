@@ -76,13 +76,12 @@
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5"> -->
 
-
-									<button type="button" id="AdminModal" class="btn btn-primary">직원
-										추가</button>
-									<br>
-									<br>
-									<div class="template-demo">
-										<div class="row">
+		<button type="button" id="AdminModal" class="btn btn-primary">직원
+			추가</button>
+		<br>
+		<br>
+		<div class="template-demo">
+			<div class="row">
 
 <c:forEach var="i" begin="1" end="${managerList.size()}"
 step="1">

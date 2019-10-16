@@ -158,7 +158,7 @@ td {
 	}
 
 	var workingempdata;
-	var worksecond_month = 1;
+	var worksecond_month = 0;
 	function ajaxtogetdb_empworkrecord(startday, endday, empnum) {
 
 		var list = [ startday, endday, empnum ];

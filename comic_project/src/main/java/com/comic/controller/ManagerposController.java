@@ -1,11 +1,11 @@
 package com.comic.controller;
 
-import java.io.PrintWriter;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.comic.model.EmployeeVO;
-import com.comic.model.ProductVO;
 import com.comic.model.RoomuseVO;
+import com.comic.model.TodaycommuteVO;
 import com.comic.model.WorkrecordVO;
 import com.comic.service.impl.ManagementServiceImpl;
 import com.comic.service.impl.ManagerPosServiceImpl;
@@ -188,19 +188,95 @@ public class ManagerposController {
 		}else if(recordcount==1){
 			managementService.managerleavework(empnum,format_time); //퇴근
 			System.out.println("퇴근 완료");
+			makecomic_pay(empnum);//퇴근기록으로 comic_pay테이블에 누적시간넣는 함수
 			model.addAttribute("succecssmsg", "퇴근완료"); // 재고테이블
 			return "/younghak/login";
 		}
-		
-			
-		//System.out.println("emppwd = "+emppwd+"\nmngnum = "+mngnum);
-		//managementService.deletemng(emppwd,mngnum);
-				
-		//model.addAttribute("managerList", "이거 아님"); // 재고테이블
-		
+	
 		return "/younghak/login";
 	}
 	
+	private void makecomic_pay(String empnum) {
+		SimpleDateFormat format = new SimpleDateFormat("yyMM");
+		String workmonth = format.format (System.currentTimeMillis());
+		int data = managementService.selectworkmonth(empnum,workmonth);
+		
+		if(data==0) {//오늘날짜를 기준으로 해당 달의  데이터가 없으면 월급지급일이랑 해당달의 데이터넣기
+			
+			DateFormat df = new SimpleDateFormat("yyMM10");
+			Calendar cal = Calendar.getInstance( );
+			cal.add ( cal.MONTH, + 1); //다음달
+			//cal.add ( cal.MONTH, -1 ); 이전달
+			//cal.set(Calendar.DAY_OF_MONTH,1); 해당 월의 1일로 변경
+			//System.out.println(df.format(cal.getTime()));
+			String payday =df.format(cal.getTime());
+			
+			managementService.insertworkmonth(empnum,workmonth,payday);
+			
+			cmltv_time(empnum,workmonth);//사번으로 근무달의  누적시간구하는함수
+			
+		}else if(data==1) {//오늘날짜를 기준으로 해당 달의 데이터가 있으면 누적시간구하기
+			
+			cmltv_time(empnum,workmonth);//사번으로 근무달의  누적시간구하는함수
+			
+		}
+		
+	}
+
+	private void cmltv_time(String empnum, String workmonth) {//누적시간이라는뜻
+		//누적시간구하는메서드
+		DateFormat df = new SimpleDateFormat("yyMMdd");
+		
+		Calendar cal = Calendar.getInstance( );
+		
+		cal.add (cal.MONTH,0); //이번달
+		cal.set(Calendar.DAY_OF_MONTH,1); //해당 월의 1일로 변경(ex.191001)
+		String firstday =df.format(cal.getTime());//thismonthfirstday
+		
+		cal.add ( cal.MONTH, + 1); //다음달
+		cal.set(Calendar.DAY_OF_MONTH,1); //다음 달의 첫번째 일로 변경(ex.191101)
+		String lastday =df.format(cal.getTime());//String thismonthlastday
+		
+		List<WorkrecordVO> list = mngCalendarService.workrecordmonth(firstday,lastday,empnum); //해당달의 출근기록을 list로 가져옴
+		
+		
+		int worktimearr[] = new int[3];
+		//worktimearr[0]=시 
+		//worktimearr[1]=분 
+		//worktimearr[2]=초 
+		
+		for (int i = 0; i < list.size(); i++) {
+			String starttime = list.get(i).getStarttime();
+			
+			if(list.get(i).getEndtime()!=null) {//퇴근기록이 없을수잇으므로 null인지 아닌지 처리를 해준다.
+				
+			String endtime = list.get(i).getEndtime();
+			
+			String starttimearr[] = starttime.split(":");
+			String endtimearr[] = endtime.split(":");
+			 
+			int time = 0;
+			for (int j = 0; j < endtimearr.length; j++) {
+				worktimearr[j] += Integer.parseInt(endtimearr[j]) -Integer.parseInt(starttimearr[j]);
+			}
+			}
+		}
+		System.out.println("worktimearr[0] = "+worktimearr[0]+"   sworktimearr[1] = "+worktimearr[1]+"   worktimearr[2] = "+worktimearr[2]);
+		int second=worktimearr[0]*3600+worktimearr[1]*60+worktimearr[2]; 
+		System.out.println("total sec="+second);
+		
+		worktimearr[0]=second/3600;//시
+		worktimearr[1]=second%3600/60;//분
+		worktimearr[2]=second%60;//초
+		
+		System.out.println("worktimearr[0] = "+worktimearr[0]+"  worktimearr[1] = "+worktimearr[1]+"  worktimearr[2] = "+worktimearr[2]);
+		int hour=worktimearr[0];
+		if(worktimearr[1]/30>=1) {
+			hour++;
+		}
+		managementService.setmonthlypay(empnum,workmonth,hour);
+	}
+
 	@RequestMapping(value = "workhourcalendar", method = { RequestMethod.GET, RequestMethod.POST })
 	public String workhourcalendar(@RequestParam("empname") String empname,
 			@RequestParam("empnum") String empnum,Model model) {
@@ -218,7 +294,7 @@ public class ManagerposController {
 	@RequestMapping(value = "getempdata", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<Object> getempdata( @RequestBody HashMap<String, Object> map,Model model// 배열 받기 traditional: true
 	) {
-		//
+		
 		JSONArray jsonArray = new JSONArray(); // object 타입
 
 		String empnum = jsonArray.fromObject(map.get("list")).get(0).toString();
@@ -294,7 +370,7 @@ public class ManagerposController {
 	}
 
 	private int timesecondparsing(String starttime, String endtime) {
-		
+		//시간을 초로 계산해서 반환
 		System.out.println("endtime = "+endtime);
 		System.out.println("starttime = "+starttime);
 		String starttimearr[] = starttime.split(":");
@@ -306,12 +382,45 @@ public class ManagerposController {
 			usetimearr[j] = Integer.parseInt(endtimearr[j]) -Integer.parseInt(starttimearr[j]);
 		}
 		
-
 		time += usetimearr[0] * 3600;// 시
 		time += usetimearr[1] * 60;// 분
 		time += usetimearr[2];// 초
 		
 		return time;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "gettodaycommute", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<Object> gettodaycommute() {
+		
+		SimpleDateFormat todaycommuteformat = new SimpleDateFormat ("yyMMdd");
+		String todayformat = todaycommuteformat.format (System.currentTimeMillis());
+		
+		List<TodaycommuteVO> list = managerposService.todaycommutelist(todayformat);
+		//List<RoomuseVO> list = managerposService.roomuselist2();
+
+		JSONArray replydataArray = new JSONArray();// json으로 보내기 위한 작업
+		
+		System.out.println("list size is = "+list.size());
+
+		for (int i = 0; i < list.size(); i++) {
+
+			JSONObject replydata = new JSONObject(); // json으로 보내기위한작업
+			
+			//list.get(i).setStarttime(String.valueOf(time));
+
+			replydata.put("starttime", list.get(i).getStarttime());
+			replydata.put("endtime", list.get(i).getEndtime());
+			replydata.put("empnum", list.get(i).getEmpnum());
+			replydata.put("empname", list.get(i).getEmpname());
+
+			replydataArray.add(replydata);
+
+		}
+		System.out.println(replydataArray);
+		return replydataArray;
+
 	}
 	
 	 @PostMapping("/EmployeeModify")
