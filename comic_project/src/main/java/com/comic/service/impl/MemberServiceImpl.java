@@ -1,7 +1,6 @@
 package com.comic.service.impl;
 
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
@@ -10,16 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import org.springframework.stereotype.Service;
 
 import com.comic.mapper.MemberMapper;
 import com.comic.model.EmployeeVO;
-
-
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
-
 import com.comic.service.MemberService;
 
 @Service
@@ -42,11 +37,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO memberLogin(LoginVO loginVO) throws Exception{
 		return mapper.memberLogin(loginVO);
-	}
-	
-	@Override
-	public void MemberkeepLogin(String MEMBER_ID, String sessionId, Date sessionLimit) throws Exception {
-		mapper.MemberkeepLogin(MEMBER_ID, sessionId, sessionLimit);
 	}
 	
 	@Override
@@ -93,6 +83,11 @@ public class MemberServiceImpl implements MemberService {
 		password = vo.getMEMBER_PWD();
 		vo.setMEMBER_PWD(passwordEncoder.encode(password));
 		mapper.MemberUpdate2(vo);
+	}
+	
+	@Override
+	public String membermodifypasswordcheck(String mEMBER_ID) {
+		return mapper.membermodifypasswordcheck(mEMBER_ID);
 	}
 
 	@Override

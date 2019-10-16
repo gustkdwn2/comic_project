@@ -105,15 +105,3 @@ function validate() {
 			$('#pwdCheckMessage').html('비밀번호가 서로 일치하지 않습니다.');
 		}
 	}
-  
-  var roomNum = "<c:out value='${roomNum}'/>";
-  console.log(roomNum);
-
-  function home(){
-		var operForm = $("#operForm");
-
-		operForm.append("<input type='hidden' name='roomNum' value='" + roomNum + "'>");
-		operForm.attr("method", "post");
-		operForm.attr("action","/userView/main");
-		operForm.submit();
-	}

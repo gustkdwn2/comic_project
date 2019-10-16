@@ -13,11 +13,6 @@
 		SELECT * FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
 	</select>
 	
-	<update id="MemberkeepLogin">
-		UPDATE COMIC_MEMBER SET SESSION_KEY = #{sessionId},
-		SESSION_LIMIT = #{sessionLimit} WHERE MEMBER_ID = #{MEMBER_ID}
-	</update>
-	
 	<select id="MemberGetList" resultType="com.comic.model.MemberVO">
 		SELECT * FROM COMIC_MEMBER
 	</select>
@@ -63,6 +58,10 @@
 	
 	<select id="getMember" resultType="com.comic.model.MemberVO">
 		SELECT * FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+	</select>
+	
+	<select id="membermodifypasswordcheck" resultType="String">
+		SELECT MEMBER_PWD FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
 	</select>
 	
 	<insert id="employeeInsert">

@@ -33,37 +33,49 @@
               
               
               <div class="form-group">
-              	<h5>아이디</h5>
+              	<label>
+					<font style="vertical-align: inherit;">아이디</font>
+				</label>
                 <input type="text" class="form-control form-control-lg"
                 		id="MEMBER_ID" name="MEMBER_ID" placeholder="아이디"  oninput="checkId();">
                 <h5 id="idCheckMessage" style="color: red;"></h5>
               </div>
               
               <div class="form-group">
-              	<h5>비밀번호</h5>
+              	<label>
+					<font style="vertical-align: inherit;">비밀번호</font>
+				</label>
                 <input type="password" class="form-control form-control-lg" 
                 		id="MEMBER_PWD" name="MEMBER_PWD" placeholder="비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.">
               </div>
               <div class="form-group">
-             	<h5>비밀번호확인</h5>
+             	<label>
+					<font style="vertical-align: inherit;">비밀번호확인</font>
+				</label>
                 <input type="password" class="form-control form-control-lg" 
                 		id="MEMBER_PWD_Check" name="MEMBER_PWD_Check" placeholder="비밀번호 확인" oninput="pwdCheck()">
               </div>
               <h5 id="pwdCheckMessage" style="color: red;"></h5>
               <div class="form-group">
-              	<h5>이름</h5>
+              	<label>
+					<font style="vertical-align: inherit;">이름</font>
+				</label>
                 <input type="text" class="form-control form-control-lg" id="MEMBER_NAME" 
                 		name="MEMBER_NAME" placeholder="이름" >
               </div>
               
               <div class="form-group">
-              	<h5>이메일</h5>
+              	<label>
+					<font style="vertical-align: inherit;">이메일</font>
+				</label>
                 <input type="email" class="form-control form-control-lg" id="MEMBER_EMAIL" 
                 		name="MEMBER_EMAIL" placeholder="이메일" >
               </div>
               
               <div class="form-group">
-              	<h5>핸드폰번호</h5>
+              	<label>
+					<font style="vertical-align: inherit;">핸드폰번호</font>
+				</label>
               	<div>
                 <input type="text" class="form-control form-control-lg" id="MEMBER_PHONE_NUMBER1" 
                 		name="MEMBER_PHONE_NUMBER1" style="display:inline;float:left; width: 30%" maxlength="3">

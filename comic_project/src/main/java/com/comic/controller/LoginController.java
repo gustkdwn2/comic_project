@@ -56,29 +56,25 @@ public class LoginController {
 	
 	// 멤버 로그인 페이지
 	@GetMapping("/MemberLogin")
-	public String MemberloginGET(@RequestParam(value="roomNum") int roomNum,@ModelAttribute("loginVO") LoginVO loginVO) {
+	public String MemberloginGET(@ModelAttribute("loginVO") LoginVO loginVO) {
 		return "/member/MemberLogin";
 	}
 	
 	// 멤버 로그인
 	@PostMapping("/MemberLoginPost")
 	public void MemberLoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
-		System.out.println("MemberLoginPost1");
 		MemberVO memberVO = service.memberLogin(loginVO);
+		model.addAttribute("roomNum", httpSession.getAttribute("roomNum"));
 		if (memberVO == null) {
-			System.out.println("MemberLoginPost2");
 			return;
 		} else {
-			System.out.println("MemberLoginPost3");
 			boolean passMatch = passEncoder.matches(loginVO.getMEMBER_PWD(), memberVO.getMEMBER_PWD());
 			
 			if (!passMatch) {
-				System.out.println("MemberLoginPost4");
 				return;
 			} else {
-				System.out.println("MemberLoginPost5");
 				model.addAttribute("member", memberVO);
-				System.out.println("MemberLoginPost6");
+				model.addAttribute("memberid", memberVO.getMEMBER_ID());
 			}
 		}
 	}
@@ -91,16 +87,8 @@ public class LoginController {
 		
 		Object object = httpSession.getAttribute("Memberlogin");
 		if (object != null) {
-			MemberVO membervo = (MemberVO) object;
 			httpSession.removeAttribute("Memberlogin");
 			httpSession.invalidate();
-			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-			if (loginCookie != null) {
-				loginCookie.setPath("/");
-				loginCookie.setMaxAge(0);
-				response.addCookie(loginCookie);
-				service.MemberkeepLogin(membervo.getMEMBER_ID(), "none", new Date());
-			}
 		}
 		return "/member/Logout";
 	}
@@ -116,8 +104,6 @@ public class LoginController {
 	public void memberGetList() {
 		
 	}
-	
-	
 	
 	// 멤버 모달창 띄우기
 	@GetMapping("/MemberModify")
@@ -135,8 +121,9 @@ public class LoginController {
 	}
 	
 	@PostMapping("/MemberModify2")
-	public void MemberModify2(MemberVO vo) throws Exception {
+	public String MemberModify2(MemberVO vo) throws Exception {
 		service.MemberModify2(vo);
+		return "redirect:/userView/main";
 	}
 	
 	//멤버 정보 삭제
@@ -160,7 +147,18 @@ public class LoginController {
         if(member!=null) result=1;
         else System.out.println("아이디사용가능");
         return result;
-    }	
+    }
+	// 멤버 헤더 회원수정 비밀번호 체크
+	@GetMapping("/MembermodifyCheck")
+	@ResponseBody
+	public int Membermodifypasswordcheck(@RequestParam("MEMBER_ID") String MEMBER_ID, @RequestParam("MEMBER_PWD") String MEMBER_PWD) {
+		int result = 0;
+		if(passEncoder.matches(MEMBER_PWD,service.membermodifypasswordcheck(MEMBER_ID))) {
+			result = 1;
+		}
+		return result;
+	}
+
 	//직원 추가 페이지 이동
 	@GetMapping("/EmployeeRegister")
 	public void EmployeeRegister() {

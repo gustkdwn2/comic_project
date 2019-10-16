@@ -35,7 +35,7 @@
 <script src="/resources/js/data-table.js"></script>
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
-<script src="/resources/js/header.js?ver=9"></script>
+<script src="/resources/js/header.js?ver=13"></script>
 
 </body>
 
@@ -188,6 +188,39 @@
 				</button>
 			</div>
 		</nav>
+		
+		<!-- headerMemberModifyPassword -->
+		<div class="modal" id="headerMemberModifyPasswordModal">
+			<div class="modal-dialog">
+				<div class="modal-content" align="center">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h3 class="modal-title">회원 정보</h3>
+					</div>
+					<!-- Modal body -->
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">
+								<font style="vertical-align: inherit;">회원 정보</font>
+							</h4>
+							<form>
+							<div class="form-group">
+								<label> <font style="vertical-align: inherit;">비밀번호 확인</font></label>
+								<input type="password" name="MEMBER_PWD" id="headerMemberModifyPassword" class="form-control">
+								<input type="hidden" id="headermemberhiddenid" value ="${Memberlogin.MEMBER_ID}">
+							</div>
+							<div class="form-group" align="center">
+								<button type="button" id="headerMemberModifyPasswordBtn" name="headerMemberModifyPasswordBtn" class="btn btn-info" onclick="headerMemberModifyPasswordCheck(headermemberhiddenid.value,headerMemberModifyPassword.value);">확인</button>
+								<button type="button" id="headerMemberModifyPasswordclose" class="btn btn-success">닫기</button>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- headerMemberModifyModal -->
 		<div class="modal" id="headerMemberModifyModal">
 			<div class="modal-dialog">
 				<div class="modal-content" align="center">
@@ -203,7 +236,7 @@
 							<h4 class="card-title">
 								<font style="vertical-align: inherit;">회원 정보</font>
 							</h4>
-							<form class="forms-sample" name="headermembermodify" method="post" autocomplete="off" action="/member/MemberModify2">
+							<form class="forms-sample" name="headermembermodify" method="post" autocomplete="off" action="/member/MemberModify2" onsubmit="return headervalidate();">
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">아이디</font>
 									</label> <input name="MEMBER_ID" id="HeaderMEMBER_ID" readonly="readonly"
@@ -231,13 +264,12 @@
 										type="tel" class="form-control" value="${Memberlogin.MEMBER_PHONE_NUMBER}">
 								</div>
 								<div class="form-group" align="center">
-									<button type="submit" id="headermodifyBtn" name="headermodifyBtn" class="btn btn-info"">수정</button>
+									<button type="submit" id="headermodifyBtn" name="headermodifyBtn" class="btn btn-info">수정</button>
 									<button type="button" id="headermodifyclose" class="btn btn-success">닫기</button>
 								</div>
 							</form>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>

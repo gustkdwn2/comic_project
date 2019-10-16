@@ -14,8 +14,6 @@ public interface MemberMapper {
 	public void memberInsert(MemberVO vo);
 	// 멤버 로그인
 	public MemberVO memberLogin(LoginVO loginVO);
-	// 멤버 로그인 유지 처리
-	public void MemberkeepLogin(String mEMBER_ID, String sessionId, Date sessionLimit);
 	// 멤버 관리 페이지
 	public List<MemberVO> MemberGetList();
 	// 멤버 모달창 값 전달
@@ -32,6 +30,8 @@ public interface MemberMapper {
 	public void MemberUpdate2(MemberVO vo);
 	// 멤버 회원가입 아이디 중복 체크
 	public MemberVO getMember(MemberVO vo);
+	// 멤버 헤더 회원수정 비밀번호 체크
+	public String membermodifypasswordcheck(String mEMBER_ID);
 	// 직원 회원가입
 	public void employeeInsert(EmployeeVO vo);
 	// 직원 로그인

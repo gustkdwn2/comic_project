@@ -1,3 +1,6 @@
+var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;  // 이메일이 적합한지 검사할 정규식
+var regExp = /^\d{3}-\d{3,4}-\d{4}$/; // 핸드폰번호 정규식
+
 $(document).ready(function(){
 	
 	$('#memberListTable').DataTable({ // 페이징 처리, 검색, show entries
@@ -23,6 +26,7 @@ $(document).ready(function(){
             {
                 mData: "member_ID",
                 mRender: function (data, type, row) {
+                	console.log(data);
                     return "<button name ='membermodifyBtn' value=" + data +" type='button' class='btn btn-info' onclick='javascript:membermodifyBtn(value)'>수정</button> ";
                 }
             }
@@ -57,10 +61,11 @@ function membermodifyBtn(MEMBER_ID) {
 	    	$('#MemberModifyModal').show();
 	    }
 	});
-}
+	$('#modifyclose_modify').click(function(){
+		$('#MemberModifyModal').hide();
+		$('#MemberModifyModal').find('form')[0].reset();
+	});
 
-$('#modifyclose_modify').click(function(){
-	$('#MemberModifyModal').hide();
-	$('#MemberModifyModal').find('form')[0].reset();
-});
+	
+}
 

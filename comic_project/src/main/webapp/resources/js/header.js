@@ -1,28 +1,74 @@
-function headermembermodifyBtn(){
-		var MEMBER_ID2 = 'aaaa';
-		$.ajax({
-			type : 'get',
-			url : "/member/MemberModify?MEMBER_ID=" + MEMBER_ID2,
-			success : function(data) {
-				$('#HeaderMEMBER_ID').attr('value',
-					data.getModify['member_ID']);
-				$('#HeaderMEMBER_NAME').attr('value',
-						data.getModify['member_NAME']);
-				$('#HeaderMEMBER_EMAIL').attr('value',
-						data.getModify['member_EMAIL']);
-				$('#HeaderMEMBER_PHONE_NUMBER').attr('value',
-						data.getModify['member_PHONE_NUMBER']);
-				$('#headerMemberModifyModal').show();
+function headermembermodifyBtn() {
+	$('#headerMemberModifyPasswordModal').show();
+	
+	$('#headerMemberModifyPasswordclose').click(function(){
+		$('#headerMemberModifyPasswordModal').hide();
+		$('#headerMemberModifyPasswordModal').find('form')[0].reset();
+	});
+}
+
+
+function headerMemberModifyPasswordCheck(MEMBER_ID,MEMBER_PWD){
+	$.ajax({
+		type : 'get',
+		url : "/member/MembermodifyCheck?MEMBER_ID=" + MEMBER_ID +"&MEMBER_PWD=" + MEMBER_PWD,
+		dataType : "json",
+		success : function(data) {
+			console.log(data);
+			if(data == 1){
+			$('#headerMemberModifyPasswordModal').hide();
+			$('#headerMemberModifyPasswordModal').find('form')[0].reset();
+			$.ajax({
+				type : 'get',
+				url : "/member/MemberModify?MEMBER_ID=" + MEMBER_ID,
+				success : function(data) {
+					$('#HeaderMEMBER_ID').attr('value',
+						data.getModify['member_ID']);
+					$('#HeaderMEMBER_NAME').attr('value',
+							data.getModify['member_NAME']);
+					$('#HeaderMEMBER_EMAIL').attr('value',
+							data.getModify['member_EMAIL']);
+					$('#HeaderMEMBER_PHONE_NUMBER').attr('value',
+							data.getModify['member_PHONE_NUMBER']);
+					$('#headerMemberModifyModal').show();
+				}
+			});
+			$('#headermodifyclose').click(function(){
+				$('#headerMemberModifyModal').hide();
+				$('#headerMemberModifyModal').find('form')[0].reset();
+			});
+			} else {
+				alert("비밀번호가 틀렸습니다.");
 			}
-		});
-};
+		}
+	});
+}
 
-$('#headermodifyclose').click(function(){
-	$('#headerMemberModifyModal').hide();
-	$('#headerMemberModifyModal').find('form')[0].reset();
-});
+//function headerMemberModifyPasswordBtn(MEMBER_ID){
+//		console.log("여기는 오는거임!");
+//		$.ajax({
+//			type : 'get',
+//			url : "/member/MemberModify?MEMBER_ID=" + MEMBER_ID,
+//			success : function(data) {
+//				$('#HeaderMEMBER_ID').attr('value',
+//					data.getModify['member_ID']);
+//				$('#HeaderMEMBER_NAME').attr('value',
+//						data.getModify['member_NAME']);
+//				$('#HeaderMEMBER_EMAIL').attr('value',
+//						data.getModify['member_EMAIL']);
+//				$('#HeaderMEMBER_PHONE_NUMBER').attr('value',
+//						data.getModify['member_PHONE_NUMBER']);
+//				$('#headerMemberModifyModal').show();
+//			}
+//		});
+//		$('#headermodifyclose').click(function(){
+//			$('#headerMemberModifyModal').hide();
+//			$('#headerMemberModifyModal').find('form')[0].reset();
+//		});
+//};
 
-function validate() {
+
+function headervalidate() {
 	var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드가 적합한지 검사할 정규식
 	var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; // 이메일이 적합한지 검사할 정규식
 	var regExp = /^\d{3}-\d{3,4}-\d{4}$/; // 핸드폰번호 정규식

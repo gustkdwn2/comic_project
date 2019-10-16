@@ -15,8 +15,6 @@ public interface MemberService {
 	public void memberRegister(MemberVO vo);
 	// 멤버 로그인
 	MemberVO memberLogin(LoginVO loginVO) throws Exception;
-	// 멤버 로그인 유지 처리
-	public void MemberkeepLogin(String MEMBER_ID, String sessionId, Date sessionLimit) throws Exception;
 	// 멤버 관리 페이지
 	public List<MemberVO> MemberGetList();
 	// 멤버 모달창 값 전달
@@ -31,6 +29,8 @@ public interface MemberService {
 	public void MemberModify2(MemberVO vo) throws Exception;
 	// 멤버 회원가입 아이디 중복 체크
 	public MemberVO getMember(MemberVO vo);
+	// 멤버 헤더 회원수정 비밀번호 체크
+	public String membermodifypasswordcheck(String mEMBER_ID);
 	// 직원 회원가입
 	public void employeeRegister(EmployeeVO vo);
 	// 직원 로그인
