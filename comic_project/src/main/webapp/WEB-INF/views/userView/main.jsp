@@ -7,7 +7,6 @@
 }
 </style>
 <body>
-
 	<!-- Header -->
 	<div class="main-penal">
 		<div class="content-wrapper">
@@ -113,16 +112,21 @@ $(document).ready(function(){
 	});
 
 	$("#billModalBtn").on("click", function(e){
-		/* $.ajax({
-			type:
-			url:
-			dataType:
+		$.ajax({
+			type: 'get',
+			url: '/userView/userBill?userId='+${Memberlogin.MEMBER_ID},
+			dataType: 'json',
 			success: function(data) {
-				
+				$('#productBill').attr('value',data.productBill);
 				
 				
 			}
-		}); */
+		});
+		
+		
+		$("#productBillModalBtn").click(function() {
+			$("#productBillModal").show();
+		});
 
 		$('#billModal').show();
 	});

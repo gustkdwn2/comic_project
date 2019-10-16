@@ -10,7 +10,7 @@ import com.comic.mapper.UserOrderManegerMapper;
 import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
-import com.comic.model.ProductVO;
+import com.comic.model.UserBillVO;
 import com.comic.service.UserOrderManegerService;
 
 import lombok.Setter;
@@ -82,6 +82,11 @@ public class UserOrderManegerServiceImpl implements UserOrderManegerService{
 			ordermapper.realTimeOrderAdd(orderList.get(i));
 		}
 		
+	}
+
+	@Override
+	public UserBillVO productBill(String id) {
+		return ordermapper.productBill(id);
 	}
 
 }

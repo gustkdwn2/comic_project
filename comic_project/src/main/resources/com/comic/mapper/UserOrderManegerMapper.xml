@@ -94,4 +94,10 @@
 		((select NVL(max(ORDER_NUM),0) +1 from comic_order), #{order_id},
 		#{order_roomnum}, #{order_time}, #{order_product_num}, #{order_qty})
 	</insert>
+	
+	<select id="productBill" resultType="com.comic.model.UserBillVO">
+		select sum(a.order_qty*b.product_price) 
+		from COMIC_ORDER a, comic_productstock b 
+		where a.order_product_num = b.product_num and a.order_id = #{id};
+	</select>
 </mapper>
