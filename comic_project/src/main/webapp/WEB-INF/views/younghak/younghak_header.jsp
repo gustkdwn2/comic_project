@@ -69,9 +69,7 @@
 					<td align="center"><font size=5 face="굴림체"
 					style="font-weight: bold">퇴근시간</td>
 									</tr>
-								
-								
-								<font id="todaycummute"size=5 face="굴림체"
+					<font id="todaycummute"size=5 face="굴림체"
 					style="font-weight: lighter">
 					</table>
 					
