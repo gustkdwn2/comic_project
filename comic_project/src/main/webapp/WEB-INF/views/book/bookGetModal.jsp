@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!-- The BookGet Modal -->
 <div class="modal" id="bookGet">
-	<div class="modal-dialog">
+	<div id="modal-dialog-get" class="modal-dialog">
 		<div class="modal-content" align="center">
 
 			<!-- Modal Header -->
@@ -12,7 +12,7 @@
 
 			<!-- Modal body -->
 			<div class="card">
-				<div class="card-body" align="center">
+				<div id="card-body-get" class="card-body" align="center">
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label">
 							<font style="vertical-align: inherit;">책 이미지</font>
@@ -339,6 +339,14 @@
 
 .uploadResultGet ul li img {
 	width: 100px;
+}
+
+#modal-dialog-get{
+    overflow-y: initial !important
+}
+#card-body-get{
+    height: 760px;
+    overflow-y: auto;
 }
 </style>
 </html>
