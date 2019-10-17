@@ -140,7 +140,7 @@ $(document).ready(function(){
 		                "<br>" + date.getHours() + " : " + date.getMinutes() + ' : ' + date.getSeconds() + '</td><td>' + data[i].product_name + '</td><td>' + data[i].order_qty + '</td><td>' + data[i].order_bill + '</td>';
 		                str += '</tr>';
 		           });
-		           $("#productBillTbody").append(str); 
+		           $("#productBillTbody").append(str);
 					
 				}
 			});

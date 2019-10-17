@@ -92,9 +92,7 @@
 							</label>
 							<div class="col-sm-9">
 								<select id="book_status_get" class="form-control" name="book_status">
-									<option value="">선택</option>
-		                            <option value="연재중">연재중</option>
-		                            <option value="완결">완결</option>
+
 	                            </select>
 							</div>
 						</div>
