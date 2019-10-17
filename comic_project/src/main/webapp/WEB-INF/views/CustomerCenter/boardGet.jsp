@@ -41,7 +41,7 @@
 							<div id='cmntInsert'>
 								
 								<div class="form-group" style="float: left;">
-									<input type="hidden" name="cmnt_id" value="zizi" >
+									<input type="hidden" name="cmnt_id" value="${Memberlogin.MEMBER_ID}" >
 									<input type="hidden" name="board_num" value="${board.board_num}" >
 				                    <textarea class="form-control" name="cmnt_content" id="cmnt_content "placeholder="댓글을 입력하세요" 
 				                      		  rows="5" style="width:1370px; border: 1px solid #cdcdce;"></textarea>
