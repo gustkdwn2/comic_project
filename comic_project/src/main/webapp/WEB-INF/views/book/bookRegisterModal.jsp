@@ -30,7 +30,7 @@
 						        </div>
 					    	</div>
 					</div>
-					<form class="forms-sample" action="/book/bookRegister" role="form" method="post" autocomplete="off">
+					<form id="registerForm" class="forms-sample" action="/book/bookRegister" role="form" method="post" autocomplete="off">
 						<div class="form-group row">
 							<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
 								<font style="vertical-align: inherit;">책 이름</font>
@@ -98,7 +98,7 @@
 	                            </select>
 							</div>
 						</div>
-						<button id="RegisterSubmitBtn" type="submit" class="btn btn-primary mr-2">
+						<button id="RegisterSubmitBtn" type="button" class="btn btn-primary mr-2">
 							<font style="vertical-align: inherit;">등록</font>
 						</button>
 						<button id="bookRegisterCloseBtn" type="button" class="btn btn-success">닫기</button>
