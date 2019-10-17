@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
-import com.comic.model.UserBillVO;
 
 public interface UserOrderManegerMapper {
 	
@@ -36,6 +35,8 @@ public interface UserOrderManegerMapper {
 
 	public void realTimeOrderAdd(OrderVO orderVO);
 	
-	public UserBillVO productBill(String id);
+	public int productBill(String id);
+	
+	public int roomBill(String id);
 
 }

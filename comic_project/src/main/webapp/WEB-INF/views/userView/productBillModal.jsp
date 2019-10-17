@@ -38,8 +38,8 @@
 										</font></font></td>
 									</tr>
 								</tbody>
-							</table>
-							<button id="productBillModalCloseBtn" type="button" class="btn btn-success">닫기</button>
+							</table><br/>
+							<button id="productBillModalCloseBtn" type="button" class="btn btn-warning"><font style="color:white;">닫기</font></button>
 						</div>
 					</div>
 				</div>

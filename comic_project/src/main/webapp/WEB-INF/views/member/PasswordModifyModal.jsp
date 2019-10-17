@@ -18,7 +18,7 @@
 					<h4 class="card-title">
 						<font style="vertical-align: inherit;">회원 정보</font>
 					</h4>
-					<form class="forms-sample" name="passwordmodify" method="post" autocomplete="off">
+					<form class="forms-sample" name="passwordmodify" method="post" autocomplete="off" onsubmit="return validate();">
 						<div class="form-group">
 							<label>
 								<font style="vertical-align: inherit;">아이디</font>

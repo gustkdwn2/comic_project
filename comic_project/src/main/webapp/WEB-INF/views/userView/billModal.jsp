@@ -17,11 +17,11 @@
 					<div class="card-body">
 							<div class="form-group">
 								<label for="exampleInputUsername1">
-									<font style="vertical-align: inherit;">상품 요금</font>
-								</label>
-								<input id="productBill" readonly="readonly" class="form-control">
-								<button id="productBillModalBtn" type="button" class="btn btn-outline-success btn-fw">주문 내역</button>
-							</div>
+									<font style="vertical-align: inherit; margin">상품 요금</font>
+								</label><br/>
+								<button id="productBillModalBtn" type="button" class="btn btn-warning btn-sm" style="float: left; height: 45px;"><font style="color:white;">주문 내역</font></button>
+								<input id="productBill" readonly="readonly" class="form-control" style="width: 300px; float: right;">
+							</div><br/><br/>
 							<div class="form-group">
 								<label for="exampleInputUsername1">
 									<font style="vertical-align: inherit;">방 요금</font>
@@ -34,7 +34,7 @@
 								</label>
 								<input id="bill" readonly="readonly" class="form-control">
 							</div>
-							<button id="billModalCloseBtn" type="button" class="btn btn-success">닫기</button>
+							<button id="billModalCloseBtn" type="button" class="btn btn-warning"><font style="color:white;">닫기</font></button>
 					</div>
 				</div>
 			</div>

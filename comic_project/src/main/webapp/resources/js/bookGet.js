@@ -100,7 +100,7 @@ $(document).ready(function() {
 		uploadUL.append(str);
 	}
 	
-	var formObj = $("form");
+	var formObj = $("#getForm");
 
 	$('#getSubmitBtn').on("click", function(e){
 	    
