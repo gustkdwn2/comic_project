@@ -32,7 +32,7 @@
 								<label for="exampleInputUsername1">
 									<font style="vertical-align: inherit;">전체 요금</font>
 								</label>
-								<input id="bill" readonly="readonly" class="form-control">
+								<input id="totalBill" readonly="readonly" class="form-control">
 							</div>
 							<button id="billModalCloseBtn" type="button" class="btn btn-warning"><font style="color:white;">닫기</font></button>
 					</div>

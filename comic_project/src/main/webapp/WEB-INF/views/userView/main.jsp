@@ -120,7 +120,7 @@ $(document).ready(function(){
 			success: function(data) {
 				$('#productBill').attr('value',data.product_bill);
 				$('#roomBill').attr('value',data.room_bill);
-				
+				$('#totalBill').attr('value',data.total_bill);
 			}
 		});
 		

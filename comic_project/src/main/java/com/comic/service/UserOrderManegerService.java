@@ -34,6 +34,6 @@ public interface UserOrderManegerService {
 
 	public void realTimeOrderAdd(List<OrderVO> orderList);
 	
-	public UserBillVO productBill(String id);
+	public UserBillVO userBill(String id);
 
 }

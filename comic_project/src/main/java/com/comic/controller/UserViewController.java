@@ -56,7 +56,7 @@ public class UserViewController {
 	
 	@GetMapping("userBill")
 	public @ResponseBody UserBillVO userBill(@RequestParam("userId") String id) {
-		return userOrderManegerService.productBill(id);
+		return userOrderManegerService.userBill(id);
 	}
 	
 }
