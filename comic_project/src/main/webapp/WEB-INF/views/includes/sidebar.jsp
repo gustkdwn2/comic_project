@@ -3,115 +3,96 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- partial:partials/_sidebar.html -->
 
-<style type="text/css">
-ul{list-style:none;}
-#sidebar ul ul {display :none;}
-
+<style>
+li{list-style: none;}
+.accordion_wrap a{cursor:pointer;}
+.accordion_wrap .accordion_content{display:none;}
 </style>
 
-<script type="text/javascript">
-
-	$('#sidebar > ul > li > a').on('click', function(){
-		 
-	    var element = $(this).parent('li');
+	<nav class="sidebar sidebar-offcanvas">
 	
-	    //현재의 하위 메뉴 접음
-	    if(element.hasClass('open')){
+		<ul class="nav">
 
-	        element.removeClass('open');
-	        element.find('li').removeClass('open');
-	        element.find('ul').slideUp();
-	    }
-	    //하위 메뉴 펼침
-	    else{
-	        element.addClass('open');
-	        element.children('ul').slideDown();
-	        
-	 }	 
-
-</script>
-			<nav class="sidebar sidebar-offcanvas" id="sidebar">
+			<li class="nav-item"><a class="nav-link" href="/">
+					<i class="mdi mdi-home menu-icon"></i> <span class="menu-title">임의 창</span>
+			</a></li>
 			
-				<ul class="nav">
-
-					<li class="nav-item open"><a class="nav-link" href="#"> 
-					<i class="mdi mdi-file-document-box-outline menu-icon"></i> 
-					<span class="menu-title">재고</span></a>
-							
-							<ul>
-								<li class="nav-item"><a class="nav-link"
-									href="/product/productList"> <i
-									class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-										class="menu-title">상품 재고</span>
-								</a></li>
-								
-								<li class="nav-item"><a class="nav-link"
-									href="/book/bookList"> <i
-									class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-										class="menu-title">책 재고</span>
-								
-								</a></li>
-							</ul>
-					</li>
-								
-					<li class="nav-item"><a class="nav-link" href="/">
-							<i class="mdi mdi-home menu-icon"></i> <span class="menu-title">임의 창</span>
-					</a></li>
+			<li class="nav-item open accordion_wrap"><a class="nav-link"> 
+			<i class="mdi mdi-file-document-box-outline menu-icon"></i> 
+			<span class="menu-title">재고</span></a>
 					
-					<li class="nav-item"><a class="nav-link"
-					href="/managerpos/managerpos"> <i
-							class="mdi mdi-grid-large menu-icon"></i> <span
-							class="menu-title">포스 화면</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/settlement/settlementlist"> <i
+					<ul class="accordion_content">
+						<li class="nav-item"><a class="nav-link"
+							href="/product/productList"> <i
 							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">정산</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/loss/losslist"> <i
+								class="menu-title">상품 재고</span>
+						</a></li>
+						
+						<li class="nav-item"><a class="nav-link"
+							href="/book/bookList"> <i
 							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">손실</span>
-					</a></li>
-					<li class="nav-item">
-						<a class="nav-link" href="/salesstatistics/salesstatisticslist">
-							<i class="mdi mdi-chart-pie menu-icon"></i>
-							<span class="menu-title">매출 통계</span>
-						</a>
-					</li>	
-					<li class="nav-item"><a class="nav-link"
-						href="/CustomerCenter/boardList"> <i
-						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">건의 게시판</span>
-					</a></li>
+								class="menu-title">책 재고</span>
+						
+						</a></li>
+					</ul>
+			</li>
+					
+			<li class="nav-item"><a class="nav-link"
+			href="/managerpos/managerpos"> <i
+					class="mdi mdi-grid-large menu-icon"></i> <span
+					class="menu-title">포스 화면</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="/settlement/settlementlist"> <i
+					class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+					class="menu-title">정산</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="/loss/losslist"> <i
+					class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+					class="menu-title">손실</span>
+			</a></li>
+			<li class="nav-item">
+				<a class="nav-link" href="/salesstatistics/salesstatisticslist">
+					<i class="mdi mdi-chart-pie menu-icon"></i>
+					<span class="menu-title">매출 통계</span>
+				</a>
+			</li>	
+			<li class="nav-item"><a class="nav-link"
+				href="/CustomerCenter/boardList"> <i
+				class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+					class="menu-title">건의 게시판</span>
+			</a></li>
 
-					<c:if test="${empty Memberlogin}">
-					<li class="nav-item"><a class="nav-link"
-						href="/member/MemberLogin"> <i
-						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">회원 로그인</span>
-					</a></li>
-					</c:if>
-					<%-- <c:if test="${empty Employeelogin}">
-					<li class="nav-item"><a class="nav-link"
-						href="/member/EmployeeLogin"> <i
-						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">직원 로그인</span>
-					</a></li>
-					</c:if> --%>
-					<li class="nav-item"><a class="nav-link"
-						href="/member/MemberList"> <i
-						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">회원 관리</span>
-					</a></li>
-	
+			<%-- <c:if test="${empty Employeelogin}">
+			<li class="nav-item"><a class="nav-link"
+				href="/member/EmployeeLogin"> <i
+				class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+					class="menu-title">직원 로그인</span>
+			</a></li>
+			</c:if> --%>
+			<li class="nav-item"><a class="nav-link"
+				href="/member/MemberList"> <i
+				class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+					class="menu-title">회원 관리</span>
+			</a></li>
 
-					<li class="nav-item"><a class="nav-link"
-						href="/userOrderManager/orderManager"> <i
-						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">상품 사용자뷰 관리</span> 
-					</a></li>					
 
-				</ul>
-		</nav>
+			<li class="nav-item"><a class="nav-link"
+				href="/userOrderManager/orderManager"> <i
+				class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+					class="menu-title">상품 사용자뷰 관리</span> 
+			</a></li>					
+
+		</ul>
+</nav>
 		
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(".accordion_wrap > a").click(function(){
+    // 현재 클릭한 태그가 a 이기 때문에
+    // a 옆의 태그중 ul 태그에 hide 클래스 태그를 넣던지 빼던지 한다.
+    $(this).next("ul").toggleClass("accordion_content");
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+});
+</script>
