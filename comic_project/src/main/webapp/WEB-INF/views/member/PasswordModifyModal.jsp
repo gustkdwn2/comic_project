@@ -23,19 +23,19 @@
 							<label>
 								<font style="vertical-align: inherit;">아이디</font>
 							</label>
-							<input name="MEMBER_ID" id="MEMBER_ID" class="form-control"/>
+							<input name="MEMBER_ID" id="MEMBER_ID" class="form-control" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label>
 								<font style="vertical-align: inherit;">이름</font>
 							</label>
-							<input name="MEMBER_NAME" id="MEMBER_NAME" class="form-control">
+							<input name="MEMBER_NAME" id="MEMBER_NAME" class="form-control" maxlength="10">
 						</div>
 						<div class="form-group">
 							<label>
 								<font style="vertical-align: inherit;">이메일</font>
 							</label>
-							<input name="MEMBER_EMAIL" id="MEMBER_EMAIL" type="email" class="form-control">
+							<input name="MEMBER_EMAIL" id="MEMBER_EMAIL" type="email" class="form-control" maxlength="50">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">
