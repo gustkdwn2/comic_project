@@ -38,15 +38,9 @@
 															</span>
 
 														</div>
-														<input type="text" class="form-control"
-															placeholder="Search" aria-label="search"
-															aria-describedby="search"> 
-															<input type="button" class="input-group-text" value="검색" onclick="javascript:alert(0)">
-														
-													</div>
-												</li>
-												
-											</ul>
+													</li>
+												</ul>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -62,7 +56,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
 	<%--  <div class="card-body">
                   <h4 class="card-title">Social button with text</h4>
