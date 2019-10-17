@@ -24,5 +24,7 @@ public interface SalesStatisticsService {
 
 	public List<SalesStatisticsVO> salesSearchData(String type, String keyword);
 
+	public List<SalesStatisticsVO> salesSearchDateData(String start, String end);
+
 	
 }

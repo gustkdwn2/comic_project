@@ -155,10 +155,10 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 	private int monthproductTotalPrice(String month, SimpleDateFormat simpleDataFormat,
 			List<SalesStatisticsVO> productsalesData) { //월 상품 매출액
 		int total = 0;
-		
+
 		for (int i = 0; i < productsalesData.size(); i++) {
 			if(simpleDataFormat.format(productsalesData.get(i).getProductsales_time()).split("-")[1].equals(month)) { //.substring(5, 7) 월 ex) 9
-				total += productsalesData.get(i).getProductsales_order_price();// total에 x월 상품판매 금액 저장
+				total += (productsalesData.get(i).getProductsales_order_price()*productsalesData.get(i).getProductsales_qty());// total에 x월 상품판매 금액 저장
 			} 
 		}
 		return total;
@@ -192,7 +192,6 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 
 	@Override
 	public List<SalesStatisticsVO> salesSearchData(String type, String keyword) {
-		System.out.println(type );
 		int numKeyword = 0;
 		
 		if(type.equals("roomsales_num")) {
@@ -213,6 +212,11 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 	    } catch (NumberFormatException e) {
 	        return false;
 	    }
+	}
+
+	@Override
+	public List<SalesStatisticsVO> salesSearchDateData(String start, String end) {
+		return statisticsMapper.salesSearchDateData(start, end);
 	}
 
 	

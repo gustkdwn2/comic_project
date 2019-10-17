@@ -47,6 +47,11 @@ public class SalesStatisticsController {
 		return new ResponseEntity<List<SalesStatisticsVO>>(statisticsService.salesSearchData(type, keyword), HttpStatus.OK);
 	}
 	
+	@GetMapping("searchsalesDate")
+	public ResponseEntity<List<SalesStatisticsVO>> searchDateData(@RequestParam("start") String start, @RequestParam("end") String end){
+		return new ResponseEntity<List<SalesStatisticsVO>>(statisticsService.salesSearchDateData(start, end), HttpStatus.OK);
+	}
+	
 	@GetMapping("salesstatisticslist")
 	public String statisticsChartView() { // 매출 차트 통계 요청
 		return "salesstatistics/statisticslist";
