@@ -3,7 +3,7 @@
 
 <!-- The BookRegister Modal -->
 <div class="modal" id="bookRegister">
-	<div class="modal-dialog">
+	<div id="modal-dialog-register" class="modal-dialog">
 		<div class="modal-content" align="center">
 
 			<!-- Modal Header -->
@@ -13,7 +13,7 @@
 
 			<!-- Modal body -->
 			<div class="card">
-				<div class="card-body" align="center">
+				<div id="card-body-register" class="card-body" align="center">
 					<div class="form-group row">
 							<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
 								<font style="vertical-align: inherit;">책 이미지</font>
@@ -30,7 +30,7 @@
 						        </div>
 					    	</div>
 					</div>
-					<form class="forms-sample" action="/book/bookRegister" role="form" method="post" autocomplete="off">
+					<form id="registerForm" class="forms-sample" action="/book/bookRegister" role="form" method="post" autocomplete="off">
 						<div class="form-group row">
 							<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
 								<font style="vertical-align: inherit;">책 이름</font>
@@ -98,7 +98,7 @@
 	                            </select>
 							</div>
 						</div>
-						<button id="RegisterSubmitBtn" type="submit" class="btn btn-primary mr-2">
+						<button id="RegisterSubmitBtn" type="button" class="btn btn-primary mr-2">
 							<font style="vertical-align: inherit;">등록</font>
 						</button>
 						<button id="bookRegisterCloseBtn" type="button" class="btn btn-success">닫기</button>
@@ -130,6 +130,14 @@
 
 .uploadResultRegister ul li img {
 	width: 100px;
+}
+
+#modal-dialog-register{
+    overflow-y: initial !important
+}
+#card-body-register{
+    height: 760px;
+    overflow-y: auto;
 }
 </style>
 <!-- End BookRegister Modal -->

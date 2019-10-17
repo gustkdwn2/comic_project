@@ -34,5 +34,9 @@ public interface UserOrderManegerMapper {
 	public String getCategoryValue(int number);
 
 	public void realTimeOrderAdd(OrderVO orderVO);
+	
+	public int productBill(String id);
+	
+	public int roomBill(String id);
 
 }

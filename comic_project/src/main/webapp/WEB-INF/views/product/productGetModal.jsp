@@ -66,10 +66,10 @@
 
 	function productModifyCheck() {
 
-		if($.trim($("#product_category").val()) != $("#product_category").val()) {
+		if($.trim($("#product_category_modify").val()) != $("#product_category_modify").val()) {
 		      alert("앞,뒤 공백을 지워주세요.");
-		      $("#product_category").val("");
-		      $("#product_category").focus();
+		      $("#product_category_modify").val("");
+		      $("#product_category_modify").focus();
 		      return false;
 		}
 		if($("#product_price_modify").val() <= 0) {

@@ -34,7 +34,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/productGet")
-	public @ResponseBody ProductVO productGet(@RequestParam("product_num_modify") int product_num) {
+	public @ResponseBody ProductVO productGet(@RequestParam("product_num") int product_num) {
 		return service.productGet(product_num);
 	}
 	

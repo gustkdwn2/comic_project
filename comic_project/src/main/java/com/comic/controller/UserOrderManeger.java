@@ -185,7 +185,8 @@ public class UserOrderManeger {
 
 		orderJsonData.forEach((k, v) -> {
 			OrderVO ordervo = new OrderVO();
-			ordervo.setOrder_id("user123");
+			System.out.println(session.getAttribute("memberid").toString());
+			ordervo.setOrder_id(session.getAttribute("memberid").toString());
 			ordervo.setOrder_product_num(Integer.parseInt(orderJsonData.get(k).get("productNum")));
 			ordervo.setOrder_roomnum(Integer.parseInt(session.getAttribute("roomNum").toString()));
 			ordervo.setOrder_qty(Integer.parseInt(orderJsonData.get(k).get("qty")));

@@ -13,11 +13,6 @@
 		SELECT * FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
 	</select>
 	
-	<update id="MemberkeepLogin">
-		UPDATE COMIC_MEMBER SET SESSION_KEY = #{sessionId},
-		SESSION_LIMIT = #{sessionLimit} WHERE MEMBER_ID = #{MEMBER_ID}
-	</update>
-	
 	<select id="MemberGetList" resultType="com.comic.model.MemberVO">
 		SELECT * FROM COMIC_MEMBER
 	</select>
@@ -60,6 +55,14 @@
 		MEMBER_PHONE_NUMBER=#{MEMBER_PHONE_NUMBER}
 		WHERE MEMBER_ID=#{MEMBER_ID}
 	</update>
+	
+	<select id="getMember" resultType="com.comic.model.MemberVO">
+		SELECT * FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+	</select>
+	
+	<select id="membermodifypasswordcheck" resultType="String">
+		SELECT MEMBER_PWD FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+	</select>
 	
 	<insert id="employeeInsert">
       INSERT INTO COMIC_EMPLOYEE VALUES ((SELECT NVL(MAX(EMPLOYEE_NUM),1000)+1 FROM COMIC_EMPLOYEE),

@@ -14,7 +14,7 @@
       <div class="main-panel">
           <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card-body" style="margin-top:50px; margin-left:150px;">
+                <div class="card-body" style="margin-top:100px; margin-left:350px;">
                  <h2 class=".h2"><a href="javascript:home()">홈</a> > 건의 게시판</h2> 
                                 
 				    <form class="form-inline" action="/userView/board/boardList" 
@@ -51,13 +51,13 @@
 					
 					<c:if test="${count>0 }">
                                        
-                    <table class="table" style="border:1px solid #f3f3f3;" >
+                    <table class="table" style="border:1px solid #cdcdce; width: 1270px;" >
                       <thead>
                         <tr>
-                          <td style="width:200px;">글번호</td>
-                          <td style="width:1000px;">글제목</td>
-                          <td style="width:400px;">글쓴이</td>
-                          <td style="width:300px;">날짜</td>
+                          <td style="width:100px; border:1px solid #cdcdce;">글번호</td>
+                          <td style="width:700px; border:1px solid #cdcdce;">글제목</td>
+                          <td style="width:200px; border:1px solid #cdcdce;">글쓴이</td>
+                          <td style="width:100px; border:1px solid #cdcdce;">날짜</td>
                         </tr>
                       </thead>
  
@@ -65,11 +65,11 @@
                       
 	                      <tbody>
 	                        <tr>
-	                          <td style="width:200px;"><c:out value="${list.board_num }" /></td>
-	                          <td style="width:1000px;"><a class='move' href='<c:out value="${list.board_num}"/>'>
-	                          <c:out value="${list.board_title }" /></a></td>
-	                          <td style="width:400px;"><c:out value="${list.board_id }" /></td>
-	                          <td style="width:300px;"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.board_date }" /></td>
+	                          <td style="width:100px; border:1px solid #cdcdce;"><c:out value="${list.board_num }" /></td>
+	                          <td style="width:700px; border:1px solid #cdcdce;"><a class='move' href='<c:out value="${list.board_num}"/>'>
+	                          ${list.board_title }</a></td>
+	                          <td style="width:200px; border:1px solid #cdcdce;"><c:out value="${list.board_id }" /></td>
+	                          <td style="width:100px; border:1px solid #cdcdce;"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.board_date }" /></td>
 	                        </tr>         
                       	  </tbody>
                       	  

@@ -1,6 +1,6 @@
 $(document).ready(function(e){
 	  
-	  var formObj = $("form[role='form']");
+	  var formObj = $("#registerForm");
 	  
 	  $("#RegisterSubmitBtn").on("click", function(e){
 
