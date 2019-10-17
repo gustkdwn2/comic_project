@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="shortcut icon" href="/resources/images/favicon.png" />
 
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-3.2.1.min.js"></script> -->
 <script src="/resources/vendors/base/vendor.bundle.base.js"></script>
 <script src="/resources/vendors/chart.js/Chart.min.js"></script>
 <script src="/resources/vendors/datatables.net/jquery.dataTables.js"></script>
@@ -34,7 +34,7 @@
 <script src="/resources/js/data-table.js"></script>
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
-<script src="/resources/js/header.js?ver=13"></script>
+<script src="/resources/js/header.js"></script>
 
 </body>
 

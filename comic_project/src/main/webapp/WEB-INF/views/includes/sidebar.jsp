@@ -109,8 +109,6 @@ li{list-style: none;}
 
 		</ul>
 </nav>
-		
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript">
 $(".accordion_wrap > a").click(function(){
     // 현재 클릭한 태그가 a 이기 때문에
