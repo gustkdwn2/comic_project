@@ -95,19 +95,13 @@
 		#{order_roomnum}, #{order_time}, #{order_product_num}, #{order_qty})
 	</insert>
 	
-	<select id="productBill" resultType="com.comic.model.UserBillVO">
-		select product_bill,room_bill from (select sum(a.order_qty*b.product_price) as product_bill
+	<select id="productBill" resultType="Integer">
+		select sum(a.order_qty*b.product_price) as product_bill
 		from COMIC_ORDER a, comic_productstock b 
-		where 
-		a.order_product_num = b.product_num and a.order_id = #{id}) , (select trunc(round(((sysdate-roomuse_starttime)*24*60))/10)*200 as room_bill 
-		from COMIC_ROOMUSE where roomuse_id = #{id})
+		where a.order_product_num = b.product_num and a.order_id = #{id}
 	</select>
 	
-	<!-- <select id="productBill" resultType="com.comic.model.UserBillVO">
-		select product_bill, room_bill from (select sum(a.order_qty*b.product_price) as product_bill
-		from COMIC_ORDER a, comic_productstock b 
-		where 
-		a.order_product_num = b.product_num and a.order_id = #{id}), (select trunc(round(((sysdate-roomuse_starttime)*24*60))/10)*200 as room_bill 
-		from COMIC_ROOMUSE where roomuse_id = #{id})
-	</select> -->
+	<select id="roomBill" resultType="Integer">
+		select trunc(round(((sysdate-roomuse_starttime)*24*60))/10)*200 as room_bill from COMIC_ROOMUSE where roomuse_id = #{id}
+	</select>
 </mapper>
