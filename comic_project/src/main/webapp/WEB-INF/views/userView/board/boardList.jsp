@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="../includes/header.jsp"%>
-<%@ include file="../includes/sidebar.jsp"%>
+<%@ include file="../../includes/userHeader.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,15 +11,13 @@
 </head>
 <body>
       <!-- partial -->
-	<div class="main-panel">        
-	  <div class="content-wrapper">
-	    <div class="row">
-	   		<div class="col-12 grid-margin stretch-card">
-	            <div class="card">
-	                <div class="card-body">
-                  	<h2 class=".h2">건의 게시판</h2>
-                  
-				    <form class="form-inline" action="/CustomerCenter/boardList" 
+      <div class="main-panel">
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card-body" style="margin-top:50px; margin-left:150px;">
+                 <h2 class=".h2"><a href="javascript:home()">홈</a> > 건의 게시판</h2> 
+                                
+				    <form class="form-inline" action="/userView/board/boardList" 
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
 				    		<select name="type" class="form-control">
 				     			<option value=""
@@ -39,7 +36,7 @@
 									<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목 or 내용 or 작성자</option>
 							 </select>
 				    		<input type="text" name="keyword" class="form-control" >&nbsp;
-				    		<input id="searchBtn" type="submit" class="btn btn-primary btn-md" value="검색">
+				    		<input type="submit" class="btn btn-primary btn-md" value="검색">
 				    		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'/>
 							<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
 				    		
@@ -117,30 +114,32 @@
 			     	</div>
 
 					
-					<form id='actionForm' action="/CustomerCenter/boardList" method='get'>
+					<form id='actionForm' action="/userView/board/boardList" method='get'>
 						<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 						<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 						<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'> 
 						<input type='hidden' name='keyword' value='<c:out value="${ pageMaker.cri.keyword }"/>'>
 				   </form>
-
+				   <!--홈관련 hidden form -->
+				   <form id="operForm"></form>
            </div>
          </div>
       </div>
     </div>
-   </div>
-  </div>
 
 
             
 <script type="text/javascript">
 
+	var roomNum = "<c:out value='${roomNum}'/>";
+	console.log("여기에 들어옴?");
+	console.log(roomNum);
+	
 	$(document)
 		.ready(
 				function(){
-
-
-			var actionForm = $("#actionForm");
+			
+			var actionForm = $("#actionForm"); 
 
 			
  			$(".move").on(
@@ -149,14 +148,14 @@
 						e.preventDefault();
 						actionForm.append("<input type='hidden' name='board_num' value='"
 								+$(this).attr("href")+ "'>");
-						actionForm.attr("action", "/CustomerCenter/boardGet");
+						actionForm.attr("action", "/userView/board/boardGet");
 						actionForm.submit();
 						
 			}); 
 
 			$("#regBtn").on("click", function() {
 
-				self.location = "/CustomerCenter/boardRegister";
+				self.location = "/userView/board/boardRegister";
 
 			});
 
@@ -175,7 +174,7 @@
 
 			var searchForm = $("#searchForm");
 
-			 $("#searchBtn").on(
+			 $("#searchForm").on(
 					"click",
 					function(e){
 						console.log('검색 방지 필터');
@@ -195,10 +194,17 @@
 		
 		});
 
+	function home(){
+		var operForm = $("#operForm");
+
+		operForm.append("<input type='hidden' name='roomNum' value='" + roomNum + "'>");
+		operForm.attr("method", "post");
+		operForm.attr("action","/userView/main");
+		operForm.submit();
+	}
+
 </script>
 
-
 </body>
-
 
 </html>

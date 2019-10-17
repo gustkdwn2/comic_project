@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!-- The ProductOrderRegister Modal -->
 <div class="modal" id="productOrderRegister">
 	<div class="modal-dialog">
@@ -15,7 +16,7 @@
 			<div class="modal-body">
 				<div class="card">
 					<div class="card-body">
-						<form class="forms-sample" action="/productOrder/productOrderRegister" method="post" autocomplete="off">
+						<form onsubmit="return productOrderRegistercheck();" class="forms-sample" action="/productOrder/productOrderRegister" method="post" autocomplete="off">
 							<div class="form-group row">
 								<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
 									<font style="vertical-align: inherit;">상품 이름</font>
@@ -33,7 +34,7 @@
 									<font style="vertical-align: inherit;">발주 구매가</font>
 								</label>
 								<div class="col-sm-9">
-									<input type="number" class="form-control" name="productOrder_cost" required>
+									<input type="number" class="form-control" name="productOrder_cost" id="productOrder_cost_register" required>
 								</div>
 							</div>
 								<div class="form-group row">
@@ -41,7 +42,7 @@
 									<font style="vertical-align: inherit;">발주 수량</font>
 								</label>
 								<div class="col-sm-9">
-									<input type="number" class="form-control" name="productOrder_qty" required>
+									<input type="number" class="form-control" name="productOrder_qty" id="productOrder_qty_register" required>
 								</div>
 							</div>
 							<button type="submit" class="btn btn-primary mr-2">
@@ -57,3 +58,25 @@
 	</div>
 </div>
 <!-- End ProductOrderRegister Modal -->
+
+<script type="text/javascript">
+
+	function productOrderRegistercheck() {
+		
+		if($("#productOrder_cost_register").val() <= 0) {
+			alert("판매가를 정해주세요");
+			$("#productOrder_cost_register").val("");
+		    $("#productOrder_cost_register").focus();
+		    return false;
+		}
+		if($("#productOrder_qty_register").val() <= 0) {
+			alert("수량을 정해주세요");
+			$("#productOrder_qty_register").val("");
+		    $("#productOrder_qty_register").focus();
+		    return false;
+		}
+		return true;
+		
+	});
+	
+</script>
