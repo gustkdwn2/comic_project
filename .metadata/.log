@@ -142,3 +142,113 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.resources 2 2 2019-10-17 19:46:34.039
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2019-10-17 19:46:34.039
+!MESSAGE The project description file (.project) for 'Servers' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:47.914
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:47.915
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:47.917
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:47.922
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.142
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.151
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.152
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.152
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.153
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.153
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.154
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.162
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.163
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.169
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.170
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.171
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.175
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.176
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.177
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.181
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.183
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.184
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.187
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.234
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.235
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.240
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.241
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.242
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.243
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.245
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.246
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.247
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.250
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.277
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-17 19:46:48.278
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
