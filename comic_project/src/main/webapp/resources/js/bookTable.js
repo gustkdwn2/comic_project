@@ -94,6 +94,17 @@ function bookModify(book_name) {
 	    	$('#book_category_get').attr('value',data.book_category);
 	    	$('#book_lastbook_get').attr('value',data.book_lastbook);
 	    	
+	    	$("#book_status_get").html("");
+	    	var optionStr = "";
+	    	if(data.book_status == "완결") {
+	    		optionStr += '<option value="' + data.book_status + '">' + data.book_status + '</option>';
+	    		optionStr += '<option value="연재중">연재중</option>';
+	    	} else {
+	    		optionStr += '<option value="' + data.book_status + '">' + data.book_status + '</option>';
+	    		optionStr += '<option value="완결">완결</option>';
+	    	}
+	    	$("#book_status_get").append(optionStr);
+	    	
 			$.getJSON("/book/getAttachList", {book_name: book_name}, function(arr){
 		    
 				console.log(arr);
