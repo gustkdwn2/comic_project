@@ -33,7 +33,10 @@ public class SettlementServiceImpl implements SettlementService {
 	@Override
 	public boolean modify(String num, String currentNum) {
 		int number = Integer.parseInt(num);
-		int curNum = Integer.parseInt(currentNum);
+		int curNum = Integer.parseInt(num);
+		if(isStringDouble(currentNum)) {
+			curNum = Integer.parseInt(currentNum);
+		}
 		return settleMapper.settlementUpdate(number , curNum) == 1;
 	}
 
@@ -68,7 +71,11 @@ public class SettlementServiceImpl implements SettlementService {
 		// 현재재고 - 입력재고 = 오차수량 ==> 입력재고가 더 크면 - 값이 나옴
 		// 현재재고 - 입력재고 = 오차수량 ==> 입력재고가 작으면  + 값이 나옴
 		// - 수익, + 지출
-		int errorNum = product.getProduct_qty() - Integer.parseInt(input_qty); 
+		int inputQty = product.getProduct_qty();
+		if (isStringDouble(input_qty)) {
+			inputQty = Integer.parseInt(input_qty);
+		}
+		int errorNum = product.getProduct_qty() - inputQty; 
 		
 		if(errorNum < 0) { //  수익
 			category = "수익";
@@ -79,6 +86,16 @@ public class SettlementServiceImpl implements SettlementService {
 		}
 		
 	}
+	
+	private boolean isStringDouble(String s) { // 숫자로 들어오는지 확인하는 (공백도 false)
+		try {
+	        Double.parseDouble(s);
+	        return true;
+	    } catch (NumberFormatException e) {
+	        return false;
+	    }
+	}
+
 	
 	
 }

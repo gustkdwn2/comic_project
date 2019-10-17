@@ -125,7 +125,6 @@ text-align:center;
                   </div>
                   <div class="col-md-6">
                     <div class="card-body">
-                      
                        <div class="template-demo">
                         <button type="button" 
                         	onclick="javascript:window.location.href='importdetail'"

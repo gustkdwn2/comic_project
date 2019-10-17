@@ -41,6 +41,6 @@
 	
 <jsp:include page="createModal.jsp" />	
 <jsp:include page="modifyModal.jsp" />
-<script src="/resources/js/inholoss.js"></script>
+<script src="/resources/js/inholoss.js?after"></script>
 </body>
 </html>
