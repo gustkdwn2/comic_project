@@ -111,10 +111,10 @@
 
 		cmntajax.getList(boardValue, function(data){	
 		for (var i = 0, len = data.length || 0; i < len; i++) {
-			 str += '<div style="margin-bottom: 10px; height:190px; background-color:#DAE8E8; border-radius: 20px; width:1500px;"><br/>';
+			 str += '<div style="margin-bottom: 10px; height:190px; background-color:#DAE8E8; border-radius: 20px; width:1150px;"><br/>';
 			 str += '<div style="margin-left:40px; float:left; width:40px; height:40px; background-color:white; border-radius: 50%; font-weight:bold;"></br>&emsp;'+data[i].cmnt_num+'</div>';
 			 str += '<div style="height:20px; font-size:20px; margin-left:100px;">'+'작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date)+'</div>';
-  			 str +=	'<br/><br/><div style="background-color:white; border-radius:20px; height:110px; margin-left:40px; width:1400px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>&emsp;&emsp;'+data[i].cmnt_content+'</div>';
+  			 str +=	'<br/><br/><div style="word-break: break-all; background-color:white; border-radius:20px; height:110px; margin-left:40px; width:1000px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>'+data[i].cmnt_content+'</div>';
 	   		 str +=	'</div>';			
 
 		}
@@ -122,97 +122,8 @@
 	 });
 
 	}
-	
 
-	var reply = $("#cmntInsert");
-	var replyContent = reply.find("textarea[name='cmnt_content']");
-	var replyId = reply.find("input[name='cmnt_id']");
-	var replyDate = reply.find("input[name='cmnt_date']"); 
-	var boardNum = reply.find("input[name='board_num']");
-	var updateDiv = $("#updateDiv"); 	
-	var cIstBtn = $("#cIstBtn");
 
-       window.updateCmntForm = function(cmnt_num, cmnt_content) {
-
-	     console.log(cmnt_num);
-	     console.log(cmnt_content);
-         var str='';
-    	 str += '<div id="updateDiv">';
-    	 str += '<textarea style="float:left; margin-left:10px; margin-top:5px; width:1200px;" class="form-control" name="content_'+cmnt_num+'"rows="5">'+cmnt_content+'</textarea>';
-    	 str += '<div>&emsp;&emsp;'
-    	 str += '<button style="margin-top:8px;" class="btn btn-md btn-outline-secondary" onclick="updateBtn(' + cmnt_num + ');">수정 완료</button><br/><br/>&emsp;&emsp;';
-    	 str += '<button class="btn btn-md btn-outline-secondary" onclick="test(' + cmnt_num + ', \''+cmnt_content+'\');">수정 취소</button>';
-    	 str += '</div></div>';
-
- 		 $("#updateCmnt_"+cmnt_num).html(str);
- 	 }  
-
- 	 window.test = function(cmnt_num, cmnt_content) {
-		var str = '<div id= "updateCmnt_'+ cmnt_num +'"><br/>&emsp;&emsp;'+cmnt_content+'</div>';
-  		$("#updateCmnt_"+cmnt_num).html(str);
- 	}
-
-   	window.updateBtn= function(cmnt_num) {
-
-		var comments ={
-			cmnt_num : cmnt_num,
-			cmnt_content : $('[name=content_'+cmnt_num+']').val()
-		};
-
-		cmntajax.update(comments, function(result){
-
- 			console.log(result);
- 			updateDiv.find("textarea").val("");
-
- 			commentsList();
-
-   	   	 });
-
-   	}
-
-     cIstBtn.on("click",function(e){
-        
-        var comments = {
-        	  cmnt_id: replyId.val(),
-        	  cmnt_content: replyContent.val(),
-              board_num : boardNum.val()
-	    };
-
-	    console.log(comments);
-
-	    cmntajax.add(comments, function(result){
-          
-	        console.log(result);
-	       
-	          
-	        reply.find("textarea").val("");
-
-	        commentsList();
-    
-        });
-            
-      }); 
-
- 
-    window.commentDelete = function(cmnt_num){
-
-    	console.log("삭제버튼 누르면 나와야하는 로그");
-
-        if(confirm('댓글을 삭제하시겠습니까?')){
-
-        	 console.log("이건 댓글 번호: "+cmnt_num);
-         	  
-         	 cmntajax.remove(cmnt_num, function(result){
-         	    
-         	     commentsList();
-         	      
-         	  });
-
-         }else{
-			return false;
-         }
-	  
-    } 
 
 //////////////////////////////////////////////////////////board/////////////////////////////////////////////
 

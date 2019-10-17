@@ -44,7 +44,7 @@
 									<input type="hidden" name="cmnt_id" value="${Memberlogin.MEMBER_ID}" >
 									<input type="hidden" name="board_num" value="${board.board_num}" >
 				                    <textarea class="form-control" name="cmnt_content" id="cmnt_content "placeholder="댓글을 입력하세요" 
-				                      		  rows="5" style="width:1370px; border: 1px solid #cdcdce;"></textarea>
+				                      		  maxlength="330" rows="5" style="width:1370px; border: 1px solid #cdcdce;"></textarea>
 			                    </div>
 			                    
 			                    <div class="form-group" style="float: right;">
@@ -144,7 +144,7 @@
 			 str += '<div style="height:20px; font-size:20px; margin-left:100px;">'+'작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date);
 	   		 str +=	'&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="updateCmntForm('+data[i].cmnt_num+',\''+data[i].cmnt_content+'\');">수정</button>'; 
   			 str += '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="commentDelete('+data[i].cmnt_num+')">삭제</button></div><br/><br/>';
-  			 str +=	'<div style="background-color:white; border-radius: 20px; height:110px; width:1400px; margin-left:40px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>&emsp;&emsp;'+data[i].cmnt_content+'</div>';
+  			 str +=	'<div style="background-color:white; border-radius: 20px; height:110px; width:1400px; margin-left:40px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>'+data[i].cmnt_content+'</div>';
 	   		 str +=	'</div>';			
 
 		}
@@ -168,7 +168,7 @@
 	     console.log(cmnt_content);
          var str='';
     	 str += '<div id="updateDiv">';
-    	 str += '<textarea style="float:left; margin-left:10px; margin-top:5px; width:1200px;" class="form-control" name="content_'+cmnt_num+'"rows="5">'+cmnt_content+'</textarea>';
+    	 str += '<textarea style="float:left; margin-left:10px; margin-top:5px; width:1200px;" class="form-control" name="content_'+cmnt_num+'"rows="5"  maxlength="330">'+cmnt_content+'</textarea>';
     	 str += '<div>&emsp;&emsp;'
     	 str += '<button style="margin-top:8px;" class="btn btn-md btn-outline-secondary" onclick="updateBtn(' + cmnt_num + ');">수정 완료</button><br/><br/>&emsp;&emsp;';
     	 str += '<button class="btn btn-md btn-outline-secondary" onclick="test(' + cmnt_num + ', \''+cmnt_content+'\');">수정 취소</button>';

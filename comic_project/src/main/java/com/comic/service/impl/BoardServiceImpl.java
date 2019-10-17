@@ -28,7 +28,9 @@ public class BoardServiceImpl implements BoardService {
 		log.info("\r\n#### register #####"+board);
 		
 		board.setBoard_title(board.getBoard_title().replaceAll("(?i)<", "&lt;"));
-	    board.setBoard_content(board.getBoard_content().replaceAll("(?i)<", "&lt;"));      
+		board.setBoard_content(board.getBoard_content().replaceAll("(?i)<", "&lt;"));      
+		board.setBoard_title(board.getBoard_title().replaceAll("(?i)'", "&#039;"));
+		board.setBoard_content(board.getBoard_content().replaceAll("(?i)'", "&#039;"));
 		
 		mapper.insert(board);
 		
@@ -49,6 +51,9 @@ public class BoardServiceImpl implements BoardService {
 	public boolean modify(BoardVO board) {
 		
 		log.info("\r\n#### modify #####"+board);
+		
+		board.setBoard_title(board.getBoard_title().replaceAll("(?i)<", "&lt;"));
+	    board.setBoard_content(board.getBoard_content().replaceAll("(?i)<", "&lt;"));    
 		
 		return mapper.update(board) == 1;
 	}

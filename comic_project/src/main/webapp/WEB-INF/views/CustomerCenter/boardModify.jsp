@@ -18,8 +18,8 @@
 	    <div class="row">
 	   		<div class="col-12 grid-margin stretch-card">
 	              <div class="card">
-	                <div class="card-body">
-	                  <h1 class="card-title">불만사항이나 건의 사항을 적어주세요</h1>
+	                <div class="card-body" style="margin-top:50px; margin-left:200px; margin-bottom:50px;">
+	                  <h1 class="card-title">건의 게시판 입니다</h1>
 	                  
 	                  <form role="form" class="forms-sample" action="/CustomerCenter/boardModify" method="post">
 	                  	
@@ -34,22 +34,21 @@
 	                  	
 	                    <div class="form-group">
 	                      <label for="board_title">제목</label>
-	                      <input type="text" class="form-control" name="board_title" style="border: 1px solid #cdcdce;" 
-	                      	     maxlength="27" value='<c:out value="${board.board_title }"/>' >
+	                      <input type="text" class="form-control" name="board_title" style="border: 1px solid #cdcdce; width: 1100px;" 
+	                      	     maxlength="27" value='${board.board_title}'>
 	                    </div>
 	                    
 	                    <div class="form-group">
 	                      <label for="board_content">내용</label>
-	                      <textarea class="form-control" name="board_content" rows="10" cols="70" style="border: 1px solid #cdcdce"
-	                                 maxlength="660" placeholder="내용을 입력해주세요" >
-	                      <c:out value="${board.board_content}"/></textarea>
+	                      <textarea class="form-control" name="board_content" rows="10" cols="70" style="border: 1px solid #cdcdce; width: 1100px;"
+	                                 maxlength="660" placeholder="내용을 입력해주세요" >${board.board_content}</textarea>
 	                    </div>
 	                    
 	                    
 	                    <!-- 리스트 및 목록가기 -->
 	                    
 	                    <button type="submit" data-oper="list" class="btn btn-primary">목록가기</button>
-	                    <button type="submit" data-oper="modify" class="btn btn-primary mr-2" style="margin-left:1272px;">제출</button>
+	                    <button type="submit" data-oper="modify" class="btn btn-primary mr-2" style="margin-left:900px;">제출</button>
 	                  </form>
 	                </div>
 	              </div>
