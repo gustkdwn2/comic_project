@@ -1,5 +1,7 @@
 package com.comic.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.comic.model.UserBillVO;
+import com.comic.model.UserProductBillVO;
 import com.comic.service.UserOrderManegerService;
 
 import lombok.AllArgsConstructor;
@@ -57,6 +60,12 @@ public class UserViewController {
 	@GetMapping("userBill")
 	public @ResponseBody UserBillVO userBill(@RequestParam("userId") String id) {
 		return userOrderManegerService.userBill(id);
+	}
+	
+	@GetMapping("userProductBill")
+	public @ResponseBody List<UserProductBillVO> userProductBill(@RequestParam("userId") String id) {
+		System.out.println(userOrderManegerService.userProductBill(id));
+		return userOrderManegerService.userProductBill(id);
 	}
 	
 }

@@ -11,6 +11,7 @@ import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
 import com.comic.model.UserBillVO;
+import com.comic.model.UserProductBillVO;
 import com.comic.service.UserOrderManegerService;
 
 import lombok.Setter;
@@ -89,6 +90,11 @@ public class UserOrderManegerServiceImpl implements UserOrderManegerService{
 		UserBillVO vo = ordermapper.userBill(id);
 		vo.setTotal_bill(vo.getProduct_bill() + vo.getRoom_bill());
 		return vo;
+	}
+
+	@Override
+	public List<UserProductBillVO> userProductBill(String id) {
+		return ordermapper.userProductBill(id);
 	}
 
 }
