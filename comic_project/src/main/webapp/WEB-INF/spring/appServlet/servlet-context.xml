@@ -4,10 +4,8 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:security="http://www.springframework.org/schema/security"
-	xmlns:task="http://www.springframework.org/schema/task"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -33,10 +31,23 @@
 	
 	<context:annotation-config />
 	<context:component-scan base-package="com.comic.*" />
-	<context:component-scan base-package="com.comic.controller" />
-	<context:component-scan base-package="com.comic.task" />	  
+	<context:component-scan base-package="com.comic.controller" />	  
 	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/>
 	
+	<beans:bean id="MemberloginInterceptor" class="com.comic.common.interceptor.MemberLoginInterceptor" />
+	<beans:bean id="MemberauthInterceptor" class="com.comic.common.interceptor.MemberAuthInterceptor"/>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/MemberLoginPost"/>
+			<beans:ref bean="MemberloginInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/userView/main"/>
+			<beans:ref bean="MemberauthInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>

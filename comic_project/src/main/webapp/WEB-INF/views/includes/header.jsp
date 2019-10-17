@@ -15,7 +15,6 @@
 
 <link rel="stylesheet"
 	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
-
 <link rel="stylesheet"
 	href="/resources/vendors/base/vendor.bundle.base.css">
 <link rel="stylesheet"
@@ -27,8 +26,7 @@
 <script src="/resources/vendors/base/vendor.bundle.base.js"></script>
 <script src="/resources/vendors/chart.js/Chart.min.js"></script>
 <script src="/resources/vendors/datatables.net/jquery.dataTables.js"></script>
-<script
-	src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 <script src="/resources/js/off-canvas.js"></script>
 <script src="/resources/js/hoverable-collapse.js"></script>
 <script src="/resources/js/template.js"></script>
@@ -36,42 +34,7 @@
 <script src="/resources/js/data-table.js"></script>
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
-
-<script type="text/javascript">
-	$('button[name=modifyBtn]').click(
-			function() {
-				var MEMBER_ID = $(this).attr('value');
-
-				$.ajax({
-					type : 'get',
-					url : "/member/MemberModify?MEMBER_ID=" + MEMBER_ID,
-					success : function(data) {
-						$('#MEMBER_ID2').attr('value',
-								data.getModify['member_ID']);
-						$('#MEMBER_NAME2').attr('value',
-								data.getModify['member_NAME']);
-						$('#MEMBER_EMAIL2').attr('value',
-								data.getModify['member_EMAIL']);
-						$('#MEMBER_PHONE_NUMBER2').attr('value',
-								data.getModify['member_PHONE_NUMBER']);
-						$('#MemberModifyModal').show();
-					}
-				});
-			});
-
-	function memmodify() {
-		console.log("여기 들어옴?")
-		var membermodify = $("form[name=membermodify]").serialize();
-		$.ajax({
-			type : 'post',
-			url : '/member/MemberModify2',
-			data : membermodify,
-			success : function(result) {
-				alert(result);
-			}
-		});
-	}
-</script>
+<script src="/resources/js/header.js"></script>
 
 </body>
 
@@ -80,6 +43,7 @@
 </head>
 
 <body>
+
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
 		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -87,25 +51,28 @@
 				<div
 					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
 
-					<a class="navbar-brand brand-logo" href=""><img
-						src="/resources/images/logo.svg" alt="logo" /></a> <a
-						class="navbar-brand brand-logo-mini" href=""><img
-						src="/resources/images/logo-mini.svg" alt="logo" /></a>
+					<a class="navbar-brand brand-logo" href="/erp?">
+					<img src="/resources/images/comic_image.png" alt="" style="width: 70px; height: 30px;"/></a>
+					<a class="navbar-brand brand-logo" href="/erp?">
+					<img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 100px; height: 15px;"/></a>
 
 					<button class="navbar-toggler navbar-toggler align-self-center"
 						type="button" data-toggle="minimize">
 						<span class="mdi mdi-sort-variant"></span>
 					</button>
 				</div>
+				<!-- hidden form -->
+				<form id="operForm2"></form>
 			</div>
-			<div
-				class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+			
+			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 				<ul class="navbar-nav navbar-nav-right">
-					<li class="nav-item dropdown mr-1"><a
-						class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-						id="messageDropdown" href="#" data-toggle="dropdown"> <i
-							class="mdi mdi-message-text mx-0"></i> <span class="count"></span>
-					</a>
+<!-- 					<li class="nav-item dropdown mr-1">
+						<a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+							id="messageDropdown" href="#" data-toggle="dropdown"> 
+							<i class="mdi mdi-message-text mx-0"></i> <span class="count"></span>
+						</a>
+						
 						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 							aria-labelledby="messageDropdown">
 							<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
@@ -144,7 +111,10 @@
 										Upcoming board meeting</p>
 								</div>
 							</a>
-						</div></li>
+						</div>
+					</li> -->
+					
+					<!-- 알림 아이콘 -->
 					<li class="nav-item dropdown mr-4"><a
 						class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown"
 						id="notificationDropdown" href="#" data-toggle="dropdown"> <i
@@ -187,7 +157,10 @@
 										days ago</p>
 								</div>
 							</a>
-						</div></li>
+						</div>
+					</li>
+					<!-- 알림 아이콘 끝 -->
+	
 					<c:if test="${not empty Memberlogin}">
 						<li class="nav-item nav-profile dropdown"><a
 							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
@@ -195,7 +168,7 @@
 						</a>
 							<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 								aria-labelledby="profileDropdown">
-								<a class="dropdown-item" data-toggle="modal" href="#MemberModifyModal2"> <i
+								<a class="dropdown-item" onclick='javascript:headermembermodifyBtn()'> <i
 									class="mdi mdi-settings text-primary"></i> 회원정보
 								</a> <a class="dropdown-item" href="${path}/member/MemberLogout">
 									<i class="mdi mdi-logout text-primary"></i> 로그아웃
@@ -217,6 +190,9 @@
 					</c:if>
 					
 				</ul>
+				
+				
+				
 				<button
 					class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
 					type="button" data-toggle="offcanvas">
@@ -224,7 +200,40 @@
 				</button>
 			</div>
 		</nav>
-		<div class="modal" id="MemberModifyModal2">
+		
+		<!-- headerMemberModifyPassword -->
+		<div class="modal" id="headerMemberModifyPasswordModal">
+			<div class="modal-dialog">
+				<div class="modal-content" align="center">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h3 class="modal-title">회원 정보</h3>
+					</div>
+					<!-- Modal body -->
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">
+								<font style="vertical-align: inherit;">회원 정보</font>
+							</h4>
+							<form>
+							<div class="form-group">
+								<label> <font style="vertical-align: inherit;">비밀번호 확인</font></label>
+								<input type="password" name="MEMBER_PWD" id="headerMemberModifyPassword" class="form-control">
+								<input type="hidden" id="headermemberhiddenid" value ="${Memberlogin.MEMBER_ID}">
+							</div>
+							<div class="form-group" align="center">
+								<button type="button" id="headerMemberModifyPasswordBtn" name="headerMemberModifyPasswordBtn" class="btn btn-info" onclick="headerMemberModifyPasswordCheck(headermemberhiddenid.value,headerMemberModifyPassword.value);">확인</button>
+								<button type="button" id="headerMemberModifyPasswordclose" class="btn btn-success">닫기</button>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- headerMemberModifyModal -->
+		<div class="modal" id="headerMemberModifyModal">
 			<div class="modal-dialog">
 				<div class="modal-content" align="center">
 
@@ -239,41 +248,40 @@
 							<h4 class="card-title">
 								<font style="vertical-align: inherit;">회원 정보</font>
 							</h4>
-							<form class="forms-sample" name="membermodify" method="post" autocomplete="off">
+							<form class="forms-sample" name="headermembermodify" method="post" autocomplete="off" action="/member/MemberModify2" onsubmit="return headervalidate();">
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">아이디</font>
-									</label> <input name="MEMBER_ID2" id="MEMBER_ID2" readonly="readonly"
+									</label> <input name="MEMBER_ID" id="HeaderMEMBER_ID" readonly="readonly"
 										class="form-control" value="${Memberlogin.MEMBER_ID}"/>
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">이름</font>
-									</label> <input name="MEMBER_NAME2" id="MEMBER_NAME2" readonly="readonly"
+									</label> <input name="MEMBER_NAME" id="HeaderMEMBER_NAME" readonly="readonly"
 										class="form-control" value="${Memberlogin.MEMBER_NAME}">
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">비밀번호</font>
-									</label> <input name="MEMBER_PWD2" id="MEMBER_PWD2" type="password"
-										class="form-control">
+									</label> <input name="MEMBER_PWD" id="HeaderMEMBER_PWD" type="password"
+										class="form-control" style='ime-mode:disabled' maxlength="12">
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">이메일</font>
-									</label> <input name="MEMBER_EMAIL2" id="MEMBER_EMAIL2" type="email"
-										class="form-control" value="${Memberlogin.MEMBER_EMAIL}">
+									</label> <input name="MEMBER_EMAIL" id="HeaderMEMBER_EMAIL" type="email"
+										class="form-control" value="${Memberlogin.MEMBER_EMAIL}" maxlength="50">
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">핸드폰
 											번호</font>
-									</label> <input name="MEMBER_PHONE_NUMBER2" id="MEMBER_PHONE_NUMBER2"
+									</label> <input name="MEMBER_PHONE_NUMBER" id="HeaderMEMBER_PHONE_NUMBER"
 										type="tel" class="form-control" value="${Memberlogin.MEMBER_PHONE_NUMBER}">
 								</div>
 								<div class="form-group" align="center">
-									<button type="button" id="membermodifyBtn" name="membermodifyBtn" class="btn btn-info" onclick="memmodify();">수정</button>
-									<button type="button" id="membermodifyclose" class="btn btn-success" data-dismiss="modal">닫기</button>
+									<button type="submit" id="headermodifyBtn" name="headermodifyBtn" class="btn btn-info">수정</button>
+									<button type="button" id="headermodifyclose" class="btn btn-success">닫기</button>
 								</div>
 							</form>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>

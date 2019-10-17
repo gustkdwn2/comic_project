@@ -6,7 +6,8 @@ import java.util.Map;
 import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
-import com.comic.model.ProductVO;
+import com.comic.model.UserBillVO;
+import com.comic.model.UserProductBillVO;
 
 public interface UserOrderManegerService {
 	
@@ -33,5 +34,9 @@ public interface UserOrderManegerService {
 	public String getCategoryValue(int number);
 
 	public void realTimeOrderAdd(List<OrderVO> orderList);
+	
+	public UserBillVO userBill(String id);
+	
+	public List<UserProductBillVO> userProductBill(String id);
 
 }

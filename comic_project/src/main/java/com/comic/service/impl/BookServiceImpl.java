@@ -44,9 +44,19 @@ public class BookServiceImpl implements BookService {
 			attachMapper.insert(attach);
 		});
 	}
-
+	
+	@Transactional
 	@Override
 	public boolean bookModify(BookVO vo) {
+		attachMapper.deleteAll(vo.getBook_name());
+		
+		boolean modifyResult = mapper.bookUpdate(vo) == 1;
+		if(modifyResult && vo.getAttachList().size() > 0) {
+			vo.getAttachList().forEach(attach -> {
+				attach.setBook_name(vo.getBook_name());
+				attachMapper.insert(attach);
+			});
+		}
 		return mapper.bookUpdate(vo) == 1;
 	}
 	
@@ -64,7 +74,6 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<BookAttachVO> getAttachList(String book_name) {
-		System.out.println(attachMapper.findByBookName(book_name));
 		return attachMapper.findByBookName(book_name);
 	}
 	

@@ -27,6 +27,11 @@ public class BoardServiceImpl implements BoardService {
 		//// TODO Auto-generated method stub
 		log.info("\r\n#### register #####"+board);
 		
+		board.setBoard_title(board.getBoard_title().replaceAll("(?i)<", "&lt;"));
+		board.setBoard_content(board.getBoard_content().replaceAll("(?i)<", "&lt;"));      
+		board.setBoard_title(board.getBoard_title().replaceAll("(?i)'", "&#039;"));
+		board.setBoard_content(board.getBoard_content().replaceAll("(?i)'", "&#039;"));
+		
 		mapper.insert(board);
 		
 		//원래 책에는 insertSelectKey를 이용하는데 그냥 insert문을 이용했다.
@@ -46,6 +51,9 @@ public class BoardServiceImpl implements BoardService {
 	public boolean modify(BoardVO board) {
 		
 		log.info("\r\n#### modify #####"+board);
+		
+		board.setBoard_title(board.getBoard_title().replaceAll("(?i)<", "&lt;"));
+	    board.setBoard_content(board.getBoard_content().replaceAll("(?i)<", "&lt;"));    
 		
 		return mapper.update(board) == 1;
 	}

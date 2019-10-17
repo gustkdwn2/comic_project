@@ -11,5 +11,6 @@ public interface SettlementMapper {
 
 	public int settlementUpdate(@Param("num") int num, @Param("currentNum") int currentNum);
 
-	public void settlementLossInsert(@Param("category") String category,@Param("errorNum") int errorNum, @Param("num") int num,@Param("pay") int pay);	
+	public void settlementLossInsert(@Param("category") String category,
+			@Param("errorNum") int errorNum, @Param("num") int num,@Param("pay") int pay);	
 }

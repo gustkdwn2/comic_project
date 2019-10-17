@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,13 +29,18 @@ public class BookController {
 	private BookService service;
 	
 	@GetMapping("/bookList")
-	public void bookGetList(Model model) {
-		model.addAttribute("bookList", service.bookGetList());
+	public void bookGetList() {
+		/* model.addAttribute("bookList", service.bookGetList()); */
+	}
+	
+	@GetMapping("/bookData")
+	public ResponseEntity<List<BookVO>> bookData() {
+		return new ResponseEntity<List<BookVO>>(service.bookGetList(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/bookGet")
-	public void bookGet(@RequestParam("book_name") String book_name, Model model) {
-		model.addAttribute("book", service.bookGet(book_name));
+	public @ResponseBody BookVO bookGet(@RequestParam("book_name") String book_name) {
+		return service.bookGet(book_name);
 	}
 	
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -58,7 +62,7 @@ public class BookController {
 	}
 	
 	@PostMapping("/bookRemove")
-	public String bookRemove(@RequestParam("removeBtn") String book_name) {
+	public String bookRemove(@RequestParam("book_name") String book_name) {
 		List<BookAttachVO> attachList = service.getAttachList(book_name);
 		if(service.bookRemove(book_name)) {
 			deleteFiles(attachList);

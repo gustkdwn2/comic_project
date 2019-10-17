@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
-<%@ include file="../includes/header.jsp"%>
-<%@ include file="../includes/sidebar.jsp"%>
+<%@ include file="../includes/userHeader.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,13 +27,12 @@ tr{margin-bottom:5px;}
 
 .uploadResult ul li {
 	list-style: none;
-	padding: 10px;
+	
 }
 
 .uploadResult ul li img {
-	width: 150px;
-	height: 200px;
-	margin-left: 30px;
+	width: 170px;
+	height: 220px;
 }
 
 .bigPictureWrapper {
@@ -61,14 +59,11 @@ tr{margin-bottom:5px;}
 <body>
       <!-- partial -->
       <div class="main-panel">
-        <div class="content-wrapper">
           <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-
+            <div class="col-lg-12 grid-margin stretch-card">  
+                <div class="card-body" style="margin-top:50px; margin-left:150px;">
                   <div style="text-align:center; width:1560px;">
-                  <h2>원하시는 도서를 검색하세요</h2></br><h4> 제목을 누르면 상세정보를 볼 수 있습니다.</h4><br/>
+                    <h2 class=".h2"><a href="javascript:home()">홈</a> > 도서 검색</h2> </br><h4> 제목을 누르면 상세정보를 볼 수 있습니다.</h4><br/>
                   </div><br/>
                   	<div style="width:800px; margin:0 auto;">
 				    <form class="form-inline" action="/SearchBook/searchList" 
@@ -89,7 +84,7 @@ tr{margin-bottom:5px;}
 								<option value="TW"
 									<c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>제목 or 저자</option>
 							 </select>
-				    		<input type="text" name="keyword" class="form-control" size="70" maxlength="40" >
+				    		<input type="text" name="keyword" class="form-control" size="70" maxlength="40" >&nbsp;
 				    		<input type="submit" class="btn btn-primary btn-md" value="검색">
 				    		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'/>
 							<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
@@ -131,26 +126,21 @@ tr{margin-bottom:5px;}
 		                          <td style="width:200px;"><c:out value="${list.book_loc }" /></td>	                         
 		                        </tr>
 		                        
-		                        <tr class="hide" style="height: 200px;">
+		                        <tr class="hide" style="height: 230px;">
 		                          <td colspan="6">			                          
-							      	<div class='uploadResult' style="width: 120px; float: left; margin-left:10px;"> 
+							      	<div class='uploadResult' style="width: 170px; float: left; height: 220px; margin: 10px 10px 0px 20px;"> 
 							        	<ul>
-							          		
+							          		<!-- 이미지 -->
 							        	</ul>
 							        </div>
-							        <div style="margin-top:10px; width: 1390px; height: 200px; float: right; text-align: justify;">
-			                          	<table style="border:1px solid black; width: 1350px; height: 200px;">
-				                          	<tr>
-					                          	<td style="width: 100px;"> 제목 </td>
-					                          	<td style="width: 700px;"><c:out value="${list.book_name }" /></td>
-					                          	<td style="width: 100px;"> 저자 </td>
-					                          	<td style="width: 300px;"><c:out value="${list.book_writer }" /></td>
-					                          	<td style="width: 150px;"> 연재 상태 </td>
-					                          	<td style="width: 100px;"><c:out value="${list.book_status }" /></td>					                          					                      
-				                          	<tr>
-				                          		<td style="height: 160px;" colspan="6">줄거리 : <c:out value="${list.book_content }" /></td>
-				                          	</tr>
-			                          	</table>
+							        							        
+							        <font style="font-weight: 900; color: #1d809f; float:left; margin-left: 30px;">
+							        &lt; <c:out value="${list.book_status }" />&gt;
+							        </font>
+							        
+							        <div style="margin:10px 30px 10px 10px; width: 1300px; height: 200px; float: right; 
+							              text-align: justify; border: 2px solid #d0dfef; border-radius: 10px; ">			          
+				                         <c:out value="${list.book_content }" />
 		                          	</div>
 		                          </td>
 		                        </tr>
@@ -197,17 +187,20 @@ tr{margin-bottom:5px;}
 						<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'> 
 						<input type='hidden' name='keyword' value='<c:out value="${ pageMaker.cri.keyword }"/>'>
 				   </form>
-
+				   <!--홈관련 hidden form -->
+				   <form id="operForm"></form>
            </div>
          </div>
       </div>
     </div>
-  </div>
-</div>
+
+
 
             
 <script type="text/javascript">
-
+	var roomNum = "<c:out value='${roomNum}'/>";
+	console.log(roomNum);
+	
 	$(document).ready(function(){
 		
 			$(function(){
@@ -277,14 +270,24 @@ tr{margin-bottom:5px;}
 				url: '/book/getAttachList?book_name='+bookname,				
 				success: function(attach) {
 					var fileCallPath = encodeURIComponent(attach[0].uploadPath+"/s_"+attach[0].uuid+"_"+attach[0].fileName);
-					str += "<li data-path='"+attach[0].uploadPath+"' data-uuid='"+attach[0].uuid+"' data-filename='"+attach[0].fileName+"' data-type='"+attach[0].fileType+"'><div>";
-					str += "<img src='/display?fileName="+fileCallPath+"'>";
+					str += "<li data-path='"+attach[0].uploadPath+"' data-uuid='"+attach[0].uuid+"' data-filename='"+attach[0].fileName+"' data-type='"+attach[0].fileType+"'>";
+					str += "<div><img src='/display?fileName="+fileCallPath+"'>";
 					str += "</div>";
-					str += "<li>";
+					str += "</li>";
 				}
 			});
 			$(".uploadResult ul").html(str);
 		});
+
+		function home(){
+			var operForm = $("#operForm");
+
+			operForm.append("<input type='hidden' name='roomNum' value='" + roomNum + "'>");
+			operForm.attr("method", "post");
+			operForm.attr("action","/userView/main");
+			operForm.submit();
+		}
+
 
 </script>
 
