@@ -26,5 +26,7 @@ public interface SalesStatisticsService {
 
 	public List<SalesStatisticsVO> salesSearchDateData(String start, String end);
 
+	public List<SalesStatisticsVO> salesMonthList();
+
 	
 }

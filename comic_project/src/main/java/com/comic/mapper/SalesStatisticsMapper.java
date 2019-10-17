@@ -27,4 +27,6 @@ public interface SalesStatisticsMapper {
 	public List<SalesStatisticsVO> salesSearchData(@Param("keyword")String keyword, @Param("numKeyword") int numKeyword);
 
 	public List<SalesStatisticsVO> salesSearchDateData(@Param("start")String start, @Param("end")String end);
+
+	public List<SalesStatisticsVO> totalMonthPrice();
 }

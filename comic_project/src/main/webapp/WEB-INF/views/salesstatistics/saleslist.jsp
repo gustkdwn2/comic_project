@@ -28,7 +28,30 @@ jQuery.browser = {};
 				<div class="col-md-12 stretch-card">
 					<div class="card" style="margin-bottom: 20px;">
 						<div class="card-body">
-							<p class="card-title">순이익 확인</p>
+							<p class="card-title">월 순이익 확인</p>
+							<div class="table-responsive">
+								<table id="salesMonthTable" class="table table-striped">
+									<thead>
+										<tr>
+											<th>날짜</th>
+											<th>상품 총매출</th>
+											<th>방 총매출</th>
+											<th>손실</th>
+											<th>순 이익</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="row">
+				<div class="col-md-12 stretch-card">
+					<div class="card" style="margin-bottom: 20px;">
+						<div class="card-body">
+							<p class="card-title">일 순이익 확인</p>
 							<div class="table-responsive">
 								<table id="salesTable" class="table table-striped">
 									<thead>
@@ -46,7 +69,6 @@ jQuery.browser = {};
 					</div>
 				</div>
 			</div>
-			
 			
 			<div class="row">
 				<div class="col-md-12 stretch-card">
@@ -91,6 +113,7 @@ jQuery.browser = {};
 <script src="/resources/js/inhosales.js"></script>
 <script>
 	$(document).ready(function() {
+		salesMonthTableinit();
 		salesTableinit();
 		salesSearchTableinit();
 	});

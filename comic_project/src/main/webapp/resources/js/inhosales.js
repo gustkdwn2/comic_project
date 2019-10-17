@@ -1,3 +1,56 @@
+function salesMonthTableinit() {
+	$('#salesMonthTable').DataTable(
+		{ // 페이징 처리, 검색, show entries
+			pageLength : 10, //처음 페이지에 처리 개수
+			bPaginate : true, // 페이징 기능
+			bLengthChange : true,
+			lengthMenu : [ [ 10, 20, 30, -1 ],
+					[ 10, 20, 30, "All" ] ], //show entries
+			bAutoWidth : false,
+			processing : true,
+			ordering : true,
+			serverSide : false,
+			searching : true, // 검색 기능
+			bStateSave : true,
+			"iDisplayLength" : 10,
+			"columnDefs" : [ {
+				targets : 'no-sort',
+				orderable : false
+			} ],
+			ajax : {
+				url : "/salesstatistics/salesMonthdata.json",
+				type : "get",
+				dataSrc : '',
+			},
+			"language": {
+			      search: "Search :"
+			},
+			aoColumns : [
+					{
+						data : "salestime"
+					},
+					{
+						data : "productsales_order_price"
+					},
+					{
+						data : "roomsales_totalprice"
+					},
+					{
+						data : "loss_pay"
+					},
+					{
+						mRender : function(data, type, row) {
+							data = row['productsales_order_price']
+									+ row['roomsales_totalprice']
+									+ row['loss_pay']
+							return data;
+						}
+					} ],
+			order : [ [ 0, 'desc' ] ]
+		});
+}
+
+
 function salesTableinit() {
 		$('#salesTable').DataTable(
 			{ // 페이징 처리, 검색, show entries
@@ -27,7 +80,11 @@ function salesTableinit() {
 				},
 				aoColumns : [
 						{
-							data : "salestime"
+							data : "salestime", 
+							"render": function (data) {
+				    			var date = new Date(data); var month = date.getMonth() + 1; 
+				    			return  date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month);
+							}
 						},
 						{
 							data : "productsales_order_price"

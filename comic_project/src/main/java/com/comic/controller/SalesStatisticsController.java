@@ -37,6 +37,11 @@ public class SalesStatisticsController {
 		return new ResponseEntity<List<SalesStatisticsVO>>(statisticsService.salesList(), HttpStatus.OK);
 	}
 	
+	@GetMapping("salesMonthdata")
+	public ResponseEntity<List<SalesStatisticsVO>> salesMonthData(){
+		return new ResponseEntity<List<SalesStatisticsVO>>(statisticsService.salesMonthList(), HttpStatus.OK);
+	}
+	
 	@GetMapping("salesSearchdata")
 	public ResponseEntity<List<SalesStatisticsVO>> salesSearchData(){
 		return new ResponseEntity<List<SalesStatisticsVO>>(statisticsService.salesSearchList(), HttpStatus.OK);

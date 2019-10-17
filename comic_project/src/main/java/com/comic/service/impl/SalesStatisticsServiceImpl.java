@@ -184,6 +184,13 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 	public List<SalesStatisticsVO> salesList() {  // 매출 테이블
 		return statisticsMapper.totalPrice();
 	}
+	
+
+	@Override
+	public List<SalesStatisticsVO> salesMonthList() {
+		System.out.println(statisticsMapper.totalMonthPrice());
+		return statisticsMapper.totalMonthPrice();
+	}
 
 	@Override
 	public List<SalesStatisticsVO> salesSearchList() {
@@ -218,6 +225,5 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 	public List<SalesStatisticsVO> salesSearchDateData(String start, String end) {
 		return statisticsMapper.salesSearchDateData(start, end);
 	}
-
 	
 }
