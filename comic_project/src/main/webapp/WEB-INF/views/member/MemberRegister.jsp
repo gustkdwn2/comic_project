@@ -77,7 +77,7 @@
 					<font style="vertical-align: inherit;">핸드폰번호</font>
 				</label>
               	<div>
-                <input type="text" class="form-control form-control-lg" id="MEMBER_PHONE_NUMBER1" 
+                <input type="text" class="form-control form-control-lg" id="MEMBER_PHONE_NUMBER1"
                 		name="MEMBER_PHONE_NUMBER1" style="display:inline;float:left; width: 30%" maxlength="3">
                 <h3 style="display:inline;float:left; width: 5%; height: 3.5rem; margin: 15px 0px; text-align: center;">-</h3>
                 <input type="text" class="form-control form-control-lg" id="MEMBER_PHONE_NUMBER2" 
@@ -86,7 +86,7 @@
                 <input type="text" class="form-control form-control-lg" id="MEMBER_PHONE_NUMBER3" 
                 		name="MEMBER_PHONE_NUMBER3" style="display:inline;float:left; width: 30%" maxlength="4">
                 </div>
-                <input type="hidden" name="MEMBER_PHONE_NUMBER" value="">
+                <input type="hidden" name="MEMBER_PHONE_NUMBER" id="MEMBER_PHONE_NUMBER4" value="">
               </div>
               
               <div class="mt-3">
@@ -115,7 +115,7 @@
   <script src="/resources/js/template.js"></script>
   <!-- endinject -->
   <!-- 멤버 js -->
-  <script src="/resources/js/member.js?ver=19"></script>
+  <script src="/resources/js/member.js?ver=9"></script>
   
   <script type="text/javascript">
   </script>

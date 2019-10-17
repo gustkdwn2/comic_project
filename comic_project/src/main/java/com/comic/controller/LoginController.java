@@ -88,6 +88,7 @@ public class LoginController {
 		Object object = httpSession.getAttribute("Memberlogin");
 		if (object != null) {
 			httpSession.removeAttribute("Memberlogin");
+			httpSession.removeAttribute("memberid");
 			httpSession.invalidate();
 		}
 		return "/member/Logout";

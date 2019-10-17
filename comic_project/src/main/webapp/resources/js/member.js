@@ -8,13 +8,16 @@ var pw = document.getElementById("MEMBER_PWD");
 var pw2 = document.getElementById("MEMBER_PWD_Check");
 var name = document.getElementById("MEMBER_NAME")
 var email = document.getElementById("MEMBER_EMAIL");
-var phone,phone2,phone3,phone4;
+var phone4 = document.getElementById("MEMBER_PHONE_NUMBER4");
+var phone1,phone2,phone3,phone4;
 
 function validate() {
+	  console.log("수정됨-9")
 	  phone1 = $('#MEMBER_PHONE_NUMBER1').val();
 	  phone2 = $('#MEMBER_PHONE_NUMBER2').val();
 	  phone3 = $('#MEMBER_PHONE_NUMBER3').val();
-	  phone4 = phone1 + "-" + phone2 + "-" + phone3;
+	  $('#MEMBER_PHONE_NUMBER4').val(phone1 + "-" + phone2 + "-" + phone3);
+	  
       if(id.value=="") {
     	  alert("아이디를 입력해 주세요");
           id.focus();
