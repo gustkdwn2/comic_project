@@ -411,7 +411,13 @@ public class ManagerposController {
 			//list.get(i).setStarttime(String.valueOf(time));
 
 			replydata.put("starttime", list.get(i).getStarttime());
-			replydata.put("endtime", list.get(i).getEndtime());
+			
+			if(list.get(i).getEndtime()==null) { //퇴근시간은 없을수있으므로 처리를 해줘야함
+				replydata.put("endtime", "퇴근기록없음");
+			}else {
+				replydata.put("endtime", list.get(i).getEndtime());	
+			}
+			
 			replydata.put("empnum", list.get(i).getEmpnum());
 			replydata.put("empname", list.get(i).getEmpname());
 

@@ -27,10 +27,11 @@
 	
 	<select id="todaycommutelist"
 		resultType="com.comic.model.TodaycommuteVO">
-		select WORKINGHOUR_EMP_NUM"empnum",
-		to_char(WORKINGHOUR_STARTTIME,'hh24:mi:ss')"starttime",
-		to_char(WORKINGHOUR_ENDTIME,'hh24:mi:ss')"endtime" 
-		from COMIC_WORKINGHOUR where TO_CHAR(workinghour_workday, 'YYMMDD') = #{todayformat}
+		select w.WORKINGHOUR_EMP_NUM"empnum",
+		TO_CHAR(w.workinghour_starttime, 'hh24:mi:ss')"starttime",
+		TO_CHAR(w.workinghour_ENDtime, 'hh24:mi:ss')"endtime",
+    	c.EMPLOYEE_NAME"empname" from COMIC_WORKINGHOUR w,comic_employee c 
+		where TO_CHAR(w.workinghour_workday, 'YYMMDD') = #{todayformat} and w.WORKINGHOUR_EMP_NUM= c.employee_num order by 1
 	</select>
 	
 </mapper>
