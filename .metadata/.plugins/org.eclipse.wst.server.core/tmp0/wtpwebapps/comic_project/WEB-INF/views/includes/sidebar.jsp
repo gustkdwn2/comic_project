@@ -13,9 +13,10 @@ li{list-style: none;}
 	
 		<ul class="nav">
 
-			<li class="nav-item"><a class="nav-link" href="/">
-					<i class="mdi mdi-home menu-icon"></i> <span class="menu-title">임의 창</span>
-			</a></li>
+			<li class="nav-item"><a class="nav-link"
+						href="/managerpos/managerpos">
+					<i class="mdi mdi-home menu-icon"></i><span class="menu-title">
+					포스 화면</span></a></li>
 			
 			<li class="nav-item open accordion_wrap"><a class="nav-link"> 
 			<i class="mdi mdi-file-document-box-outline menu-icon"></i> 
@@ -39,19 +40,29 @@ li{list-style: none;}
 			
 			<li class="nav-item open accordion_wrap"><a class="nav-link"> 
 			<i class="mdi mdi-file-document-box-outline menu-icon"></i> 
-			<span class="menu-title">매출</span></a>
+			<span class="menu-title">매출 관리</span></a>
 					
 					<ul class="accordion_content">
 						<li class="nav-item"><a class="nav-link"
-						href="/managerpos/managerpos"> <i
-								class="mdi mdi-grid-large menu-icon"></i> <span
-								class="menu-title">포스 화면</span>
+						href="/salesstatistics/saleslist"> <i
+							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">매출 확인</span>
 						</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/settlement/settlementlist"> <i
 								class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 								class="menu-title">정산</span>
 						</a></li>
+						<li class="nav-item"><a class="nav-link" href="/loss/losslist"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+						class="menu-title">손실</span>
+						</a></li>
+						<li class="nav-item">
+						<a class="nav-link" href="/salesstatistics/salesstatisticslist">
+						<i class="mdi mdi-chart-pie menu-icon"></i>
+						<span class="menu-title">매출 통계</span>
+						</a>
+						</li>	
 					</ul>
 			</li>
 					
@@ -63,24 +74,9 @@ li{list-style: none;}
 			<li class="nav-item"><a class="nav-link"
 				href="/settlement/settlementlist"> <i
 					class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-					class="menu-title">정산</span> -->
-			</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="/loss/losslist"> <i
-					class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-					class="menu-title">손실</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link"
-						href="/salesstatistics/saleslist"> <i
-							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-							class="menu-title">매출</span>
-					</a></li>
-			<li class="nav-item">
-				<a class="nav-link" href="/salesstatistics/salesstatisticslist">
-					<i class="mdi mdi-chart-pie menu-icon"></i>
-					<span class="menu-title">매출 통계</span>
-				</a>
-			</li>	
+					class="menu-title">정산</span> 
+			</a></li> -->
+		
 			<li class="nav-item"><a class="nav-link"
 				href="/CustomerCenter/boardList"> <i
 				class="mdi mdi-file-document-box-outline menu-icon"></i> <span
