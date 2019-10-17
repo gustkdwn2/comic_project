@@ -36,8 +36,26 @@ li{list-style: none;}
 						</a></li>
 					</ul>
 			</li>
+			
+			<li class="nav-item open accordion_wrap"><a class="nav-link"> 
+			<i class="mdi mdi-file-document-box-outline menu-icon"></i> 
+			<span class="menu-title">매출</span></a>
 					
-			<li class="nav-item"><a class="nav-link"
+					<ul class="accordion_content">
+						<li class="nav-item"><a class="nav-link"
+						href="/managerpos/managerpos"> <i
+								class="mdi mdi-grid-large menu-icon"></i> <span
+								class="menu-title">포스 화면</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/settlement/settlementlist"> <i
+								class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+								class="menu-title">정산</span>
+						</a></li>
+					</ul>
+			</li>
+					
+<!-- 			<li class="nav-item"><a class="nav-link"
 			href="/managerpos/managerpos"> <i
 					class="mdi mdi-grid-large menu-icon"></i> <span
 					class="menu-title">포스 화면</span>
@@ -45,7 +63,7 @@ li{list-style: none;}
 			<li class="nav-item"><a class="nav-link"
 				href="/settlement/settlementlist"> <i
 					class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-					class="menu-title">정산</span>
+					class="menu-title">정산</span> -->
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="/loss/losslist"> <i
