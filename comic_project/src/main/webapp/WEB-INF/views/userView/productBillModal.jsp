@@ -48,6 +48,7 @@
 <script type="text/javascript">
 	
 	$("#productBillModalCloseBtn").click(function() {
+		$("#product-bill-card-body").scrollTop(0);
 		$("#productBillModal").hide();
 	});
 	
