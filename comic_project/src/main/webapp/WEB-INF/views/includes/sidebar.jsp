@@ -70,6 +70,11 @@ li{list-style: none;}
 					class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 					class="menu-title">손실</span>
 			</a></li>
+			<li class="nav-item"><a class="nav-link"
+						href="/salesstatistics/saleslist"> <i
+							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">매출</span>
+					</a></li>
 			<li class="nav-item">
 				<a class="nav-link" href="/salesstatistics/salesstatisticslist">
 					<i class="mdi mdi-chart-pie menu-icon"></i>

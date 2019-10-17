@@ -120,12 +120,38 @@ $(document).ready(function(){
 			success: function(data) {
 				$('#productBill').attr('value',data.product_bill);
 				$('#roomBill').attr('value',data.room_bill);
-				
+				$('#totalBill').attr('value',data.total_bill);
 			}
 		});
 		
 		
 		$("#productBillModalBtn").click(function() {
+			$.ajax({
+				type: 'get',
+				url: '/userView/userProductBill?userId=${Memberlogin.MEMBER_ID}',
+				dataType: 'json',
+				success: function(data) {
+					console.log(data);
+					$("#productBillTbody").html("");
+		            var str = '<tr>';
+		            $.each(data , function(i){
+		            	var date = new Date(data[i].order_time); var month = date.getMonth() + 1; 
+		                str += '<td>' + date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() +
+		                "<br>" + date.getHours() + " : " + date.getMinutes() + ' : ' + date.getSeconds() + '</td><td>' + data[i].product_name + '</td><td>' + data[i].order_qty + '</td><td>' + data[i].order_bill + '</td>';
+		                str += '</tr>';
+		           });
+		           $("#productBillTbody").append(str);
+					
+				}
+			});
+			/* $("#productBillModal").modal('show').css({
+			    'margin-top': function () { //vertical centering
+			        return -($(this).height() / 100);
+			    },
+			    'margin-left': function () { //Horizontal centering
+			        return -($(this).width() / 100);
+			    }
+			}); */
 			$("#productBillModal").show();
 		});
 

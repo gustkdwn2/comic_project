@@ -14,8 +14,6 @@ $('#btn1').click(function() {
 			contentType : "application/json; charset=utf-8;",
 			type : 'POST',
 			success : function(data) {
-				console.log(data);
-				console.log("성공");
 				for (var i = 0; i < list.length; i++) {
 					$('#' + 'a' + i.toString()).html(data[i]);
 					if (data[i] > 0) {
@@ -36,8 +34,14 @@ $('#btn1').click(function() {
 	$('#btn2').click(function() {
 		var list = new Array();
 		$("input[name=curqty]").each(function(index, item) {
-			list.push($('#'+'ainput'+index).val());
+			if (item.value == "") { // 공백일 경우 현재 값을 list에 저장
+				list.push($('#'+'product_qty'+index).val())
+			} else {
+				list.push(item.value);
+			} 
+			
 		});
+		console.log(list);
 		for (var i = 0; i < list.length; i++) {
 			$('#' + 'b' + i.toString()).html(list[i]);
 		}
@@ -55,8 +59,6 @@ $('#btn1').click(function() {
 			productList.push($(item).val());
 		});
 
-		console.log(numList);
-		console.log(productList);
 
 		var form = document.createElement("form"); // form을 만듬
 		form.setAttribute("charset", "UTF-8");

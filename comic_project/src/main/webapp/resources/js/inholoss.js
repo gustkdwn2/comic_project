@@ -139,6 +139,7 @@ $('#loss_product').change(function(){
 
 $('#modifyclose').click(function(){
 	$('#myModifyModal').hide();
+	$('#myModifyModal').find('form')[0].reset();
 });
 
 	

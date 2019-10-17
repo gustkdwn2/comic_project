@@ -225,6 +225,7 @@ $(document).ready(function(e){
 				  }
 			  }); //$.ajax
 	      }
+	      $("#card-body-register").scrollTop(0);
 		  $("#uploadFileRegister").val("");
 		  $("#bookRegister").find('form')[0].reset();
 		  $('#bookRegister').hide();

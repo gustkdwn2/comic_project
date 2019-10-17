@@ -3,17 +3,20 @@
     
 <!-- The ProductOrderGet Modal -->
 <div class="modal" id="productBillModal">
-	<div class="modal-dialog">
-		<div class="modal-content" align="center">
+	<div class="modal-dialog" id="product-bill-modal-dialog">
+		<div class="modal-content" align="center" id="product-bill-modal-content">
 
 			<!-- Modal body -->
-			<div class="modal-body">
-				<div class="card">
-					<div class="card-body">
+			<div class="modal-body" id="product-bill-modal-body">
+				<div class="card" id="product-bill-card">
+					<div class="card-body" id="product-bill-card-body">
 						<div class="table-responsive pt-3">
-							<table class="table table-bordered">
+							<table id="productBillTable" class="table table-bordered">
 								<thead>
 									<tr>
+										<th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+										주문 시간
+										</font></font></th>
 										<th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
 										상품 이름
 										</font></font></th>
@@ -25,17 +28,9 @@
 										</font></font></th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="productBillTbody">
 									<tr>
-										<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-										1
-										</font></font></td>
-										<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-										허먼 벡
-										</font></font></td>
-										<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-										허먼 벡
-										</font></font></td>
+										
 									</tr>
 								</tbody>
 							</table><br/>
@@ -53,7 +48,31 @@
 <script type="text/javascript">
 	
 	$("#productBillModalCloseBtn").click(function() {
+		$("#product-bill-card-body").scrollTop(0);
 		$("#productBillModal").hide();
 	});
 	
 </script>
+
+<style>
+#product-bill-modal-dialog{
+  overflow-y: initial !important
+  position: absolute;
+  top: 30%;
+  left: 0%;
+  transform: translate(-50%, -50%) !important;
+}
+
+#product-bill-card-body{
+	height: 400px;
+    width: 900px;
+    overflow-y: auto;
+}
+#product-bill-card {
+	width: 900px;
+}
+
+#product-bill-modal-body, #product-bill-modal-content{
+	width: 1000px;
+}
+</style>

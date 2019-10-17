@@ -37,7 +37,7 @@
 					<font style="vertical-align: inherit;">아이디</font>
 				</label>
                 <input type="text" class="form-control form-control-lg"
-                		id="MEMBER_ID" name="MEMBER_ID" placeholder="아이디"  oninput="checkId();">
+                		id="MEMBER_ID" name="MEMBER_ID" placeholder="아이디"  oninput="checkId();" maxlength="10">
                 <h5 id="idCheckMessage" style="color: red;"></h5>
               </div>
               
@@ -46,14 +46,14 @@
 					<font style="vertical-align: inherit;">비밀번호</font>
 				</label>
                 <input type="password" class="form-control form-control-lg" 
-                		id="MEMBER_PWD" name="MEMBER_PWD" placeholder="비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.">
+                		id="MEMBER_PWD" name="MEMBER_PWD" placeholder="비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력해주세요." style='ime-mode:disabled' maxlength="12">
               </div>
               <div class="form-group">
              	<label>
 					<font style="vertical-align: inherit;">비밀번호확인</font>
 				</label>
                 <input type="password" class="form-control form-control-lg" 
-                		id="MEMBER_PWD_Check" name="MEMBER_PWD_Check" placeholder="비밀번호 확인" oninput="pwdCheck()">
+                		id="MEMBER_PWD_Check" name="MEMBER_PWD_Check" placeholder="비밀번호 확인" oninput="pwdCheck()" style='ime-mode:disabled' maxlength="12">
               </div>
               <h5 id="pwdCheckMessage" style="color: red;"></h5>
               <div class="form-group">
@@ -61,15 +61,15 @@
 					<font style="vertical-align: inherit;">이름</font>
 				</label>
                 <input type="text" class="form-control form-control-lg" id="MEMBER_NAME" 
-                		name="MEMBER_NAME" placeholder="이름" >
+                		name="MEMBER_NAME" placeholder="이름" maxlength="10">
               </div>
               
               <div class="form-group">
               	<label>
 					<font style="vertical-align: inherit;">이메일</font>
 				</label>
-                <input type="email" class="form-control form-control-lg" id="MEMBER_EMAIL" 
-                		name="MEMBER_EMAIL" placeholder="이메일" >
+                <input type="email" class="form-control form-control-lg" id="MEMBER_EMAIL"
+                		name="MEMBER_EMAIL" placeholder="이메일" maxlength="50">
               </div>
               
               <div class="form-group">

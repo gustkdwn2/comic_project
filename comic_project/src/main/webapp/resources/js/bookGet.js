@@ -155,6 +155,7 @@ $(document).ready(function() {
 	});
 	
 	$('#bookGetBtn').click(function() {
+		$("#card-body-get").scrollTop(0);
 		$("#bookGet").find('form')[0].reset();
 		$('#bookGet').hide();
 	});
