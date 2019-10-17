@@ -80,11 +80,7 @@ function salesTableinit() {
 				},
 				aoColumns : [
 						{
-							data : "salestime", 
-							"render": function (data) {
-				    			var date = new Date(data); var month = date.getMonth() + 1; 
-				    			return  date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month);
-							}
+							data : "salestime"
 						},
 						{
 							data : "productsales_order_price"
