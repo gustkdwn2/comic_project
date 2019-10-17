@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +40,6 @@ public class BookController {
 	
 	@GetMapping("/bookGet")
 	public @ResponseBody BookVO bookGet(@RequestParam("book_name") String book_name) {
-		System.out.println("컨트롤러 bookGet 들어옴");
 		return service.bookGet(book_name);
 	}
 	
@@ -59,7 +57,6 @@ public class BookController {
 	
 	@PostMapping("/bookModify")
 	public String bookModify(BookVO vo) {
-		List<BookAttachVO> attachList = service.getAttachList(vo.getBook_name());
 		service.bookModify(vo);
 		return "redirect:/book/bookList";
 	}

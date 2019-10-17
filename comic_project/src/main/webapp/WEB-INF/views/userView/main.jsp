@@ -7,7 +7,6 @@
 }
 </style>
 <body>
-
 	<!-- Header -->
 	<div class="main-penal">
 		<div class="content-wrapper">
@@ -44,7 +43,7 @@
 						</a>
 					</div>
 					<div class="col-lg-4">
-						<a class="portfolio-item" href="#"> <span class="caption"> <span class="caption-content">
+						<a class="portfolio-item" id="billModalBtn"> <span class="caption"> <span class="caption-content">
 									<h3>상세 요금</h3>
 									<p class="mb-0">현재 사용한 요금을 보실 수 있습니다</p>
 							</span>
@@ -79,6 +78,8 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="billModal.jsp" />
+	<jsp:include page="productBillModal.jsp" />
 	<!-- hidden form -->
 	<form id="operForm"></form>
 </body>
@@ -109,6 +110,26 @@ $(document).ready(function(){
 		operForm.attr("method", "get");
 		operForm.attr("action","/userView/board/boardList");
 		operForm.submit();
+	});
+
+	$("#billModalBtn").on("click", function(e){
+		$.ajax({
+			type: 'get',
+			url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
+			dataType: 'json',
+			success: function(data) {
+				$('#productBill').attr('value',data.product_bill);
+				$('#roomBill').attr('value',data.room_bill);
+				
+			}
+		});
+		
+		
+		$("#productBillModalBtn").click(function() {
+			$("#productBillModal").show();
+		});
+
+		$('#billModal').show();
 	});
 
 	
