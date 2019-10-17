@@ -36,11 +36,19 @@
 	
 	<beans:bean id="MemberloginInterceptor" class="com.comic.common.interceptor.MemberLoginInterceptor" />
 	<beans:bean id="EmployeeloginInterceptor" class="com.comic.common.interceptor.EmployeeLoginInterceptor" />
+	<beans:bean id="MemberauthInterceptor" class="com.comic.common.interceptor.MemberAuthInterceptor"/>
 	
 	<interceptors>
 		<interceptor>
 			<mapping path="/member/MemberLoginPost"/>
 			<beans:ref bean="MemberloginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/userView/main"/>
+			<beans:ref bean="MemberauthInterceptor"/>
 		</interceptor>
 	</interceptors>
 	

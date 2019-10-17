@@ -23,10 +23,14 @@ public class UserViewController {
 	
 	private UserOrderManegerService userOrderManegerService;
 	
+	@GetMapping("/main")
+	public void main() {
+		
+	}
+	
 	@PostMapping("/main")
-	public void mainView(@RequestParam("roomNum") int roomNum, final HttpSession session, Model model) {
-		session.setAttribute("roomNum", roomNum);
-		model.addAttribute("roomNum", session.getAttribute("roomNum"));
+	public void mainView() {
+		
 	}
 	
 	@GetMapping("/order")

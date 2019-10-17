@@ -24,43 +24,41 @@
 
 <body>
   <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
-        <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+    <div class="col-lg-4 mx-auto">
+      <div class="auth-form-light text-left py-5 px-4 px-sm-5" style="background-color: RGB(215,215,216,.7); margin-top: 50px;">
               <div class="brand-logo">
-                <img src="/resources/images/logo.svg" alt="logo">
+                <a href="javascript:home()" ><img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px;"/></a>
               </div>
               <form class="pt-3" role="form" name="memberlogin" id="memberlogin" method="post" action="/member/MemberLoginPost" autocomplete="off">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="MEMBER_ID" name="MEMBER_ID" placeholder="userid" autofocus required="required">
+                  <input type="text" class="form-control form-control-lg" id="login_MEMBER_ID" 
+                  		 name="MEMBER_ID" placeholder="아이디를 입력하세요" autofocus required="required">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="MEMBER_PWD" name="MEMBER_PWD" placeholder="Password" required="required">
+                  <input type="password" class="form-control form-control-lg" id="login_MEMBER_PWD" 
+                  		 name="MEMBER_PWD" placeholder="비밀번호를 입력하세요" required="required">
                 </div>
                 
-                <div class="my-2 d-flex justify-content-between align-items-center">
-                  <a data-toggle="modal" href="#PasswordModifyModal" data-backdrop="static" data-keyboard="false" class="auth-link text-black">비밀번호 찾기</a>
-                </div>
+                <div class="my-2 d-flex justify-content-between" style="float: left;">
+                  <a data-toggle="modal" href="#PasswordModifyModal" data-backdrop="static" data-keyboard="false" 
+                     style="color: #007bff;" class="auth-link text-black">비밀번호 찾기</a>
+                </div><br/><br/>
                 
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="login">로그인</a>
-                </div>
-             
-                <div class="mt-3">
-					<a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="/member/MemberRegister" >회원가입</a>
+                  <button class="btn btn-warning btn- btn-lg font-weight-large auth-form-btn" 
+                  		  style="width: 47%; color: white;" id="login">로그인</button>
+                  <a class="btn btn-warning btn- btn-lg font-weight-large auth-form-btn" 
+                  	 style="width: 47%; margin-left: 5%; color: white;" href="/member/MemberRegister" >회원가입</a>
                 </div>
                 
               </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- content-wrapper ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
+              
+     </div>
+    <!-- content-wrapper ends -->
   </div>
+  <!-- page-body-wrapper ends -->
+</div>
+
   <jsp:include page="PasswordModifyModal.jsp" />
   <!-- container-scroller -->
   <!-- plugins:js -->
@@ -71,23 +69,27 @@
   <script src="/resources/js/hoverable-collapse.js"></script>
   <script src="/resources/js/template.js"></script>
   <!-- endinject -->
-  <script type="text/javascript">
   
-	  var msg = "${msg}";
-	  if (msg === "REGISTERED") {
-	      alert("회원가입이 완료되었습니다. 로그인해주세요~");
-	  } else if (msg == "FAILURE") {
-	      alert("아이디 또는 비밀번호를 확인해주세요.");
-	  } else if (msg === "NOMEMBER") {
+<script type="text/javascript">
+
+		var roomNum = "<c:out value='${roomNum}'/>";
+		console.log(roomNum);
+		
+		 var msg = "${msg}";
+		 if (msg === "REGISTERED") {
+		     alert("회원가입이 완료되었습니다. 로그인해주세요~");
+		 } else if (msg == "FAILURE") {
+		     alert("아이디 또는 비밀번호를 확인해주세요.");
+		 } else if (msg === "NOMEMBER") {
 		  alert("입력한 정보로 등록된 회원이 없습니다.")
-	  }
-  
-	  $("#login").on("click", function(e) {
+		 }
+		
+		 $("#login").on("click", function(e) {
 		e.preventDefault();
 		$("#memberlogin").submit();
-	  });
-	  
-	 function pwdmodify() {
+		 });
+		 
+		function pwdmodify() {
 		  var passwordmodify = $("form[name=passwordmodify]").serialize();
 			  $.ajax({
 				  type : 'post',
@@ -97,8 +99,18 @@
 				  	alert(result);
 			   }
 		   });
-	   }
-  </script>
-</body>
+		  }
 
+		function home(){
+			var operForm = $("#operForm");
+
+			operForm.append("<input type='hidden' name='roomNum' value='" + roomNum + "'>");
+			operForm.attr("method", "post");
+			operForm.attr("action","/userView/main");
+			operForm.submit();
+		}
+
+
+</script>
+</body>
 </html>

@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-<%@ page session="false"%>
 <%@ include file="../includes/userHeader.jsp"%>
 
 <!DOCTYPE html>
@@ -200,9 +198,8 @@ tr{margin-bottom:5px;}
 
             
 <script type="text/javascript">
-
 	var roomNum = "<c:out value='${roomNum}'/>";
-	console.log(roomNum+" roomNum!!!!!");
+	console.log(roomNum);
 	
 	$(document).ready(function(){
 		

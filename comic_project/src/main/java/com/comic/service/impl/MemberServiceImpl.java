@@ -1,7 +1,6 @@
 package com.comic.service.impl;
 
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
@@ -10,16 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import org.springframework.stereotype.Service;
 
 import com.comic.mapper.MemberMapper;
 import com.comic.model.EmployeeVO;
-
-
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
-
 import com.comic.service.MemberService;
 
 @Service
@@ -42,11 +37,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO memberLogin(LoginVO loginVO) throws Exception{
 		return mapper.memberLogin(loginVO);
-	}
-	
-	@Override
-	public void MemberkeepLogin(String MEMBER_ID, String sessionId, Date sessionLimit) throws Exception {
-		mapper.MemberkeepLogin(MEMBER_ID, sessionId, sessionLimit);
 	}
 	
 	@Override
@@ -89,17 +79,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void MemberModify2(HttpServletResponse response, MemberVO vo) throws Exception {
+	public void MemberModify2(MemberVO vo) throws Exception {
 		password = vo.getMEMBER_PWD();
 		vo.setMEMBER_PWD(passwordEncoder.encode(password));
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
 		mapper.MemberUpdate2(vo);
-		out.print("회원정보 수정이 완료되었습니다.");
-		out.close();
 	}
-
-
+	
+	@Override
+	public String membermodifypasswordcheck(String mEMBER_ID) {
+		return mapper.membermodifypasswordcheck(mEMBER_ID);
+	}
 
 	@Override
 	public void EmployeekeepLogin(int EMPLOYEE_NUM, String sessionId, Date sessionLimit) throws Exception {
@@ -117,12 +106,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-   public void employeeRegister(EmployeeVO vo) {
-		
-//	password = vo.getEMPLOYEE_PWD();
-//	vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));	 
-    mapper.employeeInsert(vo);
-   }
+	public MemberVO getMember(MemberVO vo) {
+		return mapper.getMember(vo);
+	}
 
+	@Override
+	public void employeeRegister(EmployeeVO vo) {
+		
+		//	password = vo.getEMPLOYEE_PWD();
+		//	vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));	 
+			mapper.employeeInsert(vo);
+	}
 
 }

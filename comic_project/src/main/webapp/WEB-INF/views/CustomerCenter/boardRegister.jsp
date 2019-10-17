@@ -23,7 +23,7 @@
 	                  <h1 class="card-title">불만사항이나 건의 사항을 적어주세요</h1>
 	                  <form class="forms-sample" action="/CustomerCenter/boardRegister" method="post">
 	                  
-	                  	<input type="hidden" name="board_id" value="zizi" >
+	                  	<input type="hidden" name="board_id" value="${Memberlogin.MEMBER_ID}" >
 	                  	
 	                    <div class="form-group">
 	                      <label for="board_title">제목</label>
@@ -45,8 +45,6 @@
 	     </div>
 	    </div>
 	   </div>
-      
-
 
 </body>
 </html>
