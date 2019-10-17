@@ -14,14 +14,14 @@
                 <div class="card-body">
                   <h2 class=".h2">건의 게시판</h2><br/>
                   <div class="table-responsive">
-                    <table class="table" style="border:1px solid #f3f3f3;" >
+                    <table class="table" style="border: 1px solid #cdcdce" >
 						<tr height="30">
-							<td align="center" width = "20" >글번호</td>
-							<td align="center" width = "20" > ${ board.board_num }</td>
-							<td align="center" width = "30" >글제목</td>
-							<td align="center" width = "400">${ board.board_title }</td>
-							<td align="center" width = "30" >작성자</td>
-							<td align="center" width = "50">${ board.board_id }</td>
+							<td align="center" width = "20" style="border: 1px solid #cdcdce">글번호</td>
+							<td align="center" width = "20" style="border: 1px solid #cdcdce"> ${ board.board_num }</td>
+							<td align="center" width = "30" style="border: 1px solid #cdcdce">글제목</td>
+							<td align="center" width = "400"style="border: 1px solid #cdcdce">${ board.board_title }</td>
+							<td align="center" width = "30" style="border: 1px solid #cdcdce">작성자</td>
+							<td align="center" width = "50" style="border: 1px solid #cdcdce">${ board.board_id }</td>
 							
 						</tr>
 						
@@ -37,14 +37,14 @@
 			 			
 						<tr>
 						
-							<td height="50" width = "1000" colspan="6">
+							<td height="50" width = "1000" colspan="6" style="border: 1px solid #cdcdce">
 							<div id='cmntInsert'>
 								
 								<div class="form-group" style="float: left;">
 									<input type="hidden" name="cmnt_id" value="zizi" >
 									<input type="hidden" name="board_num" value="${board.board_num}" >
 				                    <textarea class="form-control" name="cmnt_content" id="cmnt_content "placeholder="댓글을 입력하세요" 
-				                      		  rows="5" style="width:1370px"></textarea>
+				                      		  rows="5" style="width:1370px; border: 1px solid #cdcdce;"></textarea>
 			                    </div>
 			                    
 			                    <div class="form-group" style="float: right;">

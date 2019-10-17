@@ -20,7 +20,7 @@
 	   		<div class="col-12 grid-margin stretch-card">
 	              <div class="card">
 	                <div class="card-body">
-	                  <h1 class="card-title">불만사항이나 건의 사항을 적어주세요</h1>
+	                  <h1 class="card-title"> 건의사항 게시판입니다. </h1>
 	                  <form class="forms-sample" action="/CustomerCenter/boardRegister" method="post">
 	                  
 	                  	<input type="hidden" name="board_id" value="zizi" >
@@ -36,7 +36,7 @@
 	                      <textarea class="form-control" name="board_content" rows="15" cols="80"
 	                      placeholder="내용을 입력해주세요"></textarea>
 	                    </div>
-	                    <button type="button" class="btn btn-outline-secondary" onclick="/CustomerCenter/boardList">목록 가기</button>
+	                    <a href="/CustomerCenter/boardList"><button type="button" class="btn btn-outline-secondary">목록 가기</button></a>
 	                    <button type="submit" class="btn btn-primary mr-2" style="margin-left:1360px;">제출</button>
 	                  </form>
 	                </div>
@@ -46,7 +46,5 @@
 	    </div>
 	   </div>
       
-
-
 </body>
 </html>
