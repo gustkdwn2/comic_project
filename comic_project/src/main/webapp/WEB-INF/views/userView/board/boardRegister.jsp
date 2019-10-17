@@ -22,7 +22,7 @@
 	                  	
 	                    <div class="form-group">
 	                      <label for="board_title">제목</label>
-	                      <input type="text" class="form-control" name="board_title" style="border: 1px solid #cdcdce"
+	                      <input type="text" class="form-control" name="board_title" style="border: 1px solid #cdcdce" id="board_title"
 	                      	size= "60" maxlength="50" placeholder="제목을 입력해주세요">
 	                    </div>
 
@@ -38,7 +38,12 @@
 	              </div>
 		   </div>
 	     </div>
-
-
 </body>
+
+<script type="text/javascript">
+
+$('#board_title').val() = $('#board_title').val().replce(">","&gt");
+
+</script>
+
 </html>
