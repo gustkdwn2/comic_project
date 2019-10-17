@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- The BookGet Modal -->
-<div class="modal" id="bookRegister">
-	<div class="modal-dialog">
+<div class="modal" id="bookGet">
+	<div id="modal-dialog-get" class="modal-dialog">
 		<div class="modal-content" align="center">
 
 			<!-- Modal Header -->
@@ -12,30 +12,30 @@
 
 			<!-- Modal body -->
 			<div class="card">
-				<div class="card-body" align="center">
+				<div id="card-body-get" class="card-body" align="center">
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label">
 							<font style="vertical-align: inherit;">책 이미지</font>
 						</label>
 						<div class="form-group row">
 					        <div class="form-group uploadDiv">
-					            <input type="file" name='uploadFile' id="uploadFile">
+					            <input id="uploadFileGet" type="file" name='uploadFile'>
 					        </div>
 				        
-					        <div class='uploadResult'> 
+					        <div class='uploadResultGet'> 
 					        	<ul>
 					          
 					        	</ul>
 					        </div>
 				    	</div>
 					</div>
-					<form class="forms-sample" action="/book/bookRegister" role="form" method="post" autocomplete="off">
+					<form class="forms-sample" action="/book/bookModify" role="form" method="post" autocomplete="off">
 						<div class="form-group row">
 							<label class="col-sm-3 col-form-label">
 								<font style="vertical-align: inherit;">책 이름</font>
 							</label>
 							<div class="col-sm-9">
-								<input id="book_nameGet" type="text" class="form-control" name="book_name" required readonly="readonly">
+								<input id="book_name_get" type="text" class="form-control" name="book_name" required readonly="readonly">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -43,7 +43,7 @@
 								<font style="vertical-align: inherit;">책위치</font>
 							</label>
 							<div class="col-sm-9">
-								<input id="book_locGet" type="text" class="form-control" name="book_loc" required>
+								<input id="book_loc_get" type="text" class="form-control" name="book_loc" required>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -51,7 +51,7 @@
 								<font style="vertical-align: inherit;">책출판사</font>
 							</label>
 							<div class="col-sm-9">
-								<input id="book_publisherGet" type="text" class="form-control" name="book_publisher" required>
+								<input id="book_publisher_get" type="text" class="form-control" name="book_publisher" required>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -59,7 +59,7 @@
 								<font style="vertical-align: inherit;">책 저자</font>
 							</label>
 							<div class="col-sm-9">
-								<input id="book_writerGet" type="text" class="form-control" name="book_writer" required>
+								<input id="book_writer_get" type="text" class="form-control" name="book_writer" required>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -67,7 +67,7 @@
 								<font style="vertical-align: inherit;">책 소개</font>
 							</label>
 							<div class="col-sm-9">
-								<textarea id="book_contentGet" name="book_content" class="form-control" rows="20"></textarea>
+								<textarea id="book_content_get" name="book_content" class="form-control" rows="20"></textarea>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -75,7 +75,7 @@
 								<font style="vertical-align: inherit;">책 분류</font>
 							</label>
 							<div class="col-sm-9">
-								<input id="book_categoryGet" type="text" class="form-control" name="book_category" required>
+								<input id="book_category_get" type="text" class="form-control" name="book_category" required>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -83,7 +83,7 @@
 								<font style="vertical-align: inherit;">마지막권</font>
 							</label>
 							<div class="col-sm-9">
-								<input type="number" class="form-control" name="book_lastbook" required>
+								<input id="book_lastbook_get" type="number" class="form-control" name="book_lastbook" required>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -91,14 +91,15 @@
 								<font style="vertical-align: inherit;">연재상태</font>
 							</label>
 							<div class="col-sm-9">
-								<select id="book_status" class="form-control" name="book_status">
+								<select id="book_status_get" class="form-control" name="book_status">
+									<option value="">선택</option>
 		                            <option value="연재중">연재중</option>
 		                            <option value="완결">완결</option>
 	                            </select>
 							</div>
 						</div>
-						<button name="registerBtn" type="submit" class="btn btn-primary mr-2">
-							<font style="vertical-align: inherit;">등록</font>
+						<button id="getSubmitBtn" type="submit" class="btn btn-primary mr-2">
+							<font style="vertical-align: inherit;">수정</font>
 						</button>
 						<button id="bookGetBtn" type="button" class="btn btn-success">닫기</button>
 					</form>
@@ -310,6 +311,7 @@
 		});
 		
 		$("#bookGetBtn").click(function() {
+			$("#bookGetBtn").find('form')[0].reset();
 			$("#bookGet").hide();
 		});
 		
@@ -318,46 +320,33 @@
 </script> -->
 
 <style>
-.uploadResult {
+.uploadResultGet {
 	width: 100%;
 	background-color: gray;
 }
 
-.uploadResult ul {
+.uploadResultGet ul {
 	display: flex;
 	flex-flow: row;
 	justify-content: center;
 	align-items: center;
 }
 
-.uploadResult ul li {
+.uploadResultGet ul li {
 	list-style: none;
 	padding: 10px;
 }
 
-.uploadResult ul li img {
+.uploadResultGet ul li img {
 	width: 100px;
 }
-</style>
 
-<style>
-.bigPictureWrapper {
-  position: absolute;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  top:0%;
-  width:100%;
-  height:100%;
-  background-color: gray; 
-  z-index: 100;
+#modal-dialog-get{
+    overflow-y: initial !important
 }
-
-.bigPicture {
-  position: relative;
-  display:flex;
-  justify-content: center;
-  align-items: center;
+#card-body-get{
+    height: 760px;
+    overflow-y: auto;
 }
 </style>
 </html>
