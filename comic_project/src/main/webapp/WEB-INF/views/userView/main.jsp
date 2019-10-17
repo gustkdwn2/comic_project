@@ -114,11 +114,11 @@ $(document).ready(function(){
 	$("#billModalBtn").on("click", function(e){
 		$.ajax({
 			type: 'get',
-			url: '/userView/userBill?userId='+${Memberlogin.MEMBER_ID},
+			url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
 			dataType: 'json',
 			success: function(data) {
-				$('#productBill').attr('value',data.productBill);
-				
+				$('#productBill').attr('value',data.product_bill);
+				$('#roomBill').attr('value',data.room_bill);
 				
 			}
 		});
