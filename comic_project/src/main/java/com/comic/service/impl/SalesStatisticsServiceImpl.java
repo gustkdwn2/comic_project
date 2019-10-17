@@ -9,7 +9,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.comic.mapper.LossMapper;
 import com.comic.mapper.SalesStatisticsMapper;
+import com.comic.model.LossVO;
 import com.comic.model.SalesStatisticsVO;
 import com.comic.service.SalesStatisticsService;
 
@@ -20,6 +22,9 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 	
 	@Setter(onMethod_ = @Autowired)
 	private SalesStatisticsMapper statisticsMapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private LossMapper lossMapper;
 	
 	private List<String> monthList = monthLabel();
 	private List<String> dayList = dayLabel();
@@ -174,4 +179,41 @@ public class SalesStatisticsServiceImpl implements SalesStatisticsService {
 		}
 		return dayList;
 	}
+
+	@Override
+	public List<SalesStatisticsVO> salesList() {  // 매출 테이블
+		return statisticsMapper.totalPrice();
+	}
+
+	@Override
+	public List<SalesStatisticsVO> salesSearchList() {
+		return statisticsMapper.salesSearchList();
+	}
+
+	@Override
+	public List<SalesStatisticsVO> salesSearchData(String type, String keyword) {
+		System.out.println(type );
+		int numKeyword = 0;
+		
+		if(type.equals("roomsales_num")) {
+			numKeyword = Integer.parseInt(keyword);
+		} else if (type.equals("all")) {
+			if( isStringDouble(keyword)) { // 숫자일경우
+				numKeyword = Integer.parseInt(keyword);
+			}
+		}
+		
+		return statisticsMapper.salesSearchData(keyword, numKeyword);
+	}
+
+	private boolean isStringDouble(String s) {
+		try {
+	        Double.parseDouble(s);
+	        return true;
+	    } catch (NumberFormatException e) {
+	        return false;
+	    }
+	}
+
+	
 }

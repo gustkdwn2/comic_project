@@ -9,9 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.comic.model.LossVO;
+import com.comic.model.SalesStatisticsVO;
 import com.comic.service.SalesStatisticsService;
 
 import lombok.AllArgsConstructor;
@@ -24,8 +27,28 @@ public class SalesStatisticsController {
 	
 	private SalesStatisticsService statisticsService;
 	
+	@GetMapping("saleslist")
+	public String salesList() {
+		return "salesstatistics/saleslist";
+	}
+	
+	@GetMapping("salesdata")
+	public ResponseEntity<List<SalesStatisticsVO>> salesData(){
+		return new ResponseEntity<List<SalesStatisticsVO>>(statisticsService.salesList(), HttpStatus.OK);
+	}
+	
+	@GetMapping("salesSearchdata")
+	public ResponseEntity<List<SalesStatisticsVO>> salesSearchData(){
+		return new ResponseEntity<List<SalesStatisticsVO>>(statisticsService.salesSearchList(), HttpStatus.OK);
+	}
+	
+	@GetMapping("searchsales")
+	public ResponseEntity<List<SalesStatisticsVO>> searchData(@RequestParam("type") String type, @RequestParam("keyword") String keyword){
+		return new ResponseEntity<List<SalesStatisticsVO>>(statisticsService.salesSearchData(type, keyword), HttpStatus.OK);
+	}
+	
 	@GetMapping("salesstatisticslist")
-	public String statisticsView() { // 매출 통계 페이지
+	public String statisticsChartView() { // 매출 차트 통계 요청
 		return "salesstatistics/statisticslist";
 	}
 	
