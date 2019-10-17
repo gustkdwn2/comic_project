@@ -27,7 +27,7 @@
 	                  	
 	                    <div class="form-group">
 	                      <label for="board_title">제목</label>
-	                      <input type="text" class="form-control" name="board_title" 
+	                      <input type="text" class="form-control" name="board_title"
 	                      	size= "60" maxlength="50" placeholder="제목을 입력해주세요">
 	                    </div>
 
@@ -36,7 +36,7 @@
 	                      <textarea class="form-control" name="board_content" rows="15" cols="80"
 	                      placeholder="내용을 입력해주세요"></textarea>
 	                    </div>
-	                    <button type="button" class="btn btn-outline-secondary" onclick="/CustomerCenter/boardList">목록 가기</button>
+	                    <button type="button" class="btn btn-outline-secondary">목록 가기</button>
 	                    <button type="submit" class="btn btn-primary mr-2" style="margin-left:1360px;">제출</button>
 	                  </form>
 	                </div>

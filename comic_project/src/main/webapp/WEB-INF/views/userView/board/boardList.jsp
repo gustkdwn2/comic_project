@@ -67,7 +67,7 @@
 	                        <tr>
 	                          <td style="width:200px;"><c:out value="${list.board_num }" /></td>
 	                          <td style="width:1000px;"><a class='move' href='<c:out value="${list.board_num}"/>'>
-	                          <c:out value="${list.board_title }" /></a></td>
+	                          ${list.board_title }</a></td>
 	                          <td style="width:400px;"><c:out value="${list.board_id }" /></td>
 	                          <td style="width:300px;"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.board_date }" /></td>
 	                        </tr>         
