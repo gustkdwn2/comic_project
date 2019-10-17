@@ -50,12 +50,4 @@
 			<beans:ref bean="MemberauthInterceptor"/>
 		</interceptor>
 	</interceptors>
-	
-	<interceptors>
-		<interceptor>
-			<mapping path="/member/EmployeeLoginPost"/>
-			<beans:ref bean="EmployeeloginInterceptor"/>
-		</interceptor>
-	</interceptors>
-	
 </beans:beans>
