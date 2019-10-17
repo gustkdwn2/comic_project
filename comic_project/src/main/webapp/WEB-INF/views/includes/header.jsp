@@ -250,12 +250,12 @@
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">비밀번호</font>
 									</label> <input name="MEMBER_PWD" id="HeaderMEMBER_PWD" type="password"
-										class="form-control">
+										class="form-control" style='ime-mode:disabled' maxlength="12">
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">이메일</font>
 									</label> <input name="MEMBER_EMAIL" id="HeaderMEMBER_EMAIL" type="email"
-										class="form-control" value="${Memberlogin.MEMBER_EMAIL}">
+										class="form-control" value="${Memberlogin.MEMBER_EMAIL}" maxlength="50">
 								</div>
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">핸드폰
