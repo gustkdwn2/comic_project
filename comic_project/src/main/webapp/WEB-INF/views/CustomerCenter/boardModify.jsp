@@ -23,7 +23,7 @@
 	                  
 	                  <form role="form" class="forms-sample" action="/CustomerCenter/boardModify" method="post">
 	                  	
-	                  	<input type="hidden" name="board_id" value="zizi" >
+	                  	<input type="hidden" name="board_id" value="${Memberlogin.MEMBER_ID}" >
 	                  	<input type="hidden" name="board_num" value="${board.board_num}" >
 	                  	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
 				        <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
@@ -34,21 +34,22 @@
 	                  	
 	                    <div class="form-group">
 	                      <label for="board_title">제목</label>
-	                      <input type="text" class="form-control" name="board_title" 
-	                      	size= "60" maxlength="50" value='<c:out value="${board.board_title }"/>' >
+	                      <input type="text" class="form-control" name="board_title" style="border: 1px solid #cdcdce;" 
+	                      	     maxlength="27" value='<c:out value="${board.board_title }"/>' >
 	                    </div>
 	                    
 	                    <div class="form-group">
 	                      <label for="board_content">내용</label>
-	                      <textarea class="form-control" name="board_content" rows="15" cols="80"
-	                      placeholder="내용을 입력해주세요" ><c:out value="${board.board_content}"/></textarea>
+	                      <textarea class="form-control" name="board_content" rows="10" cols="70" style="border: 1px solid #cdcdce"
+	                                 maxlength="660" placeholder="내용을 입력해주세요" >
+	                      <c:out value="${board.board_content}"/></textarea>
 	                    </div>
 	                    
 	                    
 	                    <!-- 리스트 및 목록가기 -->
 	                    
 	                    <button type="submit" data-oper="list" class="btn btn-primary">목록가기</button>
-	                    <button type="submit" data-oper="modify" class="btn btn-primary mr-2" style="margin-left:1360px;">제출</button>
+	                    <button type="submit" data-oper="modify" class="btn btn-primary mr-2" style="margin-left:1272px;">제출</button>
 	                  </form>
 	                </div>
 	              </div>

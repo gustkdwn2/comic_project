@@ -8,17 +8,17 @@
       <div class="main-panel">
           <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card-body" style="margin-top:50px; margin-left:150px;">
+                   <div class="card-body" style="margin-top:100px; margin-left:350px;">
                   <h2 class=".h2">건의 게시판</h2><br/>
                   <div class="table-responsive">
-                    <table class="table" style="border:1px solid #f3f3f3;" >
-						<tr height="30">
-							<td align="center" width = "20" >글번호</td>
-							<td align="center" width = "20" > ${ board.board_num }</td>
-							<td align="center" width = "30" >글제목</td>
-							<td align="center" width = "400">${ board.board_title }</td>
-							<td align="center" width = "30" >작성자</td>
-							<td align="center" width = "50">${ board.board_id }</td>
+                    <table class="table" style="border: 1px solid #cdcdce; width: 1200px;" >
+						<tr height="30" >
+							<td align="center" width = "20" style="border: 1px solid #cdcdce">글번호</td>
+							<td align="center" width = "20" style="border: 1px solid #cdcdce"> ${ board.board_num }</td>
+							<td align="center" width = "30" style="border: 1px solid #cdcdce">글제목</td>
+							<td align="center" width = "300" style="border: 1px solid #cdcdce">${ board.board_title }</td>
+							<td align="center" width = "30" style="border: 1px solid #cdcdce">작성자</td>
+							<td align="center" width = "80" style="border: 1px solid #cdcdce">${ board.board_id }</td>
 							
 						</tr>
 						
@@ -37,8 +37,8 @@
                 
                 		<!-- 댓글 목록  -->	
                
-		 				<tr>
-							<td colspan="6">
+		 				<tr >
+							<td colspan="6" >
 								
 							   <div id="cmntList">
 							   		
@@ -54,7 +54,7 @@
 				
 				<!-- 글 수정 및 삭제 버튼  -->
 						<tr>
-							<td height="50" width = "1000" colspan="6">
+							<td height="50" width = "1000" colspan="6" style="border: 1px solid #cdcdce">
 							<button type="button" data-oper='listBtn' class="btn btn-primary">목록가기</button>
 				            
 				            <button type="button" data-oper='remBtn' 
@@ -217,7 +217,7 @@
 //////////////////////////////////////////////////////////board/////////////////////////////////////////////
 
 	  var operForm = $("#operForm");
-	  var removeForm = $("#removeForm") 
+	  var removeForm = $("#removeForm");
 	  
 	  $("button[data-oper='modBtn']").on("click", function(e){
 	    

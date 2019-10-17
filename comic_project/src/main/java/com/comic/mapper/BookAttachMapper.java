@@ -16,6 +16,4 @@ public interface BookAttachMapper {
 	
 	public void deleteAll(String book_name);
 	
-	public List<BookAttachVO> getOldFiles();
-	
 }

@@ -2,16 +2,16 @@ package com.comic.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.comic.model.UserBillVO;
 import com.comic.service.UserOrderManegerService;
 
 import lombok.AllArgsConstructor;
@@ -23,10 +23,14 @@ public class UserViewController {
 	
 	private UserOrderManegerService userOrderManegerService;
 	
+	@GetMapping("/main")
+	public void main() {
+		
+	}
+	
 	@PostMapping("/main")
-	public void mainView(@RequestParam("roomNum") int roomNum, final HttpSession session, Model model) {
-		session.setAttribute("roomNum", roomNum);
-		model.addAttribute("roomNum", session.getAttribute("roomNum"));
+	public void mainView() {
+		
 	}
 	
 	@GetMapping("/order")
@@ -48,5 +52,11 @@ public class UserViewController {
 		 */
 		
 		return mv;
-	} 
+	}
+	
+	@GetMapping("userBill")
+	public @ResponseBody UserBillVO userBill(@RequestParam("userId") String id) {
+		return userOrderManegerService.productBill(id);
+	}
+	
 }
