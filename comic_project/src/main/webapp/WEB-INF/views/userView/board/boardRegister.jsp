@@ -16,7 +16,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card-body" style="margin-top:50px; margin-left:150px;">
 	                  <h1 class="card-title">불만사항이나 건의 사항을 적어주세요</h1><br/>
-	                  <form class="forms-sample" action="/userView/board/boardRegister" method="post">
+	                  <form class="forms-sample" action="/userView/board/boardRegister" method="post" onsubmit="return removeHtml(' + cmnt_num + ', \''+cmnt_content+'\');">
 	                  
 	                  	<input type="hidden" name="board_id" value="zizi" >
 	                  	
@@ -42,7 +42,14 @@
 
 <script type="text/javascript">
 
-$('#board_title').val() = $('#board_title').val().replce(">","&gt");
+
+function removeHtml(){
+	
+var board_title = $("#board_title").val();
+
+
+}
+
 
 </script>
 
