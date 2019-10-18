@@ -51,9 +51,9 @@
 				<div
 					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
 
-					<a class="navbar-brand brand-logo" href="/erp?">
+					<a class="navbar-brand brand-logo" href="/managerpos/managerpos">
 					<img src="/resources/images/comic_image.png" alt="" style="width: 70px; height: 30px;"/></a>
-					<a class="navbar-brand brand-logo" href="/erp?">
+					<a class="navbar-brand brand-logo" href="/managerpos/managerpos">
 					<img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 100px; height: 15px;"/></a>
 
 					<button class="navbar-toggler navbar-toggler align-self-center"
