@@ -59,7 +59,7 @@
 
 
 <!-- Custom CSS -->
-<link href="/resources/css/stylish-portfolio.min.css?ver=1" rel="stylesheet">
+<link href="/resources/css/stylish-portfolio.min.css?ver=1" rel="stylesheet"> 
 <link rel="stylesheet" href="/resources/css/style.css">
 
 </head>
