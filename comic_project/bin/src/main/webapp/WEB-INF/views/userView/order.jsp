@@ -4,10 +4,6 @@
 <%@ include file="../includes/userHeader.jsp"%>
 
 <style type="text/css">
-body {
-	background-image: url("/resources/images/bg-masthead.jpg");
-	background-size: cover;
-}
 
 .content-wrapper {
 	padding-top: 30px;
@@ -57,13 +53,9 @@ td {
 
 	<!-- Header -->
 	<div class="main-penal">
-		<div class="content-wrapper">
-			<div class="row">
-				<div class="col-md-2 text-center">
-					<h1>${ roomNum }번방</h1>
-					<p>시간</p>
-				</div>
-			</div>
+		
+					<h1>${ roomNum }번방 &emsp; &emsp; 02:19:30</h1> 
+
 			<div class="container">
 				<div class="content-section-heading text-center">
 					<h2 class="mb-5">상품 주문</h2>
@@ -103,7 +95,7 @@ td {
 			</div>
 
 		</div>
-	</div>
+
 	<!-- hidden form -->
 	<form id="operForm"></form>
 	
@@ -121,6 +113,8 @@ td {
     </div>
 </div>
 </body>
+
+
 <script src="/resources/js/userOrderManeger.js?after"></script> 
 <script type="text/javascript">
 	$(document).ready(function() {
