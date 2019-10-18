@@ -1389,3 +1389,197 @@ java.lang.NumberFormatException: null
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:33:17.174
 !MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2019-10-18 14:34:58.791
+!MESSAGE Publishing the configuration...
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-10-18 14:34:58.791
+!MESSAGE Could not publish server configuration: Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist..
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/Servers/Tomcat v8.5 Server at localhost-config)[368]: java.lang.Exception: Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:330)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:204)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:242)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:229)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupFolder(TomcatConfiguration.java:109)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupAndPublish(TomcatConfiguration.java:97)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatServerBehaviour.publishServer(TomcatServerBehaviour.java:241)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:977)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:776)
+	at org.eclipse.wst.server.core.internal.Server.publishImpl(Server.java:3184)
+	at org.eclipse.wst.server.core.internal.Server$PublishJob.run(Server.java:357)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 2 org.eclipse.core.resources 4 368 2019-10-18 14:34:58.791
+!MESSAGE Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist.
+!STACK 0
+java.lang.Exception: Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:330)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:204)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:242)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:229)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupFolder(TomcatConfiguration.java:109)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupAndPublish(TomcatConfiguration.java:97)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatServerBehaviour.publishServer(TomcatServerBehaviour.java:241)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:977)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:776)
+	at org.eclipse.wst.server.core.internal.Server.publishImpl(Server.java:3184)
+	at org.eclipse.wst.server.core.internal.Server$PublishJob.run(Server.java:357)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2019-10-18 14:35:02.012
+!MESSAGE Publishing the configuration...
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-10-18 14:35:02.012
+!MESSAGE Could not publish server configuration: Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist..
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/Servers/Tomcat v8.5 Server at localhost-config)[368]: java.lang.Exception: Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:330)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:204)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:242)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:229)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupFolder(TomcatConfiguration.java:109)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupAndPublish(TomcatConfiguration.java:97)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatServerBehaviour.publishServer(TomcatServerBehaviour.java:241)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:977)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:776)
+	at org.eclipse.wst.server.core.internal.Server.publishImpl(Server.java:3184)
+	at org.eclipse.wst.server.core.internal.Server$PublishJob.run(Server.java:357)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 2 org.eclipse.core.resources 4 368 2019-10-18 14:35:02.012
+!MESSAGE Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist.
+!STACK 0
+java.lang.Exception: Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:330)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:204)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:242)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:229)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupFolder(TomcatConfiguration.java:109)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupAndPublish(TomcatConfiguration.java:97)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatServerBehaviour.publishServer(TomcatServerBehaviour.java:241)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:977)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:776)
+	at org.eclipse.wst.server.core.internal.Server.publishImpl(Server.java:3184)
+	at org.eclipse.wst.server.core.internal.Server$PublishJob.run(Server.java:357)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2019-10-18 14:35:40.090
+!MESSAGE Publishing the configuration...
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-10-18 14:35:40.090
+!MESSAGE Could not publish server configuration: Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist..
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/Servers/Tomcat v8.5 Server at localhost-config)[368]: java.lang.Exception: Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:330)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:204)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:242)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:229)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupFolder(TomcatConfiguration.java:109)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupAndPublish(TomcatConfiguration.java:97)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatServerBehaviour.publishServer(TomcatServerBehaviour.java:241)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:977)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:776)
+	at org.eclipse.wst.server.core.internal.Server.publishImpl(Server.java:3184)
+	at org.eclipse.wst.server.core.internal.Server$PublishJob.run(Server.java:357)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 2 org.eclipse.core.resources 4 368 2019-10-18 14:35:40.090
+!MESSAGE Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist.
+!STACK 0
+java.lang.Exception: Resource '/Servers/Tomcat v8.5 Server at localhost-config' does not exist.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:330)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:204)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:242)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:229)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupFolder(TomcatConfiguration.java:109)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatConfiguration.backupAndPublish(TomcatConfiguration.java:97)
+	at org.eclipse.jst.server.tomcat.core.internal.TomcatServerBehaviour.publishServer(TomcatServerBehaviour.java:241)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:977)
+	at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:776)
+	at org.eclipse.wst.server.core.internal.Server.publishImpl(Server.java:3184)
+	at org.eclipse.wst.server.core.internal.Server$PublishJob.run(Server.java:357)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.wst.server.core 4 0 2019-10-18 14:35:47.925
+!MESSAGE Server Tomcat v8.5 Server at localhost failed to start.
+
+!ENTRY org.eclipse.core.jobs 4 2 2019-10-18 14:38:17.775
+!MESSAGE An internal error occurred during: "Periodic workspace save.".
+!STACK 0
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1595)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1271)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1263)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1240)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1151)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:55)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:12.428
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:12.428
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@12418d3f[org.springframework.tooling.boot.ls:1.10.0.201908130624(id=704)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:12.429
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.489
+!MESSAGE Boot LS startup time from start to initialized: 3019ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.608
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.xBpLLbluisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.608
+!MESSAGE subscribing to classpath changes: sts4.classpath.xBpLLblu isBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.635
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.635
+!MESSAGE subsribers = {sts4.classpath.xBpLLblu=Send Classpath Notifications(8098)}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.635
+!MESSAGE Sending initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.636
+!MESSAGE project comic_project ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.636
+!MESSAGE project Servers ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.636
+!MESSAGE Preparing classpath changed notification comic_project
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.636
+!MESSAGE project Servers SKIPPED
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.636
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.637
+!MESSAGE Sending initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.637
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.xBpLLblu => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.644
+!MESSAGE classpath=76 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.645
+!MESSAGE buffering callback sts4.classpath.xBpLLblu comic_project false 76
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.646
+!MESSAGE executing callback sts4.classpath.xBpLLblu 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.710
+!MESSAGE executing callback sts4.classpath.xBpLLblu SUCCESS [done]

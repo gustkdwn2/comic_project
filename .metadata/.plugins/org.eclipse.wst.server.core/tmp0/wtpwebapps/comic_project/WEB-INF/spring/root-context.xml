@@ -48,11 +48,13 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
-	<!-- <websocket:handlers>
+	<websocket:handlers>
 		<websocket:mapping handler="echoHandler" path="/echo" />
-		<websocket:sockjs />
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></bean>
+		</websocket:handshake-interceptors>
 	</websocket:handlers>
-	<bean id="echoHandler" class="com.comic.util.EchoHandler"></bean> -->
+	<bean id="echoHandler" class="com.comic.util.EchoHandler"></bean>
 	
 	
 

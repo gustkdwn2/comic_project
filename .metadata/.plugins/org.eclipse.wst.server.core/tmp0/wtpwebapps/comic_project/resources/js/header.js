@@ -78,7 +78,8 @@ function headervalidate() {
 	var phone = document.getElementById("HeaderMEMBER_PHONE_NUMBER");
 	// ------------ 이메일 까지 -----------
 
-	if (!check(re, pw, "패스워드는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
+	console.log("수정누르면 이거뜨는건가?");
+	if (!check(re, pw, "ㄹㄹㄹ패스워드는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
 		return false;
 	}
 
