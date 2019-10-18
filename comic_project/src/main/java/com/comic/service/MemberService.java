@@ -24,7 +24,7 @@ public interface MemberService {
 	// 멤버 정보 삭제
 	public void MemberRemove(String mEMBER_ID);
 	// 멤버 비밀번호 수정
-	public void MemberPasswordModify(HttpServletResponse response, MemberVO vo) throws Exception;
+	public String MemberPasswordModify(MemberVO vo) throws Exception;
 	// 멤버 정보 수정
 	public void MemberModify2(MemberVO vo) throws Exception;
 	// 멤버 회원가입 아이디 중복 체크

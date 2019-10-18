@@ -1,10 +1,5 @@
 package com.comic.model;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import lombok.Data;
 
 @Data
@@ -15,5 +10,8 @@ public class MemberVO {
 	private String MEMBER_NAME;
 	private String MEMBER_EMAIL;
 	private String MEMBER_PHONE_NUMBER;
+	
+	// 멤버 임시 비밀번호 저장
+	private String TEM_PWD;
 	
 }
