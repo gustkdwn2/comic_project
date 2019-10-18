@@ -31,7 +31,6 @@ public class HomeController {
 		
 		String formattedDate = dateFormat.format(date);
 		
-		
 		return "index";
 	}
 	

@@ -248,7 +248,7 @@
 							<h4 class="card-title">
 								<font style="vertical-align: inherit;">회원 정보</font>
 							</h4>
-							<form class="forms-sample" name="headermembermodify" method="post" autocomplete="off" action="/member/MemberModify2" onsubmit="return headervalidate();">
+							<form class="forms-sample" name="headermembermodify" method="post" autocomplete="off" action="/member/MemberModify2" onsubmit="return javascript:headervalidate();">
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">아이디</font>
 									</label> <input name="MEMBER_ID" id="HeaderMEMBER_ID" readonly="readonly"

@@ -1,11 +1,9 @@
 package com.comic.controller;
 
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.comic.model.ProductVO;
 import com.comic.model.RoomuseVO;
 import com.comic.model.WorkrecordVO;
 import com.comic.service.impl.ManagementServiceImpl;
