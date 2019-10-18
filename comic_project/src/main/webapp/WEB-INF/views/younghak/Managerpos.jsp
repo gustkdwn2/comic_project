@@ -176,7 +176,7 @@ body {
 				id="order_status3">없음</font><br>
 		</div>
 
-		<div class="div_bottom_3">
+		<div class="div_bottom_2">
 			<input type="button" value="주문내역보기"> <input
 				type="button" value="결제하기"> <input type="button"
 				value="채팅하기">
@@ -200,7 +200,7 @@ body {
 			id="order_status4">없음</font><br>
 	</div>
 
-	<div class="div_bottom_4">
+	<div class="div_bottom_2">
 		<input type="button" value="주문내역보기"> <input
 			type="button" value="결제하기"> <input type="button"
 			value="채팅하기">
@@ -220,7 +220,7 @@ body {
 			id="order_status5">없음</font><br>
 	</div>
 
-	<div class="div_bottom_5">
+	<div class="div_bottom_2">
 		<input type="button" value="주문내역보기"> <input
 			type="button" value="결제하기"> <input type="button"
 			value="채팅하기">
@@ -240,7 +240,7 @@ body {
 			id="order_status6">없음</font><br>
 	</div>
 
-	<div class="div_bottom_6">
+	<div class="div_bottom_2">
 		<input type="button" value="주문내역보기"> <input
 			type="button" value="결제하기"> <input type="button"
 			value="채팅하기">
