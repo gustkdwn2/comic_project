@@ -140,9 +140,6 @@ function salesTableinit() {
 						data : "roomsales_totalprice"
 					},
 					{
-						data : "productsales_product"
-					},
-					{
 						data : "productsales_order_price"
 					},
 					{
