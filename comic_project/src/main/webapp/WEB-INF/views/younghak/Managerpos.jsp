@@ -106,11 +106,12 @@ body {
 
 </head>
 <body style="overflow: scroll">
-
 	<div class="main-panel">
 		<div class="content-wrapper">
 			<div class="row">
+	
 				<%@ include file="./younghak_header.jsp"%>
+				
 				<div class="col-12 grid-margin stretch-card">
 					<div class="card">
 						<div class="row">
@@ -262,45 +263,12 @@ body {
 
 		</div>
 	</div>
-	</div>
-
-
-	<div class="card-body">
-		<h4 class="card-title">Social button with text</h4>
-		<p class="card-description">
-			Add class
-			<code>.btn-social-icon-text</code>
-		</p>
-		<div class="template-demo">
-			<button type="button" class="btn btn-social-icon-text btn-facebook">
-				<i class="mdi mdi-facebook"></i>Facebook
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-youtube">
-				<i class="mdi mdi-youtube"></i>Youtube
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-twitter">
-				<i class="mdi mdi-twitter"></i>Twitter
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-dribbble">
-				<i class="mdi mdi-dribbble"></i>Dribbble
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-linkedin">
-				<i class="mdi mdi-linkedin"></i>Linkedin
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-google">
-				<i class="mdi mdi-google-plus"></i>Google
-			</button>
-		</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
+	<!-- main-panel ends -->
 	<!-- content-wrapper ends -->
 	<!-- partial:../../partials/_footer.html -->
 
-	</div>
-	<!-- main-panel ends -->
+
+	
 
 	<script>
 	//초기화작업
@@ -448,7 +416,6 @@ body {
 				success : function(data) {
 					console.log("성공");
 					alert("success!");
-					
 				},
 				error : function(data) {
 					console.log("실패");
@@ -495,6 +462,11 @@ body {
 			if (time.toString().length == 1) {
 				time = "0" + time;
 			}
+
+			if(time==null){
+			time=0;
+				}
+			
 			return time;
 		}
 
