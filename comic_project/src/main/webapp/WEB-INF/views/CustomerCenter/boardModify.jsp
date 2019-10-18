@@ -47,8 +47,8 @@
 	                    
 	                    <!-- 리스트 및 목록가기 -->
 	                    
-	                    <button type="submit" data-oper="list" class="btn btn-primary">목록가기</button>
-	                    <button type="submit" data-oper="modify" class="btn btn-primary mr-2" style="margin-left:900px;">제출</button>
+	                    <button type="button" data-oper="list" class="btn btn-primary">목록가기</button>
+	                    <button type="submit" class="btn btn-primary mr-2" style="margin-left:900px;">제출</button>
 	                  </form>
 	                </div>
 	              </div>

@@ -17,6 +17,8 @@
 				</div> 
 				<div style="width: 600px; height: 100px; float: right; color:#f4e362; margin-top:60px; font-size: 20px;">
 				 회원 수정 
+				 
+				&emsp;<a href="/" style="color:#f4e362; font-size: 20px;">임의 창</a>
 				</div>
 				<br/><br/>
 			</div>
