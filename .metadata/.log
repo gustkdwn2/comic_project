@@ -1,0 +1,78 @@
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.657
+!MESSAGE Preparing classpath changed notification comic_project
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.657
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.660
+!MESSAGE classpath=102 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.664
+!MESSAGE buffering callback sts4.classpath.LVjeStWi comic_project false 102
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.665
+!MESSAGE executing callback sts4.classpath.LVjeStWi 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.703
+!MESSAGE executing callback sts4.classpath.LVjeStWi SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:16.301
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.LVjeStWi
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:16.302
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.LVjeStWi
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:16.302
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:16.303
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.LVjeStWi => OK
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.276
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.280
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.281
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.281
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.282
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.282
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.294
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.353
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.362
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.363
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.364
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.365
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.368
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.369
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.370
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.373
+!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
