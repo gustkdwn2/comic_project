@@ -1,8 +1,6 @@
-var socket = null;
-$(document).ready(function() {
-	let ws = new WebSocket("ws://localhost:8080/echo");
-	socket = ws;
+var socket;
 
+$(document).ready(function() {
 	ws.onopen = function() {
 		console.log("소켓 시작");
 	};
