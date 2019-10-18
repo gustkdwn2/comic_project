@@ -1,4 +1,4 @@
-﻿package com.comic.controller;
+package com.comic.controller;
 
 import java.util.List;
 
@@ -26,12 +26,22 @@ public class UserViewController {
 	
 	private UserOrderManegerService userOrderManegerService;
 	
+	@GetMapping("/main")
+	public void main() {
+		
+	}
+	
 	@PostMapping("/main")
+<<<<<<< HEAD
+	public void mainView() {
+		
+=======
 	public void mainView(@RequestParam("roomNum") int roomNum, final HttpSession session, Model model) {
 		session.removeAttribute("roomNum");
 		session.removeAttribute("admin");
 		session.setAttribute("roomNum", roomNum);
 		model.addAttribute("roomNum", session.getAttribute("roomNum"));
+>>>>>>> sangju_1
 	}
 	
 	@GetMapping("/order")
@@ -41,9 +51,19 @@ public class UserViewController {
 	}
 	
 	@GetMapping("/chatting")
-	public void chat(final HttpSession session, Model model) {
-		System.out.println(session.getAttribute("roomNum"));
-		model.addAttribute("roomNum", session.getAttribute("roomNum"));
+<<<<<<< HEAD
+	public ModelAndView chat(ModelAndView mv) {
+		/*
+		 * mv.setViewName("chat/chattingview");
+		 * 
+		 * User user = (User)
+		 * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		 * System.out.println("user name: " + user.getUsername());
+		 * System.out.println("normal chat page"); mv.addObject("userid",
+		 * user.getUsername());
+		 */
+		
+		return mv;
 	}
 	
 	@GetMapping("userBill")
@@ -57,4 +77,10 @@ public class UserViewController {
 		return userOrderManegerService.userProductBill(id);
 	}
 	
+=======
+	public void chat(final HttpSession session, Model model) {
+		System.out.println(session.getAttribute("roomNum"));
+		model.addAttribute("roomNum", session.getAttribute("roomNum"));
+	} 
+>>>>>>> sangju_1
 }

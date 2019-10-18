@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- partial:partials/_sidebar.html -->
@@ -91,6 +91,7 @@ li{list-style: none;}
 					class="menu-title">상품판매관리</span> 
 			</a></li>					
 
+<<<<<<< HEAD
 		</ul>
 </nav>
 <script type="text/javascript">
@@ -101,3 +102,37 @@ $(".accordion_wrap > a").click(function(){
     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 });
 </script>
+=======
+					<li class="nav-item"><a class="nav-link"
+						href="/CustomerCenter/boardList"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">건의 게시판</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/product/productList"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">상품 재고</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/book/bookList"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">책 재고</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/userOrderManager/orderManager"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">상품 사용자뷰 관리</span> 
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/chat/chatting"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">채팅ex</span> 
+					</a></li>							
+					<li class="nav-item"><a class="nav-link"
+						href="/SearchBook/searchList"> <i
+						class="mdi mdi-account-search menu-icon"></i> <span
+							class="menu-title">책 찾기</span>
+					</a></li>
+				</ul>
+		</nav>
+>>>>>>> sangju_1
