@@ -1,112 +1,121 @@
+!SESSION 2019-10-18 15:10:53.671 -----------------------------------------------
+eclipse.buildId=4.3.1.201907120711-RELEASE
+java.version=1.8.0_212
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.657
+!ENTRY org.eclipse.egit.core 1 0 2019-10-18 15:10:57.316
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.mylyn.tasks.core 4 0 2019-10-18 15:10:58.690
+!MESSAGE Unexpected error while loading repository template extensions
+!SUBENTRY 1 org.eclipse.mylyn.tasks.core 4 0 2019-10-18 15:10:58.690
+!MESSAGE Could not load repository template extension contributed by 'org.eclipse.mylyn.bugzilla.ide' with connectorKind 'bugzilla'
+
+!ENTRY org.eclipse.jface 2 0 2019-10-18 15:10:58.917
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2019-10-18 15:10:58.918
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2809e38a,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@b9c9bf5,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-10-18 15:11:08.009
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\1027'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:36.212
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:36.213
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@7ebf5bf[org.springframework.tooling.boot.ls:1.10.0.201908130624(id=704)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:36.225
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:36.313
+!MESSAGE Instantiating ReusableClasspathListenerHandler
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.143
+!MESSAGE Boot LS startup time from start to initialized: 1891ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.232
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.gjCFVorGisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.233
+!MESSAGE subscribing to classpath changes: sts4.classpath.gjCFVorG isBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.236
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.268
+!MESSAGE subsribers = {sts4.classpath.gjCFVorG=Send Classpath Notifications(287)}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.268
+!MESSAGE Sending initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.272
+!MESSAGE project comic_project ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.273
+!MESSAGE Sending initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.273
 !MESSAGE Preparing classpath changed notification comic_project
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.657
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.273
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.gjCFVorG => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.273
 !MESSAGE exists = true open = true => deleted = false
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.660
-!MESSAGE classpath=102 entries
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.287
+!MESSAGE classpath=80 entries
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.664
-!MESSAGE buffering callback sts4.classpath.LVjeStWi comic_project false 102
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.290
+!MESSAGE buffering callback sts4.classpath.gjCFVorG comic_project false 80
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.665
-!MESSAGE executing callback sts4.classpath.LVjeStWi 1 batched events
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.303
+!MESSAGE executing callback sts4.classpath.gjCFVorG 1 batched events
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:15.703
-!MESSAGE executing callback sts4.classpath.LVjeStWi SUCCESS [done]
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:12:38.335
+!MESSAGE executing callback sts4.classpath.gjCFVorG SUCCESS [done]
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:16.301
-!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.LVjeStWi
+!ENTRY org.eclipse.wst.server.discovery 1 0 2019-10-18 15:13:28.786
+!MESSAGE already installed: org.eclipse.jst.server.generic.jonas4
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:16.302
-!MESSAGE unsubscribing from classpath changes: sts4.classpath.LVjeStWi
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:13:45.736
+!MESSAGE Preparing classpath changed notification comic_project
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:16.302
-!MESSAGE subsribers = null
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:13:45.737
+!MESSAGE exists = true open = true => deleted = false
 
-!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 13:09:16.303
-!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.LVjeStWi => OK
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:13:45.740
+!MESSAGE classpath=106 entries
 
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.276
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:13:45.743
+!MESSAGE buffering callback sts4.classpath.gjCFVorG comic_project false 106
 
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.280
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:13:45.743
+!MESSAGE executing callback sts4.classpath.gjCFVorG 1 batched events
 
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.281
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.281
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.282
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.282
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.294
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.353
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.362
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.363
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.364
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.365
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.368
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.369
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.370
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.jdt.core 4 1006 2019-10-18 13:09:23.373
-!MESSAGE C:\Users\1027\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar is not on its project's build path
-
-!ENTRY org.eclipse.core.resources 4 566 2019-10-18 13:14:15.540
-!MESSAGE Could not save master table to file 'C:\Users\1027\Documents\GitHub\comic_project\.metadata\.plugins\org.eclipse.core.resources\.safetable\org.eclipse.core.resources'.
-!STACK 0
-java.io.FileNotFoundException: C:\Users\1027\Documents\GitHub\comic_project\.metadata\.plugins\org.eclipse.core.resources\.safetable\org.eclipse.core.resources (지정된 경로를 찾을 수 없습니다)
-	at java.io.FileOutputStream.open0(Native Method)
-	at java.io.FileOutputStream.open(Unknown Source)
-	at java.io.FileOutputStream.<init>(Unknown Source)
-	at java.io.FileOutputStream.<init>(Unknown Source)
-	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:48)
-	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:44)
-	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1273)
-	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1263)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1240)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1151)
-	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:55)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-
-!ENTRY org.eclipse.core.resources 4 566 2019-10-18 13:19:15.871
-!MESSAGE Could not save master table to file 'C:\Users\1027\Documents\GitHub\comic_project\.metadata\.plugins\org.eclipse.core.resources\.safetable\org.eclipse.core.resources'.
-!STACK 0
-java.io.FileNotFoundException: C:\Users\1027\Documents\GitHub\comic_project\.metadata\.plugins\org.eclipse.core.resources\.safetable\org.eclipse.core.resources (지정된 경로를 찾을 수 없습니다)
-	at java.io.FileOutputStream.open0(Native Method)
-	at java.io.FileOutputStream.open(Unknown Source)
-	at java.io.FileOutputStream.<init>(Unknown Source)
-	at java.io.FileOutputStream.<init>(Unknown Source)
-	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:48)
-	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:44)
-	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1273)
-	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1263)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1240)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1151)
-	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:55)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 15:13:45.753
+!MESSAGE executing callback sts4.classpath.gjCFVorG SUCCESS [done]
