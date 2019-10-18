@@ -19,19 +19,19 @@ li{list-style: none;}
 					포스 화면</span></a></li>
 			
 			<li class="nav-item open accordion_wrap"><a class="nav-link"> 
-			<i class="mdi mdi-file-document-box-outline menu-icon"></i> 
+			<i class="mdi mdi-cube menu-icon"></i> 
 			<span class="menu-title">재고</span></a>
 					
 					<ul class="accordion_content">
 						<li class="nav-item"><a class="nav-link"
 							href="/product/productList"> <i
-							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="mdi mdi-food menu-icon"></i> <span
 								class="menu-title">상품 재고</span>
 						</a></li>
 						
 						<li class="nav-item"><a class="nav-link"
 							href="/book/bookList"> <i
-							class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="mdi mdi-book-open-page-variant menu-icon"></i> <span
 								class="menu-title">책 재고</span>
 						
 						</a></li>
@@ -39,7 +39,7 @@ li{list-style: none;}
 			</li>
 			
 			<li class="nav-item open accordion_wrap"><a class="nav-link"> 
-			<i class="mdi mdi-file-document-box-outline menu-icon"></i> 
+			<i class="mdi mdi-currency-krw menu-icon"></i> 
 			<span class="menu-title">매출 관리</span></a>
 					
 					<ul class="accordion_content">
@@ -50,11 +50,11 @@ li{list-style: none;}
 						</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/settlement/settlementlist"> <i
-								class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+								class="mdi mdi-calculator menu-icon"></i> <span
 								class="menu-title">정산</span>
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="/loss/losslist"> <i
-						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+						class="mdi mdi-contrast menu-icon"></i> <span
 						class="menu-title">손실</span>
 						</a></li>
 						<li class="nav-item">
@@ -65,21 +65,9 @@ li{list-style: none;}
 						</li>	
 					</ul>
 			</li>
-					
-<!-- 			<li class="nav-item"><a class="nav-link"
-			href="/managerpos/managerpos"> <i
-					class="mdi mdi-grid-large menu-icon"></i> <span
-					class="menu-title">포스 화면</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="/settlement/settlementlist"> <i
-					class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-					class="menu-title">정산</span> 
-			</a></li> -->
-		
 			<li class="nav-item"><a class="nav-link"
 				href="/CustomerCenter/boardList"> <i
-				class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+				class="mdi mdi-comment-text-multiple-outline menu-icon"></i> <span
 					class="menu-title">건의 게시판</span>
 			</a></li>
 
@@ -92,15 +80,15 @@ li{list-style: none;}
 			</c:if> --%>
 			<li class="nav-item"><a class="nav-link"
 				href="/member/MemberList"> <i
-				class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+				class="mdi mdi-account menu-icon"></i> <span
 					class="menu-title">회원 관리</span>
 			</a></li>
 
 
 			<li class="nav-item"><a class="nav-link"
 				href="/userOrderManager/orderManager"> <i
-				class="mdi mdi-file-document-box-outline menu-icon"></i> <span
-					class="menu-title">상품 사용자뷰 관리</span> 
+				class="mdi mdi-inbox-arrow-down menu-icon"></i> <span
+					class="menu-title">상품판매관리</span> 
 			</a></li>					
 
 		</ul>

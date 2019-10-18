@@ -52,6 +52,7 @@
                 </div>
                 
               </form>
+              <form id="operForm"></form>
               
      </div>
     <!-- content-wrapper ends -->
@@ -102,11 +103,12 @@
 		  }
 
 		function home(){
+			console.log('home 실행');
 			var operForm = $("#operForm");
 
 			operForm.append("<input type='hidden' name='roomNum' value='" + roomNum + "'>");
-			operForm.attr("method", "post");
-			operForm.attr("action","/userView/main");
+			operForm.attr("method", "get");
+			operForm.attr("action","/");
 			operForm.submit();
 		}
 
