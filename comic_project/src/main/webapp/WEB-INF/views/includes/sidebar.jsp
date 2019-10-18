@@ -88,7 +88,12 @@
 						href="/userOrderManager/orderManager"> <i
 						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
 							class="menu-title">상품 사용자뷰 관리</span> 
-					</a></li>					
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/chat/chatting"> <i
+						class="mdi mdi-file-document-box-outline menu-icon"></i> <span
+							class="menu-title">채팅ex</span> 
+					</a></li>							
 					<li class="nav-item"><a class="nav-link"
 						href="/SearchBook/searchList"> <i
 						class="mdi mdi-account-search menu-icon"></i> <span

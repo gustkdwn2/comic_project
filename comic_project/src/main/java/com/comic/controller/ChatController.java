@@ -1,6 +1,7 @@
 package com.comic.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -25,16 +26,8 @@ public class ChatController {
 	private ChatService chatService;
 	
 	@GetMapping("chatting")
-	public ModelAndView chat(ModelAndView mv) {
-		mv.setViewName("chat/chattingview");
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println("user name : " + user.getUsername());
-		System.out.println("normal chat page");
-		
-		mv.addObject("userid", user.getUsername());
-		
-		return mv;
+	public void chat(final HttpSession session, Model model) {
+		model.addAttribute("admin", session.getAttribute("admin"));
 	}
-	
-	
+
 }

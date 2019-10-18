@@ -25,6 +25,8 @@ public class UserViewController {
 	
 	@PostMapping("/main")
 	public void mainView(@RequestParam("roomNum") int roomNum, final HttpSession session, Model model) {
+		session.removeAttribute("roomNum");
+		session.removeAttribute("admin");
 		session.setAttribute("roomNum", roomNum);
 		model.addAttribute("roomNum", session.getAttribute("roomNum"));
 	}
@@ -36,16 +38,8 @@ public class UserViewController {
 	}
 	
 	@GetMapping("/chatting")
-	public void chat(final HttpSession session) {
+	public void chat(final HttpSession session, Model model) {
 		System.out.println(session.getAttribute("roomNum"));
-		/*
-		 * mv.setViewName("chat/chattingview");
-		 * 
-		 * User user = (User)
-		 * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		 * System.out.println("user name: " + user.getUsername());
-		 * System.out.println("normal chat page"); mv.addObject("userid",
-		 * user.getUsername());
-		 */
+		model.addAttribute("roomNum", session.getAttribute("roomNum"));
 	} 
 }

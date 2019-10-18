@@ -31,8 +31,8 @@
 <!-- Custom scripts for this template -->
 <script src="/resources/js/stylish-portfolio.min.js"></script>
 
+
 <!-- Custom CSS -->
 <link href="/resources/css/stylish-portfolio.min.css" rel="stylesheet">
-
 
 </head>
