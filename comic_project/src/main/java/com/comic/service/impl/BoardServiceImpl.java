@@ -53,7 +53,9 @@ public class BoardServiceImpl implements BoardService {
 		log.info("\r\n#### modify #####"+board);
 		
 		board.setBoard_title(board.getBoard_title().replaceAll("(?i)<", "&lt;"));
-	    board.setBoard_content(board.getBoard_content().replaceAll("(?i)<", "&lt;"));    
+	    board.setBoard_content(board.getBoard_content().replaceAll("(?i)<", "&lt;"));
+		board.setBoard_title(board.getBoard_title().replaceAll("(?i)'", "&#039;"));
+		board.setBoard_content(board.getBoard_content().replaceAll("(?i)'", "&#039;"));
 		
 		return mapper.update(board) == 1;
 	}
