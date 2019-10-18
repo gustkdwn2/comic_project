@@ -347,7 +347,7 @@ body {
 			}
 		}
 
-		function method_startnstop2(id,num,starttime,status) {
+		function startnstop_init(id,num,starttime,status) {
 
 			if (!check[num]) {
 				check[num] = true;
@@ -390,7 +390,7 @@ body {
 						var number=1;
 						number = list.roomuse_num;
 						
-						method_startnstop2(list.roomuse_id,number,list.starttime,list.roomuse_status);
+						startnstop_init(list.roomuse_id,number,list.starttime,list.roomuse_status);
 					});
 					
 				},
