@@ -89,6 +89,7 @@ public class LoginController {
 		if (object != null) {
 			httpSession.removeAttribute("Memberlogin");
 			httpSession.removeAttribute("memberid");
+			httpSession.removeAttribute("roomNum");
 			httpSession.invalidate();
 		}
 		return "/member/Logout";
@@ -134,10 +135,11 @@ public class LoginController {
 		return "redirect:/member/MemberList";
 	}
 	
-	// 멤버 비밀번호 수정
+	// 멤버 비밀번호 찾기 (임시 비밀번호 발급)
 	@PostMapping("/MemberPasswordModify")
-	public void MemberPasswordModify(MemberVO vo, HttpServletResponse response) throws Exception {
-		service.MemberPasswordModify(response, vo);
+	@ResponseBody
+	public String MemberPasswordModify(MemberVO vo, RedirectAttributes redirectAttributes) throws Exception {
+		return service.MemberPasswordModify(vo);
 	}
 	// 멤버 회원가입 아이디 중복 체크
 	@GetMapping("/MemberCheck")

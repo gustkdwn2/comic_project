@@ -25,7 +25,7 @@ public interface MemberMapper {
 	// 멤버 유무 체크
 	public MemberVO MemberCheck(MemberVO vo);
 	// 멤버 비밀번호 수정
-	public void MemberPasswordModify(MemberVO vo);
+	public int MemberPasswordModify(MemberVO vo);
 	// 멤버 정보 수정
 	public void MemberUpdate2(MemberVO vo);
 	// 멤버 회원가입 아이디 중복 체크
