@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+C:\Users\1027\Documents\GitHub\comic_project\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+4044922509.index
+1636297168.index
+3628056960.index
+1717339929.index
+3443475682.index
+641897031.index
+405375580.index

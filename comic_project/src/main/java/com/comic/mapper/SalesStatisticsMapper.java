@@ -19,4 +19,14 @@ public interface SalesStatisticsMapper {
 	public List<SalesStatisticsVO> productsales();
 	
 	public List<SalesStatisticsVO> roomsales();
+
+	public List<SalesStatisticsVO> totalPrice();
+
+	public List<SalesStatisticsVO> salesSearchList();
+
+	public List<SalesStatisticsVO> salesSearchData(@Param("keyword")String keyword, @Param("numKeyword") int numKeyword);
+
+	public List<SalesStatisticsVO> salesSearchDateData(@Param("start")String start, @Param("end")String end);
+
+	public List<SalesStatisticsVO> totalMonthPrice();
 }

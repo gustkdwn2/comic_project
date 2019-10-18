@@ -7,6 +7,7 @@ import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
 import com.comic.model.UserBillVO;
+import com.comic.model.UserProductBillVO;
 
 public interface UserOrderManegerService {
 	
@@ -34,6 +35,8 @@ public interface UserOrderManegerService {
 
 	public void realTimeOrderAdd(List<OrderVO> orderList);
 	
-	public UserBillVO productBill(String id);
+	public UserBillVO userBill(String id);
+	
+	public List<UserProductBillVO> userProductBill(String id);
 
 }

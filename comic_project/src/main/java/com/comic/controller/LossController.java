@@ -35,7 +35,7 @@ public class LossController {
 	}
 	
 	@GetMapping("lossdata")
-	public ResponseEntity<List<LossVO>> lossData(){ //월 차트 데이터
+	public ResponseEntity<List<LossVO>> lossData(){ 
 		return new ResponseEntity<List<LossVO>>(lossService.lossList(), HttpStatus.OK);
 	}
 	
