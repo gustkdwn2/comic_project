@@ -9,4 +9,6 @@ public interface ManagerPosService {
 	public void stop_room(String room_num);
 	public List<RoomuseVO> roomuselist();
 	public List<RoomuseVO> roomuselist2();
+	public List<TodaycommuteVO> todaycommutelist(String todayformat);
+	
 }
