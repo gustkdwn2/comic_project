@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.comic.mapper.EmployeeAttachMapper;
 import com.comic.mapper.ManagementMapper;
-
 import com.comic.model.EmployeeVO;
 import com.comic.service.ManagementService;
 
@@ -16,15 +17,20 @@ import lombok.Setter;
 public class ManagementServiceImpl implements ManagementService {
 
 	@Setter(onMethod_ = @Autowired)
-	private ManagementMapper managementMapper;	
+	private ManagementMapper managementMapper;
+	@Setter(onMethod_ = @Autowired)
+	private EmployeeAttachMapper employeeAttachMapper;
 	
 	@Override
 	public List<EmployeeVO> managerList() {
 		return managementMapper.employeelist();
 	}
 
+	@Transactional
 	@Override
 	public void deletemng(String emppwd, String mngnum) {
+		System.out.println(mngnum);
+		employeeAttachMapper.delete(mngnum);
 		managementMapper.deletemng(emppwd, mngnum);
 	}
 

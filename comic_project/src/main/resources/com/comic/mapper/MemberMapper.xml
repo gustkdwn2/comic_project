@@ -68,6 +68,9 @@
       INSERT INTO COMIC_EMPLOYEE VALUES ((SELECT NVL(MAX(EMPLOYEE_NUM),1000)+1 FROM COMIC_EMPLOYEE),
       #{EMPLOYEE_PWD}, #{EMPLOYEE_NAME}, #{EMPLOYEE_PHONE}, #{EMPLOYEE_ACCOUNT}, SYSDATE, #{EMPLOYEE_POSITION},
        #{EMPLOYEE_PAY})
+    	<selectKey keyProperty="EMPLOYEE_NUM" resultType="integer" order="AFTER">
+	    	select MAX(EMPLOYEE_NUM) as EMPLOYEE_NUM from COMIC_EMPLOYEE
+	  	</selectKey>
    </insert>
 
 	<select id="employeeLogin" resultType="com.comic.model.EmployeeVO">

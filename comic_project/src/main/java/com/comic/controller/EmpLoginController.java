@@ -27,6 +27,7 @@ public class EmpLoginController {
 	   
 	   @PostMapping("/EmployeeRegister")
 	   public String EmployeeRegister(EmployeeVO vo,Model model) {
+		  System.out.println(vo);
 	      service.employeeRegister(vo);
 	      model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 			return "/younghak/Manager_management";

@@ -1,5 +1,8 @@
 package com.comic.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -7,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +23,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.comic.model.BookAttachVO;
+import com.comic.model.EmployeeAttachVO;
 import com.comic.model.EmployeeVO;
 import com.comic.model.RoomuseVO;
 import com.comic.model.TodaycommuteVO;
 import com.comic.model.WorkrecordVO;
 import com.comic.service.impl.ManagementServiceImpl;
 import com.comic.service.impl.ManagerPosServiceImpl;
+import com.comic.service.impl.MemberServiceImpl;
 import com.comic.service.impl.MngCalendarServiceImpl;
 
 import lombok.AllArgsConstructor;
@@ -42,6 +51,7 @@ public class ManagerposController {
 	private ManagerPosServiceImpl managerposService;// 매니저포스화면(포스화면관리)
 	private ManagementServiceImpl managementService;// 매니저(직원관리)
 	private MngCalendarServiceImpl mngCalendarService;// 캘린더(직원관리)
+	private MemberServiceImpl MemberService;
 
 	/* =new ManagerPosServiceImpl(); */
 	/**
@@ -150,12 +160,12 @@ public class ManagerposController {
 	@PostMapping("EmployeeDelete")
 	public String employeeDelete(Model model, @RequestParam("EMPLOYEE_PWD") String emppwd,
 			@RequestParam("EMPLOYEE_mngnum") String mngnum) {
-		
+		List<EmployeeAttachVO> attachList = MemberService.getAttachList(Integer.parseInt(mngnum));
 		//List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
 		
 		System.out.println("emppwd = "+emppwd+"\nmngnum = "+mngnum);
 		managementService.deletemng(emppwd,mngnum);
-				
+		deleteFiles(attachList);
 		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		return "/younghak/Manager_management";
 	}
@@ -431,9 +441,43 @@ public class ManagerposController {
 	
 	 @PostMapping("/EmployeeModify")
 	   public String EmployeeRegister(EmployeeVO vo,Model model) {
+		 
 		 managementService.employeeModify(vo);
 		 model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		return "/younghak/Manager_management";
 	      
 	   }
+	 
+	 @GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+		@ResponseBody
+		public ResponseEntity<List<EmployeeAttachVO>> getAttachList(@RequestParam("employee_num") int employee_num) {
+		 System.out.println("여기탐");
+			return new ResponseEntity<List<EmployeeAttachVO>>(MemberService.getAttachList(employee_num), HttpStatus.OK);
+		}
+	 
+	 private void deleteFiles(List<EmployeeAttachVO> attachList) {
+			
+			if(attachList == null || attachList.size() == 0) {
+				return;
+			}
+			
+			attachList.forEach(attach -> {
+				try {
+					Path file = Paths.get("C:\\upload\\comic_employee\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+					
+					Files.deleteIfExists(file);
+					
+					if(Files.probeContentType(file).startsWith("image")) {
+						
+						Path thumbNail = Paths.get("C:\\upload\\comic_employee\\" + attach.getUploadPath() + "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+						
+						Files.delete(thumbNail);
+					}
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			});
+			
+		}
+	 
 }
