@@ -1,21 +1,20 @@
-var socket;
-
 $(document).ready(function() {
-	ws.onopen = function() {
+	var socket = new WebSocket("ws://localhost:8080/echo");
+	socket.onopen = function() {
 		console.log("소켓 시작");
 	};
 
-	ws.onmessage = function(event) {
+	socket.onmessage = function(event) {
 		var textData = event.data.split('|');
 		test = textData[0];
 		message_side = 'left';
 		sendMessage(textData[1]);
 	};
 
-	ws.onclose = function() {
+	socket.onclose = function() {
 		console.log("소켓 끝");
 	};
-	
+	 
 	var Message;
 	Message = function(arg) {
 		this.text = arg.text, this.message_side = arg.message_side;

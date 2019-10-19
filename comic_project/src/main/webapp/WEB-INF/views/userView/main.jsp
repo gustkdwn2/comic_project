@@ -83,8 +83,8 @@
 	<!-- hidden form -->
 	<form id="operForm"></form>
 </body>
-
 <script type="text/javascript">
+
 $(document).ready(function(){
 	var operForm = $("#operForm");
 	
@@ -95,9 +95,7 @@ $(document).ready(function(){
 	});
 
 	$("#userChat").on("click", function(e){
-		operForm.attr("method", "get");
-		operForm.attr("action","/userView/chatting");
-		operForm.submit();
+		window.open("/userView/chatting","_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
 	});
 
 	$("#userSearchbook").on("click", function(e){
@@ -157,8 +155,8 @@ $(document).ready(function(){
 
 		$('#billModal').show();
 	});
-
 	
+		
 });
 </script>
 </html>
