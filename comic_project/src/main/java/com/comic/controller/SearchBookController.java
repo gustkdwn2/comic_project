@@ -27,8 +27,6 @@ public class SearchBookController {
 	
 	private SearchBookService service;
 	
-
-	
 	@GetMapping("/searchList")
 	public void SearchResultList(CriteriaVO cri, Model model) {
 		
@@ -41,7 +39,4 @@ public class SearchBookController {
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		
 	}
-
-
 }
-

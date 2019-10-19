@@ -107,7 +107,7 @@ $(document).ready(function(){
 
 	$("a[name='erpMain']").on("click", function(e){
 		operForm.attr("method", "get");
-		operForm.attr("action","/erp");
+		operForm.attr("action","/managerpos/managerpos");
 		operForm.submit();
 	});
 });

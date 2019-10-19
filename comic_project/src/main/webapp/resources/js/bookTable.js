@@ -136,6 +136,7 @@ function bookModify(book_name) {
 			    	}
 			    });
 				$(".uploadResultGet ul").html(str);
+				$('#uploadFileGet').attr('disabled', true);
 			});
 	    	
 	    	$('#bookGet').show();

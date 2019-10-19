@@ -23,7 +23,7 @@
 							<label>
 								<font style="vertical-align: inherit;">아이디</font>
 							</label>
-							<input name="MEMBER_ID" id="MEMBER_ID" class="form-control" readonly="readonly">
+							<input name="MEMBER_ID" id="MEMBER_ID" class="form-control">
 						</div>
 						<div class="form-group">
 							<label>

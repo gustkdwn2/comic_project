@@ -60,7 +60,7 @@ td {
 		<div class="content-wrapper">
 			<div class="row">
 				<div class="col-md-2 text-center">
-					<h1>${ roomNum }번방</h1>
+					<h1>${ roomNum }번방aaaaSDSADSADASDSADSADSADDQWQMDNKLM</h1>
 					<p>시간</p>
 				</div>
 			</div>

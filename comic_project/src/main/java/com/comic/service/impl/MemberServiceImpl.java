@@ -60,22 +60,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void MemberPasswordModify(HttpServletResponse response, MemberVO vo) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		if(mapper.MemberCheck(vo) == null) {
-			out.print("등록된 회원이 없습니다.");
-			out.close();
-		} else {
-			String pw = "";
-			for (int i = 0; i < 4; i++) {
-				pw += (char) ((Math.random() * 26) + 97);
-			}
-			vo.setMEMBER_PWD(passwordEncoder.encode(pw));
-			mapper.MemberPasswordModify(vo);
-			out.print("임시 비밀번호는 " + pw + "입니다.");
-			out.close();
+	public String MemberPasswordModify(MemberVO vo) throws Exception {
+		String pw = "";
+		for (int i = 0; i < 4; i++) {
+			pw += (char) ((Math.random() * 26) + 97);
 		}
+		vo.setTEM_PWD(pw);
+		vo.setMEMBER_PWD(passwordEncoder.encode(pw));
+		int result = mapper.MemberPasswordModify(vo);
+		if (result == 1) {
+			return pw;
+		}
+		return "fail";
 	}
 	
 	@Override

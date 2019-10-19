@@ -26,7 +26,6 @@ public class ManagementServiceImpl implements ManagementService {
 	@Override
 	public void deletemng(String emppwd, String mngnum) {
 		managementMapper.deletemng(emppwd, mngnum);
-		
 	}
 
 	@Override
@@ -51,6 +50,33 @@ public class ManagementServiceImpl implements ManagementService {
 	public void managerleavework(String empnum,String leaveworkday) {
 		// TODO Auto-generated method stub
 		managementMapper.managerleavework(empnum,leaveworkday);
+	}
+
+	@Override
+	public List<EmployeeVO> getempdata(String empnum) {
+		// TODO Auto-generated method stub
+		return managementMapper.getempdata(empnum);
+	}
+
+	@Override
+	public void employeeModify(EmployeeVO vo) {
+		managementMapper.employeeModify(vo);
+	}
+	
+	@Override
+	public int selectworkmonth(String empnum, String workmonth) {
+		return managementMapper.selectworkmonth(empnum,workmonth);
+		
+	}
+	
+	@Override
+	public void insertworkmonth(String empnum, String workmonth, String payday) {
+		managementMapper.insertworkmonth(empnum,workmonth,payday);
+	}
+	
+	@Override
+	public void setmonthlypay(String empnum, String workmonth, int hour) {
+		managementMapper.setmonthlypay(empnum, workmonth, hour);
 	}
 	
 	
