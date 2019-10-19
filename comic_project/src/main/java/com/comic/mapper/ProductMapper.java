@@ -18,8 +18,8 @@ public interface ProductMapper {
 	
 	public ProductVO productNameCheck(String product_name);
 	
-	public void productNumUpdate(int product_num);
+//	public void productNumUpdate(int product_num);
 	
-	public int productNumSelect(int product_num);
+//	public int productNumSelect(int product_num);
 	
 }
