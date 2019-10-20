@@ -17,16 +17,15 @@
 	text-align: center;
 }
 
+.container{
+border:3px solid #F0C03D;
+
+}
+
 #orderTest {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	text-align: center;
-}
-
-.container {
-	margin-top: 50px;
-	border:5px solid #dadfe4;
-	border-radius: 10px;
 }
 
 h2 {
@@ -61,35 +60,39 @@ td {
 		<div class="content-wrapper">
 			<div style="background-color: #37363a; height: 150px;">
 				<img src="/resources/images/comic_image.png" alt=""
-					style="width: 200px; height: 100px; margin-left: 550px; margin-top: 20px; float: left" />
+					style="width: 200px; height: 100px; margin-left: 150px; margin-top: 20px; float: left" />
 				<div class="content-section-heading text-center" style="width: 700px; height: 100px; margin-top: 30px; float: left; ">
 					<br/><h1 style="color: white;">${ roomNum }번방&emsp;상품 주문&emsp;&emsp; 02:15:39</h1>
-				</div><br /><br />
+				</div><br/><br/>
+			</div>
+			
+			<div style="float: left; margin-top:45px;">
+				<div style="background-color: #dadfe4; width: 600px; margin-left:95px;">
+						
+					<span> <c:forEach items="${ OrderViewVO_List }" var="list">
+							<button class="btn btn-secondary btn-rounded btn-fw"
+								name="categoryButton" value="${ list.orderview_category }">${ list.orderview_category }</button>
+						</c:forEach>
+					</span>		
+				</div>
+					
+				<div class="orderProduct" style="border:3px solid #dadfe4; margin-left:95px;">
+					<!-- 사이다 등 상세제품이 나온다. -->
+				</div>
+			
 			</div>
 
-			<div class="container"><br/><br/>
-				<div style="background-color: #dadfe4;">
-					
-						<span> <c:forEach items="${ OrderViewVO_List }" var="list">
-								<button class="btn btn-secondary btn-rounded btn-fw"
-									name="categoryButton" value="${ list.orderview_category }">${ list.orderview_category }</button>
-							</c:forEach>
-						</span>
-					
-				</div>
-				<div class="orderProduct" style="border:3px solid #dadfe4;">
-				<!-- 사이다 등 상세제품이 나온다. -->
-				</div>
+			<div class="container" style="float: right; width: 700px; margin: 45px 95px 0 0;">
 				<div class="row">
 					<div class="col-md-12"  style="text-align: center;"><br/>
 						<h2>주문목록</h2><br/>
-						<table style="width:900px; margin-left:90px;">
+						<table style="width:650px; margin-left:15px;">
 							<thead>
 								<tr>
-									<th>상품명</th>
-									<th>금액</th>
-									<th>수량</th>
-									<th>취소</th>
+									<th style="width: 40%;">상품명</th>
+									<th style="width: 20%;">금액</th>
+									<th style="width: 10%;">수량</th>
+									<th style="width: 30%;">취소</th>
 								</tr>
 							</thead>
 							<tbody id="tableBody">
@@ -99,25 +102,25 @@ td {
 					</div><br/><hr/>
 					
 					<div class="col-md-12" style="margin-top:50px;">
-						<div style="width:800px; height:200px; float:right; margin:20px 170px 0 0;">
-						 	<div style="width:350px; float:left;">
-								<h4 style="color:black; font-weight: 600;">&emsp;&emsp;&nbsp;총수량</h4>
-								<input id="orderQty" class="form form-control" style="width:300px; float:right;" readonly>
-							</div>
-							<div style="width:350px; float:right">
-								<h4 style="color:black; font-weight: 600;">&emsp;&emsp;&nbsp;총금액</h4>
-								<input id="finalPrice" class="form form-control" style="width:300px; float:right;" readonly> 
-							</div>
-						<div style="margin-top: 100px; text-align: center;">
-							<button class="btn btn-secondary btn-lg" id="resultOrder" style="background-color: #686868;">상품주문</button>
-							<button class="btn btn-secondary btn-lg" onclick="productAllDelete();">전체취소</button>
-						</div>
+						<div style="width:420px; height:200px; margin:20px 0 0 140px;">
+								<div style="float: left;">
+								<h4 style="color:black; font-weight: 600;">&nbsp;총수량</h4>
+								<input id="orderQty" class="form form-control" style="width:200px;" readonly></div>
+								<div style="float: right">
+								<h4 style="color:black; font-weight: 600;">&nbsp;총금액</h4>
+								<input id="finalPrice" class="form form-control" style="width:200px;" readonly></div>
+								
+								<br/><br/><br/><br/><br/>
+								<button class="btn btn-md btn-block btn-secondary" id="resultOrder" 
+										style="margin: 0 100px 0 0;">상품주문</button>
+								<button class="btn btn-md btn-block btn-secondary" onclick="productAllDelete();"
+										style="margin: 10px 100px 0 0;">전체취소</button>
+								
 						</div>
 					</div>
 				</div>
 			</div>
-			
-		<div style="border-radius: 5px;"></div>
+		
 		</div>
 		<!-- hidden form -->
 		<form id="operForm"></form>
@@ -171,14 +174,14 @@ td {
 													orderProduct.html(str);
 													return;
 												}
-												str += '<div class="row order-list" style="width:1150px;">';
+												str += '<div class="row order-list" style="width:600px;">';
 												for (var i = 0, len = data.length || 0; i < len; i++) {
 													var fileCallPath = encodeURIComponent(data[i].ORDERVIEW_UPLOADPATH
 															+ "/"
 															+ data[i].ORDERVIEW_UUID
 															+ "_"
 															+ data[i].ORDERVIEW_FILENAME);
-													str += "<div class='col-sm-6 col-md-4 col-lg-3' id='orderTest'>";
+													str += "<div class='col-lg-4' id='orderTest'>";
 													str += "<br/>";
 													str += "<img onclick='userProductBtn("
 															+ data[i].PRODUCT_NUM
@@ -260,12 +263,12 @@ td {
 								finalPriceSum += orderArray[key].finalPrice;
 								qtySum += orderArray[key].qty;
 								str += "<tr style='border:1px solid #dadfe4'>"
-								str += "<td style='width:500px;'>" + orderArray[key].productName
+								str += "<td>" + orderArray[key].productName
 										+ "</td>";
-								str += "<td style='width:200px;'>" + orderArray[key].finalPrice
+								str += "<td>" + orderArray[key].finalPrice
 										+ "</td>";
-								str += "<td style='width:100px;'>" + orderArray[key].qty + "</td>";
-								str += "<td style='width:200px;'><a href='#' onclick='productAdd("
+								str += "<td>" + orderArray[key].qty + "</td>";
+								str += "<td><a href='#' onclick='productAdd("
 										+ key + ");'><button class='btn btn-sm btn-outline-dark' style='width:50px;'>+</button></a>  ";
 								str += "<a href='#' onclick='productSub(" + key
 										+ ");'><button class='btn btn-sm btn-outline-dark' style='width:50px;'>-</button></a></td>";
