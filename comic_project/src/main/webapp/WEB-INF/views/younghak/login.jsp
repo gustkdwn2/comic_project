@@ -94,6 +94,12 @@
 	<script src="/resources/js/template.js"></script>
 	<!-- endinject -->
 	<script>
+	checksession();
+	function checksession(){
+		var test = "${sessionScope.EMPID}";
+		alert("현재 세션은"+test);
+		}
+	
 		function forgotpwd() {
 			alert("ㅋㅋ답이없네");
 		}

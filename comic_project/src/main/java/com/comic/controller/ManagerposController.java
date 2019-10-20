@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -162,7 +164,7 @@ public class ManagerposController {
 	
 	@PostMapping("workonoff")
 	public String workonoff(Model model, @RequestParam("employeenum") String empnum,
-			@RequestParam("employeepwd") String emppwd) {
+			@RequestParam("employeepwd") String emppwd,HttpSession session) {
 		
 		System.out.println("empnum = "+empnum);
 		
@@ -183,11 +185,15 @@ public class ManagerposController {
 		if(recordcount==0) {
 			managementService.managerattendance(empnum); //출근
 			System.out.println("출근 완료");
+			session.setAttribute("EMPID", empnum);//로그인 세션추가
 			model.addAttribute("succecssmsg", "출근완료"); // 재고테이블
 			return "/younghak/login";
 		}else if(recordcount==1){
 			managementService.managerleavework(empnum,format_time); //퇴근
 			System.out.println("퇴근 완료");
+			/*
+			 * session.invalidate();//로그인 세션추가
+			 */			session.setAttribute("EMPID", empnum);//로그인 세션추가
 			makecomic_pay(empnum);//퇴근기록으로 comic_pay테이블에 누적시간넣는 함수
 			model.addAttribute("succecssmsg", "퇴근완료"); // 재고테이블
 			return "/younghak/login";
@@ -411,7 +417,13 @@ public class ManagerposController {
 			//list.get(i).setStarttime(String.valueOf(time));
 
 			replydata.put("starttime", list.get(i).getStarttime());
-			replydata.put("endtime", list.get(i).getEndtime());
+			
+			if(list.get(i).getEndtime()==null) { //퇴근시간은 없을수있으므로 처리를 해줘야함
+				replydata.put("endtime", "퇴근기록없음");
+			}else {
+				replydata.put("endtime", list.get(i).getEndtime());	
+			}
+			
 			replydata.put("empnum", list.get(i).getEmpnum());
 			replydata.put("empname", list.get(i).getEmpname());
 

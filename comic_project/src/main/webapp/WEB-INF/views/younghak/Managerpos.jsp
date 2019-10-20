@@ -107,11 +107,12 @@ body {
 
 </head>
 <body style="overflow: scroll">
-
 	<div class="main-panel">
 		<div class="content-wrapper">
 			<div class="row">
+	
 				<%@ include file="./younghak_header.jsp"%>
+				
 				<div class="col-12 grid-margin stretch-card">
 					<div class="card">
 						<div class="row">
@@ -175,7 +176,7 @@ body {
 				id="order_status3">없음</font><br>
 		</div>
 
-		<div class="div_bottom_3">
+		<div class="div_bottom_2">
 			<input type="button" value="주문내역보기"> <input
 				type="button" value="결제하기"> <input type="button"
 				value="채팅하기">
@@ -199,7 +200,7 @@ body {
 			id="order_status4">없음</font><br>
 	</div>
 
-	<div class="div_bottom_4">
+	<div class="div_bottom_2">
 		<input type="button" value="주문내역보기"> <input
 			type="button" value="결제하기"> <input type="button"
 			value="채팅하기">
@@ -219,7 +220,7 @@ body {
 			id="order_status5">없음</font><br>
 	</div>
 
-	<div class="div_bottom_5">
+	<div class="div_bottom_2">
 		<input type="button" value="주문내역보기"> <input
 			type="button" value="결제하기"> <input type="button"
 			value="채팅하기">
@@ -239,7 +240,7 @@ body {
 			id="order_status6">없음</font><br>
 	</div>
 
-	<div class="div_bottom_6">
+	<div class="div_bottom_2">
 		<input type="button" value="주문내역보기"> <input
 			type="button" value="결제하기"> <input type="button"
 			value="채팅하기">
@@ -263,45 +264,12 @@ body {
 
 		</div>
 	</div>
-	</div>
-
-
-	<div class="card-body">
-		<h4 class="card-title">Social button with text</h4>
-		<p class="card-description">
-			Add class
-			<code>.btn-social-icon-text</code>
-		</p>
-		<div class="template-demo">
-			<button type="button" class="btn btn-social-icon-text btn-facebook">
-				<i class="mdi mdi-facebook"></i>Facebook
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-youtube">
-				<i class="mdi mdi-youtube"></i>Youtube
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-twitter">
-				<i class="mdi mdi-twitter"></i>Twitter
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-dribbble">
-				<i class="mdi mdi-dribbble"></i>Dribbble
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-linkedin">
-				<i class="mdi mdi-linkedin"></i>Linkedin
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-google">
-				<i class="mdi mdi-google-plus"></i>Google
-			</button>
-		</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
+	<!-- main-panel ends -->
 	<!-- content-wrapper ends -->
 	<!-- partial:../../partials/_footer.html -->
 
-	</div>
-	<!-- main-panel ends -->
+
+	
 
 	<script>
 	//초기화작업

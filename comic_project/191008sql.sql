@@ -51,15 +51,30 @@ select * from comic_employee order by employee_num;
 		"starttime" from comic_roomuse;
 
 -- 직원급여
+drop table comic_pay;
 CREATE TABLE COMIC_PAY (
 --  PAY_NUM NUMBER, --급여번호
+    PAY_WORKMONTH varchar2(30),--근무 달1910(년도,달)이런식으로 들어감
     PAY_EMP_NUM NUMBER, --직원번호
     PAY_DATE  DATE, -- 급여지급일
-    PAY_TOTALTIME NUMBER, -- 누적시간(시분초에서 시로)
+    PAY_TOTALTIME NUMBER, -- 누적시간(시분초에서 시로) 30분은 반올림해서 시에 추가하겟음
     CONSTRAINT COMIC_EMPLOYEE_NUM_FK FOREIGN KEY (PAY_EMP_NUM) 
     REFERENCES COMIC_EMPLOYEE (EMPLOYEE_NUM) ON DELETE CASCADE
 );
 
+select*from comic_pay;
+
+commit;
+
+create table tmpdate(
+tmp_date date
+);
+select TO_CHAR(tmp_date, 'hh24:mi:ss')from tmpdate;
+
+INSERT INTO tmpdate(tmp_date) VALUES ( TO_DATE('191123','YYMMDD'));
+INSERT INTO tmpdate(tmp_date) VALUES ( TO_DATE('191123','YYMMDD'));
+INSERT INTO tmpdate(tmp_date) VALUES ( TO_DATE('191123','YYMMdd'));
+INSERT INTO tmpdate(tmp_date) VALUES ( TO_DATE('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS') );
 
 -- 출퇴근 테이블
 CREATE TABLE COMIC_WORKINGHOUR(
@@ -67,7 +82,7 @@ CREATE TABLE COMIC_WORKINGHOUR(
 	WORKINGHOUR_STARTTIME DATE, -- 출근시간
 	WORKINGHOUR_ENDTIME DATE, -- 퇴근시간
     WORKINGHOUR_workday DATE, -- 출근일
-	CONSTRAINT COMIC_EMPLOYEE_NUM_FK_2 FOREIGN KEY (WORKINGHOUR_EMP_NUM) 
+	CONSTRAINT COMIC_EMPLOYEE_NUM_FK_2 FOREIGN KEY (WORKINGHOUR_EMP_NUM)
     REFERENCES COMIC_EMPLOYEE (EMPLOYEE_NUM) ON DELETE CASCADE
 );
 
@@ -87,6 +102,12 @@ FROM comic_workinghour
 WHERE TO_CHAR(workinghour_workday, 'YYMMDD') = '191008' and workingHour_emp_num=1001;
 
 select*from comic_employee;
+
+select TO_CHAR( workinghour_workday,'yyyymmdd')"workday"
+	,TO_CHAR(workinghour_starttime, 'hh24:mi:ss')"starttime"
+	,TO_CHAR(workinghour_ENDtime, 'hh24:mi:ss')"endtime"
+	from comic_workinghour where workinghour_workday > '191001'
+	and workinghour_workday < '191030' and workinghour_emp_num=1001;
 
 select*from comic_employee where employee_num='1001';
 
