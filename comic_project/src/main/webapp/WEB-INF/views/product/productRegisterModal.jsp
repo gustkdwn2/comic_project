@@ -51,7 +51,7 @@
 							<button type="submit" class="btn btn-primary mr-2">
 								<font style="vertical-align: inherit;">등록</font>
 							</button>
-							<button data-dismiss="modal" type="button" class="btn btn-success">닫기</button>
+							<button onclick="productRegisterModalClose();" data-dismiss="modal" type="button" class="btn btn-success">닫기</button>
 						</form>
 					</div>
 				</div>
@@ -115,6 +115,10 @@
 		}
 		return true;
 		
+	}
+
+	function productRegisterModalClose() {
+		$("#productRegister").find('form')[0].reset();
 	}
 	
 </script>

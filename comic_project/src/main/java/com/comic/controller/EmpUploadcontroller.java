@@ -33,7 +33,7 @@ public class EmpUploadcontroller {
 	@PostMapping(value = "/empUploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<AttachFileVO>> uploadAjaxPost(MultipartFile[] uploadFile) {
-
+		
 		List<AttachFileVO> list = new ArrayList<>();
 		String uploadFolder = "C:\\upload\\comic_employee";
 
@@ -90,6 +90,7 @@ public class EmpUploadcontroller {
 			}
 
 		} // end for
+		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	

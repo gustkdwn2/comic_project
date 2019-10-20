@@ -22,10 +22,11 @@
 									<font style="vertical-align: inherit;">상품 이름</font>
 								</label>
 								<div class="col-sm-9">
-									<select class="form-control" name="productOrder_product_name">
-		                            		<c:forEach items="${productList}" var="productList">
-		                            			<option value="${productList.product_name}">${productList.product_name}</option>
-		                            		</c:forEach>
+									<select class="form-control" name="productOrder_product_name" id="productOrder_product_name">
+										<option value="">선   택</option>
+		                            	<c:forEach items="${productList}" var="productList">
+		                            		<option value="${productList.product_name}">${productList.product_name}</option>
+		                            	</c:forEach>
 	                            	</select>
 								</div>
 							</div>
@@ -48,7 +49,7 @@
 							<button type="submit" class="btn btn-primary mr-2">
 								<font style="vertical-align: inherit;">등록</font>
 							</button>
-							<button data-dismiss="modal" type="button" class="btn btn-success">닫기</button>
+							<button onclick="productOrderRegisterModalClose();" data-dismiss="modal" type="button" class="btn btn-success">닫기</button>
 						</form>
 					</div>
 				</div>
@@ -63,6 +64,11 @@
 
 	function productOrderRegistercheck() {
 		
+		if($("#productOrder_product_name option:selected").val() == "") {
+			alert("상품을 정해주세요");
+		    $("#productOrder_product_name").focus();
+		    return false;
+		}
 		if($("#productOrder_cost_register").val() <= 0) {
 			alert("판매가를 정해주세요");
 			$("#productOrder_cost_register").val("");
@@ -77,6 +83,10 @@
 		}
 		return true;
 		
-	});
+	}
+
+	function productOrderRegisterModalClose() {
+		$("#productOrderRegister").find('form')[0].reset();
+	}
 	
 </script>

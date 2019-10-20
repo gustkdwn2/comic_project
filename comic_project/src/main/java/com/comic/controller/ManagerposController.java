@@ -441,7 +441,8 @@ public class ManagerposController {
 	
 	 @PostMapping("/EmployeeModify")
 	   public String EmployeeRegister(EmployeeVO vo,Model model) {
-		 
+		 List<EmployeeAttachVO> attachList = MemberService.getAttachList(vo.getEMPLOYEE_NUM());
+		 deleteFiles(attachList);
 		 managementService.employeeModify(vo);
 		 model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		return "/younghak/Manager_management";
@@ -451,7 +452,7 @@ public class ManagerposController {
 	 @GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		@ResponseBody
 		public ResponseEntity<List<EmployeeAttachVO>> getAttachList(@RequestParam("employee_num") int employee_num) {
-		 System.out.println("여기탐");
+		 
 			return new ResponseEntity<List<EmployeeAttachVO>>(MemberService.getAttachList(employee_num), HttpStatus.OK);
 		}
 	 

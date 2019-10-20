@@ -66,6 +66,14 @@ public class ManagementServiceImpl implements ManagementService {
 
 	@Override
 	public void employeeModify(EmployeeVO vo) {
+		
+		employeeAttachMapper.delete(Integer.toString(vo.getEMPLOYEE_NUM()));
+		
+		vo.getAttachList().forEach(attach -> {
+			attach.setEMPLOYEE_NUM(vo.getEMPLOYEE_NUM());;
+			employeeAttachMapper.insert(attach);
+		});
+		
 		managementMapper.employeeModify(vo);
 	}
 	
