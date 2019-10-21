@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.comic.mapper.LossMapper;
 import com.comic.mapper.RealOrderMapper;
 import com.comic.model.RealOrderVO;
 import com.comic.service.RealOrderService;

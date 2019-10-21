@@ -6,6 +6,7 @@
 	padding-top: 30px;
 }
 </style>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <body>
 	<!-- Header -->
 	<div class="main-penal">
@@ -67,9 +68,9 @@
 						</a>
 					</div>
 					<div class="col-lg-4"> 
-						<a class="portfolio-item" href="#"> <span class="caption"> <span class="caption-content">
+						<a class="portfolio-item" id="kakaopay"> <span class="caption"> <span class="caption-content">
 									<h3>사용 종료</h3>
-									<p class="mb-0">사용 종료를 하면 로그아웃되고 결제 페이지로 넘어갑니다</p>
+									<p class="mb-0">사용 종료를 하면 카카오페이로 연결되고 완료되면 로그아웃 됩니다</p>
 							</span>
 						</span> <img class="img-fluid" src="/resources/images/exitIcon.png" alt="" style="width:370px; height:250px;">
 						</a>
@@ -87,6 +88,30 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var operForm = $("#operForm");
+	var sendData = { 
+				room_num : 3,
+				id : 'user1',
+				totalprice : 3000
+			};
+	
+	$('#kakaopay').click(function(e){
+		e.preventDefault();
+		$.ajax({
+			url : '/pay/kakao',
+			type : 'get',
+			data : sendData,
+			success : function(res) {
+				console.log(res);
+				console.log(res.payUrl);
+				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
+				timer = setInterval(function(){
+	                  if(popup.closed){
+	                     location.href="http://localhost:8090/"
+	                  }
+	               }, 1000)
+			}
+		});
+	});
 	
 	$("#userOrderView").on("click", function(e){
 		operForm.attr("method", "get");
