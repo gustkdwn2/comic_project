@@ -46,7 +46,7 @@
 						<div class="form-group" align="center">
 							<button type="button" id="pmodify" name="pmodify" style="color:white;"
 									class="btn btn-warning" onclick="pwdmodify();">확인</button>
-							<button type="button" id="modifyclose" class="btn btn-primary" data-dismiss="modal">닫기</button>
+							<button type="button" id="passwordmodifyclose" class="btn btn-primary">닫기</button>
 						</div>
 					</form>
 				</div>

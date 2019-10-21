@@ -68,6 +68,11 @@ $(document).ready(function(e){
 		    $("#book_lastbook_register").focus();
 		    return false;
 		}
+		if($('#uploadFileRegister')[0].files[0] == null) {
+			alert("이미지를 넣어주세요.")
+			$("#uploadFileRegister").focus();
+			return false;
+		}
 	    
 	    var str = "";
 	    
@@ -142,7 +147,7 @@ $(document).ready(function(e){
 	
 	      }
 	    }); //$.ajax
-	    
+	   $('#uploadFileRegister').attr('disabled', true);
 	  });  
 	  
 	  function showUploadResult(uploadResultArr){
@@ -204,6 +209,7 @@ $(document).ready(function(e){
 				  targetLi.remove();
 			  }
 		  }); //$.ajax
+		  $('#uploadFileRegister').attr('disabled', false);
 		  $("#uploadFileRegister").val("");
 	  });
 	  
@@ -225,6 +231,7 @@ $(document).ready(function(e){
 				  }
 			  }); //$.ajax
 	      }
+	      $('#uploadFileRegister').attr('disabled', false);
 	      $("#card-body-register").scrollTop(0);
 		  $("#uploadFileRegister").val("");
 		  $("#bookRegister").find('form')[0].reset();

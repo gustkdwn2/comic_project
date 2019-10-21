@@ -91,20 +91,20 @@
 		insert into comic_order(ORDER_NUM, ORDER_ID,
 		ORDER_ROOMNUM, ORDER_TIME, ORDER_PRODUCT_NUM, ORDER_QTY)
 		values
-		((select NVL(max(ORDER_NUM),0) +1 from comic_order), #{order_id},
-		#{order_roomnum}, #{order_time}, #{order_product_num}, #{order_qty})
+		((select NVL(max(order_num),0)+1 from comic_order where to_char(order_time, 'yy-mm-dd') = to_char(sysdate, 'yy-mm-dd')), 
+		#{order_id}, #{order_roomnum}, #{order_time}, #{order_product_num}, #{order_qty})
 	</insert>
 	
 	<select id="userBill" resultType="com.comic.model.UserBillVO">
-      select product_bill,room_bill from (select sum(a.order_qty*b.product_price) as product_bill
-      from COMIC_ORDER a, comic_productstock b 
-      where 
-      a.order_product_num = b.product_num and a.order_id = #{id}) , (select trunc(round(((sysdate-roomuse_starttime)*24*60))/10)*200 as room_bill 
-      from COMIC_ROOMUSE where roomuse_id = #{id})
+		select product_bill,room_bill from (select sum(a.order_qty*b.product_price) as product_bill
+		from COMIC_ORDER a, comic_productstock b, comic_roomuse r
+		where 
+		a.order_product_num = b.product_num and a.order_id = #{id} and r.roomuse_starttime &lt; a.order_time),(select CEIL(trunc((sysdate-roomuse_starttime)*60*24)/10)*500 as room_bill
+		from COMIC_ROOMUSE where roomuse_id = #{id})
    	</select>
    	
    	<select id="userProductBill" resultType="com.comic.model.UserProductBillVO">
    		select a.order_time, b.product_name, a.order_qty, (b.product_price * a.order_qty) as order_bill 
-   		from comic_order a, comic_productstock b where a.order_id = #{id} and a.order_product_num = b.product_num
+   		from comic_order a, comic_productstock b  , comic_roomuse r where a.order_id = #{id} and a.order_product_num = b.product_num  and r.roomuse_starttime &lt; a.order_time
    	</select>
 </mapper>

@@ -110,11 +110,12 @@ body {
 
 </head>
 <body style="overflow: scroll">
-
 	<div class="main-panel">
 		<div class="content-wrapper">
 			<div class="row">
+	
 				<%@ include file="./younghak_header.jsp"%>
+				
 				<div class="col-12 grid-margin stretch-card">
 					<div class="card">
 						<div class="row">
@@ -169,6 +170,7 @@ body {
 	</div>
 
 </div>
+
 <div class="column" onclick="method_startnstop('3');">
 	<!-- <div class="div_root"> -->
 
@@ -181,11 +183,14 @@ body {
 				id="order_status3">없음</font><br>
 		</div>
 
-		<div class="div_bottom_3">
-			<input type="button" value="주문내역보기"> <input
-				type="button" value="결제하기"> <input type="button"
-				value="채팅하기">
-		</div>
+		<div class="div_bottom_2">
+		<input type="button" value="주문내역보기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
+		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
+		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
+	</div>
 
 	</div>
 </div>
@@ -204,10 +209,13 @@ body {
 			id="order_status4">없음</font><br>
 	</div>
 
-	<div class="div_bottom_4">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
+	<div class="div_bottom_2">
+		<input type="button" value="주문내역보기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
+		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
+		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
 	</div>
 
 </div>
@@ -222,11 +230,13 @@ body {
 			id="user_status5">없음</font><br> 주문상태 : <font
 			id="order_status5">없음</font><br>
 	</div>
-
-	<div class="div_bottom_5">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
+	<div class="div_bottom_2">
+		<input type="button" value="주문내역보기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
+		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
+		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
 	</div>
 
 </div>
@@ -242,10 +252,13 @@ body {
 			id="order_status6">없음</font><br>
 	</div>
 
-	<div class="div_bottom_6">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
+	<div class="div_bottom_2">
+		<input type="button" value="주문내역보기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
+		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
+		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
 	</div>
 
 				</div>
@@ -263,48 +276,38 @@ body {
 					</div>
 				</div>
 			</div>
-
+			
+			<!-- 실시간 주문 테이블 -->
+			<div class="row">
+				<div class="col-md-12 stretch-card">
+					<div class="card" style="margin-bottom: 20px;">
+						<div class="card-body">
+							<p class="card-title">주문 현황</p>
+							<div class="table-responsive">
+								<table id="realOrderTable" class="table table-striped">
+									<thead>
+										<tr>
+											<th>번호</th>
+											<th>날짜</th>
+											<th>방번호</th>
+											<th>ID</th>
+											<th>상품</th>
+											<th>수량</th>
+											<th>가격</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	</div>
-
-
-	<div class="card-body">
-		<h4 class="card-title">Social button with text</h4>
-		<p class="card-description">
-			Add class
-			<code>.btn-social-icon-text</code>
-		</p>
-		<div class="template-demo">
-			<button type="button" class="btn btn-social-icon-text btn-facebook">
-				<i class="mdi mdi-facebook"></i>Facebook
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-youtube">
-				<i class="mdi mdi-youtube"></i>Youtube
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-twitter">
-				<i class="mdi mdi-twitter"></i>Twitter
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-dribbble">
-				<i class="mdi mdi-dribbble"></i>Dribbble
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-linkedin">
-				<i class="mdi mdi-linkedin"></i>Linkedin
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-google">
-				<i class="mdi mdi-google-plus"></i>Google
-			</button>
-		</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	<!-- content-wrapper ends -->
-	<!-- partial:../../partials/_footer.html -->
-
 	</div>
 	<!-- main-panel ends -->
+	
+	
+
 
 	<script>
 	//초기화작업
@@ -314,6 +317,8 @@ body {
 
 	ajaxtogetdb_comic_room_uselist();
 	//초기화작업
+	
+	realOrder();
 	
 		function openTab(tabName) {
 			var i, x;
@@ -341,16 +346,16 @@ body {
 		}
 
 		function method_startnstop(num) {
-
+			// 시작시간
 			if (!check[num]) {
 				check[num] = true;
 				time_start(0, num);
 				/* 테스트용 */
-				var user = "tmehfld";
+				var user = "id";
 				var user_status = "unavail";
 				var order_status = "unavail";
 
-				var roomuse_id = "tmehfld";
+				var roomuse_id = "id";
 				var roomuse_num = num;
 				var roomuse_status = "on";
 
@@ -379,7 +384,7 @@ body {
 			}
 		}
 
-		function method_startnstop2(id,num,starttime,status) {
+		function startnstop_init(id,num,starttime,status) {
 
 			if (!check[num]) {
 				check[num] = true;
@@ -422,7 +427,7 @@ body {
 						var number=1;
 						number = list.roomuse_num;
 						
-						method_startnstop2(list.roomuse_id,number,list.starttime,list.roomuse_status);
+						startnstop_init(list.roomuse_id,number,list.starttime,list.roomuse_status);
 					});
 					
 				},
@@ -452,7 +457,6 @@ body {
 				success : function(data) {
 					console.log("성공");
 					alert("success!");
-					
 				},
 				error : function(data) {
 					console.log("실패");
@@ -499,6 +503,11 @@ body {
 			if (time.toString().length == 1) {
 				time = "0" + time;
 			}
+
+			if(time==null){
+			time=0;
+				}
+			
 			return time;
 		}
 
@@ -508,8 +517,64 @@ body {
 			alert("num.toString().length = " + num.toString().length + "\n"
 					+ "str.length = " + str.length)
 		}
+		
+		
+		function realOrder() {
+			$('#realOrderTable').DataTable(
+					{ // 페이징 처리, 검색, show entries
+						pageLength : 10, //처음 페이지에 처리 개수
+						bPaginate : true, // 페이징 기능
+						bLengthChange : true,
+						lengthMenu : [ [ 10, 20, 30, -1 ],
+								[ 10, 20, 30, "All" ] ], //show entries
+						bAutoWidth : false,
+						processing : true,
+						ordering : true,
+						serverSide : false,
+						searching : true, // 검색 기능
+						bStateSave : true,
+						"iDisplayLength" : 10,
+						"columnDefs" : [ {
+							targets : 'no-sort',
+							orderable : false
+						} ],
+						ajax : {
+							url : "/realorder/realOrderData.json",
+							type : "get",
+							dataSrc : '',
+						},
+						"language": {
+						      search: "Search :"
+						},
+						aoColumns : [
+								{
+									data : "order_num"
+								},
+								{ data: "order_time", 
+						    		"render": function (data) {
+						    			var date = new Date(data); var month = date.getMonth() + 1; 
+						    			return  date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); } 
+							    },
+								{
+									data : "order_roomnum"
+								},
+								{
+									data : "order_id"
+								},
+								{
+									data : "product_name"
+								},
+								{
+									data : "order_qty"
+								},
+								{
+									data : "product_price"
+								},],
+						order : [ [ 0, 'desc' ] ]
+					});
+			}
+		
+		
 	</script>
-
-
 </body>
 </html>
