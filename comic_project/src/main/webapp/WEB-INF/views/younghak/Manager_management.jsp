@@ -270,7 +270,7 @@ step="1">
 				<div class="modal-body">
 					<div class="form-group row">
 						<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
-							<font style="vertical-align: inherit;">직원 이미지</font>
+							<font style="vertical-align: inherit;">책 이미지</font>
 						</label>
 						<div class="form-group row">
 					        <div class="form-group uploadDiv">

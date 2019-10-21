@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.comic.mapper.EmployeeAttachMapper;
 import com.comic.mapper.ManagementMapper;
+import com.comic.model.EmployeeAttachVO;
 import com.comic.model.EmployeeVO;
 import com.comic.service.ManagementService;
 
@@ -91,6 +92,11 @@ public class ManagementServiceImpl implements ManagementService {
 	@Override
 	public void setmonthlypay(String empnum, String workmonth, int hour) {
 		managementMapper.setmonthlypay(empnum, workmonth, hour);
+	}
+
+	@Override
+	public List<EmployeeAttachVO> employeeAttachGetList() {
+		return employeeAttachMapper.employeeAttachGetList();
 	}
 	
 	

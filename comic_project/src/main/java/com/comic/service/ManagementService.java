@@ -2,6 +2,7 @@ package com.comic.service;
 
 import java.util.List;
 
+import com.comic.model.EmployeeAttachVO;
 import com.comic.model.EmployeeVO;
 
 public interface ManagementService {
@@ -17,5 +18,6 @@ public interface ManagementService {
 	public void insertworkmonth(String empnum, String workmonth, String payday);
 	public void setmonthlypay(String empnum, String workmonth, int hour);
 	
+	public List<EmployeeAttachVO> employeeAttachGetList();
 
 }

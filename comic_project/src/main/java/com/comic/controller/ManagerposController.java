@@ -64,10 +64,11 @@ public class ManagerposController {
 	}
 
 	@RequestMapping(value = { "/Manager_management" }, method = RequestMethod.GET)
-	public String managermanagerment(Locale locale, Model model) {
-		System.out.println("여기옴");
+	public String managermanagerment(Model model) {
+		System.out.println(managementService.employeeAttachGetList());
+		model.addAttribute("employeeAttachList", managementService.employeeAttachGetList());
 		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
-		System.out.println(managementService.managerList());
+		
 		return "younghak/Manager_management";
 	}
 

@@ -110,6 +110,8 @@ public class EmpUploadcontroller {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("여기옴");
+		System.out.println(result);
 		return result;
 	}
 	
