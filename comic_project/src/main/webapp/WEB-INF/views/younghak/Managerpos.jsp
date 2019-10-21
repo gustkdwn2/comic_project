@@ -127,12 +127,10 @@ body {
 						<div class="div_bottom">
 							<input type="button" value="주문내역보기"
 								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
 							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
+								class="btn btn-danger btn-sm"
 								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 						</div>
 
@@ -155,15 +153,12 @@ body {
 						<div class="div_bottom">
 							<input type="button" value="주문내역보기"
 								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
 							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
+								class="btn btn-danger btn-sm"
 								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 						</div>
-
 					</div>
 
 					<div class="column" onclick="method_startnstop('3');">
@@ -181,12 +176,10 @@ body {
 						<div class="div_bottom">
 							<input type="button" value="주문내역보기"
 								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
 							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
+								class="btn btn-danger btn-sm"
 								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 						</div>
 
@@ -210,12 +203,10 @@ body {
 						<div class="div_bottom">
 							<input type="button" value="주문내역보기"
 								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
 							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
+								class="btn btn-danger btn-sm"
 								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 						</div>
 
@@ -235,12 +226,10 @@ body {
 						<div class="div_bottom">
 							<input type="button" value="주문내역보기"
 								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
 							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
+								class="btn btn-danger btn-sm"
 								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 						</div>
 
@@ -260,12 +249,10 @@ body {
 						<div class="div_bottom">
 							<input type="button" value="주문내역보기"
 								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
 							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
+								class="btn btn-danger btn-sm"
 								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 						</div>
 

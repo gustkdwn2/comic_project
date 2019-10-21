@@ -67,7 +67,7 @@ td {
 			</div>
 			
 			<div style="float: left; margin-top:45px;">
-				<div style="background-color: #dadfe4; width: 600px; margin-left:200px;">
+				<div style="background-color: #dadfe4; width: 600px; margin-left:250px;">
 						
 					<span> <c:forEach items="${ OrderViewVO_List }" var="list">
 							<button class="btn btn-secondary btn-rounded btn-fw"
@@ -76,7 +76,7 @@ td {
 					</span>		
 				</div>
 					
-				<div class="orderProduct" style="border:3px solid #dadfe4; margin-left:200px;">
+				<div class="orderProduct" style="border:3px solid #dadfe4; margin-left:250px;">
 					<!-- 사이다 등 상세제품이 나온다. -->
 				</div>
 			
@@ -86,7 +86,7 @@ td {
 				<div class="row">
 					<div class="col-md-12"  style="text-align: center;"><br/>
 						<h2>주문목록</h2><br/>
-						<table style="width:700px; margin-left:15px;">
+						<table style="width:700px; margin-left:30px;">
 							<thead>
 								<tr>
 									<th style="width: 40%;">상품명</th>
@@ -102,7 +102,7 @@ td {
 					</div><br/><hr/>
 					
 					<div class="col-md-12" style="margin-top:50px;">
-						<div style="width:420px; height:200px; margin:20px 0 0 140px;">
+						<div style="width:420px; height:200px; margin:20px 0 0 150px;">
 								<div style="float: left;">
 								<h4 style="color:black; font-weight: 600;">&nbsp;총수량</h4>
 								<input id="orderQty" class="form form-control" style="width:200px;" readonly></div>

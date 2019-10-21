@@ -69,12 +69,12 @@ border:1px solid #cdcdce;
   overflow-y: initial !important
   position: absolute;
   top: 37%;
-  left: 7%;
+  left: 8%;
   transform: translate(-50%, -50%) !important;
 }
 
 #product-bill-card-body{
-	height: 700px;
+	height: 800px;
     width: 700px;
     overflow-y: auto;
 }
