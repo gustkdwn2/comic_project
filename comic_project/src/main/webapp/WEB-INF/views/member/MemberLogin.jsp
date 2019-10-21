@@ -71,10 +71,11 @@
   <!-- endinject -->
   
 <script type="text/javascript">
-
-		var roomNum = "<c:out value='${roomNum}'/>";
-		console.log(roomNum);
-		
+		 var webSocket;
+		 var roomNum = "<c:out value='${roomNum}'/>";
+		 var checkLogin = false;
+		 
+		 
 		 var msg = "${msg}";
 		 if (msg === "REGISTERED") {
 		     alert("회원가입이 완료되었습니다. 로그인해주세요~");
@@ -82,12 +83,65 @@
 		     alert("아이디 또는 비밀번호를 확인해주세요.");
 		 } else if (msg === "NOMEMBER") {
 		  alert("입력한 정보로 등록된 회원이 없습니다.")
+		 } else {
+			 checkLogin = true;
 		 }
-		
+		 
+		 function openSocket() {
+	            if (webSocket !== undefined && webSocket.readyState !== WebSocket.CLOSED) {
+	                writeResponse("WebSocket is already opened.");
+	                return;
+	            }
+	            webSocket = new WebSocket("ws://localhost:8090/socketEcho");
+
+	            webSocket.onopen = function(event) {
+	                if (event.data === undefined)
+
+	                    return;
+
+	                writeResponse(event.data);
+
+	            };
+
+
+
+	            webSocket.onmessage = function(event) {
+	                writeResponse(event.data);
+
+	            };
+
+
+
+	            webSocket.onclose = function(event) {
+	                writeResponse("Connection closed");
+
+	            };
+
+	        }
+		 function send() {
+            var text = roomNum;
+            webSocket.send(text);
+	     }
+
+	     function closeSocket() {
+            webSocket.close();
+
+         }
+
+        function writeResponse(text) {
+            messages.innerHTML += "<br/>" + text;
+
+        }	
 		 $("#login").on("click", function(e) {
-		e.preventDefault();
-		$("#memberlogin").submit();
+			e.preventDefault();
+			if(checkLogin) {
+				console.log("오픈소켓 클릭");				
+				openSocket();
+			}
+			$('#memberlogin').submit();
 		 });
+		 
+		 
 		 
 		function pwdmodify() {
 		  var passwordmodify = $("form[name=passwordmodify]").serialize();
@@ -109,7 +163,6 @@
 			operForm.attr("action","/userView/main");
 			operForm.submit();
 		}
-
 
 </script>
 </body>
