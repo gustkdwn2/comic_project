@@ -1583,3 +1583,184 @@ java.lang.NumberFormatException: null
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-18 14:39:15.710
 !MESSAGE executing callback sts4.classpath.xBpLLblu SUCCESS [done]
+
+!ENTRY org.eclipse.jdt.core 4 4 2019-10-21 12:06:28.047
+!MESSAGE Background Indexer Crash Recovery
+!STACK 0
+java.lang.OutOfMemoryError: Requested array size exceeds VM limit
+	at org.eclipse.jdt.internal.compiler.util.HashtableOfObject.<init>(HashtableOfObject.java:41)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.readCategoryTable(DiskIndex.java:683)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.mergeCategory(DiskIndex.java:486)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.mergeCategories(DiskIndex.java:478)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.mergeWith(DiskIndex.java:580)
+	at org.eclipse.jdt.internal.core.index.Index.save(Index.java:203)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndex(IndexManager.java:990)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndexes(IndexManager.java:1032)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.notifyIdle(IndexManager.java:711)
+	at org.eclipse.jdt.internal.core.search.processing.JobManager.run(JobManager.java:384)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:28.166
+!MESSAGE Preparing classpath changed notification comic_project
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:28.167
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:28.176
+!MESSAGE classpath=80 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:28.178
+!MESSAGE buffering callback sts4.classpath.nIPwxpxG comic_project false 80
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:28.180
+!MESSAGE executing callback sts4.classpath.nIPwxpxG 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:28.194
+!MESSAGE executing callback sts4.classpath.nIPwxpxG SUCCESS [done]
+
+!ENTRY org.eclipse.core.jobs 4 2 2019-10-21 12:06:30.447
+!MESSAGE An internal error occurred during: "Periodic workspace save.".
+!STACK 0
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1595)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1271)
+	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1263)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1240)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1151)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:55)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:30.529
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.nIPwxpxG
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:30.530
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.nIPwxpxG
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:30.530
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:30.530
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.nIPwxpxG => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:48.424
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:48.424
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@25a2a71d[org.springframework.tooling.boot.ls:1.10.0.201908130624(id=704)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:48.424
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:50.191
+!MESSAGE Boot LS startup time from start to initialized: 1765ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:50.250
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.rRPeWLKPisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:50.251
+!MESSAGE subscribing to classpath changes: sts4.classpath.rRPeWLKP isBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:50.251
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:50.251
+!MESSAGE subsribers = {sts4.classpath.rRPeWLKP=Send Classpath Notifications(574)}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:50.252
+!MESSAGE Sending initial event for all projects ...
+
+!ENTRY org.eclipse.ui 4 0 2019-10-21 12:06:51.998
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at org.springframework.tooling.ls.eclipse.commons.ProjectSorter$1.run(ProjectSorter.java:39)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3919)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3550)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:635)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:559)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:660)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:597)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1468)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:51.998
+!MESSAGE project Servers ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:51.998
+!MESSAGE project Servers SKIPPED
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:51.999
+!MESSAGE project comic_project ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:51.999
+!MESSAGE Sending initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:51.999
+!MESSAGE Preparing classpath changed notification comic_project
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:52.000
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.rRPeWLKP => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:52.001
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:52.005
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.rRPeWLKP
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:52.006
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.rRPeWLKP
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:52.006
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:52.006
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.rRPeWLKP => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:52.007
+!MESSAGE classpath=76 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:52.009
+!MESSAGE buffering callback sts4.classpath.rRPeWLKP comic_project false 76
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:52.010
+!MESSAGE executing callback sts4.classpath.rRPeWLKP 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:52.010
+!MESSAGE executing callback sts4.classpath.rRPeWLKP FAILED
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2019-10-21 12:06:52.010
+!MESSAGE 
+!STACK 0
+java.lang.UnsupportedOperationException: No language server has registered to handle command 'sts4.classpath.rRPeWLKP'
+	at org.springframework.tooling.ls.eclipse.commons.LSP4ECommandExecutor.executeClientCommand(LSP4ECommandExecutor.java:42)
+	at org.springframework.tooling.jdt.ls.commons.classpath.SendClasspathNotificationsJob.flush(SendClasspathNotificationsJob.java:197)
+	at org.springframework.tooling.jdt.ls.commons.classpath.SendClasspathNotificationsJob.run(SendClasspathNotificationsJob.java:168)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:53.781
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:53.782
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@25a2a71d[org.springframework.tooling.boot.ls:1.10.0.201908130624(id=704)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-21 12:06:53.783
+!MESSAGE SpringBootLanguageServer exists!
