@@ -65,7 +65,9 @@ public class ManagerposController {
 
 	@RequestMapping(value = { "/Manager_management" }, method = RequestMethod.GET)
 	public String managermanagerment(Locale locale, Model model) {
+		System.out.println("여기옴");
 		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
+		System.out.println(managementService.managerList());
 		return "younghak/Manager_management";
 	}
 

@@ -270,7 +270,7 @@ step="1">
 				<div class="modal-body">
 					<div class="form-group row">
 						<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
-							<font style="vertical-align: inherit;">책 이미지</font>
+							<font style="vertical-align: inherit;">직원 이미지</font>
 						</label>
 						<div class="form-group row">
 					        <div class="form-group uploadDiv">
@@ -472,6 +472,7 @@ step="1">
 	<!-- /.modal -->
 
 	<script type="text/javascript">
+	var imgCheckNum = 1;
 $("#AdminModal").on("click", function() {
    $("#empRegisterMoal").modal("show");   
 });
@@ -746,7 +747,7 @@ function modify_staff_validation(){//직원추가 유효성검사
 		$('#'+pay).focus();	
 		return;
 	}
-	if($('#uploadFileGet')[0].files[0] == null) {
+	if(imgCheckNum == 0) {
 		alert("이미지를 넣어주세요.")
 		$("#uploadFileGet").focus();
 		return false;
@@ -1058,7 +1059,7 @@ function checkExtensionGet(fileName, fileSize){
 }
 
 $("#uploadFileGet").change(function(e){
-
+	imgCheckNum = 1;
 	var formData = new FormData();
     
     var inputFile = $("#uploadFileGet");
@@ -1097,7 +1098,7 @@ $(".uploadResultGet").on("click", "button", function(e){
     	$("#uploadFileGet").val("");
     	var targetLi = $(this).closest("li");
     	targetLi.remove();
-
+    	imgCheckNum = 0;
     }
 });
 

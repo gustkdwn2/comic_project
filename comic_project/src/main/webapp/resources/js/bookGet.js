@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+	var num = 1;
 	$(".uploadResultGet").on("click", "button", function(e){
 	    
 	    console.log("delete file");
@@ -9,7 +9,7 @@ $(document).ready(function() {
 	    	$("#uploadFileGet").val("");
 	    	var targetLi = $(this).closest("li");
 	    	targetLi.remove();
-
+	    	num = 0;
 	    }
 	});
 	
@@ -33,7 +33,7 @@ $(document).ready(function() {
 	}
 	  
 	$("#uploadFileGet").change(function(e){
-
+		num = 1;
 		var formData = new FormData();
 	    
 	    var inputFile = $("#uploadFileGet");
@@ -150,7 +150,7 @@ $(document).ready(function() {
 		      $("#book_category_get").focus();
 		      return false;
 		}
-		if($('#uploadFileGet')[0].files[0] == null) {
+		if(num == 0) {
 			alert("이미지를 넣어주세요.")
 			$("#uploadFileGet").focus();
 			return false;
