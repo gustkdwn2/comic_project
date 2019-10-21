@@ -2,6 +2,8 @@ package com.comic.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Data
@@ -18,5 +20,6 @@ public class LossVO {
 	private int loss_qty;
 	private int loss_pay;
 	private String loss_product;
-	private Date loss_date; 
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date loss_date;
 }

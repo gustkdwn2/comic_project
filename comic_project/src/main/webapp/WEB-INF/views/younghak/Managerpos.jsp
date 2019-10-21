@@ -3,7 +3,6 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 
@@ -21,7 +20,7 @@
 
 body {
 	margin: 0;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "맑은 고딕";
 }
 
 /* The grid: Three equal columns that floats next to each other */
@@ -32,9 +31,11 @@ body {
 	/* text-align: center; */
 	font-size: 16px;
 	cursor: pointer;
-	color: gray;
+	color: #555555;
 	margin-left: 10px;
-	height: 230px;
+	height: 270px;
+	border: 5px solid #b2caff; 
+	border-radius: 30px;
 }
 
 .containerTab {
@@ -73,24 +74,27 @@ body {
 	width: 30%;
 	/* height:100px; */
 	padding: 13% 0px;
-	height: 90%;
+	height: 80%;
 	float: left;
 	font-size: 30px;
-	background-color: #ffac6a;
 	text-align: center;
+	border-bottom: 5px solid #b2caff; 
+	
 }
 
 .div_con {
 	width: 70%;
 	/* height:100px ; */
-	height: 90%;
+	height: 80%;
 	margin-right: auto;
 	/* margin:10px; */
 	padding-left: 3%;
 	padding-top: 5%;
 	float: left;
 	font-size: 20px;
-	background-color: #19f011;
+	font-color: #686868;
+	border-left: 5px solid #b2caff;
+	border-bottom: 5px solid #b2caff; 
 	/* //background-size:50%50%; */
 	text-align: center-vertical;
 }
@@ -100,8 +104,7 @@ body {
 	/* height:100px; */
 	height: 10%;
 	clear: both;
-	background-color: #C8FE2E;
-	text-align: center;
+
 }
 </style>
 
@@ -121,8 +124,7 @@ body {
 		<div class="template-demo">
 			<div class="row">
 			
-				<div class="column" onclick="method_startnstop('1');"
-	style="background: #F6CEF5;">
+				<div class="column" onclick="method_startnstop('1');">
 
 	<div class="div_menu">1번방</div>
 
@@ -134,17 +136,19 @@ body {
 	</div>
 
 	<div class="div_bottom_2">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
+		<input type="button" value="주문내역보기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
+		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
+		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
 	</div>
 
 	<!-- </div> -->
 
 </div>
 
-<div class="column" onclick="method_startnstop('2');"
-	style="background: #E6E6E6;">
+<div class="column" onclick="method_startnstop('2');">
 	<!-- <div class="div_root"> -->
 
 	<div class="div_menu">2번방</div>
@@ -157,14 +161,17 @@ body {
 	</div>
 
 	<div class="div_bottom_2">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
+		<input type="button" value="주문내역보기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
+		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
+		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
 	</div>
 
 </div>
-<div class="column" onclick="method_startnstop('3');"
-	style="background: #E6E6E6;">
+
+<div class="column" onclick="method_startnstop('3');">
 	<!-- <div class="div_root"> -->
 
 		<div class="div_menu">3번방</div>
@@ -177,18 +184,20 @@ body {
 		</div>
 
 		<div class="div_bottom_2">
-			<input type="button" value="주문내역보기"> <input
-				type="button" value="결제하기"> <input type="button"
-				value="채팅하기">
-		</div>
+		<input type="button" value="주문내역보기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
+		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
+		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
+	</div>
 
 	</div>
 </div>
 <br>
 
 <div class="row">
-	<div class="column" onclick="method_startnstop('4');"
-	style="background: #E6E6E6;">
+	<div class="column" onclick="method_startnstop('4');">
 	<!-- <div class="div_root"> -->
 
 	<div class="div_menu">4번방</div>
@@ -201,14 +210,16 @@ body {
 	</div>
 
 	<div class="div_bottom_2">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
+		<input type="button" value="주문내역보기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
+		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
+		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
 	</div>
 
 </div>
-<div class="column" onclick="method_startnstop('5');"
-	style="background: #E6E6E6;">
+<div class="column" onclick="method_startnstop('5');">
 	<!-- <div class="div_root"> -->
 
 	<div class="div_menu">5번방</div>
@@ -219,16 +230,17 @@ body {
 			id="user_status5">없음</font><br> 주문상태 : <font
 			id="order_status5">없음</font><br>
 	</div>
-
 	<div class="div_bottom_2">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
+		<input type="button" value="주문내역보기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
+		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
+		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
 	</div>
 
 </div>
-<div class="column" onclick="method_startnstop('6');"
-	style="background: #E6E6E6;">
+<div class="column" onclick="method_startnstop('6');">
 	<!-- <div class="div_root"> -->
 
 	<div class="div_menu">6번방</div>
@@ -241,9 +253,12 @@ body {
 	</div>
 
 	<div class="div_bottom_2">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
+		<input type="button" value="주문내역보기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
+		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
+		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
 	</div>
 
 				</div>
@@ -344,7 +359,7 @@ body {
 			}
 		}
 
-		function method_startnstop2(id,num,starttime,status) {
+		function startnstop_init(id,num,starttime,status) {
 
 			if (!check[num]) {
 				check[num] = true;
@@ -387,7 +402,7 @@ body {
 						var number=1;
 						number = list.roomuse_num;
 						
-						method_startnstop2(list.roomuse_id,number,list.starttime,list.roomuse_status);
+						startnstop_init(list.roomuse_id,number,list.starttime,list.roomuse_status);
 					});
 					
 				},

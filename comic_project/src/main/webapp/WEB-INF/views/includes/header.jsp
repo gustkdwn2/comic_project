@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,13 +11,12 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Majestic Admin</title>
+<title>Comic Clerk</title>
 
 <link rel="stylesheet"
 	href="/resources/vendors/mdi/css/materialdesignicons.min.css">
-
-<!-- <link rel="stylesheet"
-	href="/resources/vendors/base/vendor.bundle.base.css"> -->
+<link rel="stylesheet"
+	href="/resources/vendors/base/vendor.bundle.base.css">
 <link rel="stylesheet"
 	href="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
 <link rel="stylesheet" href="/resources/css/style.css">
@@ -33,10 +35,15 @@
 <script src="/resources/js/data-table.js"></script>
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
+<script src="/resources/js/header.js?ver=1"></script>
+
+<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+<script src="/resources/js/userWebsocket.js"></script>
 
 
 
 </head>
+
 <body>
 </html>
 <script>

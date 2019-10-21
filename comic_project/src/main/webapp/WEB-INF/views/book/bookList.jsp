@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 <!DOCTYPE html>
@@ -18,12 +16,11 @@
 					<div class="card">
 						<div class="card-body">
 							<p class="card-title">책 재고</p>
-							<div class="table-responsive">
-								<button id="registerBtn" type="button" class="btn btn-secondary">책
-									등록</button>
-								<table id="lossTable"
-									class="table  table-striped">
-
+							<div class="table-responsive" style="overflow: hidden;">
+								<button id="bookRegisterBtn" type="button" class="btn btn-secondary" 
+								style="margin-bottom: 10px;">책 등록</button>
+								
+								<table id="bookTable" class="table  table-striped">
 									<thead>
 										<tr>
 											<th>책이름</th>
@@ -34,26 +31,11 @@
 											<th>책 분류</th>
 											<th>마지막권</th>
 											<th>연재상태</th>
+											<th class="no-sort">수정/삭제</th>
 										</tr>
 									</thead>
-
-									<c:forEach items="${bookList}" var="book">
-										<tr>
-											<td><a
-												href='/book/bookGet?book_name=<c:out value="${book.book_name}" />'><c:out
-														value="${book.book_name}" /></a></td>
-											<td><c:out value="${book.book_loc}" /></td>
-											<td><c:out value="${book.book_publisher}" /></td>
-											<td><c:out value="${book.book_writer}" /></td>
-											<td><c:out value="${book.book_content}" /></td>
-											<td><c:out value="${book.book_category}" /></td>
-											<td><c:out value="${book.book_lastbook}" /></td>
-											<td><c:out value="${book.book_status}" /></td>
-										</tr>
-									</c:forEach>
-
 								</table>
-
+							
 							</div>
 						</div>
 					</div>
@@ -61,33 +43,10 @@
 			</div>
 		</div>
 	</div>
-</body>
-<script type="text/javascript">
-	$(document).ready(function() {
-		
-		$('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
-	    	pageLength: 10,
-	        bPaginate: true,
-	        bLengthChange: true,
-	        lengthMenu : [ [ 10, 20, 30, -1 ], [ 10, 20, 30, "All" ] ],
-	        bAutoWidth: false,
-	        processing: true,
-	        ordering: true,
-	        serverSide: false,
-	        searching: true,
-	        bStateSave: true,
-	        "iDisplayLength": 10,
-	        "language": {
-	          search: "Search :"
-	        },
-	    });
-
-		$("#registerBtn").click(function() {
-
-			self.location = "/book/bookRegister";
-
-		});
-
-	});
-</script>
+	
+	<jsp:include page="bookRegisterModal.jsp" />
+	<jsp:include page="bookGetModal.jsp" />
+	<script src="/resources/js/bookTable.js?ver=35" ></script>
+	<script src="/resources/js/bookRegister.js?ver=19" ></script>
+	<script src="/resources/js/bookGet.js?ver=30" ></script>
 </html>
