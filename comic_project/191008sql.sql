@@ -195,7 +195,7 @@ CREATE TABLE COMIC_ROOMUSE(
     
 );
 
-
+select*from COMIC_ROOMUSE;
 
 insert into comic_roomuse (ROOMUSE_id,ROOMUSE_num,ROOMUSE_starttime,ROOMUSE_status)
 values ('anonymous',7,sysdate,'on');

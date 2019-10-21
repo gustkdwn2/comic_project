@@ -34,12 +34,23 @@
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
 
-</body>
 
-</html>
 
 </head>
 <body>
+
+</html>
+<script>
+	checksession();
+	function checksession(){
+		var test = "${sessionScope.EMPID}";
+		alert("현재 세션은"+test);
+		}
+	</script>
+
+</body>
+
+
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
 		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
