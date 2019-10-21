@@ -2,7 +2,7 @@ var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-z
 var regExp = /^\d{3}-\d{3,4}-\d{4}$/; // 핸드폰번호 정규식
 
 $(document).ready(function(){
-	
+	$('#modalstyle').css('display','none');
 	$('#memberListTable').DataTable({ // 페이징 처리, 검색, show entries
 		pageLength: 10, //처음 페이지에 처리 개수
 	    bPaginate: true, // 페이징 기능
@@ -64,8 +64,9 @@ function membermodifyBtn(MEMBER_ID) {
 	$('#modifyclose_modify').click(function(){
 		$('#MemberModifyModal').hide();
 		$('#MemberModifyModal').find('form')[0].reset();
+		$('#modalstyle').css('display','none');
 	});
-
+	$('#modalstyle').css('display','');
 	
 }
 
