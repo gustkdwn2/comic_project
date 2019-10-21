@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class ProductServiceImple implements ProductService {
+public class ProductServiceImpl implements ProductService {
 	
 	private ProductMapper mapper;
 	
