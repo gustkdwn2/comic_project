@@ -185,6 +185,11 @@ public class ManagerposController {
 		if(recordcount==0) {
 			managementService.managerattendance(empnum); //출근
 			System.out.println("출근 완료");
+			
+			List<EmployeeVO> empdata = managementService.getempdata(empnum); //해당달의 출근기록을 list로 가져옴
+			
+			session.setAttribute("EMPNAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가
+			
 			session.setAttribute("EMPID", empnum);//로그인 세션추가
 			model.addAttribute("succecssmsg", "출근완료"); // 재고테이블
 			return "/younghak/login";
@@ -193,7 +198,12 @@ public class ManagerposController {
 			System.out.println("퇴근 완료");
 			/*
 			 * session.invalidate();//로그인 세션추가
-			 */			session.setAttribute("EMPID", empnum);//로그인 세션추가
+			 */
+			
+			List<EmployeeVO> empdata = managementService.getempdata(empnum); //해당달의 출근기록을 list로 가져옴
+			
+			session.setAttribute("EMPNAME", "현재 공석");//로그인 세션추가
+			session.setAttribute("EMPID", "tmp");//로그인 세션추가
 			makecomic_pay(empnum);//퇴근기록으로 comic_pay테이블에 누적시간넣는 함수
 			model.addAttribute("succecssmsg", "퇴근완료"); // 재고테이블
 			return "/younghak/login";

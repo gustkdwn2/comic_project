@@ -31,10 +31,7 @@
 							class="mdi mdi-chart-pie menu-icon"></i> <span class="menu-title">정산화면</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-
-
 						href="/managerpos/managerpos"> <i
-
 							class="mdi mdi-grid-large menu-icon"></i> 
 							<span class="menu-title">매니저 포스</span>
 					</a></li>

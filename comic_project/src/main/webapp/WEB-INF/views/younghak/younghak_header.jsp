@@ -54,7 +54,7 @@
 										onclick="javascript:window.location.href='/managerpos/Manager_management'"
 										class="btn btn-success btn-rounded btn-fw">직원관리</button>
 									 <button type="button" id="commute"
-									 onclick="checksession()"
+									 onclick=" <%-- <% session.removeAttribute("EMPID"); %> --%> "
 										class="btn btn-warning btn-rounded btn-fw">오늘 출퇴근</button> 
 								</div>
 							</div>
@@ -111,16 +111,18 @@
 
 
 //	checksession();
-	function checksession(){
-		var test = "${sessionScope.EMPID}";
-		alert("현재 세션은"+test);
-		}
+	
 	
 		$("#commute").on("click", function() {
 			$("#commuteModal").modal("show");
 			gettodaycommute();
 		});
+		function sessioninvalid(){
+			alert("세션삭제");
+		
+			sessionStorage.removeItem( "EMPID" );
 
+			}
 		function gettodaycommute() {
 
 			$.ajax({
