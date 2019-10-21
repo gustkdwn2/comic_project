@@ -57,6 +57,7 @@ font {
 
 <script type="text/javascript">
 	$("#billModalCloseBtn").click(function() {
+		$('#modalstyle').css('display','none');
 		$("#billModal").hide();
 	});
 </script>

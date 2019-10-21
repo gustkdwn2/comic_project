@@ -106,14 +106,14 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">product Add</h4>
+				<h4 class="modal-title" id="myModalLabel">상품추가</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>product</label> <input class="form-control" name="product">
-					<label>image file</label>
+					<label>상품</label> <input class="form-control" name="product">
+					<label>이미지</label>
 					<form id="uploadForm" method="post" enctype="multipart/form-data">
 						<input class="form-control" type="file" name="uploadFile">
 					</form>
@@ -121,7 +121,7 @@
 			</div>
 			<div class="modal-footer">
 				<button id="productModalRegisterBtn" type="button"
-					class="btn btn-primary">Resgister</button>
+					class="btn btn-primary">상품 등록</button>
 			</div>
 		</div>
 	</div>
@@ -132,14 +132,14 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">product Update</h4>
+				<h4 class="modal-title" id="myModalLabel">상품 수정</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>product</label> <input class="form-control" name="product">
-					<label>image file</label>
+					<label>상품</label> <input class="form-control" name="product">
+					<label>이미지</label>
 					<form id="uploadForm" method="post" enctype="multipart/form-data">
 						<input class="form-control" type="file" name="uploadFile">
 					</form>
@@ -147,7 +147,7 @@
 			</div>
 			<div class="modal-footer">
 				<button id="productModalUpdateBtn" type="button"
-					class="btn btn-primary">Resgister</button>
+					class="btn btn-primary"></button>
 			</div>
 		</div>
 	</div>

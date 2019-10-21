@@ -27,7 +27,7 @@ $(document).ready(function(){
                 mData: "member_ID",
                 mRender: function (data, type, row) {
                 	console.log(data);
-                    return "<button name ='membermodifyBtn' value=" + data +" type='button' class='btn btn-info' onclick='javascript:membermodifyBtn(value)'>수정</button> ";
+                    return "<button name ='membermodifyBtn' value=" + data +" type='button' class='btn btn-warning' onclick='javascript:membermodifyBtn(value)' style='color:white;'>수정</button> ";
                 }
             }
         ],

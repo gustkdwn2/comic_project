@@ -19,10 +19,10 @@
 						<form onsubmit="return productOrderRegistercheck();" class="forms-sample" action="/productOrder/productOrderRegister" method="post" autocomplete="off">
 							<div class="form-group row">
 								<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
-									<font style="vertical-align: inherit;">상품 이름</font>
+									<font style="vertical-align: inherit;"><h5>상품 이름</h5></font>
 								</label>
 								<div class="col-sm-9">
-									<select class="form-control" name="productOrder_product_name">
+									<select class="form-control" name="productOrder_product_name" style="border:3px solid #dadfe4;">
 		                            		<c:forEach items="${productList}" var="productList">
 		                            			<option value="${productList.product_name}">${productList.product_name}</option>
 		                            		</c:forEach>
@@ -31,24 +31,26 @@
 							</div>
 							<div class="form-group row">
 								<label for="exampleInputEmail2" class="col-sm-3 col-form-label">
-									<font style="vertical-align: inherit;">발주 구매가</font>
+									<font style="vertical-align: inherit;"><h5>발주 구매가</h5></font>
 								</label>
 								<div class="col-sm-9">
-									<input type="number" class="form-control" name="productOrder_cost" id="productOrder_cost_register" required>
+									<input type="number" class="form-control" name="productOrder_cost" id="productOrder_cost_register" 
+									required style="border:3px solid #dadfe4;">
 								</div>
 							</div>
 								<div class="form-group row">
 								<label for="exampleInputEmail2" class="col-sm-3 col-form-label">
-									<font style="vertical-align: inherit;">발주 수량</font>
+									<font style="vertical-align: inherit;"><h5>발주 수량</h5></font>
 								</label>
 								<div class="col-sm-9">
-									<input type="number" class="form-control" name="productOrder_qty" id="productOrder_qty_register" required>
+									<input type="number" class="form-control" name="productOrder_qty" id="productOrder_qty_register" required
+									 style="border:3px solid #dadfe4;">
 								</div>
 							</div>
-							<button type="submit" class="btn btn-primary mr-2">
+							<button type="submit" class="btn btn-warning" style="color:white;">
 								<font style="vertical-align: inherit;">등록</font>
 							</button>
-							<button data-dismiss="modal" type="button" class="btn btn-success">닫기</button>
+							<button data-dismiss="modal" type="button" class="btn btn-secondary">닫기</button>
 						</form>
 					</div>
 				</div>

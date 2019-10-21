@@ -102,7 +102,7 @@ td {
 					</div><br/><hr/>
 					
 					<div class="col-md-12" style="margin-top:50px;">
-						<div style="width:420px; height:200px; margin:20px 0 0 150px;">
+						<div style="width:420px; height:200px; margin:20px 0 0 170px;">
 								<div style="float: left;">
 								<h4 style="color:black; font-weight: 600;">&nbsp;총수량</h4>
 								<input id="orderQty" class="form form-control" style="width:200px;" readonly></div>

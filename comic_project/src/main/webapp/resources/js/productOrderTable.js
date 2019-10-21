@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	
+	$('#modalstyle').css('display','none');
 	$('#productOrderTable').DataTable({ // 페이징 처리, 검색, show entries
 		pageLength: 10, //처음 페이지에 처리 개수
 	    bPaginate: true, // 페이징 기능
@@ -27,9 +29,9 @@ $(document).ready(function(){
             {
                 mData: "productOrder_num",
                 mRender: function (data, type, row) {
-                    return "<button name ='getBtn' value=" + data +" type='button' class='btn btn-info' onclick='javascript:productOrderModify(value)'>수정</button> " +
-                    	    "<button name ='removeBtn' value=" + data +" type='submit' class='btn btn-danger' onclick='javascript:productOrderRemove(value)'>삭제</button>" +
-                    	    "<button name ='checkBtn' value=" + data +" type='submit' class='btn btn-success' onclick='javascript:productOrderCheck(value)'>확인</button>";
+                    return "<button name ='getBtn' value=" + data +" type='button' class='btn btn-warning' style='color:white;' onclick='javascript:productOrderModify(value)'>수정</button> " +
+                    	    "&emsp;<button name ='removeBtn' value=" + data +" type='submit' class='btn btn-secondary' onclick='javascript:productOrderRemove(value)'>삭제</button>" +
+                    	    "&emsp;<button name ='checkBtn' value=" + data +" type='submit' class='btn btn-success' onclick='javascript:productOrderCheck(value)'>확인</button>";
                 }
             }
         ],
@@ -105,6 +107,7 @@ function productOrderModify(productOrder_num) {
     	    	$('#productOrder_qty').attr('value',data.productOrder_qty);
     	    	$('#product_date').attr('value',date);
     	    	$('#productOrderGet').show();
+    	    	$('#modalstyle').css('display','');
     	    	
     	    }
     	});

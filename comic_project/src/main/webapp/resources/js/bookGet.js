@@ -164,6 +164,7 @@ $(document).ready(function() {
 		$("#card-body-get").scrollTop(0);
 		$("#bookGet").find('form')[0].reset();
 		$('#bookGet').hide();
+		$('#modalstyle2').css('display','none');
 	});
 	
 });
