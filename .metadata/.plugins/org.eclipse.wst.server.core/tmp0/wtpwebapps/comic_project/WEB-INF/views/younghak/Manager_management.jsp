@@ -14,6 +14,34 @@
 <html>
 <head>
 <style>
+.uploadResultRegister {
+	width: 100%;
+	/* background-color: gray; */
+}
+
+.uploadResultRegister ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResultRegister ul li {
+	list-style: none;
+	/* padding: 10px; */
+}
+
+.uploadResultRegister ul li img {
+	/* width: 100px; */
+	width: 170px;
+	height: 220px;
+}
+
+#imageRemoveBtn{
+	float: right;
+}
+
+
 .mngmentcard {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 5);
 	max-width: 300px;
@@ -214,6 +242,22 @@ step="1">
 					<h4 class="modal-title" id="ModalLabel">직원 추가</h4>
 				</div>
 				<div class="modal-body">
+					<div class="form-group row">
+							<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
+								<font style="vertical-align: inherit;">책 이미지</font>
+							</label>
+							<div class="form-group row">
+						        <div class="form-group uploadDiv">
+						            <input type="file" name='uploadFile' id="uploadFileRegister">
+						        </div>
+					        
+						        <div class='uploadResultRegister'> 
+						        	<ul>
+						          
+						        	</ul>
+						        </div>
+					    	</div>
+					</div>
 					<form name="register" class="pt-3" id="register" action="/EmployeeRegister"
 						method="post">
 						<div class="form-group">

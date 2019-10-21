@@ -2,6 +2,7 @@ $(document).ready(function(e){
 	  
 	  var formObj = $("#registerForm");
 	  
+	  
 	  $("#RegisterSubmitBtn").on("click", function(e){
 
 	    
@@ -159,15 +160,15 @@ $(document).ready(function(e){
 	    var str ="";
 	    
 	    $(uploadResultArr).each(function(i, obj){
-			
+	    	
 			if(obj.image){
 				var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
 				str += "<li data-path='"+obj.uploadPath+"'";
 				str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 				str +" ><div>";
-				str += "<span> "+ obj.fileName+"</span>";
+				str += "<span></span>";
 				str += "<button id='imageRemoveBtn' type='button' data-file=\'"+fileCallPath+"\' "
-				str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "data-type='image' class='btn btn-inverse-danger btn-icon'><i class='mdi mdi-close'></i></button><br>";
 				str += "<img src='/display?fileName="+fileCallPath+"'>";
 				str += "</div>";
 				str +"</li>";
@@ -236,6 +237,7 @@ $(document).ready(function(e){
 		  $("#uploadFileRegister").val("");
 		  $("#bookRegister").find('form')[0].reset();
 		  $('#bookRegister').hide();
+		  $('#modalstyle2').css('display','none');
 	  });
 	
 });

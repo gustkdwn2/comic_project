@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.comic.model.EmployeeAttachVO;
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
@@ -39,5 +40,7 @@ public interface MemberService {
 	public void EmployeekeepLogin(int EMPLOYEE_NUM, String sessionId, Date sessionLimit) throws Exception;
 	// 세션키 검증
 	MemberVO checkLoginBefore(String value) throws Exception;
+	
+	public List<EmployeeAttachVO> getAttachList(int employee_num);
 	
 }

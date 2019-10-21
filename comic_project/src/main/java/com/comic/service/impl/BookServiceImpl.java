@@ -28,7 +28,10 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public BookVO bookGet(String book_name) {
-		return mapper.bookRead(book_name);
+		BookVO vo = new BookVO();
+		vo = mapper.bookRead(book_name);
+		vo.setAttachList(attachMapper.findByBookName(book_name));
+		return vo;
 	}
 	
 	@Transactional

@@ -39,6 +39,7 @@ public class BookController {
 	
 	@GetMapping("/bookGet")
 	public @ResponseBody BookVO bookGet(@RequestParam("book_name") String book_name) {
+		System.out.println(service.bookGet(book_name));
 		return service.bookGet(book_name);
 	}
 	

@@ -14,6 +14,60 @@
 <html>
 <head>
 <style>
+.uploadResultRegister {
+	width: 100%;
+	/* background-color: gray; */
+}
+
+.uploadResultRegister ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResultRegister ul li {
+	list-style: none;
+	/* padding: 10px; */
+}
+
+.uploadResultRegister ul li img {
+	/* width: 100px; */
+	width: 170px;
+	height: 220px;
+}
+
+#imageRemoveBtn{
+	float: right;
+}
+
+.uploadResultGet {
+	width: 100%;
+	/* background-color: gray; */
+}
+
+.uploadResultGet ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResultGet ul li {
+	list-style: none;
+	/* padding: 10px; */
+}
+
+.uploadResultGet ul li img {
+	/* width: 100px; */
+	width: 170px;
+	height: 220px;
+}
+
+#imageGetBtn{
+	float: right;
+}
+
 .mngmentcard {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 5);
 	max-width: 300px;
@@ -204,7 +258,7 @@ step="1">
 	<!-- main-panel ends -->
 
 	<!-- 인서트Modal 추가 -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="empRegisterMoal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -214,6 +268,22 @@ step="1">
 					<h4 class="modal-title" id="ModalLabel">직원 추가</h4>
 				</div>
 				<div class="modal-body">
+					<div class="form-group row">
+						<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
+							<font style="vertical-align: inherit;">직원 이미지</font>
+						</label>
+						<div class="form-group row">
+					        <div class="form-group uploadDiv">
+					            <input type="file" name='uploadFile' id="uploadFileRegister">
+					        </div>
+				        
+					        <div class='uploadResultRegister'> 
+					        	<ul>
+					          
+					        	</ul>
+					        </div>
+				    	</div>
+					</div>
 					<form name="register" class="pt-3" id="register" action="/EmployeeRegister"
 						method="post">
 						<div class="form-group">
@@ -264,7 +334,7 @@ step="1">
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary"
 						onclick="additional_staff_validation()">추가</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					<button onclick="empRegisterModalClose()" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -285,6 +355,22 @@ step="1">
 					<h4 class="modal-title" id="ModalLabel">직원 정보 수정</h4>
 				</div>
 				<div class="modal-body">
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">
+							<font style="vertical-align: inherit;">직원 이미지</font>
+						</label>
+						<div class="form-group row">
+					        <div class="form-group uploadDiv">
+					            <input id="uploadFileGet" type="file" name='uploadFile'>
+					        </div>
+				        
+					        <div class='uploadResultGet'> 
+					        	<ul>
+					          
+					        	</ul>
+					        </div>
+				    	</div>
+					</div>
 					<form class="pt-3" name="EmployeeModify" id="EmployeeModify" action="/managerpos/EmployeeModify"
 						method="post">
 						<div class="form-group">
@@ -337,7 +423,7 @@ step="1">
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary"
 						onclick="modify_staff_validation()">수정</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					<button onclick="empGetModalClose()" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -386,10 +472,36 @@ step="1">
 	<!-- /.modal -->
 
 	<script type="text/javascript">
+	var imgCheckNum = 1;
 $("#AdminModal").on("click", function() {
-   $("#myModal").modal("show");   
+   $("#empRegisterMoal").modal("show");   
 });
+function empRegisterModalClose() {
+	if($("#imageRemoveBtn").data("file") != null) {
+		  var targetFile = $("#imageRemoveBtn").data("file");
+		  var type = $("#imageRemoveBtn").data("type");
+		  var targetLi = $("#imageRemoveBtn").closest("li");
+		  console.log(targetFile);
+		  console.log(type);
+		  console.log(targetLi);
+		  $.ajax({
+			  url: '/empDeleteFile',
+			  data: {fileName: targetFile, type:type},
+			  dataType:'text',
+			  type: 'POST',
+			  success: function(result){
+				  targetLi.remove();
+			  }
+		  }); //$.ajax
+  }
+  $('#uploadFileRegister').attr('disabled', false);
+  $("#uploadFileRegister").val("");
+  $("#empRegisterMoal").find('form')[0].reset();
+}
 
+function empGetModalClose() {
+	$("#mngmodifyModal").find('form')[0].reset();
+}
 
 function employeedelete(employee_num){
 	
@@ -446,6 +558,41 @@ var sendData={'list' : list};
 			console.log("ajaxtogetempdata\n실패");
 		}
 	});
+
+	$.getJSON("/managerpos/getAttachList", {employee_num: employee_num}, function(arr){
+	    
+		console.log(arr);
+
+		var str="";
+
+		$(arr).each(function(i, attach){
+	    	//image type
+	    	if(attach.fileType){
+	            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+	            
+	            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
+	            str +=" data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+	            str += "<span></span>";
+	            str += "<button id='imageGetBtn' type='button' data-file=\'"+fileCallPath+"\' data-type='image' "
+	            str += "class='btn btn-inverse-danger btn-icon'><i class='mdi mdi-close'></i></button><br>";
+	            str += "<img src='/empDisplay?fileName="+fileCallPath+"'>";
+	            str += "</div>";
+	            str +"</li>";
+			}else{
+	            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
+	            str += "data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+	            str += "<span> "+ attach.fileName+"</span><br/>";
+	            str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' "
+	            str += " class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+	            str += "<img src='/resources/img/attach.png'></a>";
+	            str += "</div>";
+	    		str +"</li>";
+	    	}
+	    });
+		$(".uploadResultGet ul").html(str);
+		$('#uploadFileGet').attr('disabled', true);
+	});
+	
 }
 
 
@@ -476,7 +623,7 @@ function posttourl(path, params, method) {
     form.submit();
 }
 
-function additional_staff_validation(){//직원추가 유효성검사
+/* function additional_staff_validation(){//직원추가 유효성검사
 
 	var text;
 	
@@ -537,11 +684,13 @@ function additional_staff_validation(){//직원추가 유효성검사
 	}
 
 	document.register.submit();
-}
+} */
 
 
 function modify_staff_validation(){//직원추가 유효성검사
 
+	var formObj = $("#EmployeeModify");
+	
 	var text;
 	
 	var name = "EMPLOYEE_NAME_modify";
@@ -549,7 +698,92 @@ function modify_staff_validation(){//직원추가 유효성검사
 	var pwd_confirm="EMPLOYEE_PWD_confirm_modify";
 	var phone="EMPLOYEE_PHONE_modify";
 	var account="EMPLOYEE_ACCOUNT_modify";
-	var pay="EMPLOYEE_PAY_modify";
+	var pay="EMPLOYEE_PAY_modify";	
+	
+	text = $('#'+name).val().trim(); //id로 데이터 가져와서 공백지우기 
+	if(text.length==0){
+		alert("이름를 입력해주세요");
+		$('#'+name).focus();	
+		return;
+	}
+
+	text = $('#'+pwd).val().trim(); //id로 데이터 가져와서 공백지우기 
+	if(text.length==0){
+		alert("비밀번호를 입력해주세요");
+		$('#'+pwd).focus();	
+		return;
+	}
+	
+	text = $('#'+pwd_confirm).val().trim(); //id로 데이터 가져와서 공백지우기 
+	if(text.length==0){
+		alert("비밀번호 확인을 입력해주세요");
+		$('#'+pwd_confirm).focus();	
+		return;
+	}
+
+	if($('#'+pwd_confirm).val().trim()!=$('#'+pwd).val().trim()){
+		alert("비밀번호가 서로 맞지 않습니다");
+		$('#'+pwd_confirm).focus();	
+		return;
+		}
+
+	text = $('#'+phone).val().trim(); //id로 데이터 가져와서 공백지우기 
+	if(text.length==0){
+		alert("전화번호를 입력해주세요");
+		$('#'+phone).focus();	
+		return;
+	}
+
+	text = $('#'+account).val().trim(); //id로 데이터 가져와서 공백지우기 
+	if(text.length==0){
+		alert("계좌를 입력해주세요");
+		$('#'+account).focus();	
+		return;
+	}
+
+	text = $('#'+pay).val().trim(); //id로 데이터 가져와서 공백지우기 
+	if(text.length==0){
+		alert("시급을 입력해주세요");
+		$('#'+pay).focus();	
+		return;
+	}
+	if(imgCheckNum == 0) {
+		alert("이미지를 넣어주세요.")
+		$("#uploadFileGet").focus();
+		return false;
+	}
+
+	var str = "";
+    
+    $(".uploadResultGet ul li").each(function(i, obj){
+          
+    	var jobj = $(obj);
+          
+        console.dir(jobj);
+        console.log(i+"=========================");
+        str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+        str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+        str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+        str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
+          
+	});	
+	
+	formObj.append(str);
+	document.EmployeeModify.submit();
+}
+
+function additional_staff_validation(){//직원추가 유효성검사
+	
+	var formObj = $("#register");
+	
+	var text;
+	
+	var name = "EMPLOYEE_NAME_insert";
+	var pwd ="EMPLOYEE_PWD_insert";
+	var pwd_confirm="EMPLOYEE_PWD_confirm_insert";
+	var phone="EMPLOYEE_PHONE_insert";
+	var account="EMPLOYEE_ACCOUNT_insert";
+	var pay="EMPLOYEE_PAY_insert";
 			
 	
 	text = $('#'+name).val().trim(); //id로 데이터 가져와서 공백지우기 
@@ -599,9 +833,274 @@ function modify_staff_validation(){//직원추가 유효성검사
 		$('#'+pay).focus();	
 		return;
 	}
-	document.EmployeeModify.submit();
+	if($('#uploadFileRegister')[0].files[0] == null) {
+		alert("이미지를 넣어주세요.")
+		$("#uploadFileRegister").focus();
+		return false;
+	}
+
+	var str = "";
+    
+    $(".uploadResultRegister ul li").each(function(i, obj){
+      
+      var jobj = $(obj);
+      
+      console.dir(jobj);
+      console.log("-------------------------");
+      console.log(jobj.data("filename"));
+      
+      
+      str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+      str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+      str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+      str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
+      
+    });
+    formObj.append(str);
+	document.register.submit();
 	
 }
+
+var regex = new RegExp("(.*?)\.(jpg|png)$");
+var maxSize = 5242880; //5MB
+
+function checkExtension(fileName, fileSize){
+  
+  if(fileSize >= maxSize){
+    alert("파일 사이즈 초과");
+    $("#uploadFileRegister").val("");
+    return false;
+  }
+  
+  if(!regex.test(fileName)){
+    alert("해당 종류의 파일은 업로드할 수 없습니다.");
+    $("#uploadFileRegister").val("");
+    return false;
+  }
+  return true;
+}
+
+$("#uploadFileRegister").change(function(e){
+	
+    var formData = new FormData();
+    
+    var inputFile = $("#uploadFileRegister");
+    
+    var files = inputFile[0].files;
+    
+    for(var i = 0; i < files.length; i++){
+
+      if(!checkExtension(files[i].name, files[i].size) ){
+        return false;
+      }
+      formData.append("uploadFile", files[i]);
+      
+    }
+    
+    $.ajax({
+      url: '/empUploadAjaxAction',
+      processData: false, 
+      contentType: false,data: 
+      formData,type: 'POST',
+      dataType:'json',
+        success: function(result){
+          console.log(result); 
+		  showUploadResult(result); //업로드 결과 처리 함수 
+
+      }
+    }); //$.ajax
+   $('#uploadFileRegister').attr('disabled', true);
+});
+
+function showUploadResult(uploadResultArr){
+    
+    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+    
+    var uploadUL = $(".uploadResultRegister ul");
+    
+    var str ="";
+    
+    $(uploadResultArr).each(function(i, obj){
+    	
+		if(obj.image){
+			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+			str += "<li data-path='"+obj.uploadPath+"'";
+			str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
+			str +" ><div>";
+			str += "<span></span>";
+			str += "<button id='imageRemoveBtn' type='button' data-file=\'"+fileCallPath+"\' "
+			str += "data-type='image' class='btn btn-inverse-danger btn-icon'><i class='mdi mdi-close'></i></button><br>";
+			str += "<img src='/empDisplay?fileName="+fileCallPath+"'>";
+			str += "</div>";
+			str +"</li>";
+		}else{
+			var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
+		    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+		      
+			str += "<li "
+			str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
+			str += "<span> "+ obj.fileName+"</span>";
+			str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
+			str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+			str += "<img src='/resources/img/attach.png'></a>";
+			str += "</div>";
+			str +"</li>";
+		}
+
+    });
+    
+    uploadUL.append(str);
+}
+
+$(".uploadResultRegister").on("click", "button", function(e){
+    
+	  console.log("delete file");
+    
+	  var targetFile = $(this).data("file");
+	  var type = $(this).data("type");
+	  var targetLi = $(this).closest("li");
+	  console.log(targetFile);
+	  console.log(type);
+	  console.log(targetLi);
+	  $.ajax({
+		  url: '/empDeleteFile',
+		  data: {fileName: targetFile, type:type},
+		  dataType:'text',
+		  type: 'POST',
+		  success: function(result){
+			  targetLi.remove();
+		  }
+	  }); //$.ajax
+	  $('#uploadFileRegister').attr('disabled', false);
+	  $("#uploadFileRegister").val("");
+});
+
+$("#bookRegisterCloseBtn").click(function() {
+    if($("#imageRemoveBtn").data("file") != null) {
+		  var targetFile = $("#imageRemoveBtn").data("file");
+		  var type = $("#imageRemoveBtn").data("type");
+		  var targetLi = $("#imageRemoveBtn").closest("li");
+		  console.log(targetFile);
+		  console.log(type);
+		  console.log(targetLi);
+		  $.ajax({
+			  url: '/empDeleteFile',
+			  data: {fileName: targetFile, type:type},
+			  dataType:'text',
+			  type: 'POST',
+			  success: function(result){
+				  targetLi.remove();
+			  }
+		  }); //$.ajax
+    }
+    $('#uploadFileRegister').attr('disabled', false);
+	$("#uploadFileRegister").val("");
+	$("#empRegisterMoal").find('form')[0].reset();
+	$('#empRegisterMoal').hide();
+});
+
+function showUploadResultGet(uploadResultArr){
+    
+  	if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+    
+    var uploadUL = $(".uploadResultGet ul");
+    
+    var str ="";
+    
+    $(uploadResultArr).each(function(i, obj){
+		
+		if(obj.image){
+			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+			str += "<li data-path='"+obj.uploadPath+"'";
+			str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
+			str +" ><div>";
+			str += "<span></span>";
+			str += "<button id='imageGetBtn' type='button' data-file=\'"+fileCallPath+"\' "
+			str += "data-type='image' class='btn btn-inverse-danger btn-icon'><i class='mdi mdi-close'></i></button><br>";
+			str += "<img src='/empDisplay?fileName="+fileCallPath+"'>";
+			str += "</div>";
+			str +"</li>";
+		}else{
+			var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
+		    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+		      
+			str += "<li "
+			str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
+			str += "<span> "+ obj.fileName+"</span>";
+			str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
+			str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+			str += "<img src='/resources/img/attach.png'></a>";
+			str += "</div>";
+			str +"</li>";
+		}
+
+    });
+    
+	uploadUL.append(str);
+}
+
+function checkExtensionGet(fileName, fileSize){
+
+	var regex1 = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+	var maxSize1 = 5242880; //5MB
+    
+	if(fileSize >= maxSize1){
+		alert("파일 사이즈 초과");
+		$("#uploadFileGet").val("");
+		return false;
+    }
+    
+    if(regex1.test(fileName)){
+    	alert("해당 종류의 파일은 업로드할 수 없습니다.");
+    	$("#uploadFileGet").val("");
+    	return false;
+    }
+    return true;
+}
+
+$("#uploadFileGet").change(function(e){
+	imgCheckNum = 1;
+	var formData = new FormData();
+    
+    var inputFile = $("#uploadFileGet");
+    
+    var files = inputFile[0].files;
+    
+    for(var i = 0; i < files.length; i++){
+
+    	if(!checkExtensionGet(files[i].name, files[i].size) ){
+    		return false;
+    	}
+    	formData.append("uploadFile", files[i]);
+      
+    }
+    
+    $.ajax({
+      url: '/empUploadAjaxAction',
+      processData: false, 
+      contentType: false,data: 
+      formData,type: 'POST',
+      dataType:'json',
+        success: function(result){
+          console.log(result); 
+		  showUploadResultGet(result); //업로드 결과 처리 함수 
+      }
+    }); //$.ajax
+    $('#uploadFileGet').attr('disabled', true);
+});
+
+$(".uploadResultGet").on("click", "button", function(e){
+    
+    console.log("delete file");
+      
+    if(confirm("삭제 하시겠습니까?")){
+    	$('#uploadFileGet').attr('disabled', false);
+    	$("#uploadFileGet").val("");
+    	var targetLi = $(this).closest("li");
+    	targetLi.remove();
+    	imgCheckNum = 0;
+    }
+});
 
 </script>
 
