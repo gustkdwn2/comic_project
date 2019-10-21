@@ -26,9 +26,9 @@ public class EmpLoginController {
 	   }
 	   
 	   @PostMapping("/EmployeeRegister")
-	   public String EmployeeRegister(EmployeeVO vo,Model model) {
+	   public String EmployeeRegister(EmployeeVO vo, Model model) {
 	      service.employeeRegister(vo);
 	      model.addAttribute("managerList", managementService.managerList()); // 재고테이블
-			return "/younghak/Manager_management";
+			return "redirect:/managerpos/Manager_management";
 	   }
 }
