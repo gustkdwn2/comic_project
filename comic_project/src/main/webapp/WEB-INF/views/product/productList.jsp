@@ -45,6 +45,6 @@
 	
 	<jsp:include page="productRegisterModal.jsp" />
 	<jsp:include page="productGetModal.jsp" />
-	<script src="/resources/js/productTable.js"></script>
+	<script src="/resources/js/productTable.js?ver=7"></script>
 </body>
 </html>

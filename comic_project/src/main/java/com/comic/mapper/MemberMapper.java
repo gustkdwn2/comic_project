@@ -4,9 +4,12 @@ package com.comic.mapper;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
+import com.comic.model.RoomuseVO;
 
 public interface MemberMapper {
 	
@@ -40,5 +43,7 @@ public interface MemberMapper {
 	public void EmployeekeepLogin(int eMPLOYEE_NUM, String sessionId, Date sessionLimit);	
 	// 세션키 검증
 	public MemberVO checkUserWithSessionKey(String value);
+	// 룸사용시작
+	public void roomuse(@Param("roomuse_id") String roomuse_id,@Param("roomnum") int roomnum);
 	
 }

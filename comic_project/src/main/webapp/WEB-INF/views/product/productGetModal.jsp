@@ -55,6 +55,7 @@
 		</div>
 	</div>
 </div>
+<div id="abcde" class="modal-backdrop show"></div>
 <!-- End ProductGet Modal -->
 
 <script type="text/javascript">
@@ -62,6 +63,7 @@
 	$("#modifyBtn").click(function() {
 		$("#productGet").find('form')[0].reset();
 		$("#productGet").hide();
+		$('#abcde').css('display', "none");
 	});
 
 	function productModifyCheck() {

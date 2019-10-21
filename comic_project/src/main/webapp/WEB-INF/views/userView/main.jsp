@@ -72,7 +72,7 @@
 						</a>
 					</div>
 					<div class="col-lg-4"> 
-						<a class="portfolio-item" href="#"> <span class="caption"> <span class="caption-content">
+						<a class="portfolio-item" id="paymentModalBtn"> <span class="caption"> <span class="caption-content">
 									<h3>사용 종료</h3>
 									<p class="mb-0">사용 종료를 하면 로그아웃되고 결제 페이지로 넘어갑니다</p>
 							</span>
@@ -87,6 +87,7 @@
 	<jsp:include page="headerMemberModifyModal.jsp" />
 	<jsp:include page="headerMemberModifyPasswordModal.jsp" />
 	<jsp:include page="billModal.jsp" />
+	<jsp:include page="paymentModal.jsp"/>
 	<jsp:include page="productBillModal.jsp" />
 	<!-- hidden form -->
 	<form id="operForm"></form>
@@ -164,6 +165,52 @@ $(document).ready(function(){
 		});
 
 		$('#billModal').show();
+	});
+	
+	$("#paymentModalBtn").on("click", function(e){
+		$.ajax({
+			type: 'get',
+			url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
+			dataType: 'json',
+			success: function(data) {
+				$('#productpayment').attr('value',data.product_bill);
+				$('#roompayment').attr('value',data.room_bill);
+				$('#totalpayment').attr('value',data.total_bill);
+			}
+		});
+		
+		
+		$("#paymentBillModalBtn").click(function() {
+			$.ajax({
+				type: 'get',
+				url: '/userView/userProductBill?userId=${Memberlogin.MEMBER_ID}',
+				dataType: 'json',
+				success: function(data) {
+					console.log(data);
+					$("#productBillTbody").html("");
+		            var str = '<tr>';
+		            $.each(data , function(i){
+		            	var date = new Date(data[i].order_time); var month = date.getMonth() + 1; 
+		                str += '<td>' + date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() +
+		                "<br>" + date.getHours() + " : " + date.getMinutes() + ' : ' + date.getSeconds() + '</td><td>' + data[i].product_name + '</td><td>' + data[i].order_qty + '</td><td>' + data[i].order_bill + '</td>';
+		                str += '</tr>';
+		           });
+		           $("#productBillTbody").append(str);
+					
+				}
+			});
+			/* $("#productBillModal").modal('show').css({
+			    'margin-top': function () { //vertical centering
+			        return -($(this).height() / 100);
+			    },
+			    'margin-left': function () { //Horizontal centering
+			        return -($(this).width() / 100);
+			    }
+			}); */
+			$("#productBillModal").show();
+		});
+
+		$('#paymentModal').show();
 	});
 
 	

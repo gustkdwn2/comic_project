@@ -3,11 +3,10 @@ package com.comic.service;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
+import com.comic.model.RoomuseVO;
 
 public interface MemberService {
 	
@@ -39,5 +38,7 @@ public interface MemberService {
 	public void EmployeekeepLogin(int EMPLOYEE_NUM, String sessionId, Date sessionLimit) throws Exception;
 	// 세션키 검증
 	MemberVO checkLoginBefore(String value) throws Exception;
+	// 룸사용시작
+	public void roomuse(String roomuse_id, int roomnum);
 	
 }

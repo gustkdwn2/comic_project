@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	$('#abcde').css('display', "none");
 	
 	$('#productTable').DataTable({ // 페이징 처리, 검색, show entries
 		pageLength: 10, //처음 페이지에 처리 개수
@@ -85,6 +86,7 @@ function productModify(product_num) {
     	    	$('#product_qty_modify').attr('value',data.product_qty);
     	    	$('#product_category_modify').attr('value',data.product_category);
     	    	$('#productGet').show();
+    	    	$('#abcde').css('display', "");
     	    	
     	    }
     	});

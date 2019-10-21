@@ -65,6 +65,7 @@ public class LoginController {
 	public void MemberLoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
 		MemberVO memberVO = service.memberLogin(loginVO);
 		model.addAttribute("roomNum", httpSession.getAttribute("roomNum"));
+		
 		if (memberVO == null) {
 			return;
 		} else {
@@ -77,6 +78,7 @@ public class LoginController {
 				model.addAttribute("memberid", memberVO.getMEMBER_ID());
 			}
 		}
+//		service.roomuse(memberVO.getMEMBER_ID(),Integer.parseInt((String) httpSession.getAttribute("roomNum")));
 	}
 	
 	// 멤버 로그아웃 처리

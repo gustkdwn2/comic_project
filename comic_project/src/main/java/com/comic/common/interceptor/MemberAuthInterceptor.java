@@ -32,6 +32,7 @@ public class MemberAuthInterceptor extends HandlerInterceptorAdapter {
             request.getSession().setAttribute("destination", uri + query);
         } else if(request.getMethod().equals("POST")){
         	logger.info("destination : " + (uri));
+        	System.out.println("destination : " + (uri));
             request.getSession().setAttribute("destination", uri);
         }
     }

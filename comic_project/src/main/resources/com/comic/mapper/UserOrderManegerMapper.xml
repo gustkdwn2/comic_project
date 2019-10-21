@@ -100,7 +100,7 @@
 		from COMIC_ORDER a, comic_productstock b 
 		where 
 		a.order_product_num = b.product_num and a.order_id = #{id}),(select CEIL(trunc((sysdate-roomuse_starttime)*60*24)/10)*500 as room_bill
-		from COMIC_ROOMUSE where roomuse_id = #{id});
+		from COMIC_ROOMUSE where roomuse_id = #{id})
    	</select>
    	
    	<select id="userProductBill" resultType="com.comic.model.UserProductBillVO">

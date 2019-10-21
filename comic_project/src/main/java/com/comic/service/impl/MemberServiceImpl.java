@@ -1,11 +1,8 @@
 package com.comic.service.impl;
 
 
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +12,7 @@ import com.comic.mapper.MemberMapper;
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
+import com.comic.model.RoomuseVO;
 import com.comic.service.MemberService;
 
 @Service
@@ -112,6 +110,12 @@ public class MemberServiceImpl implements MemberService {
 		//	password = vo.getEMPLOYEE_PWD();
 		//	vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));	 
 			mapper.employeeInsert(vo);
+	}
+
+	@Override
+	public void roomuse(String roomuse_id, int roomnum) {
+		System.out.println(roomuse_id + "/////" + roomnum);
+		mapper.roomuse(roomuse_id,roomnum);
 	}
 
 }
