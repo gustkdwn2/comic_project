@@ -16,7 +16,7 @@
 				<div class="content-section-heading text-center" style="width: 500px; height: 100px; margin-top:30px; float: left;"><br/>
 					<h1 style="color:white;">${ roomNum } 번방 홈 &emsp;&emsp; 02:15:39</h1>
 				</div> 
-				<div style="width: 300px; height: 100px; float: right; color:#f4e362; margin-top:60px; font-size: 20px;" >
+				<div style="width: 300px; height: 100px; color:#f4e362; float:right; margin-top:60px; margin-right:350px; font-size: 20px;" >
 					<a style="color:#f4e362;" href='javascript:headermembermodifyBtn()'>회원 수정</a>
 					&emsp;
 					<a style="color:#f4e362;" href="${path}/member/MemberLogout">로그 아웃</a>
