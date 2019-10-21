@@ -91,8 +91,8 @@
 		insert into comic_order(ORDER_NUM, ORDER_ID,
 		ORDER_ROOMNUM, ORDER_TIME, ORDER_PRODUCT_NUM, ORDER_QTY)
 		values
-		((select NVL(max(ORDER_NUM),0) +1 from comic_order), #{order_id},
-		#{order_roomnum}, #{order_time}, #{order_product_num}, #{order_qty})
+		((select NVL(max(order_num),0)+1 from comic_order where to_char(order_time, 'yy-mm-dd') = to_char(sysdate, 'yy-mm-dd')), 
+		#{order_id}, #{order_roomnum}, #{order_time}, #{order_product_num}, #{order_qty})
 	</insert>
 	
 	<select id="userBill" resultType="com.comic.model.UserBillVO">

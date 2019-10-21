@@ -276,15 +276,38 @@ body {
 					</div>
 				</div>
 			</div>
-
+			
+			<!-- 실시간 주문 테이블 -->
+			<div class="row">
+				<div class="col-md-12 stretch-card">
+					<div class="card" style="margin-bottom: 20px;">
+						<div class="card-body">
+							<p class="card-title">주문 현황</p>
+							<div class="table-responsive">
+								<table id="realOrderTable" class="table table-striped">
+									<thead>
+										<tr>
+											<th>번호</th>
+											<th>날짜</th>
+											<th>방번호</th>
+											<th>ID</th>
+											<th>상품</th>
+											<th>수량</th>
+											<th>가격</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- main-panel ends -->
-	<!-- content-wrapper ends -->
-	<!-- partial:../../partials/_footer.html -->
-
-
 	
+	
+
 
 	<script>
 	//초기화작업
@@ -294,6 +317,8 @@ body {
 
 	ajaxtogetdb_comic_room_uselist();
 	//초기화작업
+	
+	realOrder();
 	
 		function openTab(tabName) {
 			var i, x;
@@ -321,16 +346,16 @@ body {
 		}
 
 		function method_startnstop(num) {
-
+			// 시작시간
 			if (!check[num]) {
 				check[num] = true;
 				time_start(0, num);
 				/* 테스트용 */
-				var user = "tmehfld";
+				var user = "id";
 				var user_status = "unavail";
 				var order_status = "unavail";
 
-				var roomuse_id = "tmehfld";
+				var roomuse_id = "id";
 				var roomuse_num = num;
 				var roomuse_status = "on";
 
@@ -492,8 +517,64 @@ body {
 			alert("num.toString().length = " + num.toString().length + "\n"
 					+ "str.length = " + str.length)
 		}
+		
+		
+		function realOrder() {
+			$('#realOrderTable').DataTable(
+					{ // 페이징 처리, 검색, show entries
+						pageLength : 10, //처음 페이지에 처리 개수
+						bPaginate : true, // 페이징 기능
+						bLengthChange : true,
+						lengthMenu : [ [ 10, 20, 30, -1 ],
+								[ 10, 20, 30, "All" ] ], //show entries
+						bAutoWidth : false,
+						processing : true,
+						ordering : true,
+						serverSide : false,
+						searching : true, // 검색 기능
+						bStateSave : true,
+						"iDisplayLength" : 10,
+						"columnDefs" : [ {
+							targets : 'no-sort',
+							orderable : false
+						} ],
+						ajax : {
+							url : "/realorder/realOrderData.json",
+							type : "get",
+							dataSrc : '',
+						},
+						"language": {
+						      search: "Search :"
+						},
+						aoColumns : [
+								{
+									data : "order_num"
+								},
+								{ data: "order_time", 
+						    		"render": function (data) {
+						    			var date = new Date(data); var month = date.getMonth() + 1; 
+						    			return  date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); } 
+							    },
+								{
+									data : "order_roomnum"
+								},
+								{
+									data : "order_id"
+								},
+								{
+									data : "product_name"
+								},
+								{
+									data : "order_qty"
+								},
+								{
+									data : "product_price"
+								},],
+						order : [ [ 0, 'desc' ] ]
+					});
+			}
+		
+		
 	</script>
-
-
 </body>
 </html>
