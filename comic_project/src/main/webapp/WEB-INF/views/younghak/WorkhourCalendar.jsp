@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+
 
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
@@ -184,12 +184,13 @@ td {
 
 				var text = "";
 				//console.log(data[0]);
+				worksecond_month=0;
 				$.each(data, function(index, list) {
 					var number = 1;
 					number = list.workingday;
 					$('#' + number).text(
-							list.starttime + "~\n" + list.endtime + "\r\n: "
-									+ list.worksecond);
+							"출근 : "+list.starttime + "~\r\n퇴근 : " + list.endtime /* + "\r\n: "
+									+ list.worksecond */);
 					worksecond_month += list.worksecond;
 					//날짜별로 데이터를 넣어줌
 

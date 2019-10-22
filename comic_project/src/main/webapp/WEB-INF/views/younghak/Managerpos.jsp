@@ -110,38 +110,34 @@ body {
 <body>
 	<div class="main-panel">
 		<div class="content-wrapper">
-			<%@ include file="./younghak_header.jsp"%>
-			<div class="card" style="background-color: #f3f3f3;">
-				<div class="row" style=" margin-left: 30px;">
-					<div class="column" onclick="method_startnstop('1');" style="margin-right: 10px;">
+			<div class="row">
+	
+				<%@ include file="./younghak_header.jsp"%>
+				
+				<div class="col-12 grid-margin stretch-card">
+					<div class="card">
+						<div class="row">
+<div class="col-md-12">
+	<div class="card-body">
+		<div class="template-demo">
+		
+			<c:forEach var="i" begin="1" end="6" step="1">
+			
+			<c:if test="${i%3==1}">
+			<div class="row">
+			</c:if>
+			
+<div class="column" onclick="method_startnstop(${i});">
+	<!-- <div class="div_root"> -->
 
-						<div class="div_menu">1번방</div>
+	<div class="div_menu">${i}번방</div>
 
-						<div class="div_con">
-							사 용 자 : <font id="user1">없음</font><br>
-							사용시간 : <font id="user_time1">없음</font><br> 
-							사용상태 : <font id="user_status1">없음</font><br> 
-							주문상태 : <font id="order_status1">없음</font><br>
-						</div>
-
-						<div class="div_bottom">
-							<input type="button" value="주문내역보기"
-								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
-						
-							<input type="button" value="채팅하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
-						</div>
-
-						<!-- </div> -->
-
-					</div>
-
-					<div class="column" onclick="method_startnstop('2');" style="margin-right: 10px;">
-						<!-- <div class="div_root"> -->
-
-						<div class="div_menu">2번방</div>
+	<div class="div_con">
+		사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font
+			id="user_time${i}">없음</font><br> 사용상태 : <font
+			id="user_status${i}">없음</font><br> 주문상태 : <font
+			id="order_status${i}">없음</font><br>
+	</div>
 
 						<div class="div_con">
 							사 용 자 : <font id="user2">없음</font><br>
@@ -150,110 +146,48 @@ body {
 							주문상태 : <font id="order_status2">없음</font><br>
 						</div>
 
-						<div class="div_bottom">
-							<input type="button" value="주문내역보기"
-								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
-						
-							<input type="button" value="채팅하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
-						</div>
-					</div>
-
-					<div class="column" onclick="method_startnstop('3');">
-						<!-- <div class="div_root"> -->
-
-						<div class="div_menu">3번방</div>
-
-						<div class="div_con">
-							사 용 자 : <font id="user3">없음</font><br>
-							사용시간 : <font id="user_time3">없음</font><br> 
-							사용상태 : <font id="user_status3">없음</font><br> 
-							주문상태 : <font id="order_status3">없음</font><br>
-						</div>
-
-						<div class="div_bottom">
-							<input type="button" value="주문내역보기"
-								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
-						
-							<input type="button" value="채팅하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+						<div class="column" onclick="method_startnstop('3');">
+							<!-- <div class="div_root"> -->
+	
+							<div class="div_menu">3번방</div>
+	
+							<div class="div_con">
+								사 용 자 : <font id="user3">없음</font><br>
+								사용시간 : <font id="user_time3">없음</font><br> 
+								사용상태 : <font id="user_status3">없음</font><br> 
+								주문상태 : <font id="order_status3">없음</font><br>
+							</div>
+	
+							<div class="div_bottom">
+								<input type="button" value="주문내역보기"
+									class="btn btn-primary btn-sm"
+									style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+							
+								<input type="button" value="채팅하기"
+									class="btn btn-danger btn-sm"
+									style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+							</div>
+	
 						</div>
 
-					</div>
-				</div>
-				<br>
+</div>
+		<c:if test="${i%3==0}">
+			</div><br>
+			</c:if>
+</c:forEach>
 
-				<div class="row" style="margin-left: 30px;">
-					<div class="column" onclick="method_startnstop('4');" style="margin-right: 10px;">
-						<!-- <div class="div_root"> -->
 
-						<div class="div_menu">4번방</div>
-
-						<div class="div_con">
-							사 용 자 : <font id="user4">없음</font><br>
-							사용시간 : <font id="user_time4">없음</font><br> 
-							사용상태 : <font id="user_status4">없음</font><br> 
-							주문상태 : <font id="order_status4">없음</font><br>
-						</div>
-
-						<div class="div_bottom">
-							<input type="button" value="주문내역보기"
-								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
-						
-							<input type="button" value="채팅하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
-						</div>
-
-					</div>
-					<div class="column" onclick="method_startnstop('5');" style="margin-right: 10px;">
-						<!-- <div class="div_root"> -->
-
-						<div class="div_menu">5번방</div>
-
-						<div class="div_con">
-							사 용 자 : <font id="user5">없음</font><br>
-							사용시간 : <font id="user_time5">없음</font><br> 
-							사용상태 : <font id="user_status5">없음</font><br> 
-							주문상태 : <font id="order_status5">없음</font><br>
-						</div>
-
-						<div class="div_bottom">
-							<input type="button" value="주문내역보기"
-								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
-						
-							<input type="button" value="채팅하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
-						</div>
-
-					</div>
-					<div class="column" onclick="method_startnstop('6');">
-						<!-- <div class="div_root"> -->
-
-						<div class="div_menu">6번방</div>
-
-						<div class="div_con">
-							사 용 자 : <font id="user6">없음</font><br>
-							사용시간 : <font id="user_time6">없음</font><br> 
-							사용상태 : <font id="user_status6">없음</font><br> 
-							주문상태 : <font id="order_status6">없음</font><br>
-						</div>
-
-						<div class="div_bottom">
-							<input type="button" value="주문내역보기"
-								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
-						
-							<input type="button" value="채팅하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<!-- <div class="col-md-0"> -->
+							<div class="card-body">
+								<%-- <h4 class="card-title">Inverse buttons</h4>
+                      <p class="card-description">Add class <code>.btn-inverse-{color} for inverse buttons</code></p> --%>
+								<div class="template-demo"></div>
+							</div>
 						</div>
 
 					</div>
