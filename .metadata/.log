@@ -111,3 +111,63 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.jst.jsp.core 4 4 2019-10-22 18:20:51.105
 !MESSAGE A workspace crash was detected. The previous session did not exit normally. Not using saved taglib indexes.
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:55.373
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:55.373
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@1d07d728[org.springframework.tooling.boot.ls:1.10.0.201908130624(id=704)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:55.374
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.532
+!MESSAGE Boot LS startup time from start to initialized: 2157ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.933
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.WyDfLhasisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.933
+!MESSAGE subscribing to classpath changes: sts4.classpath.WyDfLhas isBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.936
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.939
+!MESSAGE subsribers = {sts4.classpath.WyDfLhas=Send Classpath Notifications(315)}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.940
+!MESSAGE Sending initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.942
+!MESSAGE project comic_project ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.942
+!MESSAGE project Servers ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.942
+!MESSAGE Preparing classpath changed notification comic_project
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.943
+!MESSAGE project Servers SKIPPED
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.943
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.943
+!MESSAGE Sending initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:57.944
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.WyDfLhas => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:58.031
+!MESSAGE classpath=102 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:58.034
+!MESSAGE buffering callback sts4.classpath.WyDfLhas comic_project false 102
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:58.055
+!MESSAGE executing callback sts4.classpath.WyDfLhas 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:24:58.102
+!MESSAGE executing callback sts4.classpath.WyDfLhas SUCCESS [done]

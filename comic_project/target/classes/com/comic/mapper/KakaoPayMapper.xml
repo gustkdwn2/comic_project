@@ -10,7 +10,7 @@
 		select roomuse_id, roomuse_num, (select
 		CEIL(trunc((sysdate-roomuse_starttime)*60*24)/10)*500 from
 		comic_roomuse where roomuse_id=#{id}) as roomuse_price,
-		roomuse_endtime from comic_roomuse where roomuse_id=#{id}
+		(select sysdate from dual) as roomuse_endtime from comic_roomuse where roomuse_id=#{id}
 	</insert>
 
 	<insert id="insertproductSale">

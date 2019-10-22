@@ -36,7 +36,7 @@ jQuery.browser = {};
 											<th>날짜</th>
 											<th>상품 총매출</th>
 											<th>방 총매출</th>
-											<th>손실</th>
+											<th>손실/수익</th>
 											<th>순 이익</th>
 										</tr>
 									</thead>
@@ -59,7 +59,7 @@ jQuery.browser = {};
 											<th>날짜</th>
 											<th>상품 총매출</th>
 											<th>방 총매출</th>
-											<th>손실</th>
+											<th>손실/수익</th>
 											<th>순 이익</th>
 										</tr>
 									</thead>

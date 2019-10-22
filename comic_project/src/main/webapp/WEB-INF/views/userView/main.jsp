@@ -103,6 +103,7 @@ $(document).ready(function(){
 	var room_num = ${roomNum};
 	var mem_id = '${memberid}';
 	var total_price;
+	var operForm = $("#operForm");
 	
 	$.ajax({
 		type: 'get',
@@ -114,10 +115,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	var operForm = $("#operForm");
-	var room_num = ${roomNum};
-	var mem_id = '${memberid}';
-	var total_price;
+	
 	   
    $.ajax({
       type: 'get',
@@ -146,7 +144,7 @@ $(document).ready(function(){
 				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
 				timer = setInterval(function(){
 		              if(popup.closed){
-		                 location.href="http://localhost:8090/userView/main?roomNum="+room_num
+		                 location.href="http://localhost:8080/userView/main?roomNum="+room_num
 		              }
 		        }, 1000)
 			}
