@@ -5,7 +5,6 @@ INDEX VERSION 1.131+C:\Users\1027\Documents\GitHub\comic_project\.metadata\.plug
 3466755313.index
 1236839507.index
 413091203.index
-3628056960.index
 3930331779.index
 113615551.index
 3515907329.index
@@ -94,7 +93,6 @@ INDEX VERSION 1.131+C:\Users\1027\Documents\GitHub\comic_project\.metadata\.plug
 1629847223.index
 1609238910.index
 634278555.index
-4199339681.index
 1856418334.index
 1114619407.index
 2538981335.index
