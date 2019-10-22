@@ -101,9 +101,9 @@ $(document).ready(function(){
 
 	$('#modalstyle').css('display','none');
 	
-	var room_num = ${roomNum};
 	var mem_id = '${memberid}';
 	var total_price;
+	var operForm = $("#operForm");
 	
 	$.ajax({
 		type: 'get',
@@ -116,11 +116,6 @@ $(document).ready(function(){
 	});
 	
 	ajaxtogetdb_comic_room_uselist();
-	var operForm = $("#operForm");
-<<<<<<< HEAD
-	var room_num = ${roomNum};
-	var mem_id = '${memberid}';
-	var total_price;
 	   
    $.ajax({
       type: 'get',
@@ -133,22 +128,12 @@ $(document).ready(function(){
    });
    
    var sendData = { 
-      room_num : room_num,
+      room_num : sessionValue,
       id : mem_id,
       totalprice : total_price
    };
 	   
 
-=======
-	var sendData = { 
-		room_num : room_num,
-		id : mem_id,
-		totalprice : total_price
-	};
-	
-	console.log(sendData);
-	
->>>>>>> origin/hyuntae-sub2
 	$('#kakaopay').click(function(e){
 		e.preventDefault();
 		$.ajax({
@@ -158,17 +143,10 @@ $(document).ready(function(){
 			success : function(res) {
 				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
 				timer = setInterval(function(){
-<<<<<<< HEAD
 		              if(popup.closed){
-		                 location.href="http://localhost:8090/userView/main?roomNum="+room_num
+		                 location.href="http://localhost:8090/userView/main?roomNum="+sessionValue
 		              }
 		        }, 1000)
-=======
-	                  if(popup.closed){
-	                     location.href="http://localhost:8080/"
-	                  }
-	               }, 1000)
->>>>>>> origin/hyuntae-sub2
 			}
 		});
 	});
@@ -242,8 +220,6 @@ $(document).ready(function(){
 		$('#billModal').show();
 	});
 });
-<<<<<<< HEAD
-=======
 
 /* 여기부터 시작관련 */
 function ajaxtogetdb_comic_room_uselist() {			
@@ -308,6 +284,5 @@ function time_modify(time) {
 	
 	return time;
 }
->>>>>>> origin/hyuntae-sub2
 </script>
 </html>

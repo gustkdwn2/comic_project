@@ -1,5 +1,6 @@
 ﻿package com.comic.controller;
 
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,16 +29,30 @@ public class UserViewController {
 	
 	@PostMapping("/mainPro")
 	public void mainViewPro(HttpSession session) {
-		//session.setAttribute("roomNum", roomNum);
+		Enumeration<String> se = session.getAttributeNames();
+    	while(se.hasMoreElements()) {
+    		String getse = se.nextElement() + "";
+    		System.out.println("@@@ session : " + getse + ": " + session.getAttribute(getse));
+    	}
 	}
 	
 	@GetMapping("/main")
-	public void mainView() {
-		
+	public void mainView(HttpSession session) {
+		Enumeration<String> se = session.getAttributeNames();
+    	while(se.hasMoreElements()) {
+    		String getse = se.nextElement() + "";
+    		System.out.println("@@@@main session : " + getse + ": " + session.getAttribute(getse));
+    	}
 	}
 	
 	@GetMapping("/order")
 	public void orderView(Model model, final HttpSession session) {
+		Enumeration<String> se = session.getAttributeNames();
+    	while(se.hasMoreElements()) {
+    		String getse = se.nextElement() + "";
+    		System.out.println("@@@@order session : " + getse + ": " + session.getAttribute(getse));
+    	}
+		System.out.println(session.getAttribute("roomNum"));
 		model.addAttribute("roomNum", session.getAttribute("roomNum"));
 		model.addAttribute("OrderViewVO_List", userOrderManegerService.readCategory());
 	}

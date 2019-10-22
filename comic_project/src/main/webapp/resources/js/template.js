@@ -2,7 +2,6 @@
   'use strict';
   $(function() {
     var body = $('#abcdefg');
-    console.log(body);
     var contentWrapper = $('.content-wrapper');
     var scroller = $('.container-scroller');
     var footer = $('.footer');
@@ -52,7 +51,6 @@
     //Change sidebar
 
     $('[data-toggle="minimize"]').on("click", function() {
-    	console.log("들어옴???????????ㅁㄴㅇㅁ");
       body.toggleClass('sidebar-icon-only');
     });
 

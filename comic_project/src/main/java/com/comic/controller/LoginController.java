@@ -78,7 +78,7 @@ public class LoginController {
 				model.addAttribute("memberid", memberVO.getMEMBER_ID());
 			}
 		}
-//		service.roomuse(memberVO.getMEMBER_ID(),Integer.parseInt((String) httpSession.getAttribute("roomNum")));
+		service.roomuse(memberVO.getMEMBER_ID(),Integer.parseInt((String) httpSession.getAttribute("roomNum")));
 	}
 	
 	// 멤버 로그아웃 처리
@@ -86,13 +86,11 @@ public class LoginController {
 	public String Memberlogout(HttpServletRequest request,
 			HttpServletResponse response,
 			HttpSession httpSession) throws Exception {
-		
+		System.out.println("로그아웃을 타나 ????");
 		Object object = httpSession.getAttribute("Memberlogin");
 		if (object != null) {
 			httpSession.removeAttribute("Memberlogin");
 			httpSession.removeAttribute("memberid");
-			httpSession.setAttribute("roomnumber", httpSession.getAttribute("roomNum"));
-			System.out.println(httpSession.getAttribute("roomnumber"));
 		}
 		return "/member/Logout";
 	}
