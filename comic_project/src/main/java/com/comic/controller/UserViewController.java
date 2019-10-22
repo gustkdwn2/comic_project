@@ -26,7 +26,12 @@ public class UserViewController {
 	
 	private UserOrderManegerService userOrderManegerService;
 	
-	@PostMapping("/main")
+	@PostMapping("/mainPro")
+	public void mainViewPro() {
+		
+	}
+	
+	@GetMapping("/main")
 	public void mainView() {
 		
 	}
@@ -53,5 +58,5 @@ public class UserViewController {
 		System.out.println(userOrderManegerService.userProductBill(id));
 		return userOrderManegerService.userProductBill(id);
 	}
-	
+
 }

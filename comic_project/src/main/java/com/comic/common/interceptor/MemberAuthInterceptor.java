@@ -18,6 +18,7 @@ public class MemberAuthInterceptor extends HandlerInterceptorAdapter {
     // 페이지 요청 정보 저장
     private void saveDestination(HttpServletRequest request) {
     	HttpSession httpSession = request.getSession();
+    	httpSession.removeAttribute("roomNum");
     	String roomNum = request.getParameter("roomNum");
         httpSession.setAttribute("roomNum", roomNum);
         String uri = request.getRequestURI();

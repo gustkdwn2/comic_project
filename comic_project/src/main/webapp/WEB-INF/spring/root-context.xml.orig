@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
@@ -57,6 +57,10 @@
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
 	<bean id="echoHandler" class="com.comic.util.EchoHandler"></bean>
+<<<<<<< HEAD
+	<context:component-scan base-package="com.comic.task" />
+=======
+	
 	<websocket:handlers>
 		<websocket:mapping handler="echoHandlerOrder" path="/echo_order" />
 		<websocket:handshake-interceptors>
@@ -67,5 +71,6 @@
 	
 	
 	<context:component-scan base-package="com.comic.*" />
+>>>>>>> sangju_1
 
 </beans>

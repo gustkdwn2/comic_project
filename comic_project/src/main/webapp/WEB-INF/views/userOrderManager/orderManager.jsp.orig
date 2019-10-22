@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -63,6 +63,7 @@
 <form id="operForm"></form>
 
 <!-- modal category add-->
+<<<<<<< HEAD
 <div class="modal" id="ModalcategoryAdd" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -84,6 +85,26 @@
 			</div>
 		</div>
 	</div>
+=======
+<div class="modal" id="ModalcategoryAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">category Add</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div> 
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>category</label>
+                    <input class="form-control" name="category">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cateModalRegisterBtn1" type="button" class="btn btn-primary">Resgister</button>
+            </div>
+        </div>
+    </div>
+>>>>>>> sangju_1
 </div>
 
 <!-- modal category Update-->

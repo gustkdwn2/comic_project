@@ -46,7 +46,7 @@
 	
 	<interceptors>
 		<interceptor>
-			<mapping path="/userView/main"/>
+			<mapping path="/userView/mainPro"/>
 			<beans:ref bean="MemberauthInterceptor"/>
 		</interceptor>
 	</interceptors>
