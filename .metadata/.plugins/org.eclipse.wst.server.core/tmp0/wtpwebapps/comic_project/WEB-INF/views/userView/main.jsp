@@ -7,6 +7,7 @@
 	padding-top: 30px;
 }
 </style>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <body>
 	<!-- Header -->
 	<div class="main-penal">
@@ -16,7 +17,7 @@
 				<div class="content-section-heading text-center" style="width: 500px; height: 100px; margin-top:30px; float: left;"><br/>
 					<h1 style="color:white;">${ roomNum } 번방 홈 &emsp;&emsp; 02:15:39</h1>
 				</div> 
-				<div style="width: 300px; height: 100px; float: right; color:#f4e362; margin-top:60px; font-size: 20px;" >
+				<div style="width: 300px; height: 100px; color:#f4e362; float:right; margin-top:60px; margin-right:350px; font-size: 20px;" >
 					<a style="color:#f4e362;" href='javascript:headermembermodifyBtn()'>회원 수정</a>
 					&emsp;
 					<a style="color:#f4e362;" href="${path}/member/MemberLogout">로그 아웃</a>
@@ -72,9 +73,9 @@
 						</a>
 					</div>
 					<div class="col-lg-4"> 
-						<a class="portfolio-item" href="#"> <span class="caption"> <span class="caption-content">
+						<a class="portfolio-item" id="kakaopay"> <span class="caption"> <span class="caption-content">
 									<h3>사용 종료</h3>
-									<p class="mb-0">사용 종료를 하면 로그아웃되고 결제 페이지로 넘어갑니다</p>
+									<p class="mb-0">사용 종료를 하면 카카오페이로 연결되고 완료되면 로그아웃 됩니다</p>
 							</span>
 						</span> <img class="img-fluid" src="/resources/images/exitIcon.png" alt="" style="width:370px; height:250px;">
 						</a>
@@ -83,10 +84,12 @@
 			</div>
 		</div>
 	</div>
+	<div id="modalstyle" class="modal-backdrop show"></div>
 		
 	<jsp:include page="headerMemberModifyModal.jsp" />
 	<jsp:include page="headerMemberModifyPasswordModal.jsp" />
 	<jsp:include page="billModal.jsp" />
+	<jsp:include page="paymentModal.jsp"/>
 	<jsp:include page="productBillModal.jsp" />
 	<!-- hidden form -->
 	<form id="operForm"></form>
@@ -94,7 +97,61 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+
+	$('#modalstyle').css('display','none');
+	
+	var room_num = ${roomNum};
+	var mem_id = '${memberid}';
+	var total_price;
+	
+	$.ajax({
+		type: 'get',
+		url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
+		async : false,
+		dataType: 'json',
+		success: function(data) {
+			total_price = data.total_bill;
+		}
+	});
+	
 	var operForm = $("#operForm");
+	var room_num = ${roomNum};
+	var mem_id = '${memberid}';
+	var total_price;
+	   
+   $.ajax({
+      type: 'get',
+      url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
+      async : false,
+      dataType: 'json',
+      success: function(data) {
+         total_price = data.total_bill;
+      }
+   });
+   
+   var sendData = { 
+      room_num : room_num,
+      id : mem_id,
+      totalprice : total_price
+   };
+	   
+
+	$('#kakaopay').click(function(e){
+		e.preventDefault();
+		$.ajax({
+			url : '/pay/kakao',
+			type : 'get',
+			data : sendData,
+			success : function(res) {
+				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
+				timer = setInterval(function(){
+		              if(popup.closed){
+		                 location.href="http://localhost:8090/userView/main?roomNum="+room_num
+		              }
+		        }, 1000)
+			}
+		});
+	});
 	
 	$("#userOrderView").on("click", function(e){
 		operForm.attr("method", "get");
@@ -121,6 +178,7 @@ $(document).ready(function(){
 	});
 
 	$("#billModalBtn").on("click", function(e){
+		$('#modalstyle').css('display','');
 		$.ajax({
 			type: 'get',
 			url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
@@ -165,8 +223,6 @@ $(document).ready(function(){
 
 		$('#billModal').show();
 	});
-
-	
 });
 </script>
 </html>

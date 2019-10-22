@@ -2,6 +2,7 @@ $(document).ready(function(e){
 	  
 	  var formObj = $("#registerForm");
 	  
+	  
 	  $("#RegisterSubmitBtn").on("click", function(e){
 
 	    
@@ -236,6 +237,7 @@ $(document).ready(function(e){
 		  $("#uploadFileRegister").val("");
 		  $("#bookRegister").find('form')[0].reset();
 		  $('#bookRegister').hide();
+		  $('#modalstyle2').css('display','none');
 	  });
 	
 });
