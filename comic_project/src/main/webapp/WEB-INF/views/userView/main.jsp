@@ -98,8 +98,8 @@
 $(document).ready(function(){
 	var operForm = $("#operForm");
 	var sendData = { 
-				room_num : 3,
-				id : 'user1',
+				room_num : 1,
+				id : 'dddd',
 				totalprice : 3000
 			};
 	
@@ -115,7 +115,7 @@ $(document).ready(function(){
 				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
 				timer = setInterval(function(){
 	                  if(popup.closed){
-	                     location.href="http://localhost:8090/"
+	                     location.href="http://localhost:8080/"
 	                  }
 	               }, 1000)
 			}
