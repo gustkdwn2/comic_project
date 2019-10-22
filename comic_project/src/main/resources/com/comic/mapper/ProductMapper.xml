@@ -8,6 +8,10 @@
 		SELECT * FROM COMIC_PRODUCTSTOCK
 	</select>
 	
+	<select id="productCategory" resultType="com.comic.model.ProductVO">
+		SELECT DISTINCT(product_category) FROM COMIC_PRODUCTSTOCK
+	</select>
+	
 	<select id="productRead" resultType="com.comic.model.ProductVO">
 		SELECT * FROM COMIC_PRODUCTSTOCK WHERE PRODUCT_NUM=#{product_num}
 	</select>
@@ -31,6 +35,10 @@
 	
 	<select id="productNameCheck" resultType="com.comic.model.ProductVO">
 		SELECT * FROM COMIC_PRODUCTSTOCK WHERE PRODUCT_NAME=#{product_name}
+	</select>
+	
+	<select id="productCategoryName" resultType="com.comic.model.ProductVO">
+		select * from COMIC_PRODUCTSTOCK where product_category=#{product_category}
 	</select>
 	
 	<!-- <update id="productNumUpdate">

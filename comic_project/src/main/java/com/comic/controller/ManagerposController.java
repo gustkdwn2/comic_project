@@ -165,7 +165,7 @@ public class ManagerposController {
 		//List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
 		
 		System.out.println("emppwd = "+emppwd+"\nmngnum = "+mngnum);
-		managementService.deletemng(emppwd,mngnum);
+		/* managementService.deletemng(emppwd,mngnum); */
 		if(managementService.deletemng(emppwd,mngnum) == 1) {
 			deleteFiles(attachList);
 		}

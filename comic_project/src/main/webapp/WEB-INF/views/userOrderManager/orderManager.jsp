@@ -53,7 +53,13 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>category</label>
-                    <input class="form-control" name="category">
+                    <!-- <input class="form-control" name="category"> -->
+                    <select class="form-control" name="category">
+						<option value="">선   택</option>
+                       	<c:forEach items="${productGetList}" var="productGetList">
+                       		<option value="${productGetList.product_category}">${productGetList.product_category}</option>
+                       	</c:forEach>
+                  	</select>
                 </div>
             </div>
             <div class="modal-footer">
@@ -74,7 +80,13 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>category</label>
-                    <input class="form-control" name="category">
+                    <!-- <input class="form-control" name="category"> -->
+                    <select class="form-control" name="category">
+						<option value="">선   택</option>
+                       	<c:forEach items="${productGetList}" var="productGetList">
+                       		<option value="${productGetList.product_category}">${productGetList.product_category}</option>
+                       	</c:forEach>
+                  	</select>
                 </div>
             </div>
             <div class="modal-footer">
@@ -90,12 +102,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">product Add</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="productAddModalCloseBtn">&times;</button>
             </div> 
             <div class="modal-body">
                 <div class="form-group">
                     <label>product</label>
-                    <input class="form-control" name="product">
+                    <!-- <input class="form-control" name="product"> -->
+                    <form id="productCategoryNameOptionForm">
+	                    <select class="form-control" name="product" id="productCategoryNameOption">
+	                    
+	                  	</select>
+                  	</form>
                     <label>image file</label>
                     <form id="uploadForm" method="post" enctype="multipart/form-data">
 	                    <input class="form-control" type="file" name="uploadFile">
@@ -140,8 +157,8 @@
         
         var modalCateAdd = $("#ModalcategoryAdd");
         var modalCateUpdate = $("#ModalcategoryUpdate");
-        var modalInputCategory = modalCateAdd.find("input[name='category']");
-        var modalInputCategoryUpdate = modalCateUpdate.find("input[name='category']");
+        var modalInputCategory = modalCateAdd.find("select[name='category']");
+        var modalInputCategoryUpdate = modalCateUpdate.find("select[name='category']");
         
 		var indexNum = 0;
 		
@@ -150,19 +167,26 @@
         });
 
         $("#cateModalRegisterBtn").on("click", function (e) {
+            if(modalInputCategory.val() == "") {
+                alert("카테고리를 선택해주세요.")
+                return false;
+            }
         	operForm.append("<input type='hidden' name='category' value='" + modalInputCategory.val() + "'>");
             operForm.attr("method", 'post');
             operForm.attr("action", "/userOrderManager/categoryAdd");
             operForm.submit();
         });
 
-		$("a[name='categoryUpdate']").on("click", function (e) {
+		$("a[name='categoryUpdate']").on("click", function (e) {	
 			modalCateUpdate.modal('show');
 			indexNum = $(this).attr('value');
-				
 		});
 		
 		$("#cateModalUpdateBtn").on("click", function (e) {
+			if(modalInputCategoryUpdate.val() == "") {
+                alert("카테고리를 선택해주세요.")
+                return false;
+            }
         	operForm.append("<input type='hidden' name='category' value='" + modalInputCategoryUpdate.val() + "'>");
         	operForm.append("<input type='hidden' name='number' value='" + indexNum + "'>");
             operForm.attr("method", 'post');
@@ -188,6 +212,7 @@
 		var modalProductAdd = $("#modalProductAdd");
 		
 		$("button[name='categoryButton']").on("click", function (e) {
+			$("button[name='productAdd']").val($(this).attr('value'));
 			categoryValue = $(this).attr('value');
 			orderProductShow(categoryValue);
 		});
@@ -227,7 +252,24 @@
 		}
 
 		$("button[name = productAdd]").on("click", function(e){
+			var Optionstr = "";
+			Optionstr += '<option value="">선 택</option>';
+			$.ajax({
+				type: 'get',
+			    url: "/userOrderManager/productCategoryName?product_category="+$(this).attr('value'),
+			    dataType : "json",
+			    async : false,
+			    success: function(data){
+				    for(var i = 0; i < data.length; i++) {
+				    	Optionstr += '<option value="'+data[i].product_name+'">'+data[i].product_name+'</option>';
+					}
+				}
+			});
+			$("#productCategoryNameOption").append(Optionstr);
 			modalProductAdd.modal("show");
+			$("#productAddModalCloseBtn").on("click", function (e) {
+				$("#modalProductAdd").find('#productCategoryNameOptionForm')[0].reset();
+			});
 		});
 
 		$("#productModalRegisterBtn").on("click", function (e) {
