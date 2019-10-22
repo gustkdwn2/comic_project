@@ -213,6 +213,7 @@ public class ManagerposController {
 			
 			List<EmployeeVO> empdata = managementService.getempdata(empnum); //해당달의 출근기록을 list로 가져옴
 			
+			session.setAttribute("EMPPRENAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가
 			session.setAttribute("EMPNAME", "현재 공석");//로그인 세션추가
 			session.setAttribute("EMPID", "tmp");//로그인 세션추가
 			makecomic_pay(empnum);//퇴근기록으로 comic_pay테이블에 누적시간넣는 함수

@@ -265,8 +265,8 @@ body {
 			}
 		}
 
-		function method_startnstop2(id,num,starttime,status) {
-			// 새로 고침 시 시간 유지 함수
+		function startnstop_init(id,num,starttime,status) {
+			
 			if (!check[num]) {
 				check[num] = true;
 				time_start(starttime, num);
