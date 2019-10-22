@@ -1052,3 +1052,15 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:08:25.108
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:08:25.108
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@786d8b3b[org.springframework.tooling.boot.ls:1.10.0.201908130624(id=704)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:08:25.131
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-22 18:08:25.360
+!MESSAGE Instantiating ReusableClasspathListenerHandler
