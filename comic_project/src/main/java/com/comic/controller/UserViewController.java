@@ -1,5 +1,6 @@
 ﻿package com.comic.controller;
 
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.comic.model.UserBillVO;
 import com.comic.model.UserProductBillVO;
@@ -27,23 +27,37 @@ public class UserViewController {
 	private UserOrderManegerService userOrderManegerService;
 	
 	@PostMapping("/mainPro")
-	public void mainViewPro(HttpSession session) {
+	public void mainViewPro(HttpSession httpSession) {
+		httpSession.setAttribute("RoomNumb", httpSession.getAttribute("roomNum"));
 		System.out.println("MAINPROPOST");
-		System.out.println(session);
+		Enumeration<String> se = httpSession.getAttributeNames();
+    	while(se.hasMoreElements()) {
+    		String getse = se.nextElement() + "";
+    		System.out.println("@@@ session : " + getse + ": " + httpSession.getAttribute(getse));
+    	}
 		System.out.println("================");
 	}
 	
 	@GetMapping("/mainPro")
-	public void mainPro(HttpSession session) {
+	public void mainPro(HttpSession httpSession) {
 		System.out.println("MAINPROGET");
-		System.out.println(session);
+		Enumeration<String> se = httpSession.getAttributeNames();
+    	while(se.hasMoreElements()) {
+    		String getse = se.nextElement() + "";
+    		System.out.println("@@@ session : " + getse + ": " + httpSession.getAttribute(getse));
+    	}
 		System.out.println("================");
 	}
 	
 	@GetMapping("/main")
-	public void mainView(HttpSession session) {
+	public void mainView(HttpSession httpSession) {
+		httpSession.setAttribute("roomNum", httpSession.getAttribute("RoomNumb"));
 		System.out.println("MAINPRO");
-		System.out.println(session);
+		Enumeration<String> se = httpSession.getAttributeNames();
+    	while(se.hasMoreElements()) {
+    		String getse = se.nextElement() + "";
+    		System.out.println("@@@ session : " + getse + ": " + httpSession.getAttribute(getse));
+    	}
 		System.out.println("================");
 	}
 	
