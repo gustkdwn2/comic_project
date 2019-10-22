@@ -4705,3 +4705,10 @@ java.lang.NegativeArraySizeException
 	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.ensureResultCached(DecorationScheduler.java:333)
 	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.run(DecorationScheduler.java:300)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2019-10-22 19:48:28.006
+!MESSAGE Publishing failed with multiple errors
+!SUBENTRY 1 org.eclipse.wst.server.core 4 0 2019-10-22 19:48:28.006
+!MESSAGE Could not delete C:/Users/1027/Documents/GitHub/comic_project/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/comic_project/WEB-INF/views/includes. May be locked by another process.
+!SUBENTRY 1 org.eclipse.wst.server.core 4 0 2019-10-22 19:48:28.006
+!MESSAGE Could not delete C:/Users/1027/Documents/GitHub/comic_project/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/comic_project/WEB-INF/views. May be locked by another process.
