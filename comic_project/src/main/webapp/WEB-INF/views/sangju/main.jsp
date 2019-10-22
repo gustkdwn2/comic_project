@@ -17,7 +17,7 @@
 					<h1>User</h1>
 					<button data-oper='chat'>chat</button>
 					<button data-oper='order'>order</button>
-					<button></button>
+					<button onclick="popup()">새창 예제</button>
 					<button></button>
 					<button></button>
 					<button></button>
@@ -30,7 +30,12 @@
 </body>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+function popup() {
+	window.open("popup","_blank","height=500px, width=400px, left=100px, top=100px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
+}
+
+
+$(document).ready(function() {
 		var actionForm = $("#actionForm");
 		$("button[data-oper='order']").on("click", function(e) {
 			console.log("<c:out value='${roomNum}' />");

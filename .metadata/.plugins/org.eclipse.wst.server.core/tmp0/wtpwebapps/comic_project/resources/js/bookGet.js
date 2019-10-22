@@ -5,7 +5,8 @@ $(document).ready(function() {
 	    console.log("delete file");
 	      
 	    if(confirm("삭제 하시겠습니까?")){
-	    
+	    	$('#uploadFileGet').attr('disabled', false);
+	    	$("#uploadFileGet").val("");
 	    	var targetLi = $(this).closest("li");
 	    	targetLi.remove();
 
@@ -57,7 +58,7 @@ $(document).ready(function() {
 			  showUploadResultGet(result); //업로드 결과 처리 함수 
 	      }
 	    }); //$.ajax
-	    
+	    $('#uploadFileGet').attr('disabled', true);
 	  });
 	
 	function showUploadResultGet(uploadResultArr){
@@ -75,9 +76,9 @@ $(document).ready(function() {
 				str += "<li data-path='"+obj.uploadPath+"'";
 				str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 				str +" ><div>";
-				str += "<span> "+ obj.fileName+"</span>";
+				str += "<span></span>";
 				str += "<button id='imageGetBtn' type='button' data-file=\'"+fileCallPath+"\' "
-				str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "data-type='image' class='btn btn-inverse-danger btn-icon'><i class='mdi mdi-close'></i></button><br>";
 				str += "<img src='/display?fileName="+fileCallPath+"'>";
 				str += "</div>";
 				str +"</li>";
@@ -146,6 +147,11 @@ $(document).ready(function() {
 		      $("#book_category_get").val("");
 		      $("#book_category_get").focus();
 		      return false;
+		}
+		if($('#uploadFileGet')[0].files[0] == null) {
+			alert("이미지를 넣어주세요.")
+			$("#uploadFileGet").focus();
+			return false;
 		}
 	        
 	    formObj.append(str).submit();

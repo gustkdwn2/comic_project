@@ -113,7 +113,7 @@
 <style>
 .uploadResultRegister {
 	width: 100%;
-	background-color: gray;
+	/* background-color: gray; */
 }
 
 .uploadResultRegister ul {
@@ -125,11 +125,17 @@
 
 .uploadResultRegister ul li {
 	list-style: none;
-	padding: 10px;
+	/* padding: 10px; */
 }
 
 .uploadResultRegister ul li img {
-	width: 100px;
+	/* width: 100px; */
+	width: 170px;
+	height: 220px;
+}
+
+#imageRemoveBtn{
+	float: right;
 }
 
 #modal-dialog-register{

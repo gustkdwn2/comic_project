@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ include file="../includes/header.jsp"%>
+<%@ include file="../includes/sidebar.jsp"%>
+	 
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +25,18 @@
 <link rel="shortcut icon" href="/resources/images/favicon.png" />
 </head>
 <body>
-	<div class="container-scroller">
-		<div class="container-fluid page-body-wrapper full-page-wrapper">
-			<div class="content-wrapper d-flex align-items-center auth px-0">
+
+<div class="main-panel">
+		<div class="content-wrapper">
+			<div class="row">
+				
+				<div class="col-12 grid-margin stretch-card">
+
+					<div class="card">
+						<div class="row">
+							<div class="col-md-12">
+								
+<div class="content-wrapper d-flex align-items-center auth px-0">
 				<div class="row w-100 mx-0">
 					<div class="col-lg-4 mx-auto">
 						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
@@ -58,34 +71,29 @@
 								</div>
 								<div
 									class="my-2 d-flex justify-content-between align-items-center">
-									<!-- <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      Keep me signed in
-                    </label>
-                  </div> -->
+									
 									<a href="#" onclick="forgotpwd()" class="auth-link text-black">Forgot
 										password?</a>
 								</div>
-								<!--  <div class="mb-2">
-                  <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                    <i class="mdi mdi-facebook mr-2"></i>Connect using facebook
-                  </button>
-                </div> -->
-								<!--   <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register.html" class="text-primary">Create</a>
-                </div> -->
+								
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- content-wrapper ends -->
+							</div>
+							<!-- <div class="col-md-0"> -->
+							
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<!-- page-body-wrapper ends -->
 	</div>
-	<!-- container-scroller -->
-	<!-- plugins:js -->
+	
+	<!-- main-panel ends -->	
+	
 	<script src="/resources/vendors/base/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- inject:js -->
@@ -94,6 +102,14 @@
 	<script src="/resources/js/template.js"></script>
 	<!-- endinject -->
 	<script>
+	
+	/* var test = "${sessionScope.EMPID}";
+	alert("현재 세션은"+test); */
+	
+//var test  = location.pathname;//프로젝트 뒤의 값을 가져온다 //project:"managerpos/login"
+	//alert('${request.getRequestURI()}');
+	//alert(test);
+	
 		function forgotpwd() {
 			alert("ㅋㅋ답이없네");
 		}
@@ -109,8 +125,6 @@
 		if(succecssmsg!=""){
 			alert(succecssmsg);
 			}
-
-		
 		
 		function Request() {
 			var requestParam = "";
@@ -139,9 +153,6 @@
 		/*  var request = new Request();
 		 // test 라는 파라메터 값을 얻기
 		var tmp =  request.getParameter("managerList"); */
-		
-		
-
 		
 	</script>
 

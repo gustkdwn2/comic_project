@@ -18,18 +18,19 @@
 						<div class="card-body">
 							<p class="card-title">상품 발주</p>
 							<div class="table-responsive" style="overflow: hidden;">
-								<button style="margin-bottom: 10px;" data-toggle="modal" data-target="#productOrderRegister" type="button"
-										class="btn btn-secondary" data-backdrop="static" data-keyboard="false">발주 등록</button>
+								<button style="margin-bottom: 10px; color:white;" data-toggle="modal" data-target="#productOrderRegister" type="button"
+										class="btn btn-warning" data-backdrop="static" data-keyboard="false"
+										>발주 등록</button>
 										
-								<table id="productOrderTable" class="table  table-striped">
+								<table id="productOrderTable" class="table  table-striped" >
 									<thead>
 										<tr>
-											<th>발주 번호</th>
+											<th style="width: 100px;">발주 번호</th>
 											<th>상품 이름</th>
 											<th>발주 구매가</th>
 											<th>발주 수량</th>
 											<th>발주 날짜</th>
-											<th class="no-sort">수정/삭제</th>
+											<th class="no-sort" style="width: 150px;">수정/삭제</th>
 										</tr>
 									</thead>
 								</table>
@@ -41,9 +42,10 @@
 			</div>
 		</div>
 	</div>
+	<div id="modalstyle" class="modal-backdrop show"></div>
 	
 	<jsp:include page="productOrderRegisterModal.jsp" />
 	<jsp:include page="productOrderGetModal.jsp" />
-	<script src="/resources/js/productOrderTable.js"></script>
+	<script src="/resources/js/productOrderTable.js?ver=1"></script>
 </body>
 </html>

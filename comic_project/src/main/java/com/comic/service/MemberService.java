@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.comic.model.EmployeeAttachVO;
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
@@ -24,7 +25,7 @@ public interface MemberService {
 	// 멤버 정보 삭제
 	public void MemberRemove(String mEMBER_ID);
 	// 멤버 비밀번호 수정
-	public void MemberPasswordModify(HttpServletResponse response, MemberVO vo) throws Exception;
+	public String MemberPasswordModify(MemberVO vo) throws Exception;
 	// 멤버 정보 수정
 	public void MemberModify2(MemberVO vo) throws Exception;
 	// 멤버 회원가입 아이디 중복 체크
@@ -39,5 +40,7 @@ public interface MemberService {
 	public void EmployeekeepLogin(int EMPLOYEE_NUM, String sessionId, Date sessionLimit) throws Exception;
 	// 세션키 검증
 	MemberVO checkLoginBefore(String value) throws Exception;
+	
+	public List<EmployeeAttachVO> getAttachList(int employee_num);
 	
 }

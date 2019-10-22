@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.comic.mapper.EmployeeAttachMapper;
 import com.comic.mapper.MemberMapper;
+import com.comic.model.EmployeeAttachVO;
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
@@ -23,6 +25,9 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberMapper mapper;
 	private String password;
+	
+	@Autowired
+	private EmployeeAttachMapper attachMapper;
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
@@ -60,22 +65,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void MemberPasswordModify(HttpServletResponse response, MemberVO vo) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		if(mapper.MemberCheck(vo) == null) {
-			out.print("등록된 회원이 없습니다.");
-			out.close();
-		} else {
-			String pw = "";
-			for (int i = 0; i < 4; i++) {
-				pw += (char) ((Math.random() * 26) + 97);
-			}
-			vo.setMEMBER_PWD(passwordEncoder.encode(pw));
-			mapper.MemberPasswordModify(vo);
-			out.print("임시 비밀번호는 " + pw + "입니다.");
-			out.close();
+	public String MemberPasswordModify(MemberVO vo) throws Exception {
+		String pw = "";
+		for (int i = 0; i < 4; i++) {
+			pw += (char) ((Math.random() * 26) + 97);
 		}
+		vo.setTEM_PWD(pw);
+		vo.setMEMBER_PWD(passwordEncoder.encode(pw));
+		int result = mapper.MemberPasswordModify(vo);
+		if (result == 1) {
+			return pw;
+		}
+		return "fail";
 	}
 	
 	@Override
@@ -112,10 +113,20 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void employeeRegister(EmployeeVO vo) {
-		
 		//	password = vo.getEMPLOYEE_PWD();
-		//	vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));	 
+		//	vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));
+		
 			mapper.employeeInsert(vo);
+			
+			vo.getAttachList().forEach(attach -> {
+				attach.setEMPLOYEE_NUM(vo.getEMPLOYEE_NUM());
+				attachMapper.insert(attach);
+			});
+	}
+
+	@Override
+	public List<EmployeeAttachVO> getAttachList(int employee_num) {
+		return attachMapper.findByEMPLOYEE_NUM(employee_num);
 	}
 
 }

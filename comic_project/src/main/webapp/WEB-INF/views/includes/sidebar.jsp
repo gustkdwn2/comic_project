@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- partial:partials/_sidebar.html -->
@@ -8,7 +8,6 @@ li{list-style: none;}
 .accordion_wrap a{cursor:pointer;}
 .accordion_wrap .accordion_content{display:none;}
 </style>
-
 	<nav class="sidebar sidebar-offcanvas">
 	
 		<ul class="nav">
