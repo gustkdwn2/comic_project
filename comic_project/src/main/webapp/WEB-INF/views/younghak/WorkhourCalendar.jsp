@@ -188,8 +188,7 @@ td {
 					var number = 1;
 					number = list.workingday;
 					$('#' + number).text(
-							"출근 : "+list.starttime + "~\r\n퇴근 : " + list.endtime /* + "\r\n: "
-									+ list.worksecond */);
+							"출근 : " + list.starttime + "~\r\n퇴근 : " + list.endtime);
 					worksecond_month += list.worksecond;
 					//날짜별로 데이터를 넣어줌
 

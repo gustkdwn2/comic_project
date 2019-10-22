@@ -122,14 +122,6 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card-body">
-
-									<!--                       
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      
-        <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5"> -->
-
 									<button type="button" id="AdminModal" class="btn btn-warning" style="color:white;">직원
 										추가</button>
 									<br> <br>
@@ -323,10 +315,8 @@
 					<h4 class="modal-title" id="ModalLabel">직원 정보 수정</h4>
 				</div>
 				<div class="modal-body">
-					<div class="form-group row">
-						<label class="col-sm-3 col-form-label"> <font
-							style="vertical-align: inherit;">직원 이미지</font>
-						</label>
+					<div class="form-group">
+						<label>직원이미지</label>
 						<div class="form-group row">
 							<div class="form-group uploadDiv">
 								<input id="uploadFileGet" type="file" name='uploadFile'>
@@ -387,10 +377,10 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary"
+					<button type="button" class="btn btn-warning" style="color:white;"
 						onclick="modify_staff_validation()">수정</button>
 					<button onclick="empGetModalClose()" type="button"
-						class="btn btn-default" data-dismiss="modal">닫기</button>
+						class="btn btn-secondary" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
