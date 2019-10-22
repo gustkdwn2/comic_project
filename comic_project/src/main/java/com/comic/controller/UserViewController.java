@@ -36,11 +36,6 @@ public class UserViewController {
 		
 	}
 	
-	@GetMapping("/main")
-	public void main() {
-		
-	}
-	
 	@GetMapping("/order")
 	public void orderView(Model model, final HttpSession session) {
 		model.addAttribute("roomNum", session.getAttribute("roomNum"));
