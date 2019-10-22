@@ -14,11 +14,8 @@
 	height: 50px;
 	text-align: top;
 	font-size: 20px;
-	font-family: 굴림;
-	font-weight: bold;
-	border: 5px border-color:#3333FF;
-	border-radius: 8px; /*모서리 둥글게*/
-	border-weight: bold;
+	font-family: 맑은 고딕;
+	border: 3px solid #dadfe4;
 }
 
 
@@ -54,6 +51,7 @@
 										onclick="javascript:window.location.href='/managerpos/Manager_management'"
 										class="btn btn-success btn-rounded btn-fw">직원관리</button>
 									 <button type="button" id="commute"
+									 onclick=" <%-- <% session.removeAttribute("EMPID"); %> --%> "
 										class="btn btn-warning btn-rounded btn-fw">오늘 출퇴근</button> 
 								</div>
 							</div>
@@ -78,26 +76,25 @@
 				</div>
 				<div class="modal-body">
 
-					<table border=3 
-						style="border-color: #3333FF; width: 100%;table-layout:fixed;align:center">
+					<table style="width: 100%;table-layout:fixed;text-align:center;">
 						<tr>
 							<td class="td_y_header" align="center">
-							<font style="font-weight: bold;size:5;face:굴림체; color:green;">사번/이름</font>
+							<font style="font-weight: bold; color:green;">사번/이름</font>
 							</td>
 							<td class="td_y_header" align="center">
-							<font style="font-weight: bold;size:5;face:굴림체; ">출근시간</font>
+							<font style="font-weight: bold;">출근시간</font>
 							</td>
 							<td class="td_y_header"  align="center">
-							<font style="font-weight: bold;size:5;face:굴림체; ">퇴근시간</font>
+							<font style="font-weight: bold;">퇴근시간</font>
 							</td>
 						</tr>
 					</table>
-					<font id="todaycummute" style="face:굴림체;"></font>
+					<font id="todaycummute"></font>
 					
 											
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -107,11 +104,21 @@
 	<!-- /.modal -->
 
 	<script>
+
+
+//	checksession();
+	
+	
 		$("#commute").on("click", function() {
 			$("#commuteModal").modal("show");
 			gettodaycommute();
 		});
+		function sessioninvalid(){
+			alert("세션삭제");
+		
+			sessionStorage.removeItem( "EMPID" );
 
+			}
 		function gettodaycommute() {
 
 			$.ajax({
@@ -126,7 +133,7 @@
 					console.log(data[0]);*/
 					var htmlStr = "";
 					
-					htmlStr += "<table border=3 style=\"border-color: #3333FF;height:51px;width: 100%;table-layout:fixed;align:center\">";
+					htmlStr += "<table style='height:60px; width: 100%; table-layout:fixed; text-align:center;'>";
 					$.each(data, function(index, list) {
 						htmlStr += "<tr>";
 						htmlStr += "<td class=\"td_y_header\" align=\"center\">" + list.empnum +"/"+list.empname +"</td>"

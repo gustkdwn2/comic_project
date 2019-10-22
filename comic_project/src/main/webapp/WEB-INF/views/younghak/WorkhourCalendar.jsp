@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+
 
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
@@ -12,16 +12,15 @@
 <html>
 <head>
 <style type="text/css">
+*{
+	font-family: 맑은 고딕;
+}
 td {
 	width: 200px;
 	height: 100px;
-	text-align: top;
+	text-align:left;
 	font-size: 20px;
-	font-family: 굴림;
-	font-weight: bold;
-	border: 5px border-color:#3333FF;
-	border-radius: 8px; /*모서리 둥글게*/
-	border-weight: bold;
+	border: 1px solid #dadfe4;
 }
 </style>
 <meta charset="UTF-8">
@@ -84,13 +83,13 @@ td {
 		tbCalendarYM.innerHTML = today.getFullYear() + "년 "
 				+ (today.getMonth() + 1) + "월";
 
-		document.getElementById("tbCalendarpremonth").innerHTML = today
+		document.getElementById("tbCalendarpremonth").innerHTML = "◀ "+ today
 				.getFullYear()
 				+ "년 " + today.getMonth() + "월";
 		//저번달 가져오는 메서드
 		document.getElementById("tbCalendarnextmonth").innerHTML = today
 				.getFullYear()
-				+ "년 " + (today.getMonth() + 2) + "월";
+				+ "년 " + (today.getMonth() + 2) + "월"+" ▶";
 		//이번달 가져오는 메서드
 		/*while은 이번달이 끝나면 다음달로 넘겨주는 역할*/
 		while (tbCalendar.rows.length > 2) {
@@ -127,13 +126,13 @@ td {
 			if (cnt % 7 == 1) {/*일요일 계산*/
 				//1주일이 7일 이므로 일요일 구하기
 				//월화수목금토일을 7로 나눴을때 나머지가 1이면 cnt가 1번째에 위치함을 의미한다
-				cell.innerHTML = "<font color=red>" + i + "</font>"
+				cell.innerHTML = "<font color='red'>" + i + "</font>"
 						+ addfontidbyday(year, month, i);
 				//1번째의 cell에만 색칠
 			}
 			if (cnt % 7 == 0) {/* 1주일이 7일 이므로 토요일 구하기*/
 				//월화수목금토일을 7로 나눴을때 나머지가 0이면 cnt가 7번째에 위치함을 의미한다
-				cell.innerHTML = "<font color=green>" + i + "</font>"
+				cell.innerHTML = "<font color='#4d83ff'>" + i + "</font>"
 						+ addfontidbyday(year, month, i);
 				//7번째의 cell에만 색칠
 				row = calendar.insertRow();
@@ -144,7 +143,7 @@ td {
 					&& today.getMonth() == date.getMonth()
 					&& i == date.getDate()) {
 				//달력에 있는 년,달과 내 컴퓨터의 로컬 년,달이 같고, 일이 오늘의 일과 같으면
-				cell.bgColor = "#FAF58C";//셀의 배경색을 노랑으로 
+				cell.bgColor = "#fcf2d8";//셀의 배경색을 노랑으로 
 			}
 		}
 	}
@@ -184,17 +183,18 @@ td {
 
 				var text = "";
 				//console.log(data[0]);
+				worksecond_month=0;
 				$.each(data, function(index, list) {
 					var number = 1;
 					number = list.workingday;
 					$('#' + number).text(
-							list.starttime + "~\n" + list.endtime + "\r\n: "
-									+ list.worksecond);
+							"출근 : "+list.starttime + "~\r\n퇴근 : " + list.endtime /* + "\r\n: "
+									+ list.worksecond */);
 					worksecond_month += list.worksecond;
 					//날짜별로 데이터를 넣어줌
 
 				});
-				$('#worksummary').text("총 근무시간 = " + secondtotimeformat(worksecond_month));
+				$('#worksummary').text(secondtotimeformat(worksecond_month));
 
 			},
 			error : function(data) {
@@ -247,86 +247,54 @@ td {
 			<div class="row">
 				<%@ include file="./younghak_header.jsp"%>
 				<div class="col-12 grid-margin stretch-card">
-
 					<div class="card">
 						<div class="row">
 							<div class="col-md-12">
 								<p></p>
-								<h3 align="center">★${empname}의 출근표★</h3>
-								<table id="calendar" border="3" align="center"
-									style="border-color: #3333FF">
-									<tr>
+								<h1 style="margin:20px 0; text-align: center;">${empname} 의 출근표</h1>
+								<h4 style="margin:20px 0; text-align: center;">
+								총 근무 시간 : <font id="worksummary" style="color:red;"></font
+								></h4>
+								<table id="calendar" 
+									style="border:3px solid #e9ecef; text-align:center; margin:0 0 50px 100px;">
+									<tr style="font-weight: bold;">
 										<!-- label은 마우스로 클릭을 편하게 해줌 -->
-										<td><label id="tbCalendarpremonth"
-											onclick="prevCalendar()">저번 달</label></td>
-										<td align="center" id="tbCalendarYM" colspan="5">yyyy년 m월</td>
-										<a href="#"><td><label id="tbCalendarnextmonth"
-												onclick="nextCalendar()">다음 달 </label></td> </a>
+										<td style="border:1px solid white; text-align: center;">
+										<label id="tbCalendarpremonth" style="cursor: pointer; color:#4d83ff;" onclick="prevCalendar()"></label>
+										</td>
+										
+										<td id="tbCalendarYM" colspan="5" style="font-size:x-large; border:1px solid white; text-align: center;">
+										</td>
+										
+										<td style="border:1px solid white; text-align: center;">
+										<label id="tbCalendarnextmonth" style="cursor: pointer; color:#4d83ff;" onclick="nextCalendar()"></label>
+										</td>
 									</tr>
-									<tr style="background: #c5c5c5;">
-										<td align="center"><font color="red">일</td>
-										<td align="center">월</td>
-										<td align="center">화</td>
-										<td align="center">수</td>
-										<td align="center">목</td>
-										<td align="center">금</td>
-										<td align="center"><font color="green">토</td>
+									<tr style="background-color:#686868; font-weight: bold;">
+										<td style="text-align: center;"><font color="red">일</font></td>
+										<td style="text-align: center;"><font color="white">월</font></td>
+										<td style="text-align: center;"><font color="white">화</font></td>
+										<td style="text-align: center;"><font color="white">수</font></td>
+										<td style="text-align: center;"><font color="white">목</font></td>
+										<td style="text-align: center;"><font color="white">금</font></td>
+										<td style="text-align: center;"><font color="#4d83ff">토</font></td>
 									</tr>
 								</table>
-								<script language="javascript" type="text/javascript">
+								<script type="text/javascript">
 									buildCalendar();//
 								</script>
-								<font id="worksummary"></font>
+								
 
 							</div>
 							<!-- <div class="col-md-0"> -->
-							<div class="card-body">
-								<%-- <h4 class="card-title">Inverse buttons</h4>
-                      <p class="card-description">Add class <code>.btn-inverse-{color} for inverse buttons</code></p> --%>
-								<div class="template-demo"></div>
-							</div>
+							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
 
-	<div class="card-body">
-		<h4 class="card-title">Social button with text</h4>
-		<p class="card-description">
-			Add class
-			<code>.btn-social-icon-text</code>
-		</p>
-		<div class="template-demo">
-			<button type="button" class="btn btn-social-icon-text btn-facebook">
-				<i class="mdi mdi-facebook"></i>Facebook
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-youtube">
-				<i class="mdi mdi-youtube"></i>Youtube
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-twitter">
-				<i class="mdi mdi-twitter"></i>Twitter
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-dribbble">
-				<i class="mdi mdi-dribbble"></i>Dribbble
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-linkedin">
-				<i class="mdi mdi-linkedin"></i>Linkedin
-			</button>
-			<button type="button" class="btn btn-social-icon-text btn-google">
-				<i class="mdi mdi-google-plus"></i>Google
-			</button>
-		</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-
-	</div>
 	<!-- main-panel ends -->
 
 </body>

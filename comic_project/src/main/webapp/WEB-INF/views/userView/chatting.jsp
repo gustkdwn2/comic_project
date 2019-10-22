@@ -2,18 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="../includes/userHeader.jsp"%>
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
 <link rel="stylesheet" href="/resources/css/chatCss.css">
-
-<body>
-	<div class="chat_window">
+	<div class="chat_window" id="chat_window">
 		<div class="top_menu">
 			<div class="buttons">
-				<div class="button close"></div>
+				<div class="button close" id="close"></div>
 				<div class="button minimize"></div>
 				<div class="button maximize"></div>
 			</div>
-			<div class="title">Chat</div>
+			<div class="title">${ roomNum }방 채팅</div>
 		</div>
 		<ul class="messages" id="messages${ roomNum }"></ul>
 		<div class="bottom_wrapper clearfix">
@@ -34,19 +32,12 @@
 
 	</div>
 
-</body>
-
+<script src="/resources/js/userWebsocket.js"></script>
 <script type="text/javascript">
-var sessionValue = "<c:out value = '${roomNum}' />";
+var messages = $("#messages" + sessionValue);
+var sessionValue = ${roomNum};
 var chatRoom = sessionValue;
 var rightLeft;
 var checkInOut;
 var test;
-
-$(document).ready(function() {
-	
-});
-
 </script>
-
-</html>
