@@ -32,6 +32,7 @@ body {
 	cursor: pointer;
 	color: #555555;
 	height: 300px;
+	border-right:3px solid #f3f3f3;
 	background-color: #686868;
 }
 
@@ -132,31 +133,13 @@ body {
 
 	<div class="div_menu">${i}번방</div>
 
+	
 	<div class="div_con">
 		사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font
 			id="user_time${i}">없음</font><br> 사용상태 : <font
 			id="user_status${i}">없음</font><br> 주문상태 : <font
 			id="order_status${i}">없음</font><br>
 	</div>
-
-						<div class="div_con">
-							사 용 자 : <font id="user2">없음</font><br>
-							사용시간 : <font id="user_time2">없음</font><br> 
-							사용상태 : <font id="user_status2">없음</font><br> 
-							주문상태 : <font id="order_status2">없음</font><br>
-						</div>
-
-						<div class="column" onclick="method_startnstop('3');">
-							<!-- <div class="div_root"> -->
-	
-							<div class="div_menu">3번방</div>
-	
-							<div class="div_con">
-								사 용 자 : <font id="user3">없음</font><br>
-								사용시간 : <font id="user_time3">없음</font><br> 
-								사용상태 : <font id="user_status3">없음</font><br> 
-								주문상태 : <font id="order_status3">없음</font><br>
-							</div>
 	
 							<div class="div_bottom">
 								<input type="button" value="주문내역보기"
@@ -168,20 +151,19 @@ body {
 									style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 							</div>
 	
-						</div>
+						
 
 </div>
+
 		<c:if test="${i%3==0}">
 			</div><br>
 			</c:if>
 </c:forEach>
-
-
-										</div>
-										
-									</div>
-								</div>
-							</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
 							<!-- <div class="col-md-0"> -->
 							<div class="card-body">
 								<%-- <h4 class="card-title">Inverse buttons</h4>
