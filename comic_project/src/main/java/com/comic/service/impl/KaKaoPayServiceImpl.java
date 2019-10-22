@@ -35,7 +35,8 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				conn.setRequestMethod("POST");
 				conn.setDoOutput(true);
-				//admin a258e66f44b2c8ba226f22660cda5933
+				//admin key a258e66f44b2c8ba226f22660cda5933  현태 api  port 8080
+				//admin key 57a8cadc155aba24a64f1f344d81bfe8  인호 api  port 8090
 				conn.setRequestProperty("Authorization", "KakaoAK 57a8cadc155aba24a64f1f344d81bfe8");
 				
 				BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
