@@ -5,6 +5,7 @@ $(document).ready(function() {
 	};
 
 	socket.onmessage = function(event) {
+		console.log(event.data);
 		var textData = event.data.split('|');
 		test = textData[0];
 		message_side = 'left';
@@ -13,7 +14,7 @@ $(document).ready(function() {
 
 	socket.onclose = function() {
 		console.log("소켓 끝");
-	};
+	}; 
 	 
 	var Message;
 	Message = function(arg) {
@@ -21,6 +22,7 @@ $(document).ready(function() {
 		this.draw = function(_this) {
 			return function() {
 				var $message;
+				console.log(chatRoom);
 				test = chatRoom;
 				console.log(test);
 				$message = $($('.message_template' + test).clone().html());
@@ -67,7 +69,7 @@ $(document).ready(function() {
 		} else {
 			checkInOut = 'admin';
 		}
-		
+		console.log(chatRoom);
 		console.log($('.message_input').val());
 		socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val());
 		$('.message_input').val('');
@@ -84,6 +86,7 @@ $(document).ready(function() {
 			}
 			
 			console.log($('.message_input').val());
+			console.log(chatRoom);
 			socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val());
 			$('.message_input').val('');
 		}

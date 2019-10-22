@@ -14,7 +14,7 @@
 			<div style="background-color: #37363a; height: 150px;">
 				<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:370px; margin-top:20px; float: left "/>
 				<div class="content-section-heading text-center" style="width: 700px; height: 100px; margin-top:30px; float: left;"><br/>
-					<h1 style="color:white;">${ roomNum } 번방 홈 &emsp;&emsp; 02:15:39</h1>
+					<h1 style="color:white;">${ roomNum } 번방 홈 &emsp;&emsp; <span id="main_time"></span></h1>
 				</div> 
 				<div style="width: 600px; height: 100px; float: right; color:#f4e362; margin-top:60px; font-size: 20px;" >
 					<a style="color:#f4e362;" href='javascript:headermembermodifyBtn()'>회원 수정</a>
@@ -92,10 +92,12 @@
 	<form id="operForm"></form>
 </body>
 <script type="text/javascript">
+var sessionValue = ${roomNum};
 
 $(document).ready(function(){
+	ajaxtogetdb_comic_room_uselist();
 	var operForm = $("#operForm");
-	
+
 	$("#userOrderView").on("click", function(e){
 		operForm.attr("method", "get");
 		operForm.attr("action","/userView/order");
@@ -163,8 +165,70 @@ $(document).ready(function(){
 
 		$('#billModal').show();
 	});
-	
-		
 });
+
+/* 여기부터 시작관련 */
+function ajaxtogetdb_comic_room_uselist() {			
+	$.ajax({
+		url : '/managerpos/get_room_uselist',
+		dataType : 'json',
+		contentType : "application/json; charset=utf-8;",
+		type : 'POST',
+		success : function(data) {
+			
+			var text="";
+			console.log(data[0]);
+			$.each(data, function(index,list){
+				var number=1;
+				number = list.roomuse_num;
+
+				if(number == sessionValue) {
+					time_start(list.starttime, number);
+				}
+			});
+			
+		},
+		error : function(data) {
+			console.log("실패");
+		}
+	});
+}
+
+function time_start(time, num) {
+
+	time =parseInt(time)//가끔 여기서 사용된 파라미터가 string형태로 읽어와져서 형변환을 한번해준다.
+
+	time += 1;
+	hour = Math.floor(time / 3600);
+	hour = time_modify(hour);
+
+	minute = Math.floor(time%3600 / 60);
+	minute = time_modify(minute);
+
+	var second = time % 60;
+	second = time_modify(second);
+
+	document.getElementById('main_time').innerHTML = hour
+			+ ":" + minute + ":" + second;
+
+	var t = setTimeout(function() {
+		time_start(time, num)
+	}, 1000)
+
+
+}
+
+function time_modify(time) {
+
+	if (time.toString().length == 1) {
+		time = "0" + time;
+	}
+
+	if(time==null){
+	time=0;
+		}
+	
+	return time;
+}
 </script>
 </html>

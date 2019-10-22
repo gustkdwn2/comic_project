@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="cateModalRegisterBtn" type="button" class="btn btn-primary">Resgister</button>
+                <button id="cateModalRegisterBtn1" type="button" class="btn btn-primary">Resgister</button>
             </div>
         </div>
     </div>
@@ -149,7 +149,8 @@
         	modalCateAdd.modal("show"); 
         });
 
-        $("#cateModalRegisterBtn").on("click", function (e) {
+        $("#cateModalRegisterBtn1").on("click", function (e) {
+			console.log("d123");
         	operForm.append("<input type='hidden' name='category' value='" + modalInputCategory.val() + "'>");
             operForm.attr("method", 'post');
             operForm.attr("action", "/userOrderManager/categoryAdd");
@@ -163,6 +164,7 @@
 		});
 		
 		$("#cateModalUpdateBtn").on("click", function (e) {
+			console.log("d123");
         	operForm.append("<input type='hidden' name='category' value='" + modalInputCategoryUpdate.val() + "'>");
         	operForm.append("<input type='hidden' name='number' value='" + indexNum + "'>");
             operForm.attr("method", 'post');

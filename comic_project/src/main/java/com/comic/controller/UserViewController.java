@@ -26,7 +26,12 @@ public class UserViewController {
 	
 	private UserOrderManegerService userOrderManegerService;
 	
-	@PostMapping("/main")
+	@PostMapping("/mainPro")
+	public void mainViewPro() {
+		
+	}
+	
+	@GetMapping("/main")
 	public void mainView() {
 		
 	}

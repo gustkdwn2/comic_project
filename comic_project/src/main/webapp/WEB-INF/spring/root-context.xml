@@ -58,6 +58,15 @@
 	</websocket:handlers>
 	<bean id="echoHandler" class="com.comic.util.EchoHandler"></bean>
 	
-	<context:component-scan base-package="com.comic.task" />
+	<websocket:handlers>
+		<websocket:mapping handler="echoHandlerOrder" path="/echo_order" />
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></bean>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+	<bean id="echoHandlerOrder" class="com.comic.util.EchoHandlerOrder"></bean>
+	
+	
+	<context:component-scan base-package="com.comic.*" />
 
 </beans>

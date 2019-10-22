@@ -121,8 +121,11 @@ td {
     </div>
 </div>
 </body>
-<script src="/resources/js/userOrderManeger.js?after"></script> 
+<script src="/resources/js/userOrderManeger.js?after"></script>
+<script src="/resources/js/orderWebsocket.js"></script>
 <script type="text/javascript">
+var sessionValue = ${roomNum};
+var memberid = "<c:out value='${memberid}' />";
 	$(document).ready(function() {
 		var categoryValue = "";
 		var orderProduct = $(".orderProduct");
@@ -237,11 +240,12 @@ td {
 			orderProductService.resultOrder(orderArray, function(e) {
 				productAllDelete();
 				$("#successModal").modal("show");
-			}); 
+				socket.send(sessionValue + ",주문," + memberid);
+			});
 		});
 
 		$("#OK").on("click", function(){
-				$("#successModal").modal("hide");
+			$("#successModal").modal("hide");
 		});
 	});
 </script>

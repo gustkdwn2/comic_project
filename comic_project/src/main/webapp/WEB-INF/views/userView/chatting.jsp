@@ -11,7 +11,7 @@
 				<div class="button minimize"></div>
 				<div class="button maximize"></div>
 			</div>
-			<div class="title">Chat</div>
+			<div class="title">${ roomNum }방 채팅</div>
 		</div>
 		<ul class="messages" id="messages${ roomNum }"></ul>
 		<div class="bottom_wrapper clearfix">

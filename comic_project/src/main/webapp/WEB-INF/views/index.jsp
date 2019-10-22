@@ -101,7 +101,7 @@ $(document).ready(function(){
 	$("a[name='roomMove']").on("click", function(e){
 		operForm.append("<input type='hidden' name='roomNum' value='" + $(this).attr('value') + "'>");
 		operForm.attr("method", "post");
-		operForm.attr("action","/userView/main");
+		operForm.attr("action","/userView/mainPro");
 		operForm.submit();
 	});
 

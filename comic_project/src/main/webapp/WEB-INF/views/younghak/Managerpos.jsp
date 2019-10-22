@@ -124,8 +124,8 @@ body {
 		<div class="template-demo">
 			<div class="row">
 			
-				<div class="column" onclick="method_startnstop('1');">
-
+				<div class="column"">
+	<button id ="roomClose">실험용 닫기</button>
 	<div class="div_menu">1번방</div>
 
 	<div class="div_con">
@@ -140,15 +140,15 @@ body {
 				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
 		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
 				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
-		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
-				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
+		<button type="button" value="1" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;" name="chat">채팅하기</button>
 	</div>
 
 	<!-- </div> -->
 
 </div>
 
-<div class="column" onclick="method_startnstop('2');">
+<div class="column">
 	<!-- <div class="div_root"> -->
 
 	<div class="div_menu">2번방</div>
@@ -165,13 +165,13 @@ body {
 				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
 		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
 				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
-		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
-				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
+		<button type="button" value="2" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;" name="chat">채팅하기</button>
 	</div>
 
 </div>
 
-<div class="column" onclick="method_startnstop('3');">
+<div class="column">
 	<!-- <div class="div_root"> -->
 
 		<div class="div_menu">3번방</div>
@@ -188,8 +188,8 @@ body {
 				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
 		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
 				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
-		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
-				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
+		<button type="button" value="3" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;" name="chat">채팅하기</button>
 	</div>
 
 	</div>
@@ -197,7 +197,7 @@ body {
 <br>
 
 <div class="row">
-	<div class="column" onclick="method_startnstop('4');">
+	<div class="column">
 	<!-- <div class="div_root"> -->
 
 	<div class="div_menu">4번방</div>
@@ -214,12 +214,12 @@ body {
 				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
 		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
 				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
-		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
-				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
+		<button type="button" value="4" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;" name="chat">채팅하기</button>
 	</div>
 
 </div>
-<div class="column" onclick="method_startnstop('5');">
+<div class="column">
 	<!-- <div class="div_root"> -->
 
 	<div class="div_menu">5번방</div>
@@ -235,12 +235,12 @@ body {
 				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
 		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
 				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
-		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
-				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
+		<button type="button" value="5" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;" name="chat">채팅하기</button>
 	</div>
 
 </div>
-<div class="column" onclick="method_startnstop('6');">
+<div class="column">
 	<!-- <div class="div_root"> -->
 
 	<div class="div_menu">6번방</div>
@@ -257,8 +257,8 @@ body {
 				style="height: 40px; width:150px; margin-top:10px; margin-left:20px;"> 
 		<input type="button" value="결제하기" class="btn btn btn-secondary btn-rounded btn-sm" 
 				style="height: 40px; width:100px; margin: 10px 10px 0 20px;"> 
-		<input type="button" value="채팅하기" class="btn btn btn-secondary btn-rounded btn-sm" 
-				style="height: 40px; width:100px; margin: 10px 10px 0 10px;"> 
+		<button type="button" value="6" class="btn btn btn-secondary btn-rounded btn-sm" 
+				style="height: 40px; width:100px; margin: 10px 10px 0 10px;" name="chat">채팅하기</button>
 	</div>
 
 				</div>
@@ -288,11 +288,12 @@ body {
 
 	<script>
 	//초기화작업
-	var check = new Array(7); //방의 개수보다 1크게
 	
-	array_init(check);
+	var check_arr = new Array(7); //방의 개수보다 1크게
+	
+	array_init(check_arr);
 
-	ajaxtogetdb_comic_room_uselist();
+	ajaxtogetdb_comic_room_uselist(); 
 	//초기화작업
 	
 		function openTab(tabName) {
@@ -314,36 +315,24 @@ body {
 
 		
 
-		function array_init(check) {
-			for (var i = 0; i < check.length; i++) {
-				check[i] = false;
+		function array_init(check_arr) {
+			for (var i = 0; i < check_arr.length; i++) {
+				check_arr[i] = false;
 			}
 		}
 
-		function method_startnstop(num) {
+		
+		function method_startnstop(num, id) {
 
-			if (!check[num]) {
-				check[num] = true;
+			if (!check_arr[num]) {
+				check_arr[num] = true;
 				time_start(0, num);
-				/* 테스트용 */
-				var user = "tmehfld";
-				var user_status = "unavail";
-				var order_status = "unavail";
-
-				var roomuse_id = "tmehfld";
-				var roomuse_num = num;
-				var roomuse_status = "on";
-
-				document.getElementById('user' + num).innerHTML = user;
-				document.getElementById('user_status' + num).innerHTML = roomuse_status;
-				document.getElementById('order_status' + num).innerHTML = order_status;
 				
-				ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
-						roomuse_status);
+				ajaxtosenddb_comic_room_use2(id, num, "on");
 
 			} else {
 
-				check[num] = false;
+				check_arr[num] = false;
 
 				var roomuse_id = "없음";
 				var roomuse_num = num;
@@ -360,9 +349,20 @@ body {
 		}
 
 		function startnstop_init(id,num,starttime,status) {
-
-			if (!check[num]) {
-				check[num] = true;
+			/*console.log("1 방 "+check_arr[0]);
+			console.log("2 방 "+check_arr[1]);
+			console.log("3 방 " + check_arr[2]);
+			console.log("4 방 " + check_arr[3]);
+			console.log("5 방 " + check_arr[4]);
+			console.log("6 방 " +check_arr[5]);*/
+			//console.log("6 방 " +status); 
+			//alert(" 방 넘버 : "+  num+"방상태"+status+"방 불리언"+check_arr[num]);
+			if(status=="on"){
+				check_arr[num]=false;
+				}
+			
+			if (!check_arr[num]) {
+				check_arr[num] = true;
 				time_start(starttime, num);
 				/* 테스트용 */
 				var order_status = "unavail";
@@ -372,8 +372,7 @@ body {
 				document.getElementById('order_status' + num).innerHTML = order_status;
 				
 			} else {
-
-				check[num] = false;
+				check_arr[num] = false;
 
 				var roomuse_id = "없음";
 				var roomuse_num = num;
@@ -387,61 +386,9 @@ body {
 			}
 		}
 
-		function ajaxtogetdb_comic_room_uselist() {			
-			
-			$.ajax({
-				url : '/managerpos/get_room_uselist',
-				dataType : 'json',
-				contentType : "application/json; charset=utf-8;",
-				type : 'POST',
-				success : function(data) {
-					
-					var text="";
-					console.log(data[0]);
-					$.each(data, function(index,list){
-						var number=1;
-						number = list.roomuse_num;
-						
-						startnstop_init(list.roomuse_id,number,list.starttime,list.roomuse_status);
-					});
-					
-				},
-				error : function(data) {
-					console.log("실패");
-				}
-			});
-		}
-
-
-		function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
-				roomuse_status) {
-			var list = [ roomuse_id, roomuse_num,
-				roomuse_status];
-			//사용자,시작시간,사용자 상태,주문 상태,방번호
-			//alert("보내기전의 list" + list);
-			var sendData = {
-				'list' : list
-			};
-
-			$.ajax({
-				url : '/managerpos/room_start2',
-				dataType : 'json',
-				data : JSON.stringify(sendData),
-				contentType : "application/json; charset=utf-8;",
-				type : 'POST',
-				success : function(data) {
-					console.log("성공");
-					alert("success!");
-				},
-				error : function(data) {
-					console.log("실패");
-				}
-			});
-		}
-
 		function time_start(time, num) {
 			//	alert("0");
-			if (!check[num]) {
+			if (!check_arr[num]) {
 
 			} else {
 				//console.log(time);
@@ -493,7 +440,17 @@ body {
 					+ "str.length = " + str.length)
 		}
 	</script>
-
-
+	<!-- 상주 -->
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("button[name='chat']").on("click", function() {
+			var roomNum = $(this).attr('value');
+			window.open("/chat/chatting?room=" + roomNum,"_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
+		});
+		$("#roomClose").on("click", function() {
+			method_startnstop(1, "user");
+		});
+	});
+	</script>
 </body>
 </html>
