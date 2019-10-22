@@ -1,5 +1,6 @@
 INDEX VERSION 1.4+C:\Users\1027\Documents\GitHub\comic_project\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 <<<<<<< HEAD
+<<<<<<< HEAD
 405375580.index
 151391011.index
 2232667632.index
@@ -14,3 +15,8 @@ INDEX VERSION 1.4+C:\Users\1027\Documents\GitHub\comic_project\.metadata\.plugin
 3443475682.index
 405375580.index
 >>>>>>> sub_master
+=======
+3628056960.index
+2232667632.index
+405375580.index
+>>>>>>> parent of 148790b... asdf
