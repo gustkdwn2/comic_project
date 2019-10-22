@@ -80,8 +80,9 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 
 	@Override
 	public void insertSale(String id) {
-		kakaoPayMapper.insertproductSale();
+		kakaoPayMapper.insertproductSale(id);
 		kakaoPayMapper.insertroomSale(id);
+		kakaoPayMapper.resetRoom(id);
 	}
 	
 
