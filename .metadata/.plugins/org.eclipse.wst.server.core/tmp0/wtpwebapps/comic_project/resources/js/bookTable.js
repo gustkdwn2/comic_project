@@ -118,9 +118,9 @@ function bookModify(book_name) {
 			            
 			            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
 			            str +=" data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-			            str += "<span> "+ attach.fileName+"</span>";
+			            str += "<span></span>";
 			            str += "<button id='imageGetBtn' type='button' data-file=\'"+fileCallPath+"\' data-type='image' "
-			            str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+			            str += "class='btn btn-inverse-danger btn-icon'><i class='mdi mdi-close'></i></button><br>";
 			            str += "<img src='/display?fileName="+fileCallPath+"'>";
 			            str += "</div>";
 			            str +"</li>";
@@ -136,6 +136,7 @@ function bookModify(book_name) {
 			    	}
 			    });
 				$(".uploadResultGet ul").html(str);
+				$('#uploadFileGet').attr('disabled', true);
 			});
 	    	
 	    	$('#bookGet').show();

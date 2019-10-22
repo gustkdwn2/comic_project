@@ -13,6 +13,10 @@
 		SELECT * FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
 	</select>
 	
+	<insert id="roomuse">
+		INSERT INTO COMIC_ROOMUSE(ROOMUSE_ID, ROOMUSE_NUM, ROOMUSE_STARTTIME, ROOMUSE_STATUS) VALUES (#{roomuse_id},#{roomnum},sysdate,'on')
+	</insert>
+	
 	<select id="MemberGetList" resultType="com.comic.model.MemberVO">
 		SELECT * FROM COMIC_MEMBER
 	</select>
@@ -68,6 +72,9 @@
       INSERT INTO COMIC_EMPLOYEE VALUES ((SELECT NVL(MAX(EMPLOYEE_NUM),1000)+1 FROM COMIC_EMPLOYEE),
       #{EMPLOYEE_PWD}, #{EMPLOYEE_NAME}, #{EMPLOYEE_PHONE}, #{EMPLOYEE_ACCOUNT}, SYSDATE, #{EMPLOYEE_POSITION},
        #{EMPLOYEE_PAY})
+    	<selectKey keyProperty="EMPLOYEE_NUM" resultType="integer" order="AFTER">
+	    	select MAX(EMPLOYEE_NUM) as EMPLOYEE_NUM from COMIC_EMPLOYEE
+	  	</selectKey>
    </insert>
 
 	<select id="employeeLogin" resultType="com.comic.model.EmployeeVO">

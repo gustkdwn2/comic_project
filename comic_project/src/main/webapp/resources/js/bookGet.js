@@ -1,14 +1,15 @@
 $(document).ready(function() {
-	
+	var num = 1;
 	$(".uploadResultGet").on("click", "button", function(e){
 	    
 	    console.log("delete file");
 	      
 	    if(confirm("삭제 하시겠습니까?")){
-	    
+	    	$('#uploadFileGet').attr('disabled', false);
+	    	$("#uploadFileGet").val("");
 	    	var targetLi = $(this).closest("li");
 	    	targetLi.remove();
-
+	    	num = 0;
 	    }
 	});
 	
@@ -19,18 +20,20 @@ $(document).ready(function() {
 	    
 		if(fileSize >= maxSize){
 			alert("파일 사이즈 초과");
+			$("#uploadFileGet").val("");
 			return false;
 	    }
 	    
 	    if(regex.test(fileName)){
 	    	alert("해당 종류의 파일은 업로드할 수 없습니다.");
+	    	$("#uploadFileGet").val("");
 	    	return false;
 	    }
 	    return true;
 	}
 	  
 	$("#uploadFileGet").change(function(e){
-
+		num = 1;
 		var formData = new FormData();
 	    
 	    var inputFile = $("#uploadFileGet");
@@ -57,7 +60,7 @@ $(document).ready(function() {
 			  showUploadResultGet(result); //업로드 결과 처리 함수 
 	      }
 	    }); //$.ajax
-	    
+	    $('#uploadFileGet').attr('disabled', true);
 	  });
 	
 	function showUploadResultGet(uploadResultArr){
@@ -75,9 +78,9 @@ $(document).ready(function() {
 				str += "<li data-path='"+obj.uploadPath+"'";
 				str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 				str +" ><div>";
-				str += "<span> "+ obj.fileName+"</span>";
+				str += "<span></span>";
 				str += "<button id='imageGetBtn' type='button' data-file=\'"+fileCallPath+"\' "
-				str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "data-type='image' class='btn btn-inverse-danger btn-icon'><i class='mdi mdi-close'></i></button><br>";
 				str += "<img src='/display?fileName="+fileCallPath+"'>";
 				str += "</div>";
 				str +"</li>";
@@ -147,6 +150,11 @@ $(document).ready(function() {
 		      $("#book_category_get").focus();
 		      return false;
 		}
+		if(num == 0) {
+			alert("이미지를 넣어주세요.")
+			$("#uploadFileGet").focus();
+			return false;
+		}
 	        
 	    formObj.append(str).submit();
         
@@ -158,6 +166,7 @@ $(document).ready(function() {
 		$("#card-body-get").scrollTop(0);
 		$("#bookGet").find('form')[0].reset();
 		$('#bookGet').hide();
+		$('#modalstyle2').css('display','none');
 	});
 	
 });

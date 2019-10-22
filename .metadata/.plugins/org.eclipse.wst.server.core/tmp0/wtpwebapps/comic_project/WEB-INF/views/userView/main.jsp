@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../includes/userHeader.jsp"%>
+<script src="/resources/js/header.js"></script>
 
 <style type="text/css">
 .content-wrapper {
@@ -11,12 +12,16 @@
 	<div class="main-penal">
 		<div class="content-wrapper">
 			<div style="background-color: #37363a; height: 150px;">
-				<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:370px; margin-top:20px; float: left "/>
-				<div class="content-section-heading text-center" style="width: 700px; height: 100px; margin-top:30px; float: left;"><br/>
+				<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:300px; margin-top:20px; float: left "/>
+				<div class="content-section-heading text-center" style="width: 500px; height: 100px; margin-top:30px; float: left;"><br/>
 					<h1 style="color:white;">${ roomNum } 번방 홈 &emsp;&emsp; 02:15:39</h1>
 				</div> 
-				<div style="width: 600px; height: 100px; float: right; color:#f4e362; margin-top:60px; font-size: 20px;">
-				 회원 수정 
+				<div style="width: 300px; height: 100px; float: right; color:#f4e362; margin-top:60px; font-size: 20px;" >
+					<a style="color:#f4e362;" href='javascript:headermembermodifyBtn()'>회원 수정</a>
+					&emsp;
+					<a style="color:#f4e362;" href="${path}/member/MemberLogout">로그 아웃</a>
+					&emsp;
+					<a href="/" style="color:#f4e362; font-size: 20px;">임의 창</a>
 				</div>
 				<br/><br/>
 			</div>
@@ -78,6 +83,9 @@
 			</div>
 		</div>
 	</div>
+		
+	<jsp:include page="headerMemberModifyModal.jsp" />
+	<jsp:include page="headerMemberModifyPasswordModal.jsp" />
 	<jsp:include page="billModal.jsp" />
 	<jsp:include page="productBillModal.jsp" />
 	<!-- hidden form -->

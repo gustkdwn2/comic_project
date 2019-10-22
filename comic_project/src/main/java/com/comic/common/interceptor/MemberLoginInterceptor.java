@@ -5,11 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import lombok.extern.log4j.Log4j;
@@ -18,8 +15,7 @@ import lombok.extern.log4j.Log4j;
 public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
 
     private static final String LOGIN = "Memberlogin";
-    private static final Logger logger = LoggerFactory.getLogger(MemberLoginInterceptor.class);
-
+    
     //Controller 실행후 실행
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
@@ -34,7 +30,6 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
             httpSession.setAttribute("memberid", modelMap.get("memberid"));
             Object destination = httpSession.getAttribute("destination");
             if(destination != null) {
-            	System.out.println(destination);
                 RequestDispatcher rd = request.getRequestDispatcher(""+destination);
                 rd.forward(request, response);
             } else {
