@@ -12,7 +12,7 @@
 		<div style="background-color: #37363a; height: 150px;">
 			<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:40px; margin-top:20px; "/>
 			<div style="width: 1000px; float:right; height: 100px; color:#f4e362; margin-top:50px; font-size: 50px;">
-			 여기는 편의를 위한 임시 창입니다
+			 <h1>${ memberid } ----- ${ roomNum }</h1>
 			</div>
 			<br/><br/>
 		</div>

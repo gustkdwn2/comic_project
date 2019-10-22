@@ -27,8 +27,13 @@ public class UserViewController {
 	private UserOrderManegerService userOrderManegerService;
 	
 	@PostMapping("/mainPro")
-	public void mainViewPro(HttpSession session) {
-		//session.setAttribute("roomNum", roomNum);
+	public void mainViewPro() {
+		
+	}
+	
+	@GetMapping("/mainPro")
+	public void mainPro() {
+		
 	}
 	
 	@GetMapping("/main")
