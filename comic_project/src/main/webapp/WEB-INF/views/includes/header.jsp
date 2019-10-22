@@ -46,7 +46,23 @@
 </head>
 
 <body>
+<script>
+//var test  = location.pathname;//프로젝트 뒤의 값을 가져온다 //project:"managerpos/login"
+//alert('${request.getRequestURI()}');
+//alert(test);
 
+   checksession();
+   function checksession() {
+      var sessempid = "${sessionScope.EMPID}";
+      //alert(sessempid);
+      if (sessempid== ""&&location.pathname!="/managerpos/login") {
+         alert("로그인 이력이 없으므로 로그인화면으로 이동합니다.");
+         location.href = "/managerpos/login";
+      }
+   }
+   // 퇴근 시 ${sessionScope.EMPID} 값이 tmp라는 세션으로 저장이 되고, tmp 값일 때는 포스화면은 계쏙 볼수있으, 다른사람이 로그인 시 tmp 값이 사라지며 그사람 세션유지
+   
+</script>
    <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
