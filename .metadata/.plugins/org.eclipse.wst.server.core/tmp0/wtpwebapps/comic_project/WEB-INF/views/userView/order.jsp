@@ -60,12 +60,15 @@ td {
 		<div class="content-wrapper">
 			<div style="background-color: #37363a; height: 150px;">
 				<img src="/resources/images/comic_image.png" alt=""
-					style="width: 200px; height: 100px; margin-left: 150px; margin-top: 20px; float: left" />
-				<div class="content-section-heading text-center" style="width: 700px; height: 100px; margin-top: 30px; float: left; ">
-					<br/><h1 style="color: white;">${ roomNum }번방&emsp;상품 주문&emsp;&emsp; 02:15:39</h1>
+					style="width: 200px; height: 100px; margin-left: 600px; margin-top: 20px; float: left" />
+				<div class="content-section-heading text-center" style="width: 500px; height: 100px; margin-top: 30px; float: left; ">
+					<br/><h1 style="color: white;">${ roomNum }번방&emsp;02:15:39</h1>
 				</div><br/><br/>
 			</div>
 			
+			<div style="margin:10px 150px 0 0; width:200x; text-align: center;">
+			<h2 class=".h2"><a href="javascript:home()">홈</a> > 상품주문</h2>
+			</div>
 			<div style="float: left; margin-top:45px;">
 				<div style="background-color: #dadfe4; width: 600px; margin-left:250px;">
 						
@@ -140,6 +143,15 @@ td {
 </body>
 <script src="/resources/js/userOrderManeger.js?after"></script>
 <script type="text/javascript">
+	var roomNum = "<c:out value='${roomNum}'/>";
+	function home(){
+		var operForm = $("#operForm");
+	
+		operForm.append("<input type='hidden' name='roomNum' value='" + roomNum + "'>");
+		operForm.attr("method", "post");
+		operForm.attr("action","/userView/main");
+		operForm.submit();
+	}
 	$(document)
 			.ready(
 					function() {

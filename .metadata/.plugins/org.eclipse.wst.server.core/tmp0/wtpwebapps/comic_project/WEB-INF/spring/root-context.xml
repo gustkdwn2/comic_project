@@ -50,7 +50,7 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
-	<websocket:handlers>
+ 	<websocket:handlers>
 		<websocket:mapping handler="echoHandler" path="/echo" />
 		<websocket:handshake-interceptors>
 			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></bean>
