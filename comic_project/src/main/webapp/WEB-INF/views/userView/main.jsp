@@ -12,11 +12,11 @@
 	<div class="main-penal">
 		<div class="content-wrapper">
 			<div style="background-color: #37363a; height: 150px;">
-				<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:300px; margin-top:20px; float: left "/>
+				<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:400px; margin-top:20px; float: left "/>
 				<div class="content-section-heading text-center" style="width: 500px; height: 100px; margin-top:30px; float: left;"><br/>
 					<h1 style="color:white;">${ roomNum } 번방 홈 &emsp;&emsp; 02:15:39</h1>
 				</div> 
-				<div style="width: 300px; height: 100px; color:#f4e362; float:right; margin-top:60px; margin-right:350px; font-size: 20px;" >
+				<div style="width: 300px; height: 100px; color:#f4e362; float:right; margin-top:60px; margin-right:400px; font-size: 20px;" >
 					<a style="color:#f4e362;" href='javascript:headermembermodifyBtn()'>회원 수정</a>
 					&emsp;
 					<a style="color:#f4e362;" href="${path}/member/MemberLogout">로그 아웃</a>
@@ -74,7 +74,7 @@
 					<div class="col-lg-4"> 
 						<a class="portfolio-item" href="#"> <span class="caption"> <span class="caption-content">
 									<h3>사용 종료</h3>
-									<p class="mb-0">사용 종료를 하면 로그아웃되고 결제 페이지로 넘어갑니다</p>
+									<p class="mb-0">사용 종료를 하면 카카오페이로 연결되고 로그아웃됩니다</p>
 							</span>
 						</span> <img class="img-fluid" src="/resources/images/exitIcon.png" alt="" style="width:370px; height:250px;">
 						</a>

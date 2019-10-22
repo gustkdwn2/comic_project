@@ -113,6 +113,7 @@ body {
 			<%@ include file="./younghak_header.jsp"%>
 			<div class="card" style="background-color: #f3f3f3;">
 				<div class="row" style=" margin-left: 30px;">
+					
 					<div class="column" onclick="method_startnstop('1');" style="margin-right: 10px;">
 
 						<div class="div_menu">1번방</div>

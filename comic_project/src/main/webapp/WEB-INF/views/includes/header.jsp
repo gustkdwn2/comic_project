@@ -28,8 +28,8 @@
 <script src="/resources/vendors/datatables.net/jquery.dataTables.js"></script>
 <script src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 <script src="/resources/js/off-canvas.js"></script>
-<script src="/resources/js/hoverable-collapse.js"></script>
-<script src="/resources/js/template.js"></script>
+<script src="/resources/js/hoverable-collapse.js?ver=44"></script>
+<script src="/resources/js/template.js?ver=10"></script>
 <script src="/resources/js/dashboard.js"></script>
 <script src="/resources/js/data-table.js"></script>
 <script src="/resources/js/jquery.dataTables.js"></script>
@@ -38,10 +38,6 @@
 
 <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
 <script src="/resources/js/userWebsocket.js"></script>
-
-</body>
-
-</html>
 
 </head>
 
@@ -57,12 +53,8 @@
 					<a class="navbar-brand brand-logo" href="/managerpos/managerpos">
 					<img src="/resources/images/comic_image.png" alt="" style="width: 70px; height: 30px;"/></a>
 					<a class="navbar-brand brand-logo" href="/managerpos/managerpos">
-					<img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 100px; height: 15px;"/></a>
+					<img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 130px; height: 20px;"/></a>
 
-					<button class="navbar-toggler navbar-toggler align-self-center"
-						type="button" data-toggle="minimize">
-						<span class="mdi mdi-sort-variant"></span>
-					</button>
 				</div>
 				<!-- hidden form -->
 				<form id="operForm2"></form>
@@ -70,52 +62,6 @@
 			
 			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 				<ul class="navbar-nav navbar-nav-right">
-<!-- 					<li class="nav-item dropdown mr-1">
-						<a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-							id="messageDropdown" href="#" data-toggle="dropdown"> 
-							<i class="mdi mdi-message-text mx-0"></i> <span class="count"></span>
-						</a>
-						
-						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-							aria-labelledby="messageDropdown">
-							<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-							<a class="dropdown-item">
-								<div class="item-thumbnail">
-									<img src="/resources/images/faces/face4.jpg" alt="image"
-										class="profile-pic">
-								</div>
-								<div class="item-content flex-grow">
-									<h6 class="ellipsis font-weight-normal">David Grey</h6>
-									<p class="font-weight-light small-text text-muted mb-0">
-										The meeting is cancelled</p>
-								</div>
-							</a> <a class="dropdown-item">
-								<div class="item-thumbnail">
-
-
-									<img src="/resources/images/faces/face2.jpg" alt="image"
-										class="profile-pic">
-								</div>
-								<div class="item-content flex-grow">
-									<h6 class="ellipsis font-weight-normal">Tim Cook</h6>
-									<p class="font-weight-light small-text text-muted mb-0">
-										New product launch</p>
-								</div>
-							</a> <a class="dropdown-item">
-								<div class="item-thumbnail">
-
-
-									<img src="/resources/images/faces/face3.jpg" alt="image"
-										class="profile-pic">
-								</div>
-								<div class="item-content flex-grow">
-									<h6 class="ellipsis font-weight-normal">Johnson</h6>
-									<p class="font-weight-light small-text text-muted mb-0">
-										Upcoming board meeting</p>
-								</div>
-							</a>
-						</div>
-					</li> -->
 					
 					<!-- 알림 아이콘 -->
 					<li class="nav-item dropdown mr-4"><a
