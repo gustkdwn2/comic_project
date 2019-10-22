@@ -91,8 +91,8 @@ public class LoginController {
 		if (object != null) {
 			httpSession.removeAttribute("Memberlogin");
 			httpSession.removeAttribute("memberid");
-			httpSession.removeAttribute("roomNum");
-			httpSession.invalidate();
+			httpSession.setAttribute("roomnumber", httpSession.getAttribute("roomNum"));
+			System.out.println(httpSession.getAttribute("roomnumber"));
 		}
 		return "/member/Logout";
 	}

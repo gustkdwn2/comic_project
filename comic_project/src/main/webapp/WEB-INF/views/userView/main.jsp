@@ -99,14 +99,29 @@
 $(document).ready(function(){
 
 	$('#modalstyle').css('display','none');
-
+	
+	var room_num = ${roomNum};
+	var mem_id = '${memberid}';
+	var total_price;
+	
+	$.ajax({
+		type: 'get',
+		url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
+		async : false,
+		dataType: 'json',
+		success: function(data) {
+			total_price = data.total_bill;
+		}
+	});
 	
 	var operForm = $("#operForm");
 	var sendData = { 
-				room_num : 1,
-				id : 'dddd',
-				totalprice : 3000
-			};
+		room_num : room_num,
+		id : mem_id,
+		totalprice : total_price
+	};
+	
+	console.log(sendData);
 	
 	$('#kakaopay').click(function(e){
 		e.preventDefault();

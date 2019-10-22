@@ -3,10 +3,10 @@ package com.comic.service;
 import java.util.Date;
 import java.util.List;
 
+import com.comic.model.EmployeeAttachVO;
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
-import com.comic.model.RoomuseVO;
 
 public interface MemberService {
 	

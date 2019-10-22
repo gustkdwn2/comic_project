@@ -31,6 +31,11 @@ public class UserViewController {
 		
 	}
 	
+	@GetMapping("/main")
+	public void main() {
+		
+	}
+	
 	@GetMapping("/order")
 	public void orderView(Model model, final HttpSession session) {
 		model.addAttribute("roomNum", session.getAttribute("roomNum"));
@@ -52,6 +57,11 @@ public class UserViewController {
 	public @ResponseBody List<UserProductBillVO> userProductBill(@RequestParam("userId") String id) {
 		System.out.println(userOrderManegerService.userProductBill(id));
 		return userOrderManegerService.userProductBill(id);
+	}
+	
+	@GetMapping("/success")
+	public void success() {
+		
 	}
 	
 }
