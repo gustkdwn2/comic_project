@@ -116,14 +116,27 @@ $(document).ready(function(){
 	
 	ajaxtogetdb_comic_room_uselist();
 	var operForm = $("#operForm");
-	var sendData = { 
-		room_num : room_num,
-		id : mem_id,
-		totalprice : total_price
-	};
-	
-	console.log(sendData);
-	
+	var room_num = ${roomNum};
+	var mem_id = '${memberid}';
+	var total_price;
+	   
+   $.ajax({
+      type: 'get',
+      url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
+      async : false,
+      dataType: 'json',
+      success: function(data) {
+         total_price = data.total_bill;
+      }
+   });
+   
+   var sendData = { 
+      room_num : room_num,
+      id : mem_id,
+      totalprice : total_price
+   };
+	   
+
 	$('#kakaopay').click(function(e){
 		e.preventDefault();
 		$.ajax({
@@ -131,14 +144,12 @@ $(document).ready(function(){
 			type : 'get',
 			data : sendData,
 			success : function(res) {
-				console.log(res);
-				console.log(res.payUrl);
 				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
 				timer = setInterval(function(){
-	                  if(popup.closed){
-	                     location.href="http://localhost:8080/"
-	                  }
-	               }, 1000)
+		              if(popup.closed){
+		                 location.href="http://localhost:8080/userView/main?roomNum="+room_num
+		              }
+		        }, 1000)
 			}
 		});
 	});

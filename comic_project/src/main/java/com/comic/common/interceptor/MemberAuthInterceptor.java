@@ -1,5 +1,7 @@
 package com.comic.common.interceptor;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,7 +21,7 @@ public class MemberAuthInterceptor extends HandlerInterceptorAdapter {
     private void saveDestination(HttpServletRequest request) {
     	HttpSession httpSession = request.getSession();
     	String roomNum = request.getParameter("roomNum");
-        httpSession.setAttribute("roomNum", roomNum);
+    	httpSession.setAttribute("roomNum", roomNum);
         String uri = request.getRequestURI();
         String query = request.getQueryString();
         if (query == null || query.equals("null")) {
