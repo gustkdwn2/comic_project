@@ -41,4 +41,6 @@ public interface MemberService {
 	// 룸사용시작
 	public void roomuse(String roomuse_id, int roomnum);
 	
+	public List<EmployeeAttachVO> getAttachList(int employee_num);
+	
 }

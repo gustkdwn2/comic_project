@@ -57,12 +57,14 @@
 			</div>
 		</div>
 	</div>
+	<div id="modalstyle" class="modal-backdrop show"></div>
 	<jsp:include page="settlementModal.jsp" />	
 </body>
 
-<script src="/resources/js/inhosettlement.js?after"></script>
+<script src="/resources/js/inhosettlement.js?ver=1"></script>
 <script>
 	//오차수량 sorting
+
 	$(document).ready(function() {
 		 var reSortColors = function($table) {
 		     $('tbody tr:odd', $table)

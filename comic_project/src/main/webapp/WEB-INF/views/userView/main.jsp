@@ -84,6 +84,7 @@
 			</div>
 		</div>
 	</div>
+	<div id="modalstyle" class="modal-backdrop show"></div>
 		
 	<jsp:include page="headerMemberModifyModal.jsp" />
 	<jsp:include page="headerMemberModifyPasswordModal.jsp" />
@@ -96,6 +97,10 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+
+	$('#modalstyle').css('display','none');
+
+	
 	var operForm = $("#operForm");
 	var sendData = { 
 				room_num : 1,
@@ -147,6 +152,7 @@ $(document).ready(function(){
 	});
 
 	$("#billModalBtn").on("click", function(e){
+		$('#modalstyle').css('display','');
 		$.ajax({
 			type: 'get',
 			url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',

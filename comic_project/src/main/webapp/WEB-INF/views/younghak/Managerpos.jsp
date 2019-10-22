@@ -110,33 +110,29 @@ body {
 <body>
 	<div class="main-panel">
 		<div class="content-wrapper">
-			<div class="row">
-				<%@ include file="./younghak_header.jsp"%>
-				<div class="col-12 grid-margin stretch-card">
-					<div class="card">
-						<div class="row">
-				<div class="col-md-12">
-					<div class="card-body">
-						<div class="template-demo">
-							<div class="row">
-							
-								<div class="column" onclick="method_startnstop('1');"
-					style="background: #F6CEF5;">
-				
-					<div class="div_menu">1번방</div>
-				
-					<div class="div_con">
-						사 용 자 : <font id="user1">없음</font><br> 사용시간 : <font
-							id="user_time1">없음</font><br> 사용상태 : <font
-							id="user_status1">없음</font><br> 주문상태 : <font
-							id="order_status1">없음</font><br>
-					</div>
-				
-					<div class="div_bottom_2">
-						<input type="button" value="주문내역보기"> <input
-							type="button" value="결제하기"> <input type="button"
-							value="채팅하기">
-					</div>
+			<%@ include file="./younghak_header.jsp"%>
+			<div class="card" style="background-color: #f3f3f3;">
+				<div class="row" style=" margin-left: 30px;">
+					<div class="column" onclick="method_startnstop('1');" style="margin-right: 10px;">
+
+						<div class="div_menu">1번방</div>
+
+						<div class="div_con">
+							사 용 자 : <font id="user1">없음</font><br>
+							사용시간 : <font id="user_time1">없음</font><br> 
+							사용상태 : <font id="user_status1">없음</font><br> 
+							주문상태 : <font id="order_status1">없음</font><br>
+						</div>
+
+						<div class="div_bottom">
+							<input type="button" value="주문내역보기"
+								class="btn btn-primary btn-sm"
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
+							<input type="button" value="채팅하기"
+								class="btn btn-danger btn-sm"
+								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+						</div>
 
 						<!-- </div> -->
 
@@ -157,15 +153,12 @@ body {
 						<div class="div_bottom">
 							<input type="button" value="주문내역보기"
 								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
 							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
+								class="btn btn-danger btn-sm"
 								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 						</div>
-
 					</div>
 
 					<div class="column" onclick="method_startnstop('3');">
@@ -183,12 +176,10 @@ body {
 						<div class="div_bottom">
 							<input type="button" value="주문내역보기"
 								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
 							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
+								class="btn btn-danger btn-sm"
 								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 						</div>
 
@@ -212,12 +203,10 @@ body {
 						<div class="div_bottom">
 							<input type="button" value="주문내역보기"
 								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
 							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
+								class="btn btn-danger btn-sm"
 								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 						</div>
 
@@ -237,12 +226,10 @@ body {
 						<div class="div_bottom">
 							<input type="button" value="주문내역보기"
 								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
 							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
+								class="btn btn-danger btn-sm"
 								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 						</div>
 
@@ -262,12 +249,10 @@ body {
 						<div class="div_bottom">
 							<input type="button" value="주문내역보기"
 								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
+								style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+						
 							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
+								class="btn btn-danger btn-sm"
 								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 						</div>
 
