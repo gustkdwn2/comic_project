@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.comic.mapper.KakaoPayMapper">
+	<insert id="insertroomSale">
+		insert all
+		into comic_roomsales values
+		(roomuse_id,roomuse_num,roomsales_totalprice,sysdate)
+		select roomuse_id, roomuse_num, (select
+		CEIL(trunc((sysdate-roomuse_starttime)*60*24)/10)*500 from
+		comic_roomuse) as roomsales_totalprice from comic_roomuse where
+		roomuse_id=#{id}
+	</insert>
+	
+	<insert id="insertproductSale">
+		insert all into comic_productsales values (order_id, order_qty, sysdate, product_name, product_price)
+		select order_id, order_qty, product_name, product_price from comic_order a, 
+		comic_productstock b, comic_roomuse c where a.order_product_num =
+		b.product_num and c.roomuse_starttime &lt;= a.order_time
+	</insert>
+	
+</mapper>

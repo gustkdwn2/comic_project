@@ -110,31 +110,33 @@ body {
 <body>
 	<div class="main-panel">
 		<div class="content-wrapper">
-			<%@ include file="./younghak_header.jsp"%>
-			<div class="card" style="background-color: #f3f3f3;">
-				<div class="row" style=" margin-left: 30px;">
-					<div class="column" onclick="method_startnstop('1');" style="margin-right: 10px;">
-
-						<div class="div_menu">1번방</div>
-
-						<div class="div_con">
-							사 용 자 : <font id="user1">없음</font><br>
-							사용시간 : <font id="user_time1">없음</font><br> 
-							사용상태 : <font id="user_status1">없음</font><br> 
-							주문상태 : <font id="order_status1">없음</font><br>
-						</div>
-
-						<div class="div_bottom">
-							<input type="button" value="주문내역보기"
-								class="btn btn-primary btn-sm"
-								style="height: 40px; width: 150px; margin: 10px 20px 0 40px;">
-							<input type="button" value="결제하기"
-								class="btn btn-danger btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 20px 0 0;">
-							<input type="button" value="채팅하기"
-								class="btn btn-success btn-sm"
-								style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
-						</div>
+			<div class="row">
+				<%@ include file="./younghak_header.jsp"%>
+				<div class="col-12 grid-margin stretch-card">
+					<div class="card">
+						<div class="row">
+				<div class="col-md-12">
+					<div class="card-body">
+						<div class="template-demo">
+							<div class="row">
+							
+								<div class="column" onclick="method_startnstop('1');"
+					style="background: #F6CEF5;">
+				
+					<div class="div_menu">1번방</div>
+				
+					<div class="div_con">
+						사 용 자 : <font id="user1">없음</font><br> 사용시간 : <font
+							id="user_time1">없음</font><br> 사용상태 : <font
+							id="user_status1">없음</font><br> 주문상태 : <font
+							id="order_status1">없음</font><br>
+					</div>
+				
+					<div class="div_bottom_2">
+						<input type="button" value="주문내역보기"> <input
+							type="button" value="결제하기"> <input type="button"
+							value="채팅하기">
+					</div>
 
 						<!-- </div> -->
 
@@ -272,18 +274,50 @@ body {
 					</div>
 				</div>
 			</div>
+			
+			<!-- 실시간 주문 테이블 -->
+			<div class="row">
+				<div class="col-md-12 stretch-card">
+					<div class="card" style="margin-bottom: 20px;">
+						<div class="card-body">
+							<p class="card-title">주문 현황</p>
+							<div class="table-responsive">
+								<table id="realOrderTable" class="table table-striped">
+									<thead>
+										<tr>
+											<th>번호</th>
+											<th>날짜</th>
+											<th>방번호</th>
+											<th>ID</th>
+											<th>상품</th>
+											<th>수량</th>
+											<th>가격</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+	<!-- main-panel ends -->
+	
+	
+
 
 	<script>
-		//초기화작업
-		var check = new Array(7); //방의 개수보다 1크게
+	//초기화작업
+	var check = new Array(7); //방의 개수보다 1크게
+	
+	array_init(check);
 
-		array_init(check);
-
-		ajaxtogetdb_comic_room_uselist();
-		//초기화작업
-
+	ajaxtogetdb_comic_room_uselist();
+	//초기화작업
+	
+	realOrder();
+	
 		function openTab(tabName) {
 			var i, x;
 			x = document.getElementsByClassName("containerTab");
@@ -308,16 +342,16 @@ body {
 		}
 
 		function method_startnstop(num) {
-
+			// 시작시간
 			if (!check[num]) {
 				check[num] = true;
 				time_start(0, num);
 				/* 테스트용 */
-				var user = "tmehfld";
+				var user = "id";
 				var user_status = "unavail";
 				var order_status = "unavail";
 
-				var roomuse_id = "tmehfld";
+				var roomuse_id = "id";
 				var roomuse_num = num;
 				var roomuse_status = "on";
 
@@ -346,8 +380,8 @@ body {
 			}
 		}
 
-		function startnstop_init(id, num, starttime, status) {
-
+		function method_startnstop2(id,num,starttime,status) {
+			// 새로 고침 시 시간 유지 함수
 			if (!check[num]) {
 				check[num] = true;
 				time_start(starttime, num);
@@ -478,8 +512,64 @@ body {
 			alert("num.toString().length = " + num.toString().length + "\n"
 					+ "str.length = " + str.length)
 		}
+		
+		
+		function realOrder() {
+			$('#realOrderTable').DataTable(
+					{ // 페이징 처리, 검색, show entries
+						pageLength : 10, //처음 페이지에 처리 개수
+						bPaginate : true, // 페이징 기능
+						bLengthChange : true,
+						lengthMenu : [ [ 10, 20, 30, -1 ],
+								[ 10, 20, 30, "All" ] ], //show entries
+						bAutoWidth : false,
+						processing : true,
+						ordering : true,
+						serverSide : false,
+						searching : true, // 검색 기능
+						bStateSave : true,
+						"iDisplayLength" : 10,
+						"columnDefs" : [ {
+							targets : 'no-sort',
+							orderable : false
+						} ],
+						ajax : {
+							url : "/realorder/realOrderData.json",
+							type : "get",
+							dataSrc : '',
+						},
+						"language": {
+						      search: "Search :"
+						},
+						aoColumns : [
+								{
+									data : "order_num"
+								},
+								{ data: "order_time", 
+						    		"render": function (data) {
+						    			var date = new Date(data); var month = date.getMonth() + 1; 
+						    			return  date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); } 
+							    },
+								{
+									data : "order_roomnum"
+								},
+								{
+									data : "order_id"
+								},
+								{
+									data : "product_name"
+								},
+								{
+									data : "order_qty"
+								},
+								{
+									data : "product_price"
+								},],
+						order : [ [ 0, 'desc' ] ]
+					});
+			}
+		
+		
 	</script>
-
-
 </body>
 </html>
