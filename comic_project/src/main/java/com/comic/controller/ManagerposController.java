@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.comic.model.BookAttachVO;
 import com.comic.model.EmployeeAttachVO;
 import com.comic.model.EmployeeVO;
 import com.comic.model.RoomuseVO;
@@ -174,7 +175,7 @@ public class ManagerposController {
 	
 	@PostMapping("workonoff")
 	public String workonoff(Model model, @RequestParam("employeenum") String empnum,
-			@RequestParam("employeepwd") String emppwd) {
+			@RequestParam("employeepwd") String emppwd,HttpSession session) {
 		
 		System.out.println("empnum = "+empnum);
 		
@@ -195,11 +196,25 @@ public class ManagerposController {
 		if(recordcount==0) {
 			managementService.managerattendance(empnum); //출근
 			System.out.println("출근 완료");
+			
+			List<EmployeeVO> empdata = managementService.getempdata(empnum); //해당달의 출근기록을 list로 가져옴
+			
+			session.setAttribute("EMPNAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가
+			
+			session.setAttribute("EMPID", empnum);//로그인 세션추가
 			model.addAttribute("succecssmsg", "출근완료"); // 재고테이블
 			return "/younghak/login";
 		}else if(recordcount==1){
 			managementService.managerleavework(empnum,format_time); //퇴근
 			System.out.println("퇴근 완료");
+			/*
+			 * session.invalidate();//로그인 세션추가
+			 */
+			
+			List<EmployeeVO> empdata = managementService.getempdata(empnum); //해당달의 출근기록을 list로 가져옴
+			
+			session.setAttribute("EMPNAME", "현재 공석");//로그인 세션추가
+			session.setAttribute("EMPID", "tmp");//로그인 세션추가
 			makecomic_pay(empnum);//퇴근기록으로 comic_pay테이블에 누적시간넣는 함수
 			model.addAttribute("succecssmsg", "퇴근완료"); // 재고테이블
 			return "/younghak/login";
@@ -357,7 +372,7 @@ public class ManagerposController {
 			
 			if(list.get(i).getEndtime()==null) { 
 				//출근데이터가 찍혀잇을수잇으나 퇴근을 안했을수 있기 때문에 퇴근을 안했을 경우 데이터 처리를 해줘야한다.
-				workinghour.put("endtime", "퇴근정보없음");
+				workinghour.put("endtime", "퇴근 미체크");
 			}else {
 				workinghour.put("endtime", list.get(i).getEndtime());	
 			}
@@ -425,7 +440,7 @@ public class ManagerposController {
 			replydata.put("starttime", list.get(i).getStarttime());
 			
 			if(list.get(i).getEndtime()==null) { //퇴근시간은 없을수있으므로 처리를 해줘야함
-				replydata.put("endtime", "퇴근기록없음");
+				replydata.put("endtime", "퇴근 무기록");
 			}else {
 				replydata.put("endtime", list.get(i).getEndtime());	
 			}
