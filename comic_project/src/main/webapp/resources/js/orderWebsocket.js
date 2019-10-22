@@ -25,6 +25,7 @@ function orderArlet(roomNum, userid) {
 
 function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 		roomuse_status) {
+	console.log("오니?");
 	var list = [ roomuse_id, roomuse_num,
 		roomuse_status];
 	//사용자,시작시간,사용자 상태,주문 상태,방번호
@@ -63,15 +64,8 @@ function ajaxtogetdb_comic_room_uselist() {
 			$.each(data, function(index,list){
 				var number=1;
 				number = list.roomuse_num;
-					
 					startnstop_init(list.roomuse_id,number,list.starttime,list.roomuse_status);
-					
-				
-						
-				
-				
 			});
-			
 		},
 		error : function(data) {
 			console.log("실패");
