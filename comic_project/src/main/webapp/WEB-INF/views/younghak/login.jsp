@@ -123,7 +123,7 @@
 		var succecssmsg = '${succecssmsg}';
 		console.log(succecssmsg);
 		if(succecssmsg!=""){
-			alert(succecssmsg);
+			alert(succecssmsg+'${sessionScope.EMPID}');
 			}
 		
 		function Request() {

@@ -10,15 +10,15 @@
 <style type="text/css">
 
 .td_y_header {
-	width: 100px;
+	width: 150px;
 	height: 50px;
 	text-align: top;
 	font-size: 20px;
 	font-family: 굴림;
 	font-weight: bold;
-	border: 5px border-color:#3333FF;
-	border-radius: 8px; /*모서리 둥글게*/
-	border-weight: bold;
+	border: 15px border-color:black;
+	border-radius: 20px; /*모서리 둥글게*/
+	border-weight: lightss;
 }
 
 
@@ -58,8 +58,7 @@
 										class="btn btn-warning btn-rounded btn-fw">오늘 출퇴근</button> 
 								</div>
 							</div>
-						</div>
-						
+						</div>						
 					</div>
 				</div>
 			</div>

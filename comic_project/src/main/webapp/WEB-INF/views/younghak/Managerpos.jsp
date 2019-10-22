@@ -157,10 +157,10 @@ body {
 </c:forEach>
 
 
-										</div>
-										
-									</div>
-								</div>
+		</div>
+		
+	</div>
+</div>
 							</div>
 							<!-- <div class="col-md-0"> -->
 							<div class="card-body">
@@ -256,7 +256,7 @@ body {
 		}
 
 		function startnstop_init(id,num,starttime,status) {
-
+			
 			if (!check[num]) {
 				check[num] = true;
 				time_start(starttime, num);
