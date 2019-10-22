@@ -27,18 +27,24 @@ public class UserViewController {
 	private UserOrderManegerService userOrderManegerService;
 	
 	@PostMapping("/mainPro")
-	public void mainViewPro() {
-		
+	public void mainViewPro(HttpSession session) {
+		System.out.println("MAINPROPOST");
+		System.out.println(session);
+		System.out.println("================");
 	}
 	
 	@GetMapping("/mainPro")
-	public void mainPro() {
-		
+	public void mainPro(HttpSession session) {
+		System.out.println("MAINPROGET");
+		System.out.println(session);
+		System.out.println("================");
 	}
 	
 	@GetMapping("/main")
-	public void mainView() {
-		
+	public void mainView(HttpSession session) {
+		System.out.println("MAINPRO");
+		System.out.println(session);
+		System.out.println("================");
 	}
 	
 	@GetMapping("/order")
