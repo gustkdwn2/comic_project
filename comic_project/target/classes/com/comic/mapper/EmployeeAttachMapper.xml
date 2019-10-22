@@ -16,8 +16,4 @@
 		SELECT * FROM comic_emp_attach WHERE EMPLOYEE_NUM=#{EMPLOYEE_NUM}
 	</select>
 	
-	<select id="employeeAttachGetList" resultType="com.comic.model.EmployeeAttachVO">
-		SELECT * FROM comic_emp_attach order by employee_num
-	</select>
-	
 </mapper>

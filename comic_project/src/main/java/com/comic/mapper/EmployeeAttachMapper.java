@@ -12,6 +12,4 @@ public interface EmployeeAttachMapper {
 	
 	public List<EmployeeAttachVO> findByEMPLOYEE_NUM(int EMPLOYEE_NUM);
 	
-	public List<EmployeeAttachVO> employeeAttachGetList();
-	
 }

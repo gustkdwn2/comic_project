@@ -137,19 +137,39 @@
 		<div class="template-demo">
 			<div class="row">
 
-<c:forEach var="i" begin="1" end="${managerList.size()}"
-step="1">
+<c:forEach var="i" begin="1" end="${managerList.size()}" step="1">
 
+<script>
+$.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).getEMPLOYEE_NUM()}}, function(arr){
+
+	var str="";
+
+	$(arr).each(function(i, attach){
+    	//image type
+    	if(attach.fileType){
+        	
+            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName);
+
+            str += "<img src='/empDisplay?fileName="+fileCallPath+"' style='width:210px; height:160px; border-radius: 50%;'";
+            str +=" onclick='workhourcal(\""+${managerList.get(i-1).getEMPLOYEE_NAME()}+"\",\""+${managerList.get(i-1).getEMPLOYEE_NUM()}+"\")'>";
+		}
+    });
+	$("#empImageGetList${i-1}").html(str);
+});
+</script>
 
 <!-- <div class="row"> -->
 <div class="mngmentcard" >
 
 	<!-- <img src="/WEB-INF/views/younghak/icando.jpg" alt="John" style="width:80%; height:80%; border-radius: 50%;" > -->
-	<a href="#"> <img
+	<%-- <a href="#"> <img
 		src="/resources/images/faces/jang.jpg"
 		alt="${managerList.get(i-1).getEMPLOYEE_NAME()}"
 		style="width: 50%; height: 50%; border-radius: 50%;"
 		onclick="workhourcal('${managerList.get(i-1).getEMPLOYEE_NAME()}','${managerList.get(i-1).getEMPLOYEE_NUM()}')">
+	</a> --%>
+	 <a href="#" id="empImageGetList${i-1}">
+	 	
 	</a>
 
 	<h1>${managerList.get(i-1).getEMPLOYEE_NAME()}</h1>
@@ -471,7 +491,8 @@ step="1">
 	</div>
 	<!-- /.modal -->
 
-	<script type="text/javascript">
+<script type="text/javascript">
+
 	var imgCheckNum = 1;
 $("#AdminModal").on("click", function() {
    $("#empRegisterMoal").modal("show");   
@@ -568,8 +589,11 @@ var sendData={'list' : list};
 		$(arr).each(function(i, attach){
 	    	//image type
 	    	if(attach.fileType){
-	            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
-	            
+	            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName);
+	            console.log("---------------------------------");
+	            console.log(i);
+	            console.log(attach);
+	            console.log(fileCallPath);
 	            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
 	            str +=" data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
 	            str += "<span></span>";
@@ -589,6 +613,7 @@ var sendData={'list' : list};
 	    		str +"</li>";
 	    	}
 	    });
+		console.log(str);
 		$(".uploadResultGet ul").html(str);
 		$('#uploadFileGet').attr('disabled', true);
 	});
@@ -598,6 +623,7 @@ var sendData={'list' : list};
 
 function workhourcal(empname,empnum){	
 	//alert(empname);
+	console.log("workhourcal실행함");
 	var url = "/managerpos/workhourcalendar";
 	posttourl(url,{'empname':empname,'empnum':empnum});
 	//alert(empname);	
@@ -923,7 +949,7 @@ function showUploadResult(uploadResultArr){
     $(uploadResultArr).each(function(i, obj){
     	
 		if(obj.image){
-			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
 			str += "<li data-path='"+obj.uploadPath+"'";
 			str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 			str +" ><div>";

@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.comic.mapper.EmployeeAttachMapper;
 import com.comic.mapper.ManagementMapper;
-import com.comic.model.EmployeeAttachVO;
 import com.comic.model.EmployeeVO;
 import com.comic.service.ManagementService;
 
@@ -29,10 +28,17 @@ public class ManagementServiceImpl implements ManagementService {
 
 	@Transactional
 	@Override
-	public void deletemng(String emppwd, String mngnum) {
-		System.out.println(mngnum);
-		employeeAttachMapper.delete(mngnum);
-		managementMapper.deletemng(emppwd, mngnum);
+	public int deletemng(String emppwd, String mngnum) {
+		int result = 0;
+		System.out.println("여기옴");
+		if(managementMapper.deletemng(emppwd, mngnum) == 1) {
+			System.out.println("이미지삭제");
+			employeeAttachMapper.delete(mngnum);
+			result = 1;
+		}
+		return result;
+//		employeeAttachMapper.delete(mngnum);
+//		managementMapper.deletemng(emppwd, mngnum);
 	}
 
 	@Override
@@ -93,12 +99,5 @@ public class ManagementServiceImpl implements ManagementService {
 	public void setmonthlypay(String empnum, String workmonth, int hour) {
 		managementMapper.setmonthlypay(empnum, workmonth, hour);
 	}
-
-	@Override
-	public List<EmployeeAttachVO> employeeAttachGetList() {
-		return employeeAttachMapper.employeeAttachGetList();
-	}
-	
-	
 
 }

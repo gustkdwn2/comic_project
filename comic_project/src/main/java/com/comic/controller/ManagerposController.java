@@ -65,8 +65,6 @@ public class ManagerposController {
 
 	@RequestMapping(value = { "/Manager_management" }, method = RequestMethod.GET)
 	public String managermanagerment(Model model) {
-		System.out.println(managementService.employeeAttachGetList());
-		model.addAttribute("employeeAttachList", managementService.employeeAttachGetList());
 		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		
 		return "younghak/Manager_management";
@@ -168,7 +166,10 @@ public class ManagerposController {
 		
 		System.out.println("emppwd = "+emppwd+"\nmngnum = "+mngnum);
 		managementService.deletemng(emppwd,mngnum);
-		deleteFiles(attachList);
+		if(managementService.deletemng(emppwd,mngnum) == 1) {
+			deleteFiles(attachList);
+		}
+		
 		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		return "/younghak/Manager_management";
 	}
@@ -455,7 +456,6 @@ public class ManagerposController {
 	 @GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		@ResponseBody
 		public ResponseEntity<List<EmployeeAttachVO>> getAttachList(@RequestParam("employee_num") int employee_num) {
-		 
 			return new ResponseEntity<List<EmployeeAttachVO>>(MemberService.getAttachList(employee_num), HttpStatus.OK);
 		}
 	 
