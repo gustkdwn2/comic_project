@@ -8,7 +8,6 @@ li{list-style: none;}
 .accordion_wrap a{cursor:pointer;}
 .accordion_wrap .accordion_content{display:none;}
 </style>
-
 	<nav class="sidebar sidebar-offcanvas">
 	
 		<ul class="nav">

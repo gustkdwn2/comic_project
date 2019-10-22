@@ -24,19 +24,28 @@
 				<br/><hr>
 					<div class="row">
 						<c:forEach items="${ OrderViewVO_List }" var="list">
-							<div class="col-sm-1" >
-									<div style="text-align: center; border: 3px solid #d7d7d8; height: 130px;">
-									<button name="categoryButton" class="btn btn-outline-secondary"
-											style="margin-top:10px;" value="${ list.orderview_category }">
-										${ list.orderview_category }</button>
-									<div style="margin-top:10px;">
-										<a name="categoryDelete" value="${ list.orderview_num }" style="color: #4d83ff; cursor: pointer;"
-											>삭제</a><br/><br/>
-										<a name="categoryUpdate" value="${ list.orderview_num }" style="color: #4d83ff; cursor: pointer;"
-											>수정</a>
+							<div class="col-sm-2" >
+									<div style="text-align: center;">
+									
+										<button name="categoryButton" class="btn btn-outline-secondary"
+												style="margin-top:10px;" value="${ list.orderview_category }">
+											${ list.orderview_category }</button>
+										<div class="btn-group-vertical" role="group" style="margin-top:10px;"
+											aria-label="Basic example">
+											<div class="btn-group">
+												<button type="button"
+													class="btn btn-secondary dropdown-toggle"
+													data-toggle="dropdown"></button>
+												<div class="dropdown-menu" style="background-color: #d6e3ff;">
+													<a class="dropdown-item" name="categoryDelete" value="${ list.orderview_num }"
+													style="cursor: pointer;">삭제</a> 
+													<a class="dropdown-item" name="categoryUpdate" value="${ list.orderview_num }"
+													style="cursor: pointer;">수정</a>
+												</div>
+											</div>
+										
+										</div>
 									</div>
-									</div>
-								</td>
 							</div>
 						</c:forEach>
 					</div><hr>

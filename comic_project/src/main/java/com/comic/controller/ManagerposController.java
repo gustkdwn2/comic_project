@@ -372,7 +372,7 @@ public class ManagerposController {
 			
 			if(list.get(i).getEndtime()==null) { 
 				//출근데이터가 찍혀잇을수잇으나 퇴근을 안했을수 있기 때문에 퇴근을 안했을 경우 데이터 처리를 해줘야한다.
-				workinghour.put("endtime", "퇴근정보없음");
+				workinghour.put("endtime", "퇴근 미체크");
 			}else {
 				workinghour.put("endtime", list.get(i).getEndtime());	
 			}
@@ -440,7 +440,7 @@ public class ManagerposController {
 			replydata.put("starttime", list.get(i).getStarttime());
 			
 			if(list.get(i).getEndtime()==null) { //퇴근시간은 없을수있으므로 처리를 해줘야함
-				replydata.put("endtime", "퇴근기록없음");
+				replydata.put("endtime", "퇴근 무기록");
 			}else {
 				replydata.put("endtime", list.get(i).getEndtime());	
 			}
