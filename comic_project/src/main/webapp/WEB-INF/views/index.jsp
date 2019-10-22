@@ -94,9 +94,12 @@
 	<form id="operForm"></form>
 </body>
 <script type="text/javascript">
+let ws = new WebSocket("ws://localhost:8080/echo");
+socket = ws;
 $(document).ready(function(){
 	var operForm = $("#operForm");
 
+	
 	$("a[name='roomMove']").on("click", function(e){
 		operForm.append("<input type='hidden' name='roomNum' value='" + $(this).attr('value') + "'>");
 		operForm.attr("method", "post");
@@ -106,7 +109,7 @@ $(document).ready(function(){
 
 	$("a[name='erpMain']").on("click", function(e){
 		operForm.attr("method", "get");
-		operForm.attr("action","/erp");
+		operForm.attr("action","/managerpos/managerpos");
 		operForm.submit();
 	});
 });

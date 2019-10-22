@@ -17,8 +17,8 @@
 						<div class="card-body">
 							<p class="card-title">책 재고</p>
 							<div class="table-responsive" style="overflow: hidden;">
-								<button id="bookRegisterBtn" type="button" class="btn btn-secondary" 
-								style="margin-bottom: 10px;">책 등록</button>
+								<button id="bookRegisterBtn" type="button" class="btn btn-warning" 
+								style="margin-bottom: 10px; color:white;">책 등록</button>
 								
 								<table id="bookTable" class="table  table-striped">
 									<thead>
@@ -43,10 +43,11 @@
 			</div>
 		</div>
 	</div>
+	<div id="modalstyle2" class="modal-backdrop show"></div>
 	
 	<jsp:include page="bookRegisterModal.jsp" />
 	<jsp:include page="bookGetModal.jsp" />
-	<script src="/resources/js/bookTable.js?ver=23" ></script>
-	<script src="/resources/js/bookRegister.js?ver=9" ></script>
-	<script src="/resources/js/bookGet.js?ver=6" ></script>
+	<script src="/resources/js/bookTable.js?ver=66" ></script>
+	<script src="/resources/js/bookRegister.js?ver=55" ></script>
+	<script src="/resources/js/bookGet.js?ver=92" ></script>
 </html>

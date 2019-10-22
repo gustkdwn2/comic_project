@@ -109,10 +109,11 @@
 					
 					</c:if>
 					
+					<c:if test="${not empty Memberlogin.MEMBER_ID}">
 					<div class="template-demo" style="float: right; width:100px; margin-left:350px">
 			            <button type="button" id='regBtn' class="btn btn-primary">글쓰기</button>
 			     	</div>
-
+					</c:if>
 					
 					<form id='actionForm' action="/userView/board/boardList" method='get'>
 						<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>

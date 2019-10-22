@@ -2,6 +2,7 @@ $(document).ready(function(e){
 	  
 	  var formObj = $("#registerForm");
 	  
+	  
 	  $("#RegisterSubmitBtn").on("click", function(e){
 
 	    
@@ -67,6 +68,11 @@ $(document).ready(function(e){
 		    $("#book_lastbook_register").val("");
 		    $("#book_lastbook_register").focus();
 		    return false;
+		}
+		if($('#uploadFileRegister')[0].files[0] == null) {
+			alert("이미지를 넣어주세요.")
+			$("#uploadFileRegister").focus();
+			return false;
 		}
 	    
 	    var str = "";
@@ -142,7 +148,7 @@ $(document).ready(function(e){
 	
 	      }
 	    }); //$.ajax
-	    
+	   $('#uploadFileRegister').attr('disabled', true);
 	  });  
 	  
 	  function showUploadResult(uploadResultArr){
@@ -154,15 +160,15 @@ $(document).ready(function(e){
 	    var str ="";
 	    
 	    $(uploadResultArr).each(function(i, obj){
-			
+	    	
 			if(obj.image){
 				var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
 				str += "<li data-path='"+obj.uploadPath+"'";
 				str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 				str +" ><div>";
-				str += "<span> "+ obj.fileName+"</span>";
+				str += "<span></span>";
 				str += "<button id='imageRemoveBtn' type='button' data-file=\'"+fileCallPath+"\' "
-				str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "data-type='image' class='btn btn-inverse-danger btn-icon'><i class='mdi mdi-close'></i></button><br>";
 				str += "<img src='/display?fileName="+fileCallPath+"'>";
 				str += "</div>";
 				str +"</li>";
@@ -204,6 +210,7 @@ $(document).ready(function(e){
 				  targetLi.remove();
 			  }
 		  }); //$.ajax
+		  $('#uploadFileRegister').attr('disabled', false);
 		  $("#uploadFileRegister").val("");
 	  });
 	  
@@ -225,10 +232,12 @@ $(document).ready(function(e){
 				  }
 			  }); //$.ajax
 	      }
+	      $('#uploadFileRegister').attr('disabled', false);
 	      $("#card-body-register").scrollTop(0);
 		  $("#uploadFileRegister").val("");
 		  $("#bookRegister").find('form')[0].reset();
 		  $('#bookRegister').hide();
+		  $('#modalstyle2').css('display','none');
 	  });
 	
 });

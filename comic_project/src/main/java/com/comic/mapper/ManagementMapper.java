@@ -18,4 +18,16 @@ public interface ManagementMapper {
 	public void managerattendance(@Param("empnum") String empnum);
 	
 	public void managerleavework(@Param("empnum") String empnum,@Param("leaveworkday")String leaveworkday);
+	public List<EmployeeVO> getempdata(@Param("empnum") String empnum);
+	
+	
+	
+	public void employeeModify(EmployeeVO vo);
+	
+	public int selectworkmonth(@Param("empnum")String empnum,@Param("workmonth") String workmonth);
+	
+	public void insertworkmonth(@Param("empnum")String empnum,@Param("workmonth")String workmonth,@Param("payday")String payday);
+	
+	public void setmonthlypay(@Param("empnum")String empnum, @Param("workmonth")String workmonth,@Param("hour") int hour);
+
 }

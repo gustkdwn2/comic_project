@@ -34,7 +34,10 @@
 <script src="/resources/js/data-table.js"></script>
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
-<script src="/resources/js/header.js"></script>
+<script src="/resources/js/header.js?ver=1"></script>
+
+<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+<script src="/resources/js/userWebsocket.js"></script>
 
 </body>
 
@@ -51,9 +54,9 @@
 				<div
 					class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
 
-					<a class="navbar-brand brand-logo" href="/erp?">
+					<a class="navbar-brand brand-logo" href="/managerpos/managerpos">
 					<img src="/resources/images/comic_image.png" alt="" style="width: 70px; height: 30px;"/></a>
-					<a class="navbar-brand brand-logo" href="/erp?">
+					<a class="navbar-brand brand-logo" href="/managerpos/managerpos">
 					<img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 100px; height: 15px;"/></a>
 
 					<button class="navbar-toggler navbar-toggler align-self-center"
@@ -248,7 +251,7 @@
 							<h4 class="card-title">
 								<font style="vertical-align: inherit;">회원 정보</font>
 							</h4>
-							<form class="forms-sample" name="headermembermodify" method="post" autocomplete="off" action="/member/MemberModify2" onsubmit="return headervalidate();">
+							<form class="forms-sample" name="headermembermodify" method="post" autocomplete="off" action="/member/MemberModify2" onsubmit="return javascript:headervalidate();">
 								<div class="form-group">
 									<label> <font style="vertical-align: inherit;">아이디</font>
 									</label> <input name="MEMBER_ID" id="HeaderMEMBER_ID" readonly="readonly"

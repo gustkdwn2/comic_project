@@ -40,8 +40,7 @@
                 </div>
                 
                 <div class="my-2 d-flex justify-content-between" style="float: left;">
-                  <a data-toggle="modal" href="#PasswordModifyModal" data-backdrop="static" data-keyboard="false" 
-                     style="color: #007bff;" class="auth-link text-black">비밀번호 찾기</a>
+                  <a style="color: #007bff;" class="auth-link text-black" href="javascript:passwordmodifyBtn()">비밀번호 찾기</a>
                 </div><br/><br/>
                 
                 <div class="mt-3">
@@ -69,7 +68,7 @@
   <script src="/resources/js/hoverable-collapse.js"></script>
   <script src="/resources/js/template.js"></script>
   <!-- endinject -->
-  
+</body>
 <script type="text/javascript">
 		 var webSocket;
 		 var roomNum = "<c:out value='${roomNum}'/>";
@@ -165,5 +164,5 @@
 		}
 
 </script>
-</body>
+<script src="/resources/js/memberlogin.js?ver=7"></script>
 </html>

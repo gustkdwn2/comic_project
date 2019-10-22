@@ -81,7 +81,6 @@ jQuery.browser = {};
 									<option value="roomsales_id">ID별 검색</option>
 									<option value="date">날짜별 검색</option>
 									<option value="roomsales_num">방 번호별 검색</option>
-									<option value="productsales_product">물품별 검색</option>
 								 </select>
 								 
 								 	<input type="text" name="keyword" class="form-control" id="datepicker" >&nbsp;
@@ -96,7 +95,6 @@ jQuery.browser = {};
 											<th>ID</th>
 											<th>방 번호</th>
 											<th>방 매출</th>
-											<th>상품</th>
 											<th>상품 매출</th>
 										 	<th>매출 합계</th>
 										</tr>

@@ -17,5 +17,6 @@ public class EmployeeVO {
    private String EMPLOYEE_POSITION; //직책
    private int EMPLOYEE_PAY; //시급/월급
    
+   private List<EmployeeAttachVO> attachList;
    
 }

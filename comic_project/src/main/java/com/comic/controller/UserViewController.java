@@ -1,4 +1,4 @@
-package com.comic.controller;
+﻿package com.comic.controller;
 
 import java.util.List;
 
@@ -26,13 +26,13 @@ public class UserViewController {
 	
 	private UserOrderManegerService userOrderManegerService;
 	
-	@GetMapping("/main")
-	public void main() {
+	@PostMapping("/main")
+	public void mainView() {
 		
 	}
 	
-	@PostMapping("/main")
-	public void mainView() {
+	@GetMapping("/main")
+	public void main() {
 		
 	}
 	
@@ -43,18 +43,9 @@ public class UserViewController {
 	}
 	
 	@GetMapping("/chatting")
-	public ModelAndView chat(ModelAndView mv) {
-		/*
-		 * mv.setViewName("chat/chattingview");
-		 * 
-		 * User user = (User)
-		 * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		 * System.out.println("user name: " + user.getUsername());
-		 * System.out.println("normal chat page"); mv.addObject("userid",
-		 * user.getUsername());
-		 */
-		
-		return mv;
+	public void chat(final HttpSession session, Model model) {
+		System.out.println(session.getAttribute("roomNum"));
+		model.addAttribute("roomNum", session.getAttribute("roomNum"));
 	}
 	
 	@GetMapping("userBill")
@@ -66,6 +57,11 @@ public class UserViewController {
 	public @ResponseBody List<UserProductBillVO> userProductBill(@RequestParam("userId") String id) {
 		System.out.println(userOrderManegerService.userProductBill(id));
 		return userOrderManegerService.userProductBill(id);
+	}
+	
+	@GetMapping("/success")
+	public void success() {
+		
 	}
 	
 }

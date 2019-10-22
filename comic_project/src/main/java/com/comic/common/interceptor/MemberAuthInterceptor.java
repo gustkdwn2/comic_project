@@ -19,6 +19,7 @@ public class MemberAuthInterceptor extends HandlerInterceptorAdapter {
 
     // 페이지 요청 정보 저장
     private void saveDestination(HttpServletRequest request) {
+    	System.out.println("일로옴?ㅁㅁㅁㅁㅁ");
     	HttpSession httpSession = request.getSession();
     	String roomNum = request.getParameter("roomNum");
     	httpSession.setAttribute("roomNum", roomNum);
@@ -34,6 +35,7 @@ public class MemberAuthInterceptor extends HandlerInterceptorAdapter {
             request.getSession().setAttribute("destination", uri + query);
         } else if(request.getMethod().equals("POST")){
         	logger.info("destination : " + (uri));
+        	System.out.println("destination : " + (uri));
             request.getSession().setAttribute("destination", uri);
         }
     }
