@@ -8,4 +8,6 @@ public interface KaKaoPayService {
 
 	public void insertSale(String id);
 
+	public void resetRoom(String id);
+
 }
