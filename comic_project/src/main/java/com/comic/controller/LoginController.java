@@ -78,21 +78,7 @@ public class LoginController {
 				model.addAttribute("memberid", memberVO.getMEMBER_ID());
 			}
 		}
-		service.roomuse(memberVO.getMEMBER_ID(),Integer.parseInt((String) httpSession.getAttribute("roomNum")));
-	}
-	
-	// 멤버 로그아웃 처리
-	@GetMapping("/MemberLogout")
-	public String Memberlogout(HttpServletRequest request,
-			HttpServletResponse response,
-			HttpSession httpSession) throws Exception {
 		
-		Object object = httpSession.getAttribute("Memberlogin");
-		if (object != null) {
-			httpSession.removeAttribute("Memberlogin");
-			httpSession.removeAttribute("memberid");
-		}
-		return "/member/Logout";
 	}
 	
 	// 멤버 관리 페이지 멤버 정보 뿌리기

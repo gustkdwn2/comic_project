@@ -1,4 +1,4 @@
-package com.comic.common.interceptor;
+﻿package com.comic.common.interceptor;
 
 import java.util.Enumeration;
 
@@ -21,8 +21,9 @@ public class MemberAuthInterceptor extends HandlerInterceptorAdapter {
     private void saveDestination(HttpServletRequest request) {
     	HttpSession httpSession = request.getSession();
     	String roomNum = request.getParameter("roomNum");
-    	httpSession.setAttribute("roomNum" , roomNum); // 해당 방 클릭 시 받아오는 룸번호
-    	httpSession.setAttribute("roomNum" + roomNum, roomNum);
+    	httpSession.removeAttribute("admin");
+    	httpSession.removeAttribute("roomNum");
+        httpSession.setAttribute("roomNum", roomNum);
         String uri = request.getRequestURI();
         String query = request.getQueryString();
         if (query == null || query.equals("null")) {

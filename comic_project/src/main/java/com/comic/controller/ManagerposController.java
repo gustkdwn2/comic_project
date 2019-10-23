@@ -1,4 +1,4 @@
-package com.comic.controller;
+﻿package com.comic.controller;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -60,15 +61,17 @@ public class ManagerposController {
 	 */
 
 	@RequestMapping(value = { "/managerpos", "/Managerpos" }, method = RequestMethod.GET)
-	public String younghakpos(Locale locale, Model model) {
+	public String younghakpos(Locale locale, Model model, HttpSession session) {
+		session.removeAttribute("roomNum");
+		session.setAttribute("admin", "admin");
+		
 		return "/younghak/Managerpos";
 	}
 
 	@RequestMapping(value = { "/Manager_management" }, method = RequestMethod.GET)
-	public String managermanagerment(Locale locale, Model model) {
-		System.out.println("여기옴");
+	public String managermanagerment(Model model) {
 		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
-		System.out.println(managementService.managerList());
+		
 		return "younghak/Manager_management";
 	}
 
@@ -85,7 +88,7 @@ public class ManagerposController {
 
 	@ResponseBody
 	@RequestMapping(value = "room_start2", method = { RequestMethod.GET, RequestMethod.POST })
-	public void room_start(@RequestBody HashMap<String, Object> map// 배열 받기 traditional: true
+	public  Map<String, String> room_start(@RequestBody HashMap<String, Object> map// 배열 받기 traditional: true
 	) {
 		JSONArray jsonArray = new JSONArray(); // object 타입
 		// roomuse_id, roomuse_num,roomuse_status
@@ -110,14 +113,19 @@ public class ManagerposController {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-
+		Map<String, String> map1 = new HashMap<>();
+		map1.put("OK", "OK");
+		return map1;
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "get_room_uselist", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<Object> get_room_uselist() {
+	public List<Object> get_room_uselist(HttpSession session) {
+		//session.setAttribute("admin", "admin");
+		//session.removeAttribute("roomNum");
+
 		List<RoomuseVO> list = managerposService.roomuselist();
-		//List<RoomuseVO> list = managerposService.roomuselist2();
+		// List<RoomuseVO> list = managerposService.roomuselist2();
 
 		JSONArray replydataArray = new JSONArray();// json으로 보내기 위한 작업
 
@@ -138,10 +146,8 @@ public class ManagerposController {
 			for (int j = 0; j < curtimearr.length; j++) {
 				usetimearr[j] = (Integer.parseInt(curtimearr[j])) - (Integer.parseInt(starttimearr[j]));
 			}
-			System.out.println("usetimearr[0] = " + usetimearr[0]);
-			System.out.println("roomuse_num = " + list.get(i).getRoomuse_num());
 			if (usetimearr[0] < 0) {
-				usetimearr[0] += 24;//시작시간보다 끝난시간이 적으면 24시간 추가해서  계산
+				usetimearr[0] += 24;// 시작시간보다 끝난시간이 적으면 24시간 추가해서 계산
 			}
 
 			time += usetimearr[0] * 3600;// 시
@@ -160,6 +166,7 @@ public class ManagerposController {
 		return replydataArray;
 
 	}
+
 	@PostMapping("EmployeeDelete")
 	public String employeeDelete(Model model, @RequestParam("EMPLOYEE_PWD") String emppwd,
 			@RequestParam("EMPLOYEE_mngnum") String mngnum) {
@@ -167,12 +174,15 @@ public class ManagerposController {
 		//List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
 		
 		System.out.println("emppwd = "+emppwd+"\nmngnum = "+mngnum);
-		managementService.deletemng(emppwd,mngnum);
-		deleteFiles(attachList);
+		/* managementService.deletemng(emppwd,mngnum); */
+		if(managementService.deletemng(emppwd,mngnum) == 1) {
+			deleteFiles(attachList);
+		}
+		
 		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		return "/younghak/Manager_management";
 	}
-	
+
 	@PostMapping("workonoff")
 	public String workonoff(Model model, @RequestParam("employeenum") String empnum,
 			@RequestParam("employeepwd") String emppwd,HttpSession session) {
@@ -182,19 +192,19 @@ public class ManagerposController {
 		//List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
 		int logincount = managementService.managerlogin(empnum,emppwd);
 
-		if(logincount==0) {//1이 아니면 에러
+		if (logincount == 0) {// 1이 아니면 에러
 			model.addAttribute("errormsg", "아이디와 비밀번호가 일치하지 않습니다."); // 재고테이블
-			//System.out.println("tmp로 보내기전");
+			// System.out.println("tmp로 보내기전");
 			return "/younghak/login";
 		}
-		
-		SimpleDateFormat format = new SimpleDateFormat ("yyMMdd");
-		String format_time = format.format (System.currentTimeMillis()); 
-		//만약 19년4월 11일이면 190411로 출력이된다.
-		
-		int recordcount =managementService.managerloginrecord(empnum,emppwd,format_time);
-		if(recordcount==0) {
-			managementService.managerattendance(empnum); //출근
+
+		SimpleDateFormat format = new SimpleDateFormat("yyMMdd");
+		String format_time = format.format(System.currentTimeMillis());
+		// 만약 19년4월 11일이면 190411로 출력이된다.
+
+		int recordcount = managementService.managerloginrecord(empnum, emppwd, format_time);
+		if (recordcount == 0) {
+			managementService.managerattendance(empnum); // 출근
 			System.out.println("출근 완료");
 			
 			List<EmployeeVO> empdata = managementService.getempdata(empnum); //해당달의 출근기록을 list로 가져옴
@@ -204,8 +214,8 @@ public class ManagerposController {
 			session.setAttribute("EMPID", empnum);//로그인 세션추가
 			model.addAttribute("succecssmsg", "출근완료"); // 재고테이블
 			return "/younghak/login";
-		}else if(recordcount==1){
-			managementService.managerleavework(empnum,format_time); //퇴근
+		} else if (recordcount == 1) {
+			managementService.managerleavework(empnum, format_time); // 퇴근
 			System.out.println("퇴근 완료");
 			/*
 			 * session.invalidate();//로그인 세션추가
@@ -220,232 +230,229 @@ public class ManagerposController {
 			model.addAttribute("succecssmsg", "퇴근완료"); // 재고테이블
 			return "/younghak/login";
 		}
-	
+
 		return "/younghak/login";
 	}
-	
+
 	private void makecomic_pay(String empnum) {
 		SimpleDateFormat format = new SimpleDateFormat("yyMM");
-		String workmonth = format.format (System.currentTimeMillis());
-		int data = managementService.selectworkmonth(empnum,workmonth);
-		
-		if(data==0) {//오늘날짜를 기준으로 해당 달의  데이터가 없으면 월급지급일이랑 해당달의 데이터넣기
-			
+		String workmonth = format.format(System.currentTimeMillis());
+		int data = managementService.selectworkmonth(empnum, workmonth);
+
+		if (data == 0) {// 오늘날짜를 기준으로 해당 달의 데이터가 없으면 월급지급일이랑 해당달의 데이터넣기
+
 			DateFormat df = new SimpleDateFormat("yyMM10");
-			Calendar cal = Calendar.getInstance( );
-			cal.add ( cal.MONTH, + 1); //다음달
-			//cal.add ( cal.MONTH, -1 ); 이전달
-			//cal.set(Calendar.DAY_OF_MONTH,1); 해당 월의 1일로 변경
-			//System.out.println(df.format(cal.getTime()));
-			String payday =df.format(cal.getTime());
-			
-			managementService.insertworkmonth(empnum,workmonth,payday);
-			
-			cmltv_time(empnum,workmonth);//사번으로 근무달의  누적시간구하는함수
-			
-		}else if(data==1) {//오늘날짜를 기준으로 해당 달의 데이터가 있으면 누적시간구하기
-			
-			cmltv_time(empnum,workmonth);//사번으로 근무달의  누적시간구하는함수
-			
+			Calendar cal = Calendar.getInstance();
+			cal.add(cal.MONTH, +1); // 다음달
+			// cal.add ( cal.MONTH, -1 ); 이전달
+			// cal.set(Calendar.DAY_OF_MONTH,1); 해당 월의 1일로 변경
+			// System.out.println(df.format(cal.getTime()));
+			String payday = df.format(cal.getTime());
+
+			managementService.insertworkmonth(empnum, workmonth, payday);
+
+			cmltv_time(empnum, workmonth);// 사번으로 근무달의 누적시간구하는함수
+
+		} else if (data == 1) {// 오늘날짜를 기준으로 해당 달의 데이터가 있으면 누적시간구하기
+
+			cmltv_time(empnum, workmonth);// 사번으로 근무달의 누적시간구하는함수
+
 		}
-		
+
 	}
 
-	private void cmltv_time(String empnum, String workmonth) {//누적시간이라는뜻
-		//누적시간구하는메서드
+	private void cmltv_time(String empnum, String workmonth) {// 누적시간이라는뜻
+		// 누적시간구하는메서드
 		DateFormat df = new SimpleDateFormat("yyMMdd");
-		
-		Calendar cal = Calendar.getInstance( );
-		
-		cal.add (cal.MONTH,0); //이번달
-		cal.set(Calendar.DAY_OF_MONTH,1); //해당 월의 1일로 변경(ex.191001)
-		String firstday =df.format(cal.getTime());//thismonthfirstday
-		
-		cal.add ( cal.MONTH, + 1); //다음달
-		cal.set(Calendar.DAY_OF_MONTH,1); //다음 달의 첫번째 일로 변경(ex.191101)
-		String lastday =df.format(cal.getTime());//String thismonthlastday
-		
-		List<WorkrecordVO> list = mngCalendarService.workrecordmonth(firstday,lastday,empnum); //해당달의 출근기록을 list로 가져옴
-		
-		
+
+		Calendar cal = Calendar.getInstance();
+
+		cal.add(cal.MONTH, 0); // 이번달
+		cal.set(Calendar.DAY_OF_MONTH, 1); // 해당 월의 1일로 변경(ex.191001)
+		String firstday = df.format(cal.getTime());// thismonthfirstday
+
+		cal.add(cal.MONTH, +1); // 다음달
+		cal.set(Calendar.DAY_OF_MONTH, 1); // 다음 달의 첫번째 일로 변경(ex.191101)
+		String lastday = df.format(cal.getTime());// String thismonthlastday
+
+		List<WorkrecordVO> list = mngCalendarService.workrecordmonth(firstday, lastday, empnum); // 해당달의 출근기록을 list로 가져옴
+
 		int worktimearr[] = new int[3];
-		//worktimearr[0]=시 
-		//worktimearr[1]=분 
-		//worktimearr[2]=초 
-		
+		// worktimearr[0]=시
+		// worktimearr[1]=분
+		// worktimearr[2]=초
+
 		for (int i = 0; i < list.size(); i++) {
 			String starttime = list.get(i).getStarttime();
-			
-			if(list.get(i).getEndtime()!=null) {//퇴근기록이 없을수잇으므로 null인지 아닌지 처리를 해준다.
-				
-			String endtime = list.get(i).getEndtime();
-			
-			String starttimearr[] = starttime.split(":");
-			String endtimearr[] = endtime.split(":");
-			 
-			int time = 0;
-			for (int j = 0; j < endtimearr.length; j++) {
-				worktimearr[j] += Integer.parseInt(endtimearr[j]) -Integer.parseInt(starttimearr[j]);
-			}
+
+			if (list.get(i).getEndtime() != null) {// 퇴근기록이 없을수잇으므로 null인지 아닌지 처리를 해준다.
+
+				String endtime = list.get(i).getEndtime();
+
+				String starttimearr[] = starttime.split(":");
+				String endtimearr[] = endtime.split(":");
+
+				int time = 0;
+				for (int j = 0; j < endtimearr.length; j++) {
+					worktimearr[j] += Integer.parseInt(endtimearr[j]) - Integer.parseInt(starttimearr[j]);
+				}
 			}
 		}
-		System.out.println("worktimearr[0] = "+worktimearr[0]+"   sworktimearr[1] = "+worktimearr[1]+"   worktimearr[2] = "+worktimearr[2]);
-		int second=worktimearr[0]*3600+worktimearr[1]*60+worktimearr[2]; 
-		System.out.println("total sec="+second);
-		
-		worktimearr[0]=second/3600;//시
-		worktimearr[1]=second%3600/60;//분
-		worktimearr[2]=second%60;//초
-		
-		System.out.println("worktimearr[0] = "+worktimearr[0]+"  worktimearr[1] = "+worktimearr[1]+"  worktimearr[2] = "+worktimearr[2]);
-		int hour=worktimearr[0];
-		if(worktimearr[1]/30>=1) {
+		System.out.println("worktimearr[0] = " + worktimearr[0] + "   sworktimearr[1] = " + worktimearr[1] + "   worktimearr[2] = " + worktimearr[2]);
+		int second = worktimearr[0] * 3600 + worktimearr[1] * 60 + worktimearr[2];
+		System.out.println("total sec=" + second);
+
+		worktimearr[0] = second / 3600;// 시
+		worktimearr[1] = second % 3600 / 60;// 분
+		worktimearr[2] = second % 60;// 초
+
+		System.out.println("worktimearr[0] = " + worktimearr[0] + "  worktimearr[1] = " + worktimearr[1] + "  worktimearr[2] = " + worktimearr[2]);
+		int hour = worktimearr[0];
+		if (worktimearr[1] / 30 >= 1) {
 			hour++;
 		}
-		managementService.setmonthlypay(empnum,workmonth,hour);
+		managementService.setmonthlypay(empnum, workmonth, hour);
 	}
 
 	@RequestMapping(value = "workhourcalendar", method = { RequestMethod.GET, RequestMethod.POST })
-	public String workhourcalendar(@RequestParam("empname") String empname,
-			@RequestParam("empnum") String empnum,Model model) {
-		
-		System.out.println("empname = "+empname+"\nempnum"+empnum);
-		
-		model.addAttribute("empname",empname);
-		model.addAttribute("empnum",empnum);//empnum으로 계속하려다 그냥 empname
-		
+	public String workhourcalendar(@RequestParam("empname") String empname, @RequestParam("empnum") String empnum, Model model) {
+
+		System.out.println("empname = " + empname + "\nempnum" + empnum);
+
+		model.addAttribute("empname", empname);
+		model.addAttribute("empnum", empnum);// empnum으로 계속하려다 그냥 empname
+
 		return "/younghak/WorkhourCalendar";
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "getempdata", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<Object> getempdata( @RequestBody HashMap<String, Object> map,Model model// 배열 받기 traditional: true
+	public List<Object> getempdata(@RequestBody HashMap<String, Object> map, Model model// 배열 받기 traditional: true
 	) {
-		
+
 		JSONArray jsonArray = new JSONArray(); // object 타입
 
 		String empnum = jsonArray.fromObject(map.get("list")).get(0).toString();
-		System.out.println("empnum = "+empnum);
-		
-		List<EmployeeVO> empdata = managementService.getempdata(empnum); //해당달의 출근기록을 list로 가져옴
-		
+		System.out.println("empnum = " + empnum);
+
+		List<EmployeeVO> empdata = managementService.getempdata(empnum); // 해당달의 출근기록을 list로 가져옴
+
 		JSONArray replydataArray = new JSONArray();// json으로 보내기 위한 작업
 		for (int i = 0; i < empdata.size(); i++) {
-			
+
 			JSONObject emp = new JSONObject(); // json으로 보내기위한작업
-			
+
 			emp.put("employee_name", empdata.get(i).getEMPLOYEE_NAME());
 			emp.put("employee_phone", empdata.get(i).getEMPLOYEE_PHONE());
 			emp.put("employee_account", empdata.get(i).getEMPLOYEE_ACCOUNT());
 			emp.put("employee_position", empdata.get(i).getEMPLOYEE_POSITION());
 			emp.put("employee_pay", empdata.get(i).getEMPLOYEE_PAY());
 			emp.put("employee_pwd", empdata.get(i).getEMPLOYEE_PWD());
-			
+
 			replydataArray.add(emp);
 		}
 		System.out.println(replydataArray);
 		return replydataArray;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "getempworkrecord", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<Object> getempworkrecord(@RequestBody HashMap<String, Object> map,Model model// 배열 받기 traditional: true
+	public List<Object> getempworkrecord(@RequestBody HashMap<String, Object> map, Model model// 배열 받기 traditional: true
 	) {
 		System.out.println("getempworkrecord오긴옴");
-		JSONArray jsonArray = new JSONArray(); //object 타입
+		JSONArray jsonArray = new JSONArray(); // object 타입
 		// roomuse_id, roomuse_num,roomuse_status
 		String startday = jsonArray.fromObject(map.get("list")).get(0).toString();
-		//jsp ajax에서 통신에서 받아온 값
-		String endday= jsonArray.fromObject(map.get("list")).get(1).toString();
-		String empnum= jsonArray.fromObject(map.get("list")).get(2).toString();
-		
-		System.out.println("startday = "+startday+"\nendday = "+endday+"\nempnum = "+empnum);
-		List<WorkrecordVO> list = mngCalendarService.workrecordmonth(startday,endday,empnum); //해당달의 출근기록을 list로 가져옴
-		//model.addAttribute("list",list);
-		
+		// jsp ajax에서 통신에서 받아온 값
+		String endday = jsonArray.fromObject(map.get("list")).get(1).toString();
+		String empnum = jsonArray.fromObject(map.get("list")).get(2).toString();
+
+		System.out.println("startday = " + startday + "\nendday = " + endday + "\nempnum = " + empnum);
+		List<WorkrecordVO> list = mngCalendarService.workrecordmonth(startday, endday, empnum); // 해당달의 출근기록을 list로 가져옴
+		// model.addAttribute("list",list);
+
 		JSONArray replydataArray = new JSONArray();// json으로 보내기 위한 작업
 		for (int i = 0; i < list.size(); i++) {
-			
+
 			JSONObject workinghour = new JSONObject(); // json으로 보내기위한작업
-			
+
 			workinghour.put("starttime", list.get(i).getStarttime());
-			
-			if(list.get(i).getEndtime()==null) { 
-				//출근데이터가 찍혀잇을수잇으나 퇴근을 안했을수 있기 때문에 퇴근을 안했을 경우 데이터 처리를 해줘야한다.
+
+			if (list.get(i).getEndtime() == null) {
+				// 출근데이터가 찍혀잇을수잇으나 퇴근을 안했을수 있기 때문에 퇴근을 안했을 경우 데이터 처리를 해줘야한다.
 				workinghour.put("endtime", "퇴근 미체크");
-			}else {
-				workinghour.put("endtime", list.get(i).getEndtime());	
+			} else {
+				workinghour.put("endtime", list.get(i).getEndtime());
 			}
-			
+
 			workinghour.put("workingday", list.get(i).getWorkday());
-			
-			int worksecond =0;
-			if(null!=list.get(i).getEndtime()) {
-				worksecond = timesecondparsing(list.get(i).getStarttime(),list.get(i).getEndtime());
+
+			int worksecond = 0;
+			if (null != list.get(i).getEndtime()) {
+				worksecond = timesecondparsing(list.get(i).getStarttime(), list.get(i).getEndtime());
 				workinghour.put("worksecond", worksecond);
-			}else {
+			} else {
 				workinghour.put("worksecond", 0);
 			}
-			
-			//출근시간과 퇴근시간의 차를 구해서 초단위로 리턴하는 메서드
-			
+
+			// 출근시간과 퇴근시간의 차를 구해서 초단위로 리턴하는 메서드
+
 			replydataArray.add(workinghour);
-						
+
 		}
 		System.out.println(replydataArray);
-	return replydataArray;
+		return replydataArray;
 	}
 
 	private int timesecondparsing(String starttime, String endtime) {
-		//시간을 초로 계산해서 반환
-		System.out.println("endtime = "+endtime);
-		System.out.println("starttime = "+starttime);
+		// 시간을 초로 계산해서 반환
+		System.out.println("endtime = " + endtime);
+		System.out.println("starttime = " + starttime);
 		String starttimearr[] = starttime.split(":");
 		String endtimearr[] = endtime.split(":");
 		int usetimearr[] = new int[3];
 
 		int time = 0;
 		for (int j = 0; j < endtimearr.length; j++) {
-			usetimearr[j] = Integer.parseInt(endtimearr[j]) -Integer.parseInt(starttimearr[j]);
+			usetimearr[j] = Integer.parseInt(endtimearr[j]) - Integer.parseInt(starttimearr[j]);
 		}
-		
+
 		time += usetimearr[0] * 3600;// 시
 		time += usetimearr[1] * 60;// 분
 		time += usetimearr[2];// 초
-		
+
 		return time;
 	}
-	
-	
+
 	@ResponseBody
 	@RequestMapping(value = "gettodaycommute", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<Object> gettodaycommute() {
-		
-		SimpleDateFormat todaycommuteformat = new SimpleDateFormat ("yyMMdd");
-		String todayformat = todaycommuteformat.format (System.currentTimeMillis());
-		
+
+		SimpleDateFormat todaycommuteformat = new SimpleDateFormat("yyMMdd");
+		String todayformat = todaycommuteformat.format(System.currentTimeMillis());
+
 		List<TodaycommuteVO> list = managerposService.todaycommutelist(todayformat);
-		//List<RoomuseVO> list = managerposService.roomuselist2();
+		// List<RoomuseVO> list = managerposService.roomuselist2();
 
 		JSONArray replydataArray = new JSONArray();// json으로 보내기 위한 작업
-		
-		System.out.println("list size is = "+list.size());
+
+		System.out.println("list size is = " + list.size());
 
 		for (int i = 0; i < list.size(); i++) {
 
 			JSONObject replydata = new JSONObject(); // json으로 보내기위한작업
-			
-			//list.get(i).setStarttime(String.valueOf(time));
+
+			// list.get(i).setStarttime(String.valueOf(time));
 
 			replydata.put("starttime", list.get(i).getStarttime());
-			
-			if(list.get(i).getEndtime()==null) { //퇴근시간은 없을수있으므로 처리를 해줘야함
+
+			if (list.get(i).getEndtime() == null) { // 퇴근시간은 없을수있으므로 처리를 해줘야함
 				replydata.put("endtime", "퇴근 무기록");
-			}else {
-				replydata.put("endtime", list.get(i).getEndtime());	
+			} else {
+				replydata.put("endtime", list.get(i).getEndtime());
 			}
-			
+
 			replydata.put("empnum", list.get(i).getEmpnum());
 			replydata.put("empname", list.get(i).getEmpname());
 
@@ -470,7 +477,6 @@ public class ManagerposController {
 	 @GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		@ResponseBody
 		public ResponseEntity<List<EmployeeAttachVO>> getAttachList(@RequestParam("employee_num") int employee_num) {
-		 
 			return new ResponseEntity<List<EmployeeAttachVO>>(MemberService.getAttachList(employee_num), HttpStatus.OK);
 		}
 	 
