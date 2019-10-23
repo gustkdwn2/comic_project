@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <script src="/resources/vendor/jquery/jquery.min.js"></script>
 <link rel="stylesheet" href="/resources/css/chatCss.css">
+<body>
 	<div class="chat_window" id="chat_window">
 		<div class="top_menu">
 			<div class="buttons">
@@ -13,7 +15,26 @@
 			</div>
 			<div class="title">${ roomNum }방 채팅</div>
 		</div>
-		<ul class="messages" id="messages${ roomNum }"></ul>
+		<ul class="messages" id="messages${ roomNum }">
+			<c:forEach items="${ chatList }" var="list">
+			<c:if test="${ list.chat_id eq 'admin' }">
+				<li class="message left appeared">
+					<div class="avatar"></div>
+					<div class="text_wrapper">
+						<div class="text">${ list.chat_content }</div>
+					</div>
+				</li>
+			</c:if>
+			<c:if test="${ list.chat_id ne 'admin' }">
+				<li class="message right appeared">
+					<div class="avatar"></div>
+					<div class="text_wrapper">
+						<div class="text">${ list.chat_content }</div>
+					</div> 
+				</li>
+			</c:if>
+			</c:forEach>
+		</ul>
 		<div class="bottom_wrapper clearfix">
 			<div class="message_input_wrapper">
 				<input class="message_input" placeholder="Type your message here..." />
@@ -31,14 +52,20 @@
 			</div></li>
 
 	</div>
-
-<script src="/resources/js/userWebsocket.js"></script>
+</body>
+<script src="/resources/js/userWebsocket.js?after"></script>
 <script type="text/javascript">
-var messages = $("#messages" + sessionValue);
 var sessionValue = ${roomNum};
+/* var messages = $("#messages" + sessionValue); */
 var memberid = "<c:out value='${memberid}' />";
 var chatRoom = sessionValue;
 var rightLeft;
 var checkInOut;
 var test;
+$(document).ready(function() {
+	
+	$("#messages" + chatRoom).show();
+});
+
+
 </script>

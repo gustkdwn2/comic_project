@@ -135,7 +135,8 @@ body {
 										<div class="div_bottom">
 											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
 
-											<input type="button" value="채팅하기" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+											<button type="button" name='chat' value="${i}" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+											채팅하기</button>
 										</div>
 									</div>
 									<c:if test="${i%3==0}">
@@ -399,7 +400,7 @@ body {
 			method_startnstop(1, "user");
 		});
 	});
-
+ 
 	function realOrderRenew() {
 		$('#realOrderTable').DataTable().clear().draw();
 		$.ajax({
