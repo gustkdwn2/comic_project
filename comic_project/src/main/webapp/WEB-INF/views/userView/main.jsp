@@ -86,7 +86,6 @@
 	<jsp:include page="headerMemberModifyModal.jsp" />
 	<jsp:include page="headerMemberModifyPasswordModal.jsp" />
 	<jsp:include page="billModal.jsp" />
-	<jsp:include page="paymentModal.jsp"/>
 	<jsp:include page="productBillModal.jsp" />
 	<!-- hidden form -->
 	<form id="operForm"></form>
