@@ -26,10 +26,18 @@ public class KakaoPayController {
 	private KaKaoPayService kakaoPayService;
 	
 	@GetMapping("kakao")
-	public @ResponseBody Map<String, String> kakaoPay(@RequestParam("room_num") int room_num, @RequestParam("id") String id, @RequestParam("totalprice") int totalprice) {
-		JsonElement element = kakaoPayService.kakaoPay(room_num, id, totalprice);
-		Map<String, String> jsonMap = new HashMap<String, String>();
-		jsonMap.put("payUrl", element.getAsJsonObject().get("next_redirect_pc_url").toString().replace("\"", ""));
+	public @ResponseBody Map<String, String> kakaoPay(@RequestParam("room_num") int room_num, @RequestParam("id") String id, @RequestParam("totalprice") int totalprice, HttpSession httpSession) {
+		System.out.println(room_num +"////" + id +"/////"+ totalprice);
+		Map<String, String> jsonMap = new HashMap<String, String>(); 
+		if (totalprice == 0) {
+			httpSession.removeAttribute("Memberlogin");
+			httpSession.removeAttribute("memberid");
+			kakaoPayService.resetRoom(id);
+			jsonMap.put("totalprice", "0");
+		} else {
+			JsonElement element = kakaoPayService.kakaoPay(room_num, id, totalprice);
+			jsonMap.put("payUrl", element.getAsJsonObject().get("next_redirect_pc_url").toString().replace("\"", ""));
+		}
 		return jsonMap;
 	}
 	
