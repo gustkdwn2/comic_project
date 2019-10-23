@@ -451,8 +451,21 @@ body {
 		$("#roomClose").on("click", function() {
 			method_startnstop(1, "user");
 		});
+	});
 
+	function realOrderRenew() {
+		$('#realOrderTable').DataTable().clear().draw();
+		$.ajax({
+			async: false,
+			url : "/realorder/realOrderData.json",
+			type : "get",
+			success: function(data) {
+				$('#realOrderTable').DataTable().rows.add(data).draw();
+			}
+		});
+	} 
 		
+	
 	</script>
 </body>
 </html>

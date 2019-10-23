@@ -15,6 +15,7 @@ public class BookVO {
 	private String book_category;		// 책 분류
 	private int book_lastbook;			// 마지막권
 	private String book_status;			// 연재상태
+	private String book_name_change;
 	
 	private List<BookAttachVO> attachList;	// 책 이미지
 	

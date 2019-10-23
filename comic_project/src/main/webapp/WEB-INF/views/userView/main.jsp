@@ -281,11 +281,11 @@ $('#kakaopay').click(function(e){
 				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
 				timer = setInterval(function(){
 		              if(popup.closed){
-		                 location.href="http://localhost:8080/userView/main?roomNum="+room_num
+		                 location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
 		              }
 		        }, 1000)
 			} else {
-				location.href="http://localhost:8080/userView/main?roomNum="+room_num
+				location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
 			}
 		}
 	});

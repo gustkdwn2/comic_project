@@ -30,12 +30,13 @@
 				    	</div>
 					</div>
 					<form id="getForm" class="forms-sample" action="/book/bookModify" role="form" method="post" autocomplete="off">
+						<input type="hidden" name="book_name" id="book_name_hidden">
 						<div class="form-group row">
 							<label class="col-sm-3 col-form-label">
 								<font style="vertical-align: inherit;">책 이름</font>
 							</label>
 							<div class="col-sm-9">
-								<input id="book_name_get" type="text" class="form-control" name="book_name" required readonly="readonly">
+								<input id="book_name_get" type="text" class="form-control" name="book_name_change">
 							</div>
 						</div>
 						<div class="form-group row">

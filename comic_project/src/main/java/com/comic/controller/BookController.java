@@ -39,7 +39,6 @@ public class BookController {
 	
 	@GetMapping("/bookGet")
 	public @ResponseBody BookVO bookGet(@RequestParam("book_name") String book_name) {
-		System.out.println(service.bookGet(book_name));
 		return service.bookGet(book_name);
 	}
 	
@@ -56,8 +55,8 @@ public class BookController {
 	}
 	
 	@PostMapping("/bookModify")
-	public String bookModify(BookVO vo) {
-		service.bookModify(vo);
+	public String bookModify(@RequestParam("book_name_change") String book_name_change, BookVO vo) {
+		service.bookModify(book_name_change, vo);
 		return "redirect:/book/bookList";
 	}
 	
