@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var socket = new WebSocket("ws://localhost:8080/echo");
+	var socket = new WebSocket("ws://10.10.10.173:8080/echo");
 	socket.onopen = function() {
 		console.log("소켓 시작");
 	};

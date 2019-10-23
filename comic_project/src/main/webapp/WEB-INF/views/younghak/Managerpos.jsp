@@ -122,7 +122,7 @@ body {
 										<div class="row">
 									</c:if>
 
-									<div class="column" onclick="method_startnstop(${i});">
+									<div class="column">
 										<!-- <div class="div_root"> -->
 
 										<div class="div_menu">${i}번방</div>
