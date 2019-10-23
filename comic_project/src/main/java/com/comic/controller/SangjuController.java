@@ -41,6 +41,11 @@ public class SangjuController {
 
 	private UserOrderManegerService userOrderManegerService;
 
+	@GetMapping("/popup")
+	public void popupView() {
+		
+	}
+	
 	@GetMapping("/admin")
 	public void adminView(Model model) {
 		model.addAttribute("OrderViewVO_List", userOrderManegerService.readCategory());
@@ -153,6 +158,9 @@ public class SangjuController {
 	@PostMapping("/main")
 	public void mainView(@RequestParam("roomNum") int roomNum, final HttpSession session) {
 		session.setAttribute("roomNum", roomNum);
+	} 
+	@GetMapping("/main")
+	public void mainViewGet() {
 	}
 
 	@GetMapping("/order")

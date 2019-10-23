@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -178,7 +178,8 @@
         	modalCateAdd.modal("show"); 
         });
 
-        $("#cateModalRegisterBtn").on("click", function (e) {
+        $("#cateModalRegisterBtn1").on("click", function (e) {
+			
         	operForm.append("<input type='hidden' name='category' value='" + modalInputCategory.val() + "'>");
             operForm.attr("method", 'post');
             operForm.attr("action", "/userOrderManager/categoryAdd");
@@ -192,6 +193,7 @@
 		});
 		
 		$("#cateModalUpdateBtn").on("click", function (e) {
+			
         	operForm.append("<input type='hidden' name='category' value='" + modalInputCategoryUpdate.val() + "'>");
         	operForm.append("<input type='hidden' name='number' value='" + indexNum + "'>");
             operForm.attr("method", 'post');

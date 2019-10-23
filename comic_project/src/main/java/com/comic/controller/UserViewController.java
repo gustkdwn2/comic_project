@@ -26,13 +26,18 @@ public class UserViewController {
 	
 	private UserOrderManegerService userOrderManegerService;
 	
-	@PostMapping("/main")
-	public void mainView() {
+	@PostMapping("/mainPro")
+	public void mainViewPro() {
 		
 	}
 	
 	@GetMapping("/main")
 	public void main() {
+		
+	}
+	
+	@PostMapping("/main")
+	public void mainPost() {
 		
 	}
 	
@@ -59,9 +64,6 @@ public class UserViewController {
 		return userOrderManegerService.userProductBill(id);
 	}
 	
-	@GetMapping("/success")
-	public void success() {
-		
-	}
 	
+
 }
