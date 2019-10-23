@@ -129,19 +129,13 @@ body {
 
 
 										<div class="div_con">
-											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font
-												id="user_time${i}">없음</font><br> 사용상태 : <font
-												id="user_status${i}">없음</font><br> 주문상태 : <font
-												id="order_status${i}">없음</font><br>
+											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font id="user_time${i}">없음</font><br> 사용상태 : <font id="user_status${i}">없음</font><br>
+											주문상태 : <font id="order_status${i}">없음</font><br>
 										</div>
 										<div class="div_bottom">
-											<input type="button" value="주문내역보기"
-												class="btn btn-primary btn-sm"
-												style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
 
-											<input type="button" value="채팅하기"
-												class="btn btn-success btn-sm"
-												style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+											<input type="button" value="채팅하기" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 										</div>
 									</div>
 									<c:if test="${i%3==0}">
@@ -153,7 +147,7 @@ body {
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- 실시간 주문 테이블 -->
 			<div class="row">
 				<div class="col-md-12 stretch-card">
@@ -285,59 +279,7 @@ body {
 
 			}
 		}
-
-	
-		function ajaxtogetdb_comic_room_uselist() {
-
-			$.ajax({
-				url : '/managerpos/get_room_uselist',
-				dataType : 'json',
-				contentType : "application/json; charset=utf-8;",
-				type : 'POST',
-				success : function(data) {
-
-					var text = "";
-					console.log(data[0]);
-					$.each(data, function(index, list) {
-						var number = 1;
-						number = list.roomuse_num;
-
-						startnstop_init(list.roomuse_id, number,
-								list.starttime, list.roomuse_status);
-					});
-
-				},
-				error : function(data) {
-					console.log("실패");
-				}
-			});
-		}
-
-		function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
-				roomuse_status) {
-			var list = [ roomuse_id, roomuse_num, roomuse_status ];
-			//사용자,시작시간,사용자 상태,주문 상태,방번호
-			//alert("보내기전의 list" + list);
-			var sendData = {
-				'list' : list
-			};
-
-			$.ajax({
-				url : '/managerpos/room_start2',
-				dataType : 'json',
-				data : JSON.stringify(sendData),
-				contentType : "application/json; charset=utf-8;",
-				type : 'POST',
-				success : function(data) {
-					console.log("성공");
-					alert("success!");
-				},
-				error : function(data) {
-					console.log("실패");
-				}
-			});
-		}
-
+		
 		function time_start(time, num) {
 			//	alert("0");
 			if (!check_arr[num]) {
