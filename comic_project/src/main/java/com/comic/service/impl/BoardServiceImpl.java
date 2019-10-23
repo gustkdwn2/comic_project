@@ -21,7 +21,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Setter(onMethod_=@Autowired)
 	private BoardMapper mapper;
-
+	
 	@Override
 	public void register(BoardVO board) {
 		//// TODO Auto-generated method stub

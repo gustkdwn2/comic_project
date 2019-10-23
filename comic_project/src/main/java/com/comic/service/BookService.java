@@ -13,7 +13,7 @@ public interface BookService {
 	
 	public void bookRegister(BookVO vo);
 	
-	public boolean bookModify(BookVO vo);
+	public boolean bookModify(String book_name_change, BookVO vo);
 	
 	public boolean bookRemove(String book_name);
 	

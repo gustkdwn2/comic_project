@@ -21,7 +21,8 @@
 	              <div class="card">
 	                 <div class="card-body" style="margin-top:100px; margin-left:200px;">
 		                  <h1 class="card-title"> 건의사항 게시판입니다</h1>
-		                  <form class="forms-sample" action="/CustomerCenter/boardRegister" method="post">
+		                  <form class="forms-sample" action="/CustomerCenter/boardRegister" method="post"
+		                   onsubmit="return nullcheck();"> 
 		                  
 		                  	<input type="hidden" name="board_id" value="${Memberlogin.MEMBER_ID}" >
 		                  	
@@ -45,6 +46,18 @@
 	     </div>
 	    </div>
 	   </div>
-      
+<script>
+function nullcheck(){
+	if($("input[name='board_title']").val()==""){
+		alert("제목을 입력해주세요");
+		return false;
+	}
+	if($("textarea[name='board_content']").val()==""){
+		alert("내용을 입력해주세요");
+		return false;
+	}
+	return true;
+}
+</script>
 </body>
 </html>

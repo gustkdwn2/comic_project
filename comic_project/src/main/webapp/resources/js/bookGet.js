@@ -74,7 +74,7 @@ $(document).ready(function() {
 	    $(uploadResultArr).each(function(i, obj){
 			
 			if(obj.image){
-				var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+				var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
 				str += "<li data-path='"+obj.uploadPath+"'";
 				str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 				str +" ><div>";
@@ -106,6 +106,21 @@ $(document).ready(function() {
 	var formObj = $("#getForm");
 
 	$('#getSubmitBtn').on("click", function(e){
+		var nameCheck = 0;
+		
+		$.ajax({
+			type : 'POST',
+			data : {book_name : $('#book_name_get').val()},
+			async: false,
+			url : "/book/bookNameCheck",
+			dataType : "json",
+			success : function(result) {
+
+				nameCheck = result;
+
+				return;
+			}
+		});
 	    
 		e.preventDefault(); 
 	        
@@ -125,7 +140,20 @@ $(document).ready(function() {
 	        str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
 	          
 		});
-
+	    if($("#book_name_hidden").val() != $("#book_name_get").val()) {
+	    	if($.trim($("#book_name_get").val()) != $("#book_name_get").val()) {
+			    alert("앞,뒤 공백을 지워주세요.");
+			    $("#book_name_get").val("");
+			    $("#book_name_get").focus();
+				return false;
+			}
+			if(nameCheck > 0) {
+				alert("이미 있는 책입니다.");
+				$("#book_name_get").val("");
+			    $("#book_name_get").focus();
+			    return false;
+			}
+	    }
 	    if($.trim($("#book_loc_get").val()) != $("#book_loc_get").val()) {
 		      alert("앞,뒤 공백을 지워주세요.");
 		      $("#book_loc_get").val("");
@@ -158,8 +186,6 @@ $(document).ready(function() {
 	        
 	    formObj.append(str).submit();
         
-		
-	   /*  formObj.submit(); */
 	});
 	
 	$('#bookGetBtn').click(function() {

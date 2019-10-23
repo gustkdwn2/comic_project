@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -116,40 +116,28 @@ body {
 					<div class="col-md-12">
 						<div class="card-body">
 							<div class="template-demo">
-
 								<c:forEach var="i" begin="1" end="6" step="1">
 
 									<c:if test="${i%3==1}">
 										<div class="row">
 									</c:if>
 
-									<div class="column" onclick="method_startnstop(${i});">
+									<div class="column">
 										<!-- <div class="div_root"> -->
 
 										<div class="div_menu">${i}번방</div>
 
 
 										<div class="div_con">
-											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font
-												id="user_time${i}">없음</font><br> 사용상태 : <font
-												id="user_status${i}">없음</font><br> 주문상태 : <font
-												id="order_status${i}">없음</font><br>
+											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font id="user_time${i}">없음</font><br> 사용상태 : <font id="user_status${i}">없음</font><br>
+											주문상태 : <font id="order_status${i}">없음</font><br>
 										</div>
-
 										<div class="div_bottom">
-											<input type="button" value="주문내역보기"
-												class="btn btn-primary btn-sm"
-												style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
 
-											<input type="button" value="채팅하기"
-												class="btn btn-success btn-sm"
-												style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+											<input type="button" value="채팅하기" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 										</div>
-
-
-
 									</div>
-
 									<c:if test="${i%3==0}">
 							</div>
 							<br>
@@ -159,7 +147,7 @@ body {
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- 실시간 주문 테이블 -->
 			<div class="row">
 				<div class="col-md-12 stretch-card">
@@ -188,17 +176,14 @@ body {
 		</div>
 	</div>
 	<!-- main-panel ends -->
-	
-	
-
 
 	<script>
-	//초기화작업
-	var check = new Array(7); //방의 개수보다 1크게
 	
-	array_init(check);
+	var check_arr = new Array(7); //방의 개수보다 1크게
+	
+	array_init(check_arr);
 
-	ajaxtogetdb_comic_room_uselist();
+	ajaxtogetdb_comic_room_uselist(); 
 	//초기화작업
 	
 	realOrder();
@@ -220,18 +205,18 @@ body {
 		var hour = 0;
 		var minute = 0;
 
-		function array_init(check) {
-			for (var i = 0; i < check.length; i++) {
-				check[i] = false;
+		function array_init(check_arr) {
+			for (var i = 0; i < check_arr.length; i++) {
+				check_arr[i] = false;
 			}
 		}
 
-		function method_startnstop(num) {
+		
+		function method_startnstop(num, id) {
 			// 시작시간
-			if (!check[num]) {
-				check[num] = true;
+			if (!check_arr[num]) {
+				check_arr[num] = true;
 				time_start(0, num);
-				/* 테스트용 */
 				var user = "id";
 				var user_status = "unavail";
 				var order_status = "unavail";
@@ -244,12 +229,11 @@ body {
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
 				document.getElementById('order_status' + num).innerHTML = order_status;
 
-				ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
-						roomuse_status);
+				ajaxtosenddb_comic_room_use2(id, num, "on");
 
 			} else {
 
-				check[num] = false;
+				check_arr[num] = false;
 
 				var roomuse_id = "없음";
 				var roomuse_num = num;
@@ -266,9 +250,13 @@ body {
 		}
 
 		function startnstop_init(id,num,starttime,status) {
+
+			if(status=="on"){
+				check_arr[num]=false;
+				}
 			
-			if (!check[num]) {
-				check[num] = true;
+			if (!check_arr[num]) {
+				check_arr[num] = true;
 				time_start(starttime, num);
 				/* 테스트용 */
 				var order_status = "unavail";
@@ -278,8 +266,7 @@ body {
 				document.getElementById('order_status' + num).innerHTML = order_status;
 
 			} else {
-
-				check[num] = false;
+				check_arr[num] = false;
 
 				var roomuse_id = "없음";
 				var roomuse_num = num;
@@ -292,61 +279,10 @@ body {
 
 			}
 		}
-
-		function ajaxtogetdb_comic_room_uselist() {
-
-			$.ajax({
-				url : '/managerpos/get_room_uselist',
-				dataType : 'json',
-				contentType : "application/json; charset=utf-8;",
-				type : 'POST',
-				success : function(data) {
-
-					var text = "";
-					console.log(data[0]);
-					$.each(data, function(index, list) {
-						var number = 1;
-						number = list.roomuse_num;
-
-						startnstop_init(list.roomuse_id, number,
-								list.starttime, list.roomuse_status);
-					});
-
-				},
-				error : function(data) {
-					console.log("실패");
-				}
-			});
-		}
-
-		function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
-				roomuse_status) {
-			var list = [ roomuse_id, roomuse_num, roomuse_status ];
-			//사용자,시작시간,사용자 상태,주문 상태,방번호
-			//alert("보내기전의 list" + list);
-			var sendData = {
-				'list' : list
-			};
-
-			$.ajax({
-				url : '/managerpos/room_start2',
-				dataType : 'json',
-				data : JSON.stringify(sendData),
-				contentType : "application/json; charset=utf-8;",
-				type : 'POST',
-				success : function(data) {
-					console.log("성공");
-					alert("success!");
-				},
-				error : function(data) {
-					console.log("실패");
-				}
-			});
-		}
-
+		
 		function time_start(time, num) {
 			//	alert("0");
-			if (!check[num]) {
+			if (!check_arr[num]) {
 
 			} else {
 				//console.log(time);
@@ -453,8 +389,30 @@ body {
 						order : [ [ 0, 'desc' ] ]
 					});
 			}
+			
+	$(document).ready(function(){
+		$("button[name='chat']").on("click", function() {
+			var roomNum = $(this).attr('value');
+			window.open("/chat/chatting?room=" + roomNum,"_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
+		});
+		$("#roomClose").on("click", function() {
+			method_startnstop(1, "user");
+		});
+	});
+
+	function realOrderRenew() {
+		$('#realOrderTable').DataTable().clear().draw();
+		$.ajax({
+			async: false,
+			url : "/realorder/realOrderData.json",
+			type : "get",
+			success: function(data) {
+				$('#realOrderTable').DataTable().rows.add(data).draw();
+			}
+		});
+	} 
 		
-		
+	
 	</script>
 </body>
 </html>

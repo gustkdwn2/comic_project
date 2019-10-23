@@ -88,7 +88,7 @@ function bookModify(book_name) {
 	    url: "/book/bookGet?book_name="+book_name,
 	    dataType : "json",
 	    success: function(data) {
-    	    
+	    	$('#book_name_hidden').attr('value',data.book_name);
 	    	$('#book_name_get').attr('value',data.book_name);
 	    	$('#book_loc_get').attr('value',data.book_loc);
 	    	$('#book_publisher_get').attr('value',data.book_publisher);
@@ -117,7 +117,7 @@ function bookModify(book_name) {
 				$(arr).each(function(i, attach){
 			    	//image type
 			    	if(attach.fileType){
-			            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+			            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName);
 			            
 			            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
 			            str +=" data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
