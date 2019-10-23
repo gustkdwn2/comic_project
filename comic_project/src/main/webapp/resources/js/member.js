@@ -87,12 +87,24 @@ function validate() {
           success : function(data) {
               if(inputed=="" && data=='0') {
             	  $('#idCheckMessage').html('필수 정보입니다.');
+            	  $('#memberregister').attr('disabled', true);
+            	  $('#memberregister').css('background-color', '#9c9c9c')
+            	  $('#memberregister').css('border-color', '#9c9c9c')
+            	  $('#memberregister').css('box-shadow', 'none')
                   idCheck = 0;
               } else if (data == '0') {
             	  $('#idCheckMessage').html('');
+            	  $('#memberregister').attr('disabled', false);
+            	  $('#memberregister').css('background-color', '#ffc100')
+            	  $('#memberregister').css('border-color', '#ffc100')
+            	  $('#memberregister').css('box-shadow', 'none')
                   idCheck = 1;
               } else if (data == '1') {
             	  $('#idCheckMessage').html('중복된 아이디입니다.');
+            	  $('#memberregister').attr('disabled', true);
+            	  $('#memberregister').css('background-color', '#9c9c9c')
+            	  $('#memberregister').css('border-color', '#9c9c9c')
+            	  $('#memberregister').css('box-shadow', 'none')
                   idCheck = 0;
               } 
           }

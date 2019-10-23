@@ -10,6 +10,7 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <body>
 	<!-- Header -->
+	
 	<div class="main-penal">
 		<div class="content-wrapper">
 			<div style="background-color: #37363a; height: 150px;">
@@ -123,7 +124,7 @@ $(document).ready(function(){
       totalprice : total_price
    };
 	   
-
+	console.log(room_num + "////" + mem_id + "////" + total_price);
 	$('#kakaopay').click(function(e){
 		e.preventDefault();
 		$.ajax({
@@ -131,12 +132,17 @@ $(document).ready(function(){
 			type : 'get',
 			data : sendData,
 			success : function(res) {
-				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
-				timer = setInterval(function(){
-		              if(popup.closed){
-		                 location.href="http://localhost:8080/userView/main?roomNum="+room_num
-		              }
-		        }, 1000)
+				console.log(res);
+				if (res.totalprice != "0") {	
+					var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
+					timer = setInterval(function(){
+			              if(popup.closed){
+			                 location.href="http://localhost:8080/userView/main?roomNum="+room_num
+			              }
+			        }, 1000)
+				} else {
+					location.href="http://localhost:8080/userView/main?roomNum="+room_num
+				}
 			}
 		});
 	});
