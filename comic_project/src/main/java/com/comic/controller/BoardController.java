@@ -1,6 +1,5 @@
 package com.comic.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -85,7 +84,7 @@ public class BoardController {
 		log.info("\r\n####remove board_num : "+board_num);
 		
 			if(service.remove(board_num)) {
-				rttr.addFlashAttribute("result", "성공");
+				rttr.addFlashAttribute("result", "�꽦怨�");
 			}
 		return "redirect:/CustomerCenter/boardList"+cri.getListLink(); 
 		

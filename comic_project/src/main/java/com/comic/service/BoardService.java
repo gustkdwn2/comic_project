@@ -7,16 +7,16 @@ import com.comic.model.CriteriaVO;
 
 public interface BoardService {
 	
-	public void register(BoardVO board); //글등록
+	public void register(BoardVO board); //湲��벑濡�
 	
-	public BoardVO get(Long board_num); // 자세히 보기
+	public BoardVO get(Long board_num); // �옄�꽭�엳 蹂닿린
 	
-	public boolean modify(BoardVO board); // 수정하기
+	public boolean modify(BoardVO board); // �닔�젙�븯湲�
 	
-	public boolean remove(Long board_num); // 삭제하기
+	public boolean remove(Long board_num); // �궘�젣�븯湲�
 	
-	public List<BoardVO> getList(CriteriaVO cri); //페이징 처리된 목록보기
+	public List<BoardVO> getList(CriteriaVO cri); //�럹�씠吏� 泥섎━�맂 紐⑸줉蹂닿린
 	
-	public int getTotal(CriteriaVO cri); // 페이징을 위한 총 합
+	public int getTotal(CriteriaVO cri); // �럹�씠吏뺤쓣 �쐞�븳 珥� �빀
 
 }
