@@ -44,9 +44,9 @@ import net.sf.json.JSONObject;
  */
 
 @Controller
-@RequestMapping("/managerpos/")
+@RequestMapping("/administrator/")
 @AllArgsConstructor // 생성자함수
-public class ManagerposController {
+public class AdministratorController {
 	// ManagerController managerController;
 
 	private ManagerPosServiceImpl managerposService;// 매니저포스화면(포스화면관리)
@@ -77,39 +77,67 @@ public class ManagerposController {
 		return "/younghak/importdetail";
 	}
 
-	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String younghakworklogin(Model model) {
-
-		return "younghak/login";
+	@RequestMapping(value = "ceologin", method = RequestMethod.GET)
+	public String ceologin(Model model) {
+		return "administrator/adminlogin";
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "room_start2", method = { RequestMethod.GET, RequestMethod.POST })
-	public void room_start(@RequestBody HashMap<String, Object> map// 배열 받기 traditional: true
-	) {
+	@RequestMapping(value = "loginout", method = { RequestMethod.GET, RequestMethod.POST })
+	public JSONObject room_start(@RequestBody HashMap<String, Object> map// 배열 받기 traditional: true
+			,HttpSession session) {
 		JSONArray jsonArray = new JSONArray(); // object 타입
 		// roomuse_id, roomuse_num,roomuse_status
-		String roomuse_id = jsonArray.fromObject(map.get("list")).get(0).toString();
-		String roomuse_num = jsonArray.fromObject(map.get("list")).get(1).toString();
-		String roomuse_status = jsonArray.fromObject(map.get("list")).get(2).toString();
+		String empnum = jsonArray.fromObject(map.get("list")).get(0).toString();
+		String emppwd = jsonArray.fromObject(map.get("list")).get(1).toString();
+		String loginout = jsonArray.fromObject(map.get("list")).get(2).toString();
 
-		try {
+		JSONObject replydata = new JSONObject(); // json으로 보내기위한작업
+		if(loginout.equals("login")) {
+			try {
 
-			System.out.println("room_id = " + roomuse_id);
-			System.out.println("room_num = " + roomuse_num);
-			System.out.println("room_status = " + roomuse_status);
+				System.out.println("empnum = " + empnum);
+				System.out.println("emppwd = " + emppwd);
+				System.out.println("loginout = " + loginout);
 
-			if (roomuse_status.equals("on")) {
-				managerposService.start_room(roomuse_id, roomuse_num, roomuse_status);
-			} else if (roomuse_status.equals("off")) {
-				managerposService.stop_room(roomuse_num);
+				int logincount = managementService.managerlogin(empnum,emppwd);
+				List<EmployeeVO> empdata = managementService.getempdata(empnum); //출근한사람의 기록을 가져옴
+				
+				if(logincount==1&&empdata.get(0).getEMPLOYEE_POSITION().equals("사장")) {
+					//로그인가능하고 직급이 사장일때 로그인가능
+					System.out.println("로그인성공파트");
+					session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
+					replydata.put("successmsg", "로그인성공");
+					
+				}else {
+					System.out.println("로그인실패파트");
+					replydata.put("successmsg", "로그인실패");
+				}				
+				
+				System.out.println("데이터가 들어옴!");
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
+			return replydata;
+		}else {
+			try {
 
-			System.out.println("데이터가 들어옴!");
+				
+					//로그인가능하고 직급이 사장일때 로그인가능
+					System.out.println("세션지움파트파트");
+					//session.setAttribute("EMPPOSITION", "1");//로그인 세션추가
+					session.removeAttribute("EMPPOSITION");
+					replydata.put("successmsg", "세션지워짐");
+					
+				System.out.println("데이터가 들어옴!");
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			return replydata;
 		}
+		
 
 	}
 
@@ -193,7 +221,7 @@ public class ManagerposController {
 			
 			
 			if(empdata.get(0).getEMPLOYEE_POSITION().equals("사장")) {
-				//session.setAttribute("EMPNAME", "사장");//로그인 세션추가
+				session.setAttribute("EMPNAME", "사장");//로그인 세션추가
 				session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
 			}else {
 				session.setAttribute("EMPNAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가	
@@ -201,7 +229,6 @@ public class ManagerposController {
 			
 			
 			session.setAttribute("EMPID", empnum);//로그인 세션추가
-			//session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
 			model.addAttribute("succecssmsg", "출근완료"); // 재고테이블
 			return "/younghak/Managerpos";
 		}else if(recordcount==1){
@@ -214,7 +241,7 @@ public class ManagerposController {
 			session.setAttribute("EMPPRENAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가
 			session.setAttribute("EMPNAME", "현재 공석");//로그인 세션추가
 			session.setAttribute("EMPID", "tmp");//로그인 세션추가
-			session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
+			session.setAttribute("EMPPOSITION", "");//로그인 세션추가
 			makecomic_pay(empnum);//퇴근기록으로 comic_pay테이블에 누적시간넣는 함수
 			model.addAttribute("succecssmsg", "퇴근완료"); // 재고테이블
 			return "/younghak/Managerpos";

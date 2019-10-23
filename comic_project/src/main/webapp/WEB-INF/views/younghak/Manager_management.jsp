@@ -580,69 +580,6 @@ function posttourl(path, params, method) {
     form.submit();
 }
 
-/* function additional_staff_validation(){//직원추가 유효성검사
-
-	var text;
-	
-	var name = "EMPLOYEE_NAME_insert";
-	var pwd ="EMPLOYEE_PWD_insert";
-	var pwd_confirm="EMPLOYEE_PWD_confirm_insert";
-	var phone="EMPLOYEE_PHONE_insert";
-	var account="EMPLOYEE_ACCOUNT_insert";
-	var pay="EMPLOYEE_PAY_insert";
-			
-	
-	text = $('#'+name).val().trim(); //id로 데이터 가져와서 공백지우기 
-	if(text.length==0){
-		alert("이름를 입력해주세요");
-		$('#'+name).focus();	
-		return;
-	}
-
-	text = $('#'+pwd).val().trim(); //id로 데이터 가져와서 공백지우기 
-	if(text.length==0){
-		alert("비밀번호를 입력해주세요");
-		$('#'+pwd).focus();	
-		return;
-	}
-	
-	text = $('#'+pwd_confirm).val().trim(); //id로 데이터 가져와서 공백지우기 
-	if(text.length==0){
-		alert("비밀번호 확인을 입력해주세요");
-		$('#'+pwd_confirm).focus();	
-		return;
-	}
-
-	if($('#'+pwd_confirm).val().trim()!=$('#'+pwd).val().trim()){
-		alert("비밀번호가 서로 맞지 않습니다");
-		$('#'+pwd_confirm).focus();	
-		return;
-		}
-
-	text = $('#'+phone).val().trim(); //id로 데이터 가져와서 공백지우기 
-	if(text.length==0){
-		alert("전화번호를 입력해주세요");
-		$('#'+phone).focus();	
-		return;
-	}
-
-	text = $('#'+account).val().trim(); //id로 데이터 가져와서 공백지우기 
-	if(text.length==0){
-		alert("계좌를 입력해주세요");
-		$('#'+account).focus();	
-		return;
-	}
-
-	text = $('#'+pay).val().trim(); //id로 데이터 가져와서 공백지우기 
-	if(text.length==0){
-		alert("시급을 입력해주세요");
-		$('#'+pay).focus();	
-		return;
-	}
-
-	document.register.submit();
-} */
-
 
 function modify_staff_validation(){//직원추가 유효성검사
 
