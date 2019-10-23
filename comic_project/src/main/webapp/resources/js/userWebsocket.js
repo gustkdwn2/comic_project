@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var socket = new WebSocket("ws://localhost:8080/echo");
+	var socket = new WebSocket("ws://10.10.10.173:8080/echo");
 	socket.onopen = function() {
 		console.log("소켓 시작");
 	};
@@ -66,12 +66,12 @@ $(document).ready(function() {
 		sendMessage(getMessageText());
 		if(sessionValue == 'admin') {
 			checkInOut = 'user';
+			memberid = 'admin';
 		} else {
 			checkInOut = 'admin';
 		}
-		console.log(chatRoom);
 		console.log($('.message_input').val());
-		socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val());
+		socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val() + "," + memberid);
 		$('.message_input').val('');
 	});
 	
@@ -81,13 +81,15 @@ $(document).ready(function() {
 			sendMessage(getMessageText());
 			if(sessionValue == 'admin') {
 				checkInOut = 'user';
+				memberid = 'admin';
 			} else {
 				checkInOut = 'admin';
+				
 			}
 			
 			console.log($('.message_input').val());
 			console.log(chatRoom);
-			socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val());
+			socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val() + "," + memberid);
 			$('.message_input').val('');
 		}
 	});

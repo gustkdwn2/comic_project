@@ -10,6 +10,7 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <body>
 	<!-- Header -->
+	
 	<div class="main-penal">
 		<div class="content-wrapper">
 			<div style="background-color: #37363a; height: 150px;">
@@ -19,10 +20,6 @@
 				</div> 
 				<div style="width: 300px; height: 100px; color:#f4e362; float:right; margin-top:60px; margin-right:400px; font-size: 20px;" >
 					<a style="color:#f4e362;" href='javascript:headermembermodifyBtn()'>회원 수정</a>
-					&emsp;
-					<a style="color:#f4e362;" href="${path}/member/MemberLogout">로그 아웃</a>
-					&emsp;
-					<a href="/" style="color:#f4e362; font-size: 20px;">임의 창</a>
 				</div>
 				<br/><br/>
 			</div>
@@ -75,15 +72,8 @@
 					<div class="col-lg-4"> 
 						<a class="portfolio-item" id="kakaopay"> <span class="caption"> <span class="caption-content">
 									<h3>사용 종료</h3>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 									<p class="mb-0">사용 종료를 하면 카카오페이로 연결되고 완료되면 로그아웃 됩니다</p>
-=======
-									<p class="mb-0">사용 종료를 하면 카카오페이로 연결되고 로그아웃됩니다</p>
->>>>>>> sub_master
-=======
-									<p class="mb-0">사용 종료를 하면 카카오페이로 연결되고 완료되면 로그아웃 됩니다</p>
->>>>>>> final_sub
 							</span>
 						</span> <img class="img-fluid" src="/resources/images/exitIcon.png" alt="" style="width:370px; height:250px;">
 						</a>
@@ -105,72 +95,40 @@
 <script type="text/javascript">
 var sessionValue = ${roomNum};
 
-<<<<<<< HEAD
 $(document).ready(function(){
-<<<<<<< HEAD
-	var operForm = $("#operForm");
-=======
 	$('#modalstyle').css('display','none');
 	
->>>>>>> final_sub
 	var room_num = ${roomNum};
 	var mem_id = '${memberid}';
 	var total_price;
 	var operForm = $("#operForm");
-	
+
+var room_num = ${roomNum};
+var mem_id = '${memberid}';
+var total_price;
+$(document).ready(function(){
+
+	$('#modalstyle').css('display','none');	
+	ajaxtogetdb_comic_room_uselist();
+	var operForm = $("#operForm");
+
 	$.ajax({
 		type: 'get',
 		url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
-		async : false,
+		async : true,
 		dataType: 'json',
 		success: function(data) {
 			total_price = data.total_bill;
 		}
 	});
-	
-	
-	   
-   $.ajax({
-      type: 'get',
-      url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
-      async : false,
-      dataType: 'json',
-      success: function(data) {
-         total_price = data.total_bill;
-      }
-   });
-   
-   var sendData = { 
-      room_num : room_num,
-      id : mem_id,
-      totalprice : total_price
-   };
-	   
 
-	$('#kakaopay').click(function(e){
-		e.preventDefault();
-		$.ajax({
-			url : '/pay/kakao',
-			type : 'get',
-			data : sendData,
-			success : function(res) {
-				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
-				timer = setInterval(function(){
-		              if(popup.closed){
-		                 location.href="http://localhost:8080/userView/main?roomNum="+room_num
-		              }
-		        }, 1000)
-			}
-		});
-	});
-=======
 
 	$('#modalstyle').css('display','none');
 
->>>>>>> sub_master
 	
 	ajaxtogetdb_comic_room_uselist();
 	var operForm = $("#operForm");
+
 
 	$("#userOrderView").on("click", function(e){
 		operForm.attr("method", "get");
@@ -241,8 +199,6 @@ $(document).ready(function(){
 		$('#billModal').show();
 	});
 });
-<<<<<<< HEAD
-=======
 
 /* 여기부터 시작관련 */
 function ajaxtogetdb_comic_room_uselist() {			
@@ -256,9 +212,7 @@ function ajaxtogetdb_comic_room_uselist() {
 			var text="";
 			console.log(data[0]);
 			$.each(data, function(index,list){
-				var number=1;
-				number = list.roomuse_num;
-
+				var number = list.roomuse_num;0
 				if(number == sessionValue) {
 					time_start(list.starttime, number);
 				}
@@ -302,11 +256,39 @@ function time_modify(time) {
 	}
 
 	if(time==null){
-	time=0;
-		}
+		time=0;
+	}
 	
 	return time;
 }
->>>>>>> sub_master
+
+
+var sendData = { 
+  room_num : room_num,
+  id : mem_id,
+  totalprice : total_price
+};
+   
+$('#kakaopay').click(function(e){
+	e.preventDefault();
+	$.ajax({
+		url : '/pay/kakao',
+		type : 'get',
+		data : sendData,
+		success : function(res) {
+			console.log(res);
+			if (res.totalprice != "0") {	
+				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
+				timer = setInterval(function(){
+		              if(popup.closed){
+		                 location.href="http://localhost:8080/userView/main?roomNum="+room_num
+		              }
+		        }, 1000)
+			} else {
+				location.href="http://localhost:8080/userView/main?roomNum="+room_num
+			}
+		}
+	});
+});
 </script>
 </html>

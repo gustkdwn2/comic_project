@@ -32,12 +32,12 @@ public class UserViewController {
 	}
 	
 	@GetMapping("/main")
-	public void mainView() {
+	public void main() {
 		
 	}
 	
-	@GetMapping("/main")
-	public void main() {
+	@PostMapping("/main")
+	public void mainPost() {
 		
 	}
 	
@@ -63,14 +63,4 @@ public class UserViewController {
 		System.out.println(userOrderManegerService.userProductBill(id));
 		return userOrderManegerService.userProductBill(id);
 	}
-<<<<<<< HEAD
-
-=======
-	
-	@GetMapping("/success")
-	public void success() {
-		
-	}
-	
->>>>>>> final_sub
 }

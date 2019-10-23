@@ -81,10 +81,13 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 
 	@Override
 	public void insertSale(String id) {
-		kakaoPayMapper.insertproductSale(id);
-		kakaoPayMapper.insertroomSale(id);
-		kakaoPayMapper.resetRoom(id);
+		kakaoPayMapper.insertproductSale(id);  // 상품 매출 추가
+		kakaoPayMapper.insertroomSale(id);  // 방 매출 추가
+		kakaoPayMapper.resetRoom(id); // 방 사용 테이블 초기화
 	}
-	
 
+	@Override
+	public void resetRoom(String id) {
+		kakaoPayMapper.resetRoom(id); // 방 사용 테이블 초기화
+	}
 }

@@ -36,6 +36,7 @@
 <script type="text/javascript">
 var messages = $("#messages" + sessionValue);
 var sessionValue = ${roomNum};
+var memberid = "<c:out value='${memberid}' />";
 var chatRoom = sessionValue;
 var rightLeft;
 var checkInOut;

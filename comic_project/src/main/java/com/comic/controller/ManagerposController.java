@@ -61,15 +61,17 @@ public class ManagerposController {
 	 */
 
 	@RequestMapping(value = { "/managerpos", "/Managerpos" }, method = RequestMethod.GET)
-	public String younghakpos(Locale locale, Model model) {
+	public String younghakpos(Locale locale, Model model, HttpSession session) {
+		session.removeAttribute("roomNum");
+		session.setAttribute("admin", "admin");
+		
 		return "/younghak/Managerpos";
 	}
 
 	@RequestMapping(value = { "/Manager_management" }, method = RequestMethod.GET)
-	public String managermanagerment(Locale locale, Model model) {
-		System.out.println("여기옴");
+	public String managermanagerment(Model model) {
 		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
-		System.out.println(managementService.managerList());
+		
 		return "younghak/Manager_management";
 	}
 
@@ -119,8 +121,8 @@ public class ManagerposController {
 	@ResponseBody
 	@RequestMapping(value = "get_room_uselist", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<Object> get_room_uselist(HttpSession session) {
-		session.setAttribute("admin", "admin");
-		session.removeAttribute("roomNum");
+		//session.setAttribute("admin", "admin");
+		//session.removeAttribute("roomNum");
 
 		List<RoomuseVO> list = managerposService.roomuselist();
 		// List<RoomuseVO> list = managerposService.roomuselist2();
@@ -144,8 +146,6 @@ public class ManagerposController {
 			for (int j = 0; j < curtimearr.length; j++) {
 				usetimearr[j] = (Integer.parseInt(curtimearr[j])) - (Integer.parseInt(starttimearr[j]));
 			}
-			System.out.println("usetimearr[0] = " + usetimearr[0]);
-			System.out.println("roomuse_num = " + list.get(i).getRoomuse_num());
 			if (usetimearr[0] < 0) {
 				usetimearr[0] += 24;// 시작시간보다 끝난시간이 적으면 24시간 추가해서 계산
 			}
@@ -168,24 +168,29 @@ public class ManagerposController {
 	}
 
 	@PostMapping("EmployeeDelete")
-	public String employeeDelete(Model model, @RequestParam("EMPLOYEE_PWD") String emppwd, @RequestParam("EMPLOYEE_mngnum") String mngnum) {
-
-		// List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
-
-		System.out.println("emppwd = " + emppwd + "\nmngnum = " + mngnum);
-		managementService.deletemng(emppwd, mngnum);
-
+	public String employeeDelete(Model model, @RequestParam("EMPLOYEE_PWD") String emppwd,
+			@RequestParam("EMPLOYEE_mngnum") String mngnum) {
+		List<EmployeeAttachVO> attachList = MemberService.getAttachList(Integer.parseInt(mngnum));
+		//List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
+		
+		System.out.println("emppwd = "+emppwd+"\nmngnum = "+mngnum);
+		/* managementService.deletemng(emppwd,mngnum); */
+		if(managementService.deletemng(emppwd,mngnum) == 1) {
+			deleteFiles(attachList);
+		}
+		
 		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		return "/younghak/Manager_management";
 	}
 
 	@PostMapping("workonoff")
-	public String workonoff(Model model,HttpSession session, @RequestParam("employeenum") String empnum, @RequestParam("employeepwd") String emppwd) {
-
-		System.out.println("empnum = " + empnum);
-
-		// List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
-		int logincount = managementService.managerlogin(empnum, emppwd);
+	public String workonoff(Model model, @RequestParam("employeenum") String empnum,
+			@RequestParam("employeepwd") String emppwd,HttpSession session) {
+		
+		System.out.println("empnum = "+empnum);
+		
+		//List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
+		int logincount = managementService.managerlogin(empnum,emppwd);
 
 		if (logincount == 0) {// 1이 아니면 에러
 			model.addAttribute("errormsg", "아이디와 비밀번호가 일치하지 않습니다."); // 재고테이블
@@ -458,11 +463,13 @@ public class ManagerposController {
 		return replydataArray;
 
 	}
-
-	@PostMapping("/EmployeeModify")
-	public String EmployeeRegister(EmployeeVO vo, Model model) {
-		managementService.employeeModify(vo);
-		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
+	
+	 @PostMapping("/EmployeeModify")
+	   public String EmployeeRegister(EmployeeVO vo,Model model) {
+		 List<EmployeeAttachVO> attachList = MemberService.getAttachList(vo.getEMPLOYEE_NUM());
+		 deleteFiles(attachList);
+		 managementService.employeeModify(vo);
+		 model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		return "/younghak/Manager_management";
 	      
 	   }
@@ -470,7 +477,6 @@ public class ManagerposController {
 	 @GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		@ResponseBody
 		public ResponseEntity<List<EmployeeAttachVO>> getAttachList(@RequestParam("employee_num") int employee_num) {
-		 
 			return new ResponseEntity<List<EmployeeAttachVO>>(MemberService.getAttachList(employee_num), HttpStatus.OK);
 		}
 	 
@@ -499,5 +505,4 @@ public class ManagerposController {
 			
 		}
 	 
-
-	}
+}

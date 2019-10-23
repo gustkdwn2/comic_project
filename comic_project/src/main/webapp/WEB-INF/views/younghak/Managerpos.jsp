@@ -1,5 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -13,7 +13,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
 <link rel="stylesheet" href="/resources/css/managerposCss.css">
 
 </head>
@@ -60,7 +59,7 @@
                      </div>
    
                   
-=======
+
 <style>
 * {
 	box-sizing: border-box;
@@ -164,26 +163,22 @@ body {
 					<div class="col-md-12">
 						<div class="card-body">
 							<div class="template-demo">
-
 								<c:forEach var="i" begin="1" end="6" step="1">
 
 									<c:if test="${i%3==1}">
 										<div class="row">
 									</c:if>
 
-									<div class="column" onclick="method_startnstop(${i});">
+									<div class="column">
 										<!-- <div class="div_root"> -->
 
 										<div class="div_menu">${i}번방</div>
 
 
 										<div class="div_con">
-											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font
-												id="user_time${i}">없음</font><br> 사용상태 : <font
-												id="user_status${i}">없음</font><br> 주문상태 : <font
-												id="order_status${i}">없음</font><br>
+											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font id="user_time${i}">없음</font><br> 사용상태 : <font id="user_status${i}">없음</font><br>
+											주문상태 : <font id="order_status${i}">없음</font><br>
 										</div>
-
 										<div class="div_bottom">
 											<input type="button" value="주문내역보기"
 												class="btn btn-primary btn-sm"
@@ -193,41 +188,13 @@ body {
 												class="btn btn-success btn-sm"
 												style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 										</div>
->>>>>>> final_sub
 
 
-<<<<<<< HEAD
-      <c:if test="${i%3==0}">
-         </div><br>
-         </c:if>
-</c:forEach>
-            </div>
-            
-         </div>
-      </div>
-   </div>
-                     <!-- <div class="col-md-0"> -->
-                     <div class="card-body">
-                        <%-- <h4 class="card-title">Inverse buttons</h4>
-                      <p class="card-description">Add class <code>.btn-inverse-{color} for inverse buttons</code></p> --%>
-                        <div class="template-demo"></div>
-                     </div>
-                  </div>
+											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
 
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-
-   <script>	
-	var check_arr = new Array(7); //방의 개수보다 1크게
-	
-	array_init(check_arr);
-=======
-
+											<input type="button" value="채팅하기" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+										</div>
 									</div>
-
 									<c:if test="${i%3==0}">
 							</div>
 							<br>
@@ -237,7 +204,7 @@ body {
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- 실시간 주문 테이블 -->
 			<div class="row">
 				<div class="col-md-12 stretch-card">
@@ -266,25 +233,16 @@ body {
 		</div>
 	</div>
 	<!-- main-panel ends -->
-	
-	
-
 
 	<script>
-	//초기화작업
-	var check = new Array(7); //방의 개수보다 1크게
 	
 	array_init(check);
->>>>>>> final_sub
 
 	ajaxtogetdb_comic_room_uselist();
 	//초기화작업
 	
-<<<<<<< HEAD
-=======
 	realOrder();
 	
->>>>>>> final_sub
 		function openTab(tabName) {
 			var i, x;
 			x = document.getElementsByClassName("containerTab");
@@ -302,8 +260,6 @@ body {
 		var hour = 0;
 		var minute = 0;
 
-		
-
 		function array_init(check_arr) {
 			for (var i = 0; i < check_arr.length; i++) {
 				check_arr[i] = false;
@@ -312,11 +268,22 @@ body {
 
 		
 		function method_startnstop(num, id) {
-
+			// 시작시간
 			if (!check_arr[num]) {
 				check_arr[num] = true;
 				time_start(0, num);
-				
+				var user = "id";
+				var user_status = "unavail";
+				var order_status = "unavail";
+
+				var roomuse_id = "id";
+				var roomuse_num = num;
+				var roomuse_status = "on";
+
+				document.getElementById('user' + num).innerHTML = user;
+				document.getElementById('user_status' + num).innerHTML = roomuse_status;
+				document.getElementById('order_status' + num).innerHTML = order_status;
+
 				ajaxtosenddb_comic_room_use2(id, num, "on");
 
 			} else {
@@ -338,26 +305,16 @@ body {
 		}
 
 		function startnstop_init(id,num,starttime,status) {
-<<<<<<< HEAD
-			/*console.log("1 방 "+check_arr[0]);
-			console.log("2 방 "+check_arr[1]);
-			console.log("3 방 " + check_arr[2]);
-			console.log("4 방 " + check_arr[3]);
-			console.log("5 방 " + check_arr[4]);
-			console.log("6 방 " +check_arr[5]);*/
-			//console.log("6 방 " +status); 
-			//alert(" 방 넘버 : "+  num+"방상태"+status+"방 불리언"+check_arr[num]);
+
 			if(status=="on"){
 				check_arr[num]=false;
 				}
 			
 			if (!check_arr[num]) {
 				check_arr[num] = true;
-=======
 			
 			if (!check[num]) {
 				check[num] = true;
->>>>>>> final_sub
 				time_start(starttime, num);
 				/* 테스트용 */
 				var order_status = "unavail";
@@ -380,7 +337,7 @@ body {
 
 			}
 		}
-
+		
 		function time_start(time, num) {
 			//	alert("0");
 			if (!check_arr[num]) {
@@ -429,19 +386,73 @@ body {
 			alert("num.toString().length = " + num.toString().length + "\n"
 					+ "str.length = " + str.length)
 		}
-
-		$(document).ready(function(){
-			$("button[name='chat']").on("click", function() {
-				var roomNum = $(this).attr('value');
-				window.open("/chat/chatting?room=" + roomNum,"_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
-			});
-			$("#roomClose").on("click", function() {
-				method_startnstop(1, "user");
-			});
+		
+		
+		function realOrder() {
+			$('#realOrderTable').DataTable(
+					{ // 페이징 처리, 검색, show entries
+						pageLength : 10, //처음 페이지에 처리 개수
+						bPaginate : true, // 페이징 기능
+						bLengthChange : true,
+						lengthMenu : [ [ 10, 20, 30, -1 ],
+								[ 10, 20, 30, "All" ] ], //show entries
+						bAutoWidth : false,
+						processing : true,
+						ordering : true,
+						serverSide : false,
+						searching : true, // 검색 기능
+						bStateSave : true,
+						"iDisplayLength" : 10,
+						"columnDefs" : [ {
+							targets : 'no-sort',
+							orderable : false
+						} ],
+						ajax : {
+							url : "/realorder/realOrderData.json",
+							type : "get",
+							dataSrc : '',
+						},
+						"language": {
+						      search: "Search :"
+						},
+						aoColumns : [
+								{
+									data : "order_num"
+								},
+								{ data: "order_time", 
+						    		"render": function (data) {
+						    			var date = new Date(data); var month = date.getMonth() + 1; 
+						    			return  date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); } 
+							    },
+								{
+									data : "order_roomnum"
+								},
+								{
+									data : "order_id"
+								},
+								{
+									data : "product_name"
+								},
+								{
+									data : "order_qty"
+								},
+								{
+									data : "product_price"
+								},],
+						order : [ [ 0, 'desc' ] ]
+					});
+			}
+			
+	$(document).ready(function(){
+		$("button[name='chat']").on("click", function() {
+			var roomNum = $(this).attr('value');
+			window.open("/chat/chatting?room=" + roomNum,"_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
+		});
+		$("#roomClose").on("click", function() {
+			method_startnstop(1, "user");
 		});
 
 		
 	</script>
-
 </body>
 </html>

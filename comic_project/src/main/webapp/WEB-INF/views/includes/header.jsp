@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
->>>>>>> final_sub
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
@@ -43,16 +39,16 @@
 <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
 <script src="/resources/js/orderWebsocket.js"></script>
 
-<<<<<<< HEAD
-=======
+
 </body>
 
 </html>
 
+
 </head>
 
 <body>
->>>>>>> final_sub
+
 <script>
 //var test  = location.pathname;//프로젝트 뒤의 값을 가져온다 //project:"managerpos/login"
 //alert('${request.getRequestURI()}');
@@ -77,30 +73,11 @@
             <div
                class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
 
-<<<<<<< HEAD
-</head>
-
-<body>
-
-   <div class="container-scroller">
-      <!-- partial:partials/_navbar.html -->
-      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-         <div class="navbar-brand-wrapper d-flex justify-content-center">
-            <div
-               class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-
                <a class="navbar-brand brand-logo" href="/managerpos/managerpos">
                <img src="/resources/images/comic_image.png" alt="" style="width: 70px; height: 30px;"/></a>
                <a class="navbar-brand brand-logo" href="/managerpos/managerpos">
                <img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 100px; height: 15px;"/></a>
 
-=======
-               <a class="navbar-brand brand-logo" href="/managerpos/managerpos">
-               <img src="/resources/images/comic_image.png" alt="" style="width: 70px; height: 30px;"/></a>
-               <a class="navbar-brand brand-logo" href="/managerpos/managerpos">
-               <img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 100px; height: 15px;"/></a>
-
->>>>>>> final_sub
                <button class="navbar-toggler navbar-toggler align-self-center"
                   type="button" data-toggle="minimize">
                   <span class="mdi mdi-sort-variant"></span>
@@ -112,9 +89,6 @@
          
          <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
             <ul class="navbar-nav navbar-nav-right">
-<<<<<<< HEAD
-
-=======
 <!--                <li class="nav-item dropdown mr-1">
                   <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
                      id="messageDropdown" href="#" data-toggle="dropdown"> 
@@ -161,7 +135,6 @@
                      </a>
                   </div>
                </li> -->
->>>>>>> final_sub
                
                <!-- 알림 아이콘 -->
                <li class="nav-item dropdown mr-4"><a
@@ -209,10 +182,6 @@
                   </div>
                </li>
                <!-- 알림 아이콘 끝 -->
-<<<<<<< HEAD
- 
-=======
-   
                <c:if test="${not empty Memberlogin}">
                   <li class="nav-item nav-profile dropdown"><a
                      class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
@@ -240,11 +209,9 @@
                         </a>
                      </div></li>
                </c:if>
->>>>>>> final_sub
+
                
             </ul>
-            
-            
             
             <button
                class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
@@ -253,10 +220,14 @@
             </button>
          </div>
       </nav>
-      
-<<<<<<< HEAD
+
       
 <!-- 주문 모달 -->
+
+            
+  
+      <!-- 주문 모달 -->
+
 		<div class="modal" id="ModalorderArlet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -275,7 +246,7 @@
 				</div>
 			</div>
 		</div>
-=======
+
       <!-- headerMemberModifyPassword -->
       <div class="modal" id="headerMemberModifyPasswordModal">
          <div class="modal-dialog">
@@ -360,6 +331,6 @@
             </div>
          </div>
       </div>
->>>>>>> final_sub
+
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">

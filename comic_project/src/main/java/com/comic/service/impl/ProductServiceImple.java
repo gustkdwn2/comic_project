@@ -54,5 +54,15 @@ public class ProductServiceImple implements ProductService {
 	public ProductVO productNameCheck(String product_name) {
 		return mapper.productNameCheck(product_name);
 	}
+	
+	@Override
+	public List<ProductVO> productCategory() {
+		return mapper.productCategory();
+	}
+
+	@Override
+	public List<ProductVO> productCategoryName(String product_category) {
+		return mapper.productCategoryName(product_category);
+	}
 
 }

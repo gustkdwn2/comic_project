@@ -9,7 +9,7 @@
 <body>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-var socket = new WebSocket("ws://localhost:8080/echo_order");
+var socket = new WebSocket("ws://10.10.10.173:8080/echo_order");
 var sessionValue = ${roomNum};
 var memberid = "<c:out value='${memberid}' />";
 socket.onopen = function() {

@@ -15,12 +15,9 @@
 			</div>
 			<div id="chatTile" class="title"></div>
 		</div>
-		<ul class="messages" id="messages1"></ul>
-		<ul class="messages" id="messages2"></ul>
-		<ul class="messages" id="messages3"></ul>
-		<ul class="messages" id="messages4"></ul>
-		<ul class="messages" id="messages5"></ul>
-		<ul class="messages" id="messages6"></ul>
+		<c:forEach var="i" begin="1" end="6" step="1">
+			<ul class="messages" id="messages${i}"></ul>
+		</c:forEach>
 		<div class="bottom_wrapper clearfix">
 			<div class="message_input_wrapper">
 				<input class="message_input" placeholder="Type your message here..." />
@@ -31,42 +28,15 @@
 			</div>
 		</div>
 	</div>
-	<div class="message_template1">
-		<li class="message"><div class="avatar"></div>
-			<div class="text_wrapper">
-				<div class="text"></div>
-			</div></li>
-	</div>
-	<div class="message_template2">
-		<li class="message"><div class="avatar"></div>
-			<div class="text_wrapper">
-				<div class="text"></div>
-			</div></li>
-	</div>
-	<div class="message_template3">
-		<li class="message"><div class="avatar"></div>
-			<div class="text_wrapper">
-				<div class="text"></div>
-			</div></li>
-	</div>
-	<div class="message_template4">
-		<li class="message"><div class="avatar"></div>
-			<div class="text_wrapper">
-				<div class="text"></div>
-			</div></li>
-	</div>
-	<div class="message_template5">
-		<li class="message"><div class="avatar"></div>
-			<div class="text_wrapper">
-				<div class="text"></div>
-			</div></li>
-	</div>
-	<div class="message_template6">
-		<li class="message"><div class="avatar"></div>
-			<div class="text_wrapper">
-				<div class="text"></div>
-			</div></li>
-	</div>
+	<c:forEach var="i" begin="1" end="6" step="1">
+		<div class="message_template${i}">
+			<li class="message"><div class="avatar"></div>
+				<div class="text_wrapper">
+					<div class="text"></div>
+				</div></li>
+		</div>
+	</c:forEach>
+	
 
 </body>
 <script src="/resources/js/userWebsocket.js"></script>
@@ -80,8 +50,8 @@ function getParameter(strParamName) {
 }
 
 var sessionValue = "<c:out value = '${admin}' />";
+var memberid = "<c:out value='${memberid}' />";
 var chatRoom = getParameter("room");
-console.log("tesdtes " + chatRoom);
 var rightLeft;
 var checkInOut;
 var test;
@@ -89,8 +59,10 @@ var test;
 $(document).ready(function() {
 	$("#chatTile").html("");
 	$("#chatTile").append(chatRoom + "방 채팅")
-	$("#messages1").hide();
-	$("#messages2").hide(); 
+	for(var i = 1; i < 7; i++) {
+		$("#messages" + i).hide();
+	}
+   
 	$("#messages" + chatRoom).show();
 });
 
