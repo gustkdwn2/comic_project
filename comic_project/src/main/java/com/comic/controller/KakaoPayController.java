@@ -4,6 +4,8 @@ package com.comic.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +34,19 @@ public class KakaoPayController {
 	}
 	
 	@GetMapping("successpay")
-	public String kakaoPaySuccess(@RequestParam("id") String id) {
+	public void kakaoPaySuccess(@RequestParam("id") String id, HttpSession httpSession) {
 		kakaoPayService.insertSale(id);
-		return "redirect:/userView/success";
+		httpSession.removeAttribute("Memberlogin");
+		httpSession.removeAttribute("memberid");
+	}
+	
+	@GetMapping("failpay")
+	public void kakaoPayFail() { 
+		
+	}
+	
+	@GetMapping("cancelpay")
+	public void kakaoPayCancel() {
+		
 	}
 }

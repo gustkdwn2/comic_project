@@ -22,26 +22,34 @@
 				<h4>상품주문 화면</h4><hr>
 				<button class="btn btn-warning" id="categoryAdd" style="color:#f3f3f3;">카테고리추가</button>
 				<br/><hr>
-
-				<table>
-					<tr>
+					<div class="row">
 						<c:forEach items="${ OrderViewVO_List }" var="list">
-							<td style="height: 120px;">
-								<div style="text-align: center; border: 1px solid #e3e3e4; height: 100px;">
-								<button name="categoryButton" class="btn btn-outline-secondary"
-										style="margin-top:10px;" value="${ list.orderview_category }">
-									${ list.orderview_category }</button>
-								<div style="width: 150px; margin-top:10px;">
-									<button name="categoryDelete" value="${ list.orderview_num }"
-										class="btn btn-primary btn-sm">삭제</button>
-									<button name="categoryUpdate" value="${ list.orderview_num }"
-										class="btn btn-primary btn-sm">수정</button>
-								</div>
-								</div>
-							</td>
+							<div class="col-sm-2" >
+									<div style="text-align: center;">
+									
+										<button name="categoryButton" class="btn btn-outline-secondary"
+												style="margin-top:10px;" value="${ list.orderview_category }">
+											${ list.orderview_category }</button>
+										<div class="btn-group-vertical" role="group" style="margin-top:10px;"
+											aria-label="Basic example">
+											<div class="btn-group">
+												<button type="button"
+													class="btn btn-secondary dropdown-toggle"
+													data-toggle="dropdown"></button>
+												<div class="dropdown-menu" style="background-color: #d6e3ff;">
+													<a class="dropdown-item" name="categoryDelete" value="${ list.orderview_num }"
+													style="cursor: pointer;">삭제</a> 
+													<a class="dropdown-item" name="categoryUpdate" value="${ list.orderview_num }"
+													style="cursor: pointer;">수정</a>
+												</div>
+											</div>
+										
+										</div>
+									</div>
+							</div>
 						</c:forEach>
-					</tr>
-				</table><hr>
+					</div><hr>
+			
 				<div id="orderProduct"><!-- 등록한 상품이 나타난다. --></div>
 				<button class="btn btn-warning" name="productAdd" 
 						style="color: #f3f3f3; margin-top:10px;">상품추가</button>
@@ -84,18 +92,18 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">category Update</h4>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">&times;</button>
+				<button type="button" class="close" data-dismiss="modal" 
+					style="float: right; width: 100px;" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">카테고리 수정</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>category</label> <input class="form-control" name="category">
+					<label>카테고리</label> <input class="form-control" name="category" style="border: 3px solid #e3e3e4">
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button id="cateModalUpdateBtn" type="button"
-					class="btn btn-primary">Update</button>
+					class="btn btn-warning" style="color:#f3f3f3;">수정 완료</button>
 			</div>
 		</div>
 	</div>
@@ -107,14 +115,14 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">product Add</h4>
+				<h4 class="modal-title" id="myModalLabel">상품추가</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>product</label> <input class="form-control" name="product">
-					<label>image file</label>
+					<label>상품</label> <input class="form-control" name="product">
+					<label>이미지</label>
 					<form id="uploadForm" method="post" enctype="multipart/form-data">
 						<input class="form-control" type="file" name="uploadFile">
 					</form>
@@ -122,7 +130,7 @@
 			</div>
 			<div class="modal-footer">
 				<button id="productModalRegisterBtn" type="button"
-					class="btn btn-primary">Resgister</button>
+					class="btn btn-primary">상품 등록</button>
 			</div>
 		</div>
 	</div>
@@ -133,14 +141,14 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">product Update</h4>
+				<h4 class="modal-title" id="myModalLabel">상품 수정</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>product</label> <input class="form-control" name="product">
-					<label>image file</label>
+					<label>상품</label> <input class="form-control" name="product">
+					<label>이미지</label>
 					<form id="uploadForm" method="post" enctype="multipart/form-data">
 						<input class="form-control" type="file" name="uploadFile">
 					</form>
@@ -148,7 +156,7 @@
 			</div>
 			<div class="modal-footer">
 				<button id="productModalUpdateBtn" type="button"
-					class="btn btn-primary">Resgister</button>
+					class="btn btn-primary"></button>
 			</div>
 		</div>
 	</div>
@@ -177,7 +185,7 @@
             operForm.submit();
         });
 
-		$("button[name='categoryUpdate']").on("click", function (e) {
+		$("a[name='categoryUpdate']").on("click", function (e) {
 			modalCateUpdate.modal('show');
 			indexNum = $(this).attr('value');
 				
@@ -191,7 +199,7 @@
             operForm.submit();
         });
 
-		$("button[name='categoryDelete").on("click", function (e) {
+		$("a[name='categoryDelete").on("click", function (e) {
 			if(confirm("정말 삭제하시겠습니까?") == false) return;
 
 			indexNum = $(this).attr('value');

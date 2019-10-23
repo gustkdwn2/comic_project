@@ -45,10 +45,10 @@
 											</tr>
 										</c:forEach>
 									</tbody>
-								</table>
+								</table><br/>
 								<div align="right">
-									<button id="btn1" class="btn btn-danger btn-rounded ">오차확인</button>
-									<button id="btn2" class="btn btn-primary btn-rounded ">재고정산</button>
+									<button id="btn1" class="btn btn-danger">오차확인</button>
+									<button id="btn2" class="btn btn-primary">재고정산</button>
 								</div>
 							</div>
 						</div>

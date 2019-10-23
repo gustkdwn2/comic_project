@@ -1,3 +1,6 @@
+$(document).ready(function() {
+	$('#modalstyle').css('display','none');
+});
 $('#btn1').click(function() { 
 		var list = new Array();		
 		$("input[name=curqty]").each(function(index, item) {  // 반복문
@@ -46,6 +49,7 @@ $('#btn1').click(function() {
 			$('#' + 'b' + i.toString()).html(list[i]);
 		}
 		$('#myModal').show();
+		$('#modalstyle').css('display','');
 	});
 
 	function modify_product() {
@@ -85,4 +89,5 @@ $('#btn1').click(function() {
 	
 	$('#modalclose').click(function(){
     	$('#myModal').hide();
+    	$('#modalstyle').css('display','none');
     });

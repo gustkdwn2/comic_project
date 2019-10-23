@@ -13,11 +13,11 @@
 	<div class="main-penal">
 		<div class="content-wrapper">
 			<div style="background-color: #37363a; height: 150px;">
-				<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:300px; margin-top:20px; float: left "/>
+				<img src="/resources/images/comic_image.png" alt="" style="width: 200px; height: 100px; margin-left:400px; margin-top:20px; float: left "/>
 				<div class="content-section-heading text-center" style="width: 500px; height: 100px; margin-top:30px; float: left;"><br/>
 					<h1 style="color:white;">${ roomNum } 번방 홈 &emsp;&emsp; 02:15:39</h1>
 				</div> 
-				<div style="width: 300px; height: 100px; color:#f4e362; float:right; margin-top:60px; margin-right:350px; font-size: 20px;" >
+				<div style="width: 300px; height: 100px; color:#f4e362; float:right; margin-top:60px; margin-right:400px; font-size: 20px;" >
 					<a style="color:#f4e362;" href='javascript:headermembermodifyBtn()'>회원 수정</a>
 					&emsp;
 					<a style="color:#f4e362;" href="${path}/member/MemberLogout">로그 아웃</a>
@@ -103,6 +103,7 @@ $(document).ready(function(){
 	var room_num = ${roomNum};
 	var mem_id = '${memberid}';
 	var total_price;
+	var operForm = $("#operForm");
 	
 	$.ajax({
 		type: 'get',
@@ -114,15 +115,25 @@ $(document).ready(function(){
 		}
 	});
 	
-	var operForm = $("#operForm");
-	var sendData = { 
-		room_num : room_num,
-		id : mem_id,
-		totalprice : total_price
-	};
 	
-	console.log(sendData);
-	
+	   
+   $.ajax({
+      type: 'get',
+      url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
+      async : false,
+      dataType: 'json',
+      success: function(data) {
+         total_price = data.total_bill;
+      }
+   });
+   
+   var sendData = { 
+      room_num : room_num,
+      id : mem_id,
+      totalprice : total_price
+   };
+	   
+
 	$('#kakaopay').click(function(e){
 		e.preventDefault();
 		$.ajax({
@@ -130,14 +141,12 @@ $(document).ready(function(){
 			type : 'get',
 			data : sendData,
 			success : function(res) {
-				console.log(res);
-				console.log(res.payUrl);
 				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
 				timer = setInterval(function(){
-	                  if(popup.closed){
-	                     location.href="http://localhost:8080/"
-	                  }
-	               }, 1000)
+		              if(popup.closed){
+		                 location.href="http://localhost:8080/userView/main?roomNum="+room_num
+		              }
+		        }, 1000)
 			}
 		});
 	});
@@ -212,54 +221,6 @@ $(document).ready(function(){
 
 		$('#billModal').show();
 	});
-	
-	$("#paymentModalBtn").on("click", function(e){
-		$.ajax({
-			type: 'get',
-			url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
-			dataType: 'json',
-			success: function(data) {
-				$('#productpayment').attr('value',data.product_bill);
-				$('#roompayment').attr('value',data.room_bill);
-				$('#totalpayment').attr('value',data.total_bill);
-			}
-		});
-		
-		
-		$("#paymentBillModalBtn").click(function() {
-			$.ajax({
-				type: 'get',
-				url: '/userView/userProductBill?userId=${Memberlogin.MEMBER_ID}',
-				dataType: 'json',
-				success: function(data) {
-					console.log(data);
-					$("#productBillTbody").html("");
-		            var str = '<tr>';
-		            $.each(data , function(i){
-		            	var date = new Date(data[i].order_time); var month = date.getMonth() + 1; 
-		                str += '<td>' + date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() +
-		                "<br>" + date.getHours() + " : " + date.getMinutes() + ' : ' + date.getSeconds() + '</td><td>' + data[i].product_name + '</td><td>' + data[i].order_qty + '</td><td>' + data[i].order_bill + '</td>';
-		                str += '</tr>';
-		           });
-		           $("#productBillTbody").append(str);
-					
-				}
-			});
-			/* $("#productBillModal").modal('show').css({
-			    'margin-top': function () { //vertical centering
-			        return -($(this).height() / 100);
-			    },
-			    'margin-left': function () { //Horizontal centering
-			        return -($(this).width() / 100);
-			    }
-			}); */
-			$("#productBillModal").show();
-		});
-
-		$('#paymentModal').show();
-	});
-
-	
 });
 </script>
 </html>

@@ -60,14 +60,17 @@ td {
 		<div class="content-wrapper">
 			<div style="background-color: #37363a; height: 150px;">
 				<img src="/resources/images/comic_image.png" alt=""
-					style="width: 200px; height: 100px; margin-left: 150px; margin-top: 20px; float: left" />
-				<div class="content-section-heading text-center" style="width: 700px; height: 100px; margin-top: 30px; float: left; ">
-					<br/><h1 style="color: white;">${ roomNum }번방&emsp;상품 주문&emsp;&emsp; 02:15:39</h1>
+					style="width: 200px; height: 100px; margin-left: 600px; margin-top: 20px; float: left" />
+				<div class="content-section-heading text-center" style="width: 500px; height: 100px; margin-top: 30px; float: left; ">
+					<br/><h1 style="color: white;">${ roomNum }번방&emsp;02:15:39</h1>
 				</div><br/><br/>
 			</div>
 			
+			<div style="margin:10px 150px 0 0; width:200x; text-align: center;">
+			<h2 class=".h2"><a href="javascript:home()">홈</a> > 상품주문</h2>
+			</div>
 			<div style="float: left; margin-top:45px;">
-				<div style="background-color: #dadfe4; width: 600px; margin-left:95px;">
+				<div style="background-color: #dadfe4; width: 600px; margin-left:250px;">
 						
 					<span> <c:forEach items="${ OrderViewVO_List }" var="list">
 							<button class="btn btn-secondary btn-rounded btn-fw"
@@ -76,17 +79,17 @@ td {
 					</span>		
 				</div>
 					
-				<div class="orderProduct" style="border:3px solid #dadfe4; margin-left:95px;">
+				<div class="orderProduct" style="border:3px solid #dadfe4; margin-left:250px;">
 					<!-- 사이다 등 상세제품이 나온다. -->
 				</div>
 			
 			</div>
 
-			<div class="container" style="float: right; width: 700px; margin: 45px 95px 0 0;">
+			<div class="container" style="float: right; width: 800px; margin: 45px 200px 0 0;">
 				<div class="row">
 					<div class="col-md-12"  style="text-align: center;"><br/>
 						<h2>주문목록</h2><br/>
-						<table style="width:650px; margin-left:15px;">
+						<table style="width:700px; margin-left:30px;">
 							<thead>
 								<tr>
 									<th style="width: 40%;">상품명</th>
@@ -102,7 +105,7 @@ td {
 					</div><br/><hr/>
 					
 					<div class="col-md-12" style="margin-top:50px;">
-						<div style="width:420px; height:200px; margin:20px 0 0 140px;">
+						<div style="width:420px; height:200px; margin:20px 0 0 170px;">
 								<div style="float: left;">
 								<h4 style="color:black; font-weight: 600;">&nbsp;총수량</h4>
 								<input id="orderQty" class="form form-control" style="width:200px;" readonly></div>
@@ -129,12 +132,8 @@ td {
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">주문 완료</h4>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-footer">
+					<div class="modal-header" style="text-align: center;">
+						<h4 class="modal-title" id="myModalLabel">주문이 완료되었습니다.</h4><hr>						
 						<button type="button" id="OK" class="btn btn-primary">확인</button>
 					</div>
 				</div>
@@ -144,6 +143,15 @@ td {
 </body>
 <script src="/resources/js/userOrderManeger.js?after"></script>
 <script type="text/javascript">
+	var roomNum = "<c:out value='${roomNum}'/>";
+	function home(){
+		var operForm = $("#operForm");
+	
+		operForm.append("<input type='hidden' name='roomNum' value='" + roomNum + "'>");
+		operForm.attr("method", "post");
+		operForm.attr("action","/userView/main");
+		operForm.submit();
+	}
 	$(document)
 			.ready(
 					function() {

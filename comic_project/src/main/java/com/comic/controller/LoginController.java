@@ -78,7 +78,7 @@ public class LoginController {
 				model.addAttribute("memberid", memberVO.getMEMBER_ID());
 			}
 		}
-		//service.roomuse(memberVO.getMEMBER_ID(),Integer.parseInt((String) httpSession.getAttribute("roomNum")));
+		service.roomuse(memberVO.getMEMBER_ID(),Integer.parseInt((String) httpSession.getAttribute("roomNum")));
 	}
 	
 	// 멤버 로그아웃 처리

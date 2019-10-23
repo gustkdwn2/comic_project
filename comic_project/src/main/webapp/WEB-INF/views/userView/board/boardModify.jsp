@@ -38,7 +38,7 @@
 	                    <div class="form-group">
 	                      <label for="board_content">내용</label>
 	                      <textarea class="form-control" name="board_content" rows="10" cols="70" style="border: 1px solid #cdcdce; width: 1100px;"
-	                                maxlength="660" placeholder="내용을 입력해주세요" >${board.board_content}"</textarea>
+	                                maxlength="660" placeholder="내용을 입력해주세요" >${board.board_content}</textarea>
 	                    </div>
 	                    
 	                    

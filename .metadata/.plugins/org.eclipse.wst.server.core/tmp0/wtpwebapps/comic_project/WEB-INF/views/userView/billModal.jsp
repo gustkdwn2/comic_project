@@ -11,7 +11,7 @@ font {
 <!-- The ProductOrderGet Modal -->
 <div class="modal" id="billModal">
 	<div class="modal-dialog">
-		<div class="modal-content" align="center">
+		<div class="modal-content" align="center" style="border: 3px solid #cdcdce;">
 
 			<!-- Modal Header -->
 			<div class="modal-header">
@@ -57,6 +57,7 @@ font {
 
 <script type="text/javascript">
 	$("#billModalCloseBtn").click(function() {
+		$('#modalstyle').css('display','none');
 		$("#billModal").hide();
 	});
 </script>
