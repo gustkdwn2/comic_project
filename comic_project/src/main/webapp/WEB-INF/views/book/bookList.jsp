@@ -47,7 +47,7 @@
 	
 	<jsp:include page="bookRegisterModal.jsp" />
 	<jsp:include page="bookGetModal.jsp" />
-	<script src="/resources/js/bookTable.js?ver=66" ></script>
-	<script src="/resources/js/bookRegister.js?ver=55" ></script>
-	<script src="/resources/js/bookGet.js?ver=92" ></script>
+	<script src="/resources/js/bookTable.js?ver=37" ></script>
+	<script src="/resources/js/bookRegister.js?ver=21" ></script>
+	<script src="/resources/js/bookGet.js?ver=32" ></script>
 </html>

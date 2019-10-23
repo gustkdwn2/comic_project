@@ -81,22 +81,6 @@ public class LoginController {
 		
 	}
 	
-	// 멤버 로그아웃 처리
-	@GetMapping("/MemberLogout")
-	public String Memberlogout(HttpServletRequest request,
-			HttpServletResponse response,
-			HttpSession httpSession) throws Exception {
-		
-		Object object = httpSession.getAttribute("Memberlogin");
-		if (object != null) {
-			httpSession.removeAttribute("Memberlogin");
-			httpSession.removeAttribute("memberid");
-			httpSession.setAttribute("roomnumber", httpSession.getAttribute("roomNum"));
-			System.out.println(httpSession.getAttribute("roomnumber"));
-		}
-		return "/member/Logout";
-	}
-	
 	// 멤버 관리 페이지 멤버 정보 뿌리기
 	@GetMapping("/MemberData")
 	public ResponseEntity<List<MemberVO>> memberData() {
@@ -163,66 +147,4 @@ public class LoginController {
 		}
 		return result;
 	}
-
-//	//직원 추가 페이지 이동
-//	@GetMapping("/EmployeeRegister")
-//	public void EmployeeRegister() {
-//		
-//	}
-//	
-//	//직원 추가
-//	@PostMapping("/EmployeeRegister")
-//	public String EmployeeRegister(EmployeeVO vo) {
-//		service.employeeRegister(vo);
-//		return "redirect:/member/EmployeeLogin";
-//	}
-//	
-//	
-//	// 직원 로그인 페이지
-//	@GetMapping("/EmployeeLogin")
-//	public String EmployeeloginGET(@ModelAttribute("loginVO") LoginVO loginVO) {
-//		return "/member/EmployeeLogin";
-//	}
-//		
-//	// 직원 로그인 
-//	@PostMapping("/EmployeeLoginPost")
-//	public void EmployeeLoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
-//			
-//		EmployeeVO employeeVO = service.employeeLogin(loginVO);
-//		boolean passMatch = passEncoder.matches(loginVO.getEMPLOYEE_PWD(), employeeVO.getEMPLOYEE_PWD());
-//			
-//		if(employeeVO == null || !passMatch) {
-//			return;
-//		}
-//			
-//		model.addAttribute("employee", employeeVO);
-//			
-//		if(loginVO.isUseCookie()) {
-//			int amount = 60 * 60 * 24 * 7;
-//			Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
-//			service.EmployeekeepLogin(employeeVO.getEMPLOYEE_NUM(), httpSession.getId(), sessionLimit);
-//		}
-//	}
-//		
-//	// 직원 로그아웃 처리
-//	@GetMapping("/EmployeeLogout")
-//	public String Employeelogout(HttpServletRequest request,
-//						 HttpServletResponse response,
-//						 HttpSession httpSession) throws Exception {
-//			
-//		Object object = httpSession.getAttribute("Employeelogin");
-//		if (object != null) {
-//			EmployeeVO employeeVO = (EmployeeVO) object;
-//			httpSession.removeAttribute("Employeelogin");
-//			httpSession.invalidate();
-//			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-//			if (loginCookie != null) {
-//				loginCookie.setPath("/");
-//	            loginCookie.setMaxAge(0);
-//	            response.addCookie(loginCookie);
-//	            service.EmployeekeepLogin(employeeVO.getEMPLOYEE_NUM(), "none", new Date());
-//			}
-//		}
-//		return "/member/Logout";
-//	}
 }

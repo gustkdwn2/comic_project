@@ -122,66 +122,107 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card-body">
-									<button type="button" id="AdminModal" class="btn btn-warning" style="color:white;">직원
-										추가</button>
-									<br> <br>
-									<div class="template-demo">
-										<div class="row">
 
-											<c:forEach var="i" begin="1" end="${managerList.size()}"
-												step="1">
+									<!--                       
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5"> -->
+
+		<button type="button" id="AdminModal" class="btn btn-primary">직원
+			추가</button>
+		<br>
+		<br>
+		<div class="template-demo">
+			<div class="row">
+
+<c:forEach var="i" begin="1" end="${managerList.size()}" step="1">
+
+<script>
+$.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).getEMPLOYEE_NUM()}}, function(arr){
+
+	var str="";
+
+	$(arr).each(function(i, attach){
+    	//image type
+    	if(attach.fileType){
+        	
+            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName);
+
+            str += "<img src='/empDisplay?fileName="+fileCallPath+"' style='width:210px; height:160px; border-radius: 50%;'";
+            str +=" onclick='workhourcal(\""+${managerList.get(i-1).getEMPLOYEE_NAME()}+"\",\""+${managerList.get(i-1).getEMPLOYEE_NUM()}+"\")'>";
+		}
+    });
+	$("#empImageGetList${i-1}").html(str);
+});
+</script>
+
+<!-- <div class="row"> -->
+<div class="mngmentcard" >
+
+	<!-- <img src="/WEB-INF/views/younghak/icando.jpg" alt="John" style="width:80%; height:80%; border-radius: 50%;" > -->
+	<%-- <a href="#"> <img
+		src="/resources/images/faces/jang.jpg"
+		alt="${managerList.get(i-1).getEMPLOYEE_NAME()}"
+		style="width: 50%; height: 50%; border-radius: 50%;"
+		onclick="workhourcal('${managerList.get(i-1).getEMPLOYEE_NAME()}','${managerList.get(i-1).getEMPLOYEE_NUM()}')">
+	</a> --%>
+	 <a href="#" id="empImageGetList${i-1}">
+	 	
+	</a>
+
+	<h1>${managerList.get(i-1).getEMPLOYEE_NAME()}</h1>
+	<!-- 이름 -->
+	<p class="mngmenttitle">${managerList.get(i-1).getEMPLOYEE_POSITION()}</p>
+	<p>사번 : ${managerList.get(i-1).getEMPLOYEE_NUM()}</p>
+
+	<p>
+		입사일 :
+		<fmt:formatDate
+			value="${managerList.get(i-1).getEMPLOYEE_STARTDAY()}"
+			pattern="yy.MM.dd" />
+	</p>
+	<p>연락처 : ${managerList.get(i-1).getEMPLOYEE_PHONE()}</p>
+	<p>시급/월급 : ${managerList.get(i-1).getEMPLOYEE_PAY()}</p>
+	<p>계좌번호 : ${managerList.get(i-1).getEMPLOYEE_ACCOUNT()}</p>
+
+	<div style="margin: 24px 0;">
+
+		<!-- </div> -->
+		<p>
+			<button class="mngmentbutton"
+				onclick="employeemodify(${managerList.get(i-1).getEMPLOYEE_NUM()})">수정하기</button>
+		</p>
+		<p>
+			<button class="mngmentbutton"
+				onclick="employeedelete(${managerList.get(i-1).getEMPLOYEE_NUM()})">탈퇴하기</button>
+		</p>
+
+		<a href="#" class="mngmenta"><i class="fa fa-dribbble"></i></a>
+		<a href="#" class="mngmenta"><i class="fa fa-twitter"></i></a>
+		<a href="#" class="mngmenta"><i class="fa fa-linkedin"></i></a>
+		<a href="#" class="mngmenta"><i class="fa fa-facebook"></i></a>
+	</div>
+</div>
+
+<c:if test="${i%3==0}">
+</div>
+<div class="row">
+	</c:if>
 
 
-												<!-- <div class="row"> -->
-												<div class="mngmentcard">
-
-													<!-- <img src="/WEB-INF/views/younghak/icando.jpg" alt="John" style="width:80%; height:80%; border-radius: 50%;" > -->
-													<a href="#"> <img
-														src="/resources/images/faces/jang.jpg"
-														alt="${managerList.get(i-1).getEMPLOYEE_NAME()}"
-														style="width: 50%; height: 50%; border-radius: 50%;"
-														onclick="workhourcal('${managerList.get(i-1).getEMPLOYEE_NAME()}','${managerList.get(i-1).getEMPLOYEE_NUM()}')">
-													</a>
-
-													<h1>${managerList.get(i-1).getEMPLOYEE_NAME()}</h1>
-													<!-- 이름 -->
-													<p class="mngmenttitle">${managerList.get(i-1).getEMPLOYEE_POSITION()}</p>
-													<p>사번 : ${managerList.get(i-1).getEMPLOYEE_NUM()}</p>
-
-													<p>
-														입사일 :
-														<fmt:formatDate
-															value="${managerList.get(i-1).getEMPLOYEE_STARTDAY()}"
-															pattern="yy.MM.dd" />
-													</p>
-													<p>연락처 : ${managerList.get(i-1).getEMPLOYEE_PHONE()}</p>
-													<p>시급/월급 : ${managerList.get(i-1).getEMPLOYEE_PAY()}</p>
-													<p>계좌번호 : ${managerList.get(i-1).getEMPLOYEE_ACCOUNT()}</p>
-
-													<div style="margin: 24px 0;">
-
-														<!-- </div> -->
-														<p>
-															<button class="mngmentbutton"
-																onclick="employeemodify(${managerList.get(i-1).getEMPLOYEE_NUM()})">수정하기</button>
-														</p>
-														<p>
-															<button class="mngmentbutton"
-																onclick="employeedelete(${managerList.get(i-1).getEMPLOYEE_NUM()})">탈퇴하기</button>
-														</p>
-
-													</div>
-												</div>
-
-												<c:if test="${i%3==0}">
-										</div>
-										<div class="row">
-											</c:if>
-
-
-											</c:forEach>
-										</div>
-									</div>
+</c:forEach>
+	</div>
+</div>
+				<!-- 
+            </div>
+          </div>
+        </div>
+      
+      content-wrapper ends
+    </div>
+    page-body-wrapper ends -->
 
 
 								</div>
@@ -229,7 +270,7 @@
 				<div class="modal-body">
 					<div class="form-group row">
 						<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
-							<font style="vertical-align: inherit;">직원 이미지</font>
+							<font style="vertical-align: inherit;">책 이미지</font>
 						</label>
 						<div class="form-group row">
 							<div class="form-group uploadDiv">
@@ -428,7 +469,8 @@
 	</div>
 	<!-- /.modal -->
 
-	<script type="text/javascript">
+<script type="text/javascript">
+
 	var imgCheckNum = 1;
 $("#AdminModal").on("click", function() {
    $("#empRegisterMoal").modal("show");   
@@ -525,8 +567,11 @@ var sendData={'list' : list};
 		$(arr).each(function(i, attach){
 	    	//image type
 	    	if(attach.fileType){
-	            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
-	            
+	            var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName);
+	            console.log("---------------------------------");
+	            console.log(i);
+	            console.log(attach);
+	            console.log(fileCallPath);
 	            str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' "
 	            str +=" data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
 	            str += "<span></span>";
@@ -546,6 +591,7 @@ var sendData={'list' : list};
 	    		str +"</li>";
 	    	}
 	    });
+		console.log(str);
 		$(".uploadResultGet ul").html(str);
 		$('#uploadFileGet').attr('disabled', true);
 	});
@@ -555,6 +601,7 @@ var sendData={'list' : list};
 
 function workhourcal(empname,empnum){	
 	//alert(empname);
+	console.log("workhourcal실행함");
 	var url = "/managerpos/workhourcalendar";
 	posttourl(url,{'empname':empname,'empnum':empnum});
 	//alert(empname);	
@@ -880,7 +927,7 @@ function showUploadResult(uploadResultArr){
     $(uploadResultArr).each(function(i, obj){
     	
 		if(obj.image){
-			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
 			str += "<li data-path='"+obj.uploadPath+"'";
 			str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 			str +" ><div>";

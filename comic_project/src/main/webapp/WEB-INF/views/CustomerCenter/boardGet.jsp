@@ -49,11 +49,10 @@
 				                      		  maxlength="330" rows="5" style="width:1370px; border: 1px solid #cdcdce;"></textarea>
 			                    </div>
 			                    
-			                    <div class="form-group" style="float: right;">
+			                    <div class="form-group" style="float: right;"> 
 				                    <button type="button" class="btn btn-primary mr-2" 
-				                     		id="cIstBtn" style="width:110px">댓글쓰기</button><br/><br/>
+				                     		id="cIstBtn" style="width:110px; height: 100px;">댓글쓰기</button><br/><br/>
 				                    
-				                    <button type="reset" class="btn btn-outline-secondary" style="width:110px">Cancel</button>
 			                    </div>
 			                    
 							</div>
@@ -151,7 +150,7 @@
 			 str += '<div style="margin-left:40px; float:left; width:40px; height:40px; background-color:white; border-radius: 50%; font-weight:bold;"></br>&emsp;'+data[i].cmnt_num+'</div>';
 			 str += '<div style="height:20px; font-size:20px; margin-left:100px;">'+'작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date);
 
-			 if( vo.cmnt_id =='admin') { 
+			 if( ${Memberlogin.MEMBER_ID =='admin'}) { 
 	   		 str +=	'&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="updateCmntForm('+data[i].cmnt_num+',\''+data[i].cmnt_content+'\');">수정</button>'; 
   			 str += '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="commentDelete('+data[i].cmnt_num+')">삭제</button>';
 

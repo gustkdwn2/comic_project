@@ -31,6 +31,7 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
             Object destination = httpSession.getAttribute("destination");
             if(destination != null) {
                 RequestDispatcher rd = request.getRequestDispatcher(""+destination);
+                
                 rd.forward(request, response);
             } else {
             	response.sendRedirect("/");
