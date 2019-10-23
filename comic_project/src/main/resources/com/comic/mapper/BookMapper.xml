@@ -16,9 +16,9 @@
 		INSERT INTO COMIC_BOOK  VALUES(#{book_name},#{book_loc},#{book_publisher},#{book_writer},#{book_content},#{book_category},#{book_lastbook},#{book_status})
 	</insert>
 	
-	<update id="bookUpdate">{
+	<update id="bookUpdate">
 		UPDATE COMIC_BOOK SET 
-		BOOK_NAME=#{book_name},
+		BOOK_NAME=#{book_name_change},
 		BOOK_LOC=#{book_loc},
 		BOOK_PUBLISHER=#{book_publisher},
 		BOOK_WRITER=#{book_writer},

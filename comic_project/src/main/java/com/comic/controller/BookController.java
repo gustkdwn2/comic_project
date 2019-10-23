@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,13 +29,17 @@ public class BookController {
 	private BookService service;
 	
 	@GetMapping("/bookList")
-	public void bookGetList(Model model) {
-		model.addAttribute("bookList", service.bookGetList());
+	public void bookGetList() {
+	}
+	
+	@GetMapping("/bookData")
+	public ResponseEntity<List<BookVO>> bookData() {
+		return new ResponseEntity<List<BookVO>>(service.bookGetList(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/bookGet")
-	public void bookGet(@RequestParam("book_name") String book_name, Model model) {
-		model.addAttribute("book", service.bookGet(book_name));
+	public @ResponseBody BookVO bookGet(@RequestParam("book_name") String book_name) {
+		return service.bookGet(book_name);
 	}
 	
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -52,13 +55,13 @@ public class BookController {
 	}
 	
 	@PostMapping("/bookModify")
-	public String bookModify(BookVO vo) {
-		service.bookModify(vo);
+	public String bookModify(@RequestParam("book_name_change") String book_name_change, BookVO vo) {
+		service.bookModify(book_name_change, vo);
 		return "redirect:/book/bookList";
 	}
 	
 	@PostMapping("/bookRemove")
-	public String bookRemove(@RequestParam("removeBtn") String book_name) {
+	public String bookRemove(@RequestParam("book_name") String book_name) {
 		List<BookAttachVO> attachList = service.getAttachList(book_name);
 		if(service.bookRemove(book_name)) {
 			deleteFiles(attachList);
@@ -85,13 +88,13 @@ public class BookController {
 		
 		attachList.forEach(attach -> {
 			try {
-				Path file = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+				Path file = Paths.get("C:\\upload\\comic_book\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
 				
 				Files.deleteIfExists(file);
 				
 				if(Files.probeContentType(file).startsWith("image")) {
 					
-					Path thumbNail = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+					Path thumbNail = Paths.get("C:\\upload\\comic_book\\" + attach.getUploadPath() + "\\s_" + attach.getUuid() + "_" + attach.getFileName());
 					
 					Files.delete(thumbNail);
 				}

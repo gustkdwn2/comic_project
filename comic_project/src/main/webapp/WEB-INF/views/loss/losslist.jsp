@@ -17,7 +17,8 @@
 						<div class="card-body">
 							<p class="card-title">재고 손실</p>
 							<div class="table-responsive">
-								<button name="createBtn" style="margin-bottom: 10px;" type="button" class="btn btn-warning">손실 추가</button>
+								<button name="createBtn" style="margin-bottom: 10px; color:white" 
+								        type="button" class="btn btn-warning">손실 추가</button>
 								<table id="lossTable" class="table table-striped">
 									<thead>
 										<tr>
@@ -38,9 +39,9 @@
 			</div>
 		</div>
 	</div>
-	
+	<div id="modalstyle" class="modal-backdrop show"></div>
 <jsp:include page="createModal.jsp" />	
 <jsp:include page="modifyModal.jsp" />
-<script src="/resources/js/inholoss.js"></script>
+<script src="/resources/js/inholoss.js?ver=2"></script>
 </body>
 </html>

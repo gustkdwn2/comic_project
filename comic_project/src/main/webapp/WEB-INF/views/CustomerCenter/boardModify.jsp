@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 <!DOCTYPE html>
@@ -19,12 +18,13 @@
 	    <div class="row">
 	   		<div class="col-12 grid-margin stretch-card">
 	              <div class="card">
-	                <div class="card-body">
-	                  <h1 class="card-title">불만사항이나 건의 사항을 적어주세요</h1>
+	                <div class="card-body" style="margin-top:50px; margin-left:200px; margin-bottom:50px;">
+	                  <h1 class="card-title">건의 게시판 입니다</h1>
 	                  
-	                  <form role="form" class="forms-sample" action="/CustomerCenter/boardModify" method="post">
+	                  <form role="form" class="forms-sample" action="/CustomerCenter/boardModify" method="post" 
+							 onsubmit="return nullcheck();">
 	                  	
-	                  	<input type="hidden" name="board_id" value="zizi" >
+	                  	<input type="hidden" name="board_id" value="${Memberlogin.MEMBER_ID}" >
 	                  	<input type="hidden" name="board_num" value="${board.board_num}" >
 	                  	<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
 				        <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
@@ -35,21 +35,21 @@
 	                  	
 	                    <div class="form-group">
 	                      <label for="board_title">제목</label>
-	                      <input type="text" class="form-control" name="board_title" 
-	                      	size= "60" maxlength="50" value='<c:out value="${board.board_title }"/>' >
+	                      <input type="text" class="form-control" name="board_title" style="border: 1px solid #cdcdce; width: 1100px;" 
+	                      	     maxlength="27" value='${board.board_title}'>
 	                    </div>
 	                    
 	                    <div class="form-group">
 	                      <label for="board_content">내용</label>
-	                      <textarea class="form-control" name="board_content" rows="15" cols="80"
-	                      placeholder="내용을 입력해주세요" ><c:out value="${board.board_content}"/></textarea>
+	                      <textarea class="form-control" name="board_content" rows="10" cols="70" style="border: 1px solid #cdcdce; width: 1100px;"
+	                                 maxlength="660" placeholder="내용을 입력해주세요" >${board.board_content}</textarea>
 	                    </div>
 	                    
 	                    
 	                    <!-- 리스트 및 목록가기 -->
 	                    
-	                    <button type="submit" data-oper="list" class="btn btn-primary">목록가기</button>
-	                    <button type="submit" data-oper="modify" class="btn btn-primary mr-2" style="margin-left:1360px;">제출</button>
+	                    <button type="button" data-oper="list" class="btn btn-primary">목록가기</button>
+	                    <button type="submit" class="btn btn-primary mr-2" style="margin-left:900px;">제출</button>
 	                  </form>
 	                </div>
 	              </div>
@@ -93,6 +93,17 @@ $(document).ready(function() {
 	  });
 
 });
+function nullcheck(){
+	if($("input[name='board_title']").val()==""){
+		alert("제목을 입력해주세요");
+		return false;
+	}
+	if($("textarea[name='board_content']").val()==""){
+		alert("내용을 입력해주세요");
+		return false;
+	}
+	return true;
+}
 </script>
        
 

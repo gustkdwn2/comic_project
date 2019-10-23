@@ -21,7 +21,7 @@
 	</delete>
 	
 	<select id="getOldFiles" resultType="com.comic.model.BookAttachVO">
-		SELECT * FROM COMIC_BOOKATTACH WHERE UPLOADPATH = TO_CAHR(SYSDATE -1, 'yyyy\mm\dd')
+		select * from COMIC_BOOKATTACH where uploadpath = to_char(sysdate -1 ,'yyyy\mm\dd')
 	</select>
 	
 </mapper>

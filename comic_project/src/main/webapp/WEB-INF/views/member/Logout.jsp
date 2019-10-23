@@ -8,7 +8,7 @@
 <body>
 <script>
     alert("로그아웃 되었습니다.");
-    self.location = "/";
+    self.location = "/userView/main";
 </script>
 </body>
 </html>

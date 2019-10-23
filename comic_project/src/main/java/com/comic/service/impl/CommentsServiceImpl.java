@@ -30,6 +30,10 @@ public class CommentsServiceImpl implements CommentsService{
 	public int register(CommentsVO vo) {
 		// TODO Auto-generated method stub
 		log.info("\r\n##register : "+vo);
+		
+		vo.setCmnt_content(vo.getCmnt_content().replaceAll("(?i)<", "&lt;"));
+		vo.setCmnt_content(vo.getCmnt_content().replaceAll("(?i)'", "&#039;"));
+		
 		return cmapper.insert(vo);
 	}
 
@@ -37,6 +41,10 @@ public class CommentsServiceImpl implements CommentsService{
 	public int modify(CommentsVO vo) {
 		// TODO Auto-generated method stub
 		log.info("\r\n##modify : "+vo);
+		
+		vo.setCmnt_content(vo.getCmnt_content().replaceAll("(?i)<", "&lt;"));
+		vo.setCmnt_content(vo.getCmnt_content().replaceAll("(?i)'", "&#039;"));
+		
 		return cmapper.update(vo);
 	}
 

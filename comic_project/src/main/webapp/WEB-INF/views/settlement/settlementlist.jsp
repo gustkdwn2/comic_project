@@ -38,17 +38,17 @@
 												<td>${settle.product_num }</td>
 												<td>${settle.product_category }</td>
 												<td>${settle.product_name }</td>
-												<td>${settle.product_qty }</td>
+												<td><input type="hidden" value="${settle.product_qty }" id="product_qty${status.count-1}">${settle.product_qty }</td>
 												<td><input type="number" class="currentqty" name="curqty"
 													id="ainput${status.count-1}" size="10"></td>
 												<td id="a${status.count-1}"></td>
 											</tr>
 										</c:forEach>
 									</tbody>
-								</table>
+								</table><br/>
 								<div align="right">
-									<button id="btn1" class="btn btn-danger btn-rounded ">오차확인</button>
-									<button id="btn2" class="btn btn-primary btn-rounded ">재고정산</button>
+									<button id="btn1" class="btn btn-danger">오차확인</button>
+									<button id="btn2" class="btn btn-primary">재고정산</button>
 								</div>
 							</div>
 						</div>
@@ -57,12 +57,14 @@
 			</div>
 		</div>
 	</div>
+	<div id="modalstyle" class="modal-backdrop show"></div>
 	<jsp:include page="settlementModal.jsp" />	
 </body>
 
-<script src="/resources/js/inhosettlement.js"></script>
+<script src="/resources/js/inhosettlement.js?ver=1"></script>
 <script>
 	//오차수량 sorting
+
 	$(document).ready(function() {
 		 var reSortColors = function($table) {
 		     $('tbody tr:odd', $table)

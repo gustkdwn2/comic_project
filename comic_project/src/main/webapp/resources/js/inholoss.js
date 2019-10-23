@@ -2,6 +2,7 @@ document.getElementById('currentDate').value = new Date().toISOString().substrin
 var createSelectValue = new Array();
 
 $(document).ready(function(){
+	$('#modalstyle').css('display','none');
 	$('#lossTable').DataTable({ // 페이징 처리, 검색, show entries
 		pageLength: 10, //처음 페이지에 처리 개수
 	    bPaginate: true, // 페이징 기능
@@ -31,7 +32,7 @@ $(document).ready(function(){
             {
                 mData: "loss_num",
                 mRender: function (data, type, row) {
-                    return "<button name ='modifyBtn' value=" + data +" class='btn btn-info' onclick='javascript:modify(value)'>수정</button> <button name ='removeBtn' value=" + data +" type='submit' class='btn btn-danger' onclick='javascript:remove(value)'>삭제</button>";
+                    return "<button name ='modifyBtn' value=" + data +" class='btn btn-warning' style='color:white;' onclick='javascript:modify(value)'>수정</button>&emsp;<button name ='removeBtn' value=" + data +" type='submit' class='btn btn-secondary' onclick='javascript:remove(value)'>삭제</button>";
                 }
             }
         ],
@@ -53,6 +54,7 @@ $(document).ready(function(){
 
 $('button[name=createBtn]').click(function(){
 	console.log('create');
+	$('#modalstyle').css('display','');
 	$.ajax({
 	    type: 'post',
 	    url: "/loss/lossCreate",
@@ -128,6 +130,7 @@ function modify(loss_num){
 	    	$('#myModifyModal').show();
 	    }
 	});
+	$('#modalstyle').css('display','');
 }
 
 $('#loss_product').change(function(){
@@ -139,11 +142,15 @@ $('#loss_product').change(function(){
 
 $('#modifyclose').click(function(){
 	$('#myModifyModal').hide();
+	$('#myModifyModal').find('form')[0].reset();
+	$('#modalstyle').css('display','none');
 });
 
 	
 $('#createclose').click(function(){
 	$('#myModal').hide();
+	$('#modalstyle').css('display','none');
+
 });
 
 

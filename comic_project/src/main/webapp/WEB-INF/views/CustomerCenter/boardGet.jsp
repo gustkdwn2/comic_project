@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 
@@ -15,14 +14,14 @@
                 <div class="card-body">
                   <h2 class=".h2">건의 게시판</h2><br/>
                   <div class="table-responsive">
-                    <table class="table" style="border:1px solid #f3f3f3;" >
+                    <table class="table" style="border: 1px solid #cdcdce" >
 						<tr height="30">
-							<td align="center" width = "20" >글번호</td>
-							<td align="center" width = "20" > ${ board.board_num }</td>
-							<td align="center" width = "30" >글제목</td>
-							<td align="center" width = "400">${ board.board_title }</td>
-							<td align="center" width = "30" >작성자</td>
-							<td align="center" width = "50">${ board.board_id }</td>
+							<td align="center" width = "20" style="border: 1px solid #cdcdce">글번호</td>
+							<td align="center" width = "20" style="border: 1px solid #cdcdce"> ${ board.board_num }</td>
+							<td align="center" width = "30" style="border: 1px solid #cdcdce">글제목</td>
+							<td align="center" width = "400"style="border: 1px solid #cdcdce">${ board.board_title }</td>
+							<td align="center" width = "30" style="border: 1px solid #cdcdce">작성자</td>
+							<td align="center" width = "50" style="border: 1px solid #cdcdce">${ board.board_id }</td>
 							
 						</tr>
 						
@@ -36,29 +35,32 @@
 				
 			 			<!-- 댓글 입력 -->		
 			 			
+			 			
+			 			<c:if test="${Memberlogin.MEMBER_ID=='admin'}">
 						<tr>
 						
-							<td height="50" width = "1000" colspan="6">
+							<td height="50" width = "1000" colspan="6" style="border: 1px solid #cdcdce">
 							<div id='cmntInsert'>
 								
 								<div class="form-group" style="float: left;">
-									<input type="hidden" name="cmnt_id" value="zizi" >
+									<input type="hidden" name="cmnt_id" value="${Memberlogin.MEMBER_ID}" >
 									<input type="hidden" name="board_num" value="${board.board_num}" >
 				                    <textarea class="form-control" name="cmnt_content" id="cmnt_content "placeholder="댓글을 입력하세요" 
-				                      		  rows="5" style="width:1370px"></textarea>
+				                      		  maxlength="330" rows="5" style="width:1370px; border: 1px solid #cdcdce;"></textarea>
 			                    </div>
 			                    
-			                    <div class="form-group" style="float: right;">
+			                    <div class="form-group" style="float: right;"> 
 				                    <button type="button" class="btn btn-primary mr-2" 
-				                     		id="cIstBtn" style="width:110px">댓글쓰기</button><br/><br/>
+				                     		id="cIstBtn" style="width:110px; height: 100px;">댓글쓰기</button><br/><br/>
 				                    
-				                    <button type="reset" class="btn btn-outline-secondary" style="width:110px">Cancel</button>
 			                    </div>
 			                    
 							</div>
 							
 							</td>
 						</tr>
+						
+						</c:if>
                     
                 		<!-- 끝 댓글 입력 끝  -->
                 
@@ -84,12 +86,16 @@
 							<td height="50" width = "1000" colspan="6">
 							<button type="button" data-oper='listBtn' class="btn btn-primary">목록가기</button>
 				            
+				            <c:if test="${ Memberlogin.MEMBER_ID == board.board_id || Memberlogin.MEMBER_ID=='admin'}">
 				            <button type="button" data-oper='remBtn' 
 				            		class="btn btn-primary" style="float:right;  margin-left:10px;">삭제하기</button> 
 				            
+				            </c:if>
+				            
+				            <c:if test="${ Memberlogin.MEMBER_ID == board.board_id}">
 				            <button type="button" data-oper='modBtn' 
 				            		class="btn btn-primary" style="float:right;">수정하기</button>
-				            
+				            </c:if>
 
 							</td>
 						</tr>
@@ -143,9 +149,13 @@
 			 str += '<div style="margin-bottom: 10px; height:190px; background-color:#DAE8E8; border-radius: 20px; width:1500px;"><br/>';
 			 str += '<div style="margin-left:40px; float:left; width:40px; height:40px; background-color:white; border-radius: 50%; font-weight:bold;"></br>&emsp;'+data[i].cmnt_num+'</div>';
 			 str += '<div style="height:20px; font-size:20px; margin-left:100px;">'+'작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date);
+
+			 if( ${Memberlogin.MEMBER_ID =='admin'}) { 
 	   		 str +=	'&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="updateCmntForm('+data[i].cmnt_num+',\''+data[i].cmnt_content+'\');">수정</button>'; 
-  			 str += '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="commentDelete('+data[i].cmnt_num+')">삭제</button></div><br/><br/>';
-  			 str +=	'<div style="background-color:white; border-radius: 20px; height:110px; width:1400px; margin-left:40px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>&emsp;&emsp;'+data[i].cmnt_content+'</div>';
+  			 str += '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="commentDelete('+data[i].cmnt_num+')">삭제</button>';
+
+			 }
+  			 str +=	'</div><br/><br/><div style="background-color:white; border-radius: 20px; height:110px; width:1400px; margin-left:40px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>'+data[i].cmnt_content+'</div>';
 	   		 str +=	'</div>';			
 
 		}
@@ -169,7 +179,7 @@
 	     console.log(cmnt_content);
          var str='';
     	 str += '<div id="updateDiv">';
-    	 str += '<textarea style="float:left; margin-left:10px; margin-top:5px; width:1200px;" class="form-control" name="content_'+cmnt_num+'"rows="5">'+cmnt_content+'</textarea>';
+    	 str += '<textarea style="float:left; margin-left:10px; margin-top:5px; width:1200px;" class="form-control" name="content_'+cmnt_num+'"rows="5"  maxlength="330">'+cmnt_content+'</textarea>';
     	 str += '<div>&emsp;&emsp;'
     	 str += '<button style="margin-top:8px;" class="btn btn-md btn-outline-secondary" onclick="updateBtn(' + cmnt_num + ');">수정 완료</button><br/><br/>&emsp;&emsp;';
     	 str += '<button class="btn btn-md btn-outline-secondary" onclick="test(' + cmnt_num + ', \''+cmnt_content+'\');">수정 취소</button>';

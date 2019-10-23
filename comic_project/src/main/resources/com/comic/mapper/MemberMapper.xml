@@ -13,10 +13,9 @@
 		SELECT * FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
 	</select>
 	
-	<update id="MemberkeepLogin">
-		UPDATE COMIC_MEMBER SET SESSION_KEY = #{sessionId},
-		SESSION_LIMIT = #{sessionLimit} WHERE MEMBER_ID = #{MEMBER_ID}
-	</update>
+	<insert id="roomuse">
+		INSERT INTO COMIC_ROOMUSE(ROOMUSE_ID, ROOMUSE_NUM, ROOMUSE_STARTTIME, ROOMUSE_STATUS) VALUES (#{roomuse_id},#{roomnum},sysdate,'on')
+	</insert>
 	
 	<select id="MemberGetList" resultType="com.comic.model.MemberVO">
 		SELECT * FROM COMIC_MEMBER
@@ -61,10 +60,22 @@
 		WHERE MEMBER_ID=#{MEMBER_ID}
 	</update>
 	
+	<select id="getMember" resultType="com.comic.model.MemberVO">
+		SELECT * FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+	</select>
+	
+	<select id="membermodifypasswordcheck" resultType="String">
+		SELECT MEMBER_PWD FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+	</select>
+	
 	<insert id="employeeInsert">
-		INSERT INTO COMIC_EMPLOYEE(EMPLOYEE_NUM, EMPLOYEE_PWD, EMPLOYEE_NAME, EMPLOYEE_PHONE, EMPLOYEE_ACCOUNT, EMPLOYEE_STARTDAY, EMPLOYEE_POSITION, EMPLOYEE_PAY) VALUES ((SELECT NVL(MAX(EMPLOYEE_NUM),0)+1 FROM COMIC_EMPLOYEE),
-		#{EMPLOYEE_PWD}, #{EMPLOYEE_NAME}, #{EMPLOYEE_PHONE}, #{EMPLOYEE_ACCOUNT}, SYSDATE, #{EMPLOYEE_POSITION}, #{EMPLOYEE_PAY})
-	</insert>
+      INSERT INTO COMIC_EMPLOYEE VALUES ((SELECT NVL(MAX(EMPLOYEE_NUM),1000)+1 FROM COMIC_EMPLOYEE),
+      #{EMPLOYEE_PWD}, #{EMPLOYEE_NAME}, #{EMPLOYEE_PHONE}, #{EMPLOYEE_ACCOUNT}, SYSDATE, #{EMPLOYEE_POSITION},
+       #{EMPLOYEE_PAY})
+    	<selectKey keyProperty="EMPLOYEE_NUM" resultType="integer" order="AFTER">
+	    	select MAX(EMPLOYEE_NUM) as EMPLOYEE_NUM from COMIC_EMPLOYEE
+	  	</selectKey>
+   </insert>
 
 	<select id="employeeLogin" resultType="com.comic.model.EmployeeVO">
 		SELECT * FROM COMIC_EMPLOYEE WHERE EMPLOYEE_NUM = #{EMPLOYEE_NUM}

@@ -28,7 +28,10 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public BookVO bookGet(String book_name) {
-		return mapper.bookRead(book_name);
+		BookVO vo = new BookVO();
+		vo = mapper.bookRead(book_name);
+		vo.setAttachList(attachMapper.findByBookName(book_name));
+		return vo;
 	}
 	
 	@Transactional
@@ -44,10 +47,19 @@ public class BookServiceImpl implements BookService {
 			attachMapper.insert(attach);
 		});
 	}
-
+	
+	@Transactional
 	@Override
-	public boolean bookModify(BookVO vo) {
-		return mapper.bookUpdate(vo) == 1;
+	public boolean bookModify(String book_name_change, BookVO vo) {
+		attachMapper.deleteAll(vo.getBook_name());
+		boolean modifyResult = mapper.bookUpdate(vo) == 1;
+		if(modifyResult && vo.getAttachList().size() > 0) {
+			vo.getAttachList().forEach(attach -> {
+				attach.setBook_name(book_name_change);
+				attachMapper.insert(attach);
+			});
+		}
+		return modifyResult;
 	}
 	
 	@Transactional
@@ -64,7 +76,6 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<BookAttachVO> getAttachList(String book_name) {
-		System.out.println(attachMapper.findByBookName(book_name));
 		return attachMapper.findByBookName(book_name);
 	}
 	

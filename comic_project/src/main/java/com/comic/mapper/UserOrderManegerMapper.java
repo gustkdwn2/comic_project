@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
+import com.comic.model.UserBillVO;
+import com.comic.model.UserProductBillVO;
 
 public interface UserOrderManegerMapper {
 	
@@ -34,5 +37,9 @@ public interface UserOrderManegerMapper {
 	public String getCategoryValue(int number);
 
 	public void realTimeOrderAdd(OrderVO orderVO);
+	
+	public UserBillVO userBill(String id);
+	
+	public List<UserProductBillVO> userProductBill(String id);
 
 }

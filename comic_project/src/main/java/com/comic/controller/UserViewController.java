@@ -1,17 +1,20 @@
-package com.comic.controller;
+﻿package com.comic.controller;
+
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.comic.model.UserBillVO;
+import com.comic.model.UserProductBillVO;
 import com.comic.service.UserOrderManegerService;
 
 import lombok.AllArgsConstructor;
@@ -23,10 +26,19 @@ public class UserViewController {
 	
 	private UserOrderManegerService userOrderManegerService;
 	
+	@PostMapping("/mainPro")
+	public void mainViewPro() {
+		
+	}
+	
+	@GetMapping("/main")
+	public void main() {
+		
+	}
+	
 	@PostMapping("/main")
-	public void mainView(@RequestParam("roomNum") int roomNum, final HttpSession session, Model model) {
-		session.setAttribute("roomNum", roomNum);
-		model.addAttribute("roomNum", session.getAttribute("roomNum"));
+	public void mainPost() {
+		
 	}
 	
 	@GetMapping("/order")
@@ -36,17 +48,22 @@ public class UserViewController {
 	}
 	
 	@GetMapping("/chatting")
-	public ModelAndView chat(ModelAndView mv) {
-		/*
-		 * mv.setViewName("chat/chattingview");
-		 * 
-		 * User user = (User)
-		 * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		 * System.out.println("user name: " + user.getUsername());
-		 * System.out.println("normal chat page"); mv.addObject("userid",
-		 * user.getUsername());
-		 */
-		
-		return mv;
-	} 
+	public void chat(final HttpSession session, Model model) {
+		System.out.println(session.getAttribute("roomNum"));
+		model.addAttribute("roomNum", session.getAttribute("roomNum"));
+	}
+	
+	@GetMapping("userBill")
+	public @ResponseBody UserBillVO userBill(@RequestParam("userId") String id) {
+		return userOrderManegerService.userBill(id);
+	}
+	
+	@GetMapping("userProductBill")
+	public @ResponseBody List<UserProductBillVO> userProductBill(@RequestParam("userId") String id) {
+		System.out.println(userOrderManegerService.userProductBill(id));
+		return userOrderManegerService.userProductBill(id);
+	}
+	
+	
+
 }

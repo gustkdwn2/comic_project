@@ -12,13 +12,13 @@
 </head>
 <body>
       <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
-          <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h2 class=".h2">건의 게시판</h2>
+	<div class="main-panel">        
+	  <div class="content-wrapper">
+	    <div class="row">
+	   		<div class="col-12 grid-margin stretch-card">
+	            <div class="card">
+	                <div class="card-body">
+                  	<h2 class=".h2">건의 게시판</h2>
                   
 				    <form class="form-inline" action="/CustomerCenter/boardList" 
 				          id='searchForm' method="get" style="float: right; margin-bottom: 20px;">
@@ -39,7 +39,7 @@
 									<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목 or 내용 or 작성자</option>
 							 </select>
 				    		<input type="text" name="keyword" class="form-control" >&nbsp;
-				    		<input type="submit" class="btn btn-primary btn-md" value="검색">
+				    		<input id="searchBtn" type="submit" class="btn btn-primary btn-md" value="검색">
 				    		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'/>
 							<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
 				    		
@@ -70,7 +70,7 @@
 	                        <tr>
 	                          <td style="width:200px;"><c:out value="${list.board_num }" /></td>
 	                          <td style="width:1000px;"><a class='move' href='<c:out value="${list.board_num}"/>'>
-	                          <c:out value="${list.board_title }" /></a></td>
+	                          ${list.board_title }</a></td>
 	                          <td style="width:400px;"><c:out value="${list.board_id }" /></td>
 	                          <td style="width:300px;"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.board_date }" /></td>
 	                        </tr>         
@@ -112,10 +112,11 @@
 					
 					</c:if>
 					
+					<c:if test="${not empty Memberlogin.MEMBER_ID}">
 					<div class="template-demo" style="float: right; width:100px; margin-left:350px">
 			            <button type="button" id='regBtn' class="btn btn-primary">글쓰기</button>
 			     	</div>
-
+					</c:if>
 					
 					<form id='actionForm' action="/CustomerCenter/boardList" method='get'>
 						<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
@@ -128,8 +129,10 @@
          </div>
       </div>
     </div>
+   </div>
   </div>
-</div>
+
+
             
 <script type="text/javascript">
 
@@ -173,7 +176,7 @@
 
 			var searchForm = $("#searchForm");
 
-			 $("#searchForm").on(
+			 $("#searchBtn").on(
 					"click",
 					function(e){
 						console.log('검색 방지 필터');
@@ -197,18 +200,6 @@
 
 
 </body>
-<script type="text/javascript">
-	
-	/* $(document).ready(function(){
-		var actionForm = $("#actionForm");
-			$(".move").on("click", function(e){
-						e.preventDefault();
-						actionForm.append("<input type='hidden' name='BOARD_NUM' value='" +$(this).attr("href")+ "'>");
-						actionForm.attr("action", "/CustomerCenter/boardGet");
-						actionForm.submit();	
-			});
-	}); */
-	
-</script>
+
 
 </html>
