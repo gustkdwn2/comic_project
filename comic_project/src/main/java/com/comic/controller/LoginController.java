@@ -78,7 +78,7 @@ public class LoginController {
 				model.addAttribute("memberid", memberVO.getMEMBER_ID());
 			}
 		}
-//		service.roomuse(memberVO.getMEMBER_ID(),Integer.parseInt((String) httpSession.getAttribute("roomNum")));
+		//service.roomuse(memberVO.getMEMBER_ID(),Integer.parseInt((String) httpSession.getAttribute("roomNum")));
 	}
 	
 	// 멤버 로그아웃 처리
@@ -163,66 +163,4 @@ public class LoginController {
 		}
 		return result;
 	}
-
-//	//직원 추가 페이지 이동
-//	@GetMapping("/EmployeeRegister")
-//	public void EmployeeRegister() {
-//		
-//	}
-//	
-//	//직원 추가
-//	@PostMapping("/EmployeeRegister")
-//	public String EmployeeRegister(EmployeeVO vo) {
-//		service.employeeRegister(vo);
-//		return "redirect:/member/EmployeeLogin";
-//	}
-//	
-//	
-//	// 직원 로그인 페이지
-//	@GetMapping("/EmployeeLogin")
-//	public String EmployeeloginGET(@ModelAttribute("loginVO") LoginVO loginVO) {
-//		return "/member/EmployeeLogin";
-//	}
-//		
-//	// 직원 로그인 
-//	@PostMapping("/EmployeeLoginPost")
-//	public void EmployeeLoginPOST(LoginVO loginVO, HttpSession httpSession, Model model) throws Exception {
-//			
-//		EmployeeVO employeeVO = service.employeeLogin(loginVO);
-//		boolean passMatch = passEncoder.matches(loginVO.getEMPLOYEE_PWD(), employeeVO.getEMPLOYEE_PWD());
-//			
-//		if(employeeVO == null || !passMatch) {
-//			return;
-//		}
-//			
-//		model.addAttribute("employee", employeeVO);
-//			
-//		if(loginVO.isUseCookie()) {
-//			int amount = 60 * 60 * 24 * 7;
-//			Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
-//			service.EmployeekeepLogin(employeeVO.getEMPLOYEE_NUM(), httpSession.getId(), sessionLimit);
-//		}
-//	}
-//		
-//	// 직원 로그아웃 처리
-//	@GetMapping("/EmployeeLogout")
-//	public String Employeelogout(HttpServletRequest request,
-//						 HttpServletResponse response,
-//						 HttpSession httpSession) throws Exception {
-//			
-//		Object object = httpSession.getAttribute("Employeelogin");
-//		if (object != null) {
-//			EmployeeVO employeeVO = (EmployeeVO) object;
-//			httpSession.removeAttribute("Employeelogin");
-//			httpSession.invalidate();
-//			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-//			if (loginCookie != null) {
-//				loginCookie.setPath("/");
-//	            loginCookie.setMaxAge(0);
-//	            response.addCookie(loginCookie);
-//	            service.EmployeekeepLogin(employeeVO.getEMPLOYEE_NUM(), "none", new Date());
-//			}
-//		}
-//		return "/member/Logout";
-//	}
 }
