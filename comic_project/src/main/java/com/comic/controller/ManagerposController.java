@@ -194,7 +194,7 @@ public class ManagerposController {
 			
 			if(empdata.get(0).getEMPLOYEE_POSITION().equals("사장")) {
 				//session.setAttribute("EMPNAME", "사장");//로그인 세션추가
-				session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
+				//session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
 			}else {
 				session.setAttribute("EMPNAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가	
 			}
@@ -214,7 +214,7 @@ public class ManagerposController {
 			session.setAttribute("EMPPRENAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가
 			session.setAttribute("EMPNAME", "현재 공석");//로그인 세션추가
 			session.setAttribute("EMPID", "tmp");//로그인 세션추가
-			session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
+			//session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
 			makecomic_pay(empnum);//퇴근기록으로 comic_pay테이블에 누적시간넣는 함수
 			model.addAttribute("succecssmsg", "퇴근완료"); // 재고테이블
 			return "/younghak/Managerpos";
