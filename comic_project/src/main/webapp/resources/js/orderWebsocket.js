@@ -9,7 +9,7 @@ socket.onmessage = function(event) {
 	if(data[1] == "주문") {
 		console.log("test");
 		orderArlet(data[0], data[2]);
-	//	realOrder();
+		realOrderRenew();
 	} else if(data[1] == "시작") {
 		ajaxtosenddb_comic_room_use2(data[2], data[0], "on");
 	}
