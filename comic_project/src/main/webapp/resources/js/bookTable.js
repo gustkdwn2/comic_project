@@ -85,7 +85,7 @@ function bookModify(book_name) {
 	    url: "/book/bookGet?book_name="+book_name,
 	    dataType : "json",
 	    success: function(data) {
-    	    
+	    	$('#book_name_hidden').attr('value',data.book_name);
 	    	$('#book_name_get').attr('value',data.book_name);
 	    	$('#book_loc_get').attr('value',data.book_loc);
 	    	$('#book_publisher_get').attr('value',data.book_publisher);

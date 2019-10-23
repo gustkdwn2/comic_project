@@ -106,13 +106,11 @@ $(document).ready(function() {
 	var formObj = $("#getForm");
 
 	$('#getSubmitBtn').on("click", function(e){
-		
-		var book_name = $('#book_name_get').val();
 		var nameCheck = 0;
 		
 		$.ajax({
 			type : 'POST',
-			data : {book_name : book_name},
+			data : {book_name : $('#book_name_get').val()},
 			async: false,
 			url : "/book/bookNameCheck",
 			dataType : "json",
@@ -142,19 +140,20 @@ $(document).ready(function() {
 	        str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
 	          
 		});
-	    
-	    if($.trim($("#book_name_get").val()) != $("#book_name_get").val()) {
-		    alert("앞,뒤 공백을 지워주세요.");
-		    $("#book_name_get").val("");
-		    $("#book_name_get").focus();
-			return false;
-		}
-		if(nameCheck > 0) {
-			alert("이미 있는 책입니다.");
-			$("#book_name_get").val("");
-		    $("#book_name_get").focus();
-		    return false;
-		}
+	    if($("#book_name_hidden").val() != $("#book_name_get").val()) {
+	    	if($.trim($("#book_name_get").val()) != $("#book_name_get").val()) {
+			    alert("앞,뒤 공백을 지워주세요.");
+			    $("#book_name_get").val("");
+			    $("#book_name_get").focus();
+				return false;
+			}
+			if(nameCheck > 0) {
+				alert("이미 있는 책입니다.");
+				$("#book_name_get").val("");
+			    $("#book_name_get").focus();
+			    return false;
+			}
+	    }
 	    if($.trim($("#book_loc_get").val()) != $("#book_loc_get").val()) {
 		      alert("앞,뒤 공백을 지워주세요.");
 		      $("#book_loc_get").val("");
@@ -187,8 +186,6 @@ $(document).ready(function() {
 	        
 	    formObj.append(str).submit();
         
-		
-	   /*  formObj.submit(); */
 	});
 	
 	$('#bookGetBtn').click(function() {
