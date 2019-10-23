@@ -1,136 +1,165 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 <style>
-	#orderProduct{
-		text-align: center;
-	}
-	#orderTest{
-		padding-top: 10px;	
-		padding-bottom: 10px;	
-	}
+#orderProduct {
+	text-align: center;
+}
+
+#orderTest {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 </style>
 
 <div class="main-panel">
 	<div class="content-wrapper">
-		<div class="row">
-			<div class="col-lg-12 grid-margin">
-				<div class="card">
-					<div class="card-body">
-						<h4>상품주문 화면 조정</h4>
-						<hr>
-						<span>
+		<div class="card">
+			<div class="card-body">
+				<h4>상품주문 화면</h4><hr>
+				<button class="btn btn-warning" id="categoryAdd" style="color:#f3f3f3;">카테고리추가</button>
+				<br/><hr>
+					<div class="row">
 						<c:forEach items="${ OrderViewVO_List }" var="list">
-							<button name="categoryButton" class="btn btn-outline-secondary" value="${ list.orderview_category }">${ list.orderview_category }</button>
-							<a href="#" name="categoryDelete" value="${ list.orderview_num }">[delete]</a>
-							<a href="#" name="categoryUpdate" value="${ list.orderview_num }">[update]</a>
+							<div class="col-sm-2" >
+									<div style="text-align: center;">
+									
+										<button name="categoryButton" class="btn btn-outline-secondary"
+												style="margin-top:10px;" value="${ list.orderview_category }">
+											${ list.orderview_category }</button>
+										<div class="btn-group-vertical" role="group" style="margin-top:10px;"
+											aria-label="Basic example">
+											<div class="btn-group">
+												<button type="button"
+													class="btn btn-secondary dropdown-toggle"
+													data-toggle="dropdown"></button>
+												<div class="dropdown-menu" style="background-color: #d6e3ff;">
+													<a class="dropdown-item" name="categoryDelete" value="${ list.orderview_num }"
+													style="cursor: pointer;">삭제</a> 
+													<a class="dropdown-item" name="categoryUpdate" value="${ list.orderview_num }"
+													style="cursor: pointer;">수정</a>
+												</div>
+											</div>
+										
+										</div>
+									</div>
+							</div>
 						</c:forEach>
-							<button class="btn btn-primary btn-icon-text" id="categoryAdd">카테고리추가</button>
-						</span>
-						<hr>
-							<div id="orderProduct"></div>
-						<button class="btn btn-primary btn-icon-text" name="productAdd">상품추가</button>
-					</div>
-				</div>
+					</div><hr>
+			
+				<div id="orderProduct"><!-- 등록한 상품이 나타난다. --></div>
+				<button class="btn btn-warning" name="productAdd" 
+						style="color: #f3f3f3; margin-top:10px;">상품추가</button>
 			</div>
 		</div>
 	</div>
 </div>
 
+
 <!-- hidden form -->
 <form id="operForm"></form>
 
 <!-- modal category add-->
-<div class="modal" id="ModalcategoryAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">category Add</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div> 
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>category</label>
-                    <input class="form-control" name="category">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="cateModalRegisterBtn1" type="button" class="btn btn-primary">Resgister</button>
-            </div>
-        </div>
-    </div>
+<div class="modal" id="ModalcategoryAdd" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					style="float: right; width: 100px;" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">카테고리 추가</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>카테고리</label> <input class="form-control" name="category"
+						style="border: 3px solid #e3e3e4">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button id="cateModalRegisterBtn" type="button"
+					class="btn btn-warning" style="color:#f3f3f3;">등록</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- modal category Update-->
-<div class="modal" id="ModalcategoryUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">category Update</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>category</label>
-                    <input class="form-control" name="category">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="cateModalUpdateBtn" type="button" class="btn btn-primary">Update</button>
-            </div>
-        </div>
-    </div>
+<div class="modal" id="ModalcategoryUpdate" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" 
+					style="float: right; width: 100px;" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">카테고리 수정</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>카테고리</label> <input class="form-control" name="category" style="border: 3px solid #e3e3e4">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button id="cateModalUpdateBtn" type="button"
+					class="btn btn-warning" style="color:#f3f3f3;">수정 완료</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- modal product add-->
-<div class="modal" id="modalProductAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">product Add</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div> 
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>product</label>
-                    <input class="form-control" name="product">
-                    <label>image file</label>
-                    <form id="uploadForm" method="post" enctype="multipart/form-data">
-	                    <input class="form-control" type="file" name="uploadFile">
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="productModalRegisterBtn" type="button" class="btn btn-primary">Resgister</button>
-            </div>
-        </div>
-    </div>
+<div class="modal" id="modalProductAdd" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">상품추가</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>상품</label> <input class="form-control" name="product">
+					<label>이미지</label>
+					<form id="uploadForm" method="post" enctype="multipart/form-data">
+						<input class="form-control" type="file" name="uploadFile">
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button id="productModalRegisterBtn" type="button"
+					class="btn btn-primary">상품 등록</button>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- modal product update-->
-<div class="modal" id="modalProductUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">product Update</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div> 
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>product</label>
-                    <input class="form-control" name="product">
-                    <label>image file</label>
-                    <form id="uploadForm" method="post" enctype="multipart/form-data">
-	                    <input class="form-control" type="file" name="uploadFile">
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="productModalUpdateBtn" type="button" class="btn btn-primary">Resgister</button>
-            </div>
-        </div>
-    </div>
+<div class="modal" id="modalProductUpdate" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">상품 수정</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>상품</label> <input class="form-control" name="product">
+					<label>이미지</label>
+					<form id="uploadForm" method="post" enctype="multipart/form-data">
+						<input class="form-control" type="file" name="uploadFile">
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button id="productModalUpdateBtn" type="button"
+					class="btn btn-primary"></button>
+			</div>
+		</div>
+	</div>
 </div>
 </body>
 <script src="/resources/js/userOrderManeger.js?after"></script>
@@ -150,7 +179,7 @@
         });
 
         $("#cateModalRegisterBtn1").on("click", function (e) {
-			console.log("d123");
+			
         	operForm.append("<input type='hidden' name='category' value='" + modalInputCategory.val() + "'>");
             operForm.attr("method", 'post');
             operForm.attr("action", "/userOrderManager/categoryAdd");
@@ -164,7 +193,7 @@
 		});
 		
 		$("#cateModalUpdateBtn").on("click", function (e) {
-			console.log("d123");
+			
         	operForm.append("<input type='hidden' name='category' value='" + modalInputCategoryUpdate.val() + "'>");
         	operForm.append("<input type='hidden' name='number' value='" + indexNum + "'>");
             operForm.attr("method", 'post');
@@ -212,14 +241,14 @@
 				for(var i = 0, len = data.length || 0; i < len; i++) {
 					var fileCallPath =  encodeURIComponent( data[i].ORDERVIEW_UPLOADPATH+ "/"+data[i].ORDERVIEW_UUID +"_"+data[i].ORDERVIEW_FILENAME);
 					str += "<div class='col-sm-6 col-md-4 col-lg-3' id='orderTest'>";
-					str += "<a href='#' onclick=\'productDelete(" + data[i].ORDERVIEW_NUM + ")\'>[delete]</a>";
-					str += "<a href='#' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>[update]</a>";
-					str += "<br/>"; 
 					str += "<img src='/userOrderManager/display?fileName=" + fileCallPath + "' width='150' height='200'/>";
 					str += "<br/>"; 
 					str += "" + data[i].PRODUCT_NAME;
 					str += "<br/>";
-					str += "" + numberWithCommas(data[i].PRODUCT_PRICE);
+					str += "" + numberWithCommas(data[i].PRODUCT_PRICE)+"<br/><br/>";
+					str += "<button class='btn btn-primary btn-sm' onclick=\'productDelete(" + data[i].ORDERVIEW_NUM + ")\'>삭제</button>";
+					str += "&emsp;" 
+					str += "<button class='btn btn-primary btn-sm' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>수정</button>";
 					str += "</div>";
 				}
 				str += '</div>';

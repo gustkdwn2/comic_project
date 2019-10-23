@@ -1,5 +1,8 @@
-package com.comic.controller;
+﻿package com.comic.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,6 +13,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +26,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.comic.model.EmployeeAttachVO;
 import com.comic.model.EmployeeVO;
 import com.comic.model.RoomuseVO;
 import com.comic.model.TodaycommuteVO;
 import com.comic.model.WorkrecordVO;
 import com.comic.service.impl.ManagementServiceImpl;
 import com.comic.service.impl.ManagerPosServiceImpl;
+import com.comic.service.impl.MemberServiceImpl;
 import com.comic.service.impl.MngCalendarServiceImpl;
 
 import lombok.AllArgsConstructor;
@@ -46,6 +53,7 @@ public class ManagerposController {
 	private ManagerPosServiceImpl managerposService;// 매니저포스화면(포스화면관리)
 	private ManagementServiceImpl managementService;// 매니저(직원관리)
 	private MngCalendarServiceImpl mngCalendarService;// 캘린더(직원관리)
+	private MemberServiceImpl MemberService;
 
 	/* =new ManagerPosServiceImpl(); */
 	/**
@@ -62,7 +70,9 @@ public class ManagerposController {
 
 	@RequestMapping(value = { "/Manager_management" }, method = RequestMethod.GET)
 	public String managermanagerment(Locale locale, Model model) {
+		System.out.println("여기옴");
 		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
+		System.out.println(managementService.managerList());
 		return "younghak/Manager_management";
 	}
 
@@ -159,24 +169,26 @@ public class ManagerposController {
 	}
 
 	@PostMapping("EmployeeDelete")
-	public String employeeDelete(Model model, @RequestParam("EMPLOYEE_PWD") String emppwd, @RequestParam("EMPLOYEE_mngnum") String mngnum) {
-
-		// List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
-
-		System.out.println("emppwd = " + emppwd + "\nmngnum = " + mngnum);
-		managementService.deletemng(emppwd, mngnum);
-
+	public String employeeDelete(Model model, @RequestParam("EMPLOYEE_PWD") String emppwd,
+			@RequestParam("EMPLOYEE_mngnum") String mngnum) {
+		List<EmployeeAttachVO> attachList = MemberService.getAttachList(Integer.parseInt(mngnum));
+		//List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
+		
+		System.out.println("emppwd = "+emppwd+"\nmngnum = "+mngnum);
+		managementService.deletemng(emppwd,mngnum);
+		deleteFiles(attachList);
 		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		return "/younghak/Manager_management";
 	}
 
 	@PostMapping("workonoff")
-	public String workonoff(Model model, @RequestParam("employeenum") String empnum, @RequestParam("employeepwd") String emppwd) {
-
-		System.out.println("empnum = " + empnum);
-
-		// List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
-		int logincount = managementService.managerlogin(empnum, emppwd);
+	public String workonoff(Model model, @RequestParam("employeenum") String empnum,
+			@RequestParam("employeepwd") String emppwd,HttpSession session) {
+		
+		System.out.println("empnum = "+empnum);
+		
+		//List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
+		int logincount = managementService.managerlogin(empnum,emppwd);
 
 		if (logincount == 0) {// 1이 아니면 에러
 			model.addAttribute("errormsg", "아이디와 비밀번호가 일치하지 않습니다."); // 재고테이블
@@ -192,12 +204,27 @@ public class ManagerposController {
 		if (recordcount == 0) {
 			managementService.managerattendance(empnum); // 출근
 			System.out.println("출근 완료");
+			
+			List<EmployeeVO> empdata = managementService.getempdata(empnum); //해당달의 출근기록을 list로 가져옴
+			
+			session.setAttribute("EMPNAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가
+			
+			session.setAttribute("EMPID", empnum);//로그인 세션추가
 			model.addAttribute("succecssmsg", "출근완료"); // 재고테이블
 			return "/younghak/login";
 		} else if (recordcount == 1) {
 			managementService.managerleavework(empnum, format_time); // 퇴근
 			System.out.println("퇴근 완료");
-			makecomic_pay(empnum);// 퇴근기록으로 comic_pay테이블에 누적시간넣는 함수
+			/*
+			 * session.invalidate();//로그인 세션추가
+			 */
+			
+			List<EmployeeVO> empdata = managementService.getempdata(empnum); //해당달의 출근기록을 list로 가져옴
+			
+			session.setAttribute("EMPPRENAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가
+			session.setAttribute("EMPNAME", "현재 공석");//로그인 세션추가
+			session.setAttribute("EMPID", "tmp");//로그인 세션추가
+			makecomic_pay(empnum);//퇴근기록으로 comic_pay테이블에 누적시간넣는 함수
 			model.addAttribute("succecssmsg", "퇴근완료"); // 재고테이블
 			return "/younghak/login";
 		}
@@ -352,7 +379,7 @@ public class ManagerposController {
 
 			if (list.get(i).getEndtime() == null) {
 				// 출근데이터가 찍혀잇을수잇으나 퇴근을 안했을수 있기 때문에 퇴근을 안했을 경우 데이터 처리를 해줘야한다.
-				workinghour.put("endtime", "퇴근정보없음");
+				workinghour.put("endtime", "퇴근 미체크");
 			} else {
 				workinghour.put("endtime", list.get(i).getEndtime());
 			}
@@ -419,7 +446,7 @@ public class ManagerposController {
 			replydata.put("starttime", list.get(i).getStarttime());
 
 			if (list.get(i).getEndtime() == null) { // 퇴근시간은 없을수있으므로 처리를 해줘야함
-				replydata.put("endtime", "퇴근기록없음");
+				replydata.put("endtime", "퇴근 무기록");
 			} else {
 				replydata.put("endtime", list.get(i).getEndtime());
 			}
@@ -434,12 +461,47 @@ public class ManagerposController {
 		return replydataArray;
 
 	}
-
-	@PostMapping("/EmployeeModify")
-	public String EmployeeRegister(EmployeeVO vo, Model model) {
-		managementService.employeeModify(vo);
-		model.addAttribute("managerList", managementService.managerList()); // 재고테이블
+	
+	 @PostMapping("/EmployeeModify")
+	   public String EmployeeRegister(EmployeeVO vo,Model model) {
+		 List<EmployeeAttachVO> attachList = MemberService.getAttachList(vo.getEMPLOYEE_NUM());
+		 deleteFiles(attachList);
+		 managementService.employeeModify(vo);
+		 model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		return "/younghak/Manager_management";
-
-	}
+	      
+	   }
+	 
+	 @GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+		@ResponseBody
+		public ResponseEntity<List<EmployeeAttachVO>> getAttachList(@RequestParam("employee_num") int employee_num) {
+		 
+			return new ResponseEntity<List<EmployeeAttachVO>>(MemberService.getAttachList(employee_num), HttpStatus.OK);
+		}
+	 
+	 private void deleteFiles(List<EmployeeAttachVO> attachList) {
+			
+			if(attachList == null || attachList.size() == 0) {
+				return;
+			}
+			
+			attachList.forEach(attach -> {
+				try {
+					Path file = Paths.get("C:\\upload\\comic_employee\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+					
+					Files.deleteIfExists(file);
+					
+					if(Files.probeContentType(file).startsWith("image")) {
+						
+						Path thumbNail = Paths.get("C:\\upload\\comic_employee\\" + attach.getUploadPath() + "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+						
+						Files.delete(thumbNail);
+					}
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			});
+			
+		}
+	 
 }

@@ -7,7 +7,9 @@ socket.onmessage = function(event) {
 	console.log(event.data);
 	var data = event.data.split('|');
 	if(data[1] == "주문") {
+		console.log("test");
 		orderArlet(data[0], data[2]);
+	//	realOrder();
 	} else if(data[1] == "시작") {
 		ajaxtosenddb_comic_room_use2(data[2], data[0], "on");
 	}
@@ -40,8 +42,8 @@ function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 		contentType : "application/json; charset=utf-8;",
 		type : 'POST',
 		success : function(data) {
-			console.log("성공");
 			ajaxtogetdb_comic_room_uselist();
+			console.log("성공");
 		},
 		error : function(data) {
 			console.log("실패");
@@ -50,7 +52,7 @@ function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 }
 
 function ajaxtogetdb_comic_room_uselist() {			
-	
+	console.log("ajaxtogetdb_comic_room_uselist");
 	$.ajax({
 		url : '/managerpos/get_room_uselist',
 		dataType : 'json',
@@ -63,9 +65,7 @@ function ajaxtogetdb_comic_room_uselist() {
 			$.each(data, function(index,list){
 				var number=1;
 				number = list.roomuse_num;
-					
 					startnstop_init(list.roomuse_id,number,list.starttime,list.roomuse_status);
-				
 			});
 			
 		},

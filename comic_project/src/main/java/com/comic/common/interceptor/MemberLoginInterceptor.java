@@ -30,7 +30,6 @@ public class MemberLoginInterceptor extends HandlerInterceptorAdapter {
             httpSession.setAttribute("memberid", modelMap.get("memberid"));
             Object destination = httpSession.getAttribute("destination");
             if(destination != null) {
-            	System.out.println(destination);
                 RequestDispatcher rd = request.getRequestDispatcher(""+destination);
                 rd.forward(request, response);
             } else {
