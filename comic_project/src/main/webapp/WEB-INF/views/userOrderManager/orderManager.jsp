@@ -1,63 +1,43 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 <style>
-#orderProduct {
-	text-align: center;
-}
-
-#orderTest {
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
+	#orderProduct{
+		text-align: center;
+	}
+	#orderTest{
+		padding-top: 10px;	
+		padding-bottom: 10px;	
+	}
 </style>
 
 <div class="main-panel">
 	<div class="content-wrapper">
-		<div class="card">
-			<div class="card-body">
-				<h4>상품주문 화면</h4><hr>
-				<button class="btn btn-warning" id="categoryAdd" style="color:#f3f3f3;">카테고리추가</button>
-				<br/><hr>
-					<div class="row">
+		<div class="row">
+			<div class="col-lg-12 grid-margin">
+				<div class="card">
+					<div class="card-body">
+						<h4>상품주문 화면 조정</h4>
+						<hr>
+						<span>
 						<c:forEach items="${ OrderViewVO_List }" var="list">
-							<div class="col-sm-2" >
-									<div style="text-align: center;">
-									
-										<button name="categoryButton" class="btn btn-outline-secondary"
-												style="margin-top:10px;" value="${ list.orderview_category }">
-											${ list.orderview_category }</button>
-										<div class="btn-group-vertical" role="group" style="margin-top:10px;"
-											aria-label="Basic example">
-											<div class="btn-group">
-												<button type="button"
-													class="btn btn-secondary dropdown-toggle"
-													data-toggle="dropdown"></button>
-												<div class="dropdown-menu" style="background-color: #d6e3ff;">
-													<a class="dropdown-item" name="categoryDelete" value="${ list.orderview_num }"
-													style="cursor: pointer;">삭제</a> 
-													<a class="dropdown-item" name="categoryUpdate" value="${ list.orderview_num }"
-													style="cursor: pointer;">수정</a>
-												</div>
-											</div>
-										
-										</div>
-									</div>
-							</div>
+							<button name="categoryButton" class="btn btn-outline-secondary" value="${ list.orderview_category }">${ list.orderview_category }</button>
+							<a href="#" name="categoryDelete" value="${ list.orderview_num }">[delete]</a>
+							<a href="#" name="categoryUpdate" value="${ list.orderview_num }">[update]</a>
 						</c:forEach>
-					</div><hr>
-			
-				<div id="orderProduct"><!-- 등록한 상품이 나타난다. --></div>
-				<button class="btn btn-warning" name="productAdd" 
-						style="color: #f3f3f3; margin-top:10px;">상품추가</button>
+							<button class="btn btn-primary btn-icon-text" id="categoryAdd">카테고리추가</button>
+						</span>
+						<hr>
+							<div id="orderProduct"></div>
+						<button class="btn btn-primary btn-icon-text" name="productAdd">상품추가</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 
 <!-- hidden form -->
 <form id="operForm"></form>
@@ -264,10 +244,7 @@
 					str += "<br/>"; 
 					str += "" + data[i].PRODUCT_NAME;
 					str += "<br/>";
-					str += "" + numberWithCommas(data[i].PRODUCT_PRICE)+"<br/><br/>";
-					str += "<button class='btn btn-primary btn-sm' onclick=\'productDelete(" + data[i].ORDERVIEW_NUM + ")\'>삭제</button>";
-					str += "&emsp;" 
-					str += "<button class='btn btn-primary btn-sm' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>수정</button>";
+					str += "" + numberWithCommas(data[i].PRODUCT_PRICE);
 					str += "</div>";
 				}
 				str += '</div>';

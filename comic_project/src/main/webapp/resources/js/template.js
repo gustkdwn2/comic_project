@@ -1,8 +1,7 @@
 (function($) {
   'use strict';
   $(function() {
-    var body = $('#abcdefg');
-    console.log(body);
+    var body = $('body');
     var contentWrapper = $('.content-wrapper');
     var scroller = $('.container-scroller');
     var footer = $('.footer');
@@ -40,7 +39,7 @@
     $('.nav li a', sidebar).each(function() {
       var $this = $(this);
       addActiveClass($this);
-    });
+    })
 
     //Close other submenu in sidebar on opening any
 
@@ -52,7 +51,6 @@
     //Change sidebar
 
     $('[data-toggle="minimize"]').on("click", function() {
-    	console.log("들어옴???????????ㅁㄴㅇㅁ");
       body.toggleClass('sidebar-icon-only');
     });
 

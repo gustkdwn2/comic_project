@@ -13,10 +13,6 @@
 		SELECT * FROM COMIC_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
 	</select>
 	
-	<insert id="roomuse">
-		INSERT INTO COMIC_ROOMUSE(ROOMUSE_ID, ROOMUSE_NUM, ROOMUSE_STARTTIME, ROOMUSE_STATUS) VALUES (#{roomuse_id},#{roomnum},sysdate,'on')
-	</insert>
-	
 	<select id="MemberGetList" resultType="com.comic.model.MemberVO">
 		SELECT * FROM COMIC_MEMBER
 	</select>

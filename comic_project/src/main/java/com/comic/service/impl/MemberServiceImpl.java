@@ -1,8 +1,11 @@
 package com.comic.service.impl;
 
 
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,7 +17,6 @@ import com.comic.model.EmployeeAttachVO;
 import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
-import com.comic.model.RoomuseVO;
 import com.comic.service.MemberService;
 
 @Service
@@ -63,18 +65,22 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public String MemberPasswordModify(MemberVO vo) throws Exception {
-		String pw = "";
-		for (int i = 0; i < 4; i++) {
-			pw += (char) ((Math.random() * 26) + 97);
+	public void MemberPasswordModify(HttpServletResponse response, MemberVO vo) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		if(mapper.MemberCheck(vo) == null) {
+			out.print("등록된 회원이 없습니다.");
+			out.close();
+		} else {
+			String pw = "";
+			for (int i = 0; i < 4; i++) {
+				pw += (char) ((Math.random() * 26) + 97);
+			}
+			vo.setMEMBER_PWD(passwordEncoder.encode(pw));
+			mapper.MemberPasswordModify(vo);
+			out.print("임시 비밀번호는 " + pw + "입니다.");
+			out.close();
 		}
-		vo.setTEM_PWD(pw);
-		vo.setMEMBER_PWD(passwordEncoder.encode(pw));
-		int result = mapper.MemberPasswordModify(vo);
-		if (result == 1) {
-			return pw;
-		}
-		return "fail";
 	}
 	
 	@Override
@@ -125,12 +131,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<EmployeeAttachVO> getAttachList(int employee_num) {
 		return attachMapper.findByEMPLOYEE_NUM(employee_num);
-	}
-
-	@Override
-	public void roomuse(String roomuse_id, int roomnum) {
-		System.out.println(roomuse_id + "/////" + roomnum);
-		mapper.roomuse(roomuse_id,roomnum);
 	}
 
 }

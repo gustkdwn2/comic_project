@@ -40,7 +40,8 @@
                 </div>
                 
                 <div class="my-2 d-flex justify-content-between" style="float: left;">
-                  <a style="color: #007bff;" class="auth-link text-black" href="javascript:passwordmodifyBtn()">비밀번호 찾기</a>
+                  <a data-toggle="modal" href="#PasswordModifyModal" data-backdrop="static" data-keyboard="false" 
+                     style="color: #007bff;" class="auth-link text-black">비밀번호 찾기</a>
                 </div><br/><br/>
                 
                 <div class="mt-3">
@@ -68,17 +69,48 @@
   <script src="/resources/js/hoverable-collapse.js"></script>
   <script src="/resources/js/template.js"></script>
   <!-- endinject -->
-</body>
+  
 <script type="text/javascript">
-var roomNum = "<c:out value='${roomNum}'/>";
-var msg = "${msg}";
 
-if (msg === "REGISTERED") {
-	alert("회원가입이 완료되었습니다. 로그인 해주세요.");
-} else if (msg == "FAILURE") {
-	//alert("아이디 또는 비밀번호를 확인해주세요.");
-}
+		var roomNum = "<c:out value='${roomNum}'/>";
+		console.log(roomNum);
+		
+		 var msg = "${msg}";
+		 if (msg === "REGISTERED") {
+		     alert("회원가입이 완료되었습니다. 로그인해주세요~");
+		 } else if (msg == "FAILURE") {
+		     alert("아이디 또는 비밀번호를 확인해주세요.");
+		 } else if (msg === "NOMEMBER") {
+		  alert("입력한 정보로 등록된 회원이 없습니다.")
+		 }
+		
+		 $("#login").on("click", function(e) {
+		e.preventDefault();
+		$("#memberlogin").submit();
+		 });
+		 
+		function pwdmodify() {
+		  var passwordmodify = $("form[name=passwordmodify]").serialize();
+			  $.ajax({
+				  type : 'post',
+				  url : '/member/MemberPasswordModify',
+				  data : passwordmodify,
+				  success : function(result) {
+				  	alert(result);
+			   }
+		   });
+		  }
+
+		function home(){
+			var operForm = $("#operForm");
+
+			operForm.append("<input type='hidden' name='roomNum' value='" + roomNum + "'>");
+			operForm.attr("method", "post");
+			operForm.attr("action","/userView/main");
+			operForm.submit();
+		}
+
 
 </script>
-<script src="/resources/js/memberlogin.js?ver=7"></script>
+</body>
 </html>

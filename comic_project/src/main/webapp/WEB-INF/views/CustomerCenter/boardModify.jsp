@@ -21,8 +21,7 @@
 	                <div class="card-body" style="margin-top:50px; margin-left:200px; margin-bottom:50px;">
 	                  <h1 class="card-title">건의 게시판 입니다</h1>
 	                  
-	                  <form role="form" class="forms-sample" action="/CustomerCenter/boardModify" method="post" 
-							 onsubmit="return nullcheck();">
+	                  <form role="form" class="forms-sample" action="/CustomerCenter/boardModify" method="post">
 	                  	
 	                  	<input type="hidden" name="board_id" value="${Memberlogin.MEMBER_ID}" >
 	                  	<input type="hidden" name="board_num" value="${board.board_num}" >
@@ -93,17 +92,6 @@ $(document).ready(function() {
 	  });
 
 });
-function nullcheck(){
-	if($("input[name='board_title']").val()==""){
-		alert("제목을 입력해주세요");
-		return false;
-	}
-	if($("textarea[name='board_content']").val()==""){
-		alert("내용을 입력해주세요");
-		return false;
-	}
-	return true;
-}
 </script>
        
 

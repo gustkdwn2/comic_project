@@ -191,25 +191,7 @@ body {
   display: inline-block;
   line-height: 48px;
 }
-.messages {
-	display: none; 
-}
 
-.message_template1 {
-  display: none;
-}
-.message_template2 {
-  display: none;
-}
-.message_template3 {
-  display: none;
-}
-.message_template4 {
-  display: none;
-}
-.message_template5 {
-  display: none;
-}
-.message_template6 {
+.message_template {
   display: none;
 }

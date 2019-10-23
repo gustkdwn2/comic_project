@@ -58,11 +58,11 @@
 						</div>
 					</div>
 					<input type="hidden" id="loss_num" name="loss_num">
-					<button type="submit" class="btn btn-warning" style="color:white;">
+					<button type="submit" class="btn btn-primary mr-2">
 						<font style="vertical-align: inherit;"><font
-							style="vertical-align: inherit;">수정완료</font></font>
-					</button>&emsp;
-					<button type="button" id="modifyclose" class="btn btn-secondary">닫기</button>
+							style="vertical-align: inherit;">등록</font></font>
+					</button>
+					<button type="button" id="modifyclose" class="btn btn-success">닫기</button>
 				</form>
 			</div>
 	      </div>

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
+<%@ page session="false"%>
 
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
@@ -37,7 +37,7 @@
 	height: 220px;
 }
 
-#imageRemoveBtn {
+#imageRemoveBtn{
 	float: right;
 }
 
@@ -64,7 +64,7 @@
 	height: 220px;
 }
 
-#imageGetBtn {
+#imageGetBtn{
 	float: right;
 }
 
@@ -227,28 +227,48 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 
 								</div>
 							</div>
+							<!-- <div class="col-md-0"> -->
+							<div class="card-body">
+								<%-- <h4 class="card-title">Inverse buttons</h4>
+<p class="card-description">Add class <code>.btn-inverse-{color} for inverse buttons</code></p> --%>
+								<div class="template-demo"></div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	
-
-			
-	
-	
-	
-	
-	
-	
-	
-	
 	</div>
 	</div>
 
-
+	<div class="card-body">
+		<h4 class="card-title">Social button with text</h4>
+		<p class="card-description">
+			Add class
+			<code>.btn-social-icon-text</code>
+		</p>
+		<div class="template-demo">
+			<button type="button" class="btn btn-social-icon-text btn-facebook">
+				<i class="mdi mdi-facebook"></i>Facebook
+			</button>
+			<button type="button" class="btn btn-social-icon-text btn-youtube">
+				<i class="mdi mdi-youtube"></i>Youtube
+			</button>
+			<button type="button" class="btn btn-social-icon-text btn-twitter">
+				<i class="mdi mdi-twitter"></i>Twitter
+			</button>
+			<button type="button" class="btn btn-social-icon-text btn-dribbble">
+				<i class="mdi mdi-dribbble"></i>Dribbble
+			</button>
+			<button type="button" class="btn btn-social-icon-text btn-linkedin">
+				<i class="mdi mdi-linkedin"></i>Linkedin
+			</button>
+			<button type="button" class="btn btn-social-icon-text btn-google">
+				<i class="mdi mdi-google-plus"></i>Google
+			</button>
+		</div>
+	</div>
 	</div>
 	</div>
 	</div>
@@ -258,8 +278,8 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 	<!-- main-panel ends -->
 
 	<!-- 인서트Modal 추가 -->
-	<div class="modal fade" id="empRegisterMoal" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="empRegisterMoal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -273,69 +293,68 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 							<font style="vertical-align: inherit;">책 이미지</font>
 						</label>
 						<div class="form-group row">
-							<div class="form-group uploadDiv">
-								<input type="file" name='uploadFile' id="uploadFileRegister">
-							</div>
-
-							<div class='uploadResultRegister'>
-								<ul>
-
-								</ul>
-							</div>
-						</div>
+					        <div class="form-group uploadDiv">
+					            <input type="file" name='uploadFile' id="uploadFileRegister">
+					        </div>
+				        
+					        <div class='uploadResultRegister'> 
+					        	<ul>
+					          
+					        	</ul>
+					        </div>
+				    	</div>
 					</div>
-					<form name="register" class="pt-3" id="register"
-						action="/EmployeeRegister" method="post">
+					<form name="register" class="pt-3" id="register" action="/EmployeeRegister"
+						method="post">
 						<div class="form-group">
 							<label>이름</label> <input type="text"
-								class="form-control form-control-lg" id="EMPLOYEE_NAME_insert"
-								name="EMPLOYEE_NAME" placeholder="Name">
+								class="form-control form-control-lg" id="EMPLOYEE_NAME_insert" name="EMPLOYEE_NAME"
+									placeholder="Name">
 						</div>
 						<div class="form-group">
 							<label>비밀번호</label> <input type="password"
-								class="form-control form-control-lg" id="EMPLOYEE_PWD_insert"
-								name="EMPLOYEE_PWD" placeholder="Password">
+								class="form-control form-control-lg" id="EMPLOYEE_PWD_insert" name="EMPLOYEE_PWD"
+								placeholder="Password" >
 						</div>
-
+						
 						<div class="form-group">
 							<label>비밀번호 확인</label> <input type="password"
-								class="form-control form-control-lg"
-								id="EMPLOYEE_PWD_confirm_insert" placeholder="Password">
+								class="form-control form-control-lg" id="EMPLOYEE_PWD_confirm_insert" 
+								placeholder="Password" >
 						</div>
-
+						
 						<div class="form-group">
 							<label>핸드폰 번호</label> <input type="number"
-								class="form-control form-control-lg" id="EMPLOYEE_PHONE_insert"
-								name="EMPLOYEE_PHONE" placeholder="Phone">
+								class="form-control form-control-lg" id="EMPLOYEE_PHONE_insert" name="EMPLOYEE_PHONE"
+								placeholder="Phone" >
 						</div>
 						<div class="form-group">
 							<label>계좌 번호</label> <input type="number"
-								class="form-control form-control-lg"
-								id="EMPLOYEE_ACCOUNT_insert" name="EMPLOYEE_ACCOUNT"
-								placeholder="Account">
+								class="form-control form-control-lg" id="EMPLOYEE_ACCOUNT_insert" name="EMPLOYEE_ACCOUNT"
+								placeholder="Account"  >
 						</div>
 						<div class="form-group">
-							<label>직책</label> <select name="EMPLOYEE_POSITION"
-								class="selectpicker">
-
+							<label>직책</label> 
+								 
+								 <select name="EMPLOYEE_POSITION" class="selectpicker">
+								
 								<option value="부점장">부점장</option>
-								<option value="스태프매니저">스태프매니저</option>
+								<option value="스태프매니저" >스태프매니저</option>
 								<option value="매니저">매니저</option>
 								<option value="신입" selected="selected">신입</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>시급/월급</label> <input type="number"
-								class="form-control form-control-lg" id="EMPLOYEE_PAY_insert"
-								name="EMPLOYEE_PAY" placeholder="Pay">
+								class="form-control form-control-lg" id="EMPLOYEE_PAY_insert" name="EMPLOYEE_PAY"
+								placeholder="Pay">
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-warning" style="color:white;"
+					<button type="button" class="btn btn-primary"
 						onclick="additional_staff_validation()">추가</button>
-					<button onclick="empRegisterModalClose()" type="button"
-						class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					<button onclick="empRegisterModalClose()" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -356,22 +375,24 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 					<h4 class="modal-title" id="ModalLabel">직원 정보 수정</h4>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
-						<label>직원이미지</label>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">
+							<font style="vertical-align: inherit;">직원 이미지</font>
+						</label>
 						<div class="form-group row">
-							<div class="form-group uploadDiv">
-								<input id="uploadFileGet" type="file" name='uploadFile'>
-							</div>
-
-							<div class='uploadResultGet'>
-								<ul>
-
-								</ul>
-							</div>
-						</div>
+					        <div class="form-group uploadDiv">
+					            <input id="uploadFileGet" type="file" name='uploadFile'>
+					        </div>
+				        
+					        <div class='uploadResultGet'> 
+					        	<ul>
+					          
+					        	</ul>
+					        </div>
+				    	</div>
 					</div>
-					<form class="pt-3" name="EmployeeModify" id="EmployeeModify"
-						action="/managerpos/EmployeeModify" method="post">
+					<form class="pt-3" name="EmployeeModify" id="EmployeeModify" action="/managerpos/EmployeeModify"
+						method="post">
 						<div class="form-group">
 							<label>이름</label> <input type="text"
 								class="form-control form-control-lg" name="EMPLOYEE_NAME"
@@ -382,13 +403,13 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 								class="form-control form-control-lg" name="EMPLOYEE_PWD"
 								placeholder="Password" id="EMPLOYEE_PWD_modify">
 						</div>
-
+						
 						<div class="form-group">
 							<label>비밀번호</label> <input type="password"
 								class="form-control form-control-lg" name="EMPLOYEE_PWD_confirm"
 								placeholder="Password_confirm" id="EMPLOYEE_PWD_confirm_modify">
 						</div>
-
+						
 						<div class="form-group">
 							<label>핸드폰 번호</label> <input type="number"
 								class="form-control form-control-lg" name="EMPLOYEE_PHONE"
@@ -400,28 +421,29 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 								placeholder="Account" id="EMPLOYEE_ACCOUNT_modify">
 						</div>
 						<div class="form-group">
-							<label>직책</label> <select name="EMPLOYEE_POSITION">
-
+							<label>직책</label> 
+							 <select name="EMPLOYEE_POSITION">
+								
 								<option value="부점장">부점장</option>
-								<option value="스태프매니저">스태프매니저</option>
+								<option value="스태프매니저" >스태프매니저</option>
 								<option value="매니저">매니저</option>
 								<option value="신입" selected="selected">신입</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<label>시급/월급</label> <input type="number"
+							<label>시급/월급</label> 
+							<input type="number"
 								class="form-control form-control-lg" name="EMPLOYEE_PAY"
-								placeholder="Pay" id="EMPLOYEE_PAY_modify"> <input
-								type="hidden" id="EMPLOYEE_mngnum_modify"
-								class="form-control form-control-lg" name="EMPLOYEE_NUM">
+								placeholder="Pay"  id="EMPLOYEE_PAY_modify">
+							<input type="hidden" id="EMPLOYEE_mngnum_modify" class="form-control form-control-lg"
+								name="EMPLOYEE_NUM">
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-warning" style="color:white;"
+					<button type="button" class="btn btn-primary"
 						onclick="modify_staff_validation()">수정</button>
-					<button onclick="empGetModalClose()" type="button"
-						class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					<button onclick="empGetModalClose()" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -448,10 +470,10 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 							<h3>
 								사번 : <font id="deletemodalmngnum" />
 							</h3>
-							<label>비밀번호</label> <input type="text"
-								class="form-control form-control-lg" name="EMPLOYEE_PWD"
-								placeholder="Password"> <input type="hidden"
-								id="EMPLOYEE_mngnum" class="form-control form-control-lg"
+							<label>비밀번호</label> 
+							<input type="text" class="form-control form-control-lg" name="EMPLOYEE_PWD"
+								placeholder="Password"> 
+							<input type="hidden" id="EMPLOYEE_mngnum" class="form-control form-control-lg"
 								name="EMPLOYEE_mngnum">
 						</div>
 

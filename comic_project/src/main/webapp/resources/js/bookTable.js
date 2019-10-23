@@ -2,11 +2,9 @@ $(document).ready(function(){
 	
 	$("#bookRegisterBtn").click(function() {
 		$("#bookRegister").show();
-		$('#modalstyle2').css('display','');
 	});
-
-	$('#modalstyle2').css('display','none');
-	$('#bookTable').DataTable({ // 페이징 처리, 검색, show entries	
+	
+	$('#bookTable').DataTable({ // 페이징 처리, 검색, show entries
 		pageLength: 10, //처음 페이지에 처리 개수
 	    bPaginate: true, // 페이징 기능
 	    bLengthChange: true,
@@ -33,8 +31,8 @@ $(document).ready(function(){
             {
                 mData: "book_name",
                 mRender: function (data, type, row) {
-                    return "<button name ='getBtn' value=" + data +" type='button' class='btn btn-warning' onclick='javascript:bookModify(value)' style='color:white;'>수정</button> " +
-                    	   "<button name ='removeBtn' value=" + data +" type='submit' class='btn btn-secondary' onclick='javascript:bookRemove(value)'>삭제</button>";
+                    return "<button name ='getBtn' value=" + data +" type='button' class='btn btn-info' onclick='javascript:bookModify(value)'>수정</button> " +
+                    	   "<button name ='removeBtn' value=" + data +" type='submit' class='btn btn-danger' onclick='javascript:bookRemove(value)'>삭제</button>";
                 }
             }
         ],
@@ -54,7 +52,6 @@ $(document).ready(function(){
 	    }],
 	    
 	    order: [[0, 'desc']]
-	    
 	});
 	
 });
@@ -88,7 +85,7 @@ function bookModify(book_name) {
 	    url: "/book/bookGet?book_name="+book_name,
 	    dataType : "json",
 	    success: function(data) {
-    	    
+	    	$('#book_name_hidden').attr('value',data.book_name);
 	    	$('#book_name_get').attr('value',data.book_name);
 	    	$('#book_loc_get').attr('value',data.book_loc);
 	    	$('#book_publisher_get').attr('value',data.book_publisher);
@@ -143,7 +140,6 @@ function bookModify(book_name) {
 			});
 	    	
 	    	$('#bookGet').show();
-	    	$('#modalstyle2').css('display','');
 	    	
 	    }
 	});

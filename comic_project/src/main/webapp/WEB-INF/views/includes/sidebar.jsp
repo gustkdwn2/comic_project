@@ -9,7 +9,6 @@ li{list-style: none;}
 .accordion_wrap .accordion_content{display:none;}
 </style>
 
-
 	<nav class="sidebar sidebar-offcanvas">
 	
 		<ul class="nav">
@@ -18,7 +17,7 @@ li{list-style: none;}
 						href="/managerpos/managerpos">
 					<i class="mdi mdi-home menu-icon"></i><span class="menu-title">
 					포스 화면</span></a></li>
-						
+			
 			<li class="nav-item open accordion_wrap"><a class="nav-link"> 
 			<i class="mdi mdi-cube menu-icon"></i> 
 			<span class="menu-title">재고</span></a>
@@ -101,48 +100,4 @@ $(".accordion_wrap > a").click(function(){
     $(this).next("ul").toggleClass("accordion_content");
     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 });
-$("#commute").on("click", function() {
-	$("#commuteModal").modal("show");
-	gettodaycommute();
-});
-
-function sessioninvalid(){
-	alert("세션삭제");
-
-	sessionStorage.removeItem( "EMPID" );
-
-}
-
-function gettodaycommute() {
-
-	$.ajax({
-		url : '/managerpos/gettodaycommute',
-		dataType : 'json',
-		contentType : "application/json; charset=utf-8;",
-		type : 'POST',
-		success : function(data) {
-
-			console.log(data);
-			/* var text="";
-			console.log(data[0]);*/
-			var htmlStr = "";
-			
-			htmlStr += "<table style='width: 100%; text-align:center;'>";
-			$.each(data, function(index, list) {
-				htmlStr += "<tr>";
-				htmlStr += "<td class='td_y_header'>" + list.empnum +"/"+list.empname +"</td>"
-				htmlStr += "<td class='td_y_header'>" + list.starttime + "</td>"
-				htmlStr += "<td class='td_y_header'>" + list.endtime + "</td>"
-				htmlStr += "</tr>";
-			});
-			htmlStr += "</table>";
-			$("#todaycummute").html(htmlStr);
-			
-		},
-		error : function(data) {
-			console.log("실패");
-		}
-	});
-
-}
 </script>

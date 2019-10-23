@@ -18,44 +18,40 @@
 						<form onsubmit="return productRegisterCheck();" class="forms-sample" action="/product/productRegister" method="post" autocomplete="off">
 							<div class="form-group row">
 								<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
-									<font style="vertical-align: inherit;"><h5>상품 이름</h5></font>
+									<font style="vertical-align: inherit;">상품 이름</font>
 								</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" name="product_name" id="product_name_register" required
-										style="border:3px solid #dadfe4">
+									<input type="text" class="form-control" name="product_name" id="product_name_register" required>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="exampleInputEmail2" class="col-sm-3 col-form-label">
-									<font style="vertical-align: inherit;"><h5>상품 판매가</h5></font>
+									<font style="vertical-align: inherit;">상품 판매가</font>
 								</label>
 								<div class="col-sm-9">
-									<input type="number" class="form-control" name="product_price" id="product_price_register" required
-									style="border:3px solid #dadfe4">
+									<input type="number" class="form-control" name="product_price" id="product_price_register" required>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="exampleInputMobile" class="col-sm-3 col-form-label">
-									<font style="vertical-align: inherit;"><h5>상품 수량</h5></font>
+									<font style="vertical-align: inherit;">상품 수량</font>
 								</label>
 								<div class="col-sm-9">
-									<input type="number" class="form-control" name="product_qty" id="product_qty_register" required
-									style="border:3px solid #dadfe4">
+									<input type="number" class="form-control" name="product_qty" id="product_qty_register" required>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="exampleInputPassword2" class="col-sm-3 col-form-label">
-									<font style="vertical-align: inherit;"><h5>상품 종류</h5></font>
+									<font style="vertical-align: inherit;">상품 종류</font>
 								</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" name="product_category" id="product_category_register" required
-									style="border:3px solid #dadfe4">
+									<input type="text" class="form-control" name="product_category" id="product_category_register" required>
 								</div>
 							</div>
-							<button type="submit" class="btn btn-warning">
-								<font style="vertical-align: inherit; color:white;">등록</font>
+							<button type="submit" class="btn btn-primary mr-2">
+								<font style="vertical-align: inherit;">등록</font>
 							</button>
-							<button onclick="productRegisterModalClose();" data-dismiss="modal" type="button" class="btn btn-secondary">닫기</button>
+							<button onclick="productRegisterModalClose();" data-dismiss="modal" type="button" class="btn btn-success">닫기</button>
 						</form>
 					</div>
 				</div>
@@ -67,11 +63,7 @@
 <!-- End ProductRegister Modal -->
 
 <script type="text/javascript">
-
-	$("#closeBtn").click(function() {
-		$('#modalstyle').css('display','none');
-	});
-
+	
 	function productRegisterCheck() {
 		
 		var product_name = $('#product_name_register').val();

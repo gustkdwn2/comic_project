@@ -1,28 +1,27 @@
+var socket;
+
 $(document).ready(function() {
-	var socket = new WebSocket("ws://10.10.10.173:8080/echo");
-	socket.onopen = function() {
+	ws.onopen = function() {
 		console.log("소켓 시작");
 	};
 
-	socket.onmessage = function(event) {
-		console.log(event.data);
+	ws.onmessage = function(event) {
 		var textData = event.data.split('|');
 		test = textData[0];
 		message_side = 'left';
 		sendMessage(textData[1]);
 	};
 
-	socket.onclose = function() {
+	ws.onclose = function() {
 		console.log("소켓 끝");
-	}; 
-	 
+	};
+	
 	var Message;
 	Message = function(arg) {
 		this.text = arg.text, this.message_side = arg.message_side;
 		this.draw = function(_this) {
 			return function() {
 				var $message;
-				console.log(chatRoom);
 				test = chatRoom;
 				console.log(test);
 				$message = $($('.message_template' + test).clone().html());
@@ -66,12 +65,12 @@ $(document).ready(function() {
 		sendMessage(getMessageText());
 		if(sessionValue == 'admin') {
 			checkInOut = 'user';
-			memberid = 'admin';
 		} else {
 			checkInOut = 'admin';
 		}
+		
 		console.log($('.message_input').val());
-		socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val() + "," + memberid);
+		socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val());
 		$('.message_input').val('');
 	});
 	
@@ -81,15 +80,12 @@ $(document).ready(function() {
 			sendMessage(getMessageText());
 			if(sessionValue == 'admin') {
 				checkInOut = 'user';
-				memberid = 'admin';
 			} else {
 				checkInOut = 'admin';
-				
 			}
 			
 			console.log($('.message_input').val());
-			console.log(chatRoom);
-			socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val() + "," + memberid);
+			socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val());
 			$('.message_input').val('');
 		}
 	});
