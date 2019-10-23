@@ -7796,3 +7796,57 @@ java.nio.file.NoSuchFileException: C:\Users\5CLASS-184\Documents\GitHub\comic_pr
 
 !ENTRY org.eclipse.core.resources 2 10035 2019-10-23 18:59:48.569
 !MESSAGE The workspace will exit with unsaved changes in this session.
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:37.832
+!MESSAGE Preparing classpath changed notification comic_project
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:37.833
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:37.842
+!MESSAGE classpath=78 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:37.845
+!MESSAGE buffering callback sts4.classpath.yoyEtXdj comic_project false 78
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:37.846
+!MESSAGE executing callback sts4.classpath.yoyEtXdj 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:37.907
+!MESSAGE executing callback sts4.classpath.yoyEtXdj SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:46.852
+!MESSAGE Preparing classpath changed notification comic_project
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:46.852
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:46.856
+!MESSAGE classpath=43 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:46.858
+!MESSAGE buffering callback sts4.classpath.yoyEtXdj comic_project false 43
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:46.858
+!MESSAGE executing callback sts4.classpath.yoyEtXdj 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:08:46.870
+!MESSAGE executing callback sts4.classpath.yoyEtXdj SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:09:51.902
+!MESSAGE Preparing classpath changed notification comic_project
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:09:51.902
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:09:51.903
+!MESSAGE classpath=43 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:09:51.905
+!MESSAGE buffering callback sts4.classpath.yoyEtXdj comic_project false 43
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:09:51.905
+!MESSAGE executing callback sts4.classpath.yoyEtXdj 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-23 19:09:51.925
+!MESSAGE executing callback sts4.classpath.yoyEtXdj SUCCESS [done]
