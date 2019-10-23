@@ -28,7 +28,7 @@ public class EchoHandlerOrder extends TextWebSocketHandler{
 		String senderId = getId(session);
 		System.out.println(senderId + "로 부터 " + message.getPayload() + " 받음");
 		
-		//protocol : cmd, 작성자(방번호), admin  ex: (1,주문)
+		//protocol : cmd, 작성자(방번호), admin  ex: (1,주문,아이디)
 		String msg = message.getPayload();
 		if(!StringUtils.isEmpty(msg)) {
 			String[] strs = msg.split(",");

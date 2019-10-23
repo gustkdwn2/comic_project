@@ -53,7 +53,10 @@ public class ManagerposController {
 	 */
 
 	@RequestMapping(value = { "/managerpos", "/Managerpos" }, method = RequestMethod.GET)
-	public String younghakpos(Locale locale, Model model) {
+	public String younghakpos(Locale locale, Model model, HttpSession session) {
+		session.removeAttribute("roomNum");
+		session.setAttribute("admin", "admin");
+		
 		return "/younghak/Managerpos";
 	}
 
@@ -109,8 +112,8 @@ public class ManagerposController {
 	@ResponseBody
 	@RequestMapping(value = "get_room_uselist", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<Object> get_room_uselist(HttpSession session) {
-		session.setAttribute("admin", "admin");
-		session.removeAttribute("roomNum");
+		//session.setAttribute("admin", "admin");
+		//session.removeAttribute("roomNum");
 
 		List<RoomuseVO> list = managerposService.roomuselist();
 		// List<RoomuseVO> list = managerposService.roomuselist2();
@@ -134,8 +137,6 @@ public class ManagerposController {
 			for (int j = 0; j < curtimearr.length; j++) {
 				usetimearr[j] = (Integer.parseInt(curtimearr[j])) - (Integer.parseInt(starttimearr[j]));
 			}
-			System.out.println("usetimearr[0] = " + usetimearr[0]);
-			System.out.println("roomuse_num = " + list.get(i).getRoomuse_num());
 			if (usetimearr[0] < 0) {
 				usetimearr[0] += 24;// 시작시간보다 끝난시간이 적으면 24시간 추가해서 계산
 			}

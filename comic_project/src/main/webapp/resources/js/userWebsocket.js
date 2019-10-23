@@ -66,12 +66,12 @@ $(document).ready(function() {
 		sendMessage(getMessageText());
 		if(sessionValue == 'admin') {
 			checkInOut = 'user';
+			memberid = 'admin';
 		} else {
 			checkInOut = 'admin';
 		}
-		console.log(chatRoom);
 		console.log($('.message_input').val());
-		socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val());
+		socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val() + "," + memberid);
 		$('.message_input').val('');
 	});
 	
@@ -81,13 +81,15 @@ $(document).ready(function() {
 			sendMessage(getMessageText());
 			if(sessionValue == 'admin') {
 				checkInOut = 'user';
+				memberid = 'admin';
 			} else {
 				checkInOut = 'admin';
+				
 			}
 			
 			console.log($('.message_input').val());
 			console.log(chatRoom);
-			socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val());
+			socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val() + "," + memberid);
 			$('.message_input').val('');
 		}
 	});

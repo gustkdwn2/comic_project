@@ -179,8 +179,7 @@ function ajaxtogetdb_comic_room_uselist() {
 			var text="";
 			console.log(data[0]);
 			$.each(data, function(index,list){
-				var number=1;
-				number = list.roomuse_num;
+				var number = list.roomuse_num;
 
 				if(number == sessionValue) {
 					time_start(list.starttime, number);
@@ -225,8 +224,8 @@ function time_modify(time) {
 	}
 
 	if(time==null){
-	time=0;
-		}
+		time=0;
+	}
 	
 	return time;
 }

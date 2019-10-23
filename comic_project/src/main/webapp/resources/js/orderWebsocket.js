@@ -65,10 +65,6 @@ function ajaxtogetdb_comic_room_uselist() {
 				number = list.roomuse_num;
 					
 					startnstop_init(list.roomuse_id,number,list.starttime,list.roomuse_status);
-					
-				
-						
-				
 				
 			});
 			
