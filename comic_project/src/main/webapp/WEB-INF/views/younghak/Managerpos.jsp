@@ -165,14 +165,14 @@ body {
 							<div class="template-demo">
 								<c:forEach var="i" begin="1" end="6" step="1">
 
-									<c:if test="${i%3==1}">
-										<div class="row">
-									</c:if>
+<c:if test="${i%3==1}">
+<div class="row">
+</c:if>
 
-									<div class="column">
-										<!-- <div class="div_root"> -->
+<div class="column" onclick="<%-- method_startnstop(${i}); --%>">
+<!-- <div class="div_root"> -->
 
-										<div class="div_menu">${i}번방</div>
+<div class="div_menu">${i}번방</div>
 
 
 										<div class="div_con">

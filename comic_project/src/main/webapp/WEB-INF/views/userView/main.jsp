@@ -92,6 +92,7 @@
 	<!-- hidden form -->
 	<form id="operForm"></form>
 </body>
+
 <script type="text/javascript">
 var sessionValue = ${roomNum};
 
@@ -115,7 +116,7 @@ $(document).ready(function(){
 	$.ajax({
 		type: 'get',
 		url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
-		async : true,
+		async : false,
 		dataType: 'json',
 		success: function(data) {
 			total_price = data.total_bill;

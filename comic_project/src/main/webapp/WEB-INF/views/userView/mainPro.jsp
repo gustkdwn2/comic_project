@@ -7,6 +7,7 @@
     <title>Title</title>
 </head>
 <body>
+
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 var socket = new WebSocket("ws://10.10.10.173:8080/echo_order");
