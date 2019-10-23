@@ -1,4 +1,4 @@
-var socket = new WebSocket("ws://10.10.10.175:8080/echo_order");
+var socket = new WebSocket("ws://10.10.10.173:8080/echo_order");
 socket.onopen = function() {
 	console.log("소켓 시작");
 };
