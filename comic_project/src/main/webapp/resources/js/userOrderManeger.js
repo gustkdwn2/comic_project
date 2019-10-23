@@ -12,6 +12,7 @@
 	}
 	
 	function productCheck(productJSON, callback, err) {
+		console.log(productJSON);
 		$.ajax({
 			type : 'post',
 			url : '/userOrderManager/productCheck',

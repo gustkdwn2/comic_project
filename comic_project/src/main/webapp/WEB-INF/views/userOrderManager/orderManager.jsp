@@ -108,11 +108,9 @@
                 <div class="form-group">
                     <label>product</label>
                     <!-- <input class="form-control" name="product"> -->
-                    <form id="productCategoryNameOptionForm">
-	                    <select class="form-control" name="product" id="productCategoryNameOption">
-	                    
-	                  	</select>
-                  	</form>
+                    <select class="form-control" name="product" id="productCategoryNameOption">
+                    
+                  	</select>
                     <label>image file</label>
                     <form id="uploadForm" method="post" enctype="multipart/form-data">
 	                    <input class="form-control" type="file" name="uploadFile">
@@ -131,12 +129,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">product Update</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="productUpdateModalCloseBtn">&times;</button>
             </div> 
             <div class="modal-body">
                 <div class="form-group">
                     <label>product</label>
-                    <input class="form-control" name="product">
+                    <!-- <input class="form-control" name="product"> -->
+                    <select class="form-control" name="product" id="productCategoryNameUpdateOption">
+                    
+                  	</select>
                     <label>image file</label>
                     <form id="uploadForm" method="post" enctype="multipart/form-data">
 	                    <input class="form-control" type="file" name="uploadFile">
@@ -150,7 +151,7 @@
     </div>
 </div>
 </body>
-<script src="/resources/js/userOrderManeger.js?after"></script>
+<script src="/resources/js/userOrderManeger.js?vaer=2"></script>
 <script>
     $(document).ready(function () {
         var operForm = $("#operForm"); 
@@ -237,6 +238,7 @@
 					str += "<div class='col-sm-6 col-md-4 col-lg-3' id='orderTest'>";
 					str += "<a href='#' onclick=\'productDelete(" + data[i].ORDERVIEW_NUM + ")\'>[delete]</a>";
 					str += "<a href='#' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>[update]</a>";
+					str += "<input type='hidden' id='prodcutCategoryUpdateHidden' value='"+category+"'>";
 					str += "<br/>"; 
 					str += "<img src='/userOrderManager/display?fileName=" + fileCallPath + "' width='150' height='200'/>";
 					str += "<br/>"; 
@@ -268,7 +270,7 @@
 			$("#productCategoryNameOption").append(Optionstr);
 			modalProductAdd.modal("show");
 			$("#productAddModalCloseBtn").on("click", function (e) {
-				$("#modalProductAdd").find('#productCategoryNameOptionForm')[0].reset();
+				$("select#productCategoryNameOption option").remove();
 			});
 		});
 
@@ -289,12 +291,14 @@
 					return false;
 				}
 				formData.append("uploadFile", files[i]);
-				formData.append("productName", $("input[name='product']").val());
+				/* formData.append("productName", $("input[name='product']").val()); */
+				formData.append("productName", $("select[name='product']").val());
 				formData.append("productCategory", categoryValue);
 			} 
 
 			var productJSON = {
-				productName: $("input[name='product']").val(),
+				/* productName: $("input[name='product']").val(), */
+				productName: $("select[name='product']").val(),
 				productCategory: categoryValue
 			};
 
@@ -302,12 +306,12 @@
 			orderProductService.productCheck(productJSON, function(result) {
 				if(result == "NULL") {
 					alert("재고에 해당 상품이 없습니다.");
-					$("input[name='product']").val('');
+					/* $("input[name='product']").val(''); */
 					return;
 				}
 				
 				orderProductService.productAdd(formData, function(result){
-					$("input[name=product]").val('');
+					/* $("input[name=product]").val(''); */
 					modalProductAdd.modal("hide");
 					orderProductShow(categoryValue);
 					 
@@ -328,12 +332,14 @@
 					return false;
 				}
 				formData.append("uploadFile", files[i]);
-				formData.append("productName", $("input[name='product']").val());
+				/* formData.append("productName", $("input[name='product']").val()); */
+				formData.append("productName", $("select[name='product']").val());
 				formData.append("productCategory", categoryValue);
 			}
 
 			var productJSON = {
-				productName: $("input[name='product']").val(),
+				/* productName: $("input[name='product']").val(), */
+				productName: $("#productCategoryNameUpdateOption").val(),
 				productCategory: categoryValue
 			};
 
@@ -341,12 +347,12 @@
 			orderProductService.productCheck(productJSON, function(result) {
 				if(result == "NULL") {
 					alert("재고에 해당 상품이 없습니다.");
-					$("input[name='product']").val('');
+					/* $("input[name='product']").val(''); */
 					return;
 				}
 				
 				orderProductService.productAdd(formData, function(result){
-					$("input[name=product]").val('');
+					/* $("input[name=product]").val(''); */
 					modalProductAdd.modal("hide");
 					orderProductShow(categoryValue);
 					 
@@ -382,7 +388,25 @@
 		}
 
 		window.productUpdate = function (number) {
-			modalProductAdd.modal("show");
+			var category = $("#prodcutCategoryUpdateHidden").val();
+			var Optionstr = "";
+			Optionstr += '<option value="">선 택</option>';
+			$.ajax({
+				type: 'get',
+			    url: "/userOrderManager/productCategoryName?product_category="+category,
+			    dataType : "json",
+			    async : false,
+			    success: function(data){
+				    for(var i = 0; i < data.length; i++) {
+				    	Optionstr += '<option value="'+data[i].product_name+'">'+data[i].product_name+'</option>';
+					}
+				}
+			});
+			$("#productCategoryNameUpdateOption").append(Optionstr);
+			$("#modalProductUpdate").modal("show");
+			$("#productUpdateModalCloseBtn").on("click", function (e) {
+				$("select#productCategoryNameUpdateOption option").remove();
+			});
 			
 		}
 		
