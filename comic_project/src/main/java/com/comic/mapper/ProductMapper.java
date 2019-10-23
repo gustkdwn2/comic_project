@@ -18,6 +18,10 @@ public interface ProductMapper {
 	
 	public ProductVO productNameCheck(String product_name);
 	
+	public List<ProductVO> productCategory();
+	
+	public List<ProductVO> productCategoryName(String product_category);
+	
 //	public void productNumUpdate(int product_num);
 	
 //	public int productNumSelect(int product_num);

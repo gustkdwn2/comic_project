@@ -6,7 +6,7 @@ import com.comic.model.EmployeeVO;
 
 public interface ManagementService {
 	public List<EmployeeVO> managerList();
-	public void deletemng(String emppwd,String mngnum);
+	public int deletemng(String emppwd,String mngnum);
 	public int managerlogin(String empnum, String emppwd);
 	public int managerloginrecord(String empnum, String emppwd,String todaydate);
 	public void managerattendance(String empnum);
@@ -16,6 +16,5 @@ public interface ManagementService {
 	public int selectworkmonth(String empnum, String workmonth);
 	public void insertworkmonth(String empnum, String workmonth, String payday);
 	public void setmonthlypay(String empnum, String workmonth, int hour);
-	
 
 }

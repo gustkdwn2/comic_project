@@ -18,4 +18,8 @@ public interface ProductService {
 	
 	public ProductVO productNameCheck(String product_name);
 	
+	public List<ProductVO> productCategory();
+	
+	public List<ProductVO> productCategoryName(String product_category);
+	
 }

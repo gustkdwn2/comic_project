@@ -63,114 +63,123 @@
 <form id="operForm"></form>
 
 <!-- modal category add-->
-<div class="modal" id="ModalcategoryAdd" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					style="float: right; width: 100px;" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">카테고리 추가</h4>
-			</div>
-			<div class="modal-body">
-				<div class="form-group">
-					<label>카테고리</label> <input class="form-control" name="category"
-						style="border: 3px solid #e3e3e4">
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button id="cateModalRegisterBtn" type="button"
-					class="btn btn-warning" style="color:#f3f3f3;">등록</button>
-			</div>
-		</div>
-	</div>
+<div class="modal" id="ModalcategoryAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">category Add</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div> 
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>category</label>
+                    <!-- <input class="form-control" name="category"> -->
+                    <select class="form-control" name="category">
+						<option value="">선   택</option>
+                       	<c:forEach items="${productGetList}" var="productGetList">
+                       		<option value="${productGetList.product_category}">${productGetList.product_category}</option>
+                       	</c:forEach>
+                  	</select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cateModalRegisterBtn" type="button" class="btn btn-primary">Resgister</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- modal category Update-->
-<div class="modal" id="ModalcategoryUpdate" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" 
-					style="float: right; width: 100px;" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">카테고리 수정</h4>
-			</div>
-			<div class="modal-body">
-				<div class="form-group">
-					<label>카테고리</label> <input class="form-control" name="category" style="border: 3px solid #e3e3e4">
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button id="cateModalUpdateBtn" type="button"
-					class="btn btn-warning" style="color:#f3f3f3;">수정 완료</button>
-			</div>
-		</div>
-	</div>
+<div class="modal" id="ModalcategoryUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">category Update</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>category</label>
+                    <!-- <input class="form-control" name="category"> -->
+                    <select class="form-control" name="category">
+						<option value="">선   택</option>
+                       	<c:forEach items="${productGetList}" var="productGetList">
+                       		<option value="${productGetList.product_category}">${productGetList.product_category}</option>
+                       	</c:forEach>
+                  	</select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cateModalUpdateBtn" type="button" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- modal product add-->
-<div class="modal" id="modalProductAdd" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">상품추가</h4>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body">
-				<div class="form-group">
-					<label>상품</label> <input class="form-control" name="product">
-					<label>이미지</label>
-					<form id="uploadForm" method="post" enctype="multipart/form-data">
-						<input class="form-control" type="file" name="uploadFile">
-					</form>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button id="productModalRegisterBtn" type="button"
-					class="btn btn-primary">상품 등록</button>
-			</div>
-		</div>
-	</div>
+<div class="modal" id="modalProductAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">product Add</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="productAddModalCloseBtn">&times;</button>
+            </div> 
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>product</label>
+                    <!-- <input class="form-control" name="product"> -->
+                    <select class="form-control" name="product" id="productCategoryNameOption">
+                    
+                  	</select>
+                    <label>image file</label>
+                    <form id="uploadForm" method="post" enctype="multipart/form-data">
+	                    <input class="form-control" type="file" name="uploadFile">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="productModalRegisterBtn" type="button" class="btn btn-primary">Resgister</button>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- modal product update-->
-<div class="modal" id="modalProductUpdate" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">상품 수정</h4>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body">
-				<div class="form-group">
-					<label>상품</label> <input class="form-control" name="product">
-					<label>이미지</label>
-					<form id="uploadForm" method="post" enctype="multipart/form-data">
-						<input class="form-control" type="file" name="uploadFile">
-					</form>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button id="productModalUpdateBtn" type="button"
-					class="btn btn-primary"></button>
-			</div>
-		</div>
-	</div>
+<div class="modal" id="modalProductUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">product Update</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="productUpdateModalCloseBtn">&times;</button>
+            </div> 
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>product</label>
+                    <!-- <input class="form-control" name="product"> -->
+                    <select class="form-control" name="product" id="productCategoryNameUpdateOption">
+                    
+                  	</select>
+                    <label>image file</label>
+                    <form id="uploadForm" method="post" enctype="multipart/form-data">
+	                    <input class="form-control" type="file" name="uploadFile">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="productModalUpdateBtn" type="button" class="btn btn-primary">Resgister</button>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
-<script src="/resources/js/userOrderManeger.js?after"></script>
+<script src="/resources/js/userOrderManeger.js?vaer=2"></script>
 <script>
     $(document).ready(function () {
         var operForm = $("#operForm"); 
         
         var modalCateAdd = $("#ModalcategoryAdd");
         var modalCateUpdate = $("#ModalcategoryUpdate");
-        var modalInputCategory = modalCateAdd.find("input[name='category']");
-        var modalInputCategoryUpdate = modalCateUpdate.find("input[name='category']");
+        var modalInputCategory = modalCateAdd.find("select[name='category']");
+        var modalInputCategoryUpdate = modalCateUpdate.find("select[name='category']");
         
 		var indexNum = 0;
 		
@@ -178,22 +187,27 @@
         	modalCateAdd.modal("show"); 
         });
 
-        $("#cateModalRegisterBtn1").on("click", function (e) {
-			
+        $("#cateModalRegisterBtn").on("click", function (e) {
+            if(modalInputCategory.val() == "") {
+                alert("카테고리를 선택해주세요.")
+                return false;
+            }
         	operForm.append("<input type='hidden' name='category' value='" + modalInputCategory.val() + "'>");
             operForm.attr("method", 'post');
             operForm.attr("action", "/userOrderManager/categoryAdd");
             operForm.submit();
         });
 
-		$("a[name='categoryUpdate']").on("click", function (e) {
+		$("a[name='categoryUpdate']").on("click", function (e) {	
 			modalCateUpdate.modal('show');
 			indexNum = $(this).attr('value');
-				
 		});
 		
 		$("#cateModalUpdateBtn").on("click", function (e) {
-			
+			if(modalInputCategoryUpdate.val() == "") {
+                alert("카테고리를 선택해주세요.")
+                return false;
+            }
         	operForm.append("<input type='hidden' name='category' value='" + modalInputCategoryUpdate.val() + "'>");
         	operForm.append("<input type='hidden' name='number' value='" + indexNum + "'>");
             operForm.attr("method", 'post');
@@ -219,6 +233,7 @@
 		var modalProductAdd = $("#modalProductAdd");
 		
 		$("button[name='categoryButton']").on("click", function (e) {
+			$("button[name='productAdd']").val($(this).attr('value'));
 			categoryValue = $(this).attr('value');
 			orderProductShow(categoryValue);
 		});
@@ -241,6 +256,10 @@
 				for(var i = 0, len = data.length || 0; i < len; i++) {
 					var fileCallPath =  encodeURIComponent( data[i].ORDERVIEW_UPLOADPATH+ "/"+data[i].ORDERVIEW_UUID +"_"+data[i].ORDERVIEW_FILENAME);
 					str += "<div class='col-sm-6 col-md-4 col-lg-3' id='orderTest'>";
+					str += "<a href='#' onclick=\'productDelete(" + data[i].ORDERVIEW_NUM + ")\'>[delete]</a>";
+					str += "<a href='#' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>[update]</a>";
+					str += "<input type='hidden' id='prodcutCategoryUpdateHidden' value='"+category+"'>";
+					str += "<br/>"; 
 					str += "<img src='/userOrderManager/display?fileName=" + fileCallPath + "' width='150' height='200'/>";
 					str += "<br/>"; 
 					str += "" + data[i].PRODUCT_NAME;
@@ -258,7 +277,24 @@
 		}
 
 		$("button[name = productAdd]").on("click", function(e){
+			var Optionstr = "";
+			Optionstr += '<option value="">선 택</option>';
+			$.ajax({
+				type: 'get',
+			    url: "/userOrderManager/productCategoryName?product_category="+$(this).attr('value'),
+			    dataType : "json",
+			    async : false,
+			    success: function(data){
+				    for(var i = 0; i < data.length; i++) {
+				    	Optionstr += '<option value="'+data[i].product_name+'">'+data[i].product_name+'</option>';
+					}
+				}
+			});
+			$("#productCategoryNameOption").append(Optionstr);
 			modalProductAdd.modal("show");
+			$("#productAddModalCloseBtn").on("click", function (e) {
+				$("select#productCategoryNameOption option").remove();
+			});
 		});
 
 		$("#productModalRegisterBtn").on("click", function (e) {
@@ -278,12 +314,14 @@
 					return false;
 				}
 				formData.append("uploadFile", files[i]);
-				formData.append("productName", $("input[name='product']").val());
+				/* formData.append("productName", $("input[name='product']").val()); */
+				formData.append("productName", $("select[name='product']").val());
 				formData.append("productCategory", categoryValue);
 			} 
 
 			var productJSON = {
-				productName: $("input[name='product']").val(),
+				/* productName: $("input[name='product']").val(), */
+				productName: $("select[name='product']").val(),
 				productCategory: categoryValue
 			};
 
@@ -291,12 +329,12 @@
 			orderProductService.productCheck(productJSON, function(result) {
 				if(result == "NULL") {
 					alert("재고에 해당 상품이 없습니다.");
-					$("input[name='product']").val('');
+					/* $("input[name='product']").val(''); */
 					return;
 				}
 				
 				orderProductService.productAdd(formData, function(result){
-					$("input[name=product]").val('');
+					/* $("input[name=product]").val(''); */
 					modalProductAdd.modal("hide");
 					orderProductShow(categoryValue);
 					 
@@ -317,12 +355,14 @@
 					return false;
 				}
 				formData.append("uploadFile", files[i]);
-				formData.append("productName", $("input[name='product']").val());
+				/* formData.append("productName", $("input[name='product']").val()); */
+				formData.append("productName", $("select[name='product']").val());
 				formData.append("productCategory", categoryValue);
 			}
 
 			var productJSON = {
-				productName: $("input[name='product']").val(),
+				/* productName: $("input[name='product']").val(), */
+				productName: $("#productCategoryNameUpdateOption").val(),
 				productCategory: categoryValue
 			};
 
@@ -330,12 +370,12 @@
 			orderProductService.productCheck(productJSON, function(result) {
 				if(result == "NULL") {
 					alert("재고에 해당 상품이 없습니다.");
-					$("input[name='product']").val('');
+					/* $("input[name='product']").val(''); */
 					return;
 				}
 				
 				orderProductService.productAdd(formData, function(result){
-					$("input[name=product]").val('');
+					/* $("input[name=product]").val(''); */
 					modalProductAdd.modal("hide");
 					orderProductShow(categoryValue);
 					 
@@ -371,7 +411,25 @@
 		}
 
 		window.productUpdate = function (number) {
-			modalProductAdd.modal("show");
+			var category = $("#prodcutCategoryUpdateHidden").val();
+			var Optionstr = "";
+			Optionstr += '<option value="">선 택</option>';
+			$.ajax({
+				type: 'get',
+			    url: "/userOrderManager/productCategoryName?product_category="+category,
+			    dataType : "json",
+			    async : false,
+			    success: function(data){
+				    for(var i = 0; i < data.length; i++) {
+				    	Optionstr += '<option value="'+data[i].product_name+'">'+data[i].product_name+'</option>';
+					}
+				}
+			});
+			$("#productCategoryNameUpdateOption").append(Optionstr);
+			$("#modalProductUpdate").modal("show");
+			$("#productUpdateModalCloseBtn").on("click", function (e) {
+				$("select#productCategoryNameUpdateOption option").remove();
+			});
 			
 		}
 		
