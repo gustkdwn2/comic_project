@@ -20,7 +20,10 @@ socket.onmessage = function(event) {
 		} else if(data[1] == "시작") {
 			ajaxtosenddb_comic_room_use2(data[2], data[0], "on");
 		} else if(data[1] == "종료") {
+			console.log("else if(data[1] == exit");
 			ajaxtosenddb_comic_room_use2(data[2], data[0], "off");
+			alert(data[0] + "방 사용 종료!!");
+			location.href="/managerpos/managerpos";
 		} else if(data[1] == "주문가져가") {
 			userOrderArlet();
 		}
@@ -45,6 +48,7 @@ function userOrderArlet() {
 function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 		roomuse_status) {
 	console.log("오니?");
+	
 	var list = [ roomuse_id, roomuse_num,
 		roomuse_status];
 	//사용자,시작시간,사용자 상태,주문 상태,방번호
@@ -60,6 +64,7 @@ function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 		contentType : "application/json; charset=utf-8;",
 		type : 'POST',
 		success : function(data) {
+			console.log("ajaxtogetdb_comic_room_uselist()");
 			ajaxtogetdb_comic_room_uselist();
 			console.log("성공");
 		},
@@ -76,6 +81,7 @@ function ajaxtogetdb_comic_room_uselist() {
 		dataType : 'json',
 		contentType : "application/json; charset=utf-8;",
 		type : 'POST',
+		async : false,
 		success : function(data) {
 			
 			var text="";
@@ -85,11 +91,14 @@ function ajaxtogetdb_comic_room_uselist() {
 				number = list.roomuse_num;
 					startnstop_init(list.roomuse_id,number,list.starttime,list.roomuse_status);
 			});
+
 		},
 		error : function(data) {
 			console.log("실패");
 		}
+		
 	});	
+	
 }
 
 var Message;

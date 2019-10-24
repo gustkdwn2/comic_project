@@ -93,7 +93,7 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 			kakaoPayMapper.productQtyUpdate(vo.get(i).getOrder_product_num(), vo.get(0).getOrder_qty());
 		}
 		
-		kakaoPayMapper.resetRoom(id); // 방 사용 테이블 초기화
+		//kakaoPayMapper.resetRoom(id); // 방 사용 테이블 초기화
 //		kakaoPayMapper.productUpdate(id);
 	}
 

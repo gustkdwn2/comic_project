@@ -286,9 +286,14 @@ $('#kakaopay').click(function(e){
 				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
 				timer = setInterval(function(){
 		              if(popup.closed){
+		            	  //console.log("popup.closed");
 			              if( closeParam == 'success') {
-			            	socket.send(room_num + ",종료," + mem_id);
-			            	location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
+			            	 // console.log('socket.send gogo');
+				             // console.log(room_num);
+				              console.log(mem_id);
+				            //  console.log("room_num + ",종료," + mem_id");
+			            	socket.send(room_num + ",종료," + mem_id);  
+			            	 location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num;
 			            	
 			              } else {
 		            	  	location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
