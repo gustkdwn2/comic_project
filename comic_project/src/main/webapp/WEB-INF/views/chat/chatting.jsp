@@ -39,7 +39,7 @@
 	
 
 </body>
-<script src="/resources/js/userWebsocket.js"></script>
+<script src="/resources/js/userWebsocket.js?ver=1"></script>
 <script type="text/javascript">
 function getParameter(strParamName) {
     var arrResult = null;

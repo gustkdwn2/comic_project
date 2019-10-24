@@ -133,8 +133,7 @@ body {
 											주문상태 : <font id="order_status${i}">없음</font><br>
 										</div>
 										<div class="div_bottom">
-											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
-
+											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i});">
 											<input type="button" value="채팅하기" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 										</div>
 									</div>
@@ -176,7 +175,7 @@ body {
 		</div>
 	</div>
 	<!-- main-panel ends -->
-
+	<jsp:include page="adminproductBillModal.jsp" />
 	<script>
 	
 	var check_arr = new Array(7); //방의 개수보다 1크게
@@ -413,6 +412,31 @@ body {
 	} 
 		
 	
+	
+	function adminproductBillModalBtn(num) {
+		console.log("일로옴?");
+		var id = document.getElementById('user' + num).innerHTML;
+		console.log(id);
+		$.ajax({
+			type: 'get',
+			url: '/userView/userProductBill?userId='+id,
+			dataType: 'json',
+			success: function(data) {
+				console.log(data);
+				$("#productBillTbody").html("");
+	            var str = '<tr>';
+	            $.each(data , function(i){
+	            	var date = new Date(data[i].order_time); var month = date.getMonth() + 1; 
+	                str += '<td>' + date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() +
+	                "<br>" + date.getHours() + " : " + date.getMinutes() + ' : ' + date.getSeconds() + '</td><td>' + data[i].product_name + '</td><td>' + data[i].order_qty + '</td><td>' + data[i].order_bill + '</td>';
+	                str += '</tr>';
+	           });
+	           $("#productBillTbody").append(str);
+				
+			}
+		});
+		$("#adminproductBillModal").show();
+	}
 	</script>
 </body>
 </html>

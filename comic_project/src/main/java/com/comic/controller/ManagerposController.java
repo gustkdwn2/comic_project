@@ -239,6 +239,7 @@ public class ManagerposController {
 	private void makecomic_pay(String empnum) {
 		SimpleDateFormat format = new SimpleDateFormat("yyMM");
 		String workmonth = format.format(System.currentTimeMillis());
+		System.out.println("workmonth = "+workmonth+"empnum = "+empnum);
 		int data = managementService.selectworkmonth(empnum, workmonth);
 
 		if (data == 0) {// 오늘날짜를 기준으로 해당 달의 데이터가 없으면 월급지급일이랑 해당달의 데이터넣기

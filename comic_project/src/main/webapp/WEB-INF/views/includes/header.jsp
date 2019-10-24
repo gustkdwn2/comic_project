@@ -37,7 +37,7 @@
 <script src="/resources/js/header.js?ver=1"></script>
 
 <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
-<script src="/resources/js/orderWebsocket.js"></script>
+<script src="/resources/js/orderWebsocket.js?ver=1"></script>
 
 </head>
 
