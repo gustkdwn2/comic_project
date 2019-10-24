@@ -13,6 +13,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/css/managerposCss.css">
+
+</head>
+<body>
+   <div class="main-panel">
+      <div class="content-wrapper">
+         <div class="row">
+   
+            <%@ include file="./younghak_header.jsp"%>
+            <button id="roomClose">끄기 테스트</button>
+            <div class="col-12 grid-margin stretch-card">
+               <div class="card">
+                  <div class="row">
+<div class="col-md-12">
+   <div class="card-body">
+      <div class="template-demo">
+      
+         <c:forEach var="i" begin="1" end="6" step="1">
+         
+         <c:if test="${i%3==1}">
+         <div class="row">
+         </c:if>
+<div class="column" >
+   <!-- <div class="div_root"> -->
+
+   <div class="div_menu">${i}번방</div>
+
+   
+   <div class="div_con">
+      사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font
+         id="user_time${i}">없음</font><br> 사용상태 : <font
+         id="user_status${i}">없음</font><br> 주문상태 : <font
+         id="order_status${i}">없음</font><br>
+   </div>
+   
+                     <div class="div_bottom">
+                        <input type="button" value="주문내역보기"
+                           class="btn btn-primary btn-sm"
+                           style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+                     
+                        <input type="button" value="채팅하기"
+                           class="btn btn-danger btn-sm"
+                           style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+                     </div>
+   
+                  
+
 <style>
 * {
 	box-sizing: border-box;
@@ -133,6 +180,16 @@ body {
 											주문상태 : <font id="order_status${i}">없음</font><br>
 										</div>
 										<div class="div_bottom">
+											<input type="button" value="주문내역보기"
+												class="btn btn-primary btn-sm"
+												style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+
+											<input type="button" value="채팅하기"
+												class="btn btn-success btn-sm"
+												style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+										</div>
+
+
 											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
 
 											<input type="button" value="채팅하기" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
@@ -179,11 +236,9 @@ body {
 
 	<script>
 	
-	var check_arr = new Array(7); //방의 개수보다 1크게
-	
-	array_init(check_arr);
+	array_init(check);
 
-	ajaxtogetdb_comic_room_uselist(); 
+	ajaxtogetdb_comic_room_uselist();
 	//초기화작업
 	
 	realOrder();
@@ -238,7 +293,7 @@ body {
 				var roomuse_id = "없음";
 				var roomuse_num = num;
 				var roomuse_status = "off";
-
+				
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
@@ -257,21 +312,24 @@ body {
 			
 			if (!check_arr[num]) {
 				check_arr[num] = true;
+			
+			if (!check[num]) {
+				check[num] = true;
 				time_start(starttime, num);
 				/* 테스트용 */
 				var order_status = "unavail";
 
-				document.getElementById('user' + num).innerHTML = id;
+				document.getElementById('user'+ num).innerHTML = id;
 				document.getElementById('user_status' + num).innerHTML = status;
 				document.getElementById('order_status' + num).innerHTML = order_status;
-
+				
 			} else {
 				check_arr[num] = false;
 
 				var roomuse_id = "없음";
 				var roomuse_num = num;
 				var roomuse_status = "off";
-
+				
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
@@ -286,18 +344,13 @@ body {
 
 			} else {
 				//console.log(time);
-				time = parseInt(time)//가끔 여기서 사용된 파라미터가 string형태로 읽어와져서 형변환을 한번해준다.
-				//if(time%10==0){					
+				time =parseInt(time)//가끔 여기서 사용된 파라미터가 string형태로 읽어와져서 형변환을 한번해준다.
 
-				//setTimeout(function() {
-				//ajaxtogetdb_comic_room_uselist();
-				//}, 1000)
-				//}
 				time += 1;
 				hour = Math.floor(time / 3600);
 				hour = time_modify(hour);
 
-				minute = Math.floor(time % 3600 / 60);
+				minute = Math.floor(time%3600 / 60);
 				minute = time_modify(minute);
 
 				var second = time % 60;
@@ -320,10 +373,10 @@ body {
 				time = "0" + time;
 			}
 
-			if (time == null) {
-				time = 0;
-			}
-
+			if(time==null){
+			time=0;
+				}
+			
 			return time;
 		}
 

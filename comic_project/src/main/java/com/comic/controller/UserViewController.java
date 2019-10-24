@@ -27,8 +27,8 @@ public class UserViewController {
 	private UserOrderManegerService userOrderManegerService;
 	
 	@PostMapping("/mainPro")
-	public void mainViewPro() {
-		
+	public void mainViewPro(HttpSession session) {
+		//session.setAttribute("roomNum", roomNum);
 	}
 	
 	@GetMapping("/main")
@@ -63,7 +63,4 @@ public class UserViewController {
 		System.out.println(userOrderManegerService.userProductBill(id));
 		return userOrderManegerService.userProductBill(id);
 	}
-	
-	
-
 }

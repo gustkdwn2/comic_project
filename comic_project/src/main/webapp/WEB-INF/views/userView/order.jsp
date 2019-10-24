@@ -5,6 +5,7 @@
 <%@ include file="../includes/userHeader.jsp"%>
 
 <style type="text/css">
+
 .content-wrapper {
    padding-top: 30px;
 }

@@ -72,6 +72,7 @@
 					<div class="col-lg-4"> 
 						<a class="portfolio-item" id="kakaopay"> <span class="caption"> <span class="caption-content">
 									<h3>사용 종료</h3>
+
 									<p class="mb-0">사용 종료를 하면 카카오페이로 연결되고 완료되면 로그아웃 됩니다</p>
 							</span>
 						</span> <img class="img-fluid" src="/resources/images/exitIcon.png" alt="" style="width:370px; height:250px;">
@@ -94,14 +95,21 @@
 
 <script type="text/javascript">
 var sessionValue = ${roomNum};
+
+$(document).ready(function(){
+	$('#modalstyle').css('display','none');
+	
+	var room_num = ${roomNum};
+	var mem_id = '${memberid}';
+	var total_price;
+	var operForm = $("#operForm");
+
 var room_num = ${roomNum};
 var mem_id = '${memberid}';
 var total_price;
 $(document).ready(function(){
 
-	$('#modalstyle').css('display','none');
-	
-	
+	$('#modalstyle').css('display','none');	
 	ajaxtogetdb_comic_room_uselist();
 	var operForm = $("#operForm");
 
@@ -114,6 +122,14 @@ $(document).ready(function(){
 			total_price = data.total_bill;
 		}
 	});
+
+
+	$('#modalstyle').css('display','none');
+
+	
+	ajaxtogetdb_comic_room_uselist();
+	var operForm = $("#operForm");
+
 
 	$("#userOrderView").on("click", function(e){
 		operForm.attr("method", "get");
@@ -247,6 +263,7 @@ function time_modify(time) {
 	return time;
 }
 
+
 var sendData = { 
   room_num : room_num,
   id : mem_id,
@@ -274,6 +291,5 @@ $('#kakaopay').click(function(e){
 		}
 	});
 });
-
 </script>
 </html>
