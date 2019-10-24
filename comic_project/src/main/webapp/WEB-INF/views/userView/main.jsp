@@ -99,7 +99,9 @@ $(document).ready(function(){
 	
 	ajaxtogetdb_comic_room_uselist();
 	var operForm = $("#operForm");
-	totalprice();
+
+
+	
 	
 	$("#userOrderView").on("click", function(e){
 		operForm.attr("method", "get");
@@ -121,6 +123,7 @@ $(document).ready(function(){
 	});
 	$("#billModalBtn").on("click", function(e){
 		$('#modalstyle').css('display','');
+		totalprice();
 		$.ajax({
 			type: 'get',
 			url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
