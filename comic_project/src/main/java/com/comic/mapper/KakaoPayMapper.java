@@ -8,4 +8,6 @@ public interface KakaoPayMapper {
 	public void insertproductSale(@Param("id") String id);
 
 	public void resetRoom(@Param("id") String id);
+
+	public void productUpdate(@Param("id") String id);
 }

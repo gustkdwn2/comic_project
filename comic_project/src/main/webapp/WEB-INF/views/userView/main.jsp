@@ -72,7 +72,6 @@
 					<div class="col-lg-4"> 
 						<a class="portfolio-item" id="kakaopay"> <span class="caption"> <span class="caption-content">
 									<h3>사용 종료</h3>
-
 									<p class="mb-0">사용 종료를 하면 카카오페이로 연결되고 완료되면 로그아웃 됩니다</p>
 							</span>
 						</span> <img class="img-fluid" src="/resources/images/exitIcon.png" alt="" style="width:370px; height:250px;">
@@ -95,64 +94,35 @@
 
 <script type="text/javascript">
 var sessionValue = ${roomNum};
-
-$(document).ready(function(){
-	$('#modalstyle').css('display','none');
-	
-	var room_num = ${roomNum};
-	var mem_id = '${memberid}';
-	var total_price;
-	var operForm = $("#operForm");
-
 var room_num = ${roomNum};
 var mem_id = '${memberid}';
 var total_price;
 $(document).ready(function(){
-
-	$('#modalstyle').css('display','none');	
-	ajaxtogetdb_comic_room_uselist();
-	var operForm = $("#operForm");
-
-	$.ajax({
-		type: 'get',
-		url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
-		async : false,
-		dataType: 'json',
-		success: function(data) {
-			total_price = data.total_bill;
-		}
-	});
-
-
 	$('#modalstyle').css('display','none');
-
+	
 	
 	ajaxtogetdb_comic_room_uselist();
 	var operForm = $("#operForm");
-
-
+	totalprice();
+	
 	$("#userOrderView").on("click", function(e){
 		operForm.attr("method", "get");
 		operForm.attr("action","/userView/order");
 		operForm.submit();
 	});
-
 	$("#userChat").on("click", function(e){
 		window.open("/userView/chatting","_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
 	});
-
 	$("#userSearchbook").on("click", function(e){
 		operForm.attr("method", "get");
 		operForm.attr("action","/SearchBook/searchList");
 		operForm.submit();
 	});
-
 	$("#userBoard").on("click", function(e){
 		operForm.attr("method", "get");
 		operForm.attr("action","/userView/board/boardList");
 		operForm.submit();
 	});
-
 	$("#billModalBtn").on("click", function(e){
 		$('#modalstyle').css('display','');
 		$.ajax({
@@ -196,11 +166,9 @@ $(document).ready(function(){
 			}); */
 			$("#productBillModal").show();
 		});
-
 		$('#billModal').show();
 	});
 });
-
 /* 여기부터 시작관련 */
 function ajaxtogetdb_comic_room_uselist() {			
 	$.ajax({
@@ -225,37 +193,25 @@ function ajaxtogetdb_comic_room_uselist() {
 		}
 	});
 }
-
 function time_start(time, num) {
-
 	time =parseInt(time)//가끔 여기서 사용된 파라미터가 string형태로 읽어와져서 형변환을 한번해준다.
-
 	time += 1;
 	hour = Math.floor(time / 3600);
 	hour = time_modify(hour);
-
 	minute = Math.floor(time%3600 / 60);
 	minute = time_modify(minute);
-
 	var second = time % 60;
 	second = time_modify(second);
-
 	document.getElementById('main_time').innerHTML = hour
 			+ ":" + minute + ":" + second;
-
 	var t = setTimeout(function() {
 		time_start(time, num)
 	}, 1000)
-
-
 }
-
 function time_modify(time) {
-
 	if (time.toString().length == 1) {
 		time = "0" + time;
 	}
-
 	if(time==null){
 		time=0;
 	}
@@ -263,30 +219,51 @@ function time_modify(time) {
 	return time;
 }
 
+function totalprice() {
+	$.ajax({
+		type: 'get',
+		url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
+		async : false,
+		dataType: 'json',
+		success: function(data) {
+			total_price = data.total_bill;
+		}
+	});
+}
+var closeParam;
+function popupclose(param) {
+	closeParam = param;
+} 
 
-var sendData = { 
-  room_num : room_num,
-  id : mem_id,
-  totalprice : total_price
-};
-   
 $('#kakaopay').click(function(e){
+	totalprice();
 	e.preventDefault();
+	console.log(total_price);
 	$.ajax({
 		url : '/pay/kakao',
 		type : 'get',
-		data : sendData,
+		data : { 
+			  room_num : room_num,
+			  id : mem_id,
+			  totalprice : total_price
+			},
 		success : function(res) {
 			console.log(res);
 			if (res.totalprice != "0") {	
 				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
 				timer = setInterval(function(){
 		              if(popup.closed){
-		                 location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
+			              if( closeParam == 'success') {
+			            	location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
+			            	socket.send(room_num + ",시작," + id);
+			              } else {
+		            	  	location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
+					      }
+		                 
 		              }
 		        }, 1000)
 			} else {
-				location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
+				location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
 			}
 		}
 	});
