@@ -8,22 +8,21 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <style type="text/css">
-table {
-	table-layout: fixed;
-}
-
-table, td {
-	border: 1px solid #dadfe4;
-	font-size: medium;
-}
 
 .td_y_header {
-	text-align: center;
+	width: 100px;
 	height: 50px;
-	width: 150px;
+	text-align: top;
+	font-size: 20px;
+	font-family: 굴림;
+	font-weight: bold;
+	border: 5px border-color:#3333FF;
+	border-radius: 8px; /*모서리 둥글게*/
+	border-weight: bold;
 }
+
+
 </style>
 </head>
 <body>
@@ -52,9 +51,10 @@ table, td {
 					</div>
 				</div>
 			</div>
-
+			
 		</div>
 	</div>
+
 
 	<div class="modal fade" id="commuteModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -67,20 +67,26 @@ table, td {
 				</div>
 				<div class="modal-body">
 
-					<table style="width: 100%; text-align: center;">
+					<table border=3 
+						style="border-color: #3333FF; width: 100%;table-layout:fixed;align:center">
 						<tr>
-							<td class="td_y_header"><font>사번/이름</font></td>
-							<td class="td_y_header"><font>출근시간</font></td>
-							<td class="td_y_header"><font>퇴근시간</font></td>
+							<td class="td_y_header" align="center">
+							<font style="font-weight: bold;size:5;face:굴림체; color:green;">사번/이름</font>
+							</td>
+							<td class="td_y_header" align="center">
+							<font style="font-weight: bold;size:5;face:굴림체; ">출근시간</font>
+							</td>
+							<td class="td_y_header"  align="center">
+							<font style="font-weight: bold;size:5;face:굴림체; ">퇴근시간</font>
+							</td>
 						</tr>
 					</table>
-					<div id="todaycummute"></div>
-
-
+					<font id="todaycummute" style="face:굴림체;"></font>
+					
+											
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -97,14 +103,7 @@ table, td {
 			$("#commuteModal").modal("show");
 			gettodaycommute();
 		});
-		
-		function sessioninvalid(){
-			alert("세션삭제");
-		
-			sessionStorage.removeItem( "EMPID" );
 
-		}
-		
 		function gettodaycommute() {
 
 			$.ajax({
@@ -119,12 +118,12 @@ table, td {
 					console.log(data[0]);*/
 					var htmlStr = "";
 					
-					htmlStr += "<table style='width: 100%; text-align:center;'>";
+					htmlStr += "<table border=3 style=\"border-color: #3333FF;height:51px;width: 100%;table-layout:fixed;align:center\">";
 					$.each(data, function(index, list) {
 						htmlStr += "<tr>";
-						htmlStr += "<td class='td_y_header'>" + list.empnum +"/"+list.empname +"</td>"
-						htmlStr += "<td class='td_y_header'>" + list.starttime + "</td>"
-						htmlStr += "<td class='td_y_header'>" + list.endtime + "</td>"
+						htmlStr += "<td class=\"td_y_header\" align=\"center\">" + list.empnum +"/"+list.empname +"</td>"
+						htmlStr += "<td class=\"td_y_header\" align=\"center\">" + list.starttime + "</td>"
+						htmlStr += "<td class=\"td_y_header\" align=\"center\">" + list.endtime + "</td>"
 						htmlStr += "</tr>";
 					});
 					htmlStr += "</table>";

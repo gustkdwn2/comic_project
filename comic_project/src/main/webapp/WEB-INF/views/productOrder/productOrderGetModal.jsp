@@ -62,7 +62,6 @@
 	$("#productOrderGetBtn").click(function() {
 		$("#productOrderGet").find('form')[0].reset();
 		$("#productOrderGet").hide();
-		$('#modalstyle').css('display','none');
 	});
 
 	function productOrderModifyCheck() {

@@ -36,7 +36,7 @@
 								<font style="vertical-align: inherit;">책 이름</font>
 							</label>
 							<div class="col-sm-9">
-								<input id="book_name_get" type="text" class="form-control" name="book_name_change">
+								<input id="book_name_get" type="text" class="form-control" name="book_name_change" required>
 							</div>
 						</div>
 						<div class="form-group row">

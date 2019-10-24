@@ -3,8 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<%@ include file="../includes/header.jsp"%>
+<%@ include file="../includes/sidebar.jsp"%>
 <link rel="stylesheet" href="/resources/css/chatCss.css">
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
 <body>
 	<div class="chat_window" id="chat_window">
 		<div class="top_menu">
@@ -67,6 +68,8 @@ $(document).ready(function() {
 	
 	$("#messages" + chatRoom).show();
 });
+
+
 
 </script>
 </html>

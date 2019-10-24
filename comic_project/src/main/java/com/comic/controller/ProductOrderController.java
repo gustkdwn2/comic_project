@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.comic.model.ProductOrderVO;
 import com.comic.model.ProductVO;
-import com.comic.model.SalesStatisticsVO;
 import com.comic.service.ProductOrderService;
 import com.comic.service.ProductService;
 
@@ -66,4 +65,5 @@ public class ProductOrderController {
 		service.productOrderCheck(productOrder_num);
 		return "redirect:/productOrder/productOrderList";
 	}
+	
 }

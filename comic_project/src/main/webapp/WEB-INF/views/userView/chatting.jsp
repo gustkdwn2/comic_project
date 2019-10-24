@@ -9,11 +9,11 @@
 	<div class="chat_window" id="chat_window">
 		<div class="top_menu">
 			<div class="buttons">
-				<div class="button close" id="close"></div>
+				<div class="button close"></div>
 				<div class="button minimize"></div>
 				<div class="button maximize"></div>
 			</div>
-			<div class="title">${ roomNum }방 채팅</div>
+			<div class="title">Chat</div>
 		</div>
 		<ul class="messages" id="messages${ roomNum }">
 			<c:forEach items="${ chatList }" var="list">
@@ -69,3 +69,5 @@ $(document).ready(function() {
 
 
 </script>
+
+</html>

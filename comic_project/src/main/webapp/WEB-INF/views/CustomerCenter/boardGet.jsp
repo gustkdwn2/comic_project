@@ -49,10 +49,11 @@
 				                      		  maxlength="330" rows="5" style="width:1370px; border: 1px solid #cdcdce;"></textarea>
 			                    </div>
 			                    
-			                    <div class="form-group" style="float: right;"> 
+			                    <div class="form-group" style="float: right;">
 				                    <button type="button" class="btn btn-primary mr-2" 
-				                     		id="cIstBtn" style="width:110px; height: 100px;">댓글쓰기</button><br/><br/>
+				                     		id="cIstBtn" style="width:110px">댓글쓰기</button><br/><br/>
 				                    
+				                    <button type="reset" class="btn btn-outline-secondary" style="width:110px">Cancel</button>
 			                    </div>
 			                    
 							</div>

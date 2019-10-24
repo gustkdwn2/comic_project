@@ -10,20 +10,17 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.comic.model.ChatVO;
-import com.comic.service.ChattingService;
-
 import lombok.extern.log4j.Log4j;
  
 @Log4j
 public class EchoHandler extends TextWebSocketHandler{
 	
-	private ChattingService chatService;
 	private Map<String, WebSocketSession> userSessions = new HashMap<String, WebSocketSession>();
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		String senderId = getId(session);
+		System.out.println("senderId : "  + senderId);
 		userSessions.put(senderId, session);
 	}
 
@@ -32,16 +29,15 @@ public class EchoHandler extends TextWebSocketHandler{
 		String senderId = getId(session);
 		System.out.println(senderId + "로 부터 " + message.getPayload() + " 받음");
 		
-		//protocol ("chat / 1 / admin / content / id")
+		//protocol : cmd, 작성자(방번호), admin  ex: (chat, 1, admin, message)
 		String msg = message.getPayload();
 		if(!StringUtils.isEmpty(msg)) {
 			String[] strs = msg.split(",");
-			if(strs != null) {
+			if(strs != null && strs.length == 4) {
 				String cmd = strs[0];
 				String roomNumber = strs[1];
 				String checkInOut = strs[2];
 				String content = strs[3];
-				String memberId = strs[4];
 				
 				WebSocketSession adminSession = userSessions.get("admin");
 				WebSocketSession roomSession = userSessions.get(roomNumber);
@@ -62,7 +58,6 @@ public class EchoHandler extends TextWebSocketHandler{
 				
 				if("admin".equals(checkInOut)) {
 					adminSession.sendMessage(new TextMessage(roomNumber + "|" + content));
-					chatService.chatAdd(chatvo);
 				}
 			}
 		}

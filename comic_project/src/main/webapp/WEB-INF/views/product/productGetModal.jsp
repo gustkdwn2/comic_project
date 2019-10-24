@@ -45,8 +45,8 @@
 								</label>
 								<input name="product_category" id="product_category_modify" type="text" class="form-control">
 							</div>
-							<button type="submit" class="btn btn-warning" style="color:white;">수정</button>
-							<button id="modifyBtn" type="button" class="btn btn-secondary">닫기</button>
+							<button type="submit" class="btn btn-info">수정</button>
+							<button id="modifyBtn" type="button" class="btn btn-success">닫기</button>
 						</form>
 					</div>
 				</div>
@@ -55,17 +55,13 @@
 		</div>
 	</div>
 </div>
-<div id="abcde" class="modal-backdrop show"></div>
 <!-- End ProductGet Modal -->
 
 <script type="text/javascript">
 
-
-
 	$("#modifyBtn").click(function() {
 		$("#productGet").find('form')[0].reset();
 		$("#productGet").hide();
-		$('#modalstyle').css('display','none');
 	});
 
 	function productModifyCheck() {

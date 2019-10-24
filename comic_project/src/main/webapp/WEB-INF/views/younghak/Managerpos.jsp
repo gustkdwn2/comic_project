@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -24,14 +24,16 @@ body {
 /* The grid: Three equal columns that floats next to each other */
 .column {
 	float: left;
-	width: 500px;
+	width: 30.0%;
+	padding: 10px;
 	/* text-align: center; */
 	font-size: 16px;
 	cursor: pointer;
 	color: #555555;
-	height: 300px;
-	border-right: 3px solid #f3f3f3;
-	background-color: #686868;
+	margin-left: 10px;
+	height: 270px;
+	border: 5px solid #b2caff; 
+	border-radius: 30px;
 }
 .containerTab {
 	padding: 20px;
@@ -64,15 +66,13 @@ body {
 .div_menu {
 	width: 30%;
 	/* height:100px; */
-	padding-top: 20%;
+	padding: 13% 0px;
 	height: 80%;
 	float: left;
 	font-size: 30px;
 	text-align: center;
-	border-right: 3px solid #f3f3f3;
-	border-bottom: 3px solid #f3f3f3;
-	color: white;
-	height: 80%;
+	border-bottom: 5px solid #b2caff; 
+	
 }
 .div_con {
 	width: 70%;
@@ -84,9 +84,10 @@ body {
 	padding-top: 5%;
 	float: left;
 	font-size: 20px;
-	color: white;
+	font-color: #686868;
+	border-left: 5px solid #b2caff;
+	border-bottom: 5px solid #b2caff; 
 	/* //background-size:50%50%; */
-	border-bottom: 3px solid #f3f3f3;
 	text-align: center-vertical;
 }
 .div_bottom {
@@ -94,20 +95,27 @@ body {
 	/* height:100px; */
 	height: 10%;
 	clear: both;
+
 }
 </style>
 
 </head>
-<body>
+<body style="overflow: scroll">
 	<div class="main-panel">
-		<%@ include file="./younghak_header.jsp"%>
-		<div class="col-12 grid-margin stretch-card">
-			<div class="card">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="card-body">
-							<div class="template-demo">
-								<c:forEach var="i" begin="1" end="6" step="1">
+		<div class="content-wrapper">
+			<div class="row">
+	
+				<%@ include file="./younghak_header.jsp"%>
+				
+				<div class="col-12 grid-margin stretch-card">
+					<div class="card">
+						<div class="row">
+<div class="col-md-12">
+	<div class="card-body">
+		<div class="template-demo">
+			<div class="row">
+			
+				<div class="column" onclick="method_startnstop('1');">
 
 <c:if test="${i%3==1}">
 <div class="row">
@@ -118,6 +126,7 @@ body {
 
 <div class="div_menu">${i}번방</div>
 
+	<!-- </div> -->
 
 										<div class="div_con">
 											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font id="user_time${i}">없음</font><br> 사용상태 : <font id="user_status${i}">없음</font><br>
@@ -129,54 +138,36 @@ body {
 											채팅하기</button>
 										</div>
 									</div>
-									<c:if test="${i%3==0}">
+								</div>
 							</div>
-							<br>
-							</c:if>
-							</c:forEach>
+							<!-- <div class="col-md-0"> -->
+							<div class="card-body">
+								<%-- <h4 class="card-title">Inverse buttons</h4>
+                      <p class="card-description">Add class <code>.btn-inverse-{color} for inverse buttons</code></p> --%>
+								<div class="template-demo"></div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<!-- 실시간 주문 테이블 -->
-			<div class="row">
-				<div class="col-md-12 stretch-card">
-					<div class="card" style="margin-bottom: 20px;">
-						<div class="card-body">
-							<p class="card-title">주문 현황</p>
-							<div class="table-responsive">
-								<table id="realOrderTable" class="table table-striped">
-									<thead>
-										<tr>
-											<th>번호</th>
-											<th>날짜</th>
-											<th>방번호</th>
-											<th>ID</th>
-											<th>상품</th>
-											<th>수량</th>
-											<th>가격</th>
-										</tr>
-									</thead>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<!-- main-panel ends -->
-	<jsp:include page="adminproductBillModal.jsp" />
-	<script>
-	
-	var check_arr = new Array(7); //방의 개수보다 1크게
+	<!-- content-wrapper ends -->
+	<!-- partial:../../partials/_footer.html -->
+
+
 	
 	array_init(check_arr);
 	ajaxtogetdb_comic_room_uselist(); 
 	//초기화작업
+	var check = new Array(7); //방의 개수보다 1크게
 	
-	realOrder();
+	array_init(check);
+
+	ajaxtogetdb_comic_room_uselist();
+	//초기화작업
 	
 		function openTab(tabName) {
 			var i, x;
@@ -202,7 +193,8 @@ body {
 			if (!check_arr[num]) {
 				check_arr[num] = true;
 				time_start(0, num);
-				var user = "id";
+				/* 테스트용 */
+				var user = "tmehfld";
 				var user_status = "unavail";
 				var order_status = "unavail";
 				var roomuse_id = "id";
@@ -249,13 +241,65 @@ body {
 				document.getElementById('order_status' + num).innerHTML = "대기중";
 			}
 		}
-		
+
+		function ajaxtogetdb_comic_room_uselist() {			
+			
+			$.ajax({
+				url : '/managerpos/get_room_uselist',
+				dataType : 'json',
+				contentType : "application/json; charset=utf-8;",
+				type : 'POST',
+				success : function(data) {
+					
+					var text="";
+					console.log(data[0]);
+					$.each(data, function(index,list){
+						var number=1;
+						number = list.roomuse_num;
+						
+						startnstop_init(list.roomuse_id,number,list.starttime,list.roomuse_status);
+					});
+					
+				},
+				error : function(data) {
+					console.log("실패");
+				}
+			});
+		}
+
+
+		function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
+				roomuse_status) {
+			var list = [ roomuse_id, roomuse_num,
+				roomuse_status];
+			//사용자,시작시간,사용자 상태,주문 상태,방번호
+			//alert("보내기전의 list" + list);
+			var sendData = {
+				'list' : list
+			};
+
+			$.ajax({
+				url : '/managerpos/room_start2',
+				dataType : 'json',
+				data : JSON.stringify(sendData),
+				contentType : "application/json; charset=utf-8;",
+				type : 'POST',
+				success : function(data) {
+					console.log("성공");
+					alert("success!");
+				},
+				error : function(data) {
+					console.log("실패");
+				}
+			});
+		}
+
 		function time_start(time, num) {
 			//	alert("0");
 			if (!check_arr[num]) {
 			} else {
 				//console.log(time);
-				time = parseInt(time)//가끔 여기서 사용된 파라미터가 string형태로 읽어와져서 형변환을 한번해준다.
+				time =parseInt(time)//가끔 여기서 사용된 파라미터가 string형태로 읽어와져서 형변환을 한번해준다.
 				//if(time%10==0){					
 				//setTimeout(function() {
 				//ajaxtogetdb_comic_room_uselist();
@@ -395,5 +439,7 @@ body {
 		$("#adminproductBillModal").show();
 	}
 	</script>
+
+
 </body>
 </html>

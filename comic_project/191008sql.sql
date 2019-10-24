@@ -38,15 +38,7 @@ CREATE TABLE COMIC_EMPLOYEE (
     EMPLOYEE_POSITION VARCHAR2(50) NOT NULL, --직책
     EMPLOYEE_PAY NUMBER NOT NULL--시급/월급
 );
-CREATE TABLE COMIC_EMP_ATTACH (
-    UUID VARCHAR2(100) NOT NULL,
-    UPLOADPATH VARCHAR2(200) NOT NULL,
-    FILENAME VARCHAR2(100) NOT NULL,
-    FILETYPE CHAR(1) DEFAULT 'I',
-    EMPLOYEE_NUM NUMBER
-);
-select*from COMIC_EMP_ATTACH;
-commit;
+
 select*From comic_employee;
 
 update comic_employee set employee_pay=8750;
@@ -203,7 +195,7 @@ CREATE TABLE COMIC_ROOMUSE(
     
 );
 
-select*from COMIC_ROOMUSE;
+
 
 insert into comic_roomuse (ROOMUSE_id,ROOMUSE_num,ROOMUSE_starttime,ROOMUSE_status)
 values ('anonymous',7,sysdate,'on');

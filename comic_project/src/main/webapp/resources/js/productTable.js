@@ -1,7 +1,5 @@
 $(document).ready(function(){
-	$('#abcde').css('display', "none");
 	
-	$('#modalstyle').css('display','none');
 	$('#productTable').DataTable({ // 페이징 처리, 검색, show entries
 		pageLength: 10, //처음 페이지에 처리 개수
 	    bPaginate: true, // 페이징 기능
@@ -26,8 +24,8 @@ $(document).ready(function(){
             {
                 mData: "product_num",
                 mRender: function (data, type, row) {
-                    return "<button name ='getBtn' value=" + data +" type='button' class='btn btn-warning' style='color:white;'onclick='javascript:productModify(value)'>수정</button> " +
-                    	   "&emsp;<button name ='removeBtn' value=" + data +" type='submit' class='btn btn-secondary' onclick='javascript:productRemove(value)'>삭제</button>";
+                    return "<button name ='getBtn' value=" + data +" type='button' class='btn btn-info' onclick='javascript:productModify(value)'>수정</button> " +
+                    	   "<button name ='removeBtn' value=" + data +" type='submit' class='btn btn-danger' onclick='javascript:productRemove(value)'>삭제</button>";
                 }
             }
         ],
@@ -87,7 +85,6 @@ function productModify(product_num) {
     	    	$('#product_qty_modify').attr('value',data.product_qty);
     	    	$('#product_category_modify').attr('value',data.product_category);
     	    	$('#productGet').show();
-    	    	$('#modalstyle').css('display','');
     	    	
     	    }
     	});

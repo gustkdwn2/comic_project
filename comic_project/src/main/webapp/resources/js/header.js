@@ -113,7 +113,3 @@ function check(re, what, message) {
 	what.focus();
 	//return false;
 }
-
-$("#orderOK").on("click", function() {
-	$("#ModalorderArlet").modal("hide");
-});

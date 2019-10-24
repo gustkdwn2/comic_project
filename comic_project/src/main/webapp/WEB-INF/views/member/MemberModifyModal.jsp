@@ -35,19 +35,17 @@
 							<label>
 								<font style="vertical-align: inherit;">이메일</font>
 							</label>
-							<input name="MEMBER_EMAIL" id="MEMBER_EMAIL_modify" type="email" class="form-control" maxlength="50"
-							style="border:3px solid #dadfe4">
+							<input name="MEMBER_EMAIL" id="MEMBER_EMAIL_modify" type="email" class="form-control" maxlength="50">
 						</div>
 						<div class="form-group">
 							<label>
 								<font style="vertical-align: inherit;">핸드폰 번호</font>
 							</label>
-							<input name="MEMBER_PHONE_NUMBER" id="MEMBER_PHONE_NUMBER_modify" type="tel" class="form-control"
-							style="border:3px solid #dadfe4">
+							<input name="MEMBER_PHONE_NUMBER" id="MEMBER_PHONE_NUMBER_modify" type="tel" class="form-control">
 						</div>
 						<div class="form-group" align="center">
-							<button type="submit" class="btn btn-warning" style="color:white;">수정</button>
-							<button type="button" id="modifyclose_modify" class="btn btn-secondary">닫기</button>
+							<button type="submit" class="btn btn-info">수정</button>
+							<button type="button" id="modifyclose_modify" class="btn btn-success">닫기</button>
 						</div>
 					</form>
 				</div>
@@ -56,5 +54,4 @@
 		</div>
 	</div>
 </div>
-
 <!-- End Modal -->

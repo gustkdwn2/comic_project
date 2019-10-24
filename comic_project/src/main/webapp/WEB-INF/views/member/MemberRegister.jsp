@@ -90,7 +90,7 @@
               </div>
               
               <div class="mt-3">
-                <button class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn" id="memberregister"
+                <button class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn" 
                 		style="color: white;" type="submit">회원가입</button>
               </div>
               
@@ -115,7 +115,7 @@
   <script src="/resources/js/template.js"></script>
   <!-- endinject -->
   <!-- 멤버 js -->
-  <script src="/resources/js/member.js?ver=10"></script>
+  <script src="/resources/js/member.js?ver=9"></script>
   
   <script type="text/javascript">
   </script>

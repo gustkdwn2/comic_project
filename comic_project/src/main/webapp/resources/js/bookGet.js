@@ -140,8 +140,9 @@ $(document).ready(function() {
 	        str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
 	          
 		});
+	    
 	    if($("#book_name_hidden").val() != $("#book_name_get").val()) {
-	    	if($.trim($("#book_name_get").val()) != $("#book_name_get").val()) {
+	    	if($.trim($("#book_name_get").val()) != $("#book_name_get").val() || $("#book_name_get").val() == "") {
 			    alert("앞,뒤 공백을 지워주세요.");
 			    $("#book_name_get").val("");
 			    $("#book_name_get").focus();
@@ -154,28 +155,45 @@ $(document).ready(function() {
 			    return false;
 			}
 	    }
-	    if($.trim($("#book_loc_get").val()) != $("#book_loc_get").val()) {
+	    if($.trim($("#book_loc_get").val()) != $("#book_loc_get").val() || $("#book_loc_get").val() == "") {
 		      alert("앞,뒤 공백을 지워주세요.");
 		      $("#book_loc_get").val("");
 		      $("#book_loc_get").focus();
 		      return false;
 		}
-		if($.trim($("#book_publisher_get").val()) != $("#book_publisher_get").val()) {
+		if($.trim($("#book_publisher_get").val()) != $("#book_publisher_get").val() || $("#book_publisher_get").val() == "") {
 		      alert("앞,뒤 공백을 지워주세요.");
 		      $("#book_publisher_get").val("");
 		      $("#book_publisher_get").focus();
 		      return false;
 		}
-		if($.trim($("#book_writer_get").val()) != $("#book_writer_get").val()) {
+		if($.trim($("#book_writer_get").val()) != $("#book_writer_get").val() || $("#book_writer_get").val() == "") {
 		      alert("앞,뒤 공백을 지워주세요.");
 		      $("#book_writer_get").val("");
 		      $("#book_writer_get").focus();
 		      return false;
 		}
-		if($.trim($("#book_category_get").val()) != $("#book_category_get").val()) {
+		if($.trim($("#book_category_get").val()) != $("#book_category_get").val() || $("#book_category_get").val() == "") {
 		      alert("앞,뒤 공백을 지워주세요.");
 		      $("#book_category_get").val("");
 		      $("#book_category_get").focus();
+		      return false;
+		}
+		if($.trim($("#book_content_get").val()) != $("#book_content_get").val() || $("#book_content_get").val() == "") {
+		      alert("앞,뒤 공백을 지워주세요.");
+		      $("#book_content_get").focus();
+		      return false;
+		}
+		if($("#book_lastbook_get").val() == "") {
+		      alert("숫자를 입력해주세요.");
+		      $("#book_lastbook_get").val("");
+		      $("#book_lastbook_get").focus();
+		      return false;
+		}
+		if($("#book_lastbook_get").val() < 1) {
+		      alert("0보다 큰수를 입력해주세요.");
+		      $("#book_lastbook_get").val("");
+		      $("#book_lastbook_get").focus();
 		      return false;
 		}
 		if(num == 0) {
@@ -192,7 +210,6 @@ $(document).ready(function() {
 		$("#card-body-get").scrollTop(0);
 		$("#bookGet").find('form')[0].reset();
 		$('#bookGet').hide();
-		$('#modalstyle2').css('display','none');
 	});
 	
 });

@@ -7,11 +7,11 @@
 		<div class="modal-content" align="center" id="product-bill-modal-content">
 
 			<!-- Modal body -->
+			<div class="modal-body" id="product-bill-modal-body">
 				<div class="card" id="product-bill-card">
-					<div class="card-body" id="product-bill-card-body" >
-						<div class="table-responsive pt-3" style="text-align: center;" >
-							<h2>상품 주문 상세 내역</h2><br/>
-							<table id="productBillTable" class="table">
+					<div class="card-body" id="product-bill-card-body">
+						<div class="table-responsive pt-3">
+							<table id="productBillTable" class="table table-bordered">
 								<thead>
 									<tr>
 										<th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
@@ -55,34 +55,24 @@
 </script>
 
 <style>
-
-table, thead{
-border:3px solid #cdcdce;
-
-}
-
-tr, td, th{
-border:1px solid #cdcdce;
-}
-
 #product-bill-modal-dialog{
   overflow-y: initial !important
   position: absolute;
-  top: 37%;
-  left: 8%;
+  top: 30%;
+  left: 0%;
   transform: translate(-50%, -50%) !important;
 }
 
 #product-bill-card-body{
-	height: 800px;
-    width: 700px;
+	height: 400px;
+    width: 900px;
     overflow-y: auto;
 }
 #product-bill-card {
-	width: 700px;
+	width: 900px;
 }
 
 #product-bill-modal-body, #product-bill-modal-content{
-	width: 700px;
+	width: 1000px;
 }
 </style>

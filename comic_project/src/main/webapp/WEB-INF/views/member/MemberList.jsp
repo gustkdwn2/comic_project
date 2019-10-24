@@ -36,8 +36,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="modalstyle" class="modal-backdrop show"></div>
 	<jsp:include page="MemberModifyModal.jsp" />
-	<script src="/resources/js/memberlist.js?ver=2"></script>
+	<script src="/resources/js/memberlist.js?ver=16"></script>
 </body>
 </html>

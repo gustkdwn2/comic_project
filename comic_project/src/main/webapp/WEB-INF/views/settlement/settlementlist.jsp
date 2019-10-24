@@ -45,10 +45,10 @@
 											</tr>
 										</c:forEach>
 									</tbody>
-								</table><br/>
+								</table>
 								<div align="right">
-									<button id="btn1" class="btn btn-danger">오차확인</button>
-									<button id="btn2" class="btn btn-primary">재고정산</button>
+									<button id="btn1" class="btn btn-danger btn-rounded ">오차확인</button>
+									<button id="btn2" class="btn btn-primary btn-rounded ">재고정산</button>
 								</div>
 							</div>
 						</div>
@@ -57,14 +57,12 @@
 			</div>
 		</div>
 	</div>
-	<div id="modalstyle" class="modal-backdrop show"></div>
 	<jsp:include page="settlementModal.jsp" />	
 </body>
 
-<script src="/resources/js/inhosettlement.js?ver=1"></script>
+<script src="/resources/js/inhosettlement.js?after"></script>
 <script>
 	//오차수량 sorting
-
 	$(document).ready(function() {
 		 var reSortColors = function($table) {
 		     $('tbody tr:odd', $table)
