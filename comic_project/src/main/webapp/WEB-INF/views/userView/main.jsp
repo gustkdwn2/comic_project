@@ -99,7 +99,7 @@ $(document).ready(function(){
 	
 	ajaxtogetdb_comic_room_uselist();
 	var operForm = $("#operForm");
-	totalprice();
+
 	
 	$("#userOrderView").on("click", function(e){
 		operForm.attr("method", "get");
@@ -120,6 +120,7 @@ $(document).ready(function(){
 		operForm.submit();
 	});
 	$("#billModalBtn").on("click", function(e){
+		totalprice();
 		$('#modalstyle').css('display','');
 		$.ajax({
 			type: 'get',
@@ -250,16 +251,16 @@ $('#kakaopay').click(function(e){
 				timer = setInterval(function(){
 		              if(popup.closed){
 			              if( closeParam == 'success') {
-			            	location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
+			            	location.href="http://localhost:8080/userView/mainPro?roomNum="+room_num
 			            	socket.send(room_num + ",시작," + id);
 			              } else {
-		            	  	location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
+		            	  	location.href="http://localhost:8080/userView/main?roomNum="+room_num
 					      }
 		                 
 		              }
 		        }, 1000)
 			} else {
-				location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
+				location.href="http://localhost:8080/userView/mainPro?roomNum="+room_num
 			}
 		}
 	});
