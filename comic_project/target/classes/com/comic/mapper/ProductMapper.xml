@@ -8,6 +8,10 @@
 		SELECT * FROM COMIC_PRODUCTSTOCK
 	</select>
 	
+	<select id="productCategory" resultType="com.comic.model.ProductVO">
+		SELECT DISTINCT(product_category) FROM COMIC_PRODUCTSTOCK
+	</select>
+	
 	<select id="productRead" resultType="com.comic.model.ProductVO">
 		SELECT * FROM COMIC_PRODUCTSTOCK WHERE PRODUCT_NUM=#{product_num}
 	</select>
@@ -33,12 +37,16 @@
 		SELECT * FROM COMIC_PRODUCTSTOCK WHERE PRODUCT_NAME=#{product_name}
 	</select>
 	
-	<update id="productNumUpdate">
-		UPDATE COMIC_PRODUCTSTOCK SET PRODUCT_NUM=#{product_num}-1 WHERE PRODUCT_NUM=#{product_num}
-	</update>
-	
-	<select id="productNumSelect" resultType="Integer">
-		select count(*) from COMIC_PRODUCTSTOCK where product_num > #{product_num}
+	<select id="productCategoryName" resultType="com.comic.model.ProductVO">
+		select * from COMIC_PRODUCTSTOCK where product_category=#{product_category}
 	</select>
+	
+	<!-- <update id="productNumUpdate">
+		UPDATE COMIC_PRODUCTSTOCK SET PRODUCT_NUM=#{product_num}-1 WHERE PRODUCT_NUM=#{product_num}
+	</update> -->
+	
+	<!-- <select id="productNumSelect" resultType="Integer">
+		select count(*) from COMIC_PRODUCTSTOCK where product_num > #{product_num}
+	</select> -->
 	
 </mapper>

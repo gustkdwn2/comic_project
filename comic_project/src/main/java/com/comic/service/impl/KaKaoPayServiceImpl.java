@@ -1,4 +1,4 @@
-package com.comic.service.impl;
+﻿package com.comic.service.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,11 +8,13 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comic.mapper.KakaoPayMapper;
+import com.comic.model.BillVO;
 import com.comic.service.KaKaoPayService;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -37,7 +39,7 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 				conn.setDoOutput(true);
 				//admin key a258e66f44b2c8ba226f22660cda5933  현태 api  port 8080
 				//admin key 57a8cadc155aba24a64f1f344d81bfe8  인호 api  port 8090
-				conn.setRequestProperty("Authorization", "KakaoAK 57a8cadc155aba24a64f1f344d81bfe8");
+				conn.setRequestProperty("Authorization", "KakaoAK a258e66f44b2c8ba226f22660cda5933");
 				
 				BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 				StringBuilder sb = new StringBuilder();
@@ -49,9 +51,9 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 				sb.append("&quantity=1");
 				sb.append("&total_amount="+totalprice);
 				sb.append("&tax_free_amount="+(totalprice/10));
-				sb.append("&approval_url=http://localhost:8090/pay/successpay?id="+id);
-				sb.append("&cancel_url=http://localhost:8090/pay/cancelpay?id="+id);
-				sb.append("&fail_url=http://localhost:8090/pay/failpay?id="+id);
+				sb.append("&approval_url=http://10.10.10.173:8080/pay/successpay?id="+id);
+				sb.append("&cancel_url=http://10.10.10.173:8080/pay/cancelpay?id="+id);
+				sb.append("&fail_url=http://10.10.10.173:8080/pay/failpay?id="+id);
 				
 				bw.write(sb.toString());
 				bw.flush();
@@ -81,11 +83,22 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 
 	@Override
 	public void insertSale(String id) {
-		kakaoPayMapper.insertproductSale(id);
-		kakaoPayMapper.insertroomSale(id);
-		kakaoPayMapper.resetRoom(id);
-		kakaoPayMapper.productUpdate(id);
+		System.out.println("여기로들어옴이닏가ㅓ리ㅏㅓㄴㅁㅇㄹ하ㅓㅈ밋헌");
+		kakaoPayMapper.insertproductSale(id);  // 상품 매출 추가
+		kakaoPayMapper.insertroomSale(id);  // 방 매출 추가
+		
+		List<BillVO> vo = kakaoPayMapper.billGetList(id);
+		System.out.println(vo);
+		for (int i = 0; i < vo.size(); i++) {
+			kakaoPayMapper.productQtyUpdate(vo.get(i).getOrder_product_num(), vo.get(0).getOrder_qty());
+		}
+		
+		//kakaoPayMapper.resetRoom(id); // 방 사용 테이블 초기화
+//		kakaoPayMapper.productUpdate(id);
 	}
-	
 
+	@Override
+	public void resetRoom(String id) {
+		kakaoPayMapper.resetRoom(id); // 방 사용 테이블 초기화
+	}
 }

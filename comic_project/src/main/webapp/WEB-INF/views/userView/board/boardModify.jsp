@@ -18,7 +18,8 @@
                <div class="card-body" style="margin-top:100px; margin-left:400px;">
 	                  <h1 class="card-title">불만사항이나 건의 사항을 적어주세요</h1>
 	                  
-	                  <form role="form" class="forms-sample" action="/userView/board/boardModify" method="post">
+	                  <form role="form" class="forms-sample" action="/userView/board/boardModify" method="post"
+	                  		 onsubmit="return nullcheck();">
 	                  	
 	                  	<input type="hidden" name="board_id" value="${Memberlogin.MEMBER_ID}" >
 	                  	<input type="hidden" name="board_num" value="${board.board_num}" >
@@ -38,7 +39,7 @@
 	                    <div class="form-group">
 	                      <label for="board_content">내용</label>
 	                      <textarea class="form-control" name="board_content" rows="10" cols="70" style="border: 1px solid #cdcdce; width: 1100px;"
-	                                maxlength="660" placeholder="내용을 입력해주세요" >${board.board_content}"</textarea>
+	                                maxlength="660" placeholder="내용을 입력해주세요" >${board.board_content}</textarea>
 	                    </div>
 	                    
 	                    
@@ -88,6 +89,18 @@ $(document).ready(function() {
 	  });
 
 });
+
+function nullcheck(){
+	if($("input[name='board_title']").val()==""){
+		alert("제목을 입력해주세요");
+		return false;
+	}
+	if($("textarea[name='board_content']").val()==""){
+		alert("내용을 입력해주세요");
+		return false;
+	}
+	return true;
+}
 </script>
        
 

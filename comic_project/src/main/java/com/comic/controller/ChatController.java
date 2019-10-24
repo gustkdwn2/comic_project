@@ -1,40 +1,36 @@
 package com.comic.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.comic.service.ChatService;
+import com.comic.model.ChatVO;
+import com.comic.service.ChattingService;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/chat/")
 @AllArgsConstructor
-@Log4j
 public class ChatController {
 	
-	private ChatService chatService;
+	private ChattingService chatService;
 	
 	@GetMapping("chatting")
-	public ModelAndView chat(ModelAndView mv) {
-		mv.setViewName("chat/chattingview");
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println("user name : " + user.getUsername());
-		System.out.println("normal chat page");
+	public @ResponseBody List<ChatVO> chat(HttpSession session, Model model,@RequestParam("room") String room) {
+		model.addAttribute("admin", session.getAttribute("admin"));
 		
-		mv.addObject("userid", user.getUsername());
-		
-		return mv;
+		List<ChatVO> chatList= chatService.selectChat(Integer.parseInt(room));
+		return chatList;
 	}
 	
-	
+
+
 }

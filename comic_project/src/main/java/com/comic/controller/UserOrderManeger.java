@@ -33,6 +33,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.comic.model.OrderProductViewVO;
 import com.comic.model.OrderVO;
 import com.comic.model.OrderViewVO;
+import com.comic.model.ProductVO;
+import com.comic.service.ProductService;
 import com.comic.service.UserOrderManegerService;
 
 import lombok.AllArgsConstructor;
@@ -43,9 +45,11 @@ import lombok.AllArgsConstructor;
 public class UserOrderManeger {
 
 	private UserOrderManegerService userOrderManegerService;
+	private ProductService productService;
 
 	@GetMapping("/orderManager")
 	public void adminView(Model model) {
+		model.addAttribute("productGetList", productService.productCategory());
 		model.addAttribute("OrderViewVO_List", userOrderManegerService.readCategory());
 	}
 	
@@ -197,5 +201,11 @@ public class UserOrderManeger {
 		userOrderManegerService.realTimeOrderAdd(orderList);
 
 		return new ResponseEntity<String>("OK", HttpStatus.OK);
+	}
+	
+	@GetMapping("/productCategoryName")
+	@ResponseBody
+	public List<ProductVO> productCategoryName(@RequestParam("product_category") String product_category) {
+		return productService.productCategoryName(product_category);
 	}
 }

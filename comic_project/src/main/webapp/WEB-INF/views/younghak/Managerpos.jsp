@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -17,37 +17,32 @@
 * {
 	box-sizing: border-box;
 }
-
 body {
 	margin: 0;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "맑은 고딕";
 }
-
 /* The grid: Three equal columns that floats next to each other */
 .column {
 	float: left;
-	width: 30.0%;
-	padding: 10px;
+	width: 500px;
 	/* text-align: center; */
 	font-size: 16px;
 	cursor: pointer;
-	color: gray;
-	margin-left: 10px;
-	height: 230px;
+	color: #555555;
+	height: 300px;
+	border-right: 3px solid #f3f3f3;
+	background-color: #686868;
 }
-
 .containerTab {
 	padding: 20px;
 	color: white;
 }
-
 /* Clear floats after the columns */
 .row:after {
 	content: "";
 	display: table;
 	clear: both;
 }
-
 /* Closable button inside the container tab */
 .closebtn {
 	float: right;
@@ -55,7 +50,6 @@ body {
 	font-size: 35px;
 	cursor: pointer;
 }
-
 .div_root {
 	float: left;
 	width: 30.0%;
@@ -67,199 +61,84 @@ body {
 	margin-left: 10px;
 	height: 230px;
 }
-
 .div_menu {
 	width: 30%;
 	/* height:100px; */
-	padding: 13% 0px;
-	height: 90%;
+	padding-top: 20%;
+	height: 80%;
 	float: left;
 	font-size: 30px;
-	background-color: #ffac6a;
 	text-align: center;
+	border-right: 3px solid #f3f3f3;
+	border-bottom: 3px solid #f3f3f3;
+	color: white;
+	height: 80%;
 }
-
 .div_con {
 	width: 70%;
 	/* height:100px ; */
-	height: 90%;
+	height: 80%;
 	margin-right: auto;
 	/* margin:10px; */
 	padding-left: 3%;
 	padding-top: 5%;
 	float: left;
 	font-size: 20px;
-	background-color: #19f011;
+	color: white;
 	/* //background-size:50%50%; */
+	border-bottom: 3px solid #f3f3f3;
 	text-align: center-vertical;
 }
-
-.div_bottom_2 {
+.div_bottom {
 	width: 100%;
 	/* height:100px; */
 	height: 10%;
 	clear: both;
-	background-color: #C8FE2E;
-	text-align: center;
 }
 </style>
 
 </head>
-<body style="overflow: scroll">
-
+<body>
 	<div class="main-panel">
-		<div class="content-wrapper">
-			<div class="row">
-				<%@ include file="./younghak_header.jsp"%>
-				<div class="col-12 grid-margin stretch-card">
-					<div class="card">
-						<div class="row">
-				<div class="col-md-12">
-					<div class="card-body">
-						<div class="template-demo">
-							<div class="row">
-							
-								<div class="column" onclick="method_startnstop('1');"
-					style="background: #F6CEF5;">
-				
-					<div class="div_menu">1번방</div>
-				
-					<div class="div_con">
-						사 용 자 : <font id="user1">없음</font><br> 사용시간 : <font
-							id="user_time1">없음</font><br> 사용상태 : <font
-							id="user_status1">없음</font><br> 주문상태 : <font
-							id="order_status1">없음</font><br>
-					</div>
-				
-					<div class="div_bottom_2">
-						<input type="button" value="주문내역보기"> <input
-							type="button" value="결제하기"> <input type="button"
-							value="채팅하기">
-					</div>
+		<%@ include file="./younghak_header.jsp"%>
+		<div class="col-12 grid-margin stretch-card">
+			<div class="card">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card-body">
+							<div class="template-demo">
+								<c:forEach var="i" begin="1" end="6" step="1">
 
-	<!-- </div> -->
-
-</div>
-
-<div class="column" onclick="method_startnstop('2');"
-	style="background: #E6E6E6;">
-	<!-- <div class="div_root"> -->
-
-	<div class="div_menu">2번방</div>
-
-	<div class="div_con">
-		사 용 자 : <font id="user2">없음</font><br> 사용시간 : <font
-			id="user_time2">없음</font><br> 사용상태 : <font
-			id="user_status2">없음</font><br> 주문상태 : <font
-			id="order_status2">없음</font><br>
-	</div>
-
-	<div class="div_bottom_2">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
-	</div>
-
-</div>
-<div class="column" onclick="method_startnstop('3');"
-	style="background: #E6E6E6;">
-	<!-- <div class="div_root"> -->
-
-		<div class="div_menu">3번방</div>
-
-		<div class="div_con">
-			사 용 자 : <font id="user3">없음</font><br> 사용시간 : <font
-				id="user_time3">없음</font><br> 사용상태 : <font
-				id="user_status3">없음</font><br> 주문상태 : <font
-				id="order_status3">없음</font><br>
-		</div>
-
-		<div class="div_bottom_3">
-			<input type="button" value="주문내역보기"> <input
-				type="button" value="결제하기"> <input type="button"
-				value="채팅하기">
-		</div>
-
-	</div>
-</div>
-<br>
-
+<c:if test="${i%3==1}">
 <div class="row">
-	<div class="column" onclick="method_startnstop('4');"
-	style="background: #E6E6E6;">
-	<!-- <div class="div_root"> -->
+</c:if>
 
-	<div class="div_menu">4번방</div>
+<div class="column" onclick="<%-- method_startnstop(${i}); --%>">
+<!-- <div class="div_root"> -->
 
-	<div class="div_con">
-		사 용 자 : <font id="user4">없음</font><br> 사용시간 : <font
-			id="user_time4">없음</font><br> 사용상태 : <font
-			id="user_status4">없음</font><br> 주문상태 : <font
-			id="order_status4">없음</font><br>
-	</div>
+<div class="div_menu">${i}번방</div>
 
-	<div class="div_bottom_4">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
-	</div>
 
-</div>
-<div class="column" onclick="method_startnstop('5');"
-	style="background: #E6E6E6;">
-	<!-- <div class="div_root"> -->
-
-	<div class="div_menu">5번방</div>
-
-	<div class="div_con">
-		사 용 자 : <font id="user5">없음</font><br> 사용시간 : <font
-			id="user_time5">없음</font><br> 사용상태 : <font
-			id="user_status5">없음</font><br> 주문상태 : <font
-			id="order_status5">없음</font><br>
-	</div>
-
-	<div class="div_bottom_5">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
-	</div>
-
-</div>
-<div class="column" onclick="method_startnstop('6');"
-	style="background: #E6E6E6;">
-	<!-- <div class="div_root"> -->
-
-	<div class="div_menu">6번방</div>
-
-	<div class="div_con">
-		사 용 자 : <font id="user6">없음</font><br> 사용시간 : <font
-			id="user_time6">없음</font><br> 사용상태 : <font
-			id="user_status6">없음</font><br> 주문상태 : <font
-			id="order_status6">없음</font><br>
-	</div>
-
-	<div class="div_bottom_6">
-		<input type="button" value="주문내역보기"> <input
-			type="button" value="결제하기"> <input type="button"
-			value="채팅하기">
-	</div>
-
-				</div>
+										<div class="div_con">
+											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font id="user_time${i}">없음</font><br> 사용상태 : <font id="user_status${i}">없음</font><br>
+											<br>
+										</div>
+										<div class="div_bottom">
+											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i});">
+											<button type="button" id="chat${i}" name='chat' value="${i}" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+											채팅하기</button>
 										</div>
 									</div>
-								</div>
+									<c:if test="${i%3==0}">
 							</div>
-							<!-- <div class="col-md-0"> -->
-							<div class="card-body">
-								<%-- <h4 class="card-title">Inverse buttons</h4>
-                      <p class="card-description">Add class <code>.btn-inverse-{color} for inverse buttons</code></p> --%>
-								<div class="template-demo"></div>
-							</div>
+							<br>
+							</c:if>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- 실시간 주문 테이블 -->
 			<div class="row">
 				<div class="col-md-12 stretch-card">
@@ -288,17 +167,14 @@ body {
 		</div>
 	</div>
 	<!-- main-panel ends -->
-	
-	
-
-
+	<jsp:include page="adminproductBillModal.jsp" />
+	<jsp:include page="../chat/chatting.jsp" />
 	<script>
-	//초기화작업
-	var check = new Array(7); //방의 개수보다 1크게
 	
-	array_init(check);
-
-	ajaxtogetdb_comic_room_uselist();
+	var check_arr = new Array(7); //방의 개수보다 1크게
+	
+	array_init(check_arr);
+	ajaxtogetdb_comic_room_uselist(); 
 	//초기화작업
 	
 	realOrder();
@@ -311,185 +187,105 @@ body {
 			}
 			document.getElementById(tabName).style.display = "block";
 		}
-
 		function pos_start(roomnum) {
 			alert(roomnum + "번 방 시작");
-
 		}
-
 		var hour = 0;
 		var minute = 0;
-
-		
-
-		function array_init(check) {
-			for (var i = 0; i < check.length; i++) {
-				check[i] = false;
+		function array_init(check_arr) {
+			for (var i = 0; i < check_arr.length; i++) {
+				check_arr[i] = false;
 			}
 		}
-
-		function method_startnstop(num) {
+		
+		function method_startnstop(num, id) {
 			// 시작시간
-			if (!check[num]) {
-				check[num] = true;
+			if (!check_arr[num]) {
+				check_arr[num] = true;
 				time_start(0, num);
-				/* 테스트용 */
 				var user = "id";
 				var user_status = "unavail";
 				var order_status = "unavail";
-
 				var roomuse_id = "id";
 				var roomuse_num = num;
 				var roomuse_status = "on";
-
 				document.getElementById('user' + num).innerHTML = user;
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
 				document.getElementById('order_status' + num).innerHTML = order_status;
-				
-				ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
-						roomuse_status);
-
+				ajaxtosenddb_comic_room_use2(id, num, "on");
 			} else {
-
-				check[num] = false;
-
+				check_arr[num] = false;
 				var roomuse_id = "없음";
 				var roomuse_num = num;
 				var roomuse_status = "off";
-				
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
 				document.getElementById('order_status' + num).innerHTML = "대기중";
-
 				ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 						roomuse_status);
 			}
 		}
-
-		function method_startnstop2(id,num,starttime,status) {
-			// 새로 고침 시 시간 유지 함수
-			if (!check[num]) {
-				check[num] = true;
+		function startnstop_init(id,num,starttime,status) {
+			if(status=="on"){
+				check_arr[num]=false;
+				}
+			
+			if (!check_arr[num]) {
+				check_arr[num] = true;
 				time_start(starttime, num);
 				/* 테스트용 */
 				var order_status = "unavail";
-
-				document.getElementById('user'+ num).innerHTML = id;
+				document.getElementById('user' + num).innerHTML = id;
 				document.getElementById('user_status' + num).innerHTML = status;
 				document.getElementById('order_status' + num).innerHTML = order_status;
-				
 			} else {
-
-				check[num] = false;
-
+				check_arr[num] = false;
 				var roomuse_id = "없음";
 				var roomuse_num = num;
 				var roomuse_status = "off";
-				
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
 				document.getElementById('order_status' + num).innerHTML = "대기중";
-
 			}
 		}
-
-		function ajaxtogetdb_comic_room_uselist() {			
-			
-			$.ajax({
-				url : '/managerpos/get_room_uselist',
-				dataType : 'json',
-				contentType : "application/json; charset=utf-8;",
-				type : 'POST',
-				success : function(data) {
-					
-					var text="";
-					console.log(data[0]);
-					$.each(data, function(index,list){
-						var number=1;
-						number = list.roomuse_num;
-						
-						method_startnstop2(list.roomuse_id,number,list.starttime,list.roomuse_status);
-					});
-					
-				},
-				error : function(data) {
-					console.log("실패");
-				}
-			});
-		}
-
-
-		function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
-				roomuse_status) {
-			var list = [ roomuse_id, roomuse_num,
-				roomuse_status];
-			//사용자,시작시간,사용자 상태,주문 상태,방번호
-			//alert("보내기전의 list" + list);
-			var sendData = {
-				'list' : list
-			};
-
-			$.ajax({
-				url : '/managerpos/room_start2',
-				dataType : 'json',
-				data : JSON.stringify(sendData),
-				contentType : "application/json; charset=utf-8;",
-				type : 'POST',
-				success : function(data) {
-					console.log("성공");
-					alert("success!");
-					
-				},
-				error : function(data) {
-					console.log("실패");
-				}
-			});
-		}
-
+		
 		function time_start(time, num) {
 			//	alert("0");
-			if (!check[num]) {
-
+			if (!check_arr[num]) {
 			} else {
 				//console.log(time);
-				time =parseInt(time)//가끔 여기서 사용된 파라미터가 string형태로 읽어와져서 형변환을 한번해준다.
+				time = parseInt(time)//가끔 여기서 사용된 파라미터가 string형태로 읽어와져서 형변환을 한번해준다.
 				//if(time%10==0){					
-					
-					//setTimeout(function() {
-						//ajaxtogetdb_comic_room_uselist();
-					//}, 1000)
-					//}
+				//setTimeout(function() {
+				//ajaxtogetdb_comic_room_uselist();
+				//}, 1000)
+				//}
 				time += 1;
 				hour = Math.floor(time / 3600);
 				hour = time_modify(hour);
-
-				minute = Math.floor(time%3600 / 60);
+				minute = Math.floor(time % 3600 / 60);
 				minute = time_modify(minute);
-
 				var second = time % 60;
 				second = time_modify(second);
-
 				document.getElementById('user_time' + num).innerHTML = hour
 						+ ":" + minute + ":" + second;
-
 				//document.getElementById('test1_2').innerHTML="와쓰"+time;
 				var t = setTimeout(function() {
 					time_start(time, num)
 				}, 1000)
 			}
-
 		}
-
 		function time_modify(time) {
-
 			if (time.toString().length == 1) {
 				time = "0" + time;
 			}
+			if (time == null) {
+				time = 0;
+			}
 			return time;
 		}
-
 		function num_length() {
 			var num = 123;
 			var str = "123";
@@ -552,8 +348,88 @@ body {
 						order : [ [ 0, 'desc' ] ]
 					});
 			}
-		
-		
+			
+		$("button[name='chat']").on("click", function() {
+			chatRoom = $(this).attr('value');
+			$("#chat" + chatRoom).css('color', 'white');
+			console.log("chatRoom" + chatRoom);
+			//window.open("/chat/chatting?room=" + roomNum,"_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
+			$('#chatModal').css('display','');
+			$("#chatModal").show();
+			$(".title").html("");
+			$(".title").append(chatRoom + "방 채팅");
+			for(var i=1; i < 7; i++) {
+				$("#messages" + i).hide();
+			}  
+			$("#messages" + chatRoom).show();
+			
+			$.ajax({
+				type: 'get',
+				url: '/chat/chatting?room=' + chatRoom,
+				dataType: 'json',
+				success: function(data) {
+					$("#messages" + chatRoom).html("");
+					$.each(data , function(i){
+						var str = "";
+						if(data[i].chat_id != "admin") {
+			            	str += "<li class='message left appeared'>";
+			            	str += '<div class="avatar"></div>';
+			            	str += '<div class="text_wrapper">';
+			            	str += '<div class="text">' + data[i].chat_content +'</div>';
+			            	str += '</div>';
+			            	str += '</li>';
+						} else {
+							str += "<li class='message right appeared'>";
+			            	str += '<div class="avatar"></div>';
+			            	str += '<div class="text_wrapper">';
+			            	str += '<div class="text">' + data[i].chat_content +'</div>';
+			            	str += '</div>';
+			            	str += '</li>';
+						}
+						$("#messages" + chatRoom).append(str);
+		           });
+				}
+			});
+		});
+
+
+	function realOrderRenew() {
+		$('#realOrderTable').DataTable().clear().draw();
+		$.ajax({
+			async: false,
+			url : "/realorder/realOrderData.json",
+			type : "get",
+			success: function(data) {
+				$('#realOrderTable').DataTable().rows.add(data).draw();
+			}
+		});
+	} 
+	var orderArlet;
+	function adminproductBillModalBtn(num) {
+		orderArlet = num;
+		console.log("일로옴?");
+		var id = document.getElementById('user' + num).innerHTML;
+		console.log(id);
+		$.ajax({
+			type: 'get',
+			url: '/userView/userProductBill?userId='+id,
+			dataType: 'json',
+			success: function(data) {
+				console.log(data);
+				$("#productBillTbody").html("");
+	            var str = '<tr>';
+	            $.each(data , function(i){
+	            	var date = new Date(data[i].order_time); var month = date.getMonth() + 1; 
+	                str += '<td>' + date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() +
+	                "<br>" + date.getHours() + " : " + date.getMinutes() + ' : ' + date.getSeconds() + '</td><td>' + data[i].product_name + '</td><td>' + data[i].order_qty + '</td><td>' + data[i].order_bill + '</td>';
+	                str += '</tr>';
+	           });
+	           $("#productBillTbody").append(str);
+				
+			}
+		});
+		$("#adminproductBillModal").show();
+	}
 	</script>
 </body>
 </html>

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ include file="../includes/header.jsp"%>
+<%@ include file="../includes/sidebar.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,71 +25,63 @@
 <link rel="shortcut icon" href="/resources/images/favicon.png" />
 </head>
 <body>
-	<div class="container-scroller">
-		<div class="container-fluid page-body-wrapper full-page-wrapper">
-			<div class="content-wrapper d-flex align-items-center auth px-0">
-				<div class="row w-100 mx-0">
-					<div class="col-lg-4 mx-auto">
-						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
-							<div class="brand-logo">
-								<img src="/resources/images/comic_icon.png" width="280px"
-									height="100px" alt="logo" 
-									onclick="javascript:location.href='/managerpos/managerpos'">
-							</div>
-							<h4>코믹서기 직원 출근 창</h4>
-							<h6 class="font-weight-light">빨리 출근 찍으세요.</h6>
-							<form class="pt-3" action="/managerpos/workonoff" id="workonoff"
-								method="post">
-								<div class="form-group">
-									<input type="text" class="form-control form-control-lg"
-										id="exampleInputEmail1" name="employeenum" placeholder="사원번호"
-										required="true">
-								</div>
-								<div class="form-group">
-									<input type="password" class="form-control form-control-lg"
-										id="exampleInputPassword1" name="employeepwd"
-										placeholder="비밀번호"
-										required="true">
-								</div>
-								<div class="mt-3">
-									<!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+
+	<div class="main-panel">
+		<div class="content-wrapper" style="background-color: #d7d7d8;">
+			<div class="row" >
+				<div class="col-md-12" > 
+					<div class="content-wrapper d-flex align-items-center auth px-0" style="background-color: #d7d7d8;">
+						
+							<div class="col-lg-4 mx-auto" >
+								<div class="auth-form-light text-left py-5 px-4 px-sm-5" >
+									<div class="brand-logo">
+										<img src="/resources/images/comic_icon.png" width="280px"
+											height="100px" alt="logo"
+											onclick="javascript:location.href='/managerpos/managerpos'">
+									</div>
+									<h4>직원 로그인</h4>
+									<form class="pt-3" action="/managerpos/workonoff"
+										id="workonoff" method="post">
+										<div class="form-group">
+											<input type="text" class="form-control form-control-lg"  style="border:1px solid #d7d7d8;"
+												id="exampleInputEmail1" name="employeenum"
+												placeholder="사원번호" required>
+										</div>
+										<div class="form-group">
+											<input type="password" class="form-control form-control-lg" style="border:1px solid #d7d7d8;"
+												id="exampleInputPassword1" name="employeepwd"
+												placeholder="비밀번호" required>
+										</div>
+										<div class="mt-3">
+											<!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
 										href="/index">사인 히어</a> -->
 
-									<button type="button"
-										class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-										onclick="document.getElementById('workonoff').submit()">사인
-										히어</button>
+											<button type="button"
+												class="btn btn-block btn-warning btn-lg" style="color:white;"
+												onclick="document.getElementById('workonoff').submit()">로그인</button>
+										</div>
+										<!-- <div
+											class="my-2 d-flex justify-content-between align-items-center">
+
+											<a href="#" onclick="forgotpwd()"
+												class="auth-link text-black">Forgot password?</a>
+										</div> -->
+
+									</form>
 								</div>
-								<div
-									class="my-2 d-flex justify-content-between align-items-center">
-									<!-- <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      Keep me signed in
-                    </label>
-                  </div> -->
-									<a href="#" onclick="forgotpwd()" class="auth-link text-black">Forgot
-										password?</a>
-								</div>
-								<!--  <div class="mb-2">
-                  <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                    <i class="mdi mdi-facebook mr-2"></i>Connect using facebook
-                  </button>
-                </div> -->
-								<!--   <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register.html" class="text-primary">Create</a>
-                </div> -->
-							</form>
+							</div>
 						</div>
 					</div>
+					<!-- content-wrapper ends -->
 				</div>
+				<!-- <div class="col-md-0"> -->
 			</div>
-			<!-- content-wrapper ends -->
 		</div>
-		<!-- page-body-wrapper ends -->
-	</div>
-	<!-- container-scroller -->
-	<!-- plugins:js -->
+
+
+
+	<!-- main-panel ends -->
+
 	<script src="/resources/vendors/base/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- inject:js -->
@@ -94,23 +90,27 @@
 	<script src="/resources/js/template.js"></script>
 	<!-- endinject -->
 	<script>
+		/* var test = "${sessionScope.EMPID}";
+		alert("현재 세션은"+test); */
+
+		//var test  = location.pathname;//프로젝트 뒤의 값을 가져온다 //project:"managerpos/login"
+		//alert('${request.getRequestURI()}');
+		//alert(test);
 		function forgotpwd() {
 			alert("ㅋㅋ답이없네");
 		}
 
 		var tmp = '${errormsg}';
 		console.log(tmp);
-		if(tmp!=""){
+		if (tmp != "") {
 			alert(tmp);
-			}
-		
+		}
+
 		var succecssmsg = '${succecssmsg}';
 		console.log(succecssmsg);
 		if(succecssmsg!=""){
-			alert(succecssmsg);
+			alert(succecssmsg+'${sessionScope.EMPID}');
 			}
-
-		
 		
 		function Request() {
 			var requestParam = "";
@@ -139,10 +139,6 @@
 		/*  var request = new Request();
 		 // test 라는 파라메터 값을 얻기
 		var tmp =  request.getParameter("managerList"); */
-		
-		
-
-		
 	</script>
 
 

@@ -85,28 +85,29 @@
 								</span>
 								</span> 
 							</a>						
-					</div>		
+					</div> 
 				</div>
 			</div>
 	</div>
 	
 	<!-- hidden form -->
 	<form id="operForm"></form>
-</body>
+</body> 
 <script type="text/javascript">
 $(document).ready(function(){
 	var operForm = $("#operForm");
-
+	
+	
 	$("a[name='roomMove']").on("click", function(e){
 		operForm.append("<input type='hidden' name='roomNum' value='" + $(this).attr('value') + "'>");
 		operForm.attr("method", "post");
-		operForm.attr("action","/userView/main");
+		operForm.attr("action","/userView/mainPro");
 		operForm.submit();
 	});
 
 	$("a[name='erpMain']").on("click", function(e){
 		operForm.attr("method", "get");
-		operForm.attr("action","/erp");
+		operForm.attr("action","/managerpos/managerpos");
 		operForm.submit();
 	});
 });

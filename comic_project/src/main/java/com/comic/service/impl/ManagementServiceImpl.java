@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.comic.mapper.EmployeeAttachMapper;
 import com.comic.mapper.ManagementMapper;
-
 import com.comic.model.EmployeeVO;
 import com.comic.service.ManagementService;
 
@@ -16,17 +17,28 @@ import lombok.Setter;
 public class ManagementServiceImpl implements ManagementService {
 
 	@Setter(onMethod_ = @Autowired)
-	private ManagementMapper managementMapper;	
+	private ManagementMapper managementMapper;
+	@Setter(onMethod_ = @Autowired)
+	private EmployeeAttachMapper employeeAttachMapper;
 	
 	@Override
 	public List<EmployeeVO> managerList() {
 		return managementMapper.employeelist();
 	}
 
+	@Transactional
 	@Override
-	public void deletemng(String emppwd, String mngnum) {
-		managementMapper.deletemng(emppwd, mngnum);
-		
+	public int deletemng(String emppwd, String mngnum) {
+		int result = 0;
+		System.out.println("여기옴");
+		if(managementMapper.deletemng(emppwd, mngnum) == 1) {
+			System.out.println("이미지삭제");
+			employeeAttachMapper.delete(mngnum);
+			result = 1;
+		}
+		return result;
+//		employeeAttachMapper.delete(mngnum);
+//		managementMapper.deletemng(emppwd, mngnum);
 	}
 
 	@Override
@@ -52,7 +64,40 @@ public class ManagementServiceImpl implements ManagementService {
 		// TODO Auto-generated method stub
 		managementMapper.managerleavework(empnum,leaveworkday);
 	}
+
+	@Override
+	public List<EmployeeVO> getempdata(String empnum) {
+		// TODO Auto-generated method stub
+		return managementMapper.getempdata(empnum);
+	}
+
+	@Override
+	public void employeeModify(EmployeeVO vo) {
+		
+		employeeAttachMapper.delete(Integer.toString(vo.getEMPLOYEE_NUM()));
+		
+		vo.getAttachList().forEach(attach -> {
+			attach.setEMPLOYEE_NUM(vo.getEMPLOYEE_NUM());;
+			employeeAttachMapper.insert(attach);
+		});
+		
+		managementMapper.employeeModify(vo);
+	}
 	
+	@Override
+	public int selectworkmonth(String empnum, String workmonth) {
+		return managementMapper.selectworkmonth(empnum,workmonth);
+		
+	}
 	
+	@Override
+	public void insertworkmonth(String empnum, String workmonth, String payday) {
+		managementMapper.insertworkmonth(empnum,workmonth,payday);
+	}
+	
+	@Override
+	public void setmonthlypay(String empnum, String workmonth, int hour) {
+		managementMapper.setmonthlypay(empnum, workmonth, hour);
+	}
 
 }

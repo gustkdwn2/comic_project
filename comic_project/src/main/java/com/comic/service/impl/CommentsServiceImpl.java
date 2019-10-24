@@ -32,6 +32,7 @@ public class CommentsServiceImpl implements CommentsService{
 		log.info("\r\n##register : "+vo);
 		
 		vo.setCmnt_content(vo.getCmnt_content().replaceAll("(?i)<", "&lt;"));
+		vo.setCmnt_content(vo.getCmnt_content().replaceAll("(?i)'", "&#039;"));
 		
 		return cmapper.insert(vo);
 	}
@@ -42,6 +43,7 @@ public class CommentsServiceImpl implements CommentsService{
 		log.info("\r\n##modify : "+vo);
 		
 		vo.setCmnt_content(vo.getCmnt_content().replaceAll("(?i)<", "&lt;"));
+		vo.setCmnt_content(vo.getCmnt_content().replaceAll("(?i)'", "&#039;"));
 		
 		return cmapper.update(vo);
 	}
