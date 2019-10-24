@@ -84,6 +84,7 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 		kakaoPayMapper.insertproductSale(id);
 		kakaoPayMapper.insertroomSale(id);
 		kakaoPayMapper.resetRoom(id);
+		kakaoPayMapper.productUpdate(id);
 	}
 	
 

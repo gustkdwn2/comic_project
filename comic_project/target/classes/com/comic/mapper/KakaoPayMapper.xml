@@ -10,7 +10,7 @@
 		select roomuse_id, roomuse_num, (select
 		CEIL(trunc((sysdate-roomuse_starttime)*60*24)/10)*500 from
 		comic_roomuse where roomuse_id=#{id}) as roomuse_price,
-		roomuse_endtime from comic_roomuse where roomuse_id=#{id}
+		(select sysdate from dual) as roomuse_endtime from comic_roomuse where roomuse_id=#{id}
 	</insert>
 
 	<insert id="insertproductSale">
@@ -29,4 +29,13 @@
 		delete from comic_roomuse where roomuse_id = #{id}
 	</delete>
 	
+	<update id="productUpdate">
+		update comic_productstock set product_qty = product_qty - NVL((select
+		order_qty from comic_order where order_id = #{id} and (select
+		roomuse_starttime from comic_roomuse
+		where roomuse_id = #{id}) &lt; order_time),0) where product_num = NVL((select
+		order_product_num from comic_order where order_id = #{id} and (select
+		roomuse_starttime from comic_roomuse
+		where roomuse_id = #{id}) &lt; order_time),0)
+	</update>
 </mapper>
