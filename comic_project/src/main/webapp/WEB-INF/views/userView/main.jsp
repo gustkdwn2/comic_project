@@ -291,13 +291,13 @@ $('#kakaopay').click(function(e){
 			            	location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
 			            	
 			              } else {
-		            	  	location.href="http://localhost:8080/userView/main?roomNum="+room_num
+		            	  	location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
 					      }
 		                 
 		              }
 		        }, 1000)
 			} else {
-				location.href="http://localhost:8080/userView/mainPro?roomNum="+room_num
+				location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
 			}
 		}
 	});

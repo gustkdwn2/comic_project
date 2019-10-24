@@ -51,9 +51,9 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 				sb.append("&quantity=1");
 				sb.append("&total_amount="+totalprice);
 				sb.append("&tax_free_amount="+(totalprice/10));
-				sb.append("&approval_url=http://localhost:8080/pay/successpay?id="+id);
-				sb.append("&cancel_url=http://localhost:8080/pay/cancelpay?id="+id);
-				sb.append("&fail_url=http://localhost:8080/pay/failpay?id="+id);
+				sb.append("&approval_url=http://10.10.10.173:8080/pay/successpay?id="+id);
+				sb.append("&cancel_url=http://10.10.10.173:8080/pay/cancelpay?id="+id);
+				sb.append("&fail_url=http://10.10.10.173:8080/pay/failpay?id="+id);
 				
 				bw.write(sb.toString());
 				bw.flush();
