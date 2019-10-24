@@ -56,12 +56,16 @@
 </script>
 
 <style>
+
 table, thead{
 border:3px solid #cdcdce;
+
 }
+
 tr, td, th{
 border:1px solid #cdcdce;
 }
+
 #product-bill-modal-dialog{
   overflow-y: initial !important
   position: absolute;

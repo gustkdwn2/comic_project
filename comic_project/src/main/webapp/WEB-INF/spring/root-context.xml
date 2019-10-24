@@ -57,7 +57,6 @@
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
 	<bean id="echoHandler" class="com.comic.util.EchoHandler"></bean>
-<<<<<<< HEAD
 	<websocket:handlers>
 		<websocket:mapping handler="echoHandlerOrder" path="/echo_order" />
 		<websocket:handshake-interceptors>
@@ -68,9 +67,6 @@
 	
 	
 	<context:component-scan base-package="com.comic.*" />
-=======
-	
-	<context:component-scan base-package="com.comic.task" />
->>>>>>> final_sub
+
 
 </beans>

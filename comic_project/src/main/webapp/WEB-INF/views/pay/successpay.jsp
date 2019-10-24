@@ -8,6 +8,6 @@
 </head>
 <body style="text-align: center;">
 <h3>결제가 완료되었습니다. <br>창을 닫아주세요.</h3>
-<a onclick="window.close()" style="background-color: yellow; display: inline-block; width: 100px; padding: 10px 0;">창 닫기</a>
+<a onclick="opener.popupclose('success'); window.close();" style="background-color: yellow; display: inline-block; width: 100px; padding: 10px 0;">창 닫기</a>
 </body>
 </html>

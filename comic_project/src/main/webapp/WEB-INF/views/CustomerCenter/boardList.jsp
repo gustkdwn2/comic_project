@@ -111,8 +111,7 @@
 					</div>
 					
 					</c:if>
-					
-					<c:if test="${not empty Memberlogin.MEMBER_ID}">
+					<c:if test="${sessionScope.EMPPOSITION=='사장' or sessionScope.EMPPOSITION=='매니저'}">
 					<div class="template-demo" style="float: right; width:100px; margin-left:350px">
 			            <button type="button" id='regBtn' class="btn btn-primary">글쓰기</button>
 			     	</div>

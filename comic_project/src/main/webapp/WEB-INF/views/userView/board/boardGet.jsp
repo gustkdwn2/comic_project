@@ -56,7 +56,7 @@
 							<td height="50" width = "1000" colspan="6" style="border: 1px solid #cdcdce">
 							<button type="button" data-oper='listBtn' class="btn btn-primary">목록가기</button>
 				            
-				            <c:if test="${ Memberlogin.MEMBER_ID == board.board_id || Memberlogin.MEMBER_ID=='admin'}">
+				            <c:if test="${ Memberlogin.MEMBER_ID == board.board_id || Memberlogin.MEMBER_ID=='9999'}">
 				            <button type="button" data-oper='remBtn' 
 				            		class="btn btn-primary" style="float:right;  margin-left:10px;">삭제하기</button>
 				            </c:if> 

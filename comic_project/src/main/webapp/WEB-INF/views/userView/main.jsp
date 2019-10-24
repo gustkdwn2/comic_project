@@ -222,14 +222,13 @@ function totalprice() {
 	$.ajax({
 		type: 'get',
 		url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
+		async : false,
 		dataType: 'json',
-		async: false,
 		success: function(data) {
 			total_price = data.total_bill;
 		}
 	});
 }
-
 var closeParam;
 function popupclose(param) {
 	closeParam = param;

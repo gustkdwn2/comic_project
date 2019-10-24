@@ -12,7 +12,7 @@ socket.onmessage = function(event) {
 		realOrderRenew();
 	} else if(data[1] == "시작") {
 		ajaxtosenddb_comic_room_use2(data[2], data[0], "on");
-	}
+	} 
 	
 };
 

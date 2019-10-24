@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.comic.model.ChatVO;
 import com.comic.model.UserBillVO;
 import com.comic.model.UserProductBillVO;
+import com.comic.service.ChattingService;
 import com.comic.service.UserOrderManegerService;
 
 import lombok.AllArgsConstructor;
@@ -26,9 +27,16 @@ public class UserViewController {
 	
 	private UserOrderManegerService userOrderManegerService;
 	
+	private ChattingService chatService;
+	
 	@PostMapping("/mainPro")
-	public void mainViewPro(HttpSession session) {
-		//session.setAttribute("roomNum", roomNum);
+	public void mainViewPro() {
+		
+	}
+	
+	@GetMapping("/mainPro")
+	public void mainViewGetPro() {
+		
 	}
 	
 	@GetMapping("/main")
@@ -51,6 +59,9 @@ public class UserViewController {
 	public void chat(final HttpSession session, Model model) {
 		System.out.println(session.getAttribute("roomNum"));
 		model.addAttribute("roomNum", session.getAttribute("roomNum"));
+		 
+		List<ChatVO> chatList= chatService.selectChat(Integer.parseInt(session.getAttribute("roomNum").toString()));
+		model.addAttribute("chatList", chatList);
 	}
 	
 	@GetMapping("userBill")
