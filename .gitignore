@@ -15,10 +15,8 @@ target/
 *.db
       
 # Eclipse #
-.project
 .metadata
 .classpath
-.settings/
 .loadpath
  
 bin/**
