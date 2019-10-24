@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
 <link rel="stylesheet" href="/resources/css/chatCss.css">
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
 <body>
 	<div class="chat_window" id="chat_window">
 		<div class="top_menu">
@@ -17,7 +17,7 @@
 		</div>
 		<ul class="messages" id="messages${ roomNum }">
 			<c:forEach items="${ chatList }" var="list">
-			<c:if test="${ list.chat_id eq 'admin' }">
+			<c:if test="${ list.chat_id ne 'admin' }">
 				<li class="message left appeared">
 					<div class="avatar"></div>
 					<div class="text_wrapper">
@@ -25,7 +25,7 @@
 					</div>
 				</li>
 			</c:if>
-			<c:if test="${ list.chat_id ne 'admin' }">
+			<c:if test="${ list.chat_id eq 'admin' }">
 				<li class="message right appeared">
 					<div class="avatar"></div>
 					<div class="text_wrapper">
@@ -52,20 +52,25 @@
 			</div></li>
 
 	</div>
+
 </body>
+<<<<<<< HEAD
+<script src="/resources/js/userWebsocket.js?ver=1"></script>
+=======
 <script src="/resources/js/userWebsocket.js?after"></script>
+>>>>>>> sangju_final
 <script type="text/javascript">
-var sessionValue = ${roomNum};
-/* var messages = $("#messages" + sessionValue); */
+var sessionValue = "<c:out value = '${admin}' />";
 var memberid = "<c:out value='${memberid}' />";
-var chatRoom = sessionValue;
+var chatRoom = "<c:out value='${roomNum}' />";
 var rightLeft;
 var checkInOut;
 var test;
+
 $(document).ready(function() {
 	
 	$("#messages" + chatRoom).show();
 });
 
-
 </script>
+</html>

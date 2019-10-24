@@ -124,9 +124,15 @@ body {
 											주문상태 : <font id="order_status${i}">없음</font><br>
 										</div>
 										<div class="div_bottom">
+<<<<<<< HEAD
 											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i});">
+											<input type="button" value="채팅하기" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+=======
+											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
+
 											<button type="button" name='chat' value="${i}" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 											채팅하기</button>
+>>>>>>> sangju_final
 										</div>
 									</div>
 									<c:if test="${i%3==0}">
@@ -357,7 +363,10 @@ body {
 			method_startnstop(1, "user");
 		});
 	});
-
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> sangju_final
 	function realOrderRenew() {
 		$('#realOrderTable').DataTable().clear().draw();
 		$.ajax({
