@@ -83,7 +83,7 @@ public class SettlementServiceImpl implements SettlementService {
 		} else if (errorNum > 0) { //현재재고 > 입력재고 => 지출
 			int pay = errorNum * -1; // 지출은 가격을 -로 표시하기위해
 			lossMapper.lossInsert(category, errorNum, product.getProduct_num(), pay);
-		}
+		} 
 		
 	}
 	
