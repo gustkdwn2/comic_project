@@ -39,7 +39,7 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 				conn.setDoOutput(true);
 				//admin key a258e66f44b2c8ba226f22660cda5933  현태 api  port 8080
 				//admin key 57a8cadc155aba24a64f1f344d81bfe8  인호 api  port 8090
-				conn.setRequestProperty("Authorization", "KakaoAK a258e66f44b2c8ba226f22660cda5933");
+				conn.setRequestProperty("Authorization", "KakaoAK 57a8cadc155aba24a64f1f344d81bfe8");
 				
 				BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 				StringBuilder sb = new StringBuilder();
@@ -51,9 +51,9 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 				sb.append("&quantity=1");
 				sb.append("&total_amount="+totalprice);
 				sb.append("&tax_free_amount="+(totalprice/10));
-				sb.append("&approval_url=http://10.10.10.173:8080/pay/successpay?id="+id);
-				sb.append("&cancel_url=http://10.10.10.173:8080/pay/cancelpay?id="+id);
-				sb.append("&fail_url=http://10.10.10.173:8080/pay/failpay?id="+id);
+				sb.append("&approval_url=http://localhost:8090/pay/successpay?id="+id);
+				sb.append("&cancel_url=http://localhost:8090/pay/cancelpay?id="+id);
+				sb.append("&fail_url=http://localhost:8090/pay/failpay?id="+id);
 				
 				bw.write(sb.toString());
 				bw.flush();
