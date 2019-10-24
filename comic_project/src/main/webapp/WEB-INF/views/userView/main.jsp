@@ -222,31 +222,13 @@ function totalprice() {
 	$.ajax({
 		type: 'get',
 		url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
-		async : false,
 		dataType: 'json',
+		async: false,
 		success: function(data) {
 			total_price = data.total_bill;
 		}
 	});
 }
-
-var order_qty = [];
-var product_name = [];
-
-function productInfor() {
-	$.ajax({
-		type: 'get',
-		url: '/userView/userProductBill?userId=${Memberlogin.MEMBER_ID}',
-		dataType: 'json',
-		success: function(data) {
-			console.log(data);
-			$.each(data , function(i){
-				order_qty[i] = data[i].order_qty;
-				product_name[i] = data[i].product_name;
-			} 		
-		}
-	});
-} 
 
 var closeParam;
 function popupclose(param) {
@@ -255,7 +237,6 @@ function popupclose(param) {
 
 $('#kakaopay').click(function(e){
 	totalprice();
-	productInfor();
 	e.preventDefault();
 	console.log(total_price);
 	$.ajax({
@@ -264,9 +245,7 @@ $('#kakaopay').click(function(e){
 		data : { 
 			  room_num : room_num,
 			  id : mem_id,
-			  totalprice : total_price,
-			  order_qty : order_qty,
-			  product_name : product_name
+			  totalprice : total_price
 			},
 		success : function(res) {
 			console.log(res);
