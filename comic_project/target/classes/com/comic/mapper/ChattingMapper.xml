@@ -5,17 +5,18 @@
 
 <mapper namespace="com.comic.mapper.ChattingMapper">
 
-	<insert id="chatAdd">
+	<insert id="chatAdd" >
 		insert into
 		comic_chat(chat_num, chat_roomnum, chat_id, chat_time,
 		chat_onoff, chat_content)
-		values ((select NVL(max(orderview_num), 0)+1 from comic_chat),
+		values ((select NVL(max(chat_num), 0)+1 from comic_chat),
 		#{chat_roomnum}, #{chat_id}, sysdate, #{chat_onoff}, #{chat_content})
 	</insert>
 	
 	<select id="chatSelect"
 		resultType="com.comic.model.ChatVO">
-		select * from COMIC_CHAT order by chat_num where chat_onoff = 'on'
+		select * from COMIC_CHAT where CHAT_ONOFF = 'on' AND chat_roomnum = #{roomNum} 
+		order by chat_num
 	</select>
 	
-</mapper>
+</mapper> 

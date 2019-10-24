@@ -10,7 +10,7 @@
 				<div class="card" id="product-bill-card">
 					<div class="card-body" id="product-bill-card-body" style="height: 600px;">
 						<div class="table-responsive pt-3" style="text-align: center;" >
-							<h2>상품 주문 상세 내역<button type="button" class="btn btn-warning" style="float: right;"><font style="color:white;">알림</font></button></h2>
+							<h2>상품 주문 상세 내역<button type="button" id="orderArletButton" class="btn btn-warning" style="float: right;"><font style="color:white;">알림</font></button></h2>
 							
 							<table id="productBillTable" class="table" style="margin-top: 30px; height: 410px;">
 								<thead>
@@ -52,6 +52,11 @@
 		$("#product-bill-card-body").scrollTop(0);
 		$("#adminproductBillModal").hide();
 		$('#modalstyle').css('display','none');
+	});
+
+	$("#orderArletButton").click(function() {
+		console.log("주문알람 버튼 오니?");
+		socket.send(orderArlet + ",주문가져가,id");
 	});
 	
 </script>

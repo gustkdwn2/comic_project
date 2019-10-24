@@ -6,13 +6,26 @@ socket.onopen = function() {
 socket.onmessage = function(event) {
 	console.log(event.data);
 	var data = event.data.split('|');
-	if(data[1] == "주문") {
-		console.log("test");
-		orderArlet(data[0], data[2]);
-		realOrderRenew();
-	} else if(data[1] == "시작") {
-		ajaxtosenddb_comic_room_use2(data[2], data[0], "on");
+	if(data[0] == "chat") {
+		test = data[1];
+		message_side = 'left';
+		sendMessage(data[2]);
+		//$("#chatCss").css('color', 'red');
+
+	} else {
+		if(data[1] == "주문") {
+			console.log("test");
+			orderArlet(data[0], data[2]);
+			realOrderRenew();
+		} else if(data[1] == "시작") {
+			ajaxtosenddb_comic_room_use2(data[2], data[0], "on");
+		} else if(data[1] == "종료") {
+			ajaxtosenddb_comic_room_use2(data[2], data[0], "off");
+		} else if(data[1] == "주문가져가") {
+			userOrderArlet();
+		}
 	}
+	 
 	
 };
 
@@ -25,8 +38,13 @@ function orderArlet(roomNum, userid) {
 	$("#orderModalBody").append(roomNum + " 방"  + userid + "님 주문!");
 }
 
+function userOrderArlet() {
+	$("#orderArlet").modal("show");
+}
+
 function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 		roomuse_status) {
+	console.log("오니?");
 	var list = [ roomuse_id, roomuse_num,
 		roomuse_status];
 	//사용자,시작시간,사용자 상태,주문 상태,방번호
@@ -67,10 +85,54 @@ function ajaxtogetdb_comic_room_uselist() {
 				number = list.roomuse_num;
 					startnstop_init(list.roomuse_id,number,list.starttime,list.roomuse_status);
 			});
-			
 		},
 		error : function(data) {
 			console.log("실패");
 		}
 	});	
 }
+
+var Message;
+Message = function(arg) {
+	this.text = arg.text, this.message_side = arg.message_side;
+	this.draw = function(_this) {
+		return function() {
+			var $message;
+			console.log(chatRoom);
+			test = chatRoom;
+			console.log(test);
+			$message = $($('.message_template' + test).clone().html());
+			$message.addClass(_this.message_side).find('.text').html(
+					_this.text);
+			$('#messages' + test).append($message);
+			return setTimeout(function() {
+				return $message.addClass('appeared');
+			}, 0);
+		};
+	}(this);
+	return this;
+};
+
+var getMessageText, message_side, sendMessage;
+getMessageText = function() {
+	var $message_input;
+	$message_input = $('.message_input');
+	return $message_input.val();
+};
+sendMessage = function(text) {
+	var $messages, message;
+	if (text.trim() === '') {
+		return;
+	}
+	$messages = $('.messages');
+	
+	message = new Message({
+		text : text,
+		message_side : message_side
+	});
+	message.draw();
+	
+	return $messages.animate({
+		scrollTop : $messages.prop('scrollHeight')
+	}, 300);
+};

@@ -22,7 +22,7 @@ li{list-style: none;}
 			<li class="nav-item"><a class="nav-link"
 						href="/administrator/ceologin">
 					<i class="mdi mdi-face menu-icon"></i><span class="menu-title">
-					매장 관리</span></a></li>
+					관리자 로그인</span></a></li>
 						
 			<c:if test="${sessionScope.EMPPOSITION=='사장'}">
 			<li class="nav-item open accordion_wrap"><a class="nav-link"> 

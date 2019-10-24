@@ -1,5 +1,7 @@
 package com.comic.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ public class ChattingServiceImpl implements ChattingService{
 	@Override
 	public void chatAdd(ChatVO vo) {
 		chattingmapper.chatAdd(vo);
+	}
+
+	@Override
+	public List<ChatVO> selectChat(int roomNum) {
+		return chattingmapper.chatSelect(roomNum);
 	}
 
 }

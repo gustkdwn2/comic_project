@@ -1,63 +1,88 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!-- <link rel="stylesheet" href="/resources/css/chatCss.css"> -->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-<body>
+<link rel="stylesheet" href="/resources/css/chatCss.css">
 
 <div class="modal" id="chatModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
 
 			<!-- Modal body -->
-				<div class="card" >
-					<div class="card-body" style="height: 650px;">
-						
-							<h2>상품 주문 상세 내역<button type="button" class="btn btn-warning" style="float: right;"><font style="color:white;">알림</font></button></h2>
+					<div class="chat_window" id="chat_window">
+						<div class="top_menu">
 							
-
-								
-							<button 
-							       type="button" class="btn btn-secondary">닫기</button>	
+							<div class="buttons">
+								<div class="button close" id="chatClose"></div>
+							</div>
+							<div class="title"></div>
+						<c:forEach var="i" begin="1" end="6" step="1">
+							<ul class="messages" id="messages${i}"></ul>
+						</c:forEach>
+						<div class="bottom_wrapper clearfix">
+							<div class="message_input_wrapper">
+								<input class="message_input" id="message_input"placeholder="Type your message here..." />
+							</div>
+							<div class="send_message" id="send_message">
+								<div class="icon"></div>
+								<div class="text">Send</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-
+						<c:forEach var="i" begin="1" end="6" step="1">
+						<div class="message_template${i}">
+							<li class="message"><div class="avatar"></div>
+							<div class="text_wrapper">
+								<div class="text"></div>
+							</div></li>
+						</div>
+						</c:forEach>
+				
 </div>
-
-
-
-	
-
-</body>
-<script src="/resources/js/userWebsocket.js?ver=1"></script>
 <script type="text/javascript">
-function getParameter(strParamName) {
-    var arrResult = null;
-    if (strParamName) {
-        arrResult = location.search.match(new RegExp("[&?]" + strParamName+"=(.*?)(&|$)"));
-        return arrResult && arrResult[1] ? arrResult[1] : null;
-    }
-}
-
 var sessionValue = "<c:out value = '${admin}' />";
 var memberid = "<c:out value='${memberid}' />";
-var chatRoom = getParameter("room");
+var chatRoom;
 var rightLeft;
 var checkInOut;
 var test;
 
-$(document).ready(function() {
-	$("#chatTile").html("");
-	$("#chatTile").append(chatRoom + "방 채팅")
-	for(var i = 1; i < 7; i++) {
-		$("#messages" + i).hide();
-	}
-   
-	$("#messages" + chatRoom).show();
-});
+
+	$("#chatClose").click(function() {
+		$("#chatModal").hide(); 
+	});	
+
+	$('#send_message').click(function(e) {
+		console.log("메세지 보내기");
+		message_side = 'right';
+		sendMessage(getMessageText());
+		if(sessionValue == 'admin') {
+			checkInOut = 'user';
+			memberid = 'admin';
+		} else {
+			checkInOut = 'admin';
+		}
+		console.log($('.message_input').val());
+		socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val() + "," + memberid);
+		$('.message_input').val('');
+	});
+
+	$('#message_input').keyup(function(e) {
+		if (e.which === 13) { 
+			message_side = 'right';
+			sendMessage(getMessageText());
+			if(sessionValue == 'admin') {
+				checkInOut = 'user';
+				memberid = 'admin';
+			} else {
+				checkInOut = 'admin';
+				
+			}
+			
+			console.log($('.message_input').val());
+			console.log(chatRoom);
+			socket.send("chat," + chatRoom + "," + checkInOut + "," + $('.message_input').val() + "," + memberid);
+			$('.message_input').val('');
+		}
+	});
 
 </script>
