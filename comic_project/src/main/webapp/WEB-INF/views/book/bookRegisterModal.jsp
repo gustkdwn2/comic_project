@@ -68,7 +68,7 @@
 								<font style="vertical-align: inherit;">책 소개</font>
 							</label>
 							<div class="col-sm-9">
-								<textarea class="form-control" rows="6" name="book_content" required></textarea>
+								<textarea class="form-control" rows="6" name="book_content" id="book_content" required></textarea>
 							</div>
 						</div>
 						<div class="form-group row">

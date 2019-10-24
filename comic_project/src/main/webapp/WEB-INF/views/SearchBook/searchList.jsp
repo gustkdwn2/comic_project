@@ -269,7 +269,8 @@ tr{margin-bottom:5px;}
 				type: 'get',
 				url: '/book/getAttachList?book_name='+bookname,				
 				success: function(attach) {
-					var fileCallPath = encodeURIComponent(attach[0].uploadPath+"/s_"+attach[0].uuid+"_"+attach[0].fileName);
+					console.log("여기옴");
+					var fileCallPath = encodeURIComponent(attach[0].uploadPath+"/"+attach[0].uuid+"_"+attach[0].fileName);
 					str += "<li data-path='"+attach[0].uploadPath+"' data-uuid='"+attach[0].uuid+"' data-filename='"+attach[0].fileName+"' data-type='"+attach[0].fileType+"'>";
 					str += "<div><img src='/display?fileName="+fileCallPath+"'>";
 					str += "</div>";

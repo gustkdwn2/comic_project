@@ -25,8 +25,13 @@ $(document).ready(function(e){
 				return;
 			}
 		});
-
-		if($.trim($("#book_name_register").val()) != $("#book_name_register").val()) {
+		
+		if($.trim($("#book_content").val()) != $("#book_content").val() || $("#book_content").val() == "") {
+			alert("앞,뒤 공백을 지워주세요.");
+			$("#book_content").focus();
+			return false;
+		}
+		if($.trim($("#book_name_register").val()) != $("#book_name_register").val() || $("#book_name_register").val() == "") {
 		    alert("앞,뒤 공백을 지워주세요.");
 		    $("#book_name_register").val("");
 		    $("#book_name_register").focus();
@@ -38,35 +43,41 @@ $(document).ready(function(e){
 		    $("#book_name_register").focus();
 		    return false;
 		}
-		if($.trim($("#book_loc_register").val()) != $("#book_loc_register").val()) {
+		if($.trim($("#book_loc_register").val()) != $("#book_loc_register").val() || $("#book_loc_register").val() == "") {
 		    alert("앞,뒤 공백을 지워주세요.");
 		    $("#book_loc_register").val("");
 		    $("#book_loc_register").focus();
 		    return false;
 		}
-		if($.trim($("#book_publisher_register").val()) != $("#book_publisher_register").val()) {
+		if($.trim($("#book_publisher_register").val()) != $("#book_publisher_register").val() || $("#book_publisher_register").val() == "") {
 		    alert("앞,뒤 공백을 지워주세요.");
 		    $("#book_publisher_register").val("");
 		    $("#book_publisher_register").focus();
 		    return false;
 		}
-		if($.trim($("#book_writer_register").val()) != $("#book_writer_register").val()) {
+		if($.trim($("#book_writer_register").val()) != $("#book_writer_register").val() || $("#book_writer_register").val() == "") {
 		    alert("앞,뒤 공백을 지워주세요.");
 		    $("#book_writer_register").val("");
 		    $("#book_writer_register").focus();
 		    return false;
 		}
-		if($.trim($("#book_category_register").val()) != $("#book_category_register").val()) {
+		if($.trim($("#book_category_register").val()) != $("#book_category_register").val() || $("#book_category_register").val() == "") {
 		    alert("앞,뒤 공백을 지워주세요.");
 		    $("#book_category_register").val("");
 		    $("#book_category_register").focus();
 		    return false;
 		}
-		if($.trim($("#book_lastbook_register").val()) != $("#book_lastbook_register").val()) {
+		if($("#book_lastbook_register").val() == "") {
 		    alert("마지막권을 입력해주세요.");
 		    $("#book_lastbook_register").val("");
 		    $("#book_lastbook_register").focus();
 		    return false;
+		}
+		if($("#book_lastbook_get").val() < 1) {
+		      alert("0보다 큰수를 입력해주세요.");
+		      $("#book_lastbook_get").val("");
+		      $("#book_lastbook_get").focus();
+		      return false;
 		}
 		if($('#uploadFileRegister')[0].files[0] == null) {
 			alert("이미지를 넣어주세요.")
