@@ -7,8 +7,8 @@
 		<div class="modal-content" align="center">
 
 			<!-- Modal body -->
-				<div class="card" id="product-bill-card">
-					<div class="card-body" id="product-bill-card-body" >
+				<div class="card">
+					<div class="card-body">
 							<h3>주문이 준비되었습니다. 카운터로 오시면 됩니다.</h3><br/>
 							
 							<button id="orderArletClose" type="button" class="btn btn-warning"><font style="color:white;">닫기</font></button>

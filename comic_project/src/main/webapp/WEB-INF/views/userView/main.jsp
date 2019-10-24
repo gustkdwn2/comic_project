@@ -85,7 +85,7 @@
 	<jsp:include page="billModal.jsp" />
 	<jsp:include page="productBillModal.jsp" />
 	<jsp:include page="chatting.jsp" />
-	<jsp:include page="orderArlet.jsp" />
+	<jsp:include page="orderArlet.jsp"/>
 	<!-- hidden form -->
 	<form id="operForm"></form>
 </body>
@@ -287,16 +287,16 @@ $('#kakaopay').click(function(e){
 		              if(popup.closed){
 			              if( closeParam == 'success') {
 			            	socket.send(room_num + ",종료," + mem_id);
-			            	location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
+			            	location.href="http://localhost:8080/userView/mainPro?roomNum="+room_num
 			            	
 			              } else {
-		            	  	location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
+		            	  	location.href="http://localhost:8080/userView/main?roomNum="+room_num
 					      }
 		                 
 		              }
 		        }, 1000)
 			} else {
-				location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
+				location.href="http://localhost:8080/userView/mainPro?roomNum="+room_num
 			}
 		}
 	});
