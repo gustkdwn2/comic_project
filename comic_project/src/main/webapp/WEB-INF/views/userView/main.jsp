@@ -24,10 +24,7 @@
 				<br/><br/>
 			</div>
 			<div class="container">
-				<div class="row no-gutters" style="margin-top: 50px;"> 				
-					<div style="border: 10px solid #f4e362; width: 1300px; height: 80px; border-radius: 70px / 30px; margin-bottom: 30px;">
-					여기에 알림이 오도록 할건지 아님 어떻게 할건지 ??!!
-					</div>
+				<div class="row no-gutters" style="margin-top: 50px;">
 					
 					<div class="col-lg-4">
 						<a class="portfolio-item" id="userOrderView"> <span class="caption"> <span class="caption-content">
@@ -86,7 +83,6 @@
 	<jsp:include page="headerMemberModifyModal.jsp" />
 	<jsp:include page="headerMemberModifyPasswordModal.jsp" />
 	<jsp:include page="billModal.jsp" />
-	<jsp:include page="paymentModal.jsp"/>
 	<jsp:include page="productBillModal.jsp" />
 	<!-- hidden form -->
 	<form id="operForm"></form>

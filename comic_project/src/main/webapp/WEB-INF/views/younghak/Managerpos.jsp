@@ -124,8 +124,7 @@ body {
 											주문상태 : <font id="order_status${i}">없음</font><br>
 										</div>
 										<div class="div_bottom">
-											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
-
+											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i});">
 											<input type="button" value="채팅하기" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 										</div>
 									</div>
@@ -167,7 +166,7 @@ body {
 		</div>
 	</div>
 	<!-- main-panel ends -->
-
+	<jsp:include page="adminproductBillModal.jsp" />
 	<script>
 	
 	var check_arr = new Array(7); //방의 개수보다 1크게
