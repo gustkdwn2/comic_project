@@ -49,9 +49,9 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 				sb.append("&quantity=1");
 				sb.append("&total_amount="+totalprice);
 				sb.append("&tax_free_amount="+(totalprice/10));
-				sb.append("&approval_url=http://10.10.10.173:8080/pay/successpay?id="+id);
-				sb.append("&cancel_url=http://10.10.10.173:8080/pay/cancelpay?id="+id);
-				sb.append("&fail_url=http://10.10.10.173:8080/pay/failpay?id="+id);
+				sb.append("&approval_url=http://localhost:8080/pay/successpay?id="+id);
+				sb.append("&cancel_url=http://localhost:8080/pay/cancelpay?id="+id);
+				sb.append("&fail_url=http://localhost:8080/pay/failpay?id="+id);
 				
 				bw.write(sb.toString());
 				bw.flush();
@@ -83,8 +83,9 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 	public void insertSale(String id) {
 		kakaoPayMapper.insertproductSale(id);  // 상품 매출 추가
 		kakaoPayMapper.insertroomSale(id);  // 방 매출 추가
-		kakaoPayMapper.resetRoom(id); // 방 사용 테이블 초기화
 		kakaoPayMapper.productUpdate(id);
+		//kakaoPayMapper.resetRoom(id); // 방 사용 테이블 초기화
+		
 	}
 
 	@Override

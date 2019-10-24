@@ -125,7 +125,7 @@ body {
 										</div>
 										<div class="div_bottom">
 											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i});">
-											<button type="button" name='chat' value="${i}" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+											<button type="button" id="chat${i}" name='chat' value="${i}" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 											채팅하기</button>
 										</div>
 									</div>
@@ -168,6 +168,7 @@ body {
 	</div>
 	<!-- main-panel ends -->
 	<jsp:include page="adminproductBillModal.jsp" />
+	<jsp:include page="../chat/chatting.jsp" />
 	<script>
 	
 	var check_arr = new Array(7); //방의 개수보다 1크게
@@ -348,15 +349,49 @@ body {
 					});
 			}
 			
-	$(document).ready(function(){
 		$("button[name='chat']").on("click", function() {
-			var roomNum = $(this).attr('value');
-			window.open("/chat/chatting?room=" + roomNum,"_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
+			chatRoom = $(this).attr('value');
+			$("#chat" + chatRoom).css('color', 'white');
+			console.log("chatRoom" + chatRoom);
+			//window.open("/chat/chatting?room=" + roomNum,"_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
+			$('#chatModal').css('display','');
+			$("#chatModal").show();
+			$(".title").html("");
+			$(".title").append(chatRoom + "방 채팅");
+			for(var i=1; i < 7; i++) {
+				$("#messages" + i).hide();
+			}  
+			$("#messages" + chatRoom).show();
+			
+			$.ajax({
+				type: 'get',
+				url: '/chat/chatting?room=' + chatRoom,
+				dataType: 'json',
+				success: function(data) {
+					$("#messages" + chatRoom).html("");
+					$.each(data , function(i){
+						var str = "";
+						if(data[i].chat_id != "admin") {
+			            	str += "<li class='message left appeared'>";
+			            	str += '<div class="avatar"></div>';
+			            	str += '<div class="text_wrapper">';
+			            	str += '<div class="text">' + data[i].chat_content +'</div>';
+			            	str += '</div>';
+			            	str += '</li>';
+						} else {
+							str += "<li class='message right appeared'>";
+			            	str += '<div class="avatar"></div>';
+			            	str += '<div class="text_wrapper">';
+			            	str += '<div class="text">' + data[i].chat_content +'</div>';
+			            	str += '</div>';
+			            	str += '</li>';
+						}
+						$("#messages" + chatRoom).append(str);
+		           });
+				}
+			});
 		});
-		$("#roomClose").on("click", function() {
-			method_startnstop(1, "user");
-		});
-	});
+
 
 	function realOrderRenew() {
 		$('#realOrderTable').DataTable().clear().draw();
@@ -369,8 +404,9 @@ body {
 			}
 		});
 	} 
-		
+	var orderArlet;
 	function adminproductBillModalBtn(num) {
+		orderArlet = num;
 		console.log("일로옴?");
 		var id = document.getElementById('user' + num).innerHTML;
 		console.log(id);
