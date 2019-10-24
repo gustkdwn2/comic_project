@@ -479,3 +479,15 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-24 09:45:50.447
 !MESSAGE executing callback sts4.classpath.oexREqYx SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-24 09:47:28.725
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.oexREqYx
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-24 09:47:28.725
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.oexREqYx
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-24 09:47:28.726
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-10-24 09:47:28.726
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.oexREqYx => OK
