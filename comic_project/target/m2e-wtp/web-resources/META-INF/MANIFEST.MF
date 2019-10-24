@@ -1,5 +1,5 @@
-﻿Manifest-Version: 1.0
-Built-By: 1027
-Build-Jdk: 1.8.0_212
+Manifest-Version: 1.0
+Built-By: gustk
+Build-Jdk: 1.8.0_171
 Created-By: Maven Integration for Eclipse
 
