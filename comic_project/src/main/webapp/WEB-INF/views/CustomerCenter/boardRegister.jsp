@@ -24,7 +24,7 @@
 		                  <form class="forms-sample" action="/CustomerCenter/boardRegister" method="post"
 		                   onsubmit="return nullcheck();"> 
 		                  
-		                  	<input type="hidden" name="board_id" value="${Memberlogin.MEMBER_ID}" >
+		                  	<input type="hidden" name="board_id" value="관리자" >
 		                  	
 		                    <div class="form-group">
 		                      <label for="board_title">제목</label>

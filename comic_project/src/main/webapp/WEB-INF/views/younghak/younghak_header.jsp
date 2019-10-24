@@ -39,7 +39,7 @@ table, td {
 							class="btn btn-danger btn-rounded btn-fw">포스기 화면</button>
 						<button type="button"
 							onclick="javascript:window.location.href='/managerpos/login'"
-							class="btn btn-secondary btn-rounded btn-fw">출퇴근하기</button>
+							class="btn btn-secondary btn-rounded btn-fw">출퇴근등록</button>
 						
 						<c:if test="${sessionScope.EMPPOSITION=='사장'}">
 						<button type="button"
@@ -48,7 +48,7 @@ table, td {
 							</c:if>
 						<button type="button" id="commute"
 							onclick=" <%-- <% session.removeAttribute("EMPID"); %> --%> "
-							class="btn btn-warning btn-rounded btn-fw">오늘 출퇴근</button>
+							class="btn btn-warning btn-rounded btn-fw">근태 기록표</button>
 					</div>
 				</div>
 			</div>

@@ -27,7 +27,7 @@ public class KakaoPayController {
 	
 	@GetMapping("kakao")
 	public @ResponseBody Map<String, String> kakaoPay(@RequestParam("room_num") int room_num, @RequestParam("id") String id, @RequestParam("totalprice") int totalprice, HttpSession httpSession) {
-		Map<String, String> jsonMap = new HashMap<String, String>(); 
+		Map<String, String> jsonMap = new HashMap<String, String>();
 		if (totalprice == 0) {
 			httpSession.removeAttribute("Memberlogin");
 			httpSession.removeAttribute("memberid");

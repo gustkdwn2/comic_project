@@ -1,4 +1,4 @@
-package com.comic.service.impl;
+﻿package com.comic.service.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,11 +8,13 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comic.mapper.KakaoPayMapper;
+import com.comic.model.BillVO;
 import com.comic.service.KaKaoPayService;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -81,9 +83,18 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 
 	@Override
 	public void insertSale(String id) {
+		System.out.println("여기로들어옴이닏가ㅓ리ㅏㅓㄴㅁㅇㄹ하ㅓㅈ밋헌");
 		kakaoPayMapper.insertproductSale(id);  // 상품 매출 추가
 		kakaoPayMapper.insertroomSale(id);  // 방 매출 추가
+		
+		List<BillVO> vo = kakaoPayMapper.billGetList(id);
+		System.out.println(vo);
+		for (int i = 0; i < vo.size(); i++) {
+			kakaoPayMapper.productQtyUpdate(vo.get(i).getOrder_product_num(), vo.get(0).getOrder_qty());
+		}
+		
 		kakaoPayMapper.resetRoom(id); // 방 사용 테이블 초기화
+//		kakaoPayMapper.productUpdate(id);
 	}
 
 	@Override

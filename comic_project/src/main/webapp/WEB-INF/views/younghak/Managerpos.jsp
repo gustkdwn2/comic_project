@@ -17,12 +17,10 @@
 * {
 	box-sizing: border-box;
 }
-
 body {
 	margin: 0;
 	font-family: "맑은 고딕";
 }
-
 /* The grid: Three equal columns that floats next to each other */
 .column {
 	float: left;
@@ -35,19 +33,16 @@ body {
 	border-right: 3px solid #f3f3f3;
 	background-color: #686868;
 }
-
 .containerTab {
 	padding: 20px;
 	color: white;
 }
-
 /* Clear floats after the columns */
 .row:after {
 	content: "";
 	display: table;
 	clear: both;
 }
-
 /* Closable button inside the container tab */
 .closebtn {
 	float: right;
@@ -55,7 +50,6 @@ body {
 	font-size: 35px;
 	cursor: pointer;
 }
-
 .div_root {
 	float: left;
 	width: 30.0%;
@@ -67,7 +61,6 @@ body {
 	margin-left: 10px;
 	height: 230px;
 }
-
 .div_menu {
 	width: 30%;
 	/* height:100px; */
@@ -81,7 +74,6 @@ body {
 	color: white;
 	height: 80%;
 }
-
 .div_con {
 	width: 70%;
 	/* height:100px ; */
@@ -97,7 +89,6 @@ body {
 	border-bottom: 3px solid #f3f3f3;
 	text-align: center-vertical;
 }
-
 .div_bottom {
 	width: 100%;
 	/* height:100px; */
@@ -130,12 +121,12 @@ body {
 
 										<div class="div_con">
 											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font id="user_time${i}">없음</font><br> 사용상태 : <font id="user_status${i}">없음</font><br>
-											주문상태 : <font id="order_status${i}">없음</font><br>
+											<br>
 										</div>
 										<div class="div_bottom">
-											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;">
-
-											<input type="button" value="채팅하기" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i});">
+											<button type="button" id="chat${i}" name='chat' value="${i}" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+											채팅하기</button>
 										</div>
 									</div>
 									<c:if test="${i%3==0}">
@@ -176,13 +167,13 @@ body {
 		</div>
 	</div>
 	<!-- main-panel ends -->
-
+	<jsp:include page="adminproductBillModal.jsp" />
+	<jsp:include page="../chat/chatting.jsp" />
 	<script>
 	
 	var check_arr = new Array(7); //방의 개수보다 1크게
 	
 	array_init(check_arr);
-
 	ajaxtogetdb_comic_room_uselist(); 
 	//초기화작업
 	
@@ -196,21 +187,16 @@ body {
 			}
 			document.getElementById(tabName).style.display = "block";
 		}
-
 		function pos_start(roomnum) {
 			alert(roomnum + "번 방 시작");
-
 		}
-
 		var hour = 0;
 		var minute = 0;
-
 		function array_init(check_arr) {
 			for (var i = 0; i < check_arr.length; i++) {
 				check_arr[i] = false;
 			}
 		}
-
 		
 		function method_startnstop(num, id) {
 			// 시작시간
@@ -220,37 +206,27 @@ body {
 				var user = "id";
 				var user_status = "unavail";
 				var order_status = "unavail";
-
 				var roomuse_id = "id";
 				var roomuse_num = num;
 				var roomuse_status = "on";
-
 				document.getElementById('user' + num).innerHTML = user;
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
 				document.getElementById('order_status' + num).innerHTML = order_status;
-
 				ajaxtosenddb_comic_room_use2(id, num, "on");
-
 			} else {
-
 				check_arr[num] = false;
-
 				var roomuse_id = "없음";
 				var roomuse_num = num;
 				var roomuse_status = "off";
-
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
 				document.getElementById('order_status' + num).innerHTML = "대기중";
-
 				ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 						roomuse_status);
 			}
 		}
-
 		function startnstop_init(id,num,starttime,status) {
-
 			if(status=="on"){
 				check_arr[num]=false;
 				}
@@ -260,35 +236,28 @@ body {
 				time_start(starttime, num);
 				/* 테스트용 */
 				var order_status = "unavail";
-
 				document.getElementById('user' + num).innerHTML = id;
 				document.getElementById('user_status' + num).innerHTML = status;
 				document.getElementById('order_status' + num).innerHTML = order_status;
-
 			} else {
 				check_arr[num] = false;
-
 				var roomuse_id = "없음";
 				var roomuse_num = num;
 				var roomuse_status = "off";
-
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
 				document.getElementById('order_status' + num).innerHTML = "대기중";
-
 			}
 		}
 		
 		function time_start(time, num) {
 			//	alert("0");
 			if (!check_arr[num]) {
-
 			} else {
 				//console.log(time);
 				time = parseInt(time)//가끔 여기서 사용된 파라미터가 string형태로 읽어와져서 형변환을 한번해준다.
 				//if(time%10==0){					
-
 				//setTimeout(function() {
 				//ajaxtogetdb_comic_room_uselist();
 				//}, 1000)
@@ -296,37 +265,27 @@ body {
 				time += 1;
 				hour = Math.floor(time / 3600);
 				hour = time_modify(hour);
-
 				minute = Math.floor(time % 3600 / 60);
 				minute = time_modify(minute);
-
 				var second = time % 60;
 				second = time_modify(second);
-
 				document.getElementById('user_time' + num).innerHTML = hour
 						+ ":" + minute + ":" + second;
-
 				//document.getElementById('test1_2').innerHTML="와쓰"+time;
 				var t = setTimeout(function() {
 					time_start(time, num)
 				}, 1000)
 			}
-
 		}
-
 		function time_modify(time) {
-
 			if (time.toString().length == 1) {
 				time = "0" + time;
 			}
-
 			if (time == null) {
 				time = 0;
 			}
-
 			return time;
 		}
-
 		function num_length() {
 			var num = 123;
 			var str = "123";
@@ -390,15 +349,49 @@ body {
 					});
 			}
 			
-	$(document).ready(function(){
 		$("button[name='chat']").on("click", function() {
-			var roomNum = $(this).attr('value');
-			window.open("/chat/chatting?room=" + roomNum,"_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
+			chatRoom = $(this).attr('value');
+			$("#chat" + chatRoom).css('color', 'white');
+			console.log("chatRoom" + chatRoom);
+			//window.open("/chat/chatting?room=" + roomNum,"_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
+			$('#chatModal').css('display','');
+			$("#chatModal").show();
+			$(".title").html("");
+			$(".title").append(chatRoom + "방 채팅");
+			for(var i=1; i < 7; i++) {
+				$("#messages" + i).hide();
+			}  
+			$("#messages" + chatRoom).show();
+			
+			$.ajax({
+				type: 'get',
+				url: '/chat/chatting?room=' + chatRoom,
+				dataType: 'json',
+				success: function(data) {
+					$("#messages" + chatRoom).html("");
+					$.each(data , function(i){
+						var str = "";
+						if(data[i].chat_id != "admin") {
+			            	str += "<li class='message left appeared'>";
+			            	str += '<div class="avatar"></div>';
+			            	str += '<div class="text_wrapper">';
+			            	str += '<div class="text">' + data[i].chat_content +'</div>';
+			            	str += '</div>';
+			            	str += '</li>';
+						} else {
+							str += "<li class='message right appeared'>";
+			            	str += '<div class="avatar"></div>';
+			            	str += '<div class="text_wrapper">';
+			            	str += '<div class="text">' + data[i].chat_content +'</div>';
+			            	str += '</div>';
+			            	str += '</li>';
+						}
+						$("#messages" + chatRoom).append(str);
+		           });
+				}
+			});
 		});
-		$("#roomClose").on("click", function() {
-			method_startnstop(1, "user");
-		});
-	});
+
 
 	function realOrderRenew() {
 		$('#realOrderTable').DataTable().clear().draw();
@@ -411,8 +404,32 @@ body {
 			}
 		});
 	} 
-		
-	
+	var orderArlet;
+	function adminproductBillModalBtn(num) {
+		orderArlet = num;
+		console.log("일로옴?");
+		var id = document.getElementById('user' + num).innerHTML;
+		console.log(id);
+		$.ajax({
+			type: 'get',
+			url: '/userView/userProductBill?userId='+id,
+			dataType: 'json',
+			success: function(data) {
+				console.log(data);
+				$("#productBillTbody").html("");
+	            var str = '<tr>';
+	            $.each(data , function(i){
+	            	var date = new Date(data[i].order_time); var month = date.getMonth() + 1; 
+	                str += '<td>' + date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() +
+	                "<br>" + date.getHours() + " : " + date.getMinutes() + ' : ' + date.getSeconds() + '</td><td>' + data[i].product_name + '</td><td>' + data[i].order_qty + '</td><td>' + data[i].order_bill + '</td>';
+	                str += '</tr>';
+	           });
+	           $("#productBillTbody").append(str);
+				
+			}
+		});
+		$("#adminproductBillModal").show();
+	}
 	</script>
 </body>
 </html>
