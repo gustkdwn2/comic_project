@@ -19,7 +19,7 @@
 								<font style="vertical-align: inherit;"><h4>책 이미지</h4></font>
 							</label>
 							<div class="form-group row">
-						        <div class="form-group uploadDiv">
+						        <div class="form-group uploadDiv"> 
 						            <input type="file" name='uploadFile' id="uploadFileRegister">
 						        </div>
 					        

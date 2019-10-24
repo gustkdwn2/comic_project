@@ -69,14 +69,18 @@
 }
 
 .mngmentcard {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 5);
+	box-shadow: 0 4px 8px 0 rgba(51,122,183, 1);
+	width:
 	max-width: 300px;
 	margin: auto;
 	text-align: center;
 	font-family: arial;
-	padding: 5px 1px 3px 3px;
 	/* margin: 5px 1px 13px 3px; */
 	/* border-radius: 100%; */ /* 둥글게하는것 */
+}
+
+.card_content{
+	padding: 20px 15px 0 15px;
 }
 
 .mngmenttitle {
@@ -90,7 +94,7 @@
 	display: inline-block;
 	padding: 8px;
 	color: white;
-	background-color: #000;
+	background-color: rgb(51,122,183);
 	text-align: center;
 	cursor: pointer;
 	width: 100%;
@@ -160,7 +164,7 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 
 <!-- <div class="row"> -->
 <div class="mngmentcard" >
-
+	<div class="card_content">
 	<!-- <img src="/WEB-INF/views/younghak/icando.jpg" alt="John" style="width:80%; height:80%; border-radius: 50%;" > -->
 	<%-- <a href="#"> <img
 		src="/resources/images/faces/jang.jpg"
@@ -186,23 +190,19 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 	<p>연락처 : ${managerList.get(i-1).getEMPLOYEE_PHONE()}</p>
 	<p>시급/월급 : ${managerList.get(i-1).getEMPLOYEE_PAY()}</p>
 	<p>계좌번호 : ${managerList.get(i-1).getEMPLOYEE_ACCOUNT()}</p>
-
+	</div>
 	<div style="margin: 24px 0;">
 
 		<!-- </div> -->
 		<p>
-			<button class="mngmentbutton"
+			<button class="mngmentbutton btn-block"
 				onclick="employeemodify(${managerList.get(i-1).getEMPLOYEE_NUM()})">수정하기</button>
 		</p>
 		<p>
-			<button class="mngmentbutton"
+			<button class="mngmentbutton btn-block"
 				onclick="employeedelete(${managerList.get(i-1).getEMPLOYEE_NUM()})">탈퇴하기</button>
 		</p>
 
-		<a href="#" class="mngmenta"><i class="fa fa-dribbble"></i></a>
-		<a href="#" class="mngmenta"><i class="fa fa-twitter"></i></a>
-		<a href="#" class="mngmenta"><i class="fa fa-linkedin"></i></a>
-		<a href="#" class="mngmenta"><i class="fa fa-facebook"></i></a>
 	</div>
 </div>
 
@@ -270,9 +270,9 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 				<div class="modal-body">
 					<div class="form-group row">
 						<label for="exampleInputUsername2" class="col-sm-3 col-form-label">
-							<font style="vertical-align: inherit;">책 이미지</font>
+							<font style="vertical-align: inherit;">직원 이미지</font>
 						</label>
-						<div class="form-group row">
+						<div class="form-group row" style="margin-left: 10px;">
 							<div class="form-group uploadDiv">
 								<input type="file" name='uploadFile' id="uploadFileRegister">
 							</div>

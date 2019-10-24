@@ -14,8 +14,7 @@ table {
 	table-layout: fixed;
 }
 
-table, td {
-	border: 1px solid #dadfe4;
+table, tr {
 	font-size: medium;
 }
 
@@ -28,7 +27,7 @@ table, td {
 </head>
 <body>
 
-	<div class="content-wrapper">
+	<div class="content-wrapper" style="height: 150px;">
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
@@ -67,7 +66,7 @@ table, td {
 				</div>
 				<div class="modal-body">
 
-					<table style="width: 100%; text-align: center;">
+					<table style="width: 100%; text-align: center; 	border: 1px solid #dadfe4;">
 						<tr>
 							<td class="td_y_header"><font>사번/이름</font></td>
 							<td class="td_y_header"><font>출근시간</font></td>
@@ -119,7 +118,7 @@ table, td {
 					console.log(data[0]);*/
 					var htmlStr = "";
 					
-					htmlStr += "<table style='width: 100%; text-align:center;'>";
+					htmlStr += "<table style='width: 100%; text-align:center; border: 1px solid #dadfe4;'>";
 					$.each(data, function(index, list) {
 						htmlStr += "<tr>";
 						htmlStr += "<td class='td_y_header'>" + list.empnum +"/"+list.empname +"</td>"
