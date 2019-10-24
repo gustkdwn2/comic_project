@@ -121,7 +121,7 @@ body {
 
 										<div class="div_con">
 											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font id="user_time${i}">없음</font><br> 사용상태 : <font id="user_status${i}">없음</font><br>
-											주문상태 : <font id="order_status${i}">없음</font><br>
+											<br>
 										</div>
 										<div class="div_bottom">
 											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i});">
