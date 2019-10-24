@@ -64,13 +64,13 @@ public class EchoHandlerOrder extends TextWebSocketHandler{
 				chatvo.setChat_roomnum(Integer.parseInt(roomNumber));
 				
 				if("user".equals(checkInOut)) {
-					roomSession.sendMessage(new TextMessage(roomNumber + "|" + content));
+					roomSession.sendMessage(new TextMessage("chat|" + roomNumber + "|" + content));
 					chatService.chatAdd(chatvo);
 					
 				}
 				
 				if("admin".equals(checkInOut)) {
-					adminSession.sendMessage(new TextMessage(roomNumber + "|" + content));
+					adminSession.sendMessage(new TextMessage("chat|" + roomNumber + "|" + content));
 					chatService.chatAdd(chatvo);
 				}
 				
@@ -85,6 +85,10 @@ public class EchoHandlerOrder extends TextWebSocketHandler{
 				if("주문".equals(content)) {
 					adminSession.sendMessage(new TextMessage(roomNumber + "|" + content+ "|" + memberid));
 				} else if("시작".equals(content)) {
+					adminSession.sendMessage(new TextMessage(roomNumber + "|" + content + "|" + memberid));
+				} else if("주문가져가".equals(content)) {
+					roomSession.sendMessage(new TextMessage(roomNumber + "|" + "주문가져가"));
+				}else if("종료".equals(content)) {
 					adminSession.sendMessage(new TextMessage(roomNumber + "|" + content + "|" + memberid));
 				}
 			}
@@ -110,7 +114,7 @@ public class EchoHandlerOrder extends TextWebSocketHandler{
 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		//userSessions.remove(getId(session));
+		userSessions.remove(getId(session));
 		log.info(session.getId() + " 연결 끊김");
 	}
 	
