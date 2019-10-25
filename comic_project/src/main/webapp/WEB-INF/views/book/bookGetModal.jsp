@@ -97,10 +97,10 @@
 	                            </select>
 							</div>
 						</div>
-						<button id="getSubmitBtn" type="button" class="btn btn-primary mr-2">
-							<font style="vertical-align: inherit;">수정</font>
+						<button id="getSubmitBtn" type="button" class="btn btn-warning">
+							<font style="vertical-align: inherit; color:white;">수정</font>
 						</button>
-						<button id="bookGetBtn" type="button" class="btn btn-success">닫기</button>
+						<button id="bookGetBtn" type="button" class="btn btn-secondary">닫기</button>
 					</form>
 				</div>
 			</div>

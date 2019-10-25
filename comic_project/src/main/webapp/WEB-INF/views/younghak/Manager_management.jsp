@@ -71,6 +71,7 @@
 .mngmentcard {
 	box-shadow: 0 4px 8px 0 rgba(77, 131, 255, 3);
 	width: 200px;
+	/* height : 380px; */
 	margin: auto;
 	text-align: center;
 	font-family: arial;
@@ -152,8 +153,8 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
            
             var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName);
 
-            str += "<img src='/empDisplay?fileName="+fileCallPath+"' style='width:210px; height:160px; border-radius: 50%;'";
-            str +=" onclick='workhourcal(\""+${managerList.get(i-1).getEMPLOYEE_NAME()}+"\",\""+${managerList.get(i-1).getEMPLOYEE_NUM()}+"\")'>";
+            str += "<img src='/empDisplay?fileName="+fileCallPath+"' style='width:180px; height:150px; border-radius: 50%;'";
+            str +=" onclick='workhourcal(\""+'${managerList.get(i-1).getEMPLOYEE_NAME()}'+"\",\""+${managerList.get(i-1).getEMPLOYEE_NUM()}+"\")'>";
       }
     });
    $("#empImageGetList${i-1}").html(str);
@@ -170,7 +171,10 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 		style="width: 50%; height: 50%; border-radius: 50%;"
 		onclick="workhourcal('${managerList.get(i-1).getEMPLOYEE_NAME()}','${managerList.get(i-1).getEMPLOYEE_NUM()}')">
 	</a> --%>
-													<a href="#" id="empImageGetList${i-1}"> </a>
+			
+            													
+            
+            <a href="#" id="empImageGetList${i-1}"> </a>
 
 													<h1>${managerList.get(i-1).getEMPLOYEE_NAME()}</h1>
 													<!-- 이름 -->

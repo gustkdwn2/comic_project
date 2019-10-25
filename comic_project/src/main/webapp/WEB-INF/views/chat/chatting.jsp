@@ -54,6 +54,9 @@ var test;
 
 	$('#send_message').click(function(e) {
 		console.log("메세지 보내기");
+		if($('.message_input').val() == "") {
+			return;
+		}
 		message_side = 'right';
 		sendMessage(getMessageText());
 		if(sessionValue == 'admin') {
@@ -70,6 +73,9 @@ var test;
 	$('#message_input').keyup(function(e) {
 		if (e.which === 13) { 
 			message_side = 'right';
+			if($('.message_input').val() == "") {
+				return;
+			}
 			sendMessage(getMessageText());
 			if(sessionValue == 'admin') {
 				checkInOut = 'user';
