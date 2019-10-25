@@ -17,6 +17,7 @@
 * {
 	box-sizing: border-box;
 }
+
 body {
 	margin: 0;
 	font-family: "맑은 고딕";
@@ -29,10 +30,11 @@ body {
 	font-size: 16px;
 	cursor: pointer;
 	color: #555555;
-	height: 300px;
+	height: 200px;
 	border-right: 3px solid #f3f3f3;
 	background-color: #686868;
 }
+
 .containerTab {
 	padding: 20px;
 	color: white;
@@ -50,6 +52,7 @@ body {
 	font-size: 35px;
 	cursor: pointer;
 }
+
 .div_root {
 	float: left;
 	width: 30.0%;
@@ -61,23 +64,24 @@ body {
 	margin-left: 10px;
 	height: 230px;
 }
+
 .div_menu {
 	width: 30%;
 	/* height:100px; */
-	padding-top: 20%;
-	height: 80%;
+	padding-top: 10%;
+	height: 70%;
 	float: left;
 	font-size: 30px;
 	text-align: center;
 	border-right: 3px solid #f3f3f3;
 	border-bottom: 3px solid #f3f3f3;
 	color: white;
-	height: 80%;
 }
+
 .div_con {
 	width: 70%;
 	/* height:100px ; */
-	height: 80%;
+	height: 70%;
 	margin-right: auto;
 	/* margin:10px; */
 	padding-left: 3%;
@@ -89,6 +93,7 @@ body {
 	border-bottom: 3px solid #f3f3f3;
 	text-align: center-vertical;
 }
+
 .div_bottom {
 	width: 100%;
 	/* height:100px; */
@@ -109,24 +114,30 @@ body {
 							<div class="template-demo">
 								<c:forEach var="i" begin="1" end="6" step="1">
 
-<c:if test="${i%3==1}">
-<div class="row">
-</c:if>
+									<c:if test="${i%3==1}">
+										<div class="row">
+									</c:if>
 
-<div class="column" onclick="<%-- method_startnstop(${i}); --%>">
-<!-- <div class="div_root"> -->
+									<div class="column"
+										onclick="<%-- method_startnstop(${i}); --%>">
 
-<div class="div_menu">${i}번방</div>
+										<div class="div_menu">${i}번방</div>
 
 
 										<div class="div_con">
-											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font id="user_time${i}">없음</font><br> 사용상태 : <font id="user_status${i}">없음</font><br>
-											<br>
+											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font
+												id="user_time${i}">없음</font><br> 사용상태 : <font
+												id="user_status${i}">없음</font><br> <br>
 										</div>
 										<div class="div_bottom">
-											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i});">
-											<button type="button" id="chat${i}" name='chat' value="${i}" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
-											채팅하기</button>
+											<input type="button" value="주문내역보기"
+												class="btn btn-primary btn-sm"
+												style="height: 40px; width: 150px; margin: 10px 40px 0 100px;"
+												onclick="adminproductBillModalBtn(${i});">
+											<button type="button" id="chat${i}" name='chat' value="${i}"
+												class="btn btn-success btn-sm"
+												style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+												채팅하기</button>
 										</div>
 									</div>
 									<c:if test="${i%3==0}">
@@ -166,10 +177,14 @@ body {
 			</div>
 		</div>
 	</div>
+	<div id="modalstyle" class="modal-backdrop show"></div>
 	<!-- main-panel ends -->
 	<jsp:include page="adminproductBillModal.jsp" />
 	<jsp:include page="../chat/chatting.jsp" />
 	<script>
+	$(document).ready(function(){
+	$('#modalstyle').css('display','none');
+	});
 	
 	var check_arr = new Array(7); //방의 개수보다 1크게
 	
@@ -358,6 +373,7 @@ body {
 			$("#chatModal").show();
 			$(".title").html("");
 			$(".title").append(chatRoom + "방 채팅");
+			$('#modalstyle').css('display','');
 			for(var i=1; i < 7; i++) {
 				$("#messages" + i).hide();
 			}  
@@ -388,6 +404,7 @@ body {
 						}
 						$("#messages" + chatRoom).append(str);
 		           });
+					
 				}
 			});
 		});
@@ -410,6 +427,7 @@ body {
 		console.log("일로옴?");
 		var id = document.getElementById('user' + num).innerHTML;
 		console.log(id);
+		$('#modalstyle').css('display','');
 		$.ajax({
 			type: 'get',
 			url: '/userView/userProductBill?userId='+id,

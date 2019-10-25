@@ -51,6 +51,7 @@
 	$("#adminproductBillModalCloseBtn").click(function() {
 		$("#product-bill-card-body").scrollTop(0);
 		$("#adminproductBillModal").hide();
+		$('#modalstyle').css('display','none');
 	});
 
 	$("#orderArletButton").click(function() {

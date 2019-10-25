@@ -76,12 +76,8 @@
                <a class="navbar-brand brand-logo" href="/managerpos/managerpos">
                <img src="/resources/images/comic_image.png" alt="" style="width: 70px; height: 30px;"/></a>
                <a class="navbar-brand brand-logo" href="/managerpos/managerpos">
-               <img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 100px; height: 15px;"/></a>
+               <img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 130px; height: 20px;"/></a>
 
-               <button class="navbar-toggler navbar-toggler align-self-center"
-                  type="button" data-toggle="minimize">
-                  <span class="mdi mdi-sort-variant"></span>
-               </button>
             </div>
             <!-- hidden form -->
             <form id="operForm2"></form>
