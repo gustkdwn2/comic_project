@@ -124,7 +124,8 @@ body {
 											<br>
 										</div>
 										<div class="div_bottom">
-											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i});">
+											<button type="button" id="orderDetail${i}"class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i})">
+											주문내역보기</button>
 											<button type="button" id="chat${i}" name='chat' value="${i}" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 											채팅하기</button>
 										</div>
@@ -407,6 +408,7 @@ body {
 	var orderArlet;
 	function adminproductBillModalBtn(num) {
 		orderArlet = num;
+		$("#orderDetail" + num).css('color', 'white');
 		console.log("일로옴?");
 		var id = document.getElementById('user' + num).innerHTML;
 		console.log(id);

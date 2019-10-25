@@ -181,26 +181,7 @@
 
             
   
-      <!-- 주문 모달 -->
-
-		<div class="modal" id="ModalorderArlet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">주문</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<div id="orderModalBody"></div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button id="orderOK" type="button" class="btn btn-primary">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+     
 
       <!-- headerMemberModifyPassword -->
       <div class="modal" id="headerMemberModifyPasswordModal">

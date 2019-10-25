@@ -288,15 +288,11 @@ $('#kakaopay').click(function(e){
 		              if(popup.closed){
 		            	  //console.log("popup.closed");
 			              if( closeParam == 'success') {
-			            	 // console.log('socket.send gogo');
-				             // console.log(room_num);
-				              console.log(mem_id);
-				            //  console.log("room_num + ",종료," + mem_id");
-			            	socket.send(room_num + ",종료," + mem_id);  
-			            	 location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num;
+			            	socket.send(room_num + ",종료," + mem_id);
+			            	location.href="http://localhost:8080/userView/mainPro?roomNum="+room_num
 			            	
 			              } else {
-		            	  	location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
+		            	  	location.href="http://localhost:8080/userView/main?roomNum="+room_num
 					      }
 		                 
 		              }

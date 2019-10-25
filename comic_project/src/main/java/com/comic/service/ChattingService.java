@@ -10,4 +10,6 @@ public interface ChattingService {
  
 	public List<ChatVO> selectChat(int roomNum);
 
+	public void deleteChat(int roomNum);
+
 }
