@@ -52,7 +52,7 @@
 					</div>
 					<div class="col-lg-4">
 						<a class="portfolio-item" id="userChat"> <span class="caption"> <span class="caption-content">
-									<h3>채팅 하기</h3>
+									<h3 id="chatCss">채팅 하기</h3>
 									<p class="mb-0">실시간 대화를 나눌 수 있습니다</p>
 							</span>
 						</span> <img class="img-fluid" src="/resources/images/chatIcon.png" alt="" style="width:370px; height:250px;">
@@ -84,6 +84,8 @@
 	<jsp:include page="headerMemberModifyPasswordModal.jsp" />
 	<jsp:include page="billModal.jsp" />
 	<jsp:include page="productBillModal.jsp" />
+	<jsp:include page="chatting.jsp" />
+	<jsp:include page="orderArlet.jsp" />
 	<!-- hidden form -->
 	<form id="operForm"></form>
 </body>
@@ -95,11 +97,13 @@ var mem_id = '${memberid}';
 var total_price;
 $(document).ready(function(){
 	$('#modalstyle').css('display','none');
-	
+	$('#chatModal').css('display','none');
 	
 	ajaxtogetdb_comic_room_uselist();
 	var operForm = $("#operForm");
-	totalprice();
+
+
+	
 	
 	$("#userOrderView").on("click", function(e){
 		operForm.attr("method", "get");
@@ -107,8 +111,38 @@ $(document).ready(function(){
 		operForm.submit();
 	});
 	$("#userChat").on("click", function(e){
-		window.open("/userView/chatting","_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
+		$("#chatCss").css('color', 'black');
+		$('#chatModal').css('display','');
+		$("#chatModal").show();
+		$.ajax({
+			type: 'get',
+			url: '/userView/chatting',
+			dataType: 'json',
+			success: function(data) {
+				$.each(data , function(i){
+					var str = "";
+					if(data[i].chat_id == "admin") {
+		            	str += "<li class='message left appeared'>";
+		            	str += '<div class="avatar"></div>';
+		            	str += '<div class="text_wrapper">';
+		            	str += '<div class="text">' + data[i].chat_content +'</div>';
+		            	str += '</div>';
+		            	str += '</li>';
+					} else {
+						str += "<li class='message right appeared'>";
+		            	str += '<div class="avatar"></div>';
+		            	str += '<div class="text_wrapper">';
+		            	str += '<div class="text">' + data[i].chat_content +'</div>';
+		            	str += '</div>';
+		            	str += '</li>';
+					}
+					$("#messages" + sessionValue).append(str);
+	           });
+			}
+		});
 	});
+
+	
 	$("#userSearchbook").on("click", function(e){
 		operForm.attr("method", "get");
 		operForm.attr("action","/SearchBook/searchList");
@@ -120,7 +154,9 @@ $(document).ready(function(){
 		operForm.submit();
 	});
 	$("#billModalBtn").on("click", function(e){
+		totalprice();
 		$('#modalstyle').css('display','');
+		totalprice();
 		$.ajax({
 			type: 'get',
 			url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
@@ -219,13 +255,14 @@ function totalprice() {
 	$.ajax({
 		type: 'get',
 		url: '/userView/userBill?userId=${Memberlogin.MEMBER_ID}',
-		async : false,
 		dataType: 'json',
+		async: false,
 		success: function(data) {
 			total_price = data.total_bill;
 		}
 	});
 }
+
 var closeParam;
 function popupclose(param) {
 	closeParam = param;
@@ -249,9 +286,15 @@ $('#kakaopay').click(function(e){
 				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
 				timer = setInterval(function(){
 		              if(popup.closed){
+		            	  //console.log("popup.closed");
 			              if( closeParam == 'success') {
-			            	location.href="http://localhost:8080/userView/mainPro?roomNum="+room_num
-			            	socket.send(room_num + ",시작," + id);
+			            	 // console.log('socket.send gogo');
+				             // console.log(room_num);
+				              console.log(mem_id);
+				            //  console.log("room_num + ",종료," + mem_id");
+			            	socket.send(room_num + ",종료," + mem_id);  
+			            	 location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num;
+			            	
 			              } else {
 		            	  	location.href="http://localhost:8080/userView/main?roomNum="+room_num
 					      }

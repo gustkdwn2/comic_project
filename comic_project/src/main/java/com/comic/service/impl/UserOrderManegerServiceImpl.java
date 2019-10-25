@@ -87,9 +87,7 @@ public class UserOrderManegerServiceImpl implements UserOrderManegerService{
 	
 	@Override
 	public UserBillVO userBill(String id) {
-		UserBillVO vo = ordermapper.userBill(id);
-		vo.setTotal_bill(vo.getProduct_bill() + vo.getRoom_bill());
-		return vo;
+		return ordermapper.userBill(id);
 	}
 
 	@Override

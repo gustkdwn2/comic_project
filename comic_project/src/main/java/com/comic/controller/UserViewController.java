@@ -56,12 +56,10 @@ public class UserViewController {
 	}
 	
 	@GetMapping("/chatting")
-	public void chat(final HttpSession session, Model model) {
-		System.out.println(session.getAttribute("roomNum"));
-		model.addAttribute("roomNum", session.getAttribute("roomNum"));
-		 
+	public @ResponseBody List<ChatVO> chat(final HttpSession session, Model model) {
+		
 		List<ChatVO> chatList= chatService.selectChat(Integer.parseInt(session.getAttribute("roomNum").toString()));
-		model.addAttribute("chatList", chatList);
+		return chatList;
 	}
 	
 	@GetMapping("userBill")

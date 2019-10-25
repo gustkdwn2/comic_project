@@ -209,7 +209,8 @@ public class ManagerposController {
 				//session.setAttribute("EMPNAME", "사장");//로그인 세션추가
 				//session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
 			}else {
-				session.setAttribute("EMPNAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가	
+				session.setAttribute("EMPNAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가
+				session.setAttribute("EMPPOSITION", empdata.get(0).getEMPLOYEE_POSITION());
 			}
 			
 			
