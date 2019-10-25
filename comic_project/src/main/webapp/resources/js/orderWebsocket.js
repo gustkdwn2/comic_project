@@ -1,4 +1,4 @@
-var socket = new WebSocket("ws://10.10.10.173:8080/echo_order");
+var socket = new WebSocket("ws://localhost:8080/echo_order");
 socket.onopen = function() {
 	console.log("소켓 시작");
 };
@@ -9,9 +9,10 @@ socket.onmessage = function(event) {
 	if(data[0] == "chat") {
 		test = data[1];
 		message_side = 'left';
+		console.log(data); 
 		sendMessage(data[2]);
-		//$("#chatCss").css('color', 'red');
-
+		$("#chatCss").css('color', 'red');
+		$("#chat" + test).css('color', 'red');
 	} else {
 		if(data[1] == "주문") {
 			console.log("test");
@@ -20,6 +21,8 @@ socket.onmessage = function(event) {
 		} else if(data[1] == "시작") {
 			ajaxtosenddb_comic_room_use2(data[2], data[0], "on");
 		} else if(data[1] == "종료") {
+			console.log(sessionValue);
+			chatDataDelete(sessionValue);
 			ajaxtosenddb_comic_room_use2(data[2], data[0], "off");
 		} else if(data[1] == "주문가져가") {
 			userOrderArlet();
@@ -34,8 +37,8 @@ socket.onclose = function() {
 };
 
 function orderArlet(roomNum, userid) {
-	$("#ModalorderArlet").modal("show");
-	$("#orderModalBody").append(roomNum + " 방"  + userid + "님 주문!");
+	alert(roomNum + " 방"  + userid + "님 주문!");
+	$("#orderDetail" + roomNum).css('color', 'red');
 }
 
 function userOrderArlet() {
@@ -91,6 +94,23 @@ function ajaxtogetdb_comic_room_uselist() {
 		}
 	});	
 }
+
+function chatDataDelete(roomNum) {
+	console.log("채팅데이터 날리기");
+	$.ajax({
+		url : '/chat/chattingDelete?roomNum=' + roomNum,
+		dataType : 'json',
+		contentType : "application/json; charset=utf-8;",
+		type : 'GET',
+		success : function(data) {
+			
+		},
+		error : function(data) {
+			console.log("실패");
+		}
+	});	
+}
+
 
 var Message;
 Message = function(arg) {

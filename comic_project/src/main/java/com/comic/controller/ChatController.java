@@ -31,6 +31,12 @@ public class ChatController {
 		return chatList;
 	}
 	
+	@GetMapping("chattingDelete")
+	public void chatDelte(@RequestParam("roomNum") String roomNum) {
+		System.out.println("채팅날리기 컨트롤러");
+		chatService.deleteChat(Integer.parseInt(roomNum));
+	}
+	
 
 
 }
