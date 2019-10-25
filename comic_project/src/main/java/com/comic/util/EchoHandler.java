@@ -10,11 +10,15 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.comic.model.ChatVO;
+import com.comic.service.ChattingService;
+
 import lombok.extern.log4j.Log4j;
  
 @Log4j
 public class EchoHandler extends TextWebSocketHandler{
 	
+	private ChattingService chatService;
 	private Map<String, WebSocketSession> userSessions = new HashMap<String, WebSocketSession>();
 	
 	@Override
@@ -33,11 +37,12 @@ public class EchoHandler extends TextWebSocketHandler{
 		String msg = message.getPayload();
 		if(!StringUtils.isEmpty(msg)) {
 			String[] strs = msg.split(",");
-			if(strs != null && strs.length == 4) {
+			if(strs != null) {
 				String cmd = strs[0];
 				String roomNumber = strs[1];
 				String checkInOut = strs[2];
 				String content = strs[3];
+				String memberId = strs[4];
 				
 				WebSocketSession adminSession = userSessions.get("admin");
 				WebSocketSession roomSession = userSessions.get(roomNumber);

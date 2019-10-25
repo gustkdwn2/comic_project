@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -175,7 +177,7 @@ public class ManagerposController {
 	
 	@PostMapping("workonoff")
 	public String workonoff(Model model, @RequestParam("employeenum") String empnum,
-			@RequestParam("employeepwd") String emppwd) {
+			@RequestParam("employeepwd") String emppwd, HttpSession session) {
 		
 		int logincount = managementService.managerlogin(empnum,emppwd);
 
