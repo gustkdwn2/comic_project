@@ -1,5 +1,6 @@
 package com.comic.util;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,8 +42,18 @@ public class EchoHandler extends TextWebSocketHandler{
 				WebSocketSession adminSession = userSessions.get("admin");
 				WebSocketSession roomSession = userSessions.get(roomNumber);
 				System.out.println(adminSession);
+				
+				ChatVO chatvo = new ChatVO();
+				chatvo.setChat_id(memberId);
+				chatvo.setChat_content(content);
+				chatvo.setChat_time(new Date());;
+				chatvo.setChat_onoff("on");
+				chatvo.setChat_roomnum(Integer.parseInt(roomNumber));
+				
 				if("user".equals(checkInOut)) {
 					roomSession.sendMessage(new TextMessage(roomNumber + "|" + content));
+					System.out.println(chatvo);
+					chatService.chatAdd(chatvo);
 				}
 				
 				if("admin".equals(checkInOut)) {
@@ -50,7 +61,7 @@ public class EchoHandler extends TextWebSocketHandler{
 				}
 			}
 		}
-	}
+	} 
 	
 	private String getId(WebSocketSession session) {
 		Map<String, Object> httSession = session.getAttributes();
@@ -61,7 +72,7 @@ public class EchoHandler extends TextWebSocketHandler{
 			return returnId;
 		} else if(!StringUtils.isEmpty(httSession.get("roomNum"))){
 			returnId = httSession.get("roomNum").toString();
-			return returnId;
+			return returnId; 
 		} else {
 			returnId = "null";
 			return returnId;

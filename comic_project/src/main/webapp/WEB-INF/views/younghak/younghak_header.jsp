@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,38 +28,26 @@
 <body>
 
 	<div class="content-wrapper">
-		<div class="row">
-			<div class="col-12 grid-margin stretch-card">
-				<div class="card">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="card-body">
-
-								<div class="template-demo"></div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card-body">
-
-								<div class="template-demo">
-									<button type="button"
-										onclick="javascript:window.location.href='/managerpos/importdetail'"
-										class="btn btn-primary btn-rounded btn-fw">수입 상세 검색</button>
-									<button type="button"
-										onclick="javascript:window.location.href='/managerpos/Managerpos'"
-										class="btn btn-danger btn-rounded btn-fw">포스기 화면</button>
-									<button type="button"
-										onclick="javascript:window.location.href='/managerpos/login'"
-										class="btn btn-secondary btn-rounded btn-fw">출퇴근하기</button>
-									<button type="button"
-										onclick="javascript:window.location.href='/managerpos/Manager_management'"
-										class="btn btn-success btn-rounded btn-fw">직원관리</button>
-									 <button type="button" id="commute"
-										class="btn btn-warning btn-rounded btn-fw">오늘 출퇴근</button> 
-								</div>
-							</div>
-						</div>
+		<div class="col-12 grid-margin stretch-card">
+			<div class="card">
+				<div class="card-body">
+					<div class="template-demo">
+					
+						<button type="button"
+							onclick="javascript:window.location.href='/managerpos/Managerpos'"
+							class="btn btn-danger btn-rounded btn-fw">포스기 화면</button>
+						<button type="button"
+							onclick="javascript:window.location.href='/managerpos/login'"
+							class="btn btn-secondary btn-rounded btn-fw">출퇴근등록</button>
 						
+						<c:if test="${sessionScope.EMPPOSITION=='사장'}">
+						<button type="button"
+							onclick="javascript:window.location.href='/managerpos/Manager_management'"
+							class="btn btn-success btn-rounded btn-fw">직원관리</button>
+							</c:if>
+						<button type="button" id="commute"
+							onclick=" <%-- <% session.removeAttribute("EMPID"); %> --%> "
+							class="btn btn-warning btn-rounded btn-fw">근태 기록표</button>
 					</div>
 				</div>
 			</div>
@@ -107,6 +96,9 @@
 	<!-- /.modal -->
 
 	<script>
+
+//	checksession();
+	
 		$("#commute").on("click", function() {
 			$("#commuteModal").modal("show");
 			gettodaycommute();

@@ -162,7 +162,6 @@ public class ManagerposController {
 	public String employeeDelete(Model model, @RequestParam("EMPLOYEE_PWD") String emppwd,
 			@RequestParam("EMPLOYEE_mngnum") String mngnum) {
 		List<EmployeeAttachVO> attachList = MemberService.getAttachList(Integer.parseInt(mngnum));
-		//List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
 		
 		System.out.println("emppwd = "+emppwd+"\nmngnum = "+mngnum);
 		/* managementService.deletemng(emppwd,mngnum); */
@@ -178,14 +177,10 @@ public class ManagerposController {
 	public String workonoff(Model model, @RequestParam("employeenum") String empnum,
 			@RequestParam("employeepwd") String emppwd) {
 		
-		System.out.println("empnum = "+empnum);
-		
-		//List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
 		int logincount = managementService.managerlogin(empnum,emppwd);
 
 		if(logincount==0) {//1이 아니면 에러
 			model.addAttribute("errormsg", "아이디와 비밀번호가 일치하지 않습니다."); // 재고테이블
-			//System.out.println("tmp로 보내기전");
 			return "/younghak/login";
 		}
 		
@@ -194,17 +189,39 @@ public class ManagerposController {
 		//만약 19년4월 11일이면 190411로 출력이된다.
 		
 		int recordcount =managementService.managerloginrecord(empnum,emppwd,format_time);
+		List<EmployeeVO> empdata = managementService.getempdata(empnum); //출근한사람의 기록을 가져옴
 		if(recordcount==0) {
 			managementService.managerattendance(empnum); //출근
 			System.out.println("출근 완료");
+			
+			
+			if(empdata.get(0).getEMPLOYEE_POSITION().equals("사장")) {
+				//session.setAttribute("EMPNAME", "사장");//로그인 세션추가
+				//session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
+			}else {
+				session.setAttribute("EMPNAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가
+				session.setAttribute("EMPPOSITION", empdata.get(0).getEMPLOYEE_POSITION());
+			}
+			
+			
+			session.setAttribute("EMPID", empnum);//로그인 세션추가
+			//session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
 			model.addAttribute("succecssmsg", "출근완료"); // 재고테이블
-			return "/younghak/login";
+			return "/younghak/Managerpos";
 		}else if(recordcount==1){
 			managementService.managerleavework(empnum,format_time); //퇴근
 			System.out.println("퇴근 완료");
+			/*
+			 * session.invalidate();//로그인 세션추가
+			 */
+			
+			session.setAttribute("EMPPRENAME", empdata.get(0).getEMPLOYEE_NAME());//로그인 세션추가
+			session.setAttribute("EMPNAME", "현재 공석");//로그인 세션추가
+			session.setAttribute("EMPID", "tmp");//로그인 세션추가
+			//session.setAttribute("EMPPOSITION", "사장");//로그인 세션추가
 			makecomic_pay(empnum);//퇴근기록으로 comic_pay테이블에 누적시간넣는 함수
 			model.addAttribute("succecssmsg", "퇴근완료"); // 재고테이블
-			return "/younghak/login";
+			return "/younghak/Managerpos";
 		}
 	
 		return "/younghak/login";

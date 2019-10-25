@@ -36,14 +36,14 @@
 			 			<!-- 댓글 입력 -->		
 			 			
 			 			
-			 			<c:if test="${Memberlogin.MEMBER_ID=='admin'}">
+			 			<c:if test="${sessionScope.EMPPOSITION=='사장' or sessionScope.EMPPOSITION=='매니저'}">
 						<tr>
 						
 							<td height="50" width = "1000" colspan="6" style="border: 1px solid #cdcdce">
 							<div id='cmntInsert'>
 								
 								<div class="form-group" style="float: left;">
-									<input type="hidden" name="cmnt_id" value="${Memberlogin.MEMBER_ID}" >
+									<input type="hidden" name="cmnt_id" value="관리자" >
 									<input type="hidden" name="board_num" value="${board.board_num}" >
 				                    <textarea class="form-control" name="cmnt_content" id="cmnt_content "placeholder="댓글을 입력하세요" 
 				                      		  maxlength="330" rows="5" style="width:1370px; border: 1px solid #cdcdce;"></textarea>
@@ -87,7 +87,7 @@
 							<td height="50" width = "1000" colspan="6">
 							<button type="button" data-oper='listBtn' class="btn btn-primary">목록가기</button>
 				            
-				            <c:if test="${ Memberlogin.MEMBER_ID == board.board_id || Memberlogin.MEMBER_ID=='admin'}">
+				            <c:if test="${sessionScope.EMPPOSITION=='사장' or sessionScope.EMPPOSITION=='매니저'}">
 				            <button type="button" data-oper='remBtn' 
 				            		class="btn btn-primary" style="float:right;  margin-left:10px;">삭제하기</button> 
 				            
@@ -151,7 +151,7 @@
 			 str += '<div style="margin-left:40px; float:left; width:40px; height:40px; background-color:white; border-radius: 50%; font-weight:bold;"></br>&emsp;'+data[i].cmnt_num+'</div>';
 			 str += '<div style="height:20px; font-size:20px; margin-left:100px;">'+'작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date);
 
-			 if( vo.cmnt_id =='admin') { 
+			 if( ${sessionScope.EMPPOSITION=='사장' || sessionScope.EMPPOSITION=='매니저'}) { 
 	   		 str +=	'&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="updateCmntForm('+data[i].cmnt_num+',\''+data[i].cmnt_content+'\');">수정</button>'; 
   			 str += '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="commentDelete('+data[i].cmnt_num+')">삭제</button>';
 

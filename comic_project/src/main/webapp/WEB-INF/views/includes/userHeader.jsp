@@ -54,8 +54,7 @@
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
 
-<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
-<script src="/resources/js/userWebsocket.js"></script>
+<script src="/resources/js/orderWebsocket.js?after"></script>
 
 
 <!-- Custom CSS -->

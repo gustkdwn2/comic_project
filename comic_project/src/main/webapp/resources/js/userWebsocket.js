@@ -1,11 +1,13 @@
 var socket;
 
 $(document).ready(function() {
-	ws.onopen = function() {
+	var socket = new WebSocket("ws://10.10.10.173:8080/echo_order");
+	socket.onopen = function() {
 		console.log("소켓 시작");
 	};
-
-	ws.onmessage = function(event) {
+ 
+	socket.onmessage = function(event) {
+		console.log(event.data);
 		var textData = event.data.split('|');
 		test = textData[0];
 		message_side = 'left';
@@ -89,5 +91,28 @@ $(document).ready(function() {
 			$('.message_input').val('');
 		}
 	});
-});
+	
+	for(var i = 0; i < chatvo.length; i++) {
+		console.log(chatvo);
 
+	}
+});
+//보류
+function selectChat() {
+	$.ajax({
+		type : 'post',
+		url : '/userOrderManager/productCheck',
+		data : JSON.stringify(productJSON),
+		contentType : "application/json; charset=utf-8",
+		success : function(result, status, xhr) {
+			if (callback) {
+				callback(result);
+			}
+		},
+		error : function(xhr, status, er) {
+			if (error) {
+				error(er);
+			}
+		}
+	});
+}

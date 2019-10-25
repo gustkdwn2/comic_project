@@ -4,9 +4,9 @@
 <%@ include file="../includes/userHeader.jsp"%>
 
 <style type="text/css">
-body {
-	background-image: url("/resources/images/bg-masthead.jpg");
-	background-size: cover;
+
+.content-wrapper {
+   padding-top: 30px;
 }
 
 .content-wrapper {

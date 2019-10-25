@@ -17,7 +17,13 @@ li{list-style: none;}
 						href="/managerpos/managerpos">
 					<i class="mdi mdi-home menu-icon"></i><span class="menu-title">
 					포스 화면</span></a></li>
-			
+					
+			<li class="nav-item"><a class="nav-link"
+						href="/administrator/ceologin">
+					<i class="mdi mdi-face menu-icon"></i><span class="menu-title">
+					관리자 로그인</span></a></li>
+						
+			<c:if test="${sessionScope.EMPPOSITION=='사장'}">
 			<li class="nav-item open accordion_wrap"><a class="nav-link"> 
 			<i class="mdi mdi-cube menu-icon"></i> 
 			<span class="menu-title">재고</span></a>
@@ -37,6 +43,7 @@ li{list-style: none;}
 						</a></li>
 					</ul>
 			</li>
+			
 			
 			<li class="nav-item open accordion_wrap"><a class="nav-link"> 
 			<i class="mdi mdi-currency-krw menu-icon"></i> 
@@ -65,11 +72,24 @@ li{list-style: none;}
 						</li>	
 					</ul>
 			</li>
+			</c:if>
+			
+	
+			
+			<c:if test="${sessionScope.EMPPOSITION=='사장'}">
+			<script type="text/javascript">
+			
+			</script>
+			</c:if>
+			
+			
 			<li class="nav-item"><a class="nav-link"
 				href="/CustomerCenter/boardList"> <i
 				class="mdi mdi-comment-text-multiple-outline menu-icon"></i> <span
 					class="menu-title">건의 게시판</span>
 			</a></li>
+			
+			 
 
 			<%-- <c:if test="${empty Employeelogin}">
 			<li class="nav-item"><a class="nav-link"
@@ -78,6 +98,8 @@ li{list-style: none;}
 					class="menu-title">직원 로그인</span>
 			</a></li>
 			</c:if> --%>
+			
+			<c:if test="${sessionScope.EMPPOSITION=='사장'}">
 			<li class="nav-item"><a class="nav-link"
 				href="/member/MemberList"> <i
 				class="mdi mdi-account menu-icon"></i> <span
@@ -89,7 +111,8 @@ li{list-style: none;}
 				href="/userOrderManager/orderManager"> <i
 				class="mdi mdi-inbox-arrow-down menu-icon"></i> <span
 					class="menu-title">상품판매관리</span> 
-			</a></li>					
+			</a></li>	
+						</c:if>				
 
 		</ul>
 </nav>
