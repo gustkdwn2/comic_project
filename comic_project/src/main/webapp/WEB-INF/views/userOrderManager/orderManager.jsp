@@ -267,7 +267,7 @@
 					str += "" + numberWithCommas(data[i].PRODUCT_PRICE)+"<br/><br/>";
 					str += "<button class='btn btn-primary btn-sm' onclick=\'productDelete(" + data[i].ORDERVIEW_NUM + ")\'>삭제</button>";
 					str += "&emsp;" 
-					str += "<button class='btn btn-primary btn-sm' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>수정</button>";
+					/* str += "<button class='btn btn-primary btn-sm' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>수정</button>"; */
 					str += "</div>";
 				}
 				str += '</div>';
