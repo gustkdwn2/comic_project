@@ -89,33 +89,6 @@
     </div>
 </div>
 
-<!-- modal category Update-->
-<div class="modal" id="ModalcategoryUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">category Update</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>category</label>
-                    <!-- <input class="form-control" name="category"> -->
-                    <select class="form-control" name="category">
-						<option value="">선   택</option>
-                       	<c:forEach items="${productGetList}" var="productGetList">
-                       		<option value="${productGetList.product_category}">${productGetList.product_category}</option>
-                       	</c:forEach>
-                  	</select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="cateModalUpdateBtn" type="button" class="btn btn-primary">Update</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- modal product add-->
 <div class="modal" id="modalProductAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -133,7 +106,7 @@
                   	</select>
                     <label>image file</label>
                     <form id="uploadForm" method="post" enctype="multipart/form-data">
-	                    <input class="form-control" type="file" name="uploadFile">
+	                    <input class="form-control" type="file" name="uploadFile" id="productAddInputUploadFile">
                     </form>
                 </div>
             </div>
@@ -143,34 +116,6 @@
         </div>
     </div>
 </div>
-<!-- modal product update-->
-<div class="modal" id="modalProductUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">product Update</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="productUpdateModalCloseBtn">&times;</button>
-            </div> 
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>product</label>
-                    <!-- <input class="form-control" name="product"> -->
-                    <select class="form-control" name="product" id="productCategoryNameUpdateOption">
-                    
-                  	</select>
-                    <label>image file</label>
-                    <form id="uploadForm" method="post" enctype="multipart/form-data">
-	                    <input class="form-control" type="file" name="uploadFile">
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="productModalUpdateBtn" type="button" class="btn btn-primary">Resgister</button>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
 <script src="/resources/js/userOrderManeger.js?vaer=2"></script>
 <script>
     $(document).ready(function () {
@@ -278,7 +223,6 @@
 
 		$("button[name = productAdd]").on("click", function(e){
 			var Optionstr = "";
-			Optionstr += '<option value="">선 택</option>';
 			$.ajax({
 				type: 'get',
 			    url: "/userOrderManager/productCategoryName?product_category="+$(this).attr('value'),
@@ -293,6 +237,7 @@
 			$("#productCategoryNameOption").append(Optionstr);
 			modalProductAdd.modal("show");
 			$("#productAddModalCloseBtn").on("click", function (e) {
+				$("#productAddInputUploadFile").val("");
 				$("select#productCategoryNameOption option").remove();
 			});
 		});
@@ -305,7 +250,7 @@
 			console.log(files.length); 
 
 			if(files.length == 0) {
-				
+				alert("이미지를 넣어주세요.");
 			}
 			
 			//add filedate to formdata
@@ -335,53 +280,13 @@
 				
 				orderProductService.productAdd(formData, function(result){
 					/* $("input[name=product]").val(''); */
+					$("#productAddInputUploadFile").val("");
+					$("select#productCategoryNameOption option").remove();
 					modalProductAdd.modal("hide");
 					orderProductShow(categoryValue);
-					 
 				});
 			});
         }); 
-
-
-		//잠시 보류
-        $("#productModalUpdateBtn").on("click", function (e) {
-			var formData = new FormData();
-			var inputFile = $("input[name='uploadFile']");
-			var files = inputFile[0].files;
-
-			//add filedate to formdata
-			for(var i = 0; i < files.length; i++) {
-				if(!checkExtension(files[i].name, files[i].size)) {
-					return false;
-				}
-				formData.append("uploadFile", files[i]);
-				/* formData.append("productName", $("input[name='product']").val()); */
-				formData.append("productName", $("select[name='product']").val());
-				formData.append("productCategory", categoryValue);
-			}
-
-			var productJSON = {
-				/* productName: $("input[name='product']").val(), */
-				productName: $("#productCategoryNameUpdateOption").val(),
-				productCategory: categoryValue
-			};
-
-
-			orderProductService.productCheck(productJSON, function(result) {
-				if(result == "NULL") {
-					alert("재고에 해당 상품이 없습니다.");
-					/* $("input[name='product']").val(''); */
-					return;
-				}
-				
-				orderProductService.productAdd(formData, function(result){
-					/* $("input[name=product]").val(''); */
-					modalProductAdd.modal("hide");
-					orderProductShow(categoryValue);
-					 
-				});
-			});
-        });
 		
 		var indexProductNum = 0;
 		
@@ -408,29 +313,6 @@
 				
 				orderProductShow(categoryValue);
 			});
-		}
-
-		window.productUpdate = function (number) {
-			var category = $("#prodcutCategoryUpdateHidden").val();
-			var Optionstr = "";
-			Optionstr += '<option value="">선 택</option>';
-			$.ajax({
-				type: 'get',
-			    url: "/userOrderManager/productCategoryName?product_category="+category,
-			    dataType : "json",
-			    async : false,
-			    success: function(data){
-				    for(var i = 0; i < data.length; i++) {
-				    	Optionstr += '<option value="'+data[i].product_name+'">'+data[i].product_name+'</option>';
-					}
-				}
-			});
-			$("#productCategoryNameUpdateOption").append(Optionstr);
-			$("#modalProductUpdate").modal("show");
-			$("#productUpdateModalCloseBtn").on("click", function (e) {
-				$("select#productCategoryNameUpdateOption option").remove();
-			});
-			
 		}
 		
 		var maxSize = 5242880; // 5MB

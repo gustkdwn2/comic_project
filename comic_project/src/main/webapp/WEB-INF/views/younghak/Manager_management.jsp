@@ -160,14 +160,6 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 
 <!-- <div class="row"> -->
 <div class="mngmentcard" >
-
-	<!-- <img src="/WEB-INF/views/younghak/icando.jpg" alt="John" style="width:80%; height:80%; border-radius: 50%;" > -->
-	<%-- <a href="#"> <img
-		src="/resources/images/faces/jang.jpg"
-		alt="${managerList.get(i-1).getEMPLOYEE_NAME()}"
-		style="width: 50%; height: 50%; border-radius: 50%;"
-		onclick="workhourcal('${managerList.get(i-1).getEMPLOYEE_NAME()}','${managerList.get(i-1).getEMPLOYEE_NUM()}')">
-	</a> --%>
 	 <a href="#" id="empImageGetList${i-1}">
 	 	
 	</a>
@@ -951,7 +943,7 @@ function showUploadResultGet(uploadResultArr){
     $(uploadResultArr).each(function(i, obj){
 		
 		if(obj.image){
-			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
 			str += "<li data-path='"+obj.uploadPath+"'";
 			str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 			str +" ><div>";

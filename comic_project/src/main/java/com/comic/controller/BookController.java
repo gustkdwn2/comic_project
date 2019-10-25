@@ -56,7 +56,11 @@ public class BookController {
 	
 	@PostMapping("/bookModify")
 	public String bookModify(@RequestParam("book_name_change") String book_name_change, BookVO vo) {
+		List<BookAttachVO> attachList = service.getAttachList(vo.getBook_name());
 		service.bookModify(book_name_change, vo);
+		if(!attachList.get(0).getUuid().equals(vo.getAttachList().get(0).getUuid())) {
+			 deleteFiles(attachList);
+		 }
 		return "redirect:/book/bookList";
 	}
 	

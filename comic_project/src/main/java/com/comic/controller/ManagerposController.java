@@ -471,10 +471,12 @@ public class ManagerposController {
 	 @PostMapping("/EmployeeModify")
 	   public String EmployeeRegister(EmployeeVO vo,Model model) {
 		 List<EmployeeAttachVO> attachList = MemberService.getAttachList(vo.getEMPLOYEE_NUM());
-		 deleteFiles(attachList);
 		 managementService.employeeModify(vo);
+		 if(!attachList.get(0).getUuid().equals(vo.getAttachList().get(0).getUuid())) {
+			 deleteFiles(attachList);
+		 }
 		 model.addAttribute("managerList", managementService.managerList()); // 재고테이블
-		return "/younghak/Manager_management";
+		 return "redirect:/managerpos/Manager_management";
 	      
 	   }
 	 
