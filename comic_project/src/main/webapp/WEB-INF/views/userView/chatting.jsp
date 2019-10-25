@@ -9,9 +9,9 @@
 			<!-- Modal body -->
 					<div class="chat_window" id="chat_window">
 						<div class="top_menu">
-							
-							<div class="buttons">
-								<div class="button close" id="chatClose"></div>
+							<div style="float: right; margin-right:30px;">
+								<div class="button close" id="chatClose">
+								<font color=#fac4b7X; style="cursor: pointer; font-weight: 900;">X</font></div>
 							</div>
 							<div class="title">${ roomNum }방채팅</div>
 						</div>
@@ -20,7 +20,7 @@
 						</ul>
 						<div class="bottom_wrapper clearfix">
 							<div class="message_input_wrapper">
-								<input class="message_input" id="message_input"placeholder="Type your message here..." />
+								<input class="message_input" id="message_input"placeholder="입력해주세요" />
 							</div>
 							<div class="send_message" id="send_message">
 								<div class="icon"></div>
@@ -49,7 +49,8 @@ var test;
 	$("#messages" + chatRoom).show();
 
 	$("#chatClose").click(function() {
-		$("#chatModal").hide(); 
+		$("#chatModal").hide();
+		$('#modalstyle').css('display','none');
 	});	
 
 	$('#send_message').click(function(e) {

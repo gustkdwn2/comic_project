@@ -114,6 +114,7 @@ $(document).ready(function(){
 		$("#chatCss").css('color', 'black');
 		$('#chatModal').css('display','');
 		$("#chatModal").show();
+		$('#modalstyle').css('display','');
 		$.ajax({
 			type: 'get',
 			url: '/userView/chatting',
@@ -291,7 +292,7 @@ $('#kakaopay').click(function(e){
 			            	location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
 			            	
 			              } else {
-		            	  	location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
+		            	  	location.href="http://localhost:8080/userView/main?roomNum="+room_num
 					      }
 		                 
 		              }
