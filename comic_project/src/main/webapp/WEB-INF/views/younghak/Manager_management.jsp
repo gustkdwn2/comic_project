@@ -279,7 +279,7 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 						</div>
 					</div>
 					<form name="register" class="pt-3" id="register"
-						action="/EmployeeRegister" method="post">
+						action="/EmployeeRegister" method="post" autocomplete="off">
 						<div class="form-group">
 							<label>이름</label> <input type="text"
 								class="form-control form-control-lg" id="EMPLOYEE_NAME_insert"
