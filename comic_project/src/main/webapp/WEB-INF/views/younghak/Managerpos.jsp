@@ -206,13 +206,11 @@ body {
 				time_start(0, num);
 				var user = "id";
 				var user_status = "unavail";
-				var order_status = "unavail";
 				var roomuse_id = "id";
 				var roomuse_num = num;
 				var roomuse_status = "on";
 				document.getElementById('user' + num).innerHTML = user;
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
-				document.getElementById('order_status' + num).innerHTML = order_status;
 				ajaxtosenddb_comic_room_use2(id, num, "on");
 			} else {
 				check_arr[num] = false;
@@ -222,7 +220,6 @@ body {
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
-				document.getElementById('order_status' + num).innerHTML = "대기중";
 				ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 						roomuse_status);
 			}
@@ -236,10 +233,8 @@ body {
 				check_arr[num] = true;
 				time_start(starttime, num);
 				/* 테스트용 */
-				var order_status = "unavail";
 				document.getElementById('user' + num).innerHTML = id;
 				document.getElementById('user_status' + num).innerHTML = status;
-				document.getElementById('order_status' + num).innerHTML = order_status;
 			} else {
 				check_arr[num] = false;
 				var roomuse_id = "없음";
@@ -248,7 +243,6 @@ body {
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
-				document.getElementById('order_status' + num).innerHTML = "대기중";
 			}
 		}
 		

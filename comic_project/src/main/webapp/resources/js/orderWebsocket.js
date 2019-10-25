@@ -22,12 +22,12 @@ socket.onmessage = function(event) {
 			ajaxtosenddb_comic_room_use2(data[2], data[0], "on");
 		} else if(data[1] == "종료") {
 			console.log(sessionValue);
-			chatDataDelete(sessionValue);
+			chatDataDelete(data[0]);
 			ajaxtosenddb_comic_room_use2(data[2], data[0], "off");
 			alert(data[0] + "방 사용 종료!!");
 			location.href="/managerpos/managerpos";
 		} else if(data[1] == "주문가져가") {
-			userOrderArlet();
+			alert('주문이 준비되었습니다 카운터로 오셔서 가져가주세요!');
 		}
 	}
 	 
@@ -66,7 +66,6 @@ function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 		contentType : "application/json; charset=utf-8;",
 		type : 'POST',
 		success : function(data) {
-			console.log("ajaxtogetdb_comic_room_uselist()");
 			ajaxtogetdb_comic_room_uselist();
 			console.log("성공");
 		},
