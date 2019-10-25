@@ -276,6 +276,7 @@
 
 		$("button[name = productAdd]").on("click", function(e){
 			var Optionstr = "";
+			Optionstr += "<option value=''>선 택</option>";
 			$.ajax({
 				type: 'get',
 			    url: "/userOrderManager/productCategoryName?product_category="+$(this).attr('value'),
