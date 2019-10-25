@@ -63,7 +63,7 @@ td {
             <img src="/resources/images/comic_image.png" alt=""
                style="width: 200px; height: 100px; margin-left: 600px; margin-top: 20px; float: left" />
             <div class="content-section-heading text-center" style="width: 500px; height: 100px; margin-top: 30px; float: left; ">
-               <br/><h1 style="color: white;">${ roomNum }번방&emsp;02:15:39</h1>
+               <br/><h1 style="color: white;">${ roomNum }번방</h1>
             </div><br/><br/>
          </div>
          
