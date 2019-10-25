@@ -142,19 +142,21 @@
 <script>
 $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).getEMPLOYEE_NUM()}}, function(arr){
 
-	var str="";
-
-	$(arr).each(function(i, attach){
-    	//image type
-    	if(attach.fileType){
-        	
+   var str="";
+   console.log("arr = "+arr);
+   $(arr).each(function(i, attach){
+	   
+       //image type
+       console.log("attach = "+attach);
+       if(attach.fileType){
+           
             var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName);
 
             str += "<img src='/empDisplay?fileName="+fileCallPath+"' style='width:210px; height:160px; border-radius: 50%;'";
             str +=" onclick='workhourcal(\""+${managerList.get(i-1).getEMPLOYEE_NAME()}+"\",\""+${managerList.get(i-1).getEMPLOYEE_NUM()}+"\")'>";
-		}
+      }
     });
-	$("#empImageGetList${i-1}").html(str);
+   $("#empImageGetList${i-1}").html(str);
 });
 </script>
 
@@ -951,7 +953,7 @@ function showUploadResultGet(uploadResultArr){
     $(uploadResultArr).each(function(i, obj){
 		
 		if(obj.image){
-			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
 			str += "<li data-path='"+obj.uploadPath+"'";
 			str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 			str +" ><div>";

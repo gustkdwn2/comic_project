@@ -298,19 +298,18 @@ td {
                      showUserProduct()
                   }
 
-                  $("#resultOrder").on(
-                        "click",
-                        function() {
-                           console.log(orderArray);
-                           orderProductService.resultOrder(orderArray,
-                                 function(e) {
-                                    productAllDelete();
-                                    $("#successModal")
-                                          .modal("show");
-                                    
-                                    socket.send(roomNum + ",주문," + memberid);
-                                 });  
-                        });  
+                  $("#resultOrder").on("click", function() {
+              	    console.log(orderArray);
+              	    if($("#orderQty").val() == "") {
+              		      alert("상품이 없습니다.");
+              		      return false;
+              		}
+              	    orderProductService.resultOrder(orderArray, function(e) {
+              	       productAllDelete();
+              	       $("#successModal").modal("show");
+              	       socket.send(roomNum + ",주문," + memberid);
+              	    });
+              	   });  
 
                   $("#OK").on("click", function() {
                      $("#successModal").modal("hide");

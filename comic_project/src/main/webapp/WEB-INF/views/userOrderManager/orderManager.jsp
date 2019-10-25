@@ -278,7 +278,6 @@
 
 		$("button[name = productAdd]").on("click", function(e){
 			var Optionstr = "";
-			Optionstr += '<option value="">선 택</option>';
 			$.ajax({
 				type: 'get',
 			    url: "/userOrderManager/productCategoryName?product_category="+$(this).attr('value'),
@@ -293,6 +292,7 @@
 			$("#productCategoryNameOption").append(Optionstr);
 			modalProductAdd.modal("show");
 			$("#productAddModalCloseBtn").on("click", function (e) {
+				$("#productAddInputUploadFile").val("");
 				$("select#productCategoryNameOption option").remove();
 			});
 		});
@@ -335,9 +335,9 @@
 				
 				orderProductService.productAdd(formData, function(result){
 					/* $("input[name=product]").val(''); */
+					$("#productAddInputUploadFile").val("");
 					modalProductAdd.modal("hide");
 					orderProductShow(categoryValue);
-					 
 				});
 			});
         }); 
