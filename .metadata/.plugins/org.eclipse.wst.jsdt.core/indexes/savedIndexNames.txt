@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+C:\Users\5CLASS-184\Documents\GitHub\comic_project\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-131211115.index
-3628056960.index
-1848852205.index
-1257451925.index
-2031177131.index
-1786153505.index
