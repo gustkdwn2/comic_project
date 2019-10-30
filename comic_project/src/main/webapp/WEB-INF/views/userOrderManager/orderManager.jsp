@@ -39,8 +39,8 @@
 												<div class="dropdown-menu" style="background-color: #d6e3ff;">
 													<a class="dropdown-item" name="categoryDelete" value="${ list.orderview_num }"
 													style="cursor: pointer;">삭제</a> 
-													<a class="dropdown-item" name="categoryUpdate" value="${ list.orderview_num }"
-													style="cursor: pointer;">수정</a>
+													<%-- <a class="dropdown-item" name="categoryUpdate" value="${ list.orderview_num }"
+													style="cursor: pointer;">수정</a> --%>
 												</div>
 											</div>
 										
@@ -147,10 +147,10 @@
 <div class="modal" id="modalProductUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <!-- <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="productUpdateModalCloseBtn">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">상품 수정</h4>
-            </div> 
+            </div>  -->
             <div class="modal-body">
                 <div class="form-group">
                     <label>상품</label>
@@ -276,7 +276,7 @@
 
 		$("button[name = productAdd]").on("click", function(e){
 			var Optionstr = "";
-			Optionstr += '<option value="">선 택</option>';
+			Optionstr += "<option value=''>선 택</option>";
 			$.ajax({
 				type: 'get',
 			    url: "/userOrderManager/productCategoryName?product_category="+$(this).attr('value'),
@@ -291,6 +291,7 @@
 			$("#productCategoryNameOption").append(Optionstr);
 			modalProductAdd.modal("show");
 			$("#productAddModalCloseBtn").on("click", function (e) {
+				$("#productAddInputUploadFile").val("");
 				$("select#productCategoryNameOption option").remove();
 			});
 		});
@@ -333,9 +334,10 @@
 				
 				orderProductService.productAdd(formData, function(result){
 					/* $("input[name=product]").val(''); */
+					$("#productAddInputUploadFile").val("");
+					$("select#productCategoryNameOption option").remove();
 					modalProductAdd.modal("hide");
 					orderProductShow(categoryValue);
-					 
 				});
 			});
         }); 

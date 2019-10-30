@@ -11,7 +11,7 @@
 					<div class="card-body" id="product-bill-card-body" >
 						<div class="table-responsive pt-3" style="text-align: center;" >
 							<h2>상품 주문 상세 내역</h2><br/>
-							<table id="productBillTable" class="table" style="height: 600px;">
+							<table id="productBillTable" class="table";>
 								<thead>
 									<tr>
 										<th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">

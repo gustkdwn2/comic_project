@@ -130,14 +130,10 @@ body {
 												id="user_status${i}">없음</font><br> <br>
 										</div>
 										<div class="div_bottom">
-											<input type="button" value="주문내역보기"
-												class="btn btn-primary btn-sm"
-												style="height: 40px; width: 150px; margin: 10px 40px 0 100px;"
-												onclick="adminproductBillModalBtn(${i});">
-											<button type="button" id="chat${i}" name='chat' value="${i}"
-												class="btn btn-success btn-sm"
-												style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
-												채팅하기</button>
+											<button type="button" id="orderDetail${i}"class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i})">
+											주문내역보기</button>
+											<button type="button" id="chat${i}" name='chat' value="${i}" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
+											채팅하기</button>
 										</div>
 									</div>
 									<c:if test="${i%3==0}">
@@ -220,13 +216,11 @@ body {
 				time_start(0, num);
 				var user = "id";
 				var user_status = "unavail";
-				var order_status = "unavail";
 				var roomuse_id = "id";
 				var roomuse_num = num;
 				var roomuse_status = "on";
 				document.getElementById('user' + num).innerHTML = user;
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
-				document.getElementById('order_status' + num).innerHTML = order_status;
 				ajaxtosenddb_comic_room_use2(id, num, "on");
 			} else {
 				check_arr[num] = false;
@@ -236,7 +230,6 @@ body {
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
-				document.getElementById('order_status' + num).innerHTML = "대기중";
 				ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 						roomuse_status);
 			}
@@ -250,10 +243,8 @@ body {
 				check_arr[num] = true;
 				time_start(starttime, num);
 				/* 테스트용 */
-				var order_status = "unavail";
 				document.getElementById('user' + num).innerHTML = id;
 				document.getElementById('user_status' + num).innerHTML = status;
-				document.getElementById('order_status' + num).innerHTML = order_status;
 			} else {
 				check_arr[num] = false;
 				var roomuse_id = "없음";
@@ -262,7 +253,6 @@ body {
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
-				document.getElementById('order_status' + num).innerHTML = "대기중";
 			}
 		}
 		
@@ -424,6 +414,7 @@ body {
 	var orderArlet;
 	function adminproductBillModalBtn(num) {
 		orderArlet = num;
+		$("#orderDetail" + num).css('color', 'white');
 		console.log("일로옴?");
 		var id = document.getElementById('user' + num).innerHTML;
 		console.log(id);

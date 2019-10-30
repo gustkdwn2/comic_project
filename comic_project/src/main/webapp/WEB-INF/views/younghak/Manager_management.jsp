@@ -71,6 +71,7 @@
 .mngmentcard {
 	box-shadow: 0 4px 8px 0 rgba(77, 131, 255, 3);
 	width: 200px;
+	/* height : 380px; */
 	margin: auto;
 	text-align: center;
 	font-family: arial;
@@ -142,19 +143,21 @@
 												<script>
 $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).getEMPLOYEE_NUM()}}, function(arr){
 
-	var str="";
-
-	$(arr).each(function(i, attach){
-    	//image type
-    	if(attach.fileType){
-        	
+   var str="";
+   console.log("arr = "+arr);
+   $(arr).each(function(i, attach){
+	   
+       //image type
+       console.log("attach = "+attach);
+       if(attach.fileType){
+           
             var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/"+attach.uuid +"_"+attach.fileName);
 
-            str += "<img src='/empDisplay?fileName="+fileCallPath+"' style='width:210px; height:160px; border-radius: 50%;'";
-            str +=" onclick='workhourcal(\""+${managerList.get(i-1).getEMPLOYEE_NAME()}+"\",\""+${managerList.get(i-1).getEMPLOYEE_NUM()}+"\")'>";
-		}
+            str += "<img src='/empDisplay?fileName="+fileCallPath+"' style='width:180px; height:150px; border-radius: 50%;'";
+            str +=" onclick='workhourcal(\""+'${managerList.get(i-1).getEMPLOYEE_NAME()}'+"\",\""+${managerList.get(i-1).getEMPLOYEE_NUM()}+"\")'>";
+      }
     });
-	$("#empImageGetList${i-1}").html(str);
+   $("#empImageGetList${i-1}").html(str);
 });
 </script>
 
@@ -168,7 +171,10 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 		style="width: 50%; height: 50%; border-radius: 50%;"
 		onclick="workhourcal('${managerList.get(i-1).getEMPLOYEE_NAME()}','${managerList.get(i-1).getEMPLOYEE_NUM()}')">
 	</a> --%>
-													<a href="#" id="empImageGetList${i-1}"> </a>
+			
+            													
+            
+            <a href="#" id="empImageGetList${i-1}"> </a>
 
 													<h1>${managerList.get(i-1).getEMPLOYEE_NAME()}</h1>
 													<!-- 이름 -->
@@ -273,7 +279,7 @@ $.getJSON("/managerpos/getAttachList", {employee_num: ${managerList.get(i-1).get
 						</div>
 					</div>
 					<form name="register" class="pt-3" id="register"
-						action="/EmployeeRegister" method="post">
+						action="/EmployeeRegister" method="post" autocomplete="off">
 						<div class="form-group">
 							<label>이름</label> <input type="text"
 								class="form-control form-control-lg" id="EMPLOYEE_NAME_insert"
@@ -939,7 +945,7 @@ function showUploadResultGet(uploadResultArr){
     $(uploadResultArr).each(function(i, obj){
 		
 		if(obj.image){
-			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
 			str += "<li data-path='"+obj.uploadPath+"'";
 			str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 			str +" ><div>";
