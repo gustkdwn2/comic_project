@@ -127,7 +127,7 @@
      </div>
      <div style="font: "></div>
 
-<script type="text/javascript" src="/resources/js/comments.js"></script>
+<script type="text/javascript" src="/resources/js/comments.js?ver=7"></script>
             
 <script>
 
@@ -146,16 +146,19 @@
 
 		cmntajax.getList(boardValue, function(data){	
 		for (var i = 0, len = data.length || 0; i < len; i++) {
+			 
 			 str += '<div style="margin-bottom: 10px; height:190px; background-color:#DAE8E8; border-radius: 20px; width:1500px;"><br/>';
 			 str += '<div style="margin-left:40px; float:left; width:40px; height:40px; background-color:white; border-radius: 50%; font-weight:bold;"></br>&emsp;'+data[i].cmnt_num+'</div>';
 			 str += '<div style="height:20px; font-size:20px; margin-left:100px;">'+'작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date);
 
-			 if( ${sessionScope.EMPPOSITION=='사장' || sessionScope.EMPPOSITION=='매니저'}) { 
-	   		 str +=	'&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="updateCmntForm('+data[i].cmnt_num+',\''+data[i].cmnt_content+'\');">수정</button>'; 
+			 if( ${sessionScope.EMPPOSITION=='사장' || sessionScope.EMPPOSITION=='매니저'}) {
+			 data[i].cmnt_content = data[i].cmnt_content.replace(/(?:\r\n|\r|\n)/g, '<br>');
+			 
+	   		 str +=	'&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="updateCmntForm(\''+data[i].cmnt_num+'\',\''+data[i].cmnt_content+'\');">수정</button>';
   			 str += '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="commentDelete('+data[i].cmnt_num+')">삭제</button>';
 
 			 }
-  			 str +=	'</div><br/><br/><div style="background-color:white; border-radius: 20px; height:110px; width:1400px; margin-left:40px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>'+data[i].cmnt_content+'</div>';
+  			 str +=	'</div><br/><br/><div style="background-color:white; border-radius: 20px; height:110px; width:1400px; margin-left:40px; white-space:pre;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>'+data[i].cmnt_content+'</div>';
 	   		 str +=	'</div>';			
 
 		}
@@ -163,7 +166,6 @@
 	 });
 
 	}
-	
 
 	var reply = $("#cmntInsert");
 	var replyContent = reply.find("textarea[name='cmnt_content']");
@@ -174,22 +176,26 @@
 	var cIstBtn = $("#cIstBtn");
 
        window.updateCmntForm = function(cmnt_num, cmnt_content) {
-
+    	 var canclecontent = cmnt_content;
+    	 console.log("수정전 : " + canclecontent);
+    	 cmnt_content = cmnt_content.toString().split('<br>').join("\r\n");
 	     console.log(cmnt_num);
 	     console.log(cmnt_content);
+	     
          var str='';
     	 str += '<div id="updateDiv">';
-    	 str += '<textarea style="float:left; margin-left:10px; margin-top:5px; width:1200px;" class="form-control" name="content_'+cmnt_num+'"rows="5"  maxlength="330">'+cmnt_content+'</textarea>';
+    	 str += '<textarea style="float:left; margin-left:10px; margin-top:5px; width:1200px; white-space:pre;" class="form-control" name="content_'+cmnt_num+'"rows="5"  maxlength="330">'+cmnt_content+'</textarea>';
     	 str += '<div>&emsp;&emsp;'
-    	 str += '<button style="margin-top:8px;" class="btn btn-md btn-outline-secondary" onclick="updateBtn(' + cmnt_num + ');">수정 완료</button><br/><br/>&emsp;&emsp;';
-    	 str += '<button class="btn btn-md btn-outline-secondary" onclick="test(' + cmnt_num + ', \''+cmnt_content+'\');">수정 취소</button>';
+    	 str += '<button style="margin-top:8px;" class="btn btn-md btn-outline-secondary" onclick="updateBtn(' + cmnt_num + ');">수정 완료</button><br><br>&emsp;&emsp;';
+    	 str += '<button class="btn btn-md btn-outline-secondary" onclick="test(\''+cmnt_num+'\',\''+canclecontent+'\');">수정 취소</button>';
     	 str += '</div></div>';
 
  		 $("#updateCmnt_"+cmnt_num).html(str);
  	 }  
 
  	 window.test = function(cmnt_num, cmnt_content) {
-		var str = '<div id= "updateCmnt_'+ cmnt_num +'"><br/>&emsp;&emsp;'+cmnt_content+'</div>';
+ 		console.log("수정취소 : "+cmnt_content);
+		var str = '<div id= "updateCmnt_'+ cmnt_num +'"><br>'+cmnt_content+'</div>';
   		$("#updateCmnt_"+cmnt_num).html(str);
  	}
 
@@ -212,7 +218,7 @@
    	}
 
      cIstBtn.on("click",function(e){
-        
+
         var comments = {
         	  cmnt_id: replyId.val(),
         	  cmnt_content: replyContent.val(),
