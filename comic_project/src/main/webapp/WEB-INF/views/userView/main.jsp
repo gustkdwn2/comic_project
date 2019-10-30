@@ -114,11 +114,13 @@ $(document).ready(function(){
 		$("#chatCss").css('color', 'black');
 		$('#chatModal').css('display','');
 		$("#chatModal").show();
+		$('#modalstyle').css('display','');
 		$.ajax({
 			type: 'get',
 			url: '/userView/chatting',
 			dataType: 'json',
 			success: function(data) {
+				$("#messages" + sessionValue).html("");
 				$.each(data , function(i){
 					var str = "";
 					if(data[i].chat_id == "admin") {
@@ -154,6 +156,7 @@ $(document).ready(function(){
 		operForm.submit();
 	});
 	$("#billModalBtn").on("click", function(e){
+		totalprice();
 		$('#modalstyle').css('display','');
 		totalprice();
 		$.ajax({
@@ -296,6 +299,7 @@ $('#kakaopay').click(function(e){
 		              }
 		        }, 1000)
 			} else {
+				socket.send(room_num + ",종료," + mem_id);
 				location.href="http://localhost:8080/userView/mainPro?roomNum="+room_num
 			}
 		}

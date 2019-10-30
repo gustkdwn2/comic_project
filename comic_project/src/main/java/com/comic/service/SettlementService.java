@@ -9,7 +9,7 @@ import com.comic.model.ProductVO;
 public interface SettlementService {
 	public List<ProductVO> settlementList();
 
-	public boolean modify(String num, String currentNum);
+	public boolean modify(String num, String currentNum, int stockNum);
 
 	public Map<String, Object> settlementError(HashMap<String, Object> map);
 

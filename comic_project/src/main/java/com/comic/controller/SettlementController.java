@@ -45,7 +45,7 @@ public class SettlementController {
 		List<ProductVO> current = settleService.settlementList(); // 현재 재고 가져옴
 		
 		for (int i = 0; i < numList.length; i++) {
-			settleService.modify(numList[i],productList[i]); // 재고 테이블 수정
+			settleService.modify(numList[i],productList[i], current.get(i).getProduct_qty()); // 재고 테이블 수정
 			settleService.insertLoss(current.get(i),productList[i]); // 손실테이블에 추가 (현재재고와 입력 재고값 보냄)
 		}
 		

@@ -14,9 +14,6 @@ table {
 	table-layout: fixed;
 }
 
-table, tr {
-	font-size: medium;
-}
 
 .td_y_header {
 	text-align: center;
@@ -27,11 +24,11 @@ table, tr {
 </head>
 <body>
 
-	<div class="content-wrapper" style="height: 150px;">
+	<div class="content-wrapper" style="height:150px; margin-top:-20px;">
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">
-				<div class="card-body">
-					<div class="template-demo">
+				<div class="card-body" style="height:80px;">
+					<div class="template-demo" style="margin-top:-20px;">
 					
 						<button type="button"
 							onclick="javascript:window.location.href='/managerpos/Managerpos'"
@@ -66,11 +63,11 @@ table, tr {
 				</div>
 				<div class="modal-body">
 
-					<table style="width: 100%; text-align: center; 	border: 1px solid #dadfe4;">
+					<table style="width: 100%; text-align: center; border: 1px solid #dadfe4;">
 						<tr>
-							<td class="td_y_header"><font>사번/이름</font></td>
-							<td class="td_y_header"><font>출근시간</font></td>
-							<td class="td_y_header"><font>퇴근시간</font></td>
+							<td class="td_y_header" style="border: 1px solid #dadfe4;"><font>사번/이름</font></td>
+							<td class="td_y_header" style="border: 1px solid #dadfe4;"><font>출근시간</font></td>
+							<td class="td_y_header" style="border: 1px solid #dadfe4;"><font>퇴근시간</font></td>
 						</tr>
 					</table>
 					<div id="todaycummute"></div>
@@ -121,9 +118,9 @@ table, tr {
 					htmlStr += "<table style='width: 100%; text-align:center; border: 1px solid #dadfe4;'>";
 					$.each(data, function(index, list) {
 						htmlStr += "<tr>";
-						htmlStr += "<td class='td_y_header'>" + list.empnum +"/"+list.empname +"</td>"
-						htmlStr += "<td class='td_y_header'>" + list.starttime + "</td>"
-						htmlStr += "<td class='td_y_header'>" + list.endtime + "</td>"
+						htmlStr += "<td class='td_y_header' style='border: 1px solid #dadfe4;'>" + list.empnum +"/"+list.empname +"</td>"
+						htmlStr += "<td class='td_y_header' style='border: 1px solid #dadfe4;'>" + list.starttime + "</td>"
+						htmlStr += "<td class='td_y_header' style='border: 1px solid #dadfe4;'>" + list.endtime + "</td>"
 						htmlStr += "</tr>";
 					});
 					htmlStr += "</table>";

@@ -17,6 +17,7 @@
 * {
 	box-sizing: border-box;
 }
+
 body {
 	margin: 0;
 	font-family: "맑은 고딕";
@@ -29,11 +30,12 @@ body {
 	font-size: 16px;
 	cursor: pointer;
 	color: #555555;
-	height: 220px;
+	height: 200px;
 	border-right: 3px solid #f3f3f3;
 	background-color: #686868;
 	margin-left:10px;
 }
+
 .containerTab {
 	padding: 20px;
 	color: white;
@@ -51,6 +53,7 @@ body {
 	font-size: 35px;
 	cursor: pointer;
 }
+
 .div_root {
 	float: left;
 	width: 30.0%;
@@ -62,6 +65,7 @@ body {
 	margin-left: 10px;
 	height: 230px;
 }
+
 .div_menu {
 	width: 30%;
 	/* height:100px; */
@@ -74,6 +78,7 @@ body {
 	border-bottom: 3px solid #f3f3f3;
 	color: white;
 }
+
 .div_con {
 	width: 70%;
 	/* height:100px ; */
@@ -89,6 +94,7 @@ body {
 	border-bottom: 3px solid #f3f3f3;
 	text-align: center-vertical;
 }
+
 .div_bottom {
 	width: 100%;
 	/* height:100px; */
@@ -112,19 +118,24 @@ body {
 										<div class="row">
 									</c:if>
 
+									<c:if test="${i%3==1}">
+										<div class="row">
+									</c:if>
+
 									<div class="column"
 										onclick="<%-- method_startnstop(${i}); --%>">
-										<!-- <div class="div_root"> -->
 
 										<div class="div_menu">${i}번방</div>
 
 
 										<div class="div_con">
-											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font id="user_time${i}">없음</font><br> 사용상태 : <font id="user_status${i}">없음</font><br>
-											<br>
+											사 용 자 : <font id="user${i}">없음</font><br> 사용시간 : <font
+												id="user_time${i}">없음</font><br> 사용상태 : <font
+												id="user_status${i}">없음</font><br> <br>
 										</div>
 										<div class="div_bottom">
-											<input type="button" value="주문내역보기" class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i});">
+											<button type="button" id="orderDetail${i}"class="btn btn-primary btn-sm" style="height: 40px; width: 150px; margin: 10px 40px 0 100px;" onclick="adminproductBillModalBtn(${i})">
+											주문내역보기</button>
 											<button type="button" id="chat${i}" name='chat' value="${i}" class="btn btn-success btn-sm" style="height: 40px; width: 100px; margin: 10px 0 0 0px;">
 											채팅하기</button>
 										</div>
@@ -165,16 +176,13 @@ body {
 			</div>
 		</div>
 	</div>
-  </div>
-  <div id="modalstyle" class="modal-backdrop show"></div>
-  
+	<div id="modalstyle" class="modal-backdrop show"></div>
 	<!-- main-panel ends -->
 	<jsp:include page="adminproductBillModal.jsp" />
 	<jsp:include page="../chat/chatting.jsp" />
 	<script>
-
 	$(document).ready(function(){
-		$('#modalstyle').css('display','none');
+	$('#modalstyle').css('display','none');
 	});
 	
 	var check_arr = new Array(7); //방의 개수보다 1크게
@@ -211,13 +219,11 @@ body {
 				time_start(0, num);
 				var user = "id";
 				var user_status = "unavail";
-				var order_status = "unavail";
 				var roomuse_id = "id";
 				var roomuse_num = num;
 				var roomuse_status = "on";
 				document.getElementById('user' + num).innerHTML = user;
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
-				document.getElementById('order_status' + num).innerHTML = order_status;
 				ajaxtosenddb_comic_room_use2(id, num, "on");
 			} else {
 				check_arr[num] = false;
@@ -227,7 +233,6 @@ body {
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
-				document.getElementById('order_status' + num).innerHTML = "대기중";
 				ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 						roomuse_status);
 			}
@@ -241,10 +246,8 @@ body {
 				check_arr[num] = true;
 				time_start(starttime, num);
 				/* 테스트용 */
-				var order_status = "unavail";
 				document.getElementById('user' + num).innerHTML = id;
 				document.getElementById('user_status' + num).innerHTML = status;
-				document.getElementById('order_status' + num).innerHTML = order_status;
 			} else {
 				check_arr[num] = false;
 				var roomuse_id = "없음";
@@ -253,7 +256,6 @@ body {
 				document.getElementById('user' + num).innerHTML = "대기중";
 				document.getElementById('user_time' + num).innerHTML = "00:00:00";
 				document.getElementById('user_status' + num).innerHTML = roomuse_status;
-				document.getElementById('order_status' + num).innerHTML = "대기중";
 			}
 		}
 		
@@ -364,6 +366,7 @@ body {
 			$("#chatModal").show();
 			$(".title").html("");
 			$(".title").append(chatRoom + "방 채팅");
+			$('#modalstyle').css('display','');
 			for(var i=1; i < 7; i++) {
 				$("#messages" + i).hide();
 			}  
@@ -394,6 +397,7 @@ body {
 						}
 						$("#messages" + chatRoom).append(str);
 		           });
+					
 				}
 			});
 		});
@@ -412,10 +416,11 @@ body {
 	var orderArlet;
 	function adminproductBillModalBtn(num) {
 		orderArlet = num;
+		$("#orderDetail" + num).css('color', 'white');
 		console.log("일로옴?");
 		var id = document.getElementById('user' + num).innerHTML;
 		console.log(id);
-		
+		$('#modalstyle').css('display','');
 		$.ajax({
 			type: 'get',
 			url: '/userView/userProductBill?userId='+id,

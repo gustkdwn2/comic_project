@@ -12,7 +12,7 @@
 						<div class="table-responsive pt-3" style="text-align: center;" >
 							<h2>상품 주문 상세 내역<button type="button" id="orderArletButton" class="btn btn-warning" style="float: right;"><font style="color:white;">알림</font></button></h2>
 							
-							<table id="productBillTable" class="table" style="margin-top: 30px; height: 410px;">
+							<table id="productBillTable" class="table" style="margin-top: 30px;">
 								<thead>
 									<tr>
 										<th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
