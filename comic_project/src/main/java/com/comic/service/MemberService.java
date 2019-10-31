@@ -30,17 +30,7 @@ public interface MemberService {
 	public MemberVO getMember(MemberVO vo);
 	// 멤버 헤더 회원수정 비밀번호 체크
 	public String membermodifypasswordcheck(String mEMBER_ID);
-	// 직원 회원가입
-	public void employeeRegister(EmployeeVO vo);
-	// 직원 로그인
-	EmployeeVO employeeLogin(LoginVO loginVO) throws Exception;
-	// 직원 로그인 유지 처리
-	public void EmployeekeepLogin(int EMPLOYEE_NUM, String sessionId, Date sessionLimit) throws Exception;
-	// 세션키 검증
-	MemberVO checkLoginBefore(String value) throws Exception;
 	// 룸사용시작
 	public void roomuse(String roomuse_id, int roomnum);
-	
-	public List<EmployeeAttachVO> getAttachList(int employee_num);
 	
 }

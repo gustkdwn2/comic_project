@@ -1,20 +1,15 @@
 package com.comic.service.impl;
 
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.comic.mapper.EmployeeAttachMapper;
 import com.comic.mapper.MemberMapper;
-import com.comic.model.EmployeeAttachVO;
-import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
-import com.comic.model.RoomuseVO;
 import com.comic.service.MemberService;
 
 @Service
@@ -23,9 +18,6 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberMapper mapper;
 	private String password;
-	
-	@Autowired
-	private EmployeeAttachMapper attachMapper;
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
@@ -89,42 +81,10 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.membermodifypasswordcheck(mEMBER_ID);
 	}
 
-	@Override
-	public void EmployeekeepLogin(int EMPLOYEE_NUM, String sessionId, Date sessionLimit) throws Exception {
-		mapper.EmployeekeepLogin(EMPLOYEE_NUM, sessionId, sessionLimit);
-	}
-	
-	@Override
-	public EmployeeVO employeeLogin(LoginVO loginVO) throws Exception {
-		return mapper.employeeLogin(loginVO);
-	}
-	
-	@Override
-	public MemberVO checkLoginBefore(String value) throws Exception {
-		return mapper.checkUserWithSessionKey(value);
-	}
 
 	@Override
 	public MemberVO getMember(MemberVO vo) {
 		return mapper.getMember(vo);
-	}
-
-	@Override
-	public void employeeRegister(EmployeeVO vo) {
-		//	password = vo.getEMPLOYEE_PWD();
-		//	vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));
-		
-			mapper.employeeInsert(vo);
-			
-			vo.getAttachList().forEach(attach -> {
-				attach.setEMPLOYEE_NUM(vo.getEMPLOYEE_NUM());
-				attachMapper.insert(attach);
-			});
-	}
-
-	@Override
-	public List<EmployeeAttachVO> getAttachList(int employee_num) {
-		return attachMapper.findByEMPLOYEE_NUM(employee_num);
 	}
 
 	@Override

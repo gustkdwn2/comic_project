@@ -35,14 +35,6 @@ public interface MemberMapper {
 	public MemberVO getMember(MemberVO vo);
 	// 멤버 헤더 회원수정 비밀번호 체크
 	public String membermodifypasswordcheck(String mEMBER_ID);
-	// 직원 회원가입
-	public void employeeInsert(EmployeeVO vo);
-	// 직원 로그인
-	public EmployeeVO employeeLogin(LoginVO loginVO);
-	// 직원 로그인 유지 처리
-	public void EmployeekeepLogin(int eMPLOYEE_NUM, String sessionId, Date sessionLimit);	
-	// 세션키 검증
-	public MemberVO checkUserWithSessionKey(String value);
 	// 룸사용시작
 	public void roomuse(@Param("roomuse_id") String roomuse_id,@Param("roomnum") int roomnum);
 	
