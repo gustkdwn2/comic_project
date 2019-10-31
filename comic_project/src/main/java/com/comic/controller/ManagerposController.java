@@ -473,13 +473,8 @@ public class ManagerposController {
 		 List<EmployeeAttachVO> attachList = MemberService.getAttachList(vo.getEMPLOYEE_NUM());
 		 managementService.employeeModify(vo);
 		 if(!attachList.get(0).getUuid().equals(vo.getAttachList().get(0).getUuid())) {
-<<<<<<< HEAD
 			 deleteFiles(attachList);
 		 }
-=======
-	          deleteFiles(attachList);
-	     }
->>>>>>> master
 		 model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		 return "redirect:/managerpos/Manager_management";
 	      
