@@ -88,7 +88,7 @@ public class EchoHandlerOrder extends TextWebSocketHandler{
 					adminSession.sendMessage(new TextMessage(roomNumber + "|" + content + "|" + memberid));
 				} else if("주문가져가".equals(content)) {
 					roomSession.sendMessage(new TextMessage(roomNumber + "|" + "주문가져가"));
-				}else if("종료".equals(content)) {
+				} else if("종료".equals(content)) {
 					adminSession.sendMessage(new TextMessage(roomNumber + "|" + content + "|" + memberid));
 				}
 			}

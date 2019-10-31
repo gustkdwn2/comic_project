@@ -9,9 +9,10 @@ socket.onmessage = function(event) {
 	if(data[0] == "chat") {
 		test = data[1];
 		message_side = 'left';
+		console.log(data); 
 		sendMessage(data[2]);
-		//$("#chatCss").css('color', 'red');
-
+		$("#chatCss").css('color', 'red');
+		$("#chat" + test).css('color', 'red');
 	} else {
 		if(data[1] == "주문") {
 			console.log("test");
@@ -20,12 +21,13 @@ socket.onmessage = function(event) {
 		} else if(data[1] == "시작") {
 			ajaxtosenddb_comic_room_use2(data[2], data[0], "on");
 		} else if(data[1] == "종료") {
-			console.log("else if(data[1] == exit");
+			console.log(sessionValue);
+			chatDataDelete(data[0]);
 			ajaxtosenddb_comic_room_use2(data[2], data[0], "off");
 			alert(data[0] + "방 사용 종료!!");
 			location.href="/managerpos/managerpos";
 		} else if(data[1] == "주문가져가") {
-			userOrderArlet();
+			alert('주문이 준비되었습니다 카운터로 오셔서 가져가주세요!');
 		}
 	}
 	 
@@ -37,8 +39,8 @@ socket.onclose = function() {
 };
 
 function orderArlet(roomNum, userid) {
-	$("#ModalorderArlet").modal("show");
-	$("#orderModalBody").append(roomNum + " 방"  + userid + "님 주문!");
+	alert(roomNum + " 방"  + userid + "님 주문!");
+	$("#orderDetail" + roomNum).css('color', 'red');
 }
 
 function userOrderArlet() {
@@ -64,7 +66,6 @@ function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 		contentType : "application/json; charset=utf-8;",
 		type : 'POST',
 		success : function(data) {
-			console.log("ajaxtogetdb_comic_room_uselist()");
 			ajaxtogetdb_comic_room_uselist();
 			console.log("성공");
 		},
@@ -100,6 +101,23 @@ function ajaxtogetdb_comic_room_uselist() {
 	});	
 	
 }
+
+function chatDataDelete(roomNum) {
+	console.log("채팅데이터 날리기");
+	$.ajax({
+		url : '/chat/chattingDelete?roomNum=' + roomNum,
+		dataType : 'json',
+		contentType : "application/json; charset=utf-8;",
+		type : 'GET',
+		success : function(data) {
+			
+		},
+		error : function(data) {
+			console.log("실패");
+		}
+	});	
+}
+
 
 var Message;
 Message = function(arg) {

@@ -19,4 +19,8 @@
 		order by chat_num
 	</select>
 	
+	<delete id="deleteChat">
+		delete from comic_chat where chat_roomnum = #{roomNum}
+	</delete>
+	
 </mapper> 

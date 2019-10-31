@@ -20,7 +20,7 @@
 		<div class="card">
 			<div class="card-body">
 				<h4>상품주문 화면</h4><hr>
-				<button class="btn btn-warning" id="categoryAdd" style="color:#f3f3f3;">카테고리추가</button>
+				<button class="btn btn-warning" id="categoryAdd" style="color:#f3f3f3;">카테고리 추가</button>
 				<br/><hr>
 					<div class="row">
 						<c:forEach items="${ OrderViewVO_List }" var="list">
@@ -39,8 +39,8 @@
 												<div class="dropdown-menu" style="background-color: #d6e3ff;">
 													<a class="dropdown-item" name="categoryDelete" value="${ list.orderview_num }"
 													style="cursor: pointer;">삭제</a> 
-													<a class="dropdown-item" name="categoryUpdate" value="${ list.orderview_num }"
-													style="cursor: pointer;">수정</a>
+													<%-- <a class="dropdown-item" name="categoryUpdate" value="${ list.orderview_num }"
+													style="cursor: pointer;">수정</a> --%>
 												</div>
 											</div>
 										
@@ -67,8 +67,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">category Add</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="float: right; width: 100px;">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">카테고리 추가</h4>
             </div> 
             <div class="modal-body">
                 <div class="form-group">
@@ -83,39 +83,100 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="cateModalRegisterBtn" type="button" class="btn btn-primary">Resgister</button>
+                <button id="cateModalRegisterBtn" type="button" class="btn btn-warning" style="color:white">등록</button>
             </div>
         </div>
     </div>
 </div>
 
+<<<<<<< HEAD
+=======
+<!-- modal category Update-->
+<div class="modal" id="ModalcategoryUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">카테고리 수정</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>카테고리</label>
+                    <!-- <input class="form-control" name="category"> -->
+                    <select class="form-control" name="category">
+						<option value="">선   택</option>
+                       	<c:forEach items="${productGetList}" var="productGetList">
+                       		<option value="${productGetList.product_category}">${productGetList.product_category}</option>
+                       	</c:forEach>
+                  	</select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cateModalUpdateBtn" type="button" class="btn btn-warning" style="color:white">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+>>>>>>> master
 <!-- modal product add-->
 <div class="modal" id="modalProductAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">product Add</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="productAddModalCloseBtn">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">상품 추가</h4>
             </div> 
             <div class="modal-body">
                 <div class="form-group">
-                    <label>product</label>
+                    <label>상품</label>
                     <!-- <input class="form-control" name="product"> -->
                     <select class="form-control" name="product" id="productCategoryNameOption">
                     
                   	</select>
-                    <label>image file</label>
+                    <label>이미지 파일</label>
                     <form id="uploadForm" method="post" enctype="multipart/form-data">
 	                    <input class="form-control" type="file" name="uploadFile" id="productAddInputUploadFile">
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="productModalRegisterBtn" type="button" class="btn btn-primary">Resgister</button>
+                <button id="productModalRegisterBtn" type="button" class="btn btn-warning" style="color:white">등록</button>
             </div>
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+<!-- modal product update-->
+<div class="modal" id="modalProductUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="productUpdateModalCloseBtn">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">상품 수정</h4>
+            </div>  -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>상품</label>
+                    <!-- <input class="form-control" name="product"> -->
+                    <select class="form-control" name="product" id="productCategoryNameUpdateOption">
+                    
+                  	</select>
+                    <label>이미지 파일</label>
+                    <form id="uploadForm" method="post" enctype="multipart/form-data">
+	                    <input class="form-control" type="file" name="uploadFile">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="productModalUpdateBtn" type="button" class="btn btn-warning" style="color:white">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+>>>>>>> master
 <script src="/resources/js/userOrderManeger.js?vaer=2"></script>
 <script>
     $(document).ready(function () {
@@ -201,8 +262,6 @@
 				for(var i = 0, len = data.length || 0; i < len; i++) {
 					var fileCallPath =  encodeURIComponent( data[i].ORDERVIEW_UPLOADPATH+ "/"+data[i].ORDERVIEW_UUID +"_"+data[i].ORDERVIEW_FILENAME);
 					str += "<div class='col-sm-6 col-md-4 col-lg-3' id='orderTest'>";
-					str += "<a href='#' onclick=\'productDelete(" + data[i].ORDERVIEW_NUM + ")\'>[delete]</a>";
-					str += "<a href='#' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>[update]</a>";
 					str += "<input type='hidden' id='prodcutCategoryUpdateHidden' value='"+category+"'>";
 					str += "<br/>"; 
 					str += "<img src='/userOrderManager/display?fileName=" + fileCallPath + "' width='150' height='200'/>";
@@ -211,8 +270,8 @@
 					str += "<br/>";
 					str += "" + numberWithCommas(data[i].PRODUCT_PRICE)+"<br/><br/>";
 					str += "<button class='btn btn-primary btn-sm' onclick=\'productDelete(" + data[i].ORDERVIEW_NUM + ")\'>삭제</button>";
-					str += "&emsp;" 
-					str += "<button class='btn btn-primary btn-sm' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>수정</button>";
+/* 					str += "&emsp;"  */
+					/* str += "<button class='btn btn-primary btn-sm' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>수정</button>"; */
 					str += "</div>";
 				}
 				str += '</div>';
@@ -223,6 +282,10 @@
 
 		$("button[name = productAdd]").on("click", function(e){
 			var Optionstr = "";
+<<<<<<< HEAD
+=======
+			Optionstr += "<option value=''>선 택</option>";
+>>>>>>> master
 			$.ajax({
 				type: 'get',
 			    url: "/userOrderManager/productCategoryName?product_category="+$(this).attr('value'),
@@ -314,6 +377,32 @@
 				orderProductShow(categoryValue);
 			});
 		}
+<<<<<<< HEAD
+=======
+
+/* 		window.productUpdate = function (number) {
+			var category = $("#prodcutCategoryUpdateHidden").val();
+			var Optionstr = "";
+			Optionstr += '<option value="">선 택</option>';
+			$.ajax({
+				type: 'get',
+			    url: "/userOrderManager/productCategoryName?product_category="+category,
+			    dataType : "json",
+			    async : false,
+			    success: function(data){
+				    for(var i = 0; i < data.length; i++) {
+				    	Optionstr += '<option value="'+data[i].product_name+'">'+data[i].product_name+'</option>';
+					}
+				}
+			});
+			$("#productCategoryNameUpdateOption").append(Optionstr);
+			$("#modalProductUpdate").modal("show");
+			$("#productUpdateModalCloseBtn").on("click", function (e) {
+				$("select#productCategoryNameUpdateOption option").remove();
+			});
+			
+		} */
+>>>>>>> master
 		
 		var maxSize = 5242880; // 5MB
 		

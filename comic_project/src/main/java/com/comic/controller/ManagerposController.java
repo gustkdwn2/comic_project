@@ -473,8 +473,13 @@ public class ManagerposController {
 		 List<EmployeeAttachVO> attachList = MemberService.getAttachList(vo.getEMPLOYEE_NUM());
 		 managementService.employeeModify(vo);
 		 if(!attachList.get(0).getUuid().equals(vo.getAttachList().get(0).getUuid())) {
+<<<<<<< HEAD
 			 deleteFiles(attachList);
 		 }
+=======
+	          deleteFiles(attachList);
+	     }
+>>>>>>> master
 		 model.addAttribute("managerList", managementService.managerList()); // 재고테이블
 		 return "redirect:/managerpos/Manager_management";
 	      
@@ -483,6 +488,7 @@ public class ManagerposController {
 	 @GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		@ResponseBody
 		public ResponseEntity<List<EmployeeAttachVO>> getAttachList(@RequestParam("employee_num") int employee_num) {
+		 	System.out.println("여기오옴");
 			return new ResponseEntity<List<EmployeeAttachVO>>(MemberService.getAttachList(employee_num), HttpStatus.OK);
 		}
 	 

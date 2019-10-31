@@ -31,9 +31,9 @@ public class SettlementServiceImpl implements SettlementService {
 	}
 
 	@Override
-	public boolean modify(String num, String currentNum) {
+	public boolean modify(String num, String currentNum, int stockNum) {
 		int number = Integer.parseInt(num);
-		int curNum = Integer.parseInt(num);
+		int curNum = stockNum;
 		if(isStringDouble(currentNum)) {
 			curNum = Integer.parseInt(currentNum);
 		}

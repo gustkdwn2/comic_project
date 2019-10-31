@@ -63,7 +63,7 @@ td {
             <img src="/resources/images/comic_image.png" alt=""
                style="width: 200px; height: 100px; margin-left: 600px; margin-top: 20px; float: left" />
             <div class="content-section-heading text-center" style="width: 500px; height: 100px; margin-top: 30px; float: left; ">
-               <br/><h1 style="color: white;">${ roomNum }번방&emsp;02:15:39</h1>
+               <br/><h1 style="color: white;">${ roomNum }번방</h1>
             </div><br/><br/>
          </div>
          
@@ -213,6 +213,7 @@ td {
 		    });
    		}
 
+<<<<<<< HEAD
 	   var orderArray = {};
 	   var qty = 0;
 	   var index = 0;
@@ -310,5 +311,160 @@ td {
 	      $("#successModal").modal("hide");
 	   });   
 	});
+=======
+                  $("button[name = categoryButton]").on("click",
+                        function(e) {
+                           categoryValue = $(this).attr('value');
+                           orderProductShow(categoryValue);
+                        });
+
+                  function numberWithCommas(x) {
+                     return x.toString().replace(
+                           /\B(?=(\d{3})+(?!\d))/g, ",");
+                  }
+
+                  //상품 카테고리
+                  function orderProductShow(category) {
+                     orderProductService
+                           .getList(
+                                 category,
+                                 function(data) {
+                                    var str = "";
+
+                                    if (data.length == 0) {
+                                       str += " ";
+                                       orderProduct.html(str);
+                                       return;
+                                    }
+                                    str += '<div class="row order-list" style="width:600px;">';
+                                    for (var i = 0, len = data.length || 0; i < len; i++) {
+                                       var fileCallPath = encodeURIComponent(data[i].ORDERVIEW_UPLOADPATH
+                                             + "/"
+                                             + data[i].ORDERVIEW_UUID
+                                             + "_"
+                                             + data[i].ORDERVIEW_FILENAME);
+                                       str += "<div class='col-lg-4' id='orderTest'>";
+                                       str += "<br/>";
+                                       str += "<img onclick='userProductBtn("
+                                             + data[i].PRODUCT_NUM
+                                             + ",\""
+                                             + data[i].PRODUCT_NAME
+                                             + "\","
+                                             + data[i].PRODUCT_PRICE
+                                             + ");' src='/userOrderManager/display?fileName="
+                                             + fileCallPath
+                                             + "' width='150' height='200'/>";
+                                       str += "<br/>";
+                                       str += ""
+                                             + data[i].PRODUCT_NAME;
+                                       str += "<br/>";
+                                       str += ""
+                                             + numberWithCommas(data[i].PRODUCT_PRICE);
+                                       str += "</div>";
+                                    }
+                                    str += "</div>";
+
+                                    orderProduct.html(str);
+                                 });
+                  }
+
+                  var orderArray = {};
+                  var qty = 0;
+                  var index = 0;
+                  var tableBody = $("#tableBody");
+                  var finalPrice = $("#finalPrice");
+                  var orderQty = $("#orderQty");
+
+                  window.userProductBtn = function(productNum,
+                        productName, productPrice) {
+                     for (key in orderArray) {
+                        if (orderArray[key].productNum == productNum) {
+                           orderArray[key].qty = (orderArray[key].qty + 1);
+                           orderArray[key].finalPrice = (orderArray[key].qty * orderArray[key].productPrice);
+                           console.log(orderArray);
+                           showUserProduct();
+                           return;
+                        }
+                     }
+                     orderArray[index] = {
+                        productNum : productNum,
+                        qty : 1,
+                        productName : productName,
+                        productPrice : productPrice,
+                        finalPrice : productPrice
+                     };
+                     index += 1;
+                     console.log(orderArray);
+                     showUserProduct();
+
+                  };
+
+                  window.productAdd = function(key) {
+                     orderArray[key].qty = (orderArray[key].qty + 1);
+                     orderArray[key].finalPrice = (orderArray[key].qty * orderArray[key].productPrice);
+                     showUserProduct();
+                  }
+
+                  window.productSub = function(key) {
+                     orderArray[key].qty = (orderArray[key].qty - 1);
+                     orderArray[key].finalPrice = (orderArray[key].qty * orderArray[key].productPrice);
+                     if (orderArray[key].qty <= 0) {
+                        delete orderArray[key];
+                     }
+                     console.log(orderArray);
+                     showUserProduct();
+                  }
+
+                  //주문목록
+                  function showUserProduct() {
+                     var finalPriceSum = 0;
+                     var qtySum = 0;
+                     str = "";
+
+                     for (key in orderArray) {
+                        finalPriceSum += orderArray[key].finalPrice;
+                        qtySum += orderArray[key].qty;
+                        str += "<tr style='border:1px solid #dadfe4'>"
+                        str += "<td>" + orderArray[key].productName
+                              + "</td>";
+                        str += "<td>" + orderArray[key].finalPrice
+                              + "</td>";
+                        str += "<td>" + orderArray[key].qty + "</td>";
+                        str += "<td><a href='#' onclick='productAdd("
+                              + key + ");'><button class='btn btn-sm btn-outline-dark' style='width:50px;'>+</button></a>  ";
+                        str += "<a href='#' onclick='productSub(" + key
+                              + ");'><button class='btn btn-sm btn-outline-dark' style='width:50px;'>-</button></a></td>";
+                        str += "</tr>";
+                     }
+                     finalPrice.val(finalPriceSum);
+                     orderQty.val(qtySum)
+                     tableBody.html(str);
+                  }
+
+                  window.productAllDelete = function() {
+                     for (key in orderArray) {
+                        delete orderArray[key];
+                     }
+                     showUserProduct()
+                  }
+
+                  $("#resultOrder").on("click", function() {
+              	    console.log(orderArray);
+              	    if($("#orderQty").val() == "") {
+              		      alert("상품이 없습니다.");
+              		      return false;
+              		}
+              	    orderProductService.resultOrder(orderArray, function(e) {
+              	       productAllDelete();
+              	       $("#successModal").modal("show");
+              	       socket.send(roomNum + ",주문," + memberid);
+              	    });
+              	   });  
+
+                  $("#OK").on("click", function() {
+                     $("#successModal").modal("hide");
+                  });   
+               });
+>>>>>>> master
 </script>
 </html>
