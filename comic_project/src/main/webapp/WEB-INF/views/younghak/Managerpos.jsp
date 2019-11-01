@@ -314,42 +314,22 @@ body {
 						searching : true, // 검색 기능
 						bStateSave : true,
 						"iDisplayLength" : 10,
-						"columnDefs" : [ {
-							targets : 'no-sort',
-							orderable : false
-						} ],
+						"columnDefs" : [ { targets : 'no-sort', orderable : false } ],
 						ajax : {
 							url : "/realorder/realOrderData.json",
 							type : "get",
 							dataSrc : '',
 						},
-						"language": {
-						      search: "Search :"
-						},
+						"language": { search: "Search :" },
 						aoColumns : [
-								{
-									data : "order_num"
-								},
-								{ data: "order_time", 
-						    		"render": function (data) {
-						    			var date = new Date(data); var month = date.getMonth() + 1; 
-						    			return  date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); } 
-							    },
-								{
-									data : "order_roomnum"
-								},
-								{
-									data : "order_id"
-								},
-								{
-									data : "product_name"
-								},
-								{
-									data : "order_qty"
-								},
-								{
-									data : "product_price"
-								},],
+								{ data : "order_num"},
+								{ data: "order_time", "render": function (data) { var date = new Date(data); var month = date.getMonth() + 1;
+						    			return  date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); } },
+								{ data : "order_roomnum" },
+								{ data : "order_id" },
+								{ data : "product_name" },
+								{ data : "order_qty" },
+								{ data : "product_price" },],
 						order : [ [ 0, 'desc' ] ]
 					});
 			}
