@@ -3,16 +3,23 @@ socket.onopen = function() {
 	console.log("소켓 시작");
 };
 
+var setIntervalChatStop;
+var setIntervalOrderStop;
+var setIntervalStopChatCss;
 socket.onmessage = function(event) {
 	console.log(event.data);
 	var data = event.data.split('|');
 	if(data[0] == "chat") {
 		test = data[1];
+		console.log("이거 번호 맞음? " + test);
 		message_side = 'left';
 		console.log(data); 
 		sendMessage(data[2]);
-		$("#chatCss").css('color', 'red');
-		$("#chat" + test).css('color', 'red');
+		console.log("##########################채팅");
+		$("#chat" + test).css("background-color","rgb(255, 71, 71)");
+		$("#chat" + test).css("border-color","rgb(255, 71, 71)");
+		$('#chatCss').css('display','');
+		setIntervalChatStop = setInterval("flashChat("+test+")", 500);
 	} else {
 		if(data[1] == "주문") {
 			console.log("test");
@@ -30,9 +37,18 @@ socket.onmessage = function(event) {
 			alert('주문이 준비되었습니다 카운터로 오셔서 가져가주세요!');
 		}
 	}
-	 
-	
 };
+
+function flashChat(test){
+	if ($("#chat" + test).css("background-color") == "rgb(255, 71, 71)") {
+		$("#chat" + test).css("background-color","rgb(113,192,22)");
+		$("#chat" + test).css("border-color","rgb(113,192,22)");
+	}
+	else{ 
+		$("#chat" + test).css("background-color","RGB(255, 71, 71)");
+		$("#chat" + test).css("border-color","rgb(255, 71, 71)");
+	}
+}
 
 socket.onclose = function() {
 	console.log("소켓 끝");
@@ -40,8 +56,25 @@ socket.onclose = function() {
 
 function orderArlet(roomNum, userid) {
 	alert(roomNum + " 방"  + userid + "님 주문!");
-	$("#orderDetail" + roomNum).css('color', 'red');
+	$("#orderDetail" + roomNum).css("background-color","RGB(255,71,71)");
+	$("#orderDetail" + roomNum).css("border-color","RGB(255,71,71)");
+	setIntervalOrderStop = setInterval("flashOrder("+roomNum+")", 500);
+	}
+function flashOrder(roomNum){
+	
+	console.log("11");
+	console.log($("#orderDetail" + roomNum).css("background-color"));
+	if ($("#orderDetail" + roomNum).css("background-color") == "rgb(255, 71, 71)") {
+		$("#orderDetail" + roomNum).css("background-color","RGB(77,131,255)");
+		$("#orderDetail" + roomNum).css("border-color","RGB(77,131,255)");
+	}
+	else{ 
+		$("#orderDetail" + roomNum).css("background-color","RGB(255,71,71)");
+		$("#orderDetail" + roomNum).css("border-color","RGB(255,71,71)");
+	}
+	
 }
+
 
 function userOrderArlet() {
 	$("#orderArlet").modal("show");

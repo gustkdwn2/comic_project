@@ -1,9 +1,10 @@
 function headermembermodifyBtn() {
 	$('#headerMemberModifyPasswordModal').show();
-	
+	$('#modalstyle').css('display','');
 	$('#headerMemberModifyPasswordclose').click(function(){
 		$('#headerMemberModifyPasswordModal').hide();
 		$('#headerMemberModifyPasswordModal').find('form')[0].reset();
+		$('#modalstyle').css('display','none');
 	});
 }
 
@@ -18,6 +19,7 @@ function headerMemberModifyPasswordCheck(MEMBER_ID,MEMBER_PWD){
 			if(data == 1){
 			$('#headerMemberModifyPasswordModal').hide();
 			$('#headerMemberModifyPasswordModal').find('form')[0].reset();
+			$('#modalstyle').css('display','');
 			$.ajax({
 				type : 'get',
 				url : "/member/MemberModify?MEMBER_ID=" + MEMBER_ID,
@@ -32,10 +34,13 @@ function headerMemberModifyPasswordCheck(MEMBER_ID,MEMBER_PWD){
 							data.getModify['member_PHONE_NUMBER']);
 					$('#headerMemberModifyModal').show();
 				}
+			
 			});
+			
 			$('#headermodifyclose').click(function(){
 				$('#headerMemberModifyModal').hide();
 				$('#headerMemberModifyModal').find('form')[0].reset();
+				$('#modalstyle').css('display','none');
 			});
 			} else {
 				alert("비밀번호가 틀렸습니다.");

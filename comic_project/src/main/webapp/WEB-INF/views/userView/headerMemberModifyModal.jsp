@@ -44,8 +44,9 @@
 										type="tel" class="form-control" value="${Memberlogin.MEMBER_PHONE_NUMBER}">
 								</div>
 								<div class="form-group" align="center">
-									<button type="submit" id="headermodifyBtn" name="headermodifyBtn" class="btn btn-info">수정</button>
-									<button type="button" id="headermodifyclose" class="btn btn-success">닫기</button>
+									<button type="submit" id="headermodifyBtn" style="color:white"
+										name="headermodifyBtn" class="btn btn-warning">수정</button>&nbsp;
+									<button type="button" id="headermodifyclose" class="btn" style="background-color: #686868; color:white;">닫기</button>
 								</div>
 							</form>
 						</div>

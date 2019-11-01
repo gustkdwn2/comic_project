@@ -55,7 +55,7 @@
 <script src="/resources/js/jquery.dataTables.js"></script>
 <script src="/resources/js/dataTables.bootstrap4.js"></script>
 
-<script src="/resources/js/orderWebsocket.js?after"></script>
+<script src="/resources/js/orderWebsocket.js?ver=9"></script>
 
 
 <!-- Custom CSS -->

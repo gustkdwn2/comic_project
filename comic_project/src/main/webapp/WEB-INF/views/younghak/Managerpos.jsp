@@ -6,9 +6,6 @@
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/sidebar.jsp"%>
 
-<%-- <%@ include file="./younghak_header.jsp"%> --%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +65,6 @@ body {
 
 .div_menu {
 	width: 30%;
-	/* height:100px; */
 	padding-top: 10%;
 	height: 70%;
 	float: left;
@@ -90,7 +86,6 @@ body {
 	float: left;
 	font-size: 20px;
 	color: white;
-	/* //background-size:50%50%; */
 	border-bottom: 3px solid #f3f3f3;
 	text-align: center-vertical;
 }
@@ -118,10 +113,6 @@ body {
 										<div class="row">
 									</c:if>
 
-									<c:if test="${i%3==1}">
-										<div class="row">
-									</c:if>
-
 									<div class="column"
 										onclick="<%-- method_startnstop(${i}); --%>">
 
@@ -142,14 +133,13 @@ body {
 									</div>
 									<c:if test="${i%3==0}">
 							</div>
-							<br>
+							<br/><br/>
 							</c:if>
 							</c:forEach>
 						</div>
 					</div>
 				</div>
 			</div>
-		
 		<!-- 실시간 주문 테이블 -->
 		<div class="row" >
 			<div class="col-md-12 stretch-card">
@@ -359,7 +349,9 @@ body {
 			
 		$("button[name='chat']").on("click", function() {
 			chatRoom = $(this).attr('value');
-			$("#chat" + chatRoom).css('color', 'white');
+			clearInterval(setIntervalChatStop);
+			$("#chat" + chatRoom).css('background-color', '');
+			$("#chat" + chatRoom).css('border-color', '');
 			console.log("chatRoom" + chatRoom);
 			//window.open("/chat/chatting?room=" + roomNum,"_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
 			$('#chatModal').css('display','');
@@ -415,8 +407,10 @@ body {
 	} 
 	var orderArlet;
 	function adminproductBillModalBtn(num) {
+		clearInterval(setIntervalOrderStop);
 		orderArlet = num;
-		$("#orderDetail" + num).css('color', 'white');
+		$("#orderDetail" + num).css("background-color","");
+		$("#orderDetail" + num).css("border-color","");
 		console.log("일로옴?");
 		var id = document.getElementById('user' + num).innerHTML;
 		console.log(id);

@@ -44,7 +44,7 @@ table {
 							</c:if>
 						<button type="button" id="commute"
 							onclick=" <%-- <% session.removeAttribute("EMPID"); %> --%> "
-							class="btn btn-warning btn-rounded btn-fw">근태 기록표</button>
+							class="btn btn-info btn-rounded btn-fw">근태 기록표</button>
 					</div>
 				</div>
 			</div>

@@ -52,7 +52,7 @@
 					</div>
 					<div class="col-lg-4">
 						<a class="portfolio-item" id="userChat"> <span class="caption"> <span class="caption-content">
-									<h3 id="chatCss">채팅 하기</h3>
+									<h3>채팅 하기 <img id="chatCss"  style="width: 20px; height: 20px; margin-left: 5px;" src="../resources/images/bell.png" ></h3>
 									<p class="mb-0">실시간 대화를 나눌 수 있습니다</p>
 							</span>
 						</span> <img class="img-fluid" src="/resources/images/chatIcon.png" alt="" style="width:370px; height:250px;">
@@ -98,6 +98,7 @@ var total_price;
 $(document).ready(function(){
 	$('#modalstyle').css('display','none');
 	$('#chatModal').css('display','none');
+	$('#chatCss').css('display','none');
 	
 	ajaxtogetdb_comic_room_uselist();
 	var operForm = $("#operForm");
@@ -111,10 +112,10 @@ $(document).ready(function(){
 		operForm.submit();
 	});
 	$("#userChat").on("click", function(e){
-		$("#chatCss").css('color', 'black');
 		$('#chatModal').css('display','');
 		$("#chatModal").show();
 		$('#modalstyle').css('display','');
+		$('#chatCss').css('display','none');
 		$.ajax({
 			type: 'get',
 			url: '/userView/chatting',

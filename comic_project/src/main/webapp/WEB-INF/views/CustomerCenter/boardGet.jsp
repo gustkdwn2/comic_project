@@ -182,7 +182,7 @@
     	 str += '<textarea style="float:left; margin-left:10px; margin-top:5px; width:1200px;" class="form-control" name="content_'+cmnt_num+'"rows="5"  maxlength="330">'+cmnt_content+'</textarea>';
     	 str += '<div>&emsp;&emsp;'
     	 str += '<button style="margin-top:8px;" class="btn btn-md btn-outline-secondary" onclick="updateBtn(' + cmnt_num + ');">수정 완료</button><br/><br/>&emsp;&emsp;';
-    	 str += '<button class="btn btn-md btn-outline-secondary" onclick="test(' + cmnt_num + ', \''+cmnt_content+'\');">수정 취소</button>';
+    	 str += '<button class="btn btn-md btn-outline-secondary" onclick="test(\'' + cmnt_num + '\', \''+cmnt_content+'\');">수정 취소</button>';
     	 str += '</div></div>';
 
  		 $("#updateCmnt_"+cmnt_num).html(str);
@@ -212,7 +212,9 @@
    	}
 
      cIstBtn.on("click",function(e){
-        
+
+    	 replyContent.val().replace(/\n/g, "<br/>")
+
         var comments = {
         	  cmnt_id: replyId.val(),
         	  cmnt_content: replyContent.val(),
