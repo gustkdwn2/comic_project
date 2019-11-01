@@ -83,7 +83,6 @@ public class KaKaoPayServiceImpl implements KaKaoPayService {
 
 	@Override
 	public void insertSale(String id) {
-		System.out.println("여기로들어옴이닏가ㅓ리ㅏㅓㄴㅁㅇㄹ하ㅓㅈ밋헌");
 		kakaoPayMapper.insertproductSale(id);  // 상품 매출 추가
 		kakaoPayMapper.insertroomSale(id);  // 방 매출 추가
 		

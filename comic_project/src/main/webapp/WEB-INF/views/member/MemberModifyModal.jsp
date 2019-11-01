@@ -18,7 +18,7 @@
 					<h4 class="card-title">
 						<font style="vertical-align: inherit;">회원 수정</font>
 					</h4>
-					<form class="forms-sample" action="/member/MemberModify" method="post" autocomplete="off" onsubmit="return validate();">
+					<form class="forms-sample" action="/member/AdminMemberModify" method="post" autocomplete="off" onsubmit="return validate();">
 						<div class="form-group">
 							<label>
 								<font style="vertical-align: inherit;">아이디</font>

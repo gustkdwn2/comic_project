@@ -12,7 +12,6 @@ var phone4 = document.getElementById("MEMBER_PHONE_NUMBER4");
 var phone1,phone2,phone3,phone4;
 
 function validate() {
-	  console.log("수정됨-9")
 	  phone1 = $('#MEMBER_PHONE_NUMBER1').val();
 	  phone2 = $('#MEMBER_PHONE_NUMBER2').val();
 	  phone3 = $('#MEMBER_PHONE_NUMBER3').val();

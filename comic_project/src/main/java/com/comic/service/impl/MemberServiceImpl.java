@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.comic.mapper.EmployeeAttachMapper;
 import com.comic.mapper.MemberMapper;
+import com.comic.model.EmployeeAttachVO;
+import com.comic.model.EmployeeVO;
 import com.comic.model.LoginVO;
 import com.comic.model.MemberVO;
 import com.comic.service.MemberService;
@@ -18,6 +21,9 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberMapper mapper;
 	private String password;
+	
+	@Autowired
+	private EmployeeAttachMapper attachMapper;
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
@@ -45,8 +51,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void MemberModify(MemberVO vo) {
-		mapper.MemberUpdate(vo);
+	public void AdminMemberModify(MemberVO vo) {
+		mapper.AdminMemberUpdate(vo);
 	}
 	
 	@Override
@@ -70,21 +76,43 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void MemberModify2(MemberVO vo) throws Exception {
+	public void MemberModify(MemberVO vo) throws Exception {
 		password = vo.getMEMBER_PWD();
 		vo.setMEMBER_PWD(passwordEncoder.encode(password));
-		mapper.MemberUpdate2(vo);
+		mapper.MemberUpdate(vo);
 	}
 	
 	@Override
 	public String membermodifypasswordcheck(String mEMBER_ID) {
 		return mapper.membermodifypasswordcheck(mEMBER_ID);
 	}
-
+	
+	@Override
+	public EmployeeVO employeeLogin(LoginVO loginVO) throws Exception {
+		return mapper.employeeLogin(loginVO);
+	}
 
 	@Override
 	public MemberVO getMember(MemberVO vo) {
 		return mapper.getMember(vo);
+	}
+
+	@Override
+	public void employeeRegister(EmployeeVO vo) {
+		//	password = vo.getEMPLOYEE_PWD();
+		//	vo.setEMPLOYEE_PWD(passwordEncoder.encode(password));
+		
+			mapper.employeeInsert(vo);
+			
+			vo.getAttachList().forEach(attach -> {
+				attach.setEMPLOYEE_NUM(vo.getEMPLOYEE_NUM());
+				attachMapper.insert(attach);
+			});
+	}
+
+	@Override
+	public List<EmployeeAttachVO> getAttachList(int employee_num) {
+		return attachMapper.findByEMPLOYEE_NUM(employee_num);
 	}
 
 	@Override

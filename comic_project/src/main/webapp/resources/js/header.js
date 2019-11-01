@@ -44,29 +44,6 @@ function headerMemberModifyPasswordCheck(MEMBER_ID,MEMBER_PWD){
 	});
 }
 
-//function headerMemberModifyPasswordBtn(MEMBER_ID){
-//		console.log("여기는 오는거임!");
-//		$.ajax({
-//			type : 'get',
-//			url : "/member/MemberModify?MEMBER_ID=" + MEMBER_ID,
-//			success : function(data) {
-//				$('#HeaderMEMBER_ID').attr('value',
-//					data.getModify['member_ID']);
-//				$('#HeaderMEMBER_NAME').attr('value',
-//						data.getModify['member_NAME']);
-//				$('#HeaderMEMBER_EMAIL').attr('value',
-//						data.getModify['member_EMAIL']);
-//				$('#HeaderMEMBER_PHONE_NUMBER').attr('value',
-//						data.getModify['member_PHONE_NUMBER']);
-//				$('#headerMemberModifyModal').show();
-//			}
-//		});
-//		$('#headermodifyclose').click(function(){
-//			$('#headerMemberModifyModal').hide();
-//			$('#headerMemberModifyModal').find('form')[0].reset();
-//		});
-//};
-
 
 function headervalidate() {
 	var re = /^[a-zA-Z0-9]{4,12}$/ // 패스워드가 적합한지 검사할 정규식
@@ -78,8 +55,7 @@ function headervalidate() {
 	var phone = document.getElementById("HeaderMEMBER_PHONE_NUMBER");
 	// ------------ 이메일 까지 -----------
 
-	console.log("수정누르면 이거뜨는건가?");
-	if (!check(re, pw, "ㄹㄹㄹ패스워드는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
+	if (!check(re, pw, "패스워드는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")) {
 		return false;
 	}
 
