@@ -35,7 +35,7 @@
       
       <multipart-config>
 
-         <location>C:\\upload</location>
+         <location>/home/ubuntu</location>
          <max-file-size>20971520</max-file-size> <!--1MB * 20 -->
          <max-request-size>41943040</max-request-size><!-- 40MB -->
          <file-size-threshold>20971520</file-size-threshold> <!-- 20MB -->
@@ -74,7 +74,7 @@
 
    <context-param>
       <param-name>saveDirectory</param-name>
-      <param-value>C:\\upload</param-value>
+      <param-value>/home/ubuntu</param-value>
    </context-param>
    
    <session-config>
