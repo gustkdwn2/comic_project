@@ -35,7 +35,7 @@ public class EmpUploadcontroller {
 	public ResponseEntity<List<AttachFileVO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 		
 		List<AttachFileVO> list = new ArrayList<>();
-		String uploadFolder = "C:\\upload\\comic_employee";
+		String uploadFolder = "/home/ubuntu/upload/comic_employee";
 
 		String uploadFolderPath = getFolder();
 		// make folder --------
@@ -53,7 +53,7 @@ public class EmpUploadcontroller {
 			String uploadFileName = multipartFile.getOriginalFilename();
 
 			// IE has file path
-			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("/") + 1);
 			
 			vo.setFileName(uploadFileName);
 
@@ -98,7 +98,7 @@ public class EmpUploadcontroller {
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) {
 		
-		File file = new File("C:\\upload\\comic_employee\\" + fileName);
+		File file = new File("/home/ubuntu/upload/comic_employee/" + fileName);
 
 		ResponseEntity<byte[]> result = null;
 
@@ -120,7 +120,7 @@ public class EmpUploadcontroller {
 		File file;
 
 		try {
-			file = new File("C:\\upload\\comic_employee\\" + URLDecoder.decode(fileName, "UTF-8"));
+			file = new File("/home/ubuntu/upload/comic_employee/" + URLDecoder.decode(fileName, "UTF-8"));
 
 			file.delete();
 
