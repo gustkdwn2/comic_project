@@ -290,17 +290,28 @@ $('#kakaopay').click(function(e){
 		              if(popup.closed){
 			              if( closeParam == 'success') {
 			            	socket.send(room_num + ",종료," + mem_id);
+<<<<<<< HEAD
 			            	location.href="http://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/userView/mainPro?roomNum="+room_num
 			            	
 			              } else {
 		            	  	location.href="http://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/userView/main?roomNum="+room_num
+=======
+			            	location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
+			            	
+			              } else {
+		            	  	location.href="http://10.10.10.173:8080/userView/main?roomNum="+room_num
+>>>>>>> e2ccd14c73bfefa76e6e32b220780c253cf76f57
 					      }
 		                 
 		              }
 		        }, 1000)
 			} else {
 				socket.send(room_num + ",종료," + mem_id);
+<<<<<<< HEAD
 				location.href="http://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/userView/mainPro?roomNum="+room_num
+=======
+				location.href="http://10.10.10.173:8080/userView/mainPro?roomNum="+room_num
+>>>>>>> e2ccd14c73bfefa76e6e32b220780c253cf76f57
 			}
 		}
 	});
