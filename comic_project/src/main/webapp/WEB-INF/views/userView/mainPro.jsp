@@ -10,11 +10,7 @@
 
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-<<<<<<< HEAD
 var socket = new WebSocket("ws://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/echo_order");
-=======
-var socket = new WebSocket("ws://10.10.10.173:8080/echo_order");
->>>>>>> e2ccd14c73bfefa76e6e32b220780c253cf76f57
 var sessionValue = ${roomNum};
 var memberid = "<c:out value='${memberid}' />";
 socket.onopen = function() {

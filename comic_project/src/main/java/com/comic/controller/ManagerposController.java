@@ -137,7 +137,7 @@ public class ManagerposController {
 
 			SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
 			String currenttime = format.format(System.currentTimeMillis());
-
+			
 			String starttimearr[] = starttime.split(":");
 			String curtimearr[] = currenttime.split(":");
 			int usetimearr[] = new int[3];
@@ -159,7 +159,7 @@ public class ManagerposController {
 			replydata.put("roomuse_num", list.get(i).getRoomuse_num());
 			replydata.put("starttime", list.get(i).getStarttime());
 			replydata.put("roomuse_status", list.get(i).getRoomuse_status());
-
+			replydata.put("currenttime", currenttime);
 			replydataArray.add(replydata);
 
 		}

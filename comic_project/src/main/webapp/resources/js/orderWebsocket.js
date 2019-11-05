@@ -2,10 +2,11 @@ var socket = new WebSocket("ws://ec2-15-164-228-53.ap-northeast-2.compute.amazon
 socket.onopen = function() {
 	console.log("소켓 시작");
 };
-
+var roomValue;
 socket.onmessage = function(event) {
 	console.log(event.data);
 	var data = event.data.split('|');
+	roomValue = data[1];
 	if(data[0] == "chat") {
 		test = data[1];
 		message_side = 'left';
@@ -125,8 +126,7 @@ Message = function(arg) {
 	this.draw = function(_this) {
 		return function() {
 			var $message;
-			console.log(chatRoom);
-			test = chatRoom;
+			test = roomValue;
 			console.log(test);
 			$message = $($('.message_template' + test).clone().html());
 			$message.addClass(_this.message_side).find('.text').html(
