@@ -7,11 +7,23 @@ var setIntervalChatStop;
 var setIntervalOrderStop;
 var setIntervalStopChatCss;
 var checkChat = false;
+var checkOrder = false;
+
+function orderArlet(roomNum, userid) {
+	   alert(roomNum + " 방"  + userid + "님 주문!");
+	   $("#orderDetail" + roomNum).css("background-color","RGB(255,71,71)");
+	   $("#orderDetail" + roomNum).css("border-color","RGB(255,71,71)");
+	   if (checkOrder == true) {
+		   clearInterval(setIntervalOrderStop);
+	   }
+	   setIntervalOrderStop = setInterval("flashOrder("+roomNum+")", 500);
+}
+
 socket.onmessage = function(event) {
 	console.log(event.data);
 	var data = event.data.split('|');
-	roomValue = data[1];
 	  if(data[0] == "chat") {
+		  roomValue = data[1];
 	      test = data[1];
 	      message_side = 'left';
 	      console.log(data); 
@@ -61,16 +73,10 @@ socket.onclose = function() {
 	console.log("소켓 끝");
 };
 
-	function orderArlet(roomNum, userid) {
-	   alert(roomNum + " 방"  + userid + "님 주문!");
-	   $("#orderDetail" + roomNum).css("background-color","RGB(255,71,71)");
-	   $("#orderDetail" + roomNum).css("border-color","RGB(255,71,71)");
-	   setIntervalOrderStop = setInterval("flashOrder("+roomNum+")", 500);
-	}
+	
 	
 	function flashOrder(roomNum){
 	   
-	   console.log("11");
 	   console.log($("#orderDetail" + roomNum).css("background-color"));
 	   if ($("#orderDetail" + roomNum).css("background-color") == "rgb(255, 71, 71)") {
 	      $("#orderDetail" + roomNum).css("background-color","RGB(77,131,255)");
@@ -80,6 +86,8 @@ socket.onclose = function() {
 	      $("#orderDetail" + roomNum).css("background-color","RGB(255,71,71)");
 	      $("#orderDetail" + roomNum).css("border-color","RGB(255,71,71)");
 	   }
+	   
+	   checkOrder = true;
 	   
 	}
 
@@ -165,7 +173,11 @@ Message = function(arg) {
 	this.draw = function(_this) {
 		return function() {
 			var $message;
-			test = roomValue;
+			if(roomValue == undefined){
+				test = chatRoom;
+			} else {
+				test = roomValue;
+			}
 			console.log(test);
 			$message = $($('.message_template' + test).clone().html());
 			$message.addClass(_this.message_side).find('.text').html(
