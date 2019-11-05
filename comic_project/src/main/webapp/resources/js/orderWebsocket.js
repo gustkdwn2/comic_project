@@ -126,12 +126,7 @@ Message = function(arg) {
 	this.draw = function(_this) {
 		return function() {
 			var $message;
-			console.log(chatRoom);
-			if (chatRoom == null || chatRoom == "" || chatRoom == undefined) {
-				test = roomValue;
-			} else {
-				test = chatRoom;
-			}
+			test = roomValue;
 			console.log(test);
 			$message = $($('.message_template' + test).clone().html());
 			$message.addClass(_this.message_side).find('.text').html(
