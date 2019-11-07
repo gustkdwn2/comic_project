@@ -89,8 +89,6 @@
     </div>
 </div>
 
-<<<<<<< HEAD
-=======
 <!-- modal category Update-->
 <div class="modal" id="ModalcategoryUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -118,7 +116,6 @@
     </div>
 </div>
 
->>>>>>> master
 <!-- modal product add-->
 <div class="modal" id="modalProductAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -146,8 +143,7 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-=======
+
 <!-- modal product update-->
 <div class="modal" id="modalProductUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -176,7 +172,7 @@
     </div>
 </div>
 </body>
->>>>>>> master
+
 <script src="/resources/js/userOrderManeger.js?vaer=2"></script>
 <script>
     $(document).ready(function () {
@@ -282,10 +278,9 @@
 
 		$("button[name = productAdd]").on("click", function(e){
 			var Optionstr = "";
-<<<<<<< HEAD
-=======
+
 			Optionstr += "<option value=''>선 택</option>";
->>>>>>> master
+
 			$.ajax({
 				type: 'get',
 			    url: "/userOrderManager/productCategoryName?product_category="+$(this).attr('value'),
@@ -377,8 +372,6 @@
 				orderProductShow(categoryValue);
 			});
 		}
-<<<<<<< HEAD
-=======
 
 /* 		window.productUpdate = function (number) {
 			var category = $("#prodcutCategoryUpdateHidden").val();
@@ -402,7 +395,6 @@
 			});
 			
 		} */
->>>>>>> master
 		
 		var maxSize = 5242880; // 5MB
 		

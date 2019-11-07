@@ -46,6 +46,6 @@
 	
 	<jsp:include page="productOrderRegisterModal.jsp" />
 	<jsp:include page="productOrderGetModal.jsp" />
-	<script src="/resources/js/productOrderTable.js?ver=1"></script>
+	<script src="/resources/js/productOrderTable.js?ver=11"></script>
 </body>
 </html>

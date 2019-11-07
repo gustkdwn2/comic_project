@@ -27,11 +27,12 @@ $(document).ready(function(){
 	    			return  date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getDate(); }
 	    	},
             {
-                mData: "productOrder_num",
+	    		mData: "productOrder_num",
                 mRender: function (data, type, row) {
-                    return "<button name ='getBtn' value=" + data +" type='button' class='btn btn-warning' style='color:white;' onclick='javascript:productOrderModify(value)'>수정</button> " +
+                	
+                    return "<button id='getBtnId"+data+"' name ='getBtn' value=" + data +" type='button' class='btn btn-warning' style='color:white;' onclick='javascript:productOrderModify(value)'>수정</button> " +
                     	    "&emsp;<button name ='removeBtn' value=" + data +" type='submit' class='btn btn-secondary' onclick='javascript:productOrderRemove(value)'>삭제</button>" +
-                    	    "&emsp;<button name ='checkBtn' value=" + data +" type='submit' class='btn btn-success' onclick='javascript:productOrderCheck(value)'>확인</button>";
+                    	    "&emsp;<button id='checkBtnId"+data+"' name ='checkBtn' value=" + data +" type='submit' class='btn btn-success' onclick='javascript:productOrderCheck(value)'>확인</button>";
                 }
             }
         ],
@@ -69,7 +70,7 @@ function productOrderRemove(productOrder_num){
 	hiddenInput.setAttribute("value", productOrder_num);
 
 	form.appendChild(hiddenInput);
-
+	
 	form.submit();
 }
 
@@ -87,7 +88,7 @@ function productOrderCheck(productOrder_num){
 	hiddenInput.setAttribute("value", productOrder_num);
 
 	form.appendChild(hiddenInput);
-
+	
 	form.submit();
 }
 

@@ -54,7 +54,7 @@ public class ProductOrderServiceImple implements ProductOrderService {
 	@Override
 	public void productOrderCheck(int productOrder_num) {
 		mapper.productOrderCheck(productOrder_num);
-		mapper.productOrderDelete(productOrder_num);
+//		mapper.productOrderDelete(productOrder_num);
 	}
 
 }
