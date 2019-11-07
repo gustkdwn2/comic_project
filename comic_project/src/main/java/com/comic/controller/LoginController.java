@@ -78,7 +78,6 @@ public class LoginController {
 				model.addAttribute("memberid", memberVO.getMEMBER_ID());
 			}
 		}
-		
 	}
 	
 	// 멤버 관리 페이지 멤버 정보 뿌리기

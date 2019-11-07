@@ -95,6 +95,7 @@ public class ManagerposController {
 		String roomuse_id = jsonArray.fromObject(map.get("list")).get(0).toString();
 		String roomuse_num = jsonArray.fromObject(map.get("list")).get(1).toString();
 		String roomuse_status = jsonArray.fromObject(map.get("list")).get(2).toString();
+		System.out.println(roomuse_status);
 
 		try {
 
@@ -103,6 +104,7 @@ public class ManagerposController {
 			System.out.println("room_status = " + roomuse_status);
 
 			if (roomuse_status.equals("on")) {
+				System.out.println("들어옴???");
 				managerposService.start_room(roomuse_id, roomuse_num, roomuse_status);
 			} else if (roomuse_status.equals("off")) {
 				managerposService.stop_room(roomuse_num);

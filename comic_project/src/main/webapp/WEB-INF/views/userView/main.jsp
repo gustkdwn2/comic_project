@@ -218,6 +218,7 @@ function ajaxtogetdb_comic_room_uselist() {
 				var number = list.roomuse_num;0
 				if(number == sessionValue) {
 					time_start(list.starttime, number);
+					console.log(list.starttime);
 				}
 			});
 			

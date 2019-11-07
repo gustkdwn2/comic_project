@@ -210,6 +210,7 @@ body {
 		}
 		
 		function method_startnstop(num, id) {
+			console.log("startnstop들어옴");
 			// 시작시간
 			if (!check_arr[num]) {
 				check_arr[num] = true;
