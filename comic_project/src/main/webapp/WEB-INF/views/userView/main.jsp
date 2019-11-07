@@ -290,17 +290,17 @@ $('#kakaopay').click(function(e){
 		              if(popup.closed){
 			              if( closeParam == 'success') {
 			            	socket.send(room_num + ",종료," + mem_id);
-			            	location.href="http://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/userView/mainPro?roomNum="+room_num
+			            	location.href="localhost:8080/userView/mainPro?roomNum="+room_num
 			            	
 			              } else {
-		            	  	location.href="http://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/userView/main?roomNum="+room_num
+		            	  	location.href="localhost:8080/userView/main?roomNum="+room_num
 					      }
 		                 
 		              }
 		        }, 1000)
 			} else {
 				socket.send(room_num + ",종료," + mem_id);
-				location.href="http://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/userView/mainPro?roomNum="+room_num
+				location.href="http://localhost:8080/userView/mainPro?roomNum="+room_num
 			}
 		}
 	});

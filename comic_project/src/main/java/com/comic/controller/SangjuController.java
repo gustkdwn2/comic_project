@@ -117,7 +117,7 @@ public class SangjuController {
 		OrderProductViewVO vo = new OrderProductViewVO();
 		MultipartFile uploadFile = request.getFile("uploadFile");
 
-		String uploadFolder = "/home/ubuntu/upload";
+		String uploadFolder = "C:\\upload\\";
 		String uploadFolderPath = getFolder();
 		// make folder --------S
 		File uploadPath = new File(uploadFolder, uploadFolderPath);
@@ -208,7 +208,7 @@ public class SangjuController {
 		System.out.println(uploadFile);
 		System.out.println(uploadFile.getContentType());
 
-		String uploadFolder = "/home/ubuntu/upload";
+		String uploadFolder = "C:\\upload\\";
 		String uploadFolderPath = getFolder();
 		// make folder --------S
 		File uploadPath = new File(uploadFolder, uploadFolderPath);
