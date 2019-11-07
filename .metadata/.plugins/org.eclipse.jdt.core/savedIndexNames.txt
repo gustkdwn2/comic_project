@@ -33,8 +33,8 @@ INDEX VERSION 1.131+C:\Users\5CLASS-184\Documents\GitHub\comic_project\.metadata
 2538981335.index
 912755910.index
 3887084537.index
-3556662058.index
 3267196084.index
+3556662058.index
 538242579.index
 3193869831.index
 94672185.index
@@ -52,8 +52,8 @@ INDEX VERSION 1.131+C:\Users\5CLASS-184\Documents\GitHub\comic_project\.metadata
 1904461612.index
 3121266111.index
 3897073071.index
-2968146114.index
 2061274715.index
+2968146114.index
 730894794.index
 994590124.index
 2384324317.index

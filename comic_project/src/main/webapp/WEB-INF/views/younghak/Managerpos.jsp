@@ -352,7 +352,7 @@ body {
 			clearInterval(setIntervalChatStop);
 			$("#chat" + chatRoom).css('background-color', '');
 			$("#chat" + chatRoom).css('border-color', '');
-			console.log("chatRoom" + chatRoom);
+			console.log("chatRoom" + chatR oom);
 			//window.open("/chat/chatting?room=" + roomNum,"_blank","height=550px, width=800px, left=300px, top=120px, location=no, scrollbars=no, menubar=no, status=no, resizable=no");
 			$('#chatModal').css('display','');
 			$("#chatModal").show();
