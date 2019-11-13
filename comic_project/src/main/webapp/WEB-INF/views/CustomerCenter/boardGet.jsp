@@ -140,32 +140,30 @@
 	commentsList();
 	
 	function commentsList(){
-		
-		console.log("페이지번호: " + boardValue);
-		var str='';
+	      
+	  var str='';
 
-		cmntajax.getList(boardValue, function(data){	
-		for (var i = 0, len = data.length || 0; i < len; i++) {
-			 
-			 str += '<div style="margin-bottom: 10px; height:190px; background-color:#DAE8E8; border-radius: 20px; width:1500px;"><br/>';
-			 str += '<div style="margin-left:40px; float:left; width:40px; height:40px; background-color:white; border-radius: 50%; font-weight:bold;"></br>&emsp;'+data[i].cmnt_num+'</div>';
-			 str += '<div style="height:20px; font-size:20px; margin-left:100px;">'+'작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date);
+      cmntajax.getList(boardValue, function(data){   
+      for (var i = 0, len = data.length || 0; i < len; i++) {
+          str += '<div style="margin-bottom: 20px; height:190px; border-bottom:1px solid #cdcdce; width:1500px;"><br/>';
+          str += '<div style="padding: 1px 15px; margin-left:40px; float:left; width:43px; height:40px; border:1px solid rgba(77, 131, 255, 0.5); border-radius: 50%;"></br>'+data[i].cmnt_num+'</div>';
+          str += '<div style="height:20px; font-size:20px; margin-left:100px;">'+'작성자 : '+data[i].cmnt_id+' / 작성일 : '+cmntajax.displayTime(data[i].cmnt_date);
 
-			 if( ${sessionScope.EMPPOSITION=='사장' || sessionScope.EMPPOSITION=='매니저'}) {
-			 data[i].cmnt_content = data[i].cmnt_content.replace(/(?:\r\n|\r|\n)/g, '<br>');
-			 
-	   		 str +=	'&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="updateCmntForm(\''+data[i].cmnt_num+'\',\''+data[i].cmnt_content+'\');">수정</button>';
-  			 str += '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="commentDelete('+data[i].cmnt_num+')">삭제</button>';
+          if(${sessionScope.EMPPOSITION=='사장' || sessionScope.EMPPOSITION=='매니저'}) { 
+            str +=   '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="updateCmntForm('+data[i].cmnt_num+',\''+data[i].cmnt_content+'\');">수정</button>'; 
+            str += '&emsp;<button class="btn btn-sm btn-outline-secondary" onclick="commentDelete('+data[i].cmnt_num+')">삭제</button>';
 
-			 }
-  			 str +=	'</div><br/><br/><div style="background-color:white; border-radius: 20px; height:110px; width:1400px; margin-left:40px; white-space:pre;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>'+data[i].cmnt_content+'</div>';
-	   		 str +=	'</div>';			
+          }
+      str +=   '</div><br/><br/><div style="border:1px solid rgba(77, 131, 255, 0.5); border-radius: 20px; height:110px; width:1400px; margin-left:40px; padding:1px 10px;" id= "updateCmnt_'+ data[i].cmnt_num +'"><br/>'+data[i].cmnt_content+'</div>';
+      str +=   '</div>';         
+      }
+	     cmntList.html(str);
+   
+	   });
 
-		}
-		cmntList.html(str);
-	 });
+    }
 
-	}
+
 
 	var reply = $("#cmntInsert");
 	var replyContent = reply.find("textarea[name='cmnt_content']");
