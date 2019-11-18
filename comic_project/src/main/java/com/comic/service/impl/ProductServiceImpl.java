@@ -41,13 +41,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void productRemove(int product_num) {
 		mapper.productDelete(product_num);
-//		int result = mapper.productNumSelect(product_num);
-//		if(result > 0) {
-//			for (int i = 0; i < result; i++) {
-//				mapper.productNumUpdate(product_num+1);
-//				product_num++;
-//			}
-//		}
 	}
 
 	@Override

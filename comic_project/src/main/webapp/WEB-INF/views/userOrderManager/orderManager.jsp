@@ -264,8 +264,6 @@
 					str += "<br/>";
 					str += "" + numberWithCommas(data[i].PRODUCT_PRICE)+"<br/><br/>";
 					str += "<button class='btn btn-primary btn-sm' onclick=\'productDelete(" + data[i].ORDERVIEW_NUM + ")\'>삭제</button>";
-/* 					str += "&emsp;"  */
-					/* str += "<button class='btn btn-primary btn-sm' onclick=\'productUpdate(" + data[i].ORDERVIEW_NUM + ")\'>수정</button>"; */
 					str += "</div>";
 				}
 				str += '</div>';
@@ -313,13 +311,11 @@
 					return false;
 				}
 				formData.append("uploadFile", files[i]);
-				/* formData.append("productName", $("input[name='product']").val()); */
 				formData.append("productName", $("select[name='product']").val());
 				formData.append("productCategory", categoryValue);
 			} 
 
 			var productJSON = {
-				/* productName: $("input[name='product']").val(), */
 				productName: $("select[name='product']").val(),
 				productCategory: categoryValue
 			};
@@ -328,12 +324,10 @@
 			orderProductService.productCheck(productJSON, function(result) {
 				if(result == "NULL") {
 					alert("재고에 해당 상품이 없습니다.");
-					/* $("input[name='product']").val(''); */
 					return;
 				}
 				
 				orderProductService.productAdd(formData, function(result){
-					/* $("input[name=product]").val(''); */
 					$("#productAddInputUploadFile").val("");
 					$("select#productCategoryNameOption option").remove();
 					modalProductAdd.modal("hide");
@@ -355,13 +349,11 @@
 					return false;
 				}
 				formData.append("uploadFile", files[i]);
-				/* formData.append("productName", $("input[name='product']").val()); */
 				formData.append("productName", $("select[name='product']").val());
 				formData.append("productCategory", categoryValue);
 			}
 
 			var productJSON = {
-				/* productName: $("input[name='product']").val(), */
 				productName: $("#productCategoryNameUpdateOption").val(),
 				productCategory: categoryValue
 			};
@@ -370,12 +362,10 @@
 			orderProductService.productCheck(productJSON, function(result) {
 				if(result == "NULL") {
 					alert("재고에 해당 상품이 없습니다.");
-					/* $("input[name='product']").val(''); */
 					return;
 				}
 				
 				orderProductService.productAdd(formData, function(result){
-					/* $("input[name=product]").val(''); */
 					modalProductAdd.modal("hide");
 					orderProductShow(categoryValue);
 					 
@@ -409,29 +399,6 @@
 				orderProductShow(categoryValue);
 			});
 		}
-
-/* 		window.productUpdate = function (number) {
-			var category = $("#prodcutCategoryUpdateHidden").val();
-			var Optionstr = "";
-			Optionstr += '<option value="">선 택</option>';
-			$.ajax({
-				type: 'get',
-			    url: "/userOrderManager/productCategoryName?product_category="+category,
-			    dataType : "json",
-			    async : false,
-			    success: function(data){
-				    for(var i = 0; i < data.length; i++) {
-				    	Optionstr += '<option value="'+data[i].product_name+'">'+data[i].product_name+'</option>';
-					}
-				}
-			});
-			$("#productCategoryNameUpdateOption").append(Optionstr);
-			$("#modalProductUpdate").modal("show");
-			$("#productUpdateModalCloseBtn").on("click", function (e) {
-				$("select#productCategoryNameUpdateOption option").remove();
-			});
-			
-		} */
 		
 		var maxSize = 5242880; // 5MB
 		
