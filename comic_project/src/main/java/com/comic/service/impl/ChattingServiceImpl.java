@@ -27,4 +27,9 @@ public class ChattingServiceImpl implements ChattingService{
 		return chattingmapper.chatSelect(roomNum);
 	}
 
+	@Override
+	public void deleteChat(int roomNum) {
+		chattingmapper.deleteChat(roomNum);
+	}
+
 }

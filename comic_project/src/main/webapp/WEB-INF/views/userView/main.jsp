@@ -114,11 +114,13 @@ $(document).ready(function(){
 		$("#chatCss").css('color', 'black');
 		$('#chatModal').css('display','');
 		$("#chatModal").show();
+		$('#modalstyle').css('display','');
 		$.ajax({
 			type: 'get',
 			url: '/userView/chatting',
 			dataType: 'json',
 			success: function(data) {
+				$("#messages" + sessionValue).html("");
 				$.each(data , function(i){
 					var str = "";
 					if(data[i].chat_id == "admin") {
@@ -286,23 +288,19 @@ $('#kakaopay').click(function(e){
 				var popup = window.open(res.payUrl, '카카오 결제', 'width=450, height=600, status=no, toolbar=no, location=no, top=200, left=200');
 				timer = setInterval(function(){
 		              if(popup.closed){
-		            	  //console.log("popup.closed");
 			              if( closeParam == 'success') {
-			            	 // console.log('socket.send gogo');
-				             // console.log(room_num);
-				              console.log(mem_id);
-				            //  console.log("room_num + ",종료," + mem_id");
-			            	socket.send(room_num + ",종료," + mem_id);  
-			            	 location.href="http://localhost:8090/userView/mainPro?roomNum="+room_num;
+			            	socket.send(room_num + ",종료," + mem_id);
+			            	location.href="http://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/userView/mainPro?roomNum="+room_num
 			            	
 			              } else {
-		            	  	location.href="http://localhost:8090/userView/main?roomNum="+room_num
+		            	  	location.href="http://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/userView/main?roomNum="+room_num
 					      }
 		                 
 		              }
 		        }, 1000)
 			} else {
-				location.href="http://localhost:8090/userView/mainPro?roomNum="+room_num
+				socket.send(room_num + ",종료," + mem_id);
+				location.href="http://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/userView/mainPro?roomNum="+room_num
 			}
 		}
 	});

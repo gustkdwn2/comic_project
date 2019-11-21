@@ -49,12 +49,12 @@ public class FileCheckTask {
 
 		// ready for check file in directory with database file list
 		List<Path> fileListPaths = fileList.stream()
-				.map(vo -> Paths.get("C:\\upload\\comic_book", vo.getUploadPath(), vo.getUuid() + "_" + vo.getFileName()))
+				.map(vo -> Paths.get("/home/ubuntu/comic_book", vo.getUploadPath(), vo.getUuid() + "_" + vo.getFileName()))
 				.collect(Collectors.toList());
 
 		// image file has thumnail file
 		fileList.stream().filter(vo -> vo.isFileType() == true)
-				.map(vo -> Paths.get("C:\\upload\\comic_book", vo.getUploadPath(), "s_" + vo.getUuid() + "_" + vo.getFileName()))
+				.map(vo -> Paths.get("/home/ubuntu/comic_book", vo.getUploadPath(), "s_" + vo.getUuid() + "_" + vo.getFileName()))
 				.forEach(p -> fileListPaths.add(p));
 
 		log.warn("===========================================");
@@ -62,7 +62,7 @@ public class FileCheckTask {
 		fileListPaths.forEach(p -> log.warn(p));
 
 		// files in yesterday directory
-		File targetDir = Paths.get("C:\\upload\\comic_book", getFolderYesterDay()).toFile();
+		File targetDir = Paths.get("/home/ubuntu/comic_book", getFolderYesterDay()).toFile();
 
 		File[] removeFiles = targetDir.listFiles(file -> fileListPaths.contains(file.toPath()) == false);
 

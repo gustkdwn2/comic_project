@@ -56,7 +56,12 @@ public class BookController {
 	
 	@PostMapping("/bookModify")
 	public String bookModify(@RequestParam("book_name_change") String book_name_change, BookVO vo) {
+		List<BookAttachVO> attachList = service.getAttachList(vo.getBook_name());
 		service.bookModify(book_name_change, vo);
+      service.bookModify(book_name_change, vo);
+      if(!attachList.get(0).getUuid().equals(vo.getAttachList().get(0).getUuid())) {
+          deleteFiles(attachList);
+       }
 		return "redirect:/book/bookList";
 	}
 	
@@ -88,13 +93,13 @@ public class BookController {
 		
 		attachList.forEach(attach -> {
 			try {
-				Path file = Paths.get("C:\\upload\\comic_book\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+				Path file = Paths.get("/home/ubuntu/upload/comic_book/" + attach.getUploadPath() + "/" + attach.getUuid() + "_" + attach.getFileName());
 				
 				Files.deleteIfExists(file);
 				
 				if(Files.probeContentType(file).startsWith("image")) {
 					
-					Path thumbNail = Paths.get("C:\\upload\\comic_book\\" + attach.getUploadPath() + "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+					Path thumbNail = Paths.get("/home/ubuntu/upload/comic_book/" + attach.getUploadPath() + "/s_" + attach.getUuid() + "_" + attach.getFileName());
 					
 					Files.delete(thumbNail);
 				}

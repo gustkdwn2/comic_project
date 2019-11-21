@@ -11,4 +11,6 @@ public interface ChattingMapper {
 	public void chatAdd(ChatVO vo);
 	
 	public List<ChatVO> chatSelect(@Param("roomNum")int roomNum);
+
+	public void deleteChat(@Param("roomNum")int roomNum);
 }

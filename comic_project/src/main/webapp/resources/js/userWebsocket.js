@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var socket = new WebSocket("ws://localhost:8090/echo_order");
+	var socket = new WebSocket("ws://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/echo_order");
 	socket.onopen = function() {
 		console.log("소켓 시작");
 	};

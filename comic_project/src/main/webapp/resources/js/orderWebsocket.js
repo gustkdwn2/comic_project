@@ -1,17 +1,19 @@
-var socket = new WebSocket("ws://localhost:8090/echo_order");
+var socket = new WebSocket("ws://ec2-15-164-228-53.ap-northeast-2.compute.amazonaws.com:8080/echo_order");
 socket.onopen = function() {
 	console.log("소켓 시작");
 };
-
+var roomValue;
 socket.onmessage = function(event) {
 	console.log(event.data);
 	var data = event.data.split('|');
+	roomValue = data[1];
 	if(data[0] == "chat") {
 		test = data[1];
 		message_side = 'left';
+		console.log(data); 
 		sendMessage(data[2]);
-		//$("#chatCss").css('color', 'red');
-
+		$("#chatCss").css('color', 'red');
+		$("#chat" + test).css('color', 'red');
 	} else {
 		if(data[1] == "주문") {
 			console.log("test");
@@ -20,12 +22,13 @@ socket.onmessage = function(event) {
 		} else if(data[1] == "시작") {
 			ajaxtosenddb_comic_room_use2(data[2], data[0], "on");
 		} else if(data[1] == "종료") {
-			console.log("else if(data[1] == exit");
+			console.log(sessionValue);
+			chatDataDelete(data[0]);
 			ajaxtosenddb_comic_room_use2(data[2], data[0], "off");
 			alert(data[0] + "방 사용 종료!!");
 			location.href="/managerpos/managerpos";
 		} else if(data[1] == "주문가져가") {
-			userOrderArlet();
+			alert('주문이 준비되었습니다 카운터로 오셔서 가져가주세요!');
 		}
 	}
 	 
@@ -37,8 +40,8 @@ socket.onclose = function() {
 };
 
 function orderArlet(roomNum, userid) {
-	$("#ModalorderArlet").modal("show");
-	$("#orderModalBody").append(roomNum + " 방"  + userid + "님 주문!");
+	alert(roomNum + " 방"  + userid + "님 주문!");
+	$("#orderDetail" + roomNum).css('color', 'red');
 }
 
 function userOrderArlet() {
@@ -64,7 +67,6 @@ function ajaxtosenddb_comic_room_use2(roomuse_id, roomuse_num,
 		contentType : "application/json; charset=utf-8;",
 		type : 'POST',
 		success : function(data) {
-			console.log("ajaxtogetdb_comic_room_uselist()");
 			ajaxtogetdb_comic_room_uselist();
 			console.log("성공");
 		},
@@ -101,14 +103,30 @@ function ajaxtogetdb_comic_room_uselist() {
 	
 }
 
+function chatDataDelete(roomNum) {
+	console.log("채팅데이터 날리기");
+	$.ajax({
+		url : '/chat/chattingDelete?roomNum=' + roomNum,
+		dataType : 'json',
+		contentType : "application/json; charset=utf-8;",
+		type : 'GET',
+		success : function(data) {
+			
+		},
+		error : function(data) {
+			console.log("실패");
+		}
+	});	
+}
+
+
 var Message;
 Message = function(arg) {
 	this.text = arg.text, this.message_side = arg.message_side;
 	this.draw = function(_this) {
 		return function() {
 			var $message;
-			console.log(chatRoom);
-			test = chatRoom;
+			test = roomValue;
 			console.log(test);
 			$message = $($('.message_template' + test).clone().html());
 			$message.addClass(_this.message_side).find('.text').html(

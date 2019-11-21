@@ -137,7 +137,7 @@ public class ManagerposController {
 
 			SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
 			String currenttime = format.format(System.currentTimeMillis());
-
+			
 			String starttimearr[] = starttime.split(":");
 			String curtimearr[] = currenttime.split(":");
 			int usetimearr[] = new int[3];
@@ -159,7 +159,7 @@ public class ManagerposController {
 			replydata.put("roomuse_num", list.get(i).getRoomuse_num());
 			replydata.put("starttime", list.get(i).getStarttime());
 			replydata.put("roomuse_status", list.get(i).getRoomuse_status());
-
+			replydata.put("currenttime", currenttime);
 			replydataArray.add(replydata);
 
 		}
@@ -471,16 +471,19 @@ public class ManagerposController {
 	 @PostMapping("/EmployeeModify")
 	   public String EmployeeRegister(EmployeeVO vo,Model model) {
 		 List<EmployeeAttachVO> attachList = MemberService.getAttachList(vo.getEMPLOYEE_NUM());
-		 deleteFiles(attachList);
 		 managementService.employeeModify(vo);
+		 if(!attachList.get(0).getUuid().equals(vo.getAttachList().get(0).getUuid())) {
+	          deleteFiles(attachList);
+	     }
 		 model.addAttribute("managerList", managementService.managerList()); // 재고테이블
-		return "/younghak/Manager_management";
+		 return "redirect:/managerpos/Manager_management";
 	      
 	   }
 	 
 	 @GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 		@ResponseBody
 		public ResponseEntity<List<EmployeeAttachVO>> getAttachList(@RequestParam("employee_num") int employee_num) {
+		 	System.out.println("여기오옴");
 			return new ResponseEntity<List<EmployeeAttachVO>>(MemberService.getAttachList(employee_num), HttpStatus.OK);
 		}
 	 
@@ -492,13 +495,13 @@ public class ManagerposController {
 			
 			attachList.forEach(attach -> {
 				try {
-					Path file = Paths.get("C:\\upload\\comic_employee\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+					Path file = Paths.get("/home/ubuntu/upload/comic_employee/" + attach.getUploadPath() + "/" + attach.getUuid() + "_" + attach.getFileName());
 					
 					Files.deleteIfExists(file);
 					
 					if(Files.probeContentType(file).startsWith("image")) {
 						
-						Path thumbNail = Paths.get("C:\\upload\\comic_employee\\" + attach.getUploadPath() + "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+						Path thumbNail = Paths.get("/home/ubuntu/upload/comic_employee/" + attach.getUploadPath() + "/s_" + attach.getUuid() + "_" + attach.getFileName());
 						
 						Files.delete(thumbNail);
 					}

@@ -14,30 +14,30 @@
 <title>Comic Clerk</title>
 
 <link rel="stylesheet"
-   href="/resources/vendors/mdi/css/materialdesignicons.min.css">
+   href="../resources/vendors/mdi/css/materialdesignicons.min.css">
 <link rel="stylesheet"
-   href="/resources/vendors/base/vendor.bundle.base.css">
+   href="../resources/vendors/base/vendor.bundle.base.css">
 <link rel="stylesheet"
-   href="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+   href="../resources/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="shortcut icon" href="/resources/images/favicon.png" />
 
 <!-- <script src="//code.jquery.com/jquery-3.2.1.min.js"></script> -->
-<script src="/resources/vendors/base/vendor.bundle.base.js"></script>
-<script src="/resources/vendors/chart.js/Chart.min.js"></script>
-<script src="/resources/vendors/datatables.net/jquery.dataTables.js"></script>
-<script src="/resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<script src="/resources/js/off-canvas.js"></script>
-<script src="/resources/js/hoverable-collapse.js"></script>
-<script src="/resources/js/template.js"></script>
-<script src="/resources/js/dashboard.js"></script>
-<script src="/resources/js/data-table.js"></script>
-<script src="/resources/js/jquery.dataTables.js"></script>
-<script src="/resources/js/dataTables.bootstrap4.js"></script>
-<script src="/resources/js/header.js?ver=1"></script>
+<script src="../resources/vendors/base/vendor.bundle.base.js"></script>
+<script src="../resources/vendors/chart.js/Chart.min.js"></script>
+<script src="../resources/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="../resources/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="../resources/js/off-canvas.js"></script>
+<script src="../resources/js/hoverable-collapse.js"></script>
+<script src="../resources/js/template.js"></script>
+<script src="../resources/js/dashboard.js"></script>
+<script src="../resources/js/data-table.js"></script>
+<script src="../resources/js/jquery.dataTables.js"></script>
+<script src="../resources/js/dataTables.bootstrap4.js"></script>
+<script src="../resources/js/header.js?ver=1"></script>
 
 <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
-<script src="/resources/js/orderWebsocket.js?ver=1"></script>
+<script src="../resources/js/orderWebsocket.js?ver=1"></script>
 
 
 </body>
@@ -76,12 +76,8 @@
                <a class="navbar-brand brand-logo" href="/managerpos/managerpos">
                <img src="/resources/images/comic_image.png" alt="" style="width: 70px; height: 30px;"/></a>
                <a class="navbar-brand brand-logo" href="/managerpos/managerpos">
-               <img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 100px; height: 15px;"/></a>
+               <img src="/resources/images/comic_clerk_logo.png" alt="" style="width: 130px; height: 20px;"/></a>
 
-               <button class="navbar-toggler navbar-toggler align-self-center"
-                  type="button" data-toggle="minimize">
-                  <span class="mdi mdi-sort-variant"></span>
-               </button>
             </div>
             <!-- hidden form -->
             <form id="operForm2"></form>
@@ -91,52 +87,7 @@
             <ul class="navbar-nav navbar-nav-right">
 
                
-               <!-- 알림 아이콘 -->
-               <li class="nav-item dropdown mr-4"><a
-                  class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown"
-                  id="notificationDropdown" href="#" data-toggle="dropdown"> <i
-                     class="mdi mdi-bell mx-0"></i> <span class="count"></span>
-               </a>
-                  <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-                     aria-labelledby="notificationDropdown">
-                     <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                     <a class="dropdown-item">
-                        <div class="item-thumbnail">
-                           <div class="item-icon bg-success">
-                              <i class="mdi mdi-information mx-0"></i>
-                           </div>
-                        </div>
-                        <div class="item-content">
-                           <h6 class="font-weight-normal">Application Error</h6>
-                           <p class="font-weight-light small-text mb-0 text-muted">
-                              Just now</p>
-                        </div>
-                     </a> <a class="dropdown-item">
-                        <div class="item-thumbnail">
-                           <div class="item-icon bg-warning">
-                              <i class="mdi mdi-settings mx-0"></i>
-                           </div>
-                        </div>
-                        <div class="item-content">
-                           <h6 class="font-weight-normal">Settings</h6>
-                           <p class="font-weight-light small-text mb-0 text-muted">
-                              Private message</p>
-                        </div>
-                     </a> <a class="dropdown-item">
-                        <div class="item-thumbnail">
-                           <div class="item-icon bg-info">
-                              <i class="mdi mdi-account-box mx-0"></i>
-                           </div>
-                        </div>
-                        <div class="item-content">
-                           <h6 class="font-weight-normal">New user registration</h6>
-                           <p class="font-weight-light small-text mb-0 text-muted">2
-                              days ago</p>
-                        </div>
-                     </a>
-                  </div>
-               </li>
-               <!-- 알림 아이콘 끝 -->
+              
                <c:if test="${not empty Memberlogin}">
                   <li class="nav-item nav-profile dropdown"><a
                      class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
@@ -178,30 +129,6 @@
 
       
 <!-- 주문 모달 -->
-
-            
-  
-      <!-- 주문 모달 -->
-
-		<div class="modal" id="ModalorderArlet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">주문</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<div id="orderModalBody"></div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button id="orderOK" type="button" class="btn btn-primary">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
       <!-- headerMemberModifyPassword -->
       <div class="modal" id="headerMemberModifyPasswordModal">
          <div class="modal-dialog">
