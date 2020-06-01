@@ -87,7 +87,6 @@ public class UserOrderManegerServiceImpl implements UserOrderManegerService{
 	
 	@Override
 	public UserBillVO userBill(String id) {
-		System.out.println("id = "+id);
 		return ordermapper.userBill(id);
 	}
 
